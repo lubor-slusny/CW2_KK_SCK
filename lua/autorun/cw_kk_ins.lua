@@ -1,32 +1,29 @@
 AddCSLuaFile()
 
-if not CustomizableWeaponry_KK then
-	CustomizableWeaponry_KK = {}
-end
+CustomizableWeaponry_KK = CustomizableWeaponry_KK or {}
+CustomizableWeaponry_KK.ins2 = CustomizableWeaponry_KK.ins2 or {}
 
-if not CustomizableWeaponry_KK.ins2 then
-	CustomizableWeaponry_KK.ins2 = {}
-end
-
-if not CustomizableWeaponry_KK.ins2.magnifierDependencies then
-	CustomizableWeaponry_KK.ins2.magnifierDependencies = {}
-	
-	CustomizableWeaponry_KK.ins2.magnifierDependencies.kk_ins2_aimpoint = true
-	CustomizableWeaponry_KK.ins2.magnifierDependencies.kk_ins2_cstm_eotechxps = true
-	CustomizableWeaponry_KK.ins2.magnifierDependencies.kk_ins2_cstm_compm4s = true
-end
+CustomizableWeaponry_KK.ins2.magnifierDependencies = CustomizableWeaponry_KK.ins2.magnifierDependencies or {}
+CustomizableWeaponry_KK.ins2.magnifierDependencies.kk_ins2_aimpoint = true
+CustomizableWeaponry_KK.ins2.magnifierDependencies.kk_ins2_cstm_eotechxps = true
+CustomizableWeaponry_KK.ins2.magnifierDependencies.kk_ins2_cstm_compm4s = true
 
 local SP = game.SinglePlayer()
 
-CustomizableWeaponry_KK.ins2.contentMounted = function() // IsMounted("ins2") wont work, well fuck
-	if !SP then 
-		return CustomizableWeaponry and true
-	else
-		// read mount.cfg if possible
-		// add some random file.exists checks mayb
-		// steel bgo3 vmt reading - fopen; stringsub
-		return CustomizableWeaponry and true
-	end
+CustomizableWeaponry_KK.ins2.baseContentMounted = function()
+	return true
+end
+
+CustomizableWeaponry_KK.ins2.wsContentMounted = function()
+	return 
+		CustomizableWeaponry_KK.ins2.baseContentMounted() and
+		CustomizableWeaponry_KK.ins2.ws
+end
+
+CustomizableWeaponry_KK.ins2.ww2ContentMounted = function()
+	return 
+		CustomizableWeaponry_KK.ins2.baseContentMounted() and
+		true
 end
 
 AddCSLuaFile("cw_kk_ins/rigs.lua")

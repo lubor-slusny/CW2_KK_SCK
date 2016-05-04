@@ -1,3 +1,5 @@
+if not CustomizableWeaponry then return end
+
 AddCSLuaFile()
 
 /*

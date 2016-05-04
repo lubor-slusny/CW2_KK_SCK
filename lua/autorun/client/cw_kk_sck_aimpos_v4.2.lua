@@ -1,6 +1,6 @@
 AddCSLuaFile()
 
-local BUILD = "42"
+local BUILD = "425"
 
 // static
 local IRONSIGHTSATT = {
@@ -49,16 +49,18 @@ local function getWeaponAtt(wep)
 	
 	for attId,isActive in pairs(wep.ActiveAttachments) do
 		local data = CustomizableWeaponry.registeredAttachmentsSKey[attId]
-		if isActive and data and data.isGrenadeLauncher then
+		if isActive and data and data.isGrenadeLauncher and ((wep.dt.M203Active and wep.M203Chamber) or wep.dt.INS2GLActive)then
 			GRENADELAUNCHER.name = attId
 			att = GRENADELAUNCHER
 		end
 	end
-	
-	for attId,isActive in pairs(wep.ActiveAttachments) do
-		local data = CustomizableWeaponry.registeredAttachmentsSKey[attId]
-		if isActive and data and data.isSecondarySight then
-			att = data
+
+	if not att then	
+		for attId,isActive in pairs(wep.ActiveAttachments) do
+			local data = CustomizableWeaponry.registeredAttachmentsSKey[attId]
+			if isActive and data and data.isSecondarySight then
+				att = data
+			end
 		end
 	end
 	
@@ -151,10 +153,16 @@ local _LAST_SETUP
 
 local function menuThink()
 	local ply = LocalPlayer()
-	if !IsValid(ply) then return end
+	if !IsValid(ply) then 
+		_LAST_SETUP = nil
+		return 
+	end
 	
 	local wep = ply:GetActiveWeapon()
-	if !IsValid(wep) then return end
+	if !IsValid(wep) then 
+		_LAST_SETUP = nil
+		return 
+	end
 	
 	if wep.CW20Weapon then
 		local wepClass = wep:GetClass()
@@ -272,13 +280,23 @@ local function buttonExportAll()
 				sight = IRONSIGHTSATT
 			end
 			
+			if sight and sight.isGrenadeLauncher /*woop*/ then
+				sight = GRENADELAUNCHER
+			end
+			
 			SUFFIX = SUFFIX or ""
 			
 			out = out .. "\n"
 			-- out = out .. "	SWEP." .. sight.aimPos[1] .. " = " .. vec2fstring(WEAPON[sight.aimPos[1]]) .. "\n"
 			-- out = out .. "	SWEP." .. sight.aimPos[2] .. " = " .. vec2fstring(WEAPON[sight.aimPos[2]]) .. "\n"
-			out = out .. "	SWEP." .. sight.aimPos[1] .. SUFFIX .. " = " .. vec2fstring(WEAPON[sight.aimPos[1]]) .. "\n"
-			out = out .. "	SWEP." .. sight.aimPos[2] .. SUFFIX .. " = " .. vec2fstring(WEAPON[sight.aimPos[2]]) .. "\n"
+			
+			out = out .. "	SWEP." .. sight.aimPos[1] 
+			out = out .. SUFFIX .. " = " 
+			out = out .. vec2fstring(WEAPON[sight.aimPos[1]]) .. "\n"
+			
+			out = out .. "	SWEP." .. sight.aimPos[2]
+			out = out .. SUFFIX .. " = " 
+			out = out .. vec2fstring(WEAPON[sight.aimPos[2]]) .. "\n"
 		end
 	end
 	
@@ -289,9 +307,10 @@ local function buildPanel(panel)
 	panel:ClearControls()
 	
 	panel:AddControl("CheckBox", {Label = "[Override] Force GM crosshair", Command = "cw_kk_gm_xhair"}):DockMargin(8, 0, 8, 0)
-	panel:AddControl("CheckBox", {Label = "Freeze reticles (RT and Stencils only)", Command = "cw_kk_freeze_reticles"}):DockMargin(8, 0, 8, 0)
-	panel:AddControl("CheckBox", {Label = "Hold aim", Command = "cw_kk_sck_lock_ads"}):DockMargin(8, 0, 8, 0)
-		
+	panel:AddControl("CheckBox", {Label = "Freeze reticles (if supported)", Command = "cw_kk_freeze_reticles"}):DockMargin(8, 0, 8, 0)
+	panel:AddControl("CheckBox", {Label = "Hold aim (+attack2 spam)", Command = "cw_kk_sck_lock_ads"}):DockMargin(8, 0, 8, 0)
+	panel:AddControl("CheckBox", {Label = "Free Aim (shortcut)", Command = "cw_freeaim"}):DockMargin(8, 0, 8, 0)
+	
 	MENU.LABELS.buildHeader = panel:AddControl("Label", {Text = "AimPos Building:"})
 	MENU.LABELS.buildHeader:DockMargin(0, 0, 0, 0)
 	
@@ -556,25 +575,25 @@ local function buildPanel(panel)
 	
 	panel:AddItem(MENU.SLIDERS.fovAim)
 
-	MENU.SLIDERS.fovVM = vgui.Create("DNumSlider", panel)
-	MENU.SLIDERS.fovVM:DockMargin(8, 0, 8, 0)
-	MENU.SLIDERS.fovVM:SetDecimals(0)
-	MENU.SLIDERS.fovVM:SetMinMax(1, 150)
-	MENU.SLIDERS.fovVM:SetValue(0)
-	MENU.SLIDERS.fovVM:SetText("ViewModelFOV:")
-	MENU.SLIDERS.fovVM:SetDark(true)
+	-- MENU.SLIDERS.fovVM = vgui.Create("DNumSlider", panel)
+	-- MENU.SLIDERS.fovVM:DockMargin(8, 0, 8, 0)
+	-- MENU.SLIDERS.fovVM:SetDecimals(0)
+	-- MENU.SLIDERS.fovVM:SetMinMax(1, 150)
+	-- MENU.SLIDERS.fovVM:SetValue(0)
+	-- MENU.SLIDERS.fovVM:SetText("ViewModelFOV:")
+	-- MENU.SLIDERS.fovVM:SetDark(true)
 	
-	function MENU.SLIDERS.fovVM:OnValueChanged(val)
-		if not WEAPON or not SIGHT then return end
-		WEAPON.ViewModelFOV = val
-	end
+	-- function MENU.SLIDERS.fovVM:OnValueChanged(val)
+		-- if not WEAPON or not SIGHT then return end
+		-- WEAPON.ViewModelFOV = val
+	-- end
 	
-	function MENU.SLIDERS.fovVM:_KK_SCK_update()
-		if not WEAPON or not SIGHT then return end
-		self:SetValue(WEAPON.ViewModelFOV)
-	end
+	-- function MENU.SLIDERS.fovVM:_KK_SCK_update()
+		-- if not WEAPON or not SIGHT then return end
+		-- self:SetValue(WEAPON.ViewModelFOV)
+	-- end
 	
-	panel:AddItem(MENU.SLIDERS.fovVM)
+	-- panel:AddItem(MENU.SLIDERS.fovVM)
 
 	for _,dpanel in pairs(MENU.PANELS) do
 		dpanel:DockPadding(4, 0, 4, 0)

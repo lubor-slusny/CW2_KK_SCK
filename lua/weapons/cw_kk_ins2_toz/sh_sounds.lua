@@ -9,3 +9,8 @@ CustomizableWeaponry:addReloadSound("CW_KK_INS2_TOZ_SHELLINSERT", {
 	"weapons/toz_shotgun/handling/toz_shell_insert_2.wav",
 	"weapons/toz_shotgun/handling/toz_shell_insert_3.wav"
 })
+CustomizableWeaponry:addReloadSound("CW_KK_INS2_TOZ_SHELLINSERTSINGLE", {
+	"weapons/toz_shotgun/handling/toz_single_shell_insert_1.wav",
+	"weapons/toz_shotgun/handling/toz_single_shell_insert_2.wav",
+	"weapons/toz_shotgun/handling/toz_single_shell_insert_3.wav"
+})

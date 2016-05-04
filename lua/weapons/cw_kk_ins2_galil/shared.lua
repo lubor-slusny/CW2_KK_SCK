@@ -1,3 +1,5 @@
+if not CustomizableWeaponry then return end
+
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
 include("sh_sounds.lua")
@@ -62,6 +64,10 @@ if CLIENT then
 		["kk_ins2_cstm_barska"] = {model = "models/weapons/upgrades/w_eotech.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_cstm_acog"] = {model = "models/weapons/attachments/w_cw_kk_ins2_cstm_acog.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 	}
+
+	-- SWEP.SprintPos = Vector(-1.9, 0, -0.5)
+	SWEP.SprintPos = Vector(0, 0, 0)
+	SWEP.SprintAng = Vector(0, 0, 0)
 
 	SWEP.IronsightPos = Vector(-2.2259, -2, 0.6884)
 	SWEP.IronsightAng = Vector(-0.0408, 0.039, 0)
@@ -469,8 +475,8 @@ SWEP.WMAng = Angle(-10, 0, 180)
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.f1
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.gurkha
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.contentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.contentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted()
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()
 
 SWEP.Primary.ClipSize		= 35
 SWEP.Primary.DefaultClip	= 35

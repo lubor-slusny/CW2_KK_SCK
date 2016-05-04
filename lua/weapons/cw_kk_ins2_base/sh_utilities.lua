@@ -144,7 +144,7 @@ if CLIENT then
 	
 	function SWEP:updateStandardParts()
 		if self.AttachmentModelsVM then
-			if self:getActiveAttachmentInCategory(1) != nil then
+			if self:getCurrentPrimarySight() != nil then
 				if self.AttachmentModelsVM.kk_ins2_optic_iron then
 					self.AttachmentModelsVM.kk_ins2_optic_iron.active = false
 				end

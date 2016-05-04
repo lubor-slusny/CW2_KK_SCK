@@ -1,3 +1,5 @@
+if not CustomizableWeaponry then return end
+
 AddCSLuaFile()
 AddCSLuaFile("sh_anims.lua")
 AddCSLuaFile("sh_content.lua")
@@ -236,6 +238,8 @@ function SWEP:Initialize()
 end
 
 function SWEP:unloadWeapon()
+	if self.dt.State != CW_CUSTOMIZE then return end
+	
 	weapons.GetStored("cw_base").unloadWeapon(self)
 	
 	if CLIENT then
@@ -243,6 +247,12 @@ function SWEP:unloadWeapon()
 			self:idleAnimFunc()
 		end
 	end
+end
+
+function SWEP:unloadMagazine()
+	if self.dt.State != CW_CUSTOMIZE then return end
+	
+	weapons.GetStored("cw_base").unloadMagazine(self)
 end
 
 function SWEP:Reload()
@@ -302,6 +312,7 @@ function SWEP:PrepareForPickup(drop)
 			self:setGlobalDelay(self.FirstDeployTime - 0.2)
 		else
 			self:setGlobalDelay(self.FirstDeployTime - 0.1)
+			-- self:SetClip1(self.Primary.ClipSize)
 		end
 	end)
 	

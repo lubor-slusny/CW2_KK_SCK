@@ -156,6 +156,7 @@ if CLIENT then
 	killicon.AddFont("cw_kk_ins2_p2a1",				"CW_KillIcons", "a", killCol)
 	killicon.AddFont("cw_kk_ins2_rpg",				"CW_SelectIcons2", "i", killCol)
 	
+	killicon.AddFont("cw_kk_ins2_gp25",				"HL2MPTypeDeath", "7", killCol)
 	killicon.AddFont("cw_kk_ins2_rpg_pro",			"CW_KillIcons", "a", killCol)
 	
 	// WS pack

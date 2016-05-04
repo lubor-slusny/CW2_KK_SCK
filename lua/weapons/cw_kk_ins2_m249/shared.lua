@@ -1,3 +1,5 @@
+if not CustomizableWeaponry then return end
+
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
 include("sh_sounds.lua")
@@ -26,6 +28,8 @@ if CLIENT then
 		-- ["kk_counter"] = {model = "models/weapons/stattrack.mdl", bone = "Weapon", pos = Vector(0.026, -7.802, 3.993), angle = Angle(0, 0, 72), size = Vector(0.699, 0.699, 0.699)},
 		["kk_counter"] = {model = "models/weapons/stattrack.mdl", bone = "Weapon", pos = Vector(0.026, -7.77, 4.057), angle = Angle(0, 0, 50), size = Vector(0.699, 0.699, 0.699)},
 		["kk_textbox"] = {model = "models/weapons/uid.mdl", bone = "LidCont", pos = Vector(0.441, -5.015, -0.156), angle = Angle(0, -90, 0), size = Vector(1, 1, 1)},
+		
+		["kk_counter_mag"] = {model = "models/weapons/stattrack.mdl", bone = "Magazine", rel = "", pos = Vector(1.149, -0.976, 1.919), angle = Angle(0, 0, 0), size = Vector(0.4, 0.4, 0.4)},
 
 		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_band.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_band.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
@@ -325,8 +329,8 @@ SWEP.WorldModel		= "models/weapons/w_m249.mdl"
 SWEP.WMPos = Vector(5.184, 0.935, -1.03)
 SWEP.WMAng = Vector(-10, -1, 180)
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.contentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.contentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted()
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()
 
 SWEP.Primary.ClipSize		= 200
 SWEP.Primary.DefaultClip	= 200
@@ -365,6 +369,8 @@ SWEP.bipod_ReloadTime_EmptyFired = 10.52
 SWEP.bipod_ReloadHalt_EmptyFired = 10.52
 
 if CLIENT then
+	local counterExists = file.Exists("models/weapons/stattrack.mdl", "GAME")
+	
 	function SWEP:updateOtherParts()
 		local vm = self.CW_VM
 		local cycle = vm:GetCycle()
@@ -382,6 +388,14 @@ if CLIENT then
 			self:SetSequence(1)
 		else
 			self:SetSequence(0)
+		end
+		
+		self.AttachmentModelsVM.kk_counter_mag.active = counterExists and CustomizableWeaponry_KK.HOME 
+		
+		if self.Sequence:find("reload") and cycle > 0.4 then
+			self.AttachmentModelsVM.kk_counter_mag.ent._KKCSGONUM = math.Clamp(ammo,0,self.Primary.ClipSize)
+		else
+			self.AttachmentModelsVM.kk_counter_mag.ent._KKCSGONUM = math.Clamp(clip,0,self.Primary.ClipSize)
 		end
 	end
 	

@@ -9,3 +9,8 @@ CustomizableWeaponry:addReloadSound("CW_KK_INS2_M590_SHELLINSERT", {
 	"weapons/m590/handling/m590_shell_insert_2.wav",
 	"weapons/m590/handling/m590_shell_insert_3.wav"
 })
+CustomizableWeaponry:addReloadSound("CW_KK_INS2_M590_SHELLINSERTSINGLE", {
+	"weapons/m590/handling/m590_single_shell_insert_1.wav",
+	"weapons/m590/handling/m590_single_shell_insert_2.wav",
+	"weapons/m590/handling/m590_single_shell_insert_3.wav"
+})

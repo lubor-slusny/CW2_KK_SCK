@@ -110,7 +110,7 @@ function att:attachFunc()
 			
 			// thinking
 			
-			hook.Add("Think", ent, function()
+			hook.Add("Tick", ent, function()
 				if ent._KK_TTL and ent._KK_TTL > CurTime() then
 					local c = ent._KK_COL
 					ent:SetKeyValue("lightcolor", Format("%i %i %i %i", c.r, c.g, c.b, 255))

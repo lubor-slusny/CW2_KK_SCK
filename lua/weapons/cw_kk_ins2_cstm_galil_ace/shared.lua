@@ -1,3 +1,5 @@
+if not CustomizableWeaponry then return end
+
 AddCSLuaFile()
 
 SWEP.magType = "arMag"
@@ -13,6 +15,8 @@ if CLIENT then
 	
 	SWEP.MuzzleEffect = "muzzleflash_ak74"
 	SWEP.Shell = "KK_INS2_556x45"
+	
+	local counterExists = file.Exists("models/weapons/stattrack.mdl", "GAME")
 	
 	SWEP.AttachmentModelsVM = {
 		["md_saker"] = {model = "models/weapons/upgrades/a_suppressor_sec.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
@@ -36,7 +40,7 @@ if CLIENT then
 		-- ["kk_ins2_cstm_eotechxps"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_eotechxps.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 				
 		["kk_counter_fake"] = {model = "models/weapons/stattrack.mdl", bone = "Weapon", pos = Vector(0.6, -6.045, 1.08), angle = Angle(0, -90, 0), size = Vector(0.9, 0.9, 0.9), ignoreKKBGO = true, bodygroups = {1},
-			active = file.Exists("models/weapons/stattrack.mdl", "GAME") and !CustomizableWeaponry_KK.HOME
+			active = counterExists and !CustomizableWeaponry_KK.HOME
 		},
 	}
 
@@ -409,8 +413,8 @@ SWEP.WMAng = Angle(-10, 0, 180)
 
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.gurkha
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.contentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.contentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted()
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()
 
 SWEP.AdminOnly			= true
 

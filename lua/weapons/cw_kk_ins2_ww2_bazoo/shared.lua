@@ -1,3 +1,5 @@
+if not CustomizableWeaponry then return end
+
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
 include("sh_sounds.lua")
@@ -55,7 +57,8 @@ SWEP.KKINS_emptyIdle = true
 
 SWEP.Animations = {
 	draw = "base_ready",
-
+	base_insert = "base_reload",
+	
 	base_pickup = "base_ready",
 	base_draw = "base_draw",
 	base_draw_empty = "empty_draw",
@@ -154,11 +157,11 @@ SWEP.WMAng = Vector(-10.386, 0, -120)
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.f1
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.gurkha
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.contentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.contentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
 
-SWEP.Primary.ClipSize		= 1
-SWEP.Primary.DefaultClip	= 1
+SWEP.Primary.ClipSize		= 4
+SWEP.Primary.DefaultClip	= 4
 SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= "RPG 40MM"
 
@@ -178,10 +181,15 @@ SWEP.Damage = 100
 SWEP.FirstDeployTime = 3.06
 SWEP.DeployTime = 0.83
 
-SWEP.ReloadTime = 2.7
-SWEP.ReloadTime_Empty = 2.7
-SWEP.ReloadHalt = 4
-SWEP.ReloadHalt_Empty = 4
+-- SWEP.ReloadTime = 2.7
+-- SWEP.ReloadTime_Empty = 2.7
+-- SWEP.ReloadHalt = 4
+-- SWEP.ReloadHalt_Empty = 4
+
+SWEP.ShotgunReload = true
+SWEP.ReloadStartTime = 0
+SWEP.InsertShellTime = 3
+SWEP.ReloadFinishWait = 1
 
 function SWEP:fireAnimFunc()
 	local clip = self:Clip1()
@@ -223,22 +231,3 @@ function SWEP:isNearWall()
 	
 	return false
 end
-
-if CLIENT then 
-	function SWEP:updateOtherParts()
-		self.WMEnt:SetBodygroup(1, 1 - self:Clip1())
-		self:SetBodygroup(1, 1 - self:Clip1())
-	end
-end
-
--- function SWEP:IndividualThink()
-	-- weapons.GetStored("cw_kk_ins2_base").IndividualThink(self)
-
-	-- if CLIENT then 
-		-- self.WMEnt:SetBodygroup(1, 1 - self:Clip1())
-	-- else
-		-- self:SetBodygroup(1, 1 - self:Clip1())
-	-- end
-	
-	-- self:SetBodygroup(1, 1 - self:Clip1())
--- end

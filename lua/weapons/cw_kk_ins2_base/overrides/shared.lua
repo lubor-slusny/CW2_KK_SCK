@@ -8,7 +8,7 @@ function SWEP:SetupDataTables()
 	self:DTVar("Bool", 0, "Suppressed")
 	self:DTVar("Bool", 1, "Safe")
 	self:DTVar("Bool", 2, "BipodDeployed")
-	self:DTVar("Bool", 3, "INS2GLActive") // coz I dont want to copy-pasta whole cw_menu + initfunc 
+	self:DTVar("Bool", 3, "INS2GLActive")
 	self:DTVar("Angle", 0, "ViewOffset")
 end
 

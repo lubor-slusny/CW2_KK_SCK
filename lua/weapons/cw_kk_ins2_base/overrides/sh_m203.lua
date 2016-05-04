@@ -56,9 +56,7 @@ function SWEP:fireM203(firstTimePrediction)
 	end
 end
 
-CW_KK_INS_M203_RELOAD = {}
-
-function CW_KK_INS_M203_RELOAD:doIt()
+function SWEP:reloadM203()
 	if SERVER and SP then
 		SendUserMessage("CW20_RELOADM203", self.Owner)
 	end
@@ -88,10 +86,6 @@ function CW_KK_INS_M203_RELOAD:doIt()
 		
 		self.M203Chamber = true
 	end)
-end
-
-function SWEP:reloadM203()
-	CW_KK_INS_M203_RELOAD.doIt(self)
 end
 
 // GL unloading upon changing ammo

@@ -1,7 +1,7 @@
 local att = {}
 att.name = "kk_ins2_gl_gp25"
-att.displayName = "GP25"
-att.displayNameShort = "GP25"
+att.displayName = "GP30"
+att.displayNameShort = "GP30"
 att.isGrenadeLauncher = true
 att.KK_INS2_playIdle = true
 

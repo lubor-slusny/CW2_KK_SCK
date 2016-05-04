@@ -19,6 +19,34 @@ if CLIENT then
 	CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/optics/lense_rt"] = true
 	CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/optics/optic_lense"] = true
 	
+	CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/attachments/cw_kk_ins2_cstm_acog/elcan_reticule"] = true
+
+	-- "models/weapons/optics/4x_reticule"
+	-- "models/weapons/optics/aimpoint_lense"
+	-- "models/weapons/optics/aimpoint_reticule"
+	-- "models/weapons/optics/aimpoint_reticule_holo"
+	-- "models/weapons/optics/elcan_reticule"
+	-- "models/weapons/optics/eotech_lense"
+	-- "models/weapons/optics/eotech_reticule"
+	-- "models/weapons/optics/eotech_reticule_holo"
+	-- "models/weapons/optics/kobra_dm"
+	-- "models/weapons/optics/kobra_dot"
+	-- "models/weapons/optics/kobra_lense"
+	-- "models/weapons/optics/lense_rt"
+	-- "models/weapons/optics/lense_rt_kobra"
+	-- "models/weapons/optics/mk4_crosshair"
+	-- "models/weapons/optics/mosin_crosshair"
+	-- "models/weapons/optics/mosin_lense"
+	-- "models/weapons/optics/optic_lense"
+	-- "models/weapons/optics/parallax_mask"
+	-- "models/weapons/optics/po4x_reticule"
+	-- "models/weapons/optics/weapon_eotech_dm"
+	-- "models/weapons/optics/weapon_rail_dm"
+	-- "models/weapons/optics/weapon_rail2_dm"
+
+	CustomizableWeaponry_KK.ins2.stencilLenses[_stencilMat] = true
+	CustomizableWeaponry_KK.ins2.stencilLenses[_nodrawMat] = true
+	
 	local isLense = CustomizableWeaponry_KK.ins2.stencilLenses
 	
 	local size, rc, isAiming, freeze, isScopePos, attachmEnt, retAtt, retDist, retPos, EA, retAng, retNorm, v

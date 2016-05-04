@@ -130,6 +130,11 @@ if CLIENT then
 	end
 end
 
+function SWEP:pickupAnimFunc(mode)
+	prefix = mode or self:getForegripMode()
+	self:sendWeaponAnim(prefix .. "pickup")
+end
+
 function SWEP:drawAnimFunc()
 	clip = self:Clip1()
 	prefix = self:getForegripMode()
@@ -139,7 +144,7 @@ function SWEP:drawAnimFunc()
 		self._KK_INS2_PickedUp = true
 		
 		if !(clip == 0 and self.KKINS_emptyIdle) and self.Owner then // wtf owner?
-			self:sendWeaponAnim(prefix .. "pickup")
+			self:pickupAnimFunc(prefix)
 			return		
 		end
 	end

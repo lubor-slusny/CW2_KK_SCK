@@ -1,3 +1,5 @@
+if not CustomizableWeaponry then return end
+
 
 if CLIENT then
 	SWEP.SprintAnimSpeed = 1.2

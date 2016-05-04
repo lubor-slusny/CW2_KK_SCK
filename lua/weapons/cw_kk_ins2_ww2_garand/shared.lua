@@ -1,3 +1,5 @@
+if not CustomizableWeaponry then return end
+
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
 include("sh_sounds.lua")
@@ -11,15 +13,22 @@ if CLIENT then
 	SWEP.MuzzleEffect = "muzzleflash_m14"
 	SWEP.Shell = "KK_INS2_762x54"
 	
+	SWEP.AttachmentModelsVM = {
+		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/a_bayonet.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+	}
+
 	SWEP.IronsightPos = Vector(-2.4643, -2, 1.1174)
 	SWEP.IronsightAng = Vector(-0.4782, 0.006, 0)
 
 end
 
-SWEP.CanCustomize = true
-
 SWEP.Attachments = {
-	["+reload"] = {header = "Ammo", offset = {700, 300}, atts = {"am_magnum", "am_matchgrade"}}
+	-- {header = "Sight", offset = {500, -500},  atts = {"kk_ins2_cstm_barska", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_cstm_acog", "kk_ins2_pso4", "kk_ins2_scope_mosin", "kk_ins2_scope_m40"}},
+	{header = "Barrel", offset = {-200, -500},  atts = {"kk_ins2_ww2_knife"}},
+	-- {header = "Under", offset = {-500, 0},  atts = {"kk_ins2_bipod"}},
+	-- {header = "Extras", offset = {125, 200}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_combo"}},
+	-- {header = "More Sight", offset = {1200, 0}, atts = {"kk_ins2_magnifier"}, dependencies = CustomizableWeaponry_KK.ins2.magnifierDependencies},
+	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
 SWEP.Chamberable = false
@@ -101,8 +110,8 @@ SWEP.WorldModel		= "models/weapons/w_garand.mdl"
 SWEP.WMPos = Vector(1.542, 0, 0.976)
 SWEP.WMAng = Vector(-12.174, 1.458, 180)
 
-SWEP.Spawnable			= true
-SWEP.AdminSpawnable		= true
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
 
 SWEP.Primary.ClipSize		= 8
 SWEP.Primary.DefaultClip	= 8

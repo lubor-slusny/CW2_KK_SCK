@@ -1,3 +1,5 @@
+if not CustomizableWeaponry then return end
+
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
 include("sh_sounds.lua")
@@ -60,7 +62,7 @@ if CLIENT then
 	SWEP.KKINS2AimpointAng = Vector(-0.0593, 0, 0)
 
 	SWEP.KKINS2CSTMACOGPos = Vector(-1.471, -2, 0.0071)
-	SWEP.KKINS2CSTMACOGAng = Vector(0, 0, 10)
+	SWEP.KKINS2CSTMACOGAng = Vector(0, 0, 0)
 
 	SWEP.IronsightPos = Vector(-1.6794, -1, 1.1959)
 	SWEP.IronsightAng = Vector(-0.109, 0.0333, 0)
@@ -182,8 +184,8 @@ SWEP.WMAng = Vector(-10, 0, 180)
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.f1
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.gurkha
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.contentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.contentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted()
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()
 
 SWEP.Primary.ClipSize		= 34
 SWEP.Primary.DefaultClip	= 34

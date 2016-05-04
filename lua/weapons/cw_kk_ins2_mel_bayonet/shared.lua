@@ -1,3 +1,5 @@
+if not CustomizableWeaponry then return end
+
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
@@ -27,5 +29,5 @@ SWEP.WorldModel		= "models/weapons/w_marinebayonet.mdl"
 SWEP.WMPos = Vector(3.812, 1.544, -2.83)
 SWEP.WMAng = Vector(99.385, -22.739, 18.048)
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.contentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.contentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted()
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()

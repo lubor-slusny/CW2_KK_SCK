@@ -1,3 +1,5 @@
+if not CustomizableWeaponry then return end
+
 AddCSLuaFile()
 
 if CLIENT then
@@ -294,8 +296,8 @@ SWEP.WorldModel		= "models/weapons/w_toz.mdl"
 SWEP.WMPos = Vector(5.314, 0.759, -2.971)
 SWEP.WMAng = Vector(-10, 0, 180)
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.contentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.contentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.wsContentMounted()
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.wsContentMounted()
 
 SWEP.Primary.ClipSize		= 8
 SWEP.Primary.DefaultClip	= 8

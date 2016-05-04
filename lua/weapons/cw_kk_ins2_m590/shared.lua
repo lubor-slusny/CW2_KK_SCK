@@ -1,3 +1,5 @@
+if not CustomizableWeaponry then return end
+
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
 include("sh_sounds.lua")
@@ -89,12 +91,12 @@ SWEP.Animations = {
 	
 	base_pickup = "base_ready",
 	base_draw = "base_draw",
-	base_fire = "base_fire",
-	base_fire_aim = "iron_fire",
+	base_fire = {"base_fire_1", "base_fire_2"},
+	base_fire_aim = {"iron_fire_1", "iron_fire_2"},
 	base_fire_empty = "base_dryfire",
 	base_fire_empty_aim = "iron_dryfire",
-	base_bolt = "base_fire_cock",
-	base_bolt_aim = "iron_fire_cock",
+	base_bolt = {"base_fire_cock_1", "base_fire_cock_2"},
+	base_bolt_aim = {"iron_fire_cock_1", "iron_fire_cock_2"},
 	base_reload_start_empty = "base_reload_start_empty",
 	base_reload_start = "base_reload_start",
 	base_insert = "base_reload_insert",
@@ -107,12 +109,12 @@ SWEP.Animations = {
 	
 	foregrip_pickup = "foregrip_ready",
 	foregrip_draw = "foregrip_draw",
-	foregrip_fire = "foregrip_fire",
-	foregrip_fire_aim = "foregrip_iron_fire",
+	foregrip_fire = {"foregrip_fire_1", "foregrip_fire_2"},
+	foregrip_fire_aim = {"foregrip_iron_fire_1", "foregrip_iron_fire_2"},
 	foregrip_fire_empty = "foregrip_dryfire",
 	foregrip_fire_empty_aim = "foregrip_iron_dryfire",
-	foregrip_bolt = "foregrip_fire_cock",
-	foregrip_bolt_aim = "foregrip_iron_fire_cock",
+	foregrip_bolt = {"foregrip_fire_cock_1", "foregrip_fire_cock_2"},
+	foregrip_bolt_aim = {"foregrip_iron_fire_cock_1", "foregrip_iron_fire_cock_2"},
 	foregrip_reload_start_empty = "foregrip_reload_start_empty",
 	foregrip_reload_start = "foregrip_reload_start",
 	foregrip_insert = "foregrip_reload_insert",
@@ -144,7 +146,14 @@ SWEP.Sounds = {
 		{time = 38/30, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
 	},
 
-	base_fire_cock = {
+	base_fire_cock_1 = {
+		// shell @ 2 ""},
+		{time = 1/24, sound = "CW_KK_INS2_M590_PUMPBACK"},
+		{time = 5/24, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
+		// pumpedrdy @ 6 ""},
+	},
+
+	base_fire_cock_2 = {
 		// shell @ 2 ""},
 		{time = 1/24, sound = "CW_KK_INS2_M590_PUMPBACK"},
 		{time = 5/24, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
@@ -163,7 +172,7 @@ SWEP.Sounds = {
 		{time = 5/35, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
 		{time = 18/35, sound = "CW_KK_INS2_M590_PUMPBACK"},
 		// shell @ 20 ""},
-		{time = 51/35, sound = "CW_KK_INS2_M590_SHELLINSERTSingle"},
+		{time = 51/35, sound = "CW_KK_INS2_M590_SHELLINSERTSINGLE"},
 		{time = 76/35, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
 		// reloaded @ 78 ""},
 	},
@@ -181,7 +190,14 @@ SWEP.Sounds = {
 		{time = 5/35, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
 	},
 
-	iron_fire_cock = {
+	iron_fire_cock_1 = {
+		// shell @ 4 ""},
+		{time = 3/35, sound = "CW_KK_INS2_M590_PUMPBACK"},
+		{time = 11/35, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
+		// pumpedrdy @ 12 ""},
+	},
+
+	iron_fire_cock_2 = {
 		// shell @ 4 ""},
 		{time = 3/35, sound = "CW_KK_INS2_M590_PUMPBACK"},
 		{time = 11/35, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
@@ -211,7 +227,14 @@ SWEP.Sounds = {
 		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
 	},
 
-	foregrip_fire_cock = {
+	foregrip_fire_cock_1 = {
+		// shell @ 2 ""},
+		{time = 1/24, sound = "CW_KK_INS2_M590_PUMPBACK"},
+		{time = 5/24, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
+		// pumpedrdy @ 6 ""},
+	},
+
+	foregrip_fire_cock_2 = {
 		// shell @ 2 ""},
 		{time = 1/24, sound = "CW_KK_INS2_M590_PUMPBACK"},
 		{time = 5/24, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
@@ -230,7 +253,7 @@ SWEP.Sounds = {
 		{time = 5/35, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
 		{time = 18/35, sound = "CW_KK_INS2_M590_PUMPBACK"},
 		// shell @ 20 ""},
-		{time = 51/35, sound = "CW_KK_INS2_M590_SHELLINSERTSingle"},
+		{time = 51/35, sound = "CW_KK_INS2_M590_SHELLINSERTSINGLE"},
 		{time = 76/35, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
 		// reloaded @ 78 ""},
 	},
@@ -248,7 +271,14 @@ SWEP.Sounds = {
 		{time = 5/35, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
 	},
 
-	foregrip_iron_fire_cock = {
+	foregrip_iron_fire_cock_1 = {
+		// shell @ 3 ""},
+		{time = 3/35, sound = "CW_KK_INS2_M590_PUMPBACK"},
+		{time = 11/35, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
+		// pumpedrdy @ 12 ""},
+	},
+
+	foregrip_iron_fire_cock_2 = {
 		// shell @ 3 ""},
 		{time = 3/35, sound = "CW_KK_INS2_M590_PUMPBACK"},
 		{time = 11/35, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
@@ -283,8 +313,8 @@ SWEP.WorldModel		= "models/weapons/w_m590.mdl"
 SWEP.WMPos = Vector(4.763, 0.935, -1.945)
 SWEP.WMAng = Vector(-10, 0, 180)
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.contentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.contentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted()
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()
 
 SWEP.Primary.ClipSize		= 8
 SWEP.Primary.DefaultClip	= 8

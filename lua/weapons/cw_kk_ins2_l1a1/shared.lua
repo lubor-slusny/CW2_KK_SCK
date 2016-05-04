@@ -1,3 +1,5 @@
+if not CustomizableWeaponry then return end
+
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
 include("sh_sounds.lua")
@@ -339,8 +341,8 @@ SWEP.WorldModel		= "models/weapons/w_l1a1.mdl"
 SWEP.WMPos = Vector(5.25, 0.816, -0.954)
 SWEP.WMAng = Vector(-10, 0, 180)
 	
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.contentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.contentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted()
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()
 
 SWEP.Primary.ClipSize		= 20
 SWEP.Primary.DefaultClip	= 20

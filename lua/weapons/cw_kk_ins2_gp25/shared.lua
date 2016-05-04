@@ -1,16 +1,19 @@
+if not CustomizableWeaponry then return end
+
 AddCSLuaFile()
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "GP25"
+	SWEP.PrintName = "GP30"
 	SWEP.CSMuzzleFlashes = true
 	
 	SWEP.ViewModelMovementScale = 1.15
 	
-	SWEP.IconLetter = "b"
+	SWEP.IconLetter = "C"
 	
-	SWEP.MuzzleEffect = "muzzleflash_ak74"
-	SWEP.Shell = "KK_INS2_545x39"
+	SWEP.MuzzleEffect = "muzzleflash_pistol"
+	SWEP.MuzzleAttachmentName = "muzzle_gl"
+	SWEP.NoShells = true
 	
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_gl_gp25"] = {model = "models/weapons/upgrades/a_gl_gp25.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
@@ -18,98 +21,53 @@ if CLIENT then
 		["40mm_kk_1337"] = {model = "models/weapons/w_at4_projectile.mdl", bone = "GL_Round", pos = Vector(1.75,0,0), angle = Angle(0, 180, 0), size = Vector(0.85, 0.85, 0.85),
 			active = function(self)
 				local correctAmmo = CustomizableWeaponry.grenadeTypes.registered[self.Grenade40MM] and CustomizableWeaponry.grenadeTypes.registered[self.Grenade40MM].name == "40mm_kk_1337"
-				local nadeVisible = self.AttachmentModelsVM.kk_ins2_gl_gp25.active and self.M203Chamber or (self.Sequence == self.Animations.gl_on_reload and self.CW_VM:GetCycle() > 0.2)
+				local nadeVisible = (self:Clip1() > 0) or (self.Sequence == self.Animations.gl_on_reload and self.CW_VM:GetCycle() > 0.2)
 				return correctAmmo and nadeVisible
 			end
 		},
 	}
 
 	SWEP.AttachmentModelsWM = {
-		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/w_modkit_6.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
-		["handguardStandard"] = {model = "models/weapons/upgrades/w_standard_ak74.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
-		
-		["md_saker"] = {model = "models/weapons/upgrades/w_sil_ins1.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		
-		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/w_foregrip_wood_2.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		-- ["kk_ins2_gl_gp25_merge"] = {model = "models/weapons/upgrades/w_gp25.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_gl_gp25"] = {model = "models/weapons/upgrades/w_gp25.mdl", attachment = "gl", pos = Vector(-10.75,0.2,0), angle = Angle(0, 0, -90), size = Vector(1, 1, 1)},
-		
-		["kk_ins2_lam"] = {model = "models/weapons/upgrades/w_laser_ins.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/w_laser_ins.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		
-		["kk_ins2_magnifier"] = {model = "models/weapons/upgrades/w_magaim.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		
-		["kk_ins2_aimpoint"] = {model = "models/weapons/upgrades/w_aimpoint.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_cstm_barska"] = {model = "models/weapons/upgrades/w_eotech.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_gl_gp25_merge"] = {model = "models/weapons/upgrades/w_gp25.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 	}
 	
-	-- SWEP.IronsightPos = Vector(-2.305, -4, 0.375)
-	-- SWEP.IronsightAng = Vector(0.35, 0.03, 0)
+	SWEP.ForeGripOffsetCycle_Reload = 0
+	SWEP.ForeGripOffsetCycle_Reload_Empty = 0
+	SWEP.ForeGripOffsetCycle_Draw = 0
 	
-	-- SWEP.KKINS2AimpointPos = Vector(-2.305, -2, -0.45)
-	-- SWEP.KKINS2AimpointAng = Vector(0, -0.02, 0)
+	SWEP.ForegripOverridePos = {
+		righthandfix = {
+			["R Clavicle"] = {pos = Vector(9.68, 0, -0.046), angle = Angle(0, 0, 0)}
+		}
+	}
 	
-	-- SWEP.KKINS2MagnifierPos = Vector(-2.305, -2, -0.45)
-	-- SWEP.KKINS2MagnifierAng = Vector(0.1, -0.02, 0)
+	SWEP.ForegripParent = "righthandfix"
+	SWEP.ForegripOverride = true
 	
-	SWEP.IronsightPos = Vector(-2.305, -4, 0.375)
-	SWEP.IronsightAng = Vector(0.35, 0.03, 0)
-	
-	SWEP.KKINS2CSTMSureShotPos = Vector(-2.305, -2, -0.25)
-	SWEP.KKINS2CSTMSureShotAng = Vector(0, -0.02, 0)
-	
-	SWEP.KKINS2CSTMBarskaPos = Vector(-2.305, -2, -0.45)
-	SWEP.KKINS2CSTMBarskaAng = Vector(0, -0.02, 0)
-	
-	SWEP.KKINS2AimpointPos = Vector(-2.305, -2, -0.45)
-	SWEP.KKINS2AimpointAng = Vector(0, -0.02, 0)
-	
-	SWEP.KKINS2MagnifierPos = Vector(-2.305, -2, -0.45)
-	SWEP.KKINS2MagnifierAng = Vector(0.1, -0.02, 0)
-	
-	SWEP.KKINS2CSTMMicroT1Pos = Vector(-2.3057, -2, -0.4334)
-	SWEP.KKINS2CSTMMicroT1Ang = Vector(0, 0, 0)
+	SWEP.IronsightPos = Vector(-0.5914, -8, 0.5979)
+	SWEP.IronsightAng = Vector(5.3932, 0.0032, 0)
 
-	
-	-- SWEP.IronsightPos_def = Vector(-2.305, -4, 0.375)
-	-- SWEP.IronsightAng_def = Vector(0.35, 0.03, 0)
-	
-	-- SWEP.KKINS2CSTMSureShotPos_def = Vector(-2.305, -2, -0.25)
-	-- SWEP.KKINS2CSTMSureShotAng_def = Vector(0, -0.02, 0)
-	
-	-- SWEP.KKINS2CSTMBarskaPos_def = Vector(-2.305, -2, -0.45)
-	-- SWEP.KKINS2CSTMBarskaAng_def = Vector(0, -0.02, 0)
-	
-	-- SWEP.KKINS2AimpointPos_def = Vector(-2.305, -2, -0.45)
-	-- SWEP.KKINS2AimpointAng_def = Vector(0, -0.02, 0)
-	
-	-- SWEP.KKINS2MagnifierPos_def = Vector(-2.305, -2, -0.45)
-	-- SWEP.KKINS2MagnifierAng_def = Vector(0.1, -0.02, 0)
-	
-	-- SWEP.IronsightPos_gl = Vector(-2.8231, -4, 0.5268)
-	-- SWEP.IronsightAng_gl = Vector(-1.045, 0.056, 0)
+	SWEP.AlternativePos = Vector(1, -8, 0)
+	SWEP.AlternativeAng = Vector(0, 0, 0)
 
-	-- SWEP.KKINS2CSTMSureShotPos_gl = Vector(-2.8393, -2, -0.01)
-	-- SWEP.KKINS2CSTMSureShotAng_gl = Vector(-1.4224, 0.0938, 0)
-
-	-- SWEP.KKINS2CSTMBarskaPos_gl = Vector(-2.8393, -2, -0.2488)
-	-- SWEP.KKINS2CSTMBarskaAng_gl = Vector(-1.4224, 0.0938, 0)
-
-	-- SWEP.KKINS2AimpointPos_gl = Vector(-2.8393, -2, -0.2488)
-	-- SWEP.KKINS2AimpointAng_gl = Vector(-1.4224, 0.0938, 0)
-
-	-- SWEP.KKINS2MagnifierPos_gl = Vector(-2.8562, -2, -0.227)
-	-- SWEP.KKINS2MagnifierAng_gl = Vector(-1.5, -0.02, 0)
-
+	SWEP.CustomizePos = Vector(1, -8, 0)
+	SWEP.CustomizeAng = Vector(0, 0, 0)
 	
-	SWEP.M203Pos = Vector(-1.0384, -4, 0.8356)
-	SWEP.M203Ang = Vector(1.0405, -0.0059, 0)
-
-	SWEP.CustomizationMenuScale = 0.016
+	SWEP.SprintPos = Vector(1, -8, 0)
+	SWEP.SprintAng = Vector(0, 0, 0)
+	
+	SWEP.HUD_MagText = "Barrel: "
+	SWEP.CustomizationMenuScale = 0.01
+	
+	SWEP.LuaVMRecoilAxisMod = {vert = 1, hor = 1.5, roll = 3, forward = 1, pitch = 4}
 end
 
+SWEP.Chamberable = false
+SWEP.LuaViewmodelRecoil = true
+SWEP.CanRestOnObjects = false
+
 SWEP.Attachments = {
-	{header = "Under", offset = {-500, 0}, atts = {"kk_ins2_gl_gp25"}},
+	{header = "", offset = {0, -500}, atts = {"kk_ins2_gp25_ammo"}},
 }
 
 SWEP.Animations = {
@@ -125,8 +83,6 @@ SWEP.Animations = {
 	base_reload_empty = "gl_reloadempty",
 	base_idle = "gl_draw",
 	base_holster = "gl_holster",
-	base_firemode = "gl_fireselect",
-	base_firemode_aim = "gl_iron_fireselect",
 	base_sprint = "gl_sprint",
 	base_safe = "gl_down",
 	base_safe_aim = "gl_iron_down",
@@ -141,8 +97,6 @@ SWEP.Animations = {
 	gl_off_reload_empty = "gl_reloadempty",
 	gl_off_idle = "gl_draw",
 	gl_off_holster = "gl_holster",
-	gl_off_firemode = "gl_fireselect",
-	gl_off_firemode_aim = "gl_iron_fireselect",
 	gl_off_sprint = "gl_sprint",
 	gl_off_safe = "gl_down",
 	gl_off_safe_aim = "gl_iron_down",
@@ -161,16 +115,6 @@ SWEP.Animations = {
 	
 	gl_turn_on = "glsetup_in",
 	gl_turn_off = "glsetup_out",
-}
-
-SWEP.ReloadTimes = {
-	base_reload = {2.2, 3.15},
-	base_reloadempty = {2.2, 4.35},
-	foregrip_reload = {2.2, 3.15},
-	foregrip_reloadempty = {2.2, 4.35},
-	gl_reload = {2.2, 3.15},
-	gl_reloadempty = {2.2, 4.35},
-	glsetup_reload = {1.75, 2.67}
 }
 
 SWEP.Sounds = {
@@ -356,13 +300,13 @@ SWEP.Sounds = {
 	},
 }
 
-SWEP.SpeedDec = 30
+SWEP.SpeedDec = 5
 
-SWEP.Slot = 3
+SWEP.Slot = 5
 SWEP.SlotPos = 0
 SWEP.NormalHoldType = "ar2"
 SWEP.RunHoldType = "passive"
-SWEP.FireModes = {"auto", "semi"}
+SWEP.FireModes = {"auto"}
 SWEP.Base = "cw_kk_ins2_base"
 SWEP.Category = "CW 2.0 KK INS2"
 
@@ -382,18 +326,19 @@ SWEP.WMAng = Angle(-10, 0, 180)
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.f1
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.gurkha
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.contentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.contentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted()
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()
 
-SWEP.Primary.ClipSize		= 30
-SWEP.Primary.DefaultClip	= 30
+SWEP.AdminOnly		= true
+
+SWEP.Primary.ClipSize		= 1
+SWEP.Primary.DefaultClip	= 1
 SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= "40MM"
 
-SWEP.FireDelay = 0.092307692307692
-SWEP.FireSound = "CW_KK_INS2_AK74_FIRE"
-SWEP.FireSoundSuppressed = "CW_KK_INS2_AK74_FIRE_SUPPRESSED"
-SWEP.Recoil = 1.2
+SWEP.FireDelay = 0.05
+SWEP.FireSound = "CW_KK_INS2_GP30_FIRE"
+SWEP.Recoil = 5
 
 SWEP.HipSpread = 0.043
 SWEP.AimSpread = 0.005
@@ -404,11 +349,108 @@ SWEP.SpreadCooldown = 0.13
 SWEP.Shots = 1
 SWEP.Damage = 33
 
-SWEP.FirstDeployTime = 2
+SWEP.FirstDeployTime = 0.5
 SWEP.DeployTime = 0.6
 
-if CLIENT then 
+SWEP.ReloadTime = 1.7
+SWEP.ReloadHalt = 2
+SWEP.ReloadTime_Empty = 1.7
+SWEP.ReloadHalt_Empty = 2
+
+if CLIENT then
 	function SWEP:updateOtherParts()
+		self.ForegripOverride = !(self.dt.Safe or self:isNearWall() or self:isRunning())
+	end
+	
+	function SWEP:_drawViewModel()
+		self.CW_VM:FrameAdvance(FrameTime())
+		self.CW_VM:SetupBones()
+		-- self.CW_VM:DrawModel()
+		RunConsoleCommand("cw_alternative_vm_pos", 1)
 		
+		if CurTime() > self.grenadeTime and CurTime() > self.knifeTime then
+			self.CW_KK_HANDS:SetPos(self.CW_VM:GetPos())
+			
+			self.CW_KK_HANDS:SetParent(self.CW_VM)
+			self.CW_KK_HANDS:AddEffects(EF_BONEMERGE)
+			self.CW_KK_HANDS:DrawModel()
+		end
+		
+		self:drawAttachments()
+		self:drawInteractionMenu()
+		
+		if self.reticleFunc then
+			self.reticleFunc(self)
+		end
+		
+		if GetConVarNumber("cw_customhud_ammo") >= 1 then
+			self:draw3D2DHUD()
+		end
 	end
 end
+
+function SWEP:fireAnimFunc()
+	if self:Clip1() == 0 then
+		self:sendWeaponAnim("base_fire_empty",1,0)
+	end
+end
+
+function SWEP:FireBullet(Damage, CurCone, ClumpSpread, Shots)
+	if Shots == 1 then
+		local target = CustomizableWeaponry.grenadeTypes.registered[self.Grenade40MM]
+
+		if not target then
+			CustomizableWeaponry.grenadeTypes.defaultFireFunc(self)
+		else
+			target.fireFunc(self)
+		end
+		
+		CustomizableWeaponry.grenadeTypes.selectFireSound(self, target)
+	else
+		weapons.GetStored("cw_base").FireBullet(self, Damage, CurCone, ClumpSpread, Shots)
+	end
+end
+
+function SWEP:reloadAnimFunc(lm)
+	self.dt.AT4ReloadEnd = CurTime() + self.ReloadHalt
+	
+	self:sendWeaponAnim("gl_turn_on",1,0.08)
+	
+	CustomizableWeaponry.actionSequence.new(self, 0.15, nil, function() 
+		self:sendWeaponAnim("gl_on_reload",1,0.08)
+	end)
+	
+	CustomizableWeaponry.actionSequence.new(self, 1.8, nil, function() 
+		self:sendWeaponAnim("gl_off_holster",-1,0)
+	end)
+end //*/
+
+function SWEP:SetupDataTables()
+	self:DTVar("Int", 0, "State")
+	self:DTVar("Int", 1, "Shots")
+	self:DTVar("Float", 0, "HolsterDelay")
+	self:DTVar("Float", 1, "AT4ReloadEnd")
+	self:DTVar("Bool", 0, "Suppressed")
+	self:DTVar("Bool", 1, "Safe")
+	self:DTVar("Bool", 2, "BipodDeployed")
+	self:DTVar("Angle", 0, "ViewOffset")
+end
+
+function SWEP:getReloadProgress()
+	local CT = CurTime()
+	
+	if self.dt.AT4ReloadEnd < CT then return end
+	
+	return math.Round((CT - self.dt.AT4ReloadEnd + self.ReloadHalt) * 100 / self.ReloadHalt)
+end
+
+function SWEP:unloadM203()
+	self:unloadWeapon()
+end
+
+function SWEP:equipFunc()
+	if SERVER then	
+		CustomizableWeaponry.giveAttachments(self.Owner, {"kk_ins2_gl_gp25", "kk_ins2_gp25_ammo"}, true)
+	end
+end
+	
