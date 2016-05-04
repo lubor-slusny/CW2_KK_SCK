@@ -130,8 +130,7 @@ SWEP.Animations = {
 	base_pickup = "base_ready",
 	base_draw = "base_draw",
 	base_fire = "base_fire",
-	-- base_fire_aim = {"iron_fire","iron_fire_a","iron_fire_b","iron_fire_c","iron_fire_d","iron_fire_e","iron_fire_f"},
-	base_fire_aim = nil,
+	base_fire_aim = {"iron_fire","iron_fire_a","iron_fire_b","iron_fire_c","iron_fire_d","iron_fire_e","iron_fire_f"},
 	base_fire_empty = "base_dryfire",
 	base_fire_empty_aim = "iron_dryfire",
 	base_reload = "base_reload",
@@ -198,12 +197,32 @@ SWEP.Primary.Ammo			= "5.45x39MM"
 SWEP.FireDelay = 60/700
 SWEP.FireSound = "CW_KK_INS2_AKS74U_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_AKS74U_FIRE_SUPPRESSED"
-SWEP.Recoil = 0
 
--- SWEP.LuaViewmodelRecoil = false
--- SWEP.FullAimViewmodelRecoil = false
--- SWEP.LuaVMRecoilAxisMod = {hor = 0, vert = 0, roll = 0, forward = 0}
--- SWEP.FireMoveMod = 0
+SWEP.DeployTime = 0.6
+
+SWEP.FirstDeployTime = 2
+SWEP.WeaponLength = 16
+
+SWEP.ReloadTimes = {
+	base_reload = {2.2, 3.15},
+	base_reloadempty = {2.2, 4.35},
+	foregrip_reload = {2.2, 3.15},
+	foregrip_reloadempty = {2.2, 4.35}
+}
+
+if CLIENT then
+	function SWEP:updateOtherParts()
+		if self.ActiveAttachments.kk_ins2_vertgrip then
+			self.AttachmentModelsVM.handguardStandard.active = false
+		else
+			self.AttachmentModelsVM.handguardStandard.active = true
+		end
+	end
+end
+
+SWEP.HipFireFOVIncrease = 1
+SWEP.Recoil = 1
+
 -- "recoil_lateral_range"			"-0.80 1.05"
 -- "recoil_vertical_range"			"1.875 2.325"
 
@@ -216,24 +235,77 @@ SWEP.SpreadCooldown = 0.13
 SWEP.Shots = 1
 SWEP.Damage = 33
 
-SWEP.FirstDeployTime = 2
-SWEP.DeployTime = 0.6
+local ang
 
-SWEP.WeaponLength = 16
+function SWEP:MakeRecoil(mod)
+	local mod = self:GetRecoilModifier(mod)
+	
+	if (SP and SERVER) or (not SP and CLIENT) then
+		ang = self.Owner:EyeAngles()
+		ang.p = ang.p - self.Recoil * 0.5 * mod
+		ang.y = ang.y + math.Rand(-1, 1) * self.Recoil * 0.5 * mod
+	
+		self.Owner:SetEyeAngles(ang)
+	end
 
-SWEP.ReloadTimes = {
-	base_reload = {2.2, 3.15},
-	base_reloadempty = {2.2, 4.35},
-	foregrip_reload = {2.2, 3.15},
-	foregrip_reloadempty = {2.2, 4.35}
-}
-
-if CLIENT then 
-	function SWEP:updateOtherParts()
-		if self.ActiveAttachments.kk_ins2_vertgrip then
-			self.AttachmentModelsVM.handguardStandard.active = false
-		else
-			self.AttachmentModelsVM.handguardStandard.active = true
+	local freeAimOn = self:isFreeAimOn()
+	
+	if not freeAimOn or (freeAimOn and self.dt.BipodDeployed) then
+		self.Owner:ViewPunch(Angle(-self.Recoil * 1.25 * mod, 0, 0))
+	end
+	
+	if CLIENT then
+		if self.AimBreathingEnabled then
+			if self.holdingBreath then
+				self:reduceBreathAmount(mod)
+			else
+				self:reduceBreathAmount(0)
+			end
 		end
 	end
 end
+
+-- function SWEP:simulateRecoil()
+	-- if self.dt.State ~= CW_AIMING and not self.freeAimOn then
+		-- self.FOVHoldTime = UnPredictedCurTime() + self.FireDelay * 2
+		
+		-- if self.HipFireFOVIncrease then
+			-- self.FOVTarget = math.Clamp(self.FOVTarget + 8 / (self.Primary.ClipSize_Orig * 0.75) * self.FOVPerShot, 0, 7)
+		-- end
+	-- end
+	
+	-- if self.freeAimOn and not self.dt.BipodDeployed then -- we only want to add the 'roll' view shake when we're not using a bipod in free-aim mode
+		-- self.lastViewRoll = math.Clamp(self.lastViewRoll + self.Recoil * 0.5, 0, 15)
+		-- self.lastViewRollTime = UnPredictedCurTime() + FrameTime() * 3
+	-- end
+	
+	-- self.lastShotTime = CurTime() + math.Clamp(self.FireDelay * 3, 0, 0.3) -- save the last time we shot
+	
+	-- if self.BoltBone then
+		-- self:offsetBoltBone()
+	-- end
+	
+	-- if self.LuaViewmodelRecoil then
+		-- if (self.dt.State ~= CW_AIMING and not self.FullAimViewmodelRecoil) or self.FullAimViewmodelRecoil then
+			-- // increase intensity of the viewmodel recoil with each shot
+			-- self.LuaVMRecoilIntensity = math.Approach(self.LuaVMRecoilIntensity, 1, self.Recoil * 0.15)
+			-- self.LuaVMRecoilLowerSpeed = 0
+			
+			-- if not self.dt.BipodDeployed then
+				-- self:makeVMRecoil()
+			-- end
+		-- end
+	-- end
+	
+	-- if self.ReticleInactivityPostFire then
+		-- self.reticleInactivity = UnPredictedCurTime() + self.ReticleInactivityPostFire
+	-- end
+-- end
+
+function SWEP:fireAnimFunc()
+end
+
+-- if CLIENT then
+	-- function SWEP:makeVMRecoil(mod)
+	-- end
+-- end
