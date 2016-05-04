@@ -189,11 +189,11 @@ SWEP.Sounds = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
 	},
 
-	foregrip_holster_b = {
+	foregrip_holster = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
 	},
 
-	foregrip_dryfire_b = {
+	foregrip_dryfire = {
 		{time = 0, sound = "CW_KK_INS2_AKS74U_EMPTY"},
 	},
 

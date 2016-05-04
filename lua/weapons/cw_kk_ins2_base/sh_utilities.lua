@@ -189,10 +189,8 @@ if CLIENT then
 	end
 end
 
-local res
-
 function SWEP:hasInstalledRTScope()	// to be extended
-	res = false
+	local res = false
 	
 	res = res or self.ActiveAttachments.kk_ins2_magnifier
 	res = res or self.ActiveAttachments.kk_ins2_elcan
@@ -201,6 +199,23 @@ function SWEP:hasInstalledRTScope()	// to be extended
 	res = res or self.ActiveAttachments.kk_ins2_scope_mosin
 	
 	res = res or self.ActiveAttachments.kk_ins2_cstm_acog
+	
+	return res
+end
+
+function SWEP:hasInstalledStencilSight()
+	local res = false
+	
+	res = res or self.ActiveAttachments.kk_ins2_aimpoint
+	res = res or self.ActiveAttachments.kk_ins2_eotech
+	res = res or self.ActiveAttachments.kk_ins2_kobra
+	
+	res = res or self.ActiveAttachments.kk_ins2_cstm_barska
+	res = res or self.ActiveAttachments.kk_ins2_cstm_cmore
+	res = res or self.ActiveAttachments.kk_ins2_cstm_compm4s
+	res = res or self.ActiveAttachments.kk_ins2_cstm_eotechxps
+	res = res or self.ActiveAttachments.kk_ins2_cstm_microt1
+	res = res or self.ActiveAttachments.kk_ins2_cstm_sureshot
 	
 	return res
 end

@@ -67,6 +67,12 @@ if CLIENT then
 	SWEP.KKINS2MagnifierPos = Vector(-2.6743, -1, 0.5048)
 	SWEP.KKINS2MagnifierAng = Vector(0, 0, 0)
 	
+	SWEP.KKINS2ScopeMosinPos = Vector(-2.6596, -1, 0.6315)
+	SWEP.KKINS2ScopeMosinAng = Vector(0, 0, 0)
+
+	SWEP.KKINS2EoTechPos = Vector(-2.6803, -2, 0.494)
+	SWEP.KKINS2EoTechAng = Vector(0, 0, 0)
+
 	SWEP.CustomizationMenuScale = 0.019
 end
 
@@ -194,7 +200,7 @@ SWEP.Sounds = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
 	},
 
-	foregrip_dryfire_b = {
+	foregrip_dryfire = {
 		{time = 0, sound = "CW_KK_INS2_SKS_EMPTY"},
 	},
 

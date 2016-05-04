@@ -282,7 +282,7 @@ SWEP.Sounds = {
 		-- {time = 22/30, sound = "CW_KK_INS2_RightCrawl"},
 	-- },
 
-	foregrip_dryfire_b = {
+	foregrip_dryfire = {
 		{time = 0/30, sound = "CW_KK_INS2_M4A1_EMPTY"},
 	},
 
@@ -290,7 +290,7 @@ SWEP.Sounds = {
 		{time = 8/30, sound = "CW_KK_INS2_M4A1_FIRESELECT"},
 	},
 
-	foregrip_iron_dryfire_b = {
+	foregrip_iron_dryfire = {
 		{time = 0/30, sound = "CW_KK_INS2_M4A1_EMPTY"},
 	},
 

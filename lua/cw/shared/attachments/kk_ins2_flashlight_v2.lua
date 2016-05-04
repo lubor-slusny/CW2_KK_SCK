@@ -52,6 +52,8 @@ if CLIENT then
 	local model, beamAtt, pos, ang, col
 	
 	function att:elementRender()
+		if not self.ActiveAttachments[att.name] then return end
+		
 		beamAtt = nil
 		
 		if (self._KK_INS2_LAM_MODE % 2) == 0 then return end

@@ -28,6 +28,7 @@ if CLIENT then
 	
 	function att:_elementRender(beamAtt)
 		if not beamAtt then return end
+		if (self:hasInstalledStencilSight() and self._laserStencilCheck) then return end
 		
 		pos = beamAtt.Pos
 		ang = beamAtt.Ang
@@ -111,6 +112,8 @@ if CLIENT then
 	end
 
 	function att:elementRender()
+		if not self.ActiveAttachments[att.name] then return end
+		
 		if (self._KK_INS2_LAM_MODE % 2) == 1 then
 			local model, beamAtt
 			

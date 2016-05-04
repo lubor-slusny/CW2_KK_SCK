@@ -1,8 +1,8 @@
 local att = {}
-att.name = "kk_ins2_eotech"
-att.displayName = "EoTech 552"
-att.displayNameShort = "EoTech"
-att.aimPos = {"KKINS2EoTechPos", "KKINS2EoTechAng"}
+att.name = "kk_ins2_cstm_cmore"
+att.displayName = "Seymore Sigh"
+att.displayNameShort = "Cmore"
+att.aimPos = {"KKINS2CmorePos", "KKINS2CmoreAng"}
 att.FOVModifier = 15
 att.isSight = true
 -- att.colorType = CustomizableWeaponry.colorableParts.COLOR_TYPE_SIGHT
@@ -14,7 +14,7 @@ if CLIENT then
 		[1] = {t = "Provides a bright reticle to ease aiming.", c = CustomizableWeaponry.textColors.POSITIVE}
 	}
 	
-	att.reticle = "models/weapons/optics/eotech_reticule_holo"
+	att.reticle = "models/weapons/optics/kobra_dot"
 	att._reticleSize = 16
 	
 	function att:elementRender()

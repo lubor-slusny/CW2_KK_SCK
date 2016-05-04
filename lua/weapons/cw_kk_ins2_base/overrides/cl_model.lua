@@ -5,7 +5,8 @@ local att, sh, vm, ang, tweak
 
 function SWEP:getMuzzlePosition()
 	if self.Owner:ShouldDrawLocalPlayer() then
-		return self.WMEnt:GetAttachment(1)
+		-- return self.WMEnt:GetAttachment(1)
+		return {Pos = self.WMEnt:GetAttachment(1).Pos, Ang = EyeAngles()}
 	end
 	
 	att = self.CW_VM:LookupAttachment(self.MuzzleAttachmentName)
@@ -306,9 +307,9 @@ function SWEP:drawAttachments()
 		end
 	
 		if v.ent and active then
-			if v.merge then
-				pos = EyePos()
-				ang = EyeAngles()
+			if v.merge then				// this was an attempt to unfuck lighting on certain velements
+				-- pos = EyePos()		// css rig now seem to be working fine witout it 
+				-- ang = EyeAngles()	// aimpoint2x was always messed up
 			elseif v._attachment then
 				vma = self.CW_VM:GetAttachment(v._attachment)
 				pos = vma.Pos
@@ -321,12 +322,14 @@ function SWEP:drawAttachments()
 			
 			model = v.ent
 			
-			model:SetPos(pos + ang:Forward() * v.pos.x + ang:Right() * v.pos.y + ang:Up() * v.pos.z)
-			
-			ang:RotateAroundAxis(ang:Up(), v.angle.y)
-			ang:RotateAroundAxis(ang:Right(), v.angle.p)
-			ang:RotateAroundAxis(ang:Forward(), v.angle.r)
-			model:SetAngles(ang)
+			if not v.merge then			// FOR STENCILS, EVERYTHING
+				model:SetPos(pos + ang:Forward() * v.pos.x + ang:Right() * v.pos.y + ang:Up() * v.pos.z)
+				
+				ang:RotateAroundAxis(ang:Up(), v.angle.y)
+				ang:RotateAroundAxis(ang:Right(), v.angle.p)
+				ang:RotateAroundAxis(ang:Forward(), v.angle.r)
+				model:SetAngles(ang)
+			end
 			
 			if !v.nodraw then
 				model:DrawModel()

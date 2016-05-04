@@ -70,7 +70,7 @@ SWEP.Sounds = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER" },
 	},
 
-	foregrip_dryfire_b = {
+	foregrip_dryfire = {
 		{time = 0, sound = "CW_KK_INS2_MK18_EMPTY"},
 	},
 
@@ -93,7 +93,7 @@ SWEP.Sounds = {
 		{time = 112/30, sound = "CW_KK_INS2_MK18_BOLTRELEASE"},
 	},
 
-	foregrip_iron_dryfire_b = {
+	foregrip_iron_dryfire = {
 		{time = 0, sound = "CW_KK_INS2_MK18_EMPTY"},
 	},
 

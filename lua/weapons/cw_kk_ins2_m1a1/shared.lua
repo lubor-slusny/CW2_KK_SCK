@@ -105,7 +105,7 @@ SWEP.Animations = {
 	foregrip_draw = "foregrip_draw",
 	foregrip_fire = "foregrip_fire",
 	foregrip_fire_aim = "foregrip_iron_fire",
-	foregrip_fire_empty = "foregrip_dryfire_b",
+	foregrip_fire_empty = "foregrip_dryfire",
 	foregrip_fire_empty_aim = "foregrip_iron_dryfire",
 	foregrip_reload = "foregrip_reload",
 	foregrip_reload_mm = "foregrip_reload_ext",
@@ -183,7 +183,7 @@ SWEP.Sounds = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
 	},
 
-	foregrip_dryfire_b = {
+	foregrip_dryfire = {
 		{time = 0, sound = "CW_KK_INS2_M1A1_EMPTY"},
 	},
 
@@ -215,7 +215,7 @@ SWEP.Sounds = {
 		{time = 115/30, sound = "CW_KK_INS2_M1A1_BOLTRELEASE"},
 	},
 
-	foregrip_iron_dryfire_b = {
+	foregrip_iron_dryfire = {
 		{time = 0, sound = "CW_KK_INS2_M1A1_EMPTY"},
 	},
 }

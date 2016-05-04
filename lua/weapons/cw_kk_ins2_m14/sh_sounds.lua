@@ -85,6 +85,10 @@ SWEP.Sounds = {
 		{time = 127/30, sound = "CW_KK_INS2_M14_BOLTRELEASE"},
 	},
 
+	foregrip_dryfire = {
+		{time = 0, sound = "CW_KK_INS2_M14_EMPTY"},
+	},
+
 	foregrip_iron_dryfire_b = {
 		{time = 0, sound = "CW_KK_INS2_M14_EMPTY"},
 	},
@@ -98,7 +102,16 @@ SWEP.Sounds = {
 		{time = 23/30, sound = "CW_KK_INS2_UNIVERSAL_BIPOD_DEPLOYEND"},
 	},
 
+	deployed_in_empty = {
+		{time = 16/30, sound = "CW_KK_INS2_UNIVERSAL_BIPOD_DEPLOYSTART"},
+		{time = 23/30, sound = "CW_KK_INS2_UNIVERSAL_BIPOD_DEPLOYEND"},
+	},
+
 	deployed_out = {
+		{time = 7/30, sound = "CW_KK_INS2_UNIVERSAL_BIPOD_RETRACT"},
+	},
+
+	deployed_out_empty = {
 		{time = 7/30, sound = "CW_KK_INS2_UNIVERSAL_BIPOD_RETRACT"},
 	},
 

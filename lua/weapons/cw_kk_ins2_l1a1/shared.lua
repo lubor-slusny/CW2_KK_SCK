@@ -88,32 +88,29 @@ if CLIENT then
 	SWEP.KKINS2EoTechPos = Vector(-2.4707, -2, -0.2911)
 	SWEP.KKINS2EoTechAng = Vector(0, 0, 0)
 
-	SWEP.KKINS2KobraPos = Vector(-2.4696, 0, -0.1385)
-	SWEP.KKINS2KobraAng = Vector(0, 0, 0)
-
-	SWEP.KKINS2CSTMEoTechXPSPos = Vector(-2.4749, 0, -0.2717)
-	SWEP.KKINS2CSTMEoTechXPSAng = Vector(0, 0, 0)
-
-	SWEP.KKINS2CSTMMicroT1Pos = Vector(-2.4788, 0, -0.2754)
-	SWEP.KKINS2CSTMMicroT1Ang = Vector(0, 0, 0)
-
-	SWEP.KKINS2CSTMCompM4SPos = Vector(-2.4683, -1, -0.2642)
-	SWEP.KKINS2CSTMCompM4SAng = Vector(0, 0, 0)
-
-	SWEP.KKINS2CSTMACOGPos = Vector(-2.4716, 0, -0.6123)
-	SWEP.KKINS2CSTMACOGAng = Vector(0, 0, 0)
-
 	SWEP.KKINS2ElcanPos = Vector(-2.4738, -2, -0.3768)
 	SWEP.KKINS2ElcanAng = Vector(0, 0, 0)
 
-	SWEP.KKINS2ScopeM40Pos = Vector(-2.4804, 0, -0.393)
-	SWEP.KKINS2ScopeM40Ang = Vector(0, 0, 0)
+	SWEP.KKINS2KobraPos = Vector(-2.4696, -2, -0.1385)
+	SWEP.KKINS2KobraAng = Vector(0, 0, 0)
+
+	SWEP.KKINS2CSTMACOGPos = Vector(-2.4716, -2, -0.6123)
+	SWEP.KKINS2CSTMACOGAng = Vector(0, 0, 0)
+
+	SWEP.KKINS2CSTMMicroT1Pos = Vector(-2.4788, -2, -0.2754)
+	SWEP.KKINS2CSTMMicroT1Ang = Vector(0, 0, 0)
+
+	SWEP.KKINS2CSTMEoTechXPSPos = Vector(-2.4749, -2, -0.2717)
+	SWEP.KKINS2CSTMEoTechXPSAng = Vector(0, 0, 0)
+
+	SWEP.KKINS2CSTMCompM4SPos = Vector(-2.4683, -2, -0.2642)
+	SWEP.KKINS2CSTMCompM4SAng = Vector(0, 0, 0)
 
 	SWEP.CustomizationMenuScale = 0.02
 end
 
 SWEP.Attachments = {
-	{header = "Sight", offset = {200, -500},  atts = {"kk_ins2_kobra", "kk_ins2_cstm_microt1", "kk_ins2_cstm_barska", "kk_ins2_cstm_eotechxps", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_cstm_compm4s", "kk_ins2_elcan", "kk_ins2_cstm_acog", "kk_ins2_scope_m40"}},
+	{header = "Sight", offset = {200, -500},  atts = {"kk_ins2_kobra", "kk_ins2_cstm_microt1", "kk_ins2_cstm_barska", "kk_ins2_cstm_eotechxps", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_cstm_compm4s", "kk_ins2_elcan", "kk_ins2_cstm_acog"}},
 	{header = "Barrel", offset = {-300, -500},  atts = {"md_saker"}},
 	{header = "Under", offset = {-500, -50},  atts = {"kk_ins2_bipod", "kk_ins2_vertgrip"}},
 	{header = "Extras", offset = {100, 0}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_combo"}},
@@ -146,6 +143,7 @@ SWEP.Animations = {
 	foregrip_fire = "foregrip_fire",
 	foregrip_fire_aim = "foregrip_iron_fire",
 	foregrip_fire_empty = "foregrip_dryfire",
+	foregrip_fire_empty_aim = "foregrip_iron_dryfire_b",
 	foregrip_reload = "foregrip_reload",
 	foregrip_reload_empty = "foregrip_reloadempty",
 	foregrip_idle = "foregrip_draw",
@@ -240,11 +238,11 @@ SWEP.Sounds = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
 	},
 
-	foregrip_dryfire_b = {
+	foregrip_dryfire = {
 		{time = 0, sound = "CW_KK_INS2_FNFAL_EMPTY"},
 	},
 
-	foregrip_fireselect_b = {
+	foregrip_fireselect = {
 		{time = 14/30, sound = "CW_KK_INS2_FNFAL_FIRESELECT"},
 	},
 

@@ -122,6 +122,9 @@ if CLIENT then
 	SWEP.KKINS2CSTMACOGPos = Vector(0, 0, 0)
 	SWEP.KKINS2CSTMACOGAng = Vector(0, 0, 0)
 	
+	SWEP.KKINS2CmorePos = Vector(0, 0, 0)
+	SWEP.KKINS2CmoreAng = Vector(0, 0, 0)
+	
 	SWEP.KKINS2CSTMBarskaPos = Vector(0, 0, 0)
 	SWEP.KKINS2CSTMBarskaAng = Vector(0, 0, 0)
 	
