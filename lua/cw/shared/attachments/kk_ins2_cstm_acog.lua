@@ -22,6 +22,7 @@ if CLIENT then
 	
 	att._rtFov = 4.5
 	att._rtReticle = surface.GetTextureID("cw2/reticles/reticle_chevron")
+	att._reticleMat = Material("cw2/reticles/reticle_chevron")
 	
 	function att:drawRenderTarget()
 		local scopeEnt = self.AttachmentModelsVM[att.name].ent
@@ -32,6 +33,10 @@ if CLIENT then
 		end
 		
 		CustomizableWeaponry_KK.ins2.renderTargetSight(self, att)
+	end
+	
+	function att:elementRender()
+		CustomizableWeaponry_KK.ins2.renderTargetSightSetup(self, att)
 	end
 end
 

@@ -43,17 +43,22 @@ if CLIENT then
 		{t = "Provides 2x magnification.", c = CustomizableWeaponry.textColors.POSITIVE},
 	}
 	
-	local simpleTextureDefault = surface.GetTextureID("models/weapons/optics/4x_reticule")
-	local simpleTextureXPS = surface.GetTextureID("models/weapons/attachments/cw_kk_ins2_cstm_eotechxps/4x_reticule")
+	-- local simpleTextureDefault = surface.GetTextureID("models/weapons/optics/4x_reticule")
+	-- local simpleTextureXPS = surface.GetTextureID("models/weapons/attachments/cw_kk_ins2_cstm_eotechxps/4x_reticule")
+	
+	local simpleTextureDefault = surface.GetTextureID("models/weapons/optics/aimpoint_reticule_holo")
+	local simpleTextureXPS = surface.GetTextureID("models/weapons/optics/eotech_reticule_holo")
 
 	local simpleTextures = {
-		["models/weapons/attachments/v_cw_kk_ins2_cstm_eotechxps.mdl"] = simpleTextureXPS,
-		["models/weapons/attachments/v_cw_kk_ins2_cstm_eotechxps_l.mdl"] = simpleTextureXPS,
-		["models/weapons/attachments/v_cw_kk_ins2_cstm_eotechxps_m.mdl"] = simpleTextureXPS,
+		["_default"] = {tex = simpleTextureDefault, offset = {0, 1}, size = {64, 64}},
+		["models/weapons/attachments/v_cw_kk_ins2_cstm_eotechxps.mdl"] = {tex = simpleTextureXPS, offset = {0, 1}, size = {128, 128}},
+		["models/weapons/attachments/v_cw_kk_ins2_cstm_eotechxps_l.mdl"] = {tex = simpleTextureXPS, offset = {0, 1}, size = {128, 128}},
+		["models/weapons/attachments/v_cw_kk_ins2_cstm_eotechxps_m.mdl"] = {tex = simpleTextureXPS, offset = {0, 1}, size = {128, 128}},
 	}
 
 	att.zoomTextures = {
-		{tex = simpleTextureDefault, offset = {0, 1}},
+		{tex = simpleTextureDefault, offset = {0, 1}, size = {128, 128}},
+		{tex = surface.GetTextureID("models/weapons/attachments/cw_kk_ins2_shared/fake"), offset = {0, 1}},
 	}
 	
 	att._rtFov = 8
@@ -85,7 +90,7 @@ if CLIENT then
 			magnifierModel = models[velement.model]
 			scopeEnt:SetModel(magnifierModel)
 			
-			att.zoomTextures[1].tex = simpleTextures[velement.model] or simpleTextureDefault
+			att.zoomTextures[1] = simpleTextures[velement.model] or simpleTextures["_default"]
 			self.ZoomTextures = att.zoomTextures
 		end
 		self.lastPrimarySight = currentPrimarySight
@@ -98,6 +103,10 @@ if CLIENT then
 		end
 		
 		CustomizableWeaponry_KK.ins2.renderTargetSight(self, att)
+	end
+	
+	function att:elementRender()
+		CustomizableWeaponry_KK.ins2.renderTargetSightSetup(self, att)
 	end
 end
 

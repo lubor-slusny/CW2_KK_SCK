@@ -11,7 +11,7 @@ if CLIENT then
 	
 	SWEP.IconLetter = "f"
 	
-	SWEP.MuzzleEffect = "swb_pistol_small"
+	SWEP.MuzzleEffect = "muzzleflash_pistol"
 	SWEP.Shell = "KK_INS2_9x19"
 	
 	SWEP.AttachmentModelsVM = {		

@@ -34,11 +34,11 @@ if CLIENT then
 	SWEP.IronsightAng = Vector(-0.1372, 0.04, 0)
 
 	SWEP.KKINS2CSTMBarskaPos = Vector(-2.008, -2, -0.17)
-	SWEP.KKINS2CSTMBarskaAng = Vector(0, 0, 0)
-	
+	SWEP.KKINS2CSTMBarskaAng = Vector(-0.0009, -0.1104, 0)
+
 	SWEP.KKINS2AimpointPos = Vector(-2.008, -2, -0.17)
-	SWEP.KKINS2AimpointAng = Vector(0, 0, 0)
-	
+	SWEP.KKINS2AimpointAng = Vector(0, -0.1181, 0)
+
 	SWEP.KKINS2MagnifierPos = Vector(-2.008, -1, -0.17)
 	SWEP.KKINS2MagnifierAng = Vector(-0.35, 0, 0)
 	

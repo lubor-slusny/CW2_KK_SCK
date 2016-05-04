@@ -91,7 +91,7 @@ if CLIENT then
 	SWEP.KKINS2KobraPos = Vector(-2.4696, -2, -0.1385)
 	SWEP.KKINS2KobraAng = Vector(0, 0, 0)
 
-	SWEP.KKINS2CSTMACOGPos = Vector(-2.4716, -2, -0.6123)
+	SWEP.KKINS2CSTMACOGPos = Vector(-2.4729, -1, -0.6027)
 	SWEP.KKINS2CSTMACOGAng = Vector(0, 0, 0)
 
 	SWEP.KKINS2CSTMMicroT1Pos = Vector(-2.4788, -2, -0.2754)

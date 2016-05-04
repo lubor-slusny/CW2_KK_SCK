@@ -94,6 +94,9 @@ if CLIENT then
 	SWEP.LaserPosAdjust = Vector(0, 0, 0) 
 	SWEP.LaserAngAdjust = Angle(0, 0, 0) 
 	
+	SWEP.IronsightPos = Vector(0, 0, 0)
+	SWEP.IronsightAng = Vector(0, 0, 0)
+
 	// aim positions
 	
 	SWEP.KKINS2AimpointPos = Vector(0, 0, 0)

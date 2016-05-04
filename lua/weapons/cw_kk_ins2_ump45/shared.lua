@@ -44,8 +44,8 @@ if CLIENT then
 	SWEP.IronsightAng = Vector(0.65, 0, 0)
 	
 	SWEP.KKINS2AimpointPos = Vector(-2.585, -2, 0.1)
-	SWEP.KKINS2AimpointAng = Vector(-0.2, 0.1, 0)
-	
+	SWEP.KKINS2AimpointAng = Vector(-0.0789, 0.0136, 0)
+
 	SWEP.KKINS2CSTMBarskaPos = Vector(-2.585, -2, 0.1)
 	SWEP.KKINS2CSTMBarskaAng = Vector(-0.2, 0.1, 0)
 	
@@ -137,7 +137,7 @@ SWEP.Sounds = {
 
 SWEP.SpeedDec = 15
 
-SWEP.Slot = 3
+SWEP.Slot = 2
 SWEP.SlotPos = 0
 SWEP.NormalHoldType = "smg"
 SWEP.RunHoldType = "passive"

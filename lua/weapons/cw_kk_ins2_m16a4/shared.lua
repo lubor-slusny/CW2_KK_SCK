@@ -77,7 +77,7 @@ if CLIENT then
 	SWEP.FoldSightAng_def = Vector(-0.8694, 0.0447, 0)
 
 	SWEP.KKINS2CSTMBarskaPos_def = Vector(-2.4877, -2, 0.6744)
-	SWEP.KKINS2CSTMBarskaAng_def = Vector(-0.2659, 0.0539, 0)
+	SWEP.KKINS2CSTMBarskaAng_def = Vector(-0.0596, 0.0273, 0)
 
 	SWEP.KKINS2AimpointPos_def = Vector(-2.4968, -2, 0.5831)
 	SWEP.KKINS2AimpointAng_def = Vector(0, 0, 0)

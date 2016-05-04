@@ -84,7 +84,7 @@ if CLIENT then
 	SWEP.KKINS2EoTechPos = Vector(-2.4828, -6, -0.3986)
 	SWEP.KKINS2EoTechAng = Vector(0, 0, 0)
 
-	SWEP.KKINS2CSTMACOGPos = Vector(-2.4876, -6, -0.7648)
+	SWEP.KKINS2CSTMACOGPos = Vector(-2.4876, -5, -0.7705)
 	SWEP.KKINS2CSTMACOGAng = Vector(0, 0, 0)
 
 	SWEP.KKINS2CSTMEoTechXPSPos = Vector(-2.4994, -6, -0.3479)

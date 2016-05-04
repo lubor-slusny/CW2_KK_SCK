@@ -90,7 +90,7 @@ if CLIENT then
 	SWEP.KKINS2AimpointPos = Vector(-2.2319, -2, -0.4955)
 	SWEP.KKINS2AimpointAng = Vector(0, -0.02, 0)
 
-	SWEP.KKINS2CSTMACOGPos = Vector(-2.2283, -1, -0.8354)
+	SWEP.KKINS2CSTMACOGPos = Vector(-2.2344, -1, -0.8283)
 	SWEP.KKINS2CSTMACOGAng = Vector(0, 0, 0)
 
 	SWEP.KKINS2CSTMEoTechXPSPos = Vector(-2.2341, -2, -0.5023)

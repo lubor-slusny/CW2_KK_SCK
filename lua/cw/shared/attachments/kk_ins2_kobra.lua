@@ -20,7 +20,6 @@ if CLIENT then
 	function att:elementRender()
 		CustomizableWeaponry_KK.ins2.stencilSight(self, att)
 	end
-	
 end
 
 CustomizableWeaponry:registerAttachment(att)

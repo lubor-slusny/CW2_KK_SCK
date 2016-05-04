@@ -21,25 +21,25 @@
 	
 // SHARED SOUNDS
 
-	CustomizableWeaponry:addReloadSound("CW_KK_INS2_UNIVERSAL_DRAW", {"weapons/universal/uni_weapon_draw_01.wav", "weapons/universal/uni_weapon_draw_02.wav", "weapons/universal/uni_weapon_draw_03.wav"})
-	CustomizableWeaponry:addReloadSound("CW_KK_INS2_UNIVERSAL_HOLSTER", "weapons/universal/uni_weapon_holster.wav")
+	CustomizableWeaponry:addRegularSound("CW_KK_INS2_UNIVERSAL_DRAW", {"weapons/universal/uni_weapon_draw_01.wav", "weapons/universal/uni_weapon_draw_02.wav", "weapons/universal/uni_weapon_draw_03.wav"})
+	CustomizableWeaponry:addRegularSound("CW_KK_INS2_UNIVERSAL_HOLSTER", "weapons/universal/uni_weapon_holster.wav")
 	
-	CustomizableWeaponry:addReloadSound("CW_KK_INS2_UNIVERSAL_PISTOL_DRAW", {"weapons/universal/uni_pistol_draw_01.wav", "weapons/universal/uni_pistol_draw_02.wav", "weapons/universal/uni_pistol_draw_03.wav"})
-	CustomizableWeaponry:addReloadSound("CW_KK_INS2_UNIVERSAL_PISTOL_HOLSTER", "weapons/universal/uni_pistol_holster.wav")
+	CustomizableWeaponry:addRegularSound("CW_KK_INS2_UNIVERSAL_PISTOL_DRAW", {"weapons/universal/uni_pistol_draw_01.wav", "weapons/universal/uni_pistol_draw_02.wav", "weapons/universal/uni_pistol_draw_03.wav"})
+	CustomizableWeaponry:addRegularSound("CW_KK_INS2_UNIVERSAL_PISTOL_HOLSTER", "weapons/universal/uni_pistol_holster.wav")
 	
-	CustomizableWeaponry:addReloadSound("CW_KK_INS2_UNIVERSAL_GRENADE_DRAW", {"weapons/universal/uni_grenade_draw_01.wav", "weapons/universal/uni_grenade_draw_02.wav", "weapons/universal/uni_grenade_draw_03.wav"})
-	CustomizableWeaponry:addReloadSound("CW_KK_INS2_UNIVERSAL_GRENADE_HOLSTER", "weapons/universal/uni_grenade_holster.wav")
+	CustomizableWeaponry:addRegularSound("CW_KK_INS2_UNIVERSAL_GRENADE_DRAW", {"weapons/universal/uni_grenade_draw_01.wav", "weapons/universal/uni_grenade_draw_02.wav", "weapons/universal/uni_grenade_draw_03.wav"})
+	CustomizableWeaponry:addRegularSound("CW_KK_INS2_UNIVERSAL_GRENADE_HOLSTER", "weapons/universal/uni_grenade_holster.wav")
 	
-	CustomizableWeaponry:addReloadSound("CW_KK_INS2_UNIVERSAL_BIPOD_DEPLOYSTART", "weapons/universal/uni_bipoddeploy_start.wav")
-	CustomizableWeaponry:addReloadSound("CW_KK_INS2_UNIVERSAL_BIPOD_DEPLOYEND", "weapons/universal/uni_bipoddeploy_end.wav")
-	CustomizableWeaponry:addReloadSound("CW_KK_INS2_UNIVERSAL_BIPOD_RETRACT", "weapons/universal/uni_bipodretract.wav")
-	CustomizableWeaponry:addReloadSound("CW_KK_INS2_UNIVERSAL_BIPOD_SWIVEL", {"weapons/universal/uni_bipod_swivel_01.wav", "weapons/universal/uni_bipod_swivel_02.wav", "weapons/universal/uni_bipod_swivel_03.wav", "weapons/universal/uni_bipod_swivel_04.wav", "weapons/universal/uni_bipod_swivel_05.wav"})
+	CustomizableWeaponry:addRegularSound("CW_KK_INS2_UNIVERSAL_BIPOD_DEPLOYSTART", "weapons/universal/uni_bipoddeploy_start.wav")
+	CustomizableWeaponry:addRegularSound("CW_KK_INS2_UNIVERSAL_BIPOD_DEPLOYEND", "weapons/universal/uni_bipoddeploy_end.wav")
+	CustomizableWeaponry:addRegularSound("CW_KK_INS2_UNIVERSAL_BIPOD_RETRACT", "weapons/universal/uni_bipodretract.wav")
+	CustomizableWeaponry:addRegularSound("CW_KK_INS2_UNIVERSAL_BIPOD_SWIVEL", {"weapons/universal/uni_bipod_swivel_01.wav", "weapons/universal/uni_bipod_swivel_02.wav", "weapons/universal/uni_bipod_swivel_03.wav", "weapons/universal/uni_bipod_swivel_04.wav", "weapons/universal/uni_bipod_swivel_05.wav"})
 	
-	CustomizableWeaponry:addReloadSound("CW_KK_INS2_UNIVERSAL_LEFTCRAWL", {"weapons/universal/uni_crawl_l_01.wav", "weapons/universal/uni_crawl_l_02.wav", "weapons/universal/uni_crawl_l_02.wav", "weapons/universal/uni_crawl_l_04.wav", "weapons/universal/uni_crawl_l_05.wav", "weapons/universal/uni_crawl_l_06.wav"})
-	CustomizableWeaponry:addReloadSound("CW_KK_INS2_UNIVERSAL_RIGHTCRAWL", {"weapons/universal/uni_crawl_r_01.wav", "weapons/universal/uni_crawl_r_02.wav", "weapons/universal/uni_crawl_r_03.wav", "weapons/universal/uni_crawl_r_04.wav", "weapons/universal/uni_crawl_r_05.wav", "weapons/universal/uni_crawl_r_06.wav"})
-	CustomizableWeaponry:addReloadSound("CW_KK_INS2_UNIVERSAL_LEANIN", { "weapons/universal/uni_lean_in_01.wav", "weapons/universal/uni_lean_in_02.wav", "weapons/universal/uni_lean_in_03.wav", "weapons/universal/uni_lean_in_04.wav"})
-	CustomizableWeaponry:addReloadSound("CW_KK_INS2_UNIVERSAL_LEANOUT", { "weapons/universal/uni_lean_out_01.wav", "weapons/universal/uni_lean_out_02.wav", "weapons/universal/uni_lean_out_03.wav", "weapons/universal/uni_lean_out_04.wav"})
-	CustomizableWeaponry:addReloadSound("CW_KK_INS2_UNIVERSAL_WEAPONLOWER", "weapons/universal/uni_weapon_lower_01.wav")
+	CustomizableWeaponry:addRegularSound("CW_KK_INS2_UNIVERSAL_LEFTCRAWL", {"weapons/universal/uni_crawl_l_01.wav", "weapons/universal/uni_crawl_l_02.wav", "weapons/universal/uni_crawl_l_02.wav", "weapons/universal/uni_crawl_l_04.wav", "weapons/universal/uni_crawl_l_05.wav", "weapons/universal/uni_crawl_l_06.wav"})
+	CustomizableWeaponry:addRegularSound("CW_KK_INS2_UNIVERSAL_RIGHTCRAWL", {"weapons/universal/uni_crawl_r_01.wav", "weapons/universal/uni_crawl_r_02.wav", "weapons/universal/uni_crawl_r_03.wav", "weapons/universal/uni_crawl_r_04.wav", "weapons/universal/uni_crawl_r_05.wav", "weapons/universal/uni_crawl_r_06.wav"})
+	CustomizableWeaponry:addRegularSound("CW_KK_INS2_UNIVERSAL_LEANIN", { "weapons/universal/uni_lean_in_01.wav", "weapons/universal/uni_lean_in_02.wav", "weapons/universal/uni_lean_in_03.wav", "weapons/universal/uni_lean_in_04.wav"})
+	CustomizableWeaponry:addRegularSound("CW_KK_INS2_UNIVERSAL_LEANOUT", { "weapons/universal/uni_lean_out_01.wav", "weapons/universal/uni_lean_out_02.wav", "weapons/universal/uni_lean_out_03.wav", "weapons/universal/uni_lean_out_04.wav"})
+	CustomizableWeaponry:addRegularSound("CW_KK_INS2_UNIVERSAL_WEAPONLOWER", "weapons/universal/uni_weapon_lower_01.wav")
 	
 	CustomizableWeaponry:addReloadSound("CW_KK_INS2_GL_BEGINRELOAD", {"weapons/universal/uni_gl_beginreload_01.wav", "weapons/universal/uni_gl_beginreload_02.wav", "weapons/universal/uni_gl_beginreload_03.wav"})
 	
@@ -95,30 +95,22 @@
 	
 	CustomizableWeaponry:registerAmmo(".30 Carbine", ".30 Carbine Rounds", 7.62, 32.76)
 	CustomizableWeaponry:registerAmmo(".38 Special", ".38 Special Rounds", 9.1, 29.3)
+	CustomizableWeaponry:registerAmmo(".22 LR", ".22 LR Rounds", 5.6, 15)
+	
+	CustomizableWeaponry:registerAmmo("7.92x57MM", "7.92x57MM Rounds", 7.92, 57)
+	CustomizableWeaponry:registerAmmo("7.92x33MM", "7.92x33MM Rounds", 7.92, 33)
+	CustomizableWeaponry:registerAmmo("7.62x63MM", "7.62x63MM Rounds", 7.62, 63)
+	
 	CustomizableWeaponry:registerAmmo("RPG 40MM", "40MM Rocket Propelled Grenades", 0, 0)
 	CustomizableWeaponry:registerAmmo("Flare", "Flares for flare gun", 0, 0)
 	CustomizableWeaponry:registerAmmo("C4", "C4 explosives", 0, 0)
 	CustomizableWeaponry:registerAmmo("IED", "Improvised explosives", 0, 0)
 	CustomizableWeaponry:registerAmmo("Incediary", "Incendiary explosives", 0, 0)
-
+	
 // FIREMODES
 
 	CustomizableWeaponry.firemodes:registerFiremode("single", "SINGLE-SHOT", true, 1, 1)
 	-- CustomizableWeaponry.firemodes:registerFiremode("throw", "THROWABLE", true, 1, 1)
-
-// KEK
-
-if CustomizableWeaponry_KK.HOME then
-	local gren = {}
-	gren.name = "40mm_kk_1337"
-	gren.display = " - 1337 ROFLKEK"
-
-	function gren:fireFunc()
-		CustomizableWeaponry_KK.ins2.fireRPG(self, IsFirstTimePredicted()) // yay I can doo this two
-	end
-
-	CustomizableWeaponry.grenadeTypes:addNew(gren)	
-end
 
 // KILLS
 
@@ -182,4 +174,21 @@ if CLIENT then
 	killicon.AddFont("cw_kk_ins2_cstm_m14",			"CW_KillIcons", "a", killCol)
 	killicon.AddFont("cw_kk_ins2_cstm_scar",		"CW_KillIcons", "a", killCol)
 	killicon.AddFont("cw_kk_ins2_cstm_spas12",		"CW_KillIcons", "k", killCol)
+	
+	// WW2 pack
+	
+end
+
+// KEK
+
+if CustomizableWeaponry_KK.HOME then
+	local gren = {}
+	gren.name = "40mm_kk_1337"
+	gren.display = " - 1337 ROFLKEK"
+
+	function gren:fireFunc()
+		CustomizableWeaponry_KK.ins2.fireRPG(self, IsFirstTimePredicted()) // yay I can doo this two
+	end
+
+	CustomizableWeaponry.grenadeTypes:addNew(gren)	
 end

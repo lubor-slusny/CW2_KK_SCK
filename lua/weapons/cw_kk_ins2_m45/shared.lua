@@ -11,7 +11,7 @@ if CLIENT then
 	
 	SWEP.IconLetter = "f"
 	
-	SWEP.MuzzleEffect = "swb_pistol_small"
+	SWEP.MuzzleEffect = "muzzleflash_pistol"
 	SWEP.Shell = "KK_INS2_45apc"
 	
 	SWEP.AttachmentModelsVM = {		
@@ -22,6 +22,8 @@ if CLIENT then
 		
 		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_mak.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_mak.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		
+		["kk_counter"] = {model = "models/weapons/stattrack_cut.mdl", bone = "Slide", pos = Vector(0.451, 0, 0.028), angle = Angle(0, -90, 0), size = Vector(0.8, 0.8, 0.8)},
 	}
 
 	SWEP.AttachmentModelsWM = {
@@ -49,6 +51,10 @@ SWEP.Attachments = {
 	{header = "MagZ", offset = {-500, 50}, atts = {"kk_ins2_mag_m45_15"}},
 	["+reload"] = {header = "Ammo", offset = {500, 50}, atts = {"am_magnum", "am_matchgrade"}}
 }
+
+if CustomizableWeaponry_KK.HOME then
+	table.insert(SWEP.Attachments, {header = "CSGO", offset = {800, 600}, atts = {"kk_counter"}})
+end
 
 SWEP.KKINS_emptyIdle = true
 

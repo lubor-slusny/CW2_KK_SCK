@@ -32,6 +32,19 @@ CustomizableWeaponry_KK.ins2.quickGrenades.m84 = {
 	a_throw = "throw"
 }
 
+CustomizableWeaponry_KK.ins2.quickGrenades.ww2us = {
+	vm = "models/weapons/v_mk2.mdl",
+	wm = "models/weapons/w_mk2.mdl",
+	a_pinpull = "pullbackhigh",
+	a_throw = "throw"
+}
+CustomizableWeaponry_KK.ins2.quickGrenades.ww2de = {
+	vm = "models/weapons/v_stielhandgranate.mdl",
+	wm = "models/weapons/w_stielhandgranate.mdl",
+	a_pinpull = "pullbackhigh",
+	a_throw = "throw"
+}
+
 local nadeEnt = {
 	[0] = "cw_grenade_thrown",
 	[1] = "cw_flash_thrown",

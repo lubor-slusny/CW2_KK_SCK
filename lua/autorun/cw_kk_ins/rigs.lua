@@ -11,6 +11,8 @@ if CLIENT then
 		"models/weapons/v_hands_sec_m.mdl",
 		"models/weapons/v_hands_vip.mdl",
 		"models/weapons/v_cw_kk_ins2_hands_css.mdl",
+		"models/weapons/v_hands_ger.mdl",
+		"models/weapons/v_hands_us.mdl",
 	}
 	
 	if not CustomizableWeaponry_KK.panels then

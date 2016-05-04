@@ -32,6 +32,10 @@ if CLIENT then
 		
 		CustomizableWeaponry_KK.ins2.renderTargetSight(self, att)
 	end
+	
+	function att:elementRender()
+		CustomizableWeaponry_KK.ins2.renderTargetSightSetup(self, att)
+	end
 end
 
 function att:attachFunc()

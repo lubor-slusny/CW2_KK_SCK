@@ -53,8 +53,8 @@ if CLIENT then
 		["kk_ins2_cstm_barska"] = {model = "models/weapons/upgrades/w_eotech.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 	}
 	
-	SWEP.KKINS2CSTMBarskaPos = Vector(-1.4873, -2, 0.2629)
-	SWEP.KKINS2CSTMBarskaAng = Vector(-1.4, 0, 0)
+	SWEP.KKINS2CSTMBarskaPos = Vector(-1.4873, -2, 0.102)
+	SWEP.KKINS2CSTMBarskaAng = Vector(0, 0, 0)
 
 	SWEP.KKINS2AimpointPos = Vector(-1.4954, -2, 0.1245)
 	SWEP.KKINS2AimpointAng = Vector(-0.0593, 0, 0)

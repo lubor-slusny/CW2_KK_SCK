@@ -10,6 +10,8 @@ CustomizableWeaponry.callbacks:addNew("initialize", "KK_INS2_BASE", function(sel
 				end
 			end
 		end
+		
+		self.CW_VM._SWEP = self
 	end
 end)
 
@@ -56,6 +58,15 @@ CustomizableWeaponry.callbacks:addNew("postDetachAttachment", "KK_INS2_BASE", fu
 		if tab.KK_INS2_playIdle then
 			wep:idleAnimFunc()
 		end
+	end
+end)
+
+CustomizableWeaponry.callbacks:addNew("droppedWeapon", "KK_INS2_BASE", function(ent)
+	if CLIENT then
+		-- function ent:Draw()
+			
+		-- end
+		
 	end
 end)
 

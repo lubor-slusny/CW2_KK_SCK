@@ -106,7 +106,7 @@ if CLIENT then
 	SWEP.KKINS2ElcanPos = Vector(-2.8232, -10, -0.7093)
 	SWEP.KKINS2ElcanAng = Vector(0, 0, 0)
 	
-	SWEP.KKINS2CSTMACOGPos = Vector(-2.826, -10, -0.4257)
+	SWEP.KKINS2CSTMACOGPos = Vector(-2.8198, -11, -0.4165)
 	SWEP.KKINS2CSTMACOGAng = Vector(0, 0, 0)
 
 	SWEP.CustomizationMenuScale = 0.025

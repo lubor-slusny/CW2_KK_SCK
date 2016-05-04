@@ -14,44 +14,16 @@ if CLIENT then
 	CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/optics/kobra_lense"] = true
 	CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/optics/eotech_lense"] = true
 	CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/attachments/cw_kk_ins2_cstm_barska/barska_lense"] = true
+	
+	CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/optics/mosin_lense"] = true
+	CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/optics/lense_rt"] = true
+	CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/optics/optic_lense"] = true
+	
 	local isLense = CustomizableWeaponry_KK.ins2.stencilLenses
 	
 	local size, rc, isAiming, freeze, isScopePos, attachmEnt, retAtt, retDist, retPos, EA, retAng, retNorm, v
 	
-	function CustomizableWeaponry_KK.ins2:stencilSight(att)
-		if not self.AttachmentModelsVM then return end
-		if not self.AttachmentModelsVM[att.name] then return end
-		
-		self._laserStencilCheck = false // this got little NASTY
-			CustomizableWeaponry.registeredAttachmentsSKey["kk_ins2_lam"].elementRender(self)
-			CustomizableWeaponry.registeredAttachmentsSKey["kk_ins2_combo"].elementRender(self)
-		self._laserStencilCheck = true
-		
-		if not self.ActiveAttachments[att.name] then return end
-		if self.ActiveAttachments.kk_ins2_magnifier then return end
-		
-		size = att._reticleSize
-		rc = self:getSightColor(att.name)
-		isAiming = self:isAiming()
-		freeze = GetConVarNumber("cw_kk_freeze_reticles") != 0
-		isScopePos = (self.AimPos == self[att.aimPos[1]] and self.AimAng == self[att.aimPos[2]])
-		
-		self.AttachmentModelsVM[att.name].nodraw = false
-		attachmEnt = self.AttachmentModelsVM[att.name].ent
-		
-		if !freeze then
-			/*stencil stuff*/
-			render.ClearStencil()
-			render.SetStencilEnable(true)
-			render.SetStencilWriteMask(1)
-			render.SetStencilTestMask(1)
-			render.SetStencilReferenceValue(1)
-			render.SetStencilCompareFunction(STENCILCOMPARISONFUNCTION_ALWAYS)
-			render.SetStencilPassOperation(STENCILOPERATION_REPLACE)
-			render.SetStencilFailOperation(STENCILOPERATION_KEEP)
-			render.SetStencilZFailOperation(STENCILOPERATION_KEEP)
-		end
-		
+	function CustomizableWeaponry_KK.ins2:drawStencilEnt(att)
 		/*"canvas" for reticle, materialoverride*/
 		-- if att.stencilMats then
 			-- for i,is in pairs(att.stencilMats) do
@@ -110,6 +82,43 @@ if CLIENT then
 			v.stencilEnt:SetAngles(v.ent:GetAngles())
 			v.stencilEnt:DrawModel()
 		end
+	end
+	
+	function CustomizableWeaponry_KK.ins2:stencilSight(att)
+		if not self.AttachmentModelsVM then return end
+		if not self.AttachmentModelsVM[att.name] then return end
+		
+		self._laserStencilCheck = false // this got little NASTY
+			CustomizableWeaponry.registeredAttachmentsSKey["kk_ins2_lam"].elementRender(self)
+			CustomizableWeaponry.registeredAttachmentsSKey["kk_ins2_combo"].elementRender(self)
+		self._laserStencilCheck = true
+		
+		if not self.ActiveAttachments[att.name] then return end
+		if self.ActiveAttachments.kk_ins2_magnifier then return end
+		
+		size = att._reticleSize
+		rc = self:getSightColor(att.name)
+		isAiming = self:isAiming()
+		freeze = GetConVarNumber("cw_kk_freeze_reticles") != 0
+		isScopePos = (self.AimPos == self[att.aimPos[1]] and self.AimAng == self[att.aimPos[2]])
+		
+		self.AttachmentModelsVM[att.name].nodraw = false
+		attachmEnt = self.AttachmentModelsVM[att.name].ent
+		
+		if !freeze then
+			/*stencil stuff*/
+			render.ClearStencil()
+			render.SetStencilEnable(true)
+			render.SetStencilWriteMask(1)
+			render.SetStencilTestMask(1)
+			render.SetStencilReferenceValue(1)
+			render.SetStencilCompareFunction(STENCILCOMPARISONFUNCTION_ALWAYS)
+			render.SetStencilPassOperation(STENCILOPERATION_REPLACE)
+			render.SetStencilFailOperation(STENCILOPERATION_KEEP)
+			render.SetStencilZFailOperation(STENCILOPERATION_KEEP)
+		end
+		
+		CustomizableWeaponry_KK.ins2.drawStencilEnt(self, att)
 		
 		if !freeze then
 			/*stencil stuff*/

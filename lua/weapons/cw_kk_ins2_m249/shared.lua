@@ -23,15 +23,21 @@ if CLIENT then
 	SWEP.AttachmentModelsVM = {		
 		["md_saker"] = {model = "models/weapons/upgrades/a_suppressor_sec.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_counter"] = {model = "models/weapons/stattrack.mdl", bone = "Weapon", rel = "", pos = Vector(0.026, -7.802, 3.993), angle = Angle(0, 0, 72), size = Vector(0.699, 0.699, 0.699)},
-		["kk_counter"] = {model = "models/weapons/stattrack.mdl", bone = "Weapon", rel = "", pos = Vector(0.026, -7.77, 4.057), angle = Angle(0, 0, 50), size = Vector(0.699, 0.699, 0.699)},
-		
+		-- ["kk_counter"] = {model = "models/weapons/stattrack.mdl", bone = "Weapon", pos = Vector(0.026, -7.802, 3.993), angle = Angle(0, 0, 72), size = Vector(0.699, 0.699, 0.699)},
+		["kk_counter"] = {model = "models/weapons/stattrack.mdl", bone = "Weapon", pos = Vector(0.026, -7.77, 4.057), angle = Angle(0, 0, 50), size = Vector(0.699, 0.699, 0.699)},
+		["kk_textbox"] = {model = "models/weapons/uid.mdl", bone = "LidCont", pos = Vector(0.441, -5.015, -0.156), angle = Angle(0, -90, 0), size = Vector(1, 1, 1)},
+
 		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_band.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_band.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 
+		["kk_ins2_magnifier"] = {model = "models/weapons/upgrades/a_optic_aimpoint.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		
 		["kk_ins2_aimpoint"] = {model = "models/weapons/upgrades/a_optic_aimpoint.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_cstm_barska"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_barska.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_cstm_eotechxps"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_eotechxps.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_cstm_compm4s"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_compm4s.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_cstm_acog"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_acog.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		
 	}
 	
 	SWEP.AttachmentModelsWM = {
@@ -51,14 +57,23 @@ if CLIENT then
 	SWEP.IronsightPos = Vector(-2.0484, 0, 0.9581)
 	SWEP.IronsightAng = Vector(0, 0.03, 0)
 
-	SWEP.KKINS2AimpointPos = Vector(-2.0127, 0, -0.002)
+	SWEP.KKINS2AimpointPos = Vector(-2.0127, -2, -0.002)
 	SWEP.KKINS2AimpointAng = Vector(0, 0, 0)
 
-	SWEP.KKINS2CSTMBarskaPos = Vector(-2.0127, 0, -0.002)
+	SWEP.KKINS2CSTMBarskaPos = Vector(-2.0127, -2, -0.002)
 	SWEP.KKINS2CSTMBarskaAng = Vector(0, 0, 0)
 
 	SWEP.KKINS2CSTMEoTechXPSPos = Vector(-2.0038, -2, 0)
 	SWEP.KKINS2CSTMEoTechXPSAng = Vector(0, 0, 0)
+
+	SWEP.KKINS2CSTMCompM4SPos = Vector(-2.0127, -2, -0.002)
+	SWEP.KKINS2CSTMCompM4SAng = Vector(0, 0, 0)
+
+	SWEP.KKINS2MagnifierPos = Vector(-2.0063, -1, 0.0037)
+	SWEP.KKINS2MagnifierAng = Vector(0, 0, 0)
+
+	SWEP.KKINS2CSTMACOGPos = Vector(-2.0116, 0, -0.3206)
+	SWEP.KKINS2CSTMACOGAng = Vector(0, 0, 0)
 
 	SWEP.KKINS_implicitBipod = true
 	SWEP.CustomizationMenuScale = 0.015
@@ -68,14 +83,18 @@ SWEP.Chamberable = false
 SWEP.BipodInstalled = true
 
 SWEP.Attachments = {
-	{header = "Sight", offset = {400, -400},  atts = {"kk_ins2_cstm_barska","kk_ins2_cstm_eotechxps","kk_ins2_aimpoint"}},
+	{header = "Sight", offset = {400, -400},  atts = {"kk_ins2_cstm_barska","kk_ins2_cstm_eotechxps","kk_ins2_aimpoint", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"}},
 	{header = "Barrel", offset = {-200, -400},  atts = {"md_saker"}},
 	{header = "Extras", offset = {-400, 100}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_combo"}},
+	{header = "More Sight", offset = {800, 200}, atts = {"kk_ins2_magnifier"}, dependencies = CustomizableWeaponry_KK.ins2.magnifierDependencies},
 	["+reload"] = {header = "Ammo", offset = {200, 600}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
 if CustomizableWeaponry_KK.HOME then
-	table.insert(SWEP.Attachments, {header = "CSGO", offset = {800, 600}, atts = {"kk_counter"}})
+	table.insert(SWEP.Attachments, {header = "Skill1", offset = {1600, -600}, atts = {"kk_aimbot"}})
+	table.insert(SWEP.Attachments, {header = "Skill2", offset = {1600, -200}, atts = {"kk_wallhaq"}})
+	table.insert(SWEP.Attachments, {header = "CSGO", offset = {1600, 200}, atts = {"kk_counter"}})
+	table.insert(SWEP.Attachments, {header = "CSGO", offset = {1600, 600}, atts = {"kk_textbox"}})
 end
 
 SWEP.Animations = {

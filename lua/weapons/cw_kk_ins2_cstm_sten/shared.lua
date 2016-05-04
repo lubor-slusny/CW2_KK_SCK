@@ -57,8 +57,8 @@ if CLIENT then
 	SWEP.KKINS2AimpointPos = Vector(-1.9674, -2, 0.0848)
 	SWEP.KKINS2AimpointAng = Vector(-0.05, 0, 0)
 
-	SWEP.KKINS2CSTMACOGPos = Vector(-1.9781, -2, -0.0331)
-	SWEP.KKINS2CSTMACOGAng = Vector(0, 0, 0)
+	SWEP.KKINS2CSTMACOGPos = Vector(-1.9727, -5, -0.0326)
+	SWEP.KKINS2CSTMACOGAng = Vector(-0.0502, 0, 0)
 
 	SWEP.CustomizationMenuScale = 0.0125
 end
@@ -71,6 +71,7 @@ SWEP.Attachments = {
 	["+reload"] = {header = "Ammo", offset = {0, 400}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
+SWEP.Chamberable = false
 SWEP.KKINS_emptyIdle = true
 
 SWEP.Animations = {

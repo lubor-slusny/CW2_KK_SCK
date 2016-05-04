@@ -22,7 +22,7 @@ if CLIENT then
 		["md_saker"] = {model = "models/weapons/upgrades/a_suppressor_sec.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 	
 		["kk_ins2_bipod"] = {model = "models/weapons/upgrades/a_bipod_scar.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/a_foregrip_sec.mdl", pos = Vector(0,0,0), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), merge = true},
+		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/a_foregrip_scar.mdl", pos = Vector(0,0,0), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), merge = true},
 
 		["kk_ins2_magnifier"] = {model = "models/weapons/upgrades/a_optic_aimpoint_l.mdl", pos = Vector(0,0,0), angle = Angle(90, 90, 0), size = Vector(1, 1, 1), merge = true},	
 	
@@ -82,7 +82,7 @@ if CLIENT then
 	SWEP.KKINS2ElcanPos = Vector(-2.7241, 0, 0.4991)
 	SWEP.KKINS2ElcanAng = Vector(0, 0, 0)
 
-	SWEP.KKINS2CSTMACOGPos = Vector(-2.7206, 0, 0.4974)
+	SWEP.KKINS2CSTMACOGPos = Vector(-2.7206, -3, 0.4974)
 	SWEP.KKINS2CSTMACOGAng = Vector(0, 0, 0)
 
 	SWEP.KKINS2CSTMEoTechXPSPos = Vector(-2.7297, -2, 0.6352)
@@ -221,9 +221,9 @@ SWEP.Primary.DefaultClip	= 20
 SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= "7.62x51MM"
 
-SWEP.FireDelay = 60/375
+SWEP.FireDelay = 60/625
 SWEP.FireSound = "CW_KK_INS2_CSTM_SCAR_FIRE"
-SWEP.FireSoundSuppressed = "CW_KK_INS2_CSTM_SCAR_FIRE_SUPPRESSED"
+SWEP.FireSoundSuppressed = "CW_KK_INS2_M14_FIRE_SUPPRESSED"
 SWEP.Recoil = 1.6
 
 SWEP.HipSpread = 0.055
@@ -259,5 +259,7 @@ if CLIENT then
 		else
 			self.AttachmentModelsWM.kk_ins2_bipod.ent:SetSequence(0)
 		end
+		
+		self.AttachmentModelsVM.kk_ins2_vertgrip.ent:ManipulateBoneScale(0, Vector(0,0,0))
 	end
 end

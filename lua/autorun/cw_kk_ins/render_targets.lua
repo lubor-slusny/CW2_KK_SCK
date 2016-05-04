@@ -4,7 +4,9 @@ if CLIENT then
 
 	CustomizableWeaponry_KK.rts.ins2_scope = GetRenderTarget("cw_kk_ins2_scope", 512, 512, false)
 	CustomizableWeaponry_KK.rts.ins2_scope_init = true
-	
+end
+
+if CLIENT then
 	local old, x, y, ang
 	local reticle = surface.GetTextureID("cw2/reticles/reticle_chevron")
 	
@@ -40,20 +42,9 @@ if CLIENT then
 		
 		x, y = ScrW(), ScrH()
 		old = render.GetRenderTarget()
-	
-		ang = self:getTelescopeAngles()
 		
-		if self.ViewModelFlip then
-			ang.r = -self.BlendAng.z
-		else
-			ang.r = self.BlendAng.z
-		end
-		
-		if not self.freeAimOn then
-			ang:RotateAroundAxis(ang:Right(), self.ACOGAxisAlign.right)
-			ang:RotateAroundAxis(ang:Up(), self.ACOGAxisAlign.up)
-			ang:RotateAroundAxis(ang:Forward(), self.ACOGAxisAlign.forward)
-		end
+		ang = self.AttachmentModelsVM[att.name].ent:GetAttachment(1).Ang
+		ang:RotateAroundAxis(ang:Forward(), -90)
 		
 		local size = self:getRenderTargetSize()
 		
@@ -78,11 +69,11 @@ if CLIENT then
 			local light = render.ComputeLighting(self.Owner:GetShootPos(), ang)
 			
 			cam.Start2D()
-				if att._rtReticle then
-					surface.SetDrawColor(255, 255, 255, 255)
-					surface.SetTexture(att._rtReticle)
-					surface.DrawTexturedRect(0, 0, size, size)
-				end 
+				-- if att._rtReticle then
+					-- surface.SetDrawColor(255, 255, 255, 255)
+					-- surface.SetTexture(att._rtReticle)
+					-- surface.DrawTexturedRect(0, 0, size, size)
+				-- end 
 				
 				surface.SetDrawColor(150 * light[1], 150 * light[2], 150 * light[3], 255 * alpha)
 				surface.SetTexture(lens)
@@ -94,5 +85,110 @@ if CLIENT then
 		if self.TSGlass then
 			self.TSGlass:SetTexture("$basetexture", self.ScopeRT)
 		end
+	end
+end
+
+if CLIENT then
+	local frontMat = Material("cw2/reticles/reticle_chevron")
+	local frontMat2 = Material("models/weapons/attachments/cw_kk_ins2_shared/fake20")
+	local rearMat = Material("models/weapons/optics/kobra_dot")
+	 
+	local white = Color(255,255,255)
+	local color = Color(0,0,0)
+	
+	local size, attachmEnt, retAtt, retPos, retAng, retNorm, offset
+		
+	function CustomizableWeaponry_KK.ins2:renderTargetSightSetup(att)
+		if not self.ActiveAttachments[att.name] then return end
+		
+		attachmEnt = self.AttachmentModelsVM[att.name].ent
+		
+		if att._reticleMat then
+			render.ClearStencil()
+			render.SetStencilEnable(true)
+			render.SetStencilWriteMask(1)
+			render.SetStencilTestMask(1)
+			render.SetStencilReferenceValue(1)
+			render.SetStencilCompareFunction(STENCILCOMPARISONFUNCTION_ALWAYS)
+			render.SetStencilPassOperation(STENCILOPERATION_REPLACE)
+			render.SetStencilFailOperation(STENCILOPERATION_KEEP)
+			render.SetStencilZFailOperation(STENCILOPERATION_KEEP)
+			
+			CustomizableWeaponry_KK.ins2.drawStencilEnt(self, att)
+			
+			render.SetStencilWriteMask(2)
+			render.SetStencilTestMask(2)
+			render.SetStencilReferenceValue(2)
+			render.SetStencilCompareFunction(STENCILCOMPARISONFUNCTION_EQUAL)
+			render.SetStencilPassOperation(STENCILOPERATION_REPLACE)
+			render.SetStencilWriteMask(1)
+			render.SetStencilTestMask(1)
+			render.SetStencilReferenceValue(1)
+			
+			retAtt = attachmEnt:GetAttachment(2)
+			retPos = retAtt.Pos
+			retAng = -90 - retAtt.Ang.z
+			retNorm = -retAtt.Ang:Forward()
+			
+			cam.IgnoreZ(true)
+				size = 200
+				
+				render.SetMaterial(att._reticleMat)
+				render.DrawQuadEasy(retPos, retNorm, size, size, white, retAng)
+				render.DrawQuadEasy(retPos, retNorm, size, size, white, retAng)
+				
+				render.SetMaterial(frontMat2)
+				
+				/*UP*/
+				offset = -retAtt.Ang:Right() * size*3
+				render.DrawQuadEasy(retPos + offset, retNorm, size, size * 5, color, retAng)
+				
+				/*RIGHT*/
+				offset = retAtt.Ang:Up() * size*3
+				render.DrawQuadEasy(retPos + offset, retNorm, size * 5, size * 11, color, retAng)
+				
+				/*DOWN*/
+				offset = retAtt.Ang:Right() * size*3
+				render.DrawQuadEasy(retPos + offset, retNorm, size, size * 5, color, retAng)
+				
+				/*LEFT*/
+				offset = -retAtt.Ang:Up() * size*3
+				render.DrawQuadEasy(retPos + offset, retNorm, size * 5, size * 11, color, retAng)
+			cam.IgnoreZ(false)
+			
+			render.SetStencilEnable(false)
+		end
+		
+		if GetConVarNumber("cw_kk_freeze_reticles") == 0 then return end
+		
+		/*FRONT NODE*/
+		retAtt = attachmEnt:GetAttachment(2)
+		retPos = retAtt.Pos
+		retAng = 90 + retAtt.Ang.z
+		retNorm = retAtt.Ang:Forward()
+		
+		cam.IgnoreZ(true)
+			render.CullMode(MATERIAL_CULLMODE_CW)
+				size = 50
+				render.SetMaterial(rearMat)
+				render.DrawQuadEasy(retPos, retNorm, size, size, color, retAng)
+				render.DrawQuadEasy(retPos, retNorm, size, size, color, retAng)
+			render.CullMode(MATERIAL_CULLMODE_CCW)
+		cam.IgnoreZ(false)
+		
+		/*REAR NODE*/
+		retAtt = attachmEnt:GetAttachment(1)
+		retPos = retAtt.Pos
+		retAng = 90 + retAtt.Ang.z
+		retNorm = retAtt.Ang:Forward()
+		
+		cam.IgnoreZ(true)
+			render.CullMode(MATERIAL_CULLMODE_CW)
+				size = 1
+				render.SetMaterial(rearMat)
+				render.DrawQuadEasy(retPos, retNorm, size, size, color, retAng)
+				render.DrawQuadEasy(retPos, retNorm, size, size, color, retAng)
+			render.CullMode(MATERIAL_CULLMODE_CCW)
+		cam.IgnoreZ(false)
 	end
 end

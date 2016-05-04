@@ -29,6 +29,7 @@ if CLIENT then
 		
 		["kk_ins2_cstm_barska"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_barska.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_cstm_acog"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_acog_m.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_cstm_eotechxps"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_eotechxps.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 	}
 
 	SWEP.AttachmentModelsWM = {
@@ -58,14 +59,17 @@ if CLIENT then
 	SWEP.KKINS2MagnifierPos = Vector(-2.3103, -3, -0.0972)
 	SWEP.KKINS2MagnifierAng = Vector(0, 0, 0)
 
-	SWEP.KKINS2CSTMACOGPos = Vector(-2.3129, -2, -0.2235)
-	SWEP.KKINS2CSTMACOGAng = Vector(0, 0, 0)
+	SWEP.KKINS2CSTMACOGPos = Vector(-2.3167, -4, -0.1255)
+	SWEP.KKINS2CSTMACOGAng = Vector(-1.3964, -0.011, 0)
+
+	SWEP.KKINS2CSTMEoTechXPSPos = Vector(-2.3138, -2, 0.0099)
+	SWEP.KKINS2CSTMEoTechXPSAng = Vector(-1.3678, 0, 0)
 
 	SWEP.CustomizationMenuScale = 0.01
 end
 
 SWEP.Attachments = {
-	{header = "Sight", offset = {300, -700}, atts = {"kk_ins2_cstm_barska", "kk_ins2_aimpoint", "kk_ins2_cstm_acog"}},
+	{header = "Sight", offset = {300, -700}, atts = {"kk_ins2_cstm_barska", "kk_ins2_cstm_eotechxps", "kk_ins2_aimpoint", "kk_ins2_cstm_acog"}},
 	{header = "Barrel", offset = {-300, -700}, atts = {"md_tundra9mm"}},
 	{header = "Extras", offset = {-500, -200}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_combo"}},
 	{header = "More Sight", offset = {800, -200}, atts = {"kk_ins2_magnifier"}, dependencies = CustomizableWeaponry_KK.ins2.magnifierDependencies},

@@ -1,0 +1,133 @@
+AddCSLuaFile()
+AddCSLuaFile("sh_sounds.lua")
+include("sh_sounds.lua")
+
+if CLIENT then
+	SWEP.DrawCrosshair = false
+	SWEP.PrintName = "M1 Garand"
+	
+	SWEP.IconLetter = "n"
+	
+	SWEP.MuzzleEffect = "muzzleflash_m14"
+	SWEP.Shell = "KK_INS2_762x54"
+	
+	SWEP.IronsightPos = Vector(-2.4643, -2, 1.1174)
+	SWEP.IronsightAng = Vector(-0.4782, 0.006, 0)
+
+end
+
+SWEP.CanCustomize = true
+
+SWEP.Attachments = {
+	["+reload"] = {header = "Ammo", offset = {700, 300}, atts = {"am_magnum", "am_matchgrade"}}
+}
+
+SWEP.Chamberable = false
+SWEP.KKINS_emptyIdle = true
+
+SWEP.Animations = {
+	draw = "base_ready", // coz drawanimfunc doesnt play always
+
+	base_pickup = "base_ready",
+	base_draw = "base_draw",
+	base_draw_empty = "base_draw_empty",
+	base_fire = {"base_fire_1","base_fire_2"},
+	base_fire_aim = {"iron_fire_1", "iron_fire_2", "iron_fire_3"},
+	base_fire_last = "base_fire_last",
+	base_fire_last_aim = "iron_fire_last",
+	base_fire_empty = "base_dryfire",
+	base_fire_empty_aim = "iron_dryfire",
+	base_reload = "base_reloadfull",
+	base_reload_empty = "base_reloadempty",
+	base_idle = "base_idle",
+	base_idle_empty = "base_idle_empty",
+	base_holster = "base_holster",
+	base_holster_empty = "base_holster_empty",
+	base_sprint = "base_sprint",
+	base_sprint_empty = "base_sprint_empty",
+	base_safe = "base_down",
+	base_safe_empty = "base_down_empty",
+	base_safe_aim = "iron_down",
+	base_safe_empty_aim = "iron_down_empty",
+	
+}
+
+SWEP.Sounds = {
+	shoot_empty = {
+		{time = 0, sound = "Weapon_Garand.ClipDing"},
+	},
+
+	empty_idle = {
+		{time = 0, sound = "Weapon_Garand.ClipDing"},
+	},
+
+	reload = {
+		{time = 1/35, sound = "Weapon_Garand.Draw"},
+		{time = 12/35, sound = "Weapon_Garand.ClipIn1"},
+		{time = 17/35, sound = "Weapon_Garand.ClipIn2"},
+		{time = 28/35, sound = "Weapon_Garand.Draw"},
+		{time = 33/35, sound = "Weapon_Garand.BoltForward"},
+	},
+
+	draw = {
+		{time = 1/32, sound = "Weapon_Garand.Draw"},
+	},
+
+	draw_empty = {
+		{time = 1/32, sound = "Weapon_Garand.Draw"},
+	},
+}
+
+SWEP.SpeedDec = 40
+
+SWEP.Slot = 3
+SWEP.SlotPos = 0
+SWEP.NormalHoldType = "ar2"
+SWEP.RunHoldType = "passive"
+SWEP.FireModes = {"semi"}
+SWEP.Base = "cw_kk_ins2_base"
+SWEP.Category = "CW 2.0 KK INS2 WW2"
+
+SWEP.Author			= "Spy"
+SWEP.Contact		= ""
+SWEP.Purpose		= ""
+SWEP.Instructions	= ""
+
+SWEP.ViewModelFOV	= 75
+SWEP.ViewModelFlip	= false
+SWEP.ViewModel		= "models/weapons/v_garand.mdl"
+SWEP.WorldModel		= "models/weapons/w_garand.mdl"
+
+SWEP.WMPos = Vector(1.542, 0, 0.976)
+SWEP.WMAng = Vector(-12.174, 1.458, 180)
+
+SWEP.Spawnable			= true
+SWEP.AdminSpawnable		= true
+
+SWEP.Primary.ClipSize		= 8
+SWEP.Primary.DefaultClip	= 8
+SWEP.Primary.Automatic		= false
+SWEP.Primary.Ammo			= "7.62x63MM"
+
+SWEP.FireDelay = 0.17
+SWEP.FireSound = "CW_KK_INS2_WW2_GARAND_FIRE"
+SWEP.Recoil = 1.6
+
+SWEP.HipSpread = 0.055
+SWEP.AimSpread = 0.002
+SWEP.VelocitySensitivity = 2.1
+SWEP.MaxSpreadInc = 0.07
+SWEP.SpreadPerShot = 0.01
+SWEP.SpreadCooldown = 0.12
+SWEP.Shots = 1
+SWEP.Damage = 42
+SWEP.DeployTime = 0.94
+
+SWEP.RecoilToSpread = 0.8 -- the M14 in particular will have 30% more recoil from continuous fire to give a feeling of "oh fuck I should stop firing 7.62x51MM in full auto at 750 RPM"
+
+local reload = 1.63
+
+SWEP.ReloadTime = reload
+SWEP.ReloadTime_Empty = reload
+SWEP.ReloadHalt = reload
+SWEP.ReloadHalt_Empty = reload

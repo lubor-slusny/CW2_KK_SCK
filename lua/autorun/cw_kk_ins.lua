@@ -68,3 +68,28 @@ if CLIENT then
 		end
 	})
 end
+
+if CLIENT then
+	CreateClientConVar("cw_kk_add_epilepsy", 0, true, false) // for mental sickness
+	
+	local onceStarted
+	
+	hook.Add("RenderScene", "CW20_KK_Epilepsy-ator", function()
+		if (GetConVarNumber("cw_kk_add_epilepsy") == 0) and not onceStarted then return end
+		
+		onceStarted = true
+		
+		for _,a in pairs(CustomizableWeaponry.registeredAttachments) do
+			if a.description then
+				for __,line in pairs(a.description) do
+					line.c = Color(
+						math.random(255),
+						math.random(255),
+						math.random(255),
+						math.random(255) + 155
+					)	
+				end
+			end
+		end
+	end)
+end
