@@ -23,9 +23,14 @@ if CLIENT then
 		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_band.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_band.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 
-		["kk_ins2_magnifier"] = {model = "models/weapons/upgrades/a_optic_aimpoint.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_magnifier"] = {model = "models/weapons/upgrades/a_optic_aimp2x_m.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_aimpoint"] = {model = "models/weapons/upgrades/a_optic_aimpoint.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_aimpoint"] = {model = "models/weapons/upgrades/a_optic_aimpoint_m.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_elcan"] = {model = "models/weapons/upgrades/a_optic_elcan_m.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_eotech"] = {model = "models/weapons/upgrades/a_optic_eotech_m.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_kobra"] = {model = "models/weapons/upgrades/a_optic_kobra.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_pso4"] = {model = "models/weapons/upgrades/a_optic_po4x24_m.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		
 		["kk_ins2_cstm_barska"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_barska.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 	}
 	
@@ -40,6 +45,11 @@ if CLIENT then
 		["kk_ins2_magnifier"] = {model = "models/weapons/upgrades/w_magaim.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_aimpoint"] = {model = "models/weapons/upgrades/w_aimpoint.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_elcan"] = {model = "models/weapons/upgrades/w_elcan.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_eotech"] = {model = "models/weapons/upgrades/w_eotech.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_kobra"] = {model = "models/weapons/upgrades/w_kobra.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_pso4"] = {model = "models/weapons/upgrades/w_po.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+			
 		["kk_ins2_cstm_barska"] = {model = "models/weapons/upgrades/w_eotech.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 	}
 	
@@ -55,10 +65,31 @@ if CLIENT then
 	SWEP.KKINS2MagnifierPos = Vector(-2.505, -2, -0.45) // acceptable
 	SWEP.KKINS2MagnifierAng = Vector(0, 0, 0)
 	
+	// sth sth sth theater
+	
+	SWEP.KKINS2EoTechPos = Vector(-2.5102, -2, -0.2916)
+	SWEP.KKINS2EoTechAng = Vector(0, 0, 0)
+
+	SWEP.KKINS2AimpointPos = Vector(-2.505, -2, -0.2748)
+	SWEP.KKINS2AimpointAng = Vector(0, 0, 0)
+
+	SWEP.KKINS2KobraPos = Vector(-2.5103, -2, -0.3096)
+	SWEP.KKINS2KobraAng = Vector(0, 0, 0)
+
+	SWEP.KKINS2PSO4Pos = Vector(-2.4542, -3, -0.1948)
+	SWEP.KKINS2PSO4Ang = Vector(0, 0, 0)
+
+	SWEP.KKINS2MagnifierPos = Vector(-2.5024, -3, -0.2802)
+	SWEP.KKINS2MagnifierAng = Vector(0, 0, 0)
+
+	SWEP.KKINS2ElcanPos = Vector(-2.5041, -3, -0.5503)
+	SWEP.KKINS2ElcanAng = Vector(0, 0, 0)
+
 end
 
 SWEP.Attachments = {
-	{header = "Sight", offset = {300, -500}, atts = {"kk_ins2_cstm_barska", "kk_ins2_aimpoint"}},
+	-- {header = "Sight", offset = {300, -500}, atts = {"kk_ins2_cstm_barska", "kk_ins2_aimpoint"}},
+	{header = "Sight", offset = {300, -500}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_pso4"}},
 	{header = "Barrel", offset = {-300, -500}, atts = {"md_saker"}},
 	{header = "Extras", offset = {-500, 0}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_combo"}},
 	{header = "More Sight", offset = {800, 0}, atts = {"kk_ins2_magnifier"}, dependencies = CustomizableWeaponry_KK.ins2.magnifierDependencies},

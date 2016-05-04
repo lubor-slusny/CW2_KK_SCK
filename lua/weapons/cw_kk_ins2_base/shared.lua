@@ -50,6 +50,7 @@ SWEP.BipodUndeployTime = 1.15
 SWEP.TSGlass = Material("models/weapons/optics/lense_rt")
 
 SWEP.AttachmentExclusions = {
+	["bg_foldsight"] = {"kk_ins2_magnifier"},
 	["kk_ins2_cstm_acog"] = {"kk_ins2_magnifier"},
 	["kk_ins2_cstm_barska"] = {"kk_ins2_magnifier"},
 	["kk_ins2_cstm_microt1"] = {"kk_ins2_magnifier"},
@@ -86,6 +87,8 @@ if CLIENT then
 	SWEP.CW_KK_HANDS_MDL = "models/weapons/v_hands_vip.mdl"
 	
 	SWEP.knifeTime = 0
+	
+	SWEP.FOVPerShot = 0
 	
 	SWEP.SprintPos = Vector(0, 0, 0)
 	SWEP.SprintAng = Vector(0, 0, 0)
@@ -171,9 +174,7 @@ function SWEP:IndividualThink()
 		self.CrosshairEnabled = shouldDrawCrosshair
 		self.FadeCrosshairOnAim = !shouldDrawCrosshair
 		
-		if self:getPrimarySight() != nil then
-			RunConsoleCommand("cw_freeaim", 0)
-		end
+		self.NoFreeAim = self:getPrimarySight() != nil // and self:isAiming()
 		
 		if !SP and not IsFirstTimePredicted() then return end
 		

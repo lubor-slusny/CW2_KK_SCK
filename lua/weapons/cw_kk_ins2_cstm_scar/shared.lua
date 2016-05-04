@@ -88,7 +88,7 @@ if CLIENT then
 	SWEP.KKINS2CSTMEoTechXPSPos = Vector(-2.7297, -2, 0.6352)
 	SWEP.KKINS2CSTMEoTechXPSAng = Vector(0, 0, 0)
 
-	SWEP.KKINS2MagnifierPos = Vector(-2.7244, -3, 0.5407)
+	SWEP.KKINS2MagnifierPos = Vector(-2.7244, -2, 0.5407)
 	SWEP.KKINS2MagnifierAng = Vector(-0.2, -0.05, 0)
 
 	SWEP.IronsightPos = Vector(-2.7302, -2, 1.4336)

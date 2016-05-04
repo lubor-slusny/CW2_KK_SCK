@@ -143,26 +143,26 @@ if CLIENT then
 				render.SetMaterial(emptyReticle)
 			end
 			
-			render.DrawQuadEasy(retPos, retNorm, size, size, white, retAng)
-			render.DrawQuadEasy(retPos, retNorm, size, size, white, retAng)
+			-- render.DrawQuadEasy(retPos, retNorm, size, size, white, retAng)
+			-- render.DrawQuadEasy(retPos, retNorm, size, size, white, retAng)
 			
 			render.SetMaterial(frontMat2)
 			
-			/*UP*/
-			offset = -retAtt.Ang:Right() * size*3
-			render.DrawQuadEasy(retPos + offset, retNorm, size, size * 5, color, retAng)
+			-- /*UP*/
+			-- offset = -retAtt.Ang:Right() * size*3
+			-- render.DrawQuadEasy(retPos + offset, retNorm, size, size * 5, color, retAng)
 			
-			/*RIGHT*/
-			offset = retAtt.Ang:Up() * size*3
-			render.DrawQuadEasy(retPos + offset, retNorm, size * 5, size * 11, color, retAng)
+			-- /*RIGHT*/
+			-- offset = retAtt.Ang:Up() * size*3
+			-- render.DrawQuadEasy(retPos + offset, retNorm, size * 5, size * 11, color, retAng)
 			
-			/*DOWN*/
-			offset = retAtt.Ang:Right() * size*3
-			render.DrawQuadEasy(retPos + offset, retNorm, size, size * 5, color, retAng)
+			-- /*DOWN*/
+			-- offset = retAtt.Ang:Right() * size*3
+			-- render.DrawQuadEasy(retPos + offset, retNorm, size, size * 5, color, retAng)
 			
-			/*LEFT*/
-			offset = -retAtt.Ang:Up() * size*3
-			render.DrawQuadEasy(retPos + offset, retNorm, size * 5, size * 11, color, retAng)
+			-- /*LEFT*/
+			-- offset = -retAtt.Ang:Up() * size*3
+			-- render.DrawQuadEasy(retPos + offset, retNorm, size * 5, size * 11, color, retAng)
 		cam.IgnoreZ(false)
 		
 		render.SetStencilEnable(false)

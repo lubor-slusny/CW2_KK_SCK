@@ -81,12 +81,14 @@ if CLIENT then
 		
 		if self.lastPrimarySight != currentPrimarySight then
 			local velement = self.AttachmentModelsVM[currentPrimarySight]
-			if velement then
-				velement.active = false
-			end
 			
+			velement.active = false
 			magnifierModel = models[velement.model]
 			scopeEnt:SetModel(magnifierModel)
+			
+			local rem = self.AttachmentModelsVM[att.name].stencilEnt
+			self.AttachmentModelsVM[att.name].stencilEnt = nil
+			SafeRemoveEntity(rem)
 			
 			att.zoomTextures[1] = simpleTextures[velement.model] or simpleTextures["_default"]
 			self.ZoomTextures = att.zoomTextures
@@ -121,10 +123,15 @@ function att:attachFunc()
 	
 		local currentPrimarySight = self:getPrimarySight()
 		
-		if currentPrimarySight and self.AttachmentModelsVM and self.AttachmentModelsVM.kk_ins2_magnifier and self.AttachmentModelsVM.kk_ins2_magnifier.ent then
+		if currentPrimarySight and self.AttachmentModelsVM and self.AttachmentModelsVM[att.name] and self.AttachmentModelsVM[att.name].ent then
 			magnifierModel = models[self.AttachmentModelsVM[currentPrimarySight].model]
 			if magnifierModel then
-				self.AttachmentModelsVM.kk_ins2_magnifier.ent:SetModel(magnifierModel)
+				self.AttachmentModelsVM[att.name].ent:SetModel(magnifierModel)
+
+				local rem = self.AttachmentModelsVM[att.name].stencilEnt
+				self.AttachmentModelsVM[att.name].stencilEnt = nil
+				SafeRemoveEntity(rem)
+				
 				if self.AttachmentModelsVM[currentPrimarySight] then
 					self.AttachmentModelsVM[currentPrimarySight].active = false
 				end

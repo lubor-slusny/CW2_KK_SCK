@@ -15,10 +15,10 @@ att.statModifiers = {
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
 	att.description = {
-		{t = "Combines... things.", c = Color(0,255,0,255)},
+		-- {t = "Combines... things.", c = Color(0,255,0,255)},
 		{t = "[impulse 100] cycles through modes.", c = CustomizableWeaponry.textColors.REGULAR},
 		{t = "Mode resets on re-attach.", c = CustomizableWeaponry.textColors.REGULAR},
-		{t = "Colors are determined by previous atts in category.", c = CustomizableWeaponry.textColors.REGULAR},
+		-- {t = "Colors are determined by previous atts in category.", c = CustomizableWeaponry.textColors.REGULAR},
 	}
 	
 	local rgb = {"r","g","b","a"}
@@ -26,7 +26,7 @@ if CLIENT then
 	function att:elementRender()
 		if not self.ActiveAttachments[att.name] then return end
 		
-		att.description[1].c[rgb[math.random(1,3)]] = math.random(255)
+		-- att.description[1].c[rgb[math.random(1,3)]] = math.random(255)
 		
 		local mode = self._KK_INS2_LAM_MODE
 		local mdlAtt

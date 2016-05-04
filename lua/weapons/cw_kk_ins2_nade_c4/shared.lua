@@ -178,10 +178,10 @@ if SERVER then
 			ply:GiveAmmo(2 - ply:GetAmmoCount(wep.Primary.Ammo), wep.Primary.Ammo)
 		end
 	end)
-	
-	hook.Add("Think", "KK_INS2_C4", function()
-		
-	end)
+end
+
+function SWEP:ShouldDropOnDie()
+	return true
 end
 
 function SWEP:IndividualInitialize()
@@ -201,6 +201,8 @@ local curAmmo
 
 function SWEP:IndividualThink()
 	if SERVER then
+		self.Owner:ShouldDropWeapon(true)
+		
 		if self.PlantedCharges then
 			for k,v in pairs(self.PlantedCharges) do
 				if !IsValid(v) then

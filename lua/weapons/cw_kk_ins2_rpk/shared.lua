@@ -57,9 +57,9 @@ if CLIENT then
 	SWEP.KKINS2AimpointPos_def = Vector(-2.3, -2, -0.4)
 	SWEP.KKINS2AimpointAng_def = Vector(0, 0, 0)
 	
-	SWEP.KKINS2MagnifierPos_def = Vector(-2.3, -2, -0.4)
-	SWEP.KKINS2MagnifierAng_def = Vector(-1, 0.1, 0)
-	
+	SWEP.KKINS2MagnifierPos_def = Vector(-2.307, -2, -0.4629)
+	SWEP.KKINS2MagnifierAng_def = Vector(0, 0, 0)
+
 	// coz why nut
 	SWEP.KKINS2CSTMBarskaPos_sopmod = Vector(-2.3112, -2, -0.3098)
 	SWEP.KKINS2CSTMBarskaAng_sopmod = Vector(0, 0, 0)
@@ -70,8 +70,8 @@ if CLIENT then
 	SWEP.KKINS2AimpointPos_sopmod = Vector(-2.3086, -2, -0.2996)
 	SWEP.KKINS2AimpointAng_sopmod = Vector(0, 0, 0)
 
-	SWEP.KKINS2MagnifierPos_sopmod = Vector(-2.2933, -8, -0.1859)
-	SWEP.KKINS2MagnifierAng_sopmod = Vector(-1, 0.1, 0)
+	SWEP.KKINS2MagnifierPos_sopmod = Vector(-2.308, -10, -0.297)
+	SWEP.KKINS2MagnifierAng_sopmod = Vector(0, 0, 0)
 
 	// sth
 	SWEP.IronsightPos = SWEP.IronsightPos_def

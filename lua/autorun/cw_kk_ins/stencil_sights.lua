@@ -78,7 +78,7 @@ if CLIENT then
 		/*"canvas" for reticle, extra ent mode*/
 		v = self.AttachmentModelsVM[att.name]
 		if not v.stencilEnt then
-			v.stencilEnt = self:createManagedCModel(v.model, RENDERGROUP_BOTH)
+			v.stencilEnt = self:createManagedCModel(v.ent:GetModel(), RENDERGROUP_BOTH)
 			v.stencilEnt:SetNoDraw(true)
 			
 			if v.size then
@@ -108,10 +108,10 @@ if CLIENT then
 				end
 			end
 		else
-			if not v.merge then
+			-- if not v.merge then
 				v.stencilEnt:SetPos(v.ent:GetPos())
 				v.stencilEnt:SetAngles(v.ent:GetAngles())
-			end
+			-- end
 			
 			v.stencilEnt:SetSequence(v.ent:GetSequence())
 			v.stencilEnt:DrawModel()

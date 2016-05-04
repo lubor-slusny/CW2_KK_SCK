@@ -28,12 +28,13 @@ if CLIENT then
 	att._rtFov = 6
 	
 	function att:drawRenderTarget()
-		local scopeEnt = self.AttachmentModelsVM[att.name].ent // to b tuned
+		local attachmEnt = self.AttachmentModelsVM[att.name].ent // to b tuned
 		if self:isAiming() then 
-			scopeEnt:SetSequence(1)
+			attachmEnt:SetSequence(2)
 		else
-			scopeEnt:SetSequence(2)
+			attachmEnt:SetSequence(1)
 		end
+		
 		
 		CustomizableWeaponry_KK.ins2.renderTargetSight(self, att)
 	end

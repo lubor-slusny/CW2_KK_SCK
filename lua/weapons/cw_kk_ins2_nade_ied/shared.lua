@@ -146,6 +146,10 @@ SWEP.Recoil = 1
 
 SWEP.KKINS2RCE = true
 
+function SWEP:ShouldDropOnDie()
+	return true
+end
+
 local SP = game.SinglePlayer()
 
 function SWEP:IndividualInitialize()
@@ -165,6 +169,8 @@ local curAmmo
 
 function SWEP:IndividualThink()
 	if SERVER then
+		self.Owner:ShouldDropWeapon(true)
+		
 		if self.PlantedCharges then
 			for k,v in pairs(self.PlantedCharges) do
 				if !IsValid(v) then
@@ -183,7 +189,7 @@ function SWEP:IndividualThink()
 		
 		self._lastAmmo = curAmmo
 	end
-		
+	
 	weapons.GetStored(self.Base).IndividualThink(self)
 end
 
