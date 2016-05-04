@@ -69,7 +69,7 @@ if CLIENT then
 	SWEP.KKINS2MagnifierAng = Vector(-0.05, -1, 0)
 
 	SWEP.KKINS2EoTechPos = Vector(-1.4979, 0, 0.1426)
-	SWEP.KKINS2EoTechAng = Vector(0, 0, 10)
+	SWEP.KKINS2EoTechAng = Vector(0, 0, 0)
 
 	SWEP.CustomizationMenuScale = 0.01
 end

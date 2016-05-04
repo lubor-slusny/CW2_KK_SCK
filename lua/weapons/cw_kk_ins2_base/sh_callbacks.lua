@@ -1,9 +1,17 @@
 
 local SP = game.SinglePlayer()
 
--- CustomizableWeaponry.callbacks:addNew("initialize", "KK_INS2_BASE", function(wep)
-
--- end)
+CustomizableWeaponry.callbacks:addNew("initialize", "KK_INS2_BASE", function(self)
+	if CLIENT then
+		if self.AttachmentModelsVM then
+			for _, v in pairs(self.AttachmentModelsVM) do
+				if IsValid(v.ent) then
+					v.ent._SWEP = self
+				end
+			end
+		end
+	end
+end)
 
 -- CustomizableWeaponry.callbacks:addNew("canReload", "KK_INS2_BASE", function(wep)
 

@@ -40,10 +40,10 @@ if CLIENT then
 	SWEP.IronsightAng = Vector(2.6952, 0.0549, 0)
 
 	SWEP.SprintPos = Vector(0, -1, 0)
-	SWEP.SprintAng = Vector(0, 0, 0)
+	SWEP.SprintAng = Vector(1.8, 0, 0)
 	
 	SWEP.AlternativePos = Vector(0, -1, 0)
-	SWEP.AlternativeAng = Vector(0, 0, 0)
+	SWEP.AlternativeAng = Vector(1.8, 0, 0)
 	
 	SWEP.SprintAnimSpeed = 1
 	SWEP.ViewModelMovementScale_sprint = 0.6

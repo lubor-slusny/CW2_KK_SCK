@@ -106,18 +106,28 @@ function SWEP:draw3D2DHUD()
 				// draw.ShadowText(self.FireModeDisplay, "CW_HUD40", 90, 100, self.HUDColors.white, self.HUDColors.black, 2, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
 				
 				if self.BulletDisplay and self.BulletDisplay > 0 then
-					surface.SetTexture(bullet)
-					surface.SetDrawColor(0, 0, 0, self.HUD_3D2DAlpha)
+					local bulletDisplayAlpha = self.HUD_3D2DAlpha
+					local bulletDisplayOffset = 0
 					
-					for i = 1, self.BulletDisplay do
-						surface.DrawTexturedRectRotated(115, 38 + (i - 1) * 18, 30, 30, 180)
+					if #self.FireModes > 1 then -- if we have more than 1 firemode for the current weapon, we don't let the firemode display fade and instead reposition it a bit to let the player see what firemode he's using while aiming
+						local aiming = self.dt.State == CW_AIMING
+					
+						bulletDisplayAlpha = aiming and 255 or self.HUD_3D2DAlpha
+						bulletDisplayOffset = aiming and -255 or 0
 					end
 					
 					surface.SetTexture(bullet)
-					surface.SetDrawColor(255, 255, 255, self.HUD_3D2DAlpha)
+					surface.SetDrawColor(0, 0, 0, bulletDisplayAlpha)
 					
 					for i = 1, self.BulletDisplay do
-						surface.DrawTexturedRectRotated(113, 38 + (i - 1) * 18 - 2, 30, 30, 180)
+						surface.DrawTexturedRectRotated(115 + bulletDisplayOffset, 38 + (i - 1) * 18, 30, 30, 180)
+					end
+					
+					surface.SetTexture(bullet)
+					surface.SetDrawColor(255, 255, 255, bulletDisplayAlpha)
+					
+					for i = 1, self.BulletDisplay do
+						surface.DrawTexturedRectRotated(113 + bulletDisplayOffset, 38 + (i - 1) * 18 - 2, 30, 30, 180)
 					end
 				end
 				
@@ -137,6 +147,7 @@ function SWEP:draw3D2DHUD()
 			self.HUDColors.white.a = 255
 			self.HUDColors.black.a = 255
 			
+			CustomizableWeaponry.callbacks.processCategory(self, "drawTo3D2DHUD")
 		cam.IgnoreZ(false)
 	cam.End3D2D()
 end

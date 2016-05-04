@@ -4,7 +4,13 @@ att.name = "kk_ins2_combo"
 att.displayName = "Combined Lightning Module"
 att.displayNameShort = "KOMBO"
 
-att.statModifiers = {}
+att.statModifiers = {
+	VelocitySensitivityMult = -0.2,
+	OverallMouseSensMult = -0.2,
+	HipSpreadMult = -0.2,
+	DrawSpeedMult = -0.1,
+	MaxSpreadIncMult = -0.25
+}
 
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
@@ -84,10 +90,16 @@ if CLIENT then
 		end
 		if !hasFL then return end
 		
-		if wep._KK_INS2_LAM_MODE >= max then
-			wep._KK_INS2_LAM_MODE = 0
+		if wep.Owner:KeyDown(IN_USE) then
+			wep._KK_INS2_LAM_MODE = wep._KK_INS2_LAM_MODE - 1
 		else
 			wep._KK_INS2_LAM_MODE = wep._KK_INS2_LAM_MODE + 1
+		end
+		
+		if wep._KK_INS2_LAM_MODE > max then
+			wep._KK_INS2_LAM_MODE = 0
+		elseif wep._KK_INS2_LAM_MODE < 0 then
+			wep._KK_INS2_LAM_MODE = max
 		end
 		
 		-- if wep.ActiveAttachments[att.name] then

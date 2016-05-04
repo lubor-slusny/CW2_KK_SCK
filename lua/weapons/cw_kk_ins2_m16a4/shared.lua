@@ -146,7 +146,7 @@ SWEP.SightBGs = {main = 0, foldsight = 0}
 
 SWEP.Attachments = {
 	{header = "Sight", offset = {500, -500},  atts = {"bg_foldsight", "kk_ins2_cstm_barska", "kk_ins2_aimpoint", "kk_ins2_elcan"}},
-	{header = "Barrel", offset = {-200, -500},  atts = {"md_saker"}},
+	{header = "Barrel", offset = {-200, -500},  atts = {"md_saker", "kk_ins2_hoovy"}},
 	{header = "Under", offset = {-500, 0},  atts = {"kk_ins2_bipod", "kk_ins2_vertgrip", "kk_ins2_gl_m203"}},
 	{header = "Extras", offset = {125, 200}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_combo"}},
 	{header = "More Sight", offset = {1200, 0}, atts = {"kk_ins2_magnifier"}, dependencies = CustomizableWeaponry_KK.ins2.magnifierDependencies},

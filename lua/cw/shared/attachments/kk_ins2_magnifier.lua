@@ -43,23 +43,20 @@ if CLIENT then
 		{t = "Provides 2x magnification.", c = CustomizableWeaponry.textColors.POSITIVE},
 	}
 	
-	-- local rc
-	local RTMat = Material("models/weapons/optics/lense_rt")
+	local simpleTextureDefault = surface.GetTextureID("models/weapons/optics/4x_reticule")
+	local simpleTextureXPS = surface.GetTextureID("models/weapons/attachments/cw_kk_ins2_cstm_eotechxps/4x_reticule")
+
+	local simpleTextures = {
+		["models/weapons/attachments/v_cw_kk_ins2_cstm_eotechxps.mdl"] = simpleTextureXPS,
+		["models/weapons/attachments/v_cw_kk_ins2_cstm_eotechxps_l.mdl"] = simpleTextureXPS,
+		["models/weapons/attachments/v_cw_kk_ins2_cstm_eotechxps_m.mdl"] = simpleTextureXPS,
+	}
+
+	att.zoomTextures = {
+		{tex = simpleTextureDefault, offset = {0, 1}},
+	}
 	
-	local old, x, y, ang
-	local Ini = true
-	
-	local lens = surface.GetTextureID("cw2/gui/lense")
-	local cd, alpha, reticleTime = {}, 0.5, 0
-	
-	cd.x = 0
-	cd.y = 0
-	cd.w = 512
-	cd.h = 512
-	cd.fov = 8
-	cd.drawviewmodel = false
-	cd.drawhud = false
-	cd.dopostprocess = false
+	att._rtFov = 8
 	
 	function att:INS2_DrawRenderTarget()
 		if not self.ActiveAttachments[att.name] then return end
@@ -87,17 +84,11 @@ if CLIENT then
 			
 			magnifierModel = models[velement.model]
 			scopeEnt:SetModel(magnifierModel)
+			
+			att.zoomTextures[1].tex = simpleTextures[velement.model] or simpleTextureDefault
+			self.ZoomTextures = att.zoomTextures
 		end
 		self.lastPrimarySight = currentPrimarySight
-		
-		-- // something
-		if self:canSeeThroughTelescopics(att.aimPos[1]) then
-			alpha = math.Approach(alpha, 0, FrameTime() * 5)
-			reticleTime = math.Approach(reticleTime, 1, FrameTime() * 1.8)
-		else
-			alpha = math.Approach(alpha, 1, FrameTime() * 5)
-			reticleTime = 0
-		end
 		
 		// magnifier velement stuff
 		if isAiming then 
@@ -106,80 +97,7 @@ if CLIENT then
 			scopeEnt:SetSequence("4x_idle")
 		end
 		
-		// render target
-		x, y = ScrW(), ScrH()
-		old = render.GetRenderTarget()
-		
-		if self.freeAimOn then
-			ang = self:getTelescopeAngles()
-		else
-			ang = self:getReticleAngles()
-			
-			ang:RotateAroundAxis(ang:Right(), self.ACOGAxisAlign.right)
-			ang:RotateAroundAxis(ang:Up(), self.ACOGAxisAlign.up)
-			ang:RotateAroundAxis(ang:Forward(), self.ACOGAxisAlign.forward)
-		end
-		
-		if self.ViewModelFlip then
-			ang.r = -self.BlendAng.z
-		else
-			ang.r = self.BlendAng.z
-		end
-		
-		cd.angles = ang
-		cd.origin = self.Owner:GetShootPos()
-		render.SetRenderTarget(CustomizableWeaponry_KK.rts.ins2_scope)
-		render.SetViewPort(0, 0, 0, 0)
-			
-			if alpha < 1 or Ini then
-				render.RenderView(cd)
-				Ini = false
-			end
-			
-			ang = self.Owner:EyeAngles()
-			ang.p = ang.p + self.BlendAng.x
-			ang.y = ang.y + self.BlendAng.y
-			ang.r = ang.r + self.BlendAng.z
-			ang = -ang:Forward()
-			
-			local light = render.ComputeLighting(self.Owner:GetShootPos(), ang)
-			
-			cam.Start2D()
-				-- surface.SetDrawColor(255, 255, 255, 255)
-				-- surface.SetTexture(surface.GetTextureID("cw2/reticles/reticle_chevron"))
-				-- surface.DrawTexturedRect(0, 0, 512, 512)
-				
-				local dh, dv, rx, ry
-				
-				dh = 1
-				dv = 1
-					
-				if reticleTime == 1 then
-					dh = math.Clamp(self:getDifferenceToAimPos(self.AimPos, self.AimAng, 0, 1, 0.3),0,2)
-					dv = math.Clamp(self:getDifferenceToAimPos(self.AimPos, self.AimAng, 1, 0, 0.3),0,2)
-				end
-				
-				rx = dh * 512 - 1024
-				ry = dv * 512 - 1024
-		
-				surface.SetDrawColor(255, 255, 255, 255)
-				surface.SetTexture(surface.GetTextureID("models/weapons/attachments/cw_kk_ins2_shared/fake_long"))
-				surface.DrawTexturedRect(rx, ry, 1536, 1536)	
-				
-				surface.SetDrawColor(255, 255, 255, 255)
-				surface.SetTexture(surface.GetTextureID("models/weapons/attachments/cw_kk_ins2_shared/fake"))
-				surface.DrawTexturedRect(6, 6, 500, 500)	
-				
-				surface.SetDrawColor(150 * light[1], 150 * light[2], 150 * light[3], 255 * alpha)
-				surface.SetTexture(lens)
-				surface.DrawTexturedRectRotated(256, 256, 512, 512, 90)
-			cam.End2D()
-		render.SetViewPort(0, 0, x, y)
-		render.SetRenderTarget(old)
-		
-		if RTMat then
-			RTMat:SetTexture("$basetexture", CustomizableWeaponry_KK.rts.ins2_scope)
-		end
+		CustomizableWeaponry_KK.ins2.renderTargetSight(self, att)
 	end
 end
 
@@ -210,6 +128,7 @@ function att:attachFunc()
 		self.AimAng = self[att.aimPos[2]]
 	end
 	
+	self.SimpleTelescopicsFOV = 70
 	self.BlurOnAim = true
 end
 
@@ -235,6 +154,7 @@ function att:detachFunc()
 		
 	end
 	
+	self.SimpleTelescopicsFOV = nil
 	self.BlurOnAim = false
 end
 

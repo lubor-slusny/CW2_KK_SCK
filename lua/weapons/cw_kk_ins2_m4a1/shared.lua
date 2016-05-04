@@ -37,7 +37,7 @@ if CLIENT then
 
 		["kk_ins2_magnifier"] = {model = "models/weapons/upgrades/a_optic_aimp2x_l.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_kobra"] = {model = "models/weapons/upgrades/a_optic_kobra_l.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_kobra"] = {model = "models/weapons/upgrades/a_optic_kobra_xl.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_eotech"] = {model = "models/weapons/upgrades/a_optic_eotech_xl.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_aimpoint"] = {model = "models/weapons/upgrades/a_optic_aimpoint_l.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_cstm_barska"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_barska_xl.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
@@ -76,8 +76,8 @@ if CLIENT then
 	SWEP.KKINS2AimpointPos_def = Vector(-2.495, -2, 0.5751)
 	SWEP.KKINS2AimpointAng_def = Vector(0, 0, 0)
 
-	SWEP.KKINS2KobraPos_def = Vector(-2.4939, -2, 0.9464)
-	SWEP.KKINS2KobraAng_def = Vector(-1.2156, 0, 0)
+	SWEP.KKINS2KobraPos_def = Vector(-2.4939, -2, 0.3292)
+	SWEP.KKINS2KobraAng_def = Vector(0, 0, 0)
 
 	SWEP.KKINS2EoTechPos_def = Vector(-2.4945, -2, 0.5707)
 	SWEP.KKINS2EoTechAng_def = Vector(0, 0, 0)
@@ -138,9 +138,9 @@ SWEP.SightBGs = {main = 0, foldsight = 0}
 
 SWEP.Attachments = {
 	{header = "Sight", offset = {500, -500},  atts = {"bg_foldsight", "kk_ins2_kobra", "kk_ins2_cstm_barska", "kk_ins2_eotech", "kk_ins2_aimpoint"}},
-	{header = "Barrel", offset = {-200, -500},  atts = {"md_saker"}},
+	{header = "Barrel", offset = {-200, -500},  atts = {"md_saker", "kk_ins2_hoovy"}},
 	{header = "Under", offset = {-500, 0},  atts = {"kk_ins2_vertgrip", "kk_ins2_gl_m203"}},
-	{header = "Extras", offset = {150, 200}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_combo"}/*, exclusions = {kk_ins2_gl_m203 = true}*/},
+	{header = "Extras", offset = {150, 200}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_combo"}},
 	{header = "More Sight", offset = {1200, 0}, atts = {"kk_ins2_magnifier"}, dependencies = CustomizableWeaponry_KK.ins2.magnifierDependencies},
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_magnum", "am_matchgrade"}}
 }

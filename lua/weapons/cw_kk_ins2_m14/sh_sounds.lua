@@ -10,7 +10,6 @@ CustomizableWeaponry:addReloadSound("CW_KK_INS2_M14_MAGOUT", "weapons/m14/handli
 CustomizableWeaponry:addReloadSound("CW_KK_INS2_M14_MAGOUTRATTLE", "weapons/m14/handling/m14_magout_rattle.wav")
 CustomizableWeaponry:addReloadSound("CW_KK_INS2_M14_MAGRELEASE", "weapons/m14/handling/m14_magrelease.wav")
 CustomizableWeaponry:addReloadSound("CW_KK_INS2_M14_RATTLE", "weapons/m14/handling/m14_rattle.wav")
-
 	
 SWEP.Sounds = {
 	base_ready = {

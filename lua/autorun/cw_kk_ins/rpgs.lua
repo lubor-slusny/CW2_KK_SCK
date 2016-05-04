@@ -9,7 +9,8 @@ function CustomizableWeaponry_KK.ins2:fireRPG(IFTP, legit)
 			fwdAng:RotateAroundAxis(fwdAng:Right(), 1.8)
 			local forward = fwdAng:Forward()
 			
-			local offset = /*forward * 30 +*/ eyeAng:Right() * 4 - eyeAng:Up() * 3
+			-- local offset = /*forward * 30 +*/ eyeAng:Right() * 4 - eyeAng:Up() * 3
+			local offset = /*forward * 30 +*/ eyeAng:Right() * 4 - eyeAng:Up() * 6
 			
 			local nade = ents.Create("cw_kk_ins2_projectile_rpg")
 			nade:SetPos(pos + offset)

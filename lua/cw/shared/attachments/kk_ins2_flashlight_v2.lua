@@ -21,7 +21,9 @@ att.displayName = "Light Emitting Module v2.1"
 att.displayNameShort = "LEM"
 att.colorType = CustomizableWeaponry.colorableParts.COLOR_TYPE_KK_FLASHLIGHT
 
-att.statModifiers = {}
+att.statModifiers = {
+	OverallMouseSensMult = -0.05
+}
 
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)

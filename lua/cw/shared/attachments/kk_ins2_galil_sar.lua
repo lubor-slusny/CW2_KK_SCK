@@ -6,10 +6,10 @@ att.isBG = true
 att.KK_INS2_playIdle = true
 
 att.statModifiers = {
-	AimSpreadMult = 0.5,
+	AimSpreadMult = 0.3,
 	DrawSpeedMult = -0.05,
 	DamageMult = 0.1,
-	RecoilMult = -0.1
+	RecoilMult = 0.1
 }
 
 if CLIENT then

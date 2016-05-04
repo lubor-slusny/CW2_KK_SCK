@@ -236,7 +236,9 @@ function SWEP:unloadWeapon()
 	weapons.GetStored("cw_base").unloadWeapon(self)
 	
 	if CLIENT then
-		self:idleAnimFunc()
+		if self.KKINS_emptyIdle then
+			self:idleAnimFunc()
+		end
 	end
 end
 

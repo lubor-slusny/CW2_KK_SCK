@@ -1,6 +1,4 @@
 
-// this file got NASTY
-
 if CLIENT then
 	local _stencilMat = "models/weapons/attachments/cw_kk_ins2_shared/stencil"
 	local _nodrawMat = "models/weapons/attachments/cw_kk_ins2_shared/nodraw"
@@ -21,16 +19,16 @@ if CLIENT then
 	local size, rc, isAiming, freeze, isScopePos, attachmEnt, retAtt, retDist, retPos, EA, retAng, retNorm, v
 	
 	function CustomizableWeaponry_KK.ins2:stencilSight(att)
-		self._laserStencilCheck = false
+		if not self.AttachmentModelsVM then return end
+		if not self.AttachmentModelsVM[att.name] then return end
+		
+		self._laserStencilCheck = false // this got little NASTY
 			CustomizableWeaponry.registeredAttachmentsSKey["kk_ins2_lam"].elementRender(self)
 			CustomizableWeaponry.registeredAttachmentsSKey["kk_ins2_combo"].elementRender(self)
 		self._laserStencilCheck = true
 		
 		if not self.ActiveAttachments[att.name] then return end
 		if self.ActiveAttachments.kk_ins2_magnifier then return end
-		
-		if not self.AttachmentModelsVM then return end
-		if not self.AttachmentModelsVM[att.name] then return end
 		
 		size = att._reticleSize
 		rc = self:getSightColor(att.name)
@@ -40,13 +38,6 @@ if CLIENT then
 		
 		self.AttachmentModelsVM[att.name].nodraw = false
 		attachmEnt = self.AttachmentModelsVM[att.name].ent
-		
-		if not freeze then
-			-- if not (isScopePos and (isAiming or self.dt.BipodDeployed)) then
-				-- attachmEnt:DrawModel()
-				-- return
-			-- end
-		end
 		
 		if !freeze then
 			/*stencil stuff*/
@@ -109,7 +100,6 @@ if CLIENT then
 					v.stencilEnt:SetSubMaterial(i - 1, _nodrawMat) // ALSO WHAT THE FUCK THAT INDEXES START @0 IN SETTER AND @1 IN GETTER
 				end
 			end
-			
 		else
 			-- if not v.merge then
 				-- v.stencilEnt:SetPos(v.ent:GetPos())
@@ -138,34 +128,34 @@ if CLIENT then
 		retDist = (retAtt.Pos:Distance(EyePos())) * 50 
 		retPos = retAtt.Pos + retAtt.Ang:Forward() * retDist
 		
-		/*debug reticle*/
+		/*debug reticle - always attached to scope*/
 		render.SetMaterial(dotMat)
 		
 		if freeze then
 			cam.IgnoreZ(true)
-				
 				render.DrawSprite(retPos, size/2, size/2, Color(0,255,0))
 				render.DrawSprite(retPos, size/2, size/2, Color(0,255,0))
 				render.DrawSprite(retPos, size/6, size/6, white)
 				render.DrawSprite(retPos, size/6, size/6, white)
-				
 			cam.IgnoreZ(false)
 		end
 		
-		/*main reticle*/
-		if self:isReticleActive() and isAiming then 
-			EA = self:getReticleAngles()
+		/*main reticle - centered when aiming and active*/
+		if self:isReticleActive() and isAiming then
+			EA = self:getReticleAngles()	
 			retPos = EyePos() + EA:Forward() * retDist
 		end
 		
 		render.SetMaterial(att._reticle)
 		
-		retNorm = -EyeAngles():Forward()
-		retAng = -90 - retAtt.Ang.z
+		retNorm = retAtt.Ang:Forward()
+		retAng = 90 + retAtt.Ang.z
 		
 		cam.IgnoreZ(true)
-			render.DrawQuadEasy(retPos, retNorm, size, size, white, retAng)
-			render.DrawQuadEasy(retPos, retNorm, size, size, white, retAng)
+			render.CullMode(MATERIAL_CULLMODE_CW)
+				render.DrawQuadEasy(retPos, retNorm, size, size, white, retAng)
+				render.DrawQuadEasy(retPos, retNorm, size, size, white, retAng)
+			render.CullMode(MATERIAL_CULLMODE_CCW)
 		cam.IgnoreZ(false)
 		
 		if !freeze then
