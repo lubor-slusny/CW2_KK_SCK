@@ -167,8 +167,8 @@ SWEP.WorldModel		= "models/weapons/w_cw_kk_ins2_cstm_colt.mdl"
 SWEP.WMPos = Vector(4.986, 0.921, -1.038)
 SWEP.WMAng = Vector(-10, 0, 180)
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.wsContentMounted()
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.wsContentMounted()
 
 SWEP.Primary.ClipSize		= 15
 SWEP.Primary.DefaultClip	= 15

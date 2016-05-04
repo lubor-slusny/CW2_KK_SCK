@@ -160,11 +160,14 @@ SWEP.Attachments = {
 	{header = "Sight", offset = {600, -500}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_po4"}},
 	-- {header = "Sight", offset = {600, -500}, atts = {"kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_microt1", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"}},
 	{header = "Barrel", offset = {0, -500}, atts = {"kk_ins2_pbs1"}},
-	{header = "Package", offset = {-400, 100}, atts = {"kk_ins2_rpk_sopmod"}},
 	{header = "Extras", offset = {200, 100}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}},
 	{header = "More Sight", offset = {1200, -100}, atts = {"kk_ins2_magnifier"}, dependencies = CustomizableWeaponry_KK.ins2.magnifierDependencies},
 	["+reload"] = {header = "Ammo", offset = {900, 300}, atts = {"am_magnum", "am_matchgrade"}}
 }
+
+if CustomizableWeaponry_KK.ins2.wsContentMounted() then
+	table.insert(SWEP.Attachments, 3, {header = "Package", offset = {-400, 100}, atts = {"kk_ins2_rpk_sopmod"}})
+end
 
 SWEP.Animations = {
 	draw = "base_ready",
