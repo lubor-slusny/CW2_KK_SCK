@@ -13,7 +13,9 @@ att.statModifiers = {
 
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
-	att.description = {[1] = {t = "Allows the user to fire 40MM rounds.", c = CustomizableWeaponry.textColors.POSITIVE}}
+	att.description = {
+		[1] = {t = "Allows the user to fire 40MM rounds.", c = CustomizableWeaponry.textColors.POSITIVE}
+	}
 	
 	function att:elementRender()
 		if self.AttachmentModelsVM and self.AttachmentModelsVM[att.name] and self.AttachmentModelsVM[att.name].ent then 

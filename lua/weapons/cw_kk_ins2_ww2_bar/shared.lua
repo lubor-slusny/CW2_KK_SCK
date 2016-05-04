@@ -6,6 +6,8 @@ AddCSLuaFile("sh_soundscript.lua")
 include("sh_sounds.lua")
 include("sh_soundscript.lua")
 
+SWEP.magType = "brMag"
+
 if CLIENT then
 	SWEP.DrawCrosshair = false
 	SWEP.PrintName = "M1918A2 BAR"

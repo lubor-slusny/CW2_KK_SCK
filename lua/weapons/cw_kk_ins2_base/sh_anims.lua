@@ -184,13 +184,6 @@ function SWEP:fireAnimFunc()
 	end
 	
 	if self:isAiming() then
-		if self.ShotgunReload then
-			// 2bd? :P
-		else
-			if self:hasInstalledRTScope() and suffix == "" then
-				-- cyc = 1
-			end
-		end
 		suffix = suffix .. "_aim"
 	end
 	

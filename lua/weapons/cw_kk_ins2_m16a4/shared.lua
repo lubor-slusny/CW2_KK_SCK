@@ -4,6 +4,8 @@ AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
 include("sh_sounds.lua")
 
+SWEP.magType = "arMag"
+
 if CLIENT then
 	SWEP.DrawCrosshair = false
 	SWEP.PrintName = "M16A4"
@@ -105,7 +107,7 @@ if CLIENT then
 	SWEP.KKINS2ScopeM40Pos = Vector(-2.4989, 0, 0.7409)
 	SWEP.KKINS2ScopeM40Ang = Vector(0, 0, 0)
 
-	SWEP.KKINS2MagnifierPos = Vector(-2.4914, -2, 0.5701)
+	SWEP.KKINS2MagnifierPos = Vector(-2.4914, -1, 0.5701)
 	SWEP.KKINS2MagnifierAng = Vector(0, 0, 0)
 
 	SWEP.CustomizationMenuScale = 0.018

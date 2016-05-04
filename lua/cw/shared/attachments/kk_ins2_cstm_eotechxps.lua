@@ -1,7 +1,7 @@
 local att = {}
 att.name = "kk_ins2_cstm_eotechxps"
+att.displayNameShort = "EoTech"
 att.displayName = "EoTech XPS"
-att.displayNameShort = "XPS"
 att.aimPos = {"KKINS2CSTMEoTechXPSPos", "KKINS2CSTMEoTechXPSAng"}
 att.FOVModifier = 0
 att.AimViewModelFOV = 40
@@ -10,7 +10,7 @@ att.isSight = true
 -- att.colorType = CustomizableWeaponry.colorableParts.COLOR_TYPE_SIGHT
 
 att.statModifiers = {
-	OverallMouseSensMult = -0.05
+	OverallMouseSensMult = -0.02
 }
 
 if CLIENT then

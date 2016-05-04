@@ -7,10 +7,10 @@ att.colorType = CustomizableWeaponry.colorableParts.COLOR_TYPE_KK_FLASHLIGHT
 att.statModifiers = {}
 
 if CLIENT then
-	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
-	-- att.displayIcon = surface.GetTextureID("atts/wipshit")
+	-- att.displayIcon = surface.GetTextureID("atts/" .. att.name)
+	att.displayIcon = surface.GetTextureID("atts/wipshit")
 	att.description = {
-		{t = "FREAKIN CLIENTSIDE PROJECTED TEXTURES!!!", c = CustomizableWeaponry.textColors.VPOSITIVE},
+		[1] = {t = "FREAKIN CLIENTSIDE PROJECTED TEXTURES!!!", c = CustomizableWeaponry.textColors.VPOSITIVE},
 	}
 	
 	att.reticle = "cw2/reticles/aim_reticule"

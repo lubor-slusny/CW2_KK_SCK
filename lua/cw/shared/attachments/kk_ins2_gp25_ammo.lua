@@ -1,7 +1,7 @@
 local att = {}
 att.name = "kk_ins2_gp25_ammo"
 att.displayName = "Ammo"
-att.displayNameShort = "GP25 Ammo Manager"
+att.displayNameShort = "GP25 Ammo Switch"
 att.isGrenadeLauncher = true
 att.isFakeGrenadeLauncher = true
 

@@ -372,7 +372,7 @@ function SWEP:PrimaryAttack()
 	end
 	
 	if SP and SERVER then
-		SendUserMessage("OMG_GARRY_PRIMARY", self.Owner)
+		SendUserMessage("CW_KK_INS2_C4_PRIMARY", self.Owner)
 	end
 	
 	if self.Owner:GetAmmoCount(self.Primary.Ammo) > 1 then
@@ -408,7 +408,7 @@ end
 
 function SWEP:SecondaryAttack()
 	if SP and SERVER then
-		SendUserMessage("OMG_GARRY_SECONDARY", self.Owner)
+		SendUserMessage("CW_KK_INS2_C4_SECONDARY", self.Owner)
 	end
 	
 	if self.Owner:GetAmmoCount(self.Primary.Ammo) > 1 then
@@ -496,10 +496,8 @@ if CLIENT then
 	end
 end
 
-// and now insane framework, just for this gun
-
 if CLIENT then
-	usermessage.Hook("OMG_GARRY_PRIMARY", function(um)
+	usermessage.Hook("CW_KK_INS2_C4_PRIMARY", function(um)
 		local ply = LocalPlayer()
 		if !IsValid(ply) then return end
 		
@@ -509,7 +507,7 @@ if CLIENT then
 		wep:PrimaryAttack()
 	end)
 	
-	usermessage.Hook("OMG_GARRY_SECONDARY", function(um)
+	usermessage.Hook("CW_KK_INS2_C4_SECONDARY", function(um)
 		local ply = LocalPlayer()
 		if !IsValid(ply) then return end
 		
@@ -517,34 +515,5 @@ if CLIENT then
 		if !IsValid(wep) then return end
 		
 		wep:SecondaryAttack()
-	end)
-	
-	local font = "CW_HUD24"
-	local fadeTime = 0.7
-	local white = Color(255,255,255,alpha)
-	local black = Color(0,0,0,alpha)
-			
-	CustomizableWeaponry.callbacks:addNew("drawToHUD", "KK_INS2_C4", function(wep, cwHudEnabled) // actually not really, Ive copy pasted this from my other script
-		if wep:GetClass() != "cw_kk_ins2_nade_c4" then return end
-			
-		local CT = CurTime()
-		local mTime = wep.c4_msg_time
-		
-		if mTime and (mTime + fadeTime) > CT then
-			surface.SetFont(font)
-			
-			local len = surface.GetTextSize(wep.c4_msg_text)
-			local x,y = (ScrW()) / 2, ScrH() / 2
-			
-			if mTime > CT then
-				white.a = 255
-				black.a = 255
-			else
-				white.a = math.Clamp(mTime + fadeTime - CT, 0, fadeTime) * 255
-				black.a = math.Clamp(mTime + fadeTime - CT, 0, fadeTime) * 255
-			end
-			
-			draw.ShadowText(wep.c4_msg_text, font, x, y, white, black, 1, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-		end
 	end)
 end

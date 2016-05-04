@@ -11,7 +11,7 @@ att.statModifiers = {
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
 	att.description = {
-		{t = "[impulse 100] toggles on/off.", c = CustomizableWeaponry.textColors.REGULAR},
+		[1] = {t = "[impulse 100] toggles on/off.", c = CustomizableWeaponry.textColors.REGULAR},
 	}
 	
 	att.reticle = "cw2/reticles/aim_reticule"

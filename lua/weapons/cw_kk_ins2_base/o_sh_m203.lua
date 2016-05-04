@@ -1,11 +1,6 @@
 
 local SP = game.SinglePlayer()
 
-local reg = debug.getregistry()
-local GetVelocity = reg.Entity.GetVelocity
-local Length = reg.Vector.Length
-local GetAimVector = reg.Player.GetAimVector
-
 function SWEP:fireM203(firstTimePrediction)
 	if SERVER and SP then
 		SendUserMessage("CW20_FIREM203", self.Owner)
@@ -52,6 +47,9 @@ function SWEP:fireM203(firstTimePrediction)
 	end
 end
 
+local shell = CustomizableWeaponry.shells:getShell("KK_INS2_40mm")
+local down = Vector(0,0,1)
+
 function SWEP:reloadM203()
 	if SERVER and SP then
 		SendUserMessage("CW20_RELOADM203", self.Owner)
@@ -69,9 +67,9 @@ function SWEP:reloadM203()
 			local ang = self.Owner:EyeAngles()
 			ang:RotateAroundAxis(ang:Up(), 180)
 			
-			self._shellTable = CustomizableWeaponry.shells:getShell("KK_INS2_40mm")
-				CustomizableWeaponry.shells.make(self, pos, ang, Vector(0,0,1), 0.6, 10)
-			self._shellTable = CustomizableWeaponry.shells:getShell(self.Shell)
+			self._shellTable = shell
+				CustomizableWeaponry.shells.make(self, pos, ang, down, 0.6, 10)
+			self._shellTable = self._shellTable1
 		end)
 	end
 	

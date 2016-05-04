@@ -1,6 +1,6 @@
 local att = {}
 att.name = "kk_ins2_aimpoint"
-att.displayName = "Aimpoint"
+att.displayName = "Aimpoint Comp M3"
 att.displayNameShort = "Aimpoint"
 att.aimPos = {"KKINS2AimpointPos", "KKINS2AimpointAng"}
 att.FOVModifier = 0
@@ -17,8 +17,7 @@ if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
 	att.description = {
 		[1] = {t = "Provides a bright reticle to ease aiming.", c = CustomizableWeaponry.textColors.POSITIVE},
-		[2] = {t = "Slightly increases aim zoom.", c = CustomizableWeaponry.textColors.POSITIVE},
-		[3] = {t = "Narrow scope may decrease awareness.", c = CustomizableWeaponry.textColors.NEGATIVE}
+		[2] = {t = "Narrow scope may decrease awareness.", c = CustomizableWeaponry.textColors.NEGATIVE}
 	}
 	
 	att.reticle = "models/weapons/optics/aimpoint_reticule_holo"

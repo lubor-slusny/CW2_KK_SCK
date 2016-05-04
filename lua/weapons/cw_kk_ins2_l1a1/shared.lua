@@ -4,8 +4,7 @@ AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
 include("sh_sounds.lua")
 
-util.PrecacheModel("models/weapons/v_l1a1.mdl")
-util.PrecacheModel("models/weapons/w_l1a1.mdl")
+SWEP.magType = "brMag"
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
@@ -332,7 +331,7 @@ SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()
 
 SWEP.Primary.ClipSize		= 20
 SWEP.Primary.DefaultClip	= 20
-SWEP.Primary.Automatic		= true
+SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "7.62x51MM"
 
 SWEP.FireDelay = 60/650

@@ -1,7 +1,7 @@
 local att = {}
 att.name = "kk_ins2_pbs5"
-att.displayName = "PBS-5"
 att.displayNameShort = "PBS-5"
+att.displayName = "PBS-5 Suppressor"
 att.isSuppressor = true
 
 att.statModifiers = {
@@ -13,8 +13,8 @@ att.statModifiers = {
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
 	att.description = {
-		{t = "Decreases firing noise.", c = CustomizableWeaponry.textColors.POSITIVE},
-		{t = "Increases weapon length.", c = CustomizableWeaponry.textColors.NEGATIVE}
+		[1] = {t = "Decreases firing noise.", c = CustomizableWeaponry.textColors.POSITIVE},
+		[2] = {t = "Increases weapon length.", c = CustomizableWeaponry.textColors.NEGATIVE}
 	}
 end
 

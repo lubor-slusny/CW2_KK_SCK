@@ -1,7 +1,7 @@
 local att = {}
 att.name = "kk_ins2_scope_m40"
-att.displayName = "M40 Scope"
 att.displayNameShort = "M40"
+att.displayName = "M40 Scope"
 att.aimPos = {"KKINS2ScopeM40Pos", "KKINS2ScopeM40Ang"}
 att.FOVModifier = 0
 att.AimViewModelFOV = 25
@@ -16,9 +16,9 @@ att.statModifiers = {
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
 	att.description = {
-		-- [1] = {t = "Provides 4x magnification.", c = CustomizableWeaponry.textColors.POSITIVE},
-		-- [2] = {t = "Narrow scope reduces awareness.", c = CustomizableWeaponry.textColors.NEGATIVE},
-		-- [3] = {t = "Can be disorienting at close range.", c = CustomizableWeaponry.textColors.NEGATIVE}
+		[1] = {t = "Provides 8x magnification.", c = CustomizableWeaponry.textColors.POSITIVE},
+		[2] = {t = "Narrow scope reduces awareness.", c = CustomizableWeaponry.textColors.NEGATIVE},
+		[3] = {t = "Can be very disorienting at close range.", c = CustomizableWeaponry.textColors.NEGATIVE}
 	}
 
 	-- local path = ""

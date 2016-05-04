@@ -6,6 +6,8 @@ AddCSLuaFile("sh_soundscript.lua")
 include("sh_sounds.lua")
 include("sh_soundscript.lua")
 
+SWEP.magType = "lmgBox"
+
 if CLIENT then
 	SWEP.DrawCrosshair = false
 	SWEP.PrintName = "M1919A6 Browning"
@@ -17,6 +19,7 @@ if CLIENT then
 	
 	SWEP.MuzzleEffect = "muzzleflash_ak74"
 	SWEP.Shell = "KK_INS2_762x54"
+	SWEP.Shell2 = "KK_INS2_556x45_link"
 	
 	SWEP.AttachmentModelsVM = {}
 	SWEP.AttachmentModelsWM = {}
@@ -86,8 +89,8 @@ SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_m1919.mdl"
 SWEP.WorldModel		= "models/weapons/w_m1919.mdl"
 
-SWEP.WMPos = Vector(5.627, 0.66, -1.397)
-SWEP.WMAng = Angle(-10, 0, 180)
+SWEP.WMPos = Vector(15.986, 0.921, -6.038)
+SWEP.WMAng = Vector(-10, 0, 180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2us
 
@@ -118,20 +121,15 @@ SWEP.DeployTime = 0.94
 SWEP.BipodDeployTime = 2.18
 SWEP.BipodUndeployTime = 1.73
 
-SWEP.ReloadTime = 0
-SWEP.ReloadTime_Empty = 0
-SWEP.ReloadHalt = 0
-SWEP.ReloadHalt_Empty = 0
-
-SWEP.base_ReloadTime = 3.4
-SWEP.base_ReloadTime_Empty = 3.4
-SWEP.base_ReloadHalt = 4.5
-SWEP.base_ReloadHalt_Empty = 6
-
-SWEP.bipod_ReloadTime = 116/30
-SWEP.bipod_ReloadTime_Empty = 116/30
-SWEP.bipod_ReloadHalt = 4.8
-SWEP.bipod_ReloadHalt_Empty = 6
+SWEP.ReloadTimes = {
+	base_reload = {5.65, 7.61},
+	base_reload_half = {0, 1},
+	base_reload_empty = {4.82, 8.88},
+	
+	deployed_reload = {5.5, 7.33},
+	deployed_reload_half = {0, 1},
+	deployed_reload_empty = {4.7, 8.58},
+}
 
 if CLIENT then
 	function SWEP:updateOtherParts()
@@ -141,9 +139,15 @@ if CLIENT then
 		local cycle = vm:GetCycle()
 		
 		local clip = self:Clip1()
-		local ammo = self.Owner:GetAmmoCount(self.Primary.Ammo) + clip
+		local ammo
 		
-		if self.Sequence:find("reload") and cycle > 0.3 then
+		if self.getFullestMag then
+			ammo = math.max(self:Clip1(), self:getFullestMag(), -1)
+		else
+			ammo = self.Owner:GetAmmoCount(self.Primary.Ammo) + clip
+		end
+		
+		if self.Sequence:find("reload") and cycle > 0.3 and cycle < 1 then
 			self:setBodygroup(1,math.Clamp(ammo,0,18))
 		else
 			self:setBodygroup(1,math.Clamp(clip,0,18))
@@ -156,5 +160,41 @@ if CLIENT then
 			self.WMEnt:SetSequence(0)
 			self:SetSequence(0)
 		end
+	end
+	
+	local makeShell = CustomizableWeaponry_KK.ins2.makeShell
+	
+	local att, ang, tweak
+	
+	function SWEP:CreateShell(sh) // this func was edited for this specific vmodel only
+		if self.Owner:ShouldDrawLocalPlayer() then
+			return
+		end
+		
+		// main shell
+		self._shellTable = self._shellTable1
+		att = self.CW_VM:GetAttachment(3)
+		ang = EyeAngles()
+		tweak = self._shellTable.rv
+		if tweak then
+			ang:RotateAroundAxis(ang:Right(), tweak.Right)
+			ang:RotateAroundAxis(ang:Forward(), tweak.Forward)
+			ang:RotateAroundAxis(ang:Up(), tweak.Up)
+		end
+		
+		makeShell(self, att.Pos, ang, att.Ang:Forward() * 50, 0.6, 10)
+		
+		-- // shell link
+		self._shellTable = self._shellTable2
+		att = self.CW_VM:GetAttachment(2)
+		ang = EyeAngles()
+		tweak = self._shellTable.rv
+		if tweak then
+			ang:RotateAroundAxis(ang:Right(), tweak.Right)
+			ang:RotateAroundAxis(ang:Forward(), tweak.Forward)
+			ang:RotateAroundAxis(ang:Up(), tweak.Up)
+		end
+		
+		makeShell(self, att.Pos, ang, att.Ang:Forward() * 30, 0.6, 10)
 	end
 end

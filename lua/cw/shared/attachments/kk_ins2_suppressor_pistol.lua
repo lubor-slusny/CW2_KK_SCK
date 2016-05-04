@@ -13,8 +13,8 @@ att.statModifiers = {
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
 	att.description = {
-		{t = "Decreases firing noise.", c = CustomizableWeaponry.textColors.POSITIVE},
-		{t = "Increases weapon length.", c = CustomizableWeaponry.textColors.NEGATIVE}
+		[1] = {t = "Decreases firing noise.", c = CustomizableWeaponry.textColors.POSITIVE},
+		[2] = {t = "Increases weapon length.", c = CustomizableWeaponry.textColors.NEGATIVE}
 	}
 end
 

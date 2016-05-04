@@ -1,7 +1,7 @@
 local att = {}
 att.name = "kk_ins2_hoovy"
 att.displayName = "Heavy Barrel"
-att.displayNameShort = "Heavy"
+att.displayNameShort = "HeavyB"
 
 att.statModifiers = {
 	VelocitySensitivityMult = -0.3,
@@ -11,9 +11,7 @@ att.statModifiers = {
 
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
-	att.description = {
-		
-	}
+	att.description = {}
 end
 
 CustomizableWeaponry:registerAttachment(att)

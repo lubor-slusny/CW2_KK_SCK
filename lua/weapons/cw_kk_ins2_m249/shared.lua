@@ -6,10 +6,7 @@ AddCSLuaFile("sh_soundscript.lua")
 include("sh_sounds.lua")
 include("sh_soundscript.lua")
 
-if CustomizableWeaponry.magSystem then
-	CustomizableWeaponry.magSystem:registerMagType("lmgBox", " LMG belt", 2)
-	-- SWEP.magType = "lmgBox"
-end
+SWEP.magType = "lmgBox"
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
@@ -169,24 +166,6 @@ SWEP.Animations = {
 	bipod_out = "deployed_out",
 }
 
-SWEP.ReloadTimes = {					
-	-- base_reload = {186/31.5, 9.5},		//qc
-	-- base_reload_half = {186/31.5, 9.84},
-	-- base_reload_empty = {150/31.5, 11},
-	
-	base_reload = {7.3, 9.5},			// CVMT
-	base_reload_half = {8, 9.84},
-	base_reload_empty = {9.35, 11},
-	
-	-- deployed_reload = {186/32.5, 8.77},
-	-- deployed_reload_half = {186/32.5, 9.5},
-	-- deployed_reload_empty = {150/32.5, 10.52},
-	
-	deployed_reload = {7.1, 8.77},
-	deployed_reload_half = {7.9, 9.5},
-	deployed_reload_empty = {8.85, 10.52},
-}
-	
 SWEP.SpeedDec = 30
 
 SWEP.Slot = 3
@@ -235,41 +214,49 @@ SWEP.Damage = 28
 SWEP.FirstDeployTime = 2.5
 SWEP.DeployTime = 0.83
 
-SWEP.base_ReloadTime = 9.84
-SWEP.base_ReloadHalt = 9.84
-SWEP.base_ReloadTime_Empty = 9.05
-SWEP.base_ReloadHalt_Empty = 9.05
-SWEP.base_ReloadTime_EmptyFired = 10.52
-SWEP.base_ReloadHalt_EmptyFired = 10.52
-
-SWEP.bipod_ReloadTime = 9.5
-SWEP.bipod_ReloadHalt = 9.5
-SWEP.bipod_ReloadTime_Empty = 8.7
-SWEP.bipod_ReloadHalt_Empty = 8.7
-SWEP.bipod_ReloadTime_EmptyFired = 10.52
-SWEP.bipod_ReloadHalt_EmptyFired = 10.52
+SWEP.ReloadTimes = {					
+	-- base_reload = {186/31.5, 9.5},		//qc
+	-- base_reload_half = {186/31.5, 9.84},
+	-- base_reload_empty = {150/31.5, 11},
+	
+	base_reload = {7.3, 9.5},			// CVMT
+	base_reload_half = {8, 9.84},
+	base_reload_empty = {9.35, 11},
+	
+	-- deployed_reload = {186/32.5, 8.77},
+	-- deployed_reload_half = {186/32.5, 9.5},
+	-- deployed_reload_empty = {150/32.5, 10.52},
+	
+	deployed_reload = {7.1, 8.77},
+	deployed_reload_half = {7.9, 9.5},
+	deployed_reload_empty = {8.85, 10.52},
+}
 
 if CLIENT then
 	local counterExists = file.Exists("models/weapons/stattrack.mdl", "GAME")
 	
+	local cycle, clip, ammo, setBG
+	
 	function SWEP:updateOtherParts()
-		local vm = self.CW_VM
-		local cycle = vm:GetCycle()
+		cycle = self.CW_VM:GetCycle()
 		
-		local clip = self:Clip1()
-		local ammo 
-		
+		clip = self:Clip1()
+
 		if self.getFullestMag then
 			ammo = math.max(self:Clip1(), self:getFullestMag(), -1)
 		else
 			ammo = self.Owner:GetAmmoCount(self.Primary.Ammo) + clip
 		end
 		
-		if self.Sequence:find("reload") and cycle > 0.4 then
-			self:setBodygroup(1,math.Clamp(ammo,0,16))
+		if self.Sequence:find("reload") and cycle > 0.4 and cycle < 1 then
+			self.AttachmentModelsVM.kk_counter_mag.ent._KKCSGONUM = ammo
+			setBG = math.Clamp(ammo,0,16)
 		else
-			self:setBodygroup(1,math.Clamp(clip,0,16))
+			self.AttachmentModelsVM.kk_counter_mag.ent._KKCSGONUM = clip
+			setBG = math.Clamp(clip,0,16)
 		end
+		
+		self:setBodygroup(1,setBG)
 		
 		if self.dt.BipodDeployed then
 			self:SetSequence(1)
@@ -277,55 +264,42 @@ if CLIENT then
 			self:SetSequence(0)
 		end
 		
-		-- self.AttachmentModelsVM.kk_counter_mag.active = counterExists and CustomizableWeaponry_KK.HOME 
-		
-		-- if self.Sequence:find("reload") and cycle > 0.4 then
-			-- self.AttachmentModelsVM.kk_counter_mag.ent._KKCSGONUM = math.Clamp(ammo,0,self.Primary.ClipSize)
-		-- else
-			-- self.AttachmentModelsVM.kk_counter_mag.ent._KKCSGONUM = math.Clamp(clip,0,self.Primary.ClipSize)
-		-- end
+		self.AttachmentModelsVM.kk_counter_mag.active = counterExists and CustomizableWeaponry_KK.HOME
 	end
 	
+	local makeShell = CustomizableWeaponry_KK.ins2.makeShell
+	
+	local att, ang, tweak
+	
 	function SWEP:CreateShell(sh) // this func was edited for this specific vmodel only
-		if self.Owner:ShouldDrawLocalPlayer() or self.NoShells then
+		if self.Owner:ShouldDrawLocalPlayer() then
 			return
 		end
 		
-		local sh, vm, att, dir, ang
-		vm = self.CW_VM
-		
 		// main shell
-		
 		self._shellTable = self._shellTable1
-		
-		att = vm:GetAttachment(3)
-		dir = att.Ang:Forward()
-		
+		att = self.CW_VM:GetAttachment(3)
 		ang = EyeAngles()
-		tweak = self._shellTable.angleTweak
+		tweak = self._shellTable.rv
 		if tweak then
 			ang:RotateAroundAxis(ang:Right(), tweak.Right)
 			ang:RotateAroundAxis(ang:Forward(), tweak.Forward)
 			ang:RotateAroundAxis(ang:Up(), tweak.Up)
 		end
 		
-		CustomizableWeaponry.shells.make(self, att.Pos, ang, dir * 50, 0.6, 10)
+		makeShell(self, att.Pos, ang, att.Ang:Forward() * 50, 0.6, 10)
 		
 		-- // shell link
-		
 		self._shellTable = self._shellTable2
-		
-		att = vm:GetAttachment(4)
-		dir = att.Ang:Forward()
-		
+		att = self.CW_VM:GetAttachment(4)
 		ang = EyeAngles()
-		tweak = self._shellTable.angleTweak
+		tweak = self._shellTable.rv
 		if tweak then
 			ang:RotateAroundAxis(ang:Right(), tweak.Right)
 			ang:RotateAroundAxis(ang:Forward(), tweak.Forward)
 			ang:RotateAroundAxis(ang:Up(), tweak.Up)
 		end
 		
-		CustomizableWeaponry.shells.make(self, att.Pos, ang, dir * 50, 0.6, 10)
+		makeShell(self, att.Pos, ang, att.Ang:Forward() * 50, 0.6, 10)
 	end
 end

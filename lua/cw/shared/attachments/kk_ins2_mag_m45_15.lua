@@ -9,7 +9,9 @@ att.statModifiers = {
 
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
-	att.description = {[1] = {t = "Increases mag size to 15 rounds.", c = CustomizableWeaponry.textColors.POSITIVE}}
+	att.description = {
+		[1] = {t = "Increases mag size to 15 rounds.", c = CustomizableWeaponry.textColors.POSITIVE}
+	}
 end
 
 function att:attachFunc()

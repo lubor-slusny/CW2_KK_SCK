@@ -4,6 +4,8 @@ AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
 include("sh_sounds.lua")
 
+SWEP.magType = "pistolMag"
+
 if CLIENT then
 	SWEP.DrawCrosshair = false
 	SWEP.PrintName = "M1911"
@@ -53,8 +55,8 @@ SWEP.WeaponLength = 16
 SWEP.Attachments = {
 	{header = "Lasers", offset = {500, -400}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_m6x"}},
 	{header = "Barrel", offset = {-500, -400}, atts = {"kk_ins2_suppressor_pistol"}},
-	{header = "Magazine", offset = {-500, 50}, atts = {"kk_ins2_mag_m1911_15"}},
-	["+reload"] = {header = "Ammo", offset = {500, 50}, atts = {"am_magnum", "am_matchgrade"}}
+	{header = "Magazine", offset = {-500, 150}, atts = {"kk_ins2_mag_m1911_15"}},
+	["+reload"] = {header = "Ammo", offset = {500, 150}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
 SWEP.KK_INS2_emptyIdle = true

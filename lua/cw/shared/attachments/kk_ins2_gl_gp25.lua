@@ -1,7 +1,7 @@
 local att = {}
 att.name = "kk_ins2_gl_gp25"
-att.displayName = "GP30"
-att.displayNameShort = "GP30"
+att.displayNameShort = "GP35"
+att.displayName = "GP35"
 att.isGrenadeLauncher = true
 att.KK_INS2_playIdle = true
 
@@ -14,8 +14,8 @@ att.statModifiers = {
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
 	att.description = {
-		{t = "Allows the user to fire 40MM rounds.", c = CustomizableWeaponry.textColors.POSITIVE},
-		{t = "And other bullshit.", c = CustomizableWeaponry.textColors.POSITIVE}
+		[1] = {t = "Allows the user to fire 40MM rounds.", c = CustomizableWeaponry.textColors.POSITIVE},
+		-- [2] = {t = "And other bullshit.", c = CustomizableWeaponry.textColors.POSITIVE}
 	}
 
 	local v0 = Vector(0.01, 0.01, 0.01)

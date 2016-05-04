@@ -79,6 +79,118 @@ end
 
 // for me
 
+if CLIENT then
+	CreateClientConVar("cw_kk_freeze_reticles", 0, false, false)
+	
+	local cvXH = CreateClientConVar("cw_kk_gm_xhair", 0, false, false)
+	local cvLA = CreateClientConVar("cw_kk_sck_lock_ads", 0, false, false)
+
+	hook.Add("Think", "cw_kk_gm_xhair_think", function()
+		local ply = LocalPlayer()
+		local wep = ply:GetActiveWeapon()
+		
+		if cvXH:GetInt() == 1 then
+			wep.DrawCrosshair = true
+		else
+			wep.DrawCrosshair = false
+		end
+	end)
+
+	local _ADS_LAST
+	hook.Add("Think", "cw_kk_sck_lock_ads_think", function() 
+		local cur = cvLA:GetInt()
+		if cur != _ADS_LAST and _ADS_LAST != nil then
+			if cur == 0 then
+				RunConsoleCommand("-attack2")
+			else
+				RunConsoleCommand("+attack2")
+			end
+		end
+		_ADS_LAST = cur
+	end)
+end
+
+if CLIENT then
+	CreateClientConVar("cw_kk_ins2_rig", 1, true, true)
+	CreateClientConVar("cw_kk_ins2_animate_reticle", 0, true, false)
+	CreateClientConVar("cw_kk_ins2_draw_vm_in_rt", 0, true, false)
+	CreateClientConVar("cw_kk_ins2_shell_sound", 3, true, false)
+	CreateClientConVar("cw_kk_ins2_shell_time", 10, true, false)
+
+	if not CustomizableWeaponry_KK.panels then
+		CustomizableWeaponry_KK.panels = {}
+	end
+	
+	local sslabeltxt = {
+		"^^ [Cheapest] physmaterial sound",
+		"^^ [CW2 Base] timer, custom sound",
+		"^^ [KK INS2] callback, custom sound"
+	}
+	
+	local function cleanUpShells()
+		for _,v in pairs(CustomizableWeaponry_KK.ins2.deployedShells) do
+			SafeRemoveEntity(v)
+		end
+	end
+	
+	CustomizableWeaponry_KK.panels.ins2 = function(panel)
+		panel:AddControl("Label", {Text = "INS2 Pack:"}):DockMargin(0, 0, 8, 0)
+				
+		panel:AddControl("Slider", {
+			Label = "Rig:",
+			Type = "Integer",
+			Min = "1",
+			Max = table.Count(CustomizableWeaponry_KK.ins2.hands),
+			Command = "cw_kk_ins2_rig"
+		}):DockMargin(8, 0, 8, 0)
+		
+		local ssslider = panel:AddControl("Slider", {
+			Label = "Shell sound function:",
+			Type = "Integer",
+			Min = "1",
+			Max = "3",
+			Command = "cw_kk_ins2_shell_sound"
+		})
+		
+		ssslider:SetDecimals(0)
+		ssslider:DockMargin(8, 0, 8, 0)
+		
+		local sslabel = panel:AddControl("Label", {Text = "meh"})
+		sslabel:DockMargin(8, 0, 8, 16)
+		
+		function ssslider:OnValueChanged(v)
+			sslabel:SetText(sslabeltxt[math.Clamp(math.Round(v or 1), 1, 3)] or "meh")
+		end
+		
+		panel:AddControl("Slider", {
+			Label = "Shell life time:",
+			Type = "Float",
+			Min = "5",
+			Max = "60",
+			Command = "cw_kk_ins2_shell_time"
+		}):DockMargin(8, 0, 8, 0)
+		
+		local cusbutt = panel:AddControl("Button", {
+			Text = "Clean up shells"
+		})
+
+		cusbutt:DockMargin(8, 0, 8, 0)
+		cusbutt.DoClick = cleanUpShells
+		
+		panel:AddControl("CheckBox", {
+			Label = "Always animate stencil sight reticle", 
+			Command = "cw_kk_ins2_animate_reticle"
+		}):DockMargin(8, 8, 8, 0)
+		
+		if not CustomizableWeaponry_KK.HOME then return end
+		
+		panel:AddControl("CheckBox", {
+			Label = "Draw viewmodels in render target scopes", 
+			Command = "cw_kk_ins2_draw_vm_in_rt"
+		}):DockMargin(8, 8, 8, 0)
+	end	
+end
+
 for k, v in pairs(file.Find("autorun/cw_kk_ins/*", "LUA")) do
 	AddCSLuaFile("autorun/cw_kk_ins/" .. v)
 	include("autorun/cw_kk_ins/" .. v)

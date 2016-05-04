@@ -6,7 +6,8 @@ att.displayNameShort = "Workshop"
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
 	att.description = {
-		-- [1] = {t = "Provides 4x magnification.", c = CustomizableWeaponry.textColors.POSITIVE},
+		-- [1] = {t = "Makes you love this pack even more.", c = CustomizableWeaponry.textColors.VPOSITIVE},
+		-- [2] = {t = "Does not force you to donate muney.", c = CustomizableWeaponry.textColors.VNEGATIVE},
 	}
 end
 

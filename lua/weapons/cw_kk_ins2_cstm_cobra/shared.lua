@@ -16,7 +16,7 @@ if CLIENT then
 	SWEP.NoShells = true
 	
 	SWEP.AttachmentModelsVM = {
-		["loader"] = {model = "models/weapons/upgrades/a_cobraloader_rev.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
+		["kk_ins2_revolver_mag"] = {model = "models/weapons/upgrades/a_cobraloader_rev.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 	}
 
 	SWEP.IronsightPos = Vector(-1.848, 0, -0.1013)
@@ -30,15 +30,10 @@ if CLIENT then
 	SWEP.HUD_MagText = "CYLINDER: "
 end
 
-SWEP.CanRestOnObjects = false
-SWEP.Chamberable = false
-SWEP.ShotgunReload = false
-SWEP.WeaponLength = 16
-
 SWEP.Attachments = {
 	-- {header = "Barrel", offset = {-500, -400}, atts = {"md_cobram2"}},
 	-- {header = "Lasers", offset = {-0, -600}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}},
-	-- {header = "Reload Aid", offset = {600, 50}, atts = {"kk_ins2_revolver_mag"}},
+	{header = "Reload Aid", offset = {600, 50}, atts = {"kk_ins2_revolver_mag"}},
 	["+reload"] = {header = "Ammo", offset = {-400, 50}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
@@ -127,6 +122,15 @@ SWEP.InsertShellTime = 0.98
 SWEP.ReloadFinishWait = 1.74
 SWEP.ReloadFinishWaitEmpty = 1.74
 
+SWEP.CanRestOnObjects = false
+SWEP.Chamberable = false
+SWEP.ShotgunReload = true
+SWEP.WeaponLength = 16
+
+function SWEP:IndividualInitialize()
+	self.magType = "NONE"
+end
+
 function SWEP:beginReload()
 	if self.ShotgunReload then
 		mag = self:Clip1()
@@ -153,14 +157,72 @@ function SWEP:beginReload()
 		
 		self.Owner:SetAnimation(PLAYER_RELOAD)
 	else
+		if CustomizableWeaponry.magSystem then
+			weapons.GetStored("cw_base").unloadWeapon(self)
+		end
 		weapons.GetStored("cw_base").beginReload(self)
 	end
 end
 
-if CLIENT then 
-	local bullet = 1
-	local shell = 2
+local keyDown
 
+function SWEP:finishReloadShotgun()
+	CT = CurTime()
+	
+	if self.ShotgunReloadState == 1 then
+		keyDown = self.Owner:KeyDown(IN_ATTACK) or self.Owner:KeyDown(IN_ATTACK2)
+		
+		if 0 < self:Clip1() and keyDown then
+			self.ShotgunReloadState = 2
+		end
+		
+		if CT > self.ReloadDelay then
+			self:sendWeaponAnim(self:getForegripMode() .. "insert", self.ReloadSpeed)
+			
+			if SERVER and not SP then
+				self.Owner:SetAnimation(PLAYER_RELOAD)
+			end
+			
+			mag, ammo = self:Clip1(), self.Owner:GetAmmoCount(self.Primary.Ammo)
+			
+			if SERVER then
+				self:SetClip1(mag + 1)
+				self.Owner:SetAmmo(ammo - 1, self.Primary.Ammo)
+			end
+			
+			self.ReloadDelay = CT + self.InsertShellTime / self.ReloadSpeed
+			
+			if mag + 1 >= self.Primary.ClipSize or ammo - 1 <= 0 then
+				self.ShotgunReloadState = 2
+			end
+		end
+	elseif self.ShotgunReloadState == 2 then
+		if CT > self.ReloadDelay then			
+			local anim = self:getForegripMode() .. "reload_end"
+			local time = CT + self.ReloadFinishWait / self.ReloadSpeed
+			
+			if self.WasEmpty then
+				anim = anim .. "_empty"
+				time = CT + self.ReloadFinishWaitEmpty / self.ReloadSpeed
+			end
+			
+			self:sendWeaponAnim(anim, self.ReloadSpeed)
+			self.ShotgunReloadState = 0
+			
+			self:SetNextPrimaryFire(time)
+			self:SetNextSecondaryFire(time)
+			self.ReloadWait = time
+			self.ReloadDelay = nil
+		end
+	end
+end
+
+if CLIENT then 
+	local bgBullets = 1
+	local bgShells = 2
+
+	SWEP._lastLoadedAmount = 6
+	
 	function SWEP:updateOtherParts()
 		local vm = self.CW_VM
 		local cyc = vm:GetCycle()
@@ -173,27 +235,34 @@ if CLIENT then
 			local loading = self.Sequence == self.Animations.base_insert // or self.Sequence == self.Animations.base_reload_end
 		
 			if dumping then 
-				self:setBodygroup(1,clip)
+				self:setBodygroup(bgBullets,clip)
 			else
-				self:setBodygroup(1,6)
+				self:setBodygroup(bgBullets,6)
 			end
 			
 			if loading then
-				self:setBodygroup(2,clip)
-			else
-				self:setBodygroup(2,math.Clamp(reserve,0,6))
+				self._lastLoadedAmount = clip
 			end
+			
+			self:setBodygroup(bgShells,self._lastLoadedAmount)
 		else
 			local dumping = self.Sequence == self.Animations.base_reload and cyc < 0.41
 			local loading = self.Sequence == self.Animations.base_reload and cyc > 0.41 and cyc < 1
 		
-			if loading then
-				self:setBodygroup(1,math.Clamp(reserve,0,6))
-			else
-				self:setBodygroup(1,clip)
+			if self.getFullestMag then
+				reserve = math.max(self:Clip1(), self:getFullestMag(), -1)
 			end
 			
-			self:setBodygroup(2,6)
+			if loading then
+				self._lastLoadedAmount = math.Clamp(reserve,0,6)
+				self:setBodygroup(bgBullets,self._lastLoadedAmount)
+			elseif dumping then
+			
+			else
+				self:setBodygroup(bgBullets,clip)
+			end
+			
+			self:setBodygroup(bgShells,self._lastLoadedAmount)
 		end
 	end
 end

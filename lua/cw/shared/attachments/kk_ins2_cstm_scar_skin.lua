@@ -1,6 +1,6 @@
 local att = {}
 att.name = "kk_ins2_cstm_scar_skin"
-att.displayName = "Woo, a tan skin!"
+att.displayName = "Tan SCARH Finish"
 att.displayNameShort = "Tan"
 att.isBG = true
 att.KK_INS2_playIdle = true
@@ -12,7 +12,8 @@ att.statModifiers = {
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
 	att.description = {
-		-- {t = "Secksy as phuck.", c = CustomizableWeaponry.textColors.VPOSITIVE},
+		[1] = {t = "Ever played Payday 2?.", c = CustomizableWeaponry.textColors.NEUTRAL},
+		[2] = {t = "Retextures alter stats.", c = CustomizableWeaponry.textColors.VNEGATIVE},
 	}
 	
 	function att:attachFunc()

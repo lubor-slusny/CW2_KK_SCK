@@ -1,7 +1,7 @@
 local att = {}
 att.name = "kk_ins2_elcan"
-att.displayName = "Elcan"
 att.displayNameShort = "Elcan"
+att.displayName = "ELCAN C79"
 att.aimPos = {"KKINS2ElcanPos", "KKINS2ElcanAng"}
 att.FOVModifier = 0
 att.AimViewModelFOV = 30
@@ -16,9 +16,9 @@ att.statModifiers = {
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
 	att.description = {
-		-- [1] = {t = "Provides 4x magnification.", c = CustomizableWeaponry.textColors.POSITIVE},
-		-- [2] = {t = "Narrow scope reduces awareness.", c = CustomizableWeaponry.textColors.NEGATIVE},
-		-- [3] = {t = "Can be disorienting at close range.", c = CustomizableWeaponry.textColors.NEGATIVE}
+		[1] = {t = "Provides 3x magnification.", c = CustomizableWeaponry.textColors.POSITIVE},
+		[2] = {t = "Narrow scope reduces awareness.", c = CustomizableWeaponry.textColors.NEGATIVE},
+		[3] = {t = "Can be disorienting at close range.", c = CustomizableWeaponry.textColors.NEGATIVE}
 	}
 
 	local path = "models/weapons/optics/elcan_reticule"

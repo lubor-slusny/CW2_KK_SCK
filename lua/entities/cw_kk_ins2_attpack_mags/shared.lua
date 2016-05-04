@@ -1,6 +1,8 @@
+if not CustomizableWeaponry then return end
+
 ENT.Type = "anim"
 ENT.Base = "cw_attpack_base"
-ENT.PrintName = "INS2 Mags"
+ENT.PrintName = "[INS2] Magazines"
 ENT.PackageText = "Extended Magazines"
 ENT.Category = "CW 2.0 Attachments"
 ENT.Author = "Spy"

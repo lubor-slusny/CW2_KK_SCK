@@ -37,59 +37,32 @@ SWEP.Instructions	= "dont spawn this directly, have phun"
 SWEP.Spawnable			= false
 SWEP.AdminSpawnable		= false
 
-SWEP.LuaViewmodelRecoil = false
-
-SWEP.BipodDeployTime = 1.15
-SWEP.BipodUndeployTime = 1.15
 SWEP.TSGlass = Material("models/weapons/optics/lense_rt")
 
+SWEP.LuaViewmodelRecoil = false
+SWEP.BipodDeployTime = 1.15
+SWEP.BipodUndeployTime = 1.15
+
 SWEP.KKINS2Wep = true
-SWEP.FirstDeployTime = 5
-SWEP.WeaponLength = 20
-
-SWEP.AttachmentExclusions = {
-	["bg_foldsight"] = {"kk_ins2_magnifier", "kk_ins2_sights_cstm"},
-	["kk_ins2_cstm_acog"] = {"kk_ins2_magnifier"},
-	["kk_ins2_cstm_cmore"] = {"kk_ins2_magnifier"},
-	["kk_ins2_cstm_barska"] = {"kk_ins2_magnifier"},
-	["kk_ins2_cstm_microt1"] = {"kk_ins2_magnifier"},
-	["kk_ins2_cstm_sureshot"] = {"kk_ins2_magnifier"},
-	["kk_ins2_aimpoint"] = {"kk_ins2_sights_cstm"},
-	["kk_ins2_elcan"] = {"kk_ins2_magnifier", "kk_ins2_sights_cstm"},
-	["kk_ins2_eotech"] = {"kk_ins2_magnifier", "kk_ins2_sights_cstm"},
-	["kk_ins2_kobra"] = {"kk_ins2_magnifier", "kk_ins2_sights_cstm"},
-	["kk_ins2_po4"] = {"kk_ins2_magnifier", "kk_ins2_sights_cstm"},
-	["kk_ins2_scope_m40"] = {"kk_ins2_magnifier", "kk_ins2_sights_cstm"},
-	["kk_ins2_scope_mosin"] = {"kk_ins2_magnifier", "kk_ins2_sights_cstm"},
-}
-
-SWEP.AttachmentDependencies = {
-	-- ["kk_ins2_aimpoint"] = {"kk_ins2_sights_base"},
-	-- ["kk_ins2_elcan"] = {"kk_ins2_sights_base"},
-	-- ["kk_ins2_eotech"] = {"kk_ins2_sights_base"},
-	-- ["kk_ins2_kobra"] = {"kk_ins2_sights_base"},
-	-- ["kk_ins2_po4"] = {"kk_ins2_sights_base"},
-	-- ["kk_ins2_scope_m40"] = {"kk_ins2_sights_base"},
-	-- ["kk_ins2_scope_mosin"] = {"kk_ins2_sights_base"},
-	
-	["kk_ins2_cstm_cmore"] = {"kk_ins2_sights_cstm"},
-	["kk_ins2_cstm_barska"] = {"kk_ins2_sights_cstm"},
-	["kk_ins2_cstm_eotechxps"] = {"kk_ins2_sights_cstm"},
-	["kk_ins2_cstm_microt1"] = {"kk_ins2_sights_cstm"},
-	["kk_ins2_cstm_compm4s"] = {"kk_ins2_sights_cstm"},
-	["kk_ins2_cstm_acog"] = {"kk_ins2_sights_cstm"},
-}
+SWEP.KKINS2RCE = false
+SWEP.KKINS2Melee = false
+SWEP.KKINS2Nade = false
+SWEP.KK_INS2_emptyIdle = false
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.m67
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.bayonet
 SWEP.CW_KK_40MM_MDL = "models/weapons/upgrades/a_projectile_m203.mdl"
-	
+
+SWEP.FirstDeployTime = 5
+SWEP.WeaponLength = 20
+
 if CLIENT then	
 	SWEP.PosBasedMuz = true
 	
 	SWEP.MuzzleAttachmentName = "muzzle"
 	SWEP.ShellAttachmentName = "shell"
 	SWEP.ShellScale = 1
+	SWEP.Shell2 = false
 	
 	SWEP.WorldMuzzleAttachmentID = 1
 	SWEP.WorldShellEjectionAttachmentID = 2
@@ -148,38 +121,45 @@ if CLIENT then
 	SWEP.KKINS2ElcanPos = Vector(0, 0, 0)
 	SWEP.KKINS2ElcanAng = Vector(0, 0, 0)
 	
-	// Custom sights
-	
-	-- SWEP.KKINS2CSTMACOGPos = Vector(0, 0, 0)
-	-- SWEP.KKINS2CSTMACOGAng = Vector(0, 0, 0)
-	
-	-- SWEP.KKINS2CSTMCMorePos = Vector(0, 0, 0)
-	-- SWEP.KKINS2CSTMCMoreAng = Vector(0, 0, 0)
-	
-	-- SWEP.KKINS2CSTMBarskaPos = Vector(0, 0, 0)
-	-- SWEP.KKINS2CSTMBarskaAng = Vector(0, 0, 0)
-	
-	-- SWEP.KKINS2CSTMCompM4SPos = Vector(0, 0, 0)
-	-- SWEP.KKINS2CSTMCompM4SAng = Vector(0, 0, 0)
-	
-	-- SWEP.KKINS2CSTMEoTechXPSPos = Vector(0, 0, 0)
-	-- SWEP.KKINS2CSTMEoTechXPSAng = Vector(0, 0, 0)
-	
-	-- SWEP.KKINS2CSTMMicroT1Pos = Vector(0, 0, 0)
-	-- SWEP.KKINS2CSTMMicroT1Ang = Vector(0, 0, 0)
-	
-	-- SWEP.KKINS2CSTMSureShotPos = Vector(0, 0, 0)
-	-- SWEP.KKINS2CSTMSureShotAng = Vector(0, 0, 0)
-	
 	// WW2
 	
 	SWEP.KKINS2ScopeZF4Pos = Vector(0, 0, 0)
 	SWEP.KKINS2ScopeZF4Ang = Vector(0, 0, 0)
-	
-	-- SWEP.CustomizePos = Vector(0, 0, 0)
-	-- SWEP.CustomizeAng = Vector(0, 0, 0)
 end
 	
+SWEP.AttachmentExclusions = {
+	["bg_foldsight"] = {"kk_ins2_magnifier", "kk_ins2_sights_cstm"},
+	["kk_ins2_cstm_acog"] = {"kk_ins2_magnifier"},
+	["kk_ins2_cstm_cmore"] = {"kk_ins2_magnifier"},
+	["kk_ins2_cstm_barska"] = {"kk_ins2_magnifier"},
+	["kk_ins2_cstm_microt1"] = {"kk_ins2_magnifier"},
+	["kk_ins2_cstm_sureshot"] = {"kk_ins2_magnifier"},
+	["kk_ins2_aimpoint"] = {"kk_ins2_sights_cstm"},
+	["kk_ins2_elcan"] = {"kk_ins2_magnifier", "kk_ins2_sights_cstm"},
+	["kk_ins2_eotech"] = {"kk_ins2_magnifier", "kk_ins2_sights_cstm"},
+	["kk_ins2_kobra"] = {"kk_ins2_magnifier", "kk_ins2_sights_cstm"},
+	["kk_ins2_po4"] = {"kk_ins2_magnifier", "kk_ins2_sights_cstm"},
+	["kk_ins2_scope_m40"] = {"kk_ins2_magnifier", "kk_ins2_sights_cstm"},
+	["kk_ins2_scope_mosin"] = {"kk_ins2_magnifier", "kk_ins2_sights_cstm"},
+}
+
+SWEP.AttachmentDependencies = {
+	-- ["kk_ins2_aimpoint"] = {"kk_ins2_sights_base"},
+	-- ["kk_ins2_elcan"] = {"kk_ins2_sights_base"},
+	-- ["kk_ins2_eotech"] = {"kk_ins2_sights_base"},
+	-- ["kk_ins2_kobra"] = {"kk_ins2_sights_base"},
+	-- ["kk_ins2_po4"] = {"kk_ins2_sights_base"},
+	-- ["kk_ins2_scope_m40"] = {"kk_ins2_sights_base"},
+	-- ["kk_ins2_scope_mosin"] = {"kk_ins2_sights_base"},
+	
+	["kk_ins2_cstm_cmore"] = {"kk_ins2_sights_cstm"},
+	["kk_ins2_cstm_barska"] = {"kk_ins2_sights_cstm"},
+	["kk_ins2_cstm_eotechxps"] = {"kk_ins2_sights_cstm"},
+	["kk_ins2_cstm_microt1"] = {"kk_ins2_sights_cstm"},
+	["kk_ins2_cstm_compm4s"] = {"kk_ins2_sights_cstm"},
+	["kk_ins2_cstm_acog"] = {"kk_ins2_sights_cstm"},
+}
+
 local SP = game.SinglePlayer()
 local shouldDrawCrosshair, cycle, canDoStuff, wasSprint, isSprint, wasSafe, isSafe
 

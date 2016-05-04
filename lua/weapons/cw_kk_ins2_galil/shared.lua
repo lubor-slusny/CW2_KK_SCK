@@ -6,6 +6,8 @@ AddCSLuaFile("sh_soundscript.lua")
 include("sh_sounds.lua")
 include("sh_soundscript.lua")
 
+SWEP.magType = "arMag"
+
 if CLIENT then
 	SWEP.DrawCrosshair = false
 	SWEP.PrintName = "Galil"
@@ -104,7 +106,7 @@ if CLIENT then
 	SWEP.KKINS2MagnifierPos = Vector(-2.2215, -2, -0.5042)
 	SWEP.KKINS2MagnifierAng = Vector(0, 0, 0)
 
-	SWEP.CustomizationMenuScale = 0.016
+	SWEP.CustomizationMenuScale = 0.015
 end
 
 SWEP.Attachments = {

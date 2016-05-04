@@ -14,8 +14,17 @@ local copyPasteSx = {
 	"Pos", "Ang"
 }
 
+// this might help
+local customFireFuncs = {
+	["RPG 40MM"] = CustomizableWeaponry_KK.ins2.fireRPG,
+	["AT4 Launcher"] = CustomizableWeaponry_KK.ins2.fireAT4,
+	["M6A1 Rocket"] = CustomizableWeaponry_KK.ins2.fireM6A1,
+	["Panzerfaust"] = CustomizableWeaponry_KK.ins2.firePF60,
+}
+
 CustomizableWeaponry.callbacks:addNew("initialize", "KK_INS2_BASE", function(self)
 	if CLIENT then
+		// SWEP parent for client side models - for lense cubemap proxy
 		self.CW_VM._SWEP = self
 		if self.AttachmentModelsVM then
 			for _, v in pairs(self.AttachmentModelsVM) do
@@ -27,6 +36,7 @@ CustomizableWeaponry.callbacks:addNew("initialize", "KK_INS2_BASE", function(sel
 		
 		-- self.ReticleInactivityPostFire = self.ReticleInactivityPostFire or self.FireDelay
 		
+		// moved shell table getters here so they dont have to be called every createShell time
 		if self.Shell then
 			self._shellTable1 = CustomizableWeaponry.shells:getShell(self.Shell)
 		end
@@ -35,12 +45,29 @@ CustomizableWeaponry.callbacks:addNew("initialize", "KK_INS2_BASE", function(sel
 			self._shellTable2 = CustomizableWeaponry.shells:getShell(self.Shell2)
 		end
 		
+		// fastest way to setup sights from Workshop sight contract
 		for k,v in pairs(copyPaste) do
 			for _,x in pairs(copyPasteSx) do
 				if not self[k .. x] then
 					self[k .. x] = self[v .. x]
 				end
 			end
+		end
+	end
+	
+	// Ive never really used ammo crate before so here s quickfix for explosives
+	if self.KKINS2RCE or self.KKINS2Nade then
+		self.Primary.ClipSize_Orig = 1
+	end
+	
+	// bullet-firing-weapons really shouldnt do these checks every time theyre about to fire a bullet
+	local fireFunc = customFireFuncs[self.Primary.Ammo]
+	
+	if fireFunc then
+		self.FireBullet = function(self)
+			local IFTP = IsFirstTimePredicted()
+			
+			fireFunc(self, IFTP, true)
 		end
 	end
 end)
@@ -126,19 +153,16 @@ CustomizableWeaponry.callbacks:addNew("postDetachAttachment", "KK_INS2_BASE", fu
 	end
 end)
 
-CustomizableWeaponry.callbacks:addNew("droppedWeapon", "KK_INS2_BASE", function(ent)
-	if CLIENT then
+-- CustomizableWeaponry.callbacks:addNew("droppedWeapon", "KK_INS2_BASE", function(ent)
+	-- if CLIENT then
 		-- function ent:Draw()
 			
 		-- end
-	end
-end)
+	-- end
+-- end)
 
-if CLIENT then
-	CustomizableWeaponry.callbacks:addNew("overrideReserveAmmoText", "KK_INS2_BASE", function(wep)
-		if !wep.KKINS2Wep then return end
-		if !wep.KKINS2RCE then return end
+-- if CLIENT then
+	-- CustomizableWeaponry.callbacks:addNew("overrideReserveAmmoText", "KK_INS2_BASE", function(wep)
 		
-		return true, wep.Owner:GetAmmoCount(wep.Primary.Ammo) - 1
-	end)
-end
+	-- end)
+-- end

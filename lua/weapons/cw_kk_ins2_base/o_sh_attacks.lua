@@ -1,6 +1,8 @@
 
 local SP = game.SinglePlayer()
 
+local IFTP
+
 function SWEP:PrimaryAttack()
 	if not self:canFireWeapon(1) then
 		return
@@ -26,7 +28,7 @@ function SWEP:PrimaryAttack()
 		return
 	end
 	
-	local IFTP = IsFirstTimePredicted()
+	IFTP = IsFirstTimePredicted()
 	
 	if self.dt.INS2GLActive then
 		if IFTP and ((SP and SERVER) or (!SP and CLIENT)) then
@@ -42,9 +44,7 @@ function SWEP:PrimaryAttack()
 		return
 	end
 	
-	mag = self:Clip1()
-	
-	if mag == 0 then
+	if self:Clip1() == 0 then
 		if IFTP and ((SP and SERVER) or (!SP and CLIENT)) then
 			self:fireAnimFunc()
 		end
@@ -68,7 +68,7 @@ function SWEP:PrimaryAttack()
 	if IFTP then
 		local muzzleData = EffectData()
 		muzzleData:SetEntity(self)
-		util.Effect("cw_kk_ins2_muzzleflash", muzzleData) // NO
+		util.Effect("cw_kk_ins2_muzzleflash", muzzleData)
 		
 		if self.dt.Suppressed then
 			self:EmitSound(self.FireSoundSuppressed, 105, 100)
@@ -80,18 +80,7 @@ function SWEP:PrimaryAttack()
 			self:fireAnimFunc()
 		end
 		
-		if self.Primary.Ammo == "RPG 40MM" then
-			CustomizableWeaponry_KK.ins2.fireRPG(self, IFTP, true)
-		elseif self.Primary.Ammo == "AT4 Launcher" then
-			CustomizableWeaponry_KK.ins2.fireAT4(self, IFTP, true)
-		elseif self.Primary.Ammo == "M6A1 Rocket" then
-			CustomizableWeaponry_KK.ins2.fireM6A1(self, IFTP, true)
-		elseif self.Primary.Ammo == "Panzerfaust" then
-			CustomizableWeaponry_KK.ins2.firePF60(self, IFTP, true)
-		else
-			self:FireBullet(self.Damage, self.CurCone, self.ClumpSpread, self.Shots)
-		end
-		
+		self:FireBullet(self.Damage, self.CurCone, self.ClumpSpread, self.Shots)
 		self:makeFireEffects()
 		self:MakeRecoil()
 		self:addFireSpread(CT)
@@ -135,6 +124,24 @@ function SWEP:PrimaryAttack()
 	self.ReloadWait = CT + (self.WaitForReloadAfterFiring and self.WaitForReloadAfterFiring or self.FireDelay)
 	
 	CustomizableWeaponry.callbacks.processCategory(self, "postConsumeAmmo")
+end
+
+function SWEP:makeFireEffects()
+	if SP and SERVER then
+		-- god damn prediction disabled in SP
+		SendUserMessage("CW20_EFFECTS")
+		return
+	end
+	
+	if CLIENT then
+		if self.MuzzleEffect then
+			self:CreateMuzzle()
+		end
+		
+		if self.Shell then
+			self:CreateShell()
+		end
+	end
 end
 
 local reg = debug.getregistry()

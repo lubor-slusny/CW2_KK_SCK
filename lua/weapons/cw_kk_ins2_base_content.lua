@@ -73,8 +73,15 @@ do
 	CustomizableWeaponry:addRegularSound("CW_KK_INS2_SHELL_LINK", {"weapons/bullets/shells/concrete/m249_link_concrete_01.wav", "weapons/bullets/shells/concrete/m249_link_concrete_02.wav", "weapons/bullets/shells/concrete/m249_link_concrete_03.wav", "weapons/bullets/shells/concrete/m249_link_concrete_04.wav", "weapons/bullets/shells/concrete/m249_link_concrete_05.wav", "weapons/bullets/shells/concrete/m249_link_concrete_06.wav", "weapons/bullets/shells/concrete/m249_link_concrete_07.wav", "weapons/bullets/shells/concrete/m249_link_concrete_08.wav"}, 65)
 	CustomizableWeaponry:addRegularSound("CW_KK_INS2_SHELL_12G", {"weapons/bullets/shells/concrete/shotgun_shell_concrete_01.wav", "weapons/bullets/shells/concrete/shotgun_shell_concrete_02.wav", "weapons/bullets/shells/concrete/shotgun_shell_concrete_03.wav", "weapons/bullets/shells/concrete/shotgun_shell_concrete_04.wav", "weapons/bullets/shells/concrete/shotgun_shell_concrete_05.wav", "weapons/bullets/shells/concrete/shotgun_shell_concrete_06.wav"}, 65)
 	
-	function CustomizableWeaponry.shells:addNew_KKINS2(name, model, collideSound, angleTweak, angleTweakWorld)
-		self.cache[name] = {m = model, s = collideSound, angleTweak = angleTweak, angleTweakWorld = angleTweakWorld}
+	function CustomizableWeaponry.shells:addNew_KKINS2(name, model, sound, rotationView, rotationWorld, BBoxMins, BBoxMaxs)
+		self.cache[name] = {
+			m = model, 
+			s = sound, 
+			rv = rotationView, 
+			rw = rotationWorld, 
+			bbmin = BBoxMins, 
+			bbmax = BBoxMaxs
+		}
 	end
 
 	local noTweak = {Forward = 0, Right = 0, Up = 0}
@@ -82,18 +89,20 @@ do
 	local upneg90 = {Forward = 0, Right = 0, Up = -90}
 	local up180 = {Forward = 0, Right = 0, Up = 180}
 	
-	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_9x19", "models/weapons/shells/9x19.mdl", "CW_KK_INS2_SHELL_38", up90, up180)
-	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_12guage", "models/weapons/shells/12guage.mdl", "CW_KK_INS2_SHELL_12G", upneg90, noTweak)
-	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_40mm", "models/weapons/shells/40mm.mdl", "CW_KK_INS2_SHELL_M203", upneg90, noTweak)
-	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_45apc", "models/weapons/shells/45apc.mdl", "CW_KK_INS2_SHELL_38", upneg90, noTweak)
-	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_545x39", "models/weapons/shells/545x39.mdl", "CW_KK_INS2_SHELL_38", upneg90, noTweak)
-	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_556x45", "models/weapons/shells/556x45.mdl", "CW_KK_INS2_SHELL_38", upneg90, noTweak)
-	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_556x45_link", "models/weapons/shells/556x45_link.mdl", "CW_KK_INS2_SHELL_LINK", up180, noTweak)
-	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_762x33", "models/weapons/shells/762x33.mdl", "CW_KK_INS2_SHELL_38", upneg90, noTweak)
-	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_762x39", "models/weapons/shells/762x39.mdl", "CW_KK_INS2_SHELL_38", upneg90, noTweak)
-	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_762x51", "models/weapons/shells/762x51.mdl", "CW_KK_INS2_SHELL_38", upneg90, noTweak)
-	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_762x54", "models/weapons/shells/762x54.mdl", "CW_KK_INS2_SHELL_38", upneg90, noTweak)
+	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_9x19", "models/weapons/shells/9x19.mdl", "CW_KK_INS2_SHELL_38", up90, up180, Vector(-0.2, -0.4, -0.2), Vector(0.2, 0.4, 0.2))
+	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_12guage", "models/weapons/shells/12guage.mdl", "CW_KK_INS2_SHELL_12G", upneg90, noTweak, Vector(-0.4, -1.2, -0.4), Vector(0.4, 1.2, 0.4))
+	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_40mm", "models/weapons/shells/40mm.mdl", "CW_KK_INS2_SHELL_M203", upneg90, noTweak, Vector(-0.8, -0.8, 0), Vector(0.8, 0.8, 2))
+	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_45apc", "models/weapons/shells/45apc.mdl", "CW_KK_INS2_SHELL_38", upneg90, noTweak, Vector(-0.25, -0.5, -0.25), Vector(0.25, 0.5, 0.25))
+	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_545x39", "models/weapons/shells/545x39.mdl", "CW_KK_INS2_SHELL_38", upneg90, noTweak, Vector(-0.25, -1.15, -0.25), Vector(0.25, 1.15, 0.25))
+	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_556x45", "models/weapons/shells/556x45.mdl", "CW_KK_INS2_SHELL_38", upneg90, noTweak, Vector(-0.2, -1, -0.2), Vector(0.2, 1, 0.2))
+	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_556x45_link", "models/weapons/shells/556x45_link.mdl", "CW_KK_INS2_SHELL_LINK", up180, upneg90, Vector(-0.65, -0.5, -0.25), Vector(0.9, 0.55, 0.25))
+	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_762x33", "models/weapons/shells/762x33.mdl", "CW_KK_INS2_SHELL_38", upneg90, noTweak, Vector(-0.15, -0.5, -0.15), Vector(0.15, 0.5, 0.15))
+	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_762x39", "models/weapons/shells/762x39.mdl", "CW_KK_INS2_SHELL_38", upneg90, noTweak, Vector(-0.2, -0.9, -0.2), Vector(0.2, 0.9, 0.2))
+	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_762x51", "models/weapons/shells/762x51.mdl", "CW_KK_INS2_SHELL_38", upneg90, noTweak, Vector(-0.25, -1.25, -0.25), Vector(0.25, 1.25, 0.25))
+	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_762x54", "models/weapons/shells/762x54.mdl", "CW_KK_INS2_SHELL_38", upneg90, noTweak, Vector(-0.25, -1.25, -0.25), Vector(0.25, 1.25, 0.25))
 	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_THROWABLE", "models/weapons/w_gren_spoon.mdl", "", noTweak, noTweak)
+	
+	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_GARAND", "models/weapons/shells/garand_clip.mdl", "CW_KK_INS2_SHELL_M203", noTweak, up90, Vector(-0.55, -0.45, -0.85), Vector(0.55, 0.45, 0.85))
 end
 // AMMO
 	
@@ -129,6 +138,7 @@ do
 	CustomizableWeaponry:registerRecognizedStat("SpeedDec", "Decreases movement speed", "Increases movement speed", nok, ok)
 	CustomizableWeaponry:registerRecognizedStat("WeaponLength", "Decreases weapon length", "Increases weapon length", ok, nok)
 
+	CustomizableWeaponry.originalValue:add("SpeedDec", false, false)
 	CustomizableWeaponry.originalValue:add("WeaponLength", false, false)
 	
 	if CLIENT then	
@@ -246,7 +256,7 @@ if CLIENT then
 end
 
 if CLIENT then
-	language.Add("cw_kk_ins2_projectile_m6a1", "M1 Bazooka rocket")
+	language.Add("cw_kk_ins2_projectile_m6a1", "M6A1 rocket")
 	language.Add("cw_kk_ins2_projectile_pf60", "Panzerfaust projectile")
 	language.Add("cw_kk_ins2_projectile_rpg", "PG-7V grenade")
 	language.Add("cw_kk_ins2_projectile_rpg_2", "PG-7V grenade")
@@ -255,6 +265,14 @@ if CLIENT then
 	language.Add("cw_kk_ins2_projectile_c4", "Active C4 charge")
 	language.Add("cw_kk_ins2_projectile_ied", "Active IED")
 	language.Add("cw_kk_ins2_projectile_flare", "P2A1 flare")
+end
+
+// MAG SYSTEM
+
+if CustomizableWeaponry.magSystem then
+	CustomizableWeaponry.magSystem:registerMagType("lmgBox", " LMG belt", 2)
+	CustomizableWeaponry.magSystem:registerMagType("revLoader", " Revolver Loader", 6)	
+	CustomizableWeaponry.magSystem:registerMagType("m1Clip", " M1 Garand Clip", 6)	
 end
 
 // KEK
@@ -333,4 +351,6 @@ if CustomizableWeaponry_KK.HOME then
 	end
 
 	CustomizableWeaponry.grenadeTypes:addNew(gren)
+	
+	// add mw2 m203 flare kek
 end

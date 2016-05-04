@@ -10,7 +10,7 @@ if CLIENT then
 	-- att.displayIcon = surface.GetTextureID("atts/" .. att.name)
 	att.displayIcon = surface.GetTextureID("atts/wipshit")
 	att.description = {
-		{t = "FKIN MAGIC", c = CustomizableWeaponry.textColors.VPOSITIVE},
+		[1] = {t = "FKIN MAGIC", c = CustomizableWeaponry.textColors.VPOSITIVE},
 	}
 	
 	att.reticle = "cw2/reticles/aim_reticule"

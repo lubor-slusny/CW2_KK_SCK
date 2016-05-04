@@ -1,4 +1,36 @@
 
+function SWEP:getMagCapacity()
+	local mag = self:Clip1()
+	
+	if self.KKINS2RCE then
+		return mag
+	end
+	
+	if mag > self.Primary.ClipSize_Orig then
+		return self.Primary.ClipSize_Orig .. " + " .. mag - self.Primary.ClipSize_Orig
+	end
+	
+	return mag
+end
+
+function SWEP:getReserveAmmoText()
+	local shouldOverride, text, targetColor = CustomizableWeaponry.callbacks.processCategory(self, "overrideReserveAmmoText")
+	
+	if self.KKINS2RCE then
+		return self.Owner:GetAmmoCount(self.Primary.Ammo) - 1, shouldOverride, self.HUDColors.white
+	end
+	
+	if self.KKINS2Nade then
+		return self.Owner:GetAmmoCount(self.Primary.Ammo), shouldOverride, targetColor
+	end
+	
+	if shouldOverride then
+		return text, shouldOverride, targetColor
+	end
+	
+	return self.Owner:GetAmmoCount(self.Primary.Ammo), shouldOverride, targetColor
+end
+
 SWEP.HUD_3D2D_MagColor = Color(255, 255, 255, 255)
 SWEP.HUD_3D2d_ReserveColor = Color(255, 255, 255, 255)
 

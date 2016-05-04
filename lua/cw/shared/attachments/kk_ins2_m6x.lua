@@ -14,9 +14,8 @@ att.statModifiers = {
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
 	att.description = {
-		{t = "[impulse 100] cycles through modes.", c = CustomizableWeaponry.textColors.REGULAR},
-		{t = "Mode resets on re-attach.", c = CustomizableWeaponry.textColors.REGULAR},
-		-- {t = "Colors are determined by previous atts in category.", c = CustomizableWeaponry.textColors.REGULAR},
+		[1] = {t = "[impulse 100] cycles through modes.", c = CustomizableWeaponry.textColors.REGULAR},
+		[2] = {t = "Uses LAM/LEM colors.", c = CustomizableWeaponry.textColors.REGULAR},
 	}
 	
 	local rgb = {"r","g","b","a"}

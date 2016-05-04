@@ -1,7 +1,7 @@
 
 // vm fx tweak
 
-local att, sh, vm, ang, tweak
+local att, sh, vm
 
 local muz = {}
 
@@ -22,6 +22,8 @@ function SWEP:getMuzzlePosition()
 	muz.Ang = self.Owner:EyeAngles()
 	return muz
 end
+
+local makeShell = CustomizableWeaponry_KK.ins2.makeShell
 
 function SWEP:CreateShell(sh)
 	if self.Owner:ShouldDrawLocalPlayer() or self.NoShells then
@@ -50,9 +52,8 @@ function SWEP:CreateShell(sh)
 					att.Pos = att.Pos + (self.ShellPosOffset.z) * att.Ang:Up()
 				end
 		
-				ang = EyeAngles()
-			
-				tweak = CustomizableWeaponry.shells.cache[sh] and CustomizableWeaponry.shells.cache[sh].angleTweak and CustomizableWeaponry.shells.cache[sh].angleTweak
+				local ang = EyeAngles()
+				local tweak = self._shellTable.rv
 				
 				if tweak then
 					ang:RotateAroundAxis(ang:Right(), tweak.Right)
@@ -60,8 +61,7 @@ function SWEP:CreateShell(sh)
 					ang:RotateAroundAxis(ang:Up(), tweak.Up)
 				end
 				
-				CustomizableWeaponry.shells.make(self, att.Pos + dir * self.ShellOffsetMul, ang, dir * 200, 0.6, 10)
-				-- CustomizableWeaponry_KK.ins2.makeShell(self, att.Pos + dir * self.ShellOffsetMul, ang, dir * 200, 0.6, 10)
+				makeShell(self, att.Pos + dir * self.ShellOffsetMul, ang, dir * 200, 0.6, 10)
 			end)
 		else
 			att = vm:GetAttachment(vm:LookupAttachment(self.ShellAttachmentName))
@@ -78,9 +78,8 @@ function SWEP:CreateShell(sh)
 				att.Pos = att.Pos + (self.ShellPosOffset.z) * att.Ang:Up()
 			end
 			
-			ang = EyeAngles()
-		
-			tweak = CustomizableWeaponry.shells.cache[sh] and CustomizableWeaponry.shells.cache[sh].angleTweak and CustomizableWeaponry.shells.cache[sh].angleTweak
+			local ang = EyeAngles()
+			local tweak = self._shellTable.rv
 				
 			if tweak then
 				ang:RotateAroundAxis(ang:Right(), tweak.Right)
@@ -88,8 +87,7 @@ function SWEP:CreateShell(sh)
 				ang:RotateAroundAxis(ang:Up(), tweak.Up)
 			end
 			
-			CustomizableWeaponry.shells.make(self, att.Pos + dir * self.ShellOffsetMul, ang, dir * 200, 0.6, 10)
-			-- CustomizableWeaponry_KK.ins2.makeShell(self, att.Pos + dir * self.ShellOffsetMul, ang, dir * 200, 0.6, 10)
+			makeShell(self, att.Pos + dir * self.ShellOffsetMul, ang, dir * 200, 0.6, 10)
 		end
 	end
 end

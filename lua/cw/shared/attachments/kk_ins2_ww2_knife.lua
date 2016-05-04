@@ -1,6 +1,6 @@
 local att = {}
 att.name = "kk_ins2_ww2_knife"
-att.displayName = "You call that a knife?"
+att.displayName = "Bayonet Knife"
 att.displayNameShort = "A Knife"
 
 att.statModifiers = {
@@ -10,7 +10,8 @@ att.statModifiers = {
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
 	att.description = {
-		{t = "bind mouse5 cw_kk_melee", c = CustomizableWeaponry.textColors.NEUTRAL},
+		[1] = {t = "bind mouse5 cw_kk_melee", c = CustomizableWeaponry.textColors.NEUTRAL},
+		[2] = {t = "Increases range and damage of melee attack.", c = CustomizableWeaponry.textColors.POSITIVE},
 	}
 	
 	function att:elementRender()

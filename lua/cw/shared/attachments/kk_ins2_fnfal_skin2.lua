@@ -1,6 +1,6 @@
 local att = {}
 att.name = "kk_ins2_fnfal_skin2"
-att.displayName = "Green Finnish"
+att.displayName = "Green FAL Finish"
 att.displayNameShort = "Green"
 att.isBG = true
 
@@ -10,9 +10,7 @@ att.statModifiers = {
 
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
-	att.description = {
-		-- {t = "Secksy as phuck.", c = CustomizableWeaponry.textColors.VPOSITIVE},
-	}
+	att.description = {}
 	
 	function att:attachFunc()
 		self.CW_VM:SetSubMaterial(0, "models/weapons/fal/dosh.mdl")

@@ -15,9 +15,9 @@ att.statModifiers = {
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
 	att.description = {
-		-- [1] = {t = "Provides 4x magnification.", c = CustomizableWeaponry.textColors.POSITIVE},
-		-- [2] = {t = "Narrow scope reduces awareness.", c = CustomizableWeaponry.textColors.NEGATIVE},
-		-- [3] = {t = "Can be disorienting at close range.", c = CustomizableWeaponry.textColors.NEGATIVE}
+		[1] = {t = "Provides 2x magnification.", c = CustomizableWeaponry.textColors.POSITIVE},
+		[2] = {t = "Narrow scope reduces awareness.", c = CustomizableWeaponry.textColors.NEGATIVE},
+		[3] = {t = "Staring at your gun reduces awareness too.", c = CustomizableWeaponry.textColors.NEGATIVE},
 	}
 
 	local path = "cwkk/reticles/pgo7"

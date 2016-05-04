@@ -6,6 +6,8 @@ AddCSLuaFile("sh_soundscript.lua")
 include("sh_sounds.lua")
 include("sh_soundscript.lua")
 
+SWEP.magType = "brMag"
+
 util.PrecacheModel("models/weapons/v_cw_kk_ins2_cstm_scar_tan.mdl")
 util.PrecacheModel("models/weapons/w_cw_kk_ins2_cstm_scar_tan.mdl")
 

@@ -30,8 +30,8 @@ local wmodels = {
 
 local att = {}
 att.name = "kk_ins2_magnifier"
-att.displayName = "2x Magnifier Scope"
 att.displayNameShort = "2x Zoom"
+att.displayName = "2x Magnifier Scope"
 att.aimPos = {"KKINS2MagnifierPos", "KKINS2MagnifierAng"}
 att.isSecondarySight = true
 att.AimViewModelFOV = 25
@@ -43,7 +43,7 @@ att.statModifiers = {
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
 	att.description = {
-		{t = "Provides 2x magnification.", c = CustomizableWeaponry.textColors.POSITIVE},
+		[1] = {t = "Provides 2x magnification.", c = CustomizableWeaponry.textColors.POSITIVE},
 	}
 	
 	-- local simpleTextureDefault = surface.GetTextureID("models/weapons/optics/4x_reticule")

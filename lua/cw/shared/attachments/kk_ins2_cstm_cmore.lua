@@ -1,7 +1,7 @@
 local att = {}
 att.name = "kk_ins2_cstm_cmore"
-att.displayName = "Seymore Sigh"
-att.displayNameShort = "Cmore"
+att.displayNameShort = "C-More"
+att.displayName = "C-More Reflex Sight"
 att.aimPos = {"KKINS2CSTMCMorePos", "KKINS2CSTMCMoreAng"}
 att.FOVModifier = 0
 att.AimViewModelFOV = 40
