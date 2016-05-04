@@ -1,0 +1,6 @@
+"UnlitGeneric"
+{
+	"$baseTexture" "models\weapons\attachments\cw_kk_ins2_shared\fake"
+	"$translucent" 1
+	// "$no_draw" "1"
+}

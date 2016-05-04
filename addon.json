@@ -1,0 +1,16 @@
+{
+	"title"		:	"CWKK INS2 Pack", 
+	"type"		:	"weapon", 
+	"tags"		:	[ "fun", "realism" ], 
+	"ignore"	:
+	[
+		"*.svn*", 
+		"*_src*", 
+		"*_cof*", 
+		"*.jpg", 
+		"*.dds", 
+		"*.tga",
+		"*.txt",
+		"*.ini"
+	]
+}

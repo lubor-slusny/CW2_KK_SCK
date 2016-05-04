@@ -1,0 +1,6 @@
+"UnLitGeneric"
+{
+	"$basetexture" "models\weapons\attachments\cw_kk_ins2_stencil\stencil"
+	"$translucent" "1"
+	// "$nocull" "1"
+}

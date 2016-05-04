@@ -1,0 +1,8 @@
+"VertexLitGeneric"
+{
+	"$baseTexture" 			"models\weapons\attachments\cw_kk_ins2_cstm_compm4s\killflash"
+	
+	"$translucent" 	"1"
+	"$model" 	"1"	
+	
+}

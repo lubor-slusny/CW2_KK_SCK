@@ -1,0 +1,16 @@
+"vertexlitgeneric"
+{
+	"$basetexture" "models\weapons\attachments\cw_kk_ins2_cstm_microt1\T1"
+	"$bumpmap" "models\weapons\attachments\cw_kk_ins2_cstm_microt1\T1_n"
+	"$halflambert"				"1"
+	"$envmapfresnel" 	        "0"
+	"$envmapfresnelminmaxexp"   "[0 0 0]"
+	"$envmaptint" 				"[.02 .02 .02]"
+	"$envmapsaturation" 		"0"
+	"$phong" 					"1"
+	"$phongexponent"			"55"
+	"$phongboost" 				".7"	
+	"$phongfresnelranges"		"[0.7 2 1.5]"
+	"$phongalbedotint" 			"0"
+	"$phongtint" 			"[.9 .9 1]"
+}
