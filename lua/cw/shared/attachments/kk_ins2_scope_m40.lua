@@ -3,10 +3,15 @@ att.name = "kk_ins2_scope_m40"
 att.displayName = "M40 Scope"
 att.displayNameShort = "M40"
 att.aimPos = {"KKINS2ScopeM40Pos", "KKINS2ScopeM40Ang"}
-att.FOVModifier = 15
+att.FOVModifier = 0
+att.AimViewModelFOV = 25
 att.isSight = true
 
-att.statModifiers = {OverallMouseSensMult = -0.1}
+-- att.colorType = CustomizableWeaponry.colorableParts.COLOR_TYPE_SIGHT
+
+att.statModifiers = {
+	OverallMouseSensMult = -0.1
+}
 
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
@@ -20,7 +25,7 @@ if CLIENT then
 		{tex = surface.GetTextureID("models/weapons/optics/mk4_crosshair"), offset = {0, 1}},
 	}
 	
-	att._rtFov = 3
+	att._rtFov = 6
 	
 	function att:drawRenderTarget()		
 		local scopeEnt = self.AttachmentModelsVM[att.name].ent

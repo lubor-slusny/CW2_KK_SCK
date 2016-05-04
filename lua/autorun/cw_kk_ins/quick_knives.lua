@@ -43,6 +43,33 @@ function CustomizableWeaponry_KK.ins2:canKnife()
 	return true
 end
 
+local function aimAssist(self)
+	if SERVER then
+		local dir = self.Owner:GetAimVector()
+		local targets = ents.FindInCone(self.Owner:GetShootPos(), dir, 100, 30)
+		local nearestDist = 200
+		local nearestEnt = nil
+		
+		for _,v in pairs(targets) do
+			if (v.IsNPC and v:IsNPC()) or (v.IsPlayer and v:IsPlayer() and v != self.Owner) then
+				local d = self.Owner:EyePos():Distance(v:EyePos())
+				if d <= nearestDist then
+					nearestDist = d
+					nearestEnt = v
+				end
+			end
+		end
+			
+		if nearestEnt then
+			local target = nearestEnt:GetShootPos()
+			local src = self.Owner:GetShootPos()
+			
+			local ang = (target - src):Angle()
+			self.Owner:SetEyeAngles(ang)
+		end
+	end
+end
+
 function CustomizableWeaponry_KK.ins2:meleeKnife()
 	local CT = CurTime()
 	
@@ -61,24 +88,33 @@ function CustomizableWeaponry_KK.ins2:meleeKnife()
 		end
 		
 		if CLIENT then
-			CustomizableWeaponry.actionSequence.new(self, 0.2, nil, function()
+			CustomizableWeaponry.actionSequence.new(self, 0.1, nil, function()
 				self:EmitSound("weapons/knife/knife_deploy1.wav")
 			end)
 			
-			CustomizableWeaponry.actionSequence.new(self, 0.45, nil, function()
-				self.GrenadePos.z = -10
-				self.knifeTime = CurTime() + 0.5
-				self:playAnim(self.CW_KK_KNIFE_TWEAK.a_attack, 1, 0, self.CW_KK_KNIFE)
-				self:EmitSound("weapons/knife/knife_slash" .. math.random(1,2) .. ".wav")
+			CustomizableWeaponry.actionSequence.new(self, 0.1, nil, function()
+				self.GrenadePos.z = -15
+				self.knifeTime = CurTime() + 1.2
+				self:playAnim(self.CW_KK_KNIFE_TWEAK.a_attack, 0, 0.1, self.CW_KK_KNIFE)
 			end)
 			
-			CustomizableWeaponry.actionSequence.new(self, 0.8, nil, function()
+			CustomizableWeaponry.actionSequence.new(self, 0.3, nil, function()
+				self:playAnim(self.CW_KK_KNIFE_TWEAK.a_attack, 1, 0.1, self.CW_KK_KNIFE)
+			end)
+			
+			CustomizableWeaponry.actionSequence.new(self, 0.9, nil, function()
 				self:playAnim("holster", 1, 0, self.CW_KK_KNIFE)
+			end)
+			
+			CustomizableWeaponry.actionSequence.new(self, 1, nil, function()
+				self:idleAnimFunc()
 			end)
 		end
 		
-		CustomizableWeaponry.actionSequence.new(self, 0.4, nil, function() 
+		CustomizableWeaponry.actionSequence.new(self, 0.37, nil, function() 
 			local start = self.Owner:GetShootPos()
+
+			-- aimAssist(self)
 			
 			local tr = util.TraceLine({
 				start = start,
@@ -115,12 +151,6 @@ function CustomizableWeaponry_KK.ins2:meleeKnife()
 			
 			self:MakeRecoil(math.random(5,10) / 10 * math.pow(-1,math.random(2,3)))
 		end)
-		
-		CustomizableWeaponry.actionSequence.new(self, 2, nil, function()
-			local delay = 3
-			self:SetNextPrimaryFire(CT + delay)
-			self:SetNextSecondaryFire(CT + delay)
-		end)
 	end
 end
 
@@ -132,3 +162,84 @@ usermessage.Hook("CW20_KK_INS_KNIFE_MELEE", function()
 		CustomizableWeaponry_KK.ins2.meleeKnife(wep)
 	end
 end)
+
+if CLIENT then
+	function CustomizableWeaponry_KK.ins2:drawKKKnife()
+		if CurTime() > self.knifeTime then
+			return
+		end
+		
+		pos, ang = EyePos(), EyeAngles()
+		
+		self.GrenadePos.z = Lerp(FrameTime() * 10, self.GrenadePos.z, 0)
+		
+		pos = pos + ang:Up() * self.GrenadePos.z
+		pos = pos + ang:Forward() * 2
+		
+		self.CW_KK_KNIFE:SetPos(pos)
+		self.CW_KK_KNIFE:SetAngles(ang)
+		self.CW_KK_KNIFE:FrameAdvance(FrameTime())
+
+		self.CW_KK_HANDS:SetPos(pos)
+		self.CW_KK_HANDS:SetParent(self.CW_KK_KNIFE)
+		self.CW_KK_HANDS:AddEffects(EF_BONEMERGE_FASTCULL)
+		
+		cam.IgnoreZ(true)
+			self.CW_KK_KNIFE:DrawModel()
+			self.CW_KK_HANDS:DrawModel()
+		cam.IgnoreZ(false)
+	end
+end
+
+function CustomizableWeaponry_KK.ins2:meleeWW2()
+	self.Owner:SetAnimation(PLAYER_ATTACK1)
+	
+	if IsFirstTimePredicted() then
+		self:meleeAnimFunc()
+		self:SetNextPrimaryFire(CurTime() + 1)
+		
+		if SERVER and SP then
+			SendUserMessage("CW20_KK_INS_RETICLEINACTIVITY", self.Owner)
+		end
+		
+		local start = self.Owner:GetShootPos()
+		
+		-- aimAssist(self)
+		
+		local tr = util.TraceLine({
+			start = start,
+			endpos = start + self.Owner:GetAimVector() * 80,
+			filter = self.Owner
+		})
+	
+		if tr.Hit then
+			self:EmitSound("CW_KK_INS2_KNIFE")
+			local ent = tr.Entity
+			
+			if IsValid(ent) then
+				if SERVER then
+					local d = DamageInfo()
+					
+					d:SetAttacker(self.Owner)
+					d:SetInflictor(self)
+					
+					d:SetDamage(math.random(10) + 45)
+					
+					local dir = self.Owner:GetAimVector() - start
+					d:SetDamageType(DMG_SLASH)
+					d:SetDamagePosition(tr.HitPos)
+					d:SetReportedPosition(start)
+					
+					ent:TakeDamageInfo(d)
+				end
+			end
+			
+			self:MakeRecoil(math.random(20,40) / 10 * math.pow(-1,math.random(2,3)))
+		else
+			self:MakeRecoil(math.random(5,10) / 10 * math.pow(-1,math.random(2,3)))				
+		end
+		
+	end
+end
+
+

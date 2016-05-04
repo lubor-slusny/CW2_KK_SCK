@@ -3,10 +3,15 @@ att.name = "kk_ins2_cstm_acog"
 att.displayName = "Trijicon ACOG"
 att.displayNameShort = "ACOG"
 att.aimPos = {"KKINS2CSTMACOGPos", "KKINS2CSTMACOGAng"}
-att.FOVModifier = 15
+att.FOVModifier = 0
+att.AimViewModelFOV = 25
 att.isSight = true
 
-att.statModifiers = {OverallMouseSensMult = -0.1}
+-- att.colorType = CustomizableWeaponry.colorableParts.COLOR_TYPE_SIGHT
+
+att.statModifiers = {
+	OverallMouseSensMult = -0.1
+}
 
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
@@ -20,7 +25,7 @@ if CLIENT then
 		{tex = surface.GetTextureID("cw2/reticles/reticle_chevron"), offset = {0, 1}}
 	}
 	
-	att._rtFov = 4.5
+	att._rtFov = 12
 	att._rtReticle = surface.GetTextureID("cw2/reticles/reticle_chevron")
 	att._reticleMat = Material("cw2/reticles/reticle_chevron")
 	

@@ -20,6 +20,10 @@ if CLIENT then
 		["kk_ins2_elcan"] = {
 			Vector(-2.7946, -2, -1.0583),
 			Vector(-0.4447, 0.0147, 0)
+		},
+		["kk_ins2_cstm_acog"] = {
+			Vector(-1.3473, -2, -0.5532),
+			Vector(0, 0, 0)
 		}
 	}
 	
@@ -139,8 +143,10 @@ SWEP.Animations = {
 	base_bolt = "base_fire_end",
 	base_bolt_aim = "iron_fire_end",
 	base_reload_start = "base_reload_start",
+	base_reload_start_empty = "base_reload_start",
 	base_insert = "base_reload_insert",
 	base_reload_end = "base_reload_end_empty",
+	base_reload_end_empty = "base_reload_end_empty",
 	base_idle = "base_idle",
 	base_holster = "base_holster",
 	base_sprint = "base_sprint",
@@ -155,8 +161,10 @@ SWEP.Animations = {
 	bipod_bolt = "deployed_fire_end",
 	bipod_bolt_aim = "deployed_iron_fire_end",
 	bipod_reload_start = "deployed_reload_start",
+	bipod_reload_start_empty = "deployed_reload_start",
 	bipod_insert = "deployed_reload_insert",
 	bipod_reload_end = "deployed_reload_end",
+	bipod_reload_end_empty = "deployed_reload_end",
 	bipod_out = "deploy_out",
 }
 	
@@ -336,32 +344,34 @@ SWEP.RecoilToSpread = 0.8 -- the M14 in particular will have 30% more recoil fro
 SWEP.BipodDeployTime = 1.15
 SWEP.BipodUndeployTime = 1.15
 
-SWEP.ReloadStartTime = 0.865
+SWEP.ReloadStartTime = 0.9
+SWEP.ReloadStartTimeEmpty = 0.9
 SWEP.InsertShellTime = 0.825
 SWEP.ReloadFinishWait = 1.1
+SWEP.ReloadFinishWaitEmpty = 1.1
 
 SWEP.SnapToIdlePostReload = false
 
-function SWEP:updateReloadTimes()
-	local mode = self:getForegripMode()
+-- function SWEP:updateReloadTimes()
+	-- local mode = self:getForegripMode()
 
-	if SERVER or not self.shotgunReloading then
-		self.Animations.reload_start = self.Animations[mode .. "reload_start"]
-		self.Animations.insert = self.Animations[mode .. "insert"]
-		self.Animations.reload_end = self.Animations[mode .. "reload_end"]
-		self.Animations.idle = self.Animations[mode .. "reload_end"]
-	end
+	-- if SERVER or not self.shotgunReloading then
+		-- self.Animations.reload_start = self.Animations[mode .. "reload_start"]
+		-- self.Animations.insert = self.Animations[mode .. "insert"]
+		-- self.Animations.reload_end = self.Animations[mode .. "reload_end"]
+		-- self.Animations.idle = self.Animations[mode .. "reload_end"]
+	-- end
 	
-	if self.base_ReloadStartTime then
-		self.ReloadStartTime = self[mode .. "ReloadStartTime"] or self.base_ReloadStartTime
-	end
-	if self.base_InsertShellTime then
-		self.InsertShellTime = self[mode .. "InsertShellTime"] or self.base_InsertShellTime
-	end
-	if self.base_ReloadFinishWait then
-		self.ReloadFinishWait = self[mode .. "ReloadFinishWait"] or self.base_ReloadFinishWait
-	end
-end
+	-- if self.base_ReloadStartTime then
+		-- self.ReloadStartTime = self[mode .. "ReloadStartTime"] or self.base_ReloadStartTime
+	-- end
+	-- if self.base_InsertShellTime then
+		-- self.InsertShellTime = self[mode .. "InsertShellTime"] or self.base_InsertShellTime
+	-- end
+	-- if self.base_ReloadFinishWait then
+		-- self.ReloadFinishWait = self[mode .. "ReloadFinishWait"] or self.base_ReloadFinishWait
+	-- end
+-- end
 
 if CLIENT then
 	function SWEP:updateOtherParts() // call me clientSideThink

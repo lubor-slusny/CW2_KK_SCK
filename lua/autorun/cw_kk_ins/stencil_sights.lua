@@ -15,9 +15,16 @@ if CLIENT then
 	CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/optics/eotech_lense"] = true
 	CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/attachments/cw_kk_ins2_cstm_barska/barska_lense"] = true
 	
-	CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/optics/mosin_lense"] = true
 	CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/optics/lense_rt"] = true
+	CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/optics/mosin_lense"] = true
 	CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/optics/optic_lense"] = true
+	
+	CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/optics/4x_reticule"] = true
+	CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/optics/elcan_reticule"] = true
+	CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/optics/mk4_crosshair"] = true
+	CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/optics/mosin_crosshair"] = true
+	CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/optics/parallax_mask"] = true
+	CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/optics/po4x_reticule"] = true
 	
 	CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/attachments/cw_kk_ins2_cstm_acog/elcan_reticule"] = true
 
@@ -52,7 +59,7 @@ if CLIENT then
 	local size, rc, isAiming, freeze, isScopePos, attachmEnt, retAtt, retDist, retPos, EA, retAng, retNorm, v
 	
 	function CustomizableWeaponry_KK.ins2:drawStencilEnt(att)
-		/*"canvas" for reticle, materialoverride*/
+		-- /*"canvas" for reticle, materialoverride*/
 		-- if att.stencilMats then
 			-- for i,is in pairs(att.stencilMats) do
 				-- if is then
@@ -88,10 +95,10 @@ if CLIENT then
 			
 			v.stencilEnt:SetupBones()
 			
-			-- if v.merge then
-				-- v.stencilEnt:SetParent(self.CW_VM)
-				-- v.stencilEnt:AddEffects(EF_BONEMERGE)
-			-- end
+			if v.merge then
+				v.stencilEnt:SetParent(self.CW_VM)
+				v.stencilEnt:AddEffects(EF_BONEMERGE)
+			end
 			
 			for i,m in pairs(v.stencilEnt:GetMaterials()) do
 				if isLense[m] then
@@ -101,16 +108,17 @@ if CLIENT then
 				end
 			end
 		else
-			-- if not v.merge then
-				-- v.stencilEnt:SetPos(v.ent:GetPos())
-				-- v.stencilEnt:SetAngles(v.ent:GetAngles())
-			-- end
+			if not v.merge then
+				v.stencilEnt:SetPos(v.ent:GetPos())
+				v.stencilEnt:SetAngles(v.ent:GetAngles())
+			end
 			
-			v.stencilEnt:SetPos(v.ent:GetPos())
-			v.stencilEnt:SetAngles(v.ent:GetAngles())
+			v.stencilEnt:SetSequence(v.ent:GetSequence())
 			v.stencilEnt:DrawModel()
 		end
 	end
+	
+	local nearWallOutTime
 	
 	function CustomizableWeaponry_KK.ins2:stencilSight(att)
 		if not self.AttachmentModelsVM then return end
@@ -133,7 +141,7 @@ if CLIENT then
 		self.AttachmentModelsVM[att.name].nodraw = false
 		attachmEnt = self.AttachmentModelsVM[att.name].ent
 		
-		if !freeze then
+		-- if !freeze then
 			/*stencil stuff*/
 			render.ClearStencil()
 			render.SetStencilEnable(true)
@@ -144,11 +152,11 @@ if CLIENT then
 			render.SetStencilPassOperation(STENCILOPERATION_REPLACE)
 			render.SetStencilFailOperation(STENCILOPERATION_KEEP)
 			render.SetStencilZFailOperation(STENCILOPERATION_KEEP)
-		end
+		-- end
 		
 		CustomizableWeaponry_KK.ins2.drawStencilEnt(self, att)
 		
-		if !freeze then
+		-- if !freeze then
 			/*stencil stuff*/
 			render.SetStencilWriteMask(2)
 			render.SetStencilTestMask(2)
@@ -158,7 +166,7 @@ if CLIENT then
 			render.SetStencilWriteMask(1)
 			render.SetStencilTestMask(1)
 			render.SetStencilReferenceValue(1)
-		end
+		-- end
 		
 		/*prepare reticle pos*/
 		retAtt = attachmEnt:GetAttachment(1)
@@ -177,8 +185,16 @@ if CLIENT then
 			cam.IgnoreZ(false)
 		end
 		
+		-- nearWallOutTime = 0
+		
+		if self:isNearWall() then
+			nearWallOutTime = CurTime() + 0.3
+		elseif not nearWallOutTime then 
+			nearWallOutTime = CurTime()
+		end
+		
 		/*main reticle - centered when aiming and active*/
-		if self:isReticleActive() and isAiming then
+		if self:isReticleActive() and isAiming and nearWallOutTime < CurTime() then
 			EA = self:getReticleAngles()	
 			retPos = EyePos() + EA:Forward() * retDist
 		end
@@ -195,9 +211,9 @@ if CLIENT then
 			render.CullMode(MATERIAL_CULLMODE_CCW)
 		cam.IgnoreZ(false)
 		
-		if !freeze then
+		-- if !freeze then
 			/*disable stencils*/
 			render.SetStencilEnable(false)
-		end
+		-- end
 	end
 end

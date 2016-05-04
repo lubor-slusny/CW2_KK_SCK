@@ -2,7 +2,9 @@ if not CustomizableWeaponry then return end
 
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
+AddCSLuaFile("sh_soundscript.lua")
 include("sh_sounds.lua")
+include("sh_soundscript.lua")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
@@ -14,16 +16,29 @@ if CLIENT then
 	SWEP.Shell = "KK_INS2_762x54"
 	
 	SWEP.AttachmentModelsVM = {
+		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_standard_garand.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
+		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_modkit_m1a1.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		
 		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/a_bayonet.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		
+		["kk_ins2_cstm_barska"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_barska_l.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_scope_zf4"] = {model = "models/weapons/upgrades/a_optic_zf4.mdl", pos = Vector(0,0,-3.5), angle = Angle(90, 0, 90), size = Vector(1, 1, 1), attachment = "Optic"},
 	}
 
 	SWEP.IronsightPos = Vector(-2.4643, -2, 1.1174)
 	SWEP.IronsightAng = Vector(-0.4782, 0.006, 0)
 
+	SWEP.KKINS2CSTMBarskaPos = Vector(-2.4416, -4, -0.041)
+	SWEP.KKINS2CSTMBarskaAng = Vector(0, 0, 0)
+
+	SWEP.KKINS2ScopeZF4Pos = Vector(-2.4415, -8, 0.6457)
+	SWEP.KKINS2ScopeZF4Ang = Vector(0, 0, 0)
+
 end
 
 SWEP.Attachments = {
 	-- {header = "Sight", offset = {500, -500},  atts = {"kk_ins2_cstm_barska", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_cstm_acog", "kk_ins2_pso4", "kk_ins2_scope_mosin", "kk_ins2_scope_m40"}},
+	{header = "Sight", offset = {500, -500},  atts = {"kk_ins2_cstm_barska", "kk_ins2_scope_zf4"}},
 	{header = "Barrel", offset = {-200, -500},  atts = {"kk_ins2_ww2_knife"}},
 	-- {header = "Under", offset = {-500, 0},  atts = {"kk_ins2_bipod"}},
 	-- {header = "Extras", offset = {125, 200}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_combo"}},
@@ -59,32 +74,8 @@ SWEP.Animations = {
 	base_safe_aim = "iron_down",
 	base_safe_empty_aim = "iron_down_empty",
 	
-}
-
-SWEP.Sounds = {
-	shoot_empty = {
-		{time = 0, sound = "Weapon_Garand.ClipDing"},
-	},
-
-	empty_idle = {
-		{time = 0, sound = "Weapon_Garand.ClipDing"},
-	},
-
-	reload = {
-		{time = 1/35, sound = "Weapon_Garand.Draw"},
-		{time = 12/35, sound = "Weapon_Garand.ClipIn1"},
-		{time = 17/35, sound = "Weapon_Garand.ClipIn2"},
-		{time = 28/35, sound = "Weapon_Garand.Draw"},
-		{time = 33/35, sound = "Weapon_Garand.BoltForward"},
-	},
-
-	draw = {
-		{time = 1/32, sound = "Weapon_Garand.Draw"},
-	},
-
-	draw_empty = {
-		{time = 1/32, sound = "Weapon_Garand.Draw"},
-	},
+	base_melee = "base_melee",
+	base_melee_empty = "base_melee_empty",
 }
 
 SWEP.SpeedDec = 40
@@ -106,6 +97,8 @@ SWEP.ViewModelFOV	= 75
 SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_garand.mdl"
 SWEP.WorldModel		= "models/weapons/w_garand.mdl"
+
+SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2us
 
 SWEP.WMPos = Vector(1.542, 0, 0.976)
 SWEP.WMAng = Vector(-12.174, 1.458, 180)
@@ -130,13 +123,23 @@ SWEP.SpreadPerShot = 0.01
 SWEP.SpreadCooldown = 0.12
 SWEP.Shots = 1
 SWEP.Damage = 42
+
+SWEP.FirstDeployTime = 2
 SWEP.DeployTime = 0.94
 
 SWEP.RecoilToSpread = 0.8 -- the M14 in particular will have 30% more recoil from continuous fire to give a feeling of "oh fuck I should stop firing 7.62x51MM in full auto at 750 RPM"
 
-local reload = 1.63
+SWEP.ReloadTime = 4.1
+SWEP.ReloadHalt = 5.13
+SWEP.ReloadTime_Empty = 3.3
+SWEP.ReloadHalt_Empty = 5.13
 
-SWEP.ReloadTime = reload
-SWEP.ReloadTime_Empty = reload
-SWEP.ReloadHalt = reload
-SWEP.ReloadHalt_Empty = reload
+if CLIENT then 
+	function SWEP:updateOtherParts()
+		if self.Sequence:find("reload") and self.CW_VM:GetCycle() > 0.3 then
+			self:setBodygroup(1, math.Clamp(self.Owner:GetAmmoCount(self.Primary.Ammo) + self:Clip1(), 0, 9))
+		else
+			self:setBodygroup(1, self:Clip1())
+		end
+	end
+end

@@ -44,8 +44,10 @@ SWEP.Animations = {
 	draw = "base_ready", // coz drawanimfunc doesnt play always
 	
 	base_reload_start = "base_reload_start",
+	base_reload_start_empty = "base_reload_start",
 	base_insert = "base_reload_insert",
 	base_reload_end = "base_reload_end",
+	base_reload_end_empty = "base_reload_end",
 	base_idle = "base_reload_end",	
 	
 	base_pickup = "base_ready",
@@ -185,8 +187,10 @@ SWEP.ReloadTime_Empty = 3.6
 SWEP.ReloadHalt_Empty = 4.2
 
 SWEP.ReloadStartTime = 2.36
+SWEP.ReloadStartTimeEmpty = 2.36
 SWEP.InsertShellTime = 0.98
 SWEP.ReloadFinishWait = 1.74
+SWEP.ReloadFinishWaitEmpty = 1.74
 
 function SWEP:beginReload()
 	if self.ShotgunReload then
@@ -194,6 +198,7 @@ function SWEP:beginReload()
 	
 		local time = CT + self.ReloadStartTime / self.ReloadSpeed
 		
+		self.lastMag = mag
 		self.WasEmpty = mag == 0
 		self.ReloadDelay = time
 		self:SetNextPrimaryFire(time)

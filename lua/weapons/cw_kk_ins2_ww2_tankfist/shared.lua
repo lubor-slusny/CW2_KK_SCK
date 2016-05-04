@@ -2,7 +2,9 @@ if not CustomizableWeaponry then return end
 
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
+AddCSLuaFile("sh_soundscript.lua")
 include("sh_sounds.lua")
+include("sh_soundscript.lua")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
@@ -76,49 +78,6 @@ SWEP.Animations = {
 	base_safe_empty = "panzerfaust_down_empty",
 	base_safe_empty_aim = "panzerfaust_iron_down_empty",
 }
-	
-SWEP.Sounds = {
-	panzerfaust_crawl = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
-		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
-	},
-
-	panzerfaust_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_WW2_PANZERFAUST_EMPTY"},
-	},
-
-	panzerfaust_draw = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-	},
-
-	panzerfaust_holster = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
-	},
-
-	panzerfaust_ready = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-		{time = 35/31, sound = "CW_KK_INS2_WW2_PANZERFAUST_PINOUT"},
-		{time = 68/31, sound = "CW_KK_INS2_WW2_PANZERFAUST_SIGHTUP"},
-		{time = 95/31, sound = "CW_KK_INS2_WW2_PANZERFAUST_SHOULDER"},
-	},
-
-	panzerfaust_iron_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_WW2_PANZERFAUST_EMPTY"},
-	},
-
-	panzerfaust_crawl_empty = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
-		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
-	},
-
-	panzerfaust_draw_empty = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-	},
-
-	panzerfaust_holster_empty = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
-	},
-}
 
 SWEP.SpeedDec = 15
 
@@ -144,8 +103,7 @@ SWEP.DrawCustomWM = true
 SWEP.WMPos = Vector(7.035, 5.085, -0.366)
 SWEP.WMAng = Vector(-10.386, 0, -120)
 
-SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.f1
-SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.gurkha
+SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2de
 
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
@@ -153,7 +111,7 @@ SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
 SWEP.Primary.ClipSize		= 1
 SWEP.Primary.DefaultClip	= 1
 SWEP.Primary.Automatic		= true
-SWEP.Primary.Ammo			= "RPG 40MM"
+SWEP.Primary.Ammo			= "Panzerfaust"
 
 SWEP.FireDelay = 0.3
 SWEP.FireSound = "CW_KK_INS2_WW2_PANZERFAUST_FIRE"

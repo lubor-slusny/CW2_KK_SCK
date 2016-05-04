@@ -3,8 +3,10 @@ att.name = "kk_ins2_cstm_barska"
 att.displayName = "Barska Reflex Sight"
 att.displayNameShort = "Barska"
 att.aimPos = {"KKINS2CSTMBarskaPos", "KKINS2CSTMBarskaAng"}
-att.FOVModifier = 15
+att.FOVModifier = 0
+att.AimViewModelFOV = 40
 att.isSight = true
+
 -- att.colorType = CustomizableWeaponry.colorableParts.COLOR_TYPE_SIGHT
 
 if CLIENT then
@@ -15,7 +17,7 @@ if CLIENT then
 	}
 	
 	att.reticle = "models/weapons/optics/aimpoint_reticule_holo"
-	att._reticleSize = 10
+	att._reticleSize = 9
 	
 	function att:elementRender()
 		CustomizableWeaponry_KK.ins2.stencilSight(self, att)

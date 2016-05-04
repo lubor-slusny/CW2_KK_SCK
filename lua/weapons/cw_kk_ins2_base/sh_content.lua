@@ -60,6 +60,10 @@
 	CustomizableWeaponry:addReloadSound("CW_KK_INS2_GP30_INSERTGRENADECLICK", "weapons/gp30/handling/gp30_insertgrenade_click.wav")
 	CustomizableWeaponry:addReloadSound("CW_KK_INS2_GP30_SELECT", "weapons/gp30/handling/gp30_select.wav")
 
+	// WW2 
+	CustomizableWeaponry:addFireSound("CW_KK_INS2_WW2_MELEE", {"weapons/universal/weapon_melee_01.wav","weapons/universal/weapon_melee_02.wav","weapons/universal/weapon_melee_03.wav","weapons/universal/weapon_melee_04.wav","weapons/universal/weapon_melee_05.wav","weapons/universal/weapon_melee_06.wav"}, 1, 105, CHAN_STATIC)
+	CustomizableWeaponry:addFireSound("CW_KK_INS2_WW2_MELEEHIT", {"weapons/universal/weapon_melee_hitworld_01.wav","weapons/universal/weapon_melee_hitworld_02.wav"}, 1, 105, CHAN_STATIC)
+	
 // SHELLS
 	
 	CustomizableWeaponry:addRegularSound("CW_KK_INS2_SHELL_38", {"weapons/bullets/shells/concrete/38_shell_concrete_01.wav", "weapons/bullets/shells/concrete/38_shell_concrete_02.wav", "weapons/bullets/shells/concrete/38_shell_concrete_03.wav", "weapons/bullets/shells/concrete/38_shell_concrete_04.wav", "weapons/bullets/shells/concrete/38_shell_concrete_05.wav", "weapons/bullets/shells/concrete/38_shell_concrete_06.wav"}, 65)
@@ -102,6 +106,10 @@
 	CustomizableWeaponry:registerAmmo("7.62x63MM", "7.62x63MM Rounds", 7.62, 63)
 	
 	CustomizableWeaponry:registerAmmo("RPG 40MM", "40MM Rocket Propelled Grenades", 0, 0)
+	CustomizableWeaponry:registerAmmo("AT4 Launcher", "AT4 Rocket Launchers", 0, 0)
+	CustomizableWeaponry:registerAmmo("M6A1 Rocket", "M6A1 Rockets", 0, 0)
+	CustomizableWeaponry:registerAmmo("Panzerfaust", "Panzerfaust Rocket Launchers", 0, 0)
+	
 	CustomizableWeaponry:registerAmmo("Flare", "Flares for flare gun", 0, 0)
 	CustomizableWeaponry:registerAmmo("C4", "C4 explosives", 0, 0)
 	CustomizableWeaponry:registerAmmo("IED", "Improvised explosives", 0, 0)
@@ -180,15 +188,69 @@ if CLIENT then
 	
 end
 
+if CLIENT then
+	language.Add("cw_kk_ins2_projectile_m6a1", "M1 Bazooka rocket")
+	language.Add("cw_kk_ins2_projectile_pf60", "Panzerfaust projectile")
+	language.Add("cw_kk_ins2_projectile_rpg", "PG-7V grenade")
+	language.Add("cw_kk_ins2_projectile_rpg_2", "PG-7V grenade")
+	language.Add("cw_kk_ins2_thrown_molotov", "Fake Molotov")
+	language.Add("cw_kk_ins2_projectile_at4", "AT4 rocket")
+	language.Add("cw_kk_ins2_projectile_c4", "Active C4 charge")
+	language.Add("cw_kk_ins2_projectile_ied", "Active IED")
+	language.Add("cw_kk_ins2_projectile_flare", "P2A1 flare")
+end
+
 // KEK
 
 if CustomizableWeaponry_KK.HOME then
+	// RPG
 	local gren = {}
 	gren.name = "40mm_kk_1337"
 	gren.display = " - 1337 ROFLKEK"
 
 	function gren:fireFunc()
 		CustomizableWeaponry_KK.ins2.fireRPG(self, IsFirstTimePredicted()) // yay I can doo this two
+	end
+
+	CustomizableWeaponry.grenadeTypes:addNew(gren)
+	
+	// FRAG
+	local gren = {}
+	gren.name = "40mm_kk_1338"
+	gren.display = " - 1338 ROFLKEK"
+
+	function gren:fireFunc()
+		local pos = self.Owner:GetShootPos()
+		local offset = CustomizableWeaponry.quickGrenade.getThrowOffset(self)
+		local eyeAng = self.Owner:EyeAngles()
+		local forward = eyeAng:Forward()
+		
+		local nade = ents.Create("cw_grenade_thrown")
+		nade:SetPos(pos + offset)
+		nade:SetAngles(eyeAng)
+		nade:Spawn()
+		nade:Activate()
+		nade:Fuse(3)
+		nade:SetOwner(self.Owner)
+		
+		local phys = nade:GetPhysicsObject()
+		
+		if IsValid(phys) then
+			local overallSideMod = self.Owner:KeyDown(IN_SPEED) and 2 or 1
+
+			-- take the velocity into account
+			addMod = math.Clamp(self.Owner:GetVelocity():Length() / self.Owner:GetRunSpeed(), 0, 1)
+			
+			local velocity = forward * CustomizableWeaponry.quickGrenade.throwVelocity + CustomizableWeaponry.quickGrenade.addVelocity
+			local velNorm = self.Owner:GetVelocity():GetNormal()
+			velNorm.z = 0
+			
+			-- add velocity based on player velocity normal
+			velocity = velocity + velNorm * CustomizableWeaponry.quickGrenade.movementAddVelocity * addMod
+			
+			phys:SetVelocity(velocity)
+			phys:AddAngleVelocity(Vector(math.random(-500, 500), math.random(-500, 500), math.random(-500, 500)))
+		end
 	end
 
 	CustomizableWeaponry.grenadeTypes:addNew(gren)	

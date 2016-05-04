@@ -2,7 +2,9 @@ if not CustomizableWeaponry then return end
 
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
+AddCSLuaFile("sh_soundscript.lua")
 include("sh_sounds.lua")
+include("sh_soundscript.lua")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
@@ -37,16 +39,7 @@ if CLIENT then
 
 		["kk_ins2_magnifier"] = {model = "models/weapons/upgrades/a_optic_aimp2x_l.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_kobra"] = {model = "models/weapons/upgrades/a_optic_kobra_l.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_eotech"] = {model = "models/weapons/upgrades/a_optic_eotech_l.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_aimpoint"] = {model = "models/weapons/upgrades/a_optic_aimpoint_l.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_elcan"] = {model = "models/weapons/upgrades/a_optic_elcan_l.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_scope_m40"] = {model = "models/weapons/upgrades/a_optic_m40_l.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_scope_mosin"] = {model = "models/weapons/upgrades/a_optic_mosin_l.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_pso4"] = {model = "models/weapons/upgrades/a_optic_po4x24_l.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		
-		["kk_ins2_cstm_barska"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_barska_l.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_cstm_acog"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_acog.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_scope_zf4"] = {model = "models/weapons/upgrades/a_optic_zf4.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 	}
 
 	SWEP.AttachmentModelsWM = {
@@ -88,29 +81,8 @@ if CLIENT then
 	SWEP.IronsightPos = Vector(-2.813, -2, 1.45)
 	SWEP.IronsightAng = Vector(-0.03, 0.03, 0)
 	
-	SWEP.KKINS2CSTMBarskaPos = Vector(-2.815, -12, -0.3279)
-	SWEP.KKINS2CSTMBarskaAng = Vector(0, 0, 0)
-
-	SWEP.KKINS2AimpointPos = Vector(-2.8247, -12, -0.3669)
-	SWEP.KKINS2AimpointAng = Vector(0, 0, 0)
-
-	SWEP.KKINS2ScopeMosinPos = Vector(-2.8011, -12, 0.0242)
-	SWEP.KKINS2ScopeMosinAng = Vector(0, 0, 0)
-
-	SWEP.KKINS2MagnifierPos = Vector(-2.815, -12, -0.4)
-	SWEP.KKINS2MagnifierAng = Vector(0, 0, 0)
-
-	SWEP.KKINS2PSO4Pos = Vector(-2.7506, -12, -0.2107)
-	SWEP.KKINS2PSO4Ang = Vector(0, 0, 0)
-
-	SWEP.KKINS2ScopeM40Pos = Vector(-2.8291, -10, -0.2102)
-	SWEP.KKINS2ScopeM40Ang = Vector(0, 0, 0)
-
-	SWEP.KKINS2ElcanPos = Vector(-2.8232, -10, -0.7093)
-	SWEP.KKINS2ElcanAng = Vector(0, 0, 0)
-	
-	SWEP.KKINS2CSTMACOGPos = Vector(-2.8198, -11, -0.4165)
-	SWEP.KKINS2CSTMACOGAng = Vector(0, 0, 0)
+	SWEP.KKINS2ScopeMosinPos = Vector(-2.8298, -15, 0.3527)
+	SWEP.KKINS2ScopeMosinAng = Vector(-0.0329, 0.0027, 0)
 
 	SWEP.CustomizationMenuScale = 0.025
 end
@@ -123,6 +95,7 @@ SWEP.GlobalDelayOnShoot = 2
 
 SWEP.Attachments = {
 	-- {header = "Sight", offset = {500, -500},  atts = {"kk_ins2_cstm_barska", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_cstm_acog", "kk_ins2_pso4", "kk_ins2_scope_mosin", "kk_ins2_scope_m40"}},
+	{header = "Sight", offset = {500, -500},  atts = {"kk_ins2_scope_zf4"}},
 	{header = "Barrel", offset = {-200, -500},  atts = {"kk_ins2_ww2_knife"}},
 	-- {header = "Under", offset = {-500, 0},  atts = {"kk_ins2_bipod"}},
 	-- {header = "Extras", offset = {125, 200}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_combo"}},
@@ -146,13 +119,16 @@ SWEP.Animations = {
 	base_bolt = "base_fire_end",
 	base_bolt_aim = "iron_fire_end",
 	base_reload_start = "reload_start",
+	base_reload_start_empty = "reload_start",
 	base_insert = "reload_insert",
 	base_reload_end = "reload_end",
+	base_reload_end_empty = "reload_end",
 	base_idle = "base_idle",
 	base_holster = "base_holster",
 	base_sprint = "base_sprint",
 	base_safe = "base_down",
 	base_safe_aim = "iron_down",
+	base_melee = "base_melee",
 	
 	bipod_in = "deployed_in",
 	bipod_fire = "deployed_fire_start",
@@ -162,8 +138,10 @@ SWEP.Animations = {
 	bipod_bolt = "deployed_fire_end",
 	bipod_bolt_aim = "iron_fire_deployed_end",
 	bipod_reload_start = "deployed_reload_start",
+	bipod_reload_start_empty = "deployed_reload_start",
 	bipod_insert = "deployed_reload_insert",
 	bipod_reload_end = "deployed_reload_end",
+	bipod_reload_end_empty = "deployed_reload_end",
 	bipod_out = "deployed_out",
 }
 	
@@ -338,31 +316,33 @@ SWEP.BipodDeployTime = 1.15
 SWEP.BipodUndeployTime = 1.15
 
 SWEP.ReloadStartTime = 0.865
+SWEP.ReloadStartTimeEmpty = 0.865
 SWEP.InsertShellTime = 0.8
 SWEP.ReloadFinishWait = 1.05
+SWEP.ReloadFinishWaitEmpty = 1.05
 
 SWEP.SnapToIdlePostReload = false
 
-function SWEP:updateReloadTimes()
-	local mode = self:getForegripMode()
+-- function SWEP:updateReloadTimes()
+	-- local mode = self:getForegripMode()
 
-	if SERVER or not self.shotgunReloading then
-		self.Animations.reload_start = self.Animations[mode .. "reload_start"]
-		self.Animations.insert = self.Animations[mode .. "insert"]
-		self.Animations.reload_end = self.Animations[mode .. "reload_end"]
-		self.Animations.idle = self.Animations[mode .. "reload_end"]
-	end
+	-- if SERVER or not self.shotgunReloading then
+		-- self.Animations.reload_start = self.Animations[mode .. "reload_start"]
+		-- self.Animations.insert = self.Animations[mode .. "insert"]
+		-- self.Animations.reload_end = self.Animations[mode .. "reload_end"]
+		-- self.Animations.idle = self.Animations[mode .. "reload_end"]
+	-- end
 	
-	if self.base_ReloadStartTime then
-		self.ReloadStartTime = self[mode .. "ReloadStartTime"] or self.base_ReloadStartTime
-	end
-	if self.base_InsertShellTime then
-		self.InsertShellTime = self[mode .. "InsertShellTime"] or self.base_InsertShellTime
-	end
-	if self.base_ReloadFinishWait then
-		self.ReloadFinishWait = self[mode .. "ReloadFinishWait"] or self.base_ReloadFinishWait
-	end
-end
+	-- if self.base_ReloadStartTime then
+		-- self.ReloadStartTime = self[mode .. "ReloadStartTime"] or self.base_ReloadStartTime
+	-- end
+	-- if self.base_InsertShellTime then
+		-- self.InsertShellTime = self[mode .. "InsertShellTime"] or self.base_InsertShellTime
+	-- end
+	-- if self.base_ReloadFinishWait then
+		-- self.ReloadFinishWait = self[mode .. "ReloadFinishWait"] or self.base_ReloadFinishWait
+	-- end
+-- end
 
 if CLIENT then 
 	function SWEP:updateOtherParts()

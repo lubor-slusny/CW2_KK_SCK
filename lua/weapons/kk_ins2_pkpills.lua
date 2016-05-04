@@ -1,4 +1,3 @@
-
 if not pk_pills then return end
 
 pk_pills.packStart("Insurgency 2","base","icon16/rainbow.png")

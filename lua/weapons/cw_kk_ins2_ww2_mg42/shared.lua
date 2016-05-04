@@ -2,7 +2,9 @@ if not CustomizableWeaponry then return end
 
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
+AddCSLuaFile("sh_soundscript.lua")
 include("sh_sounds.lua")
+include("sh_soundscript.lua")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
@@ -86,182 +88,6 @@ SWEP.Animations = {
 	bipod_out = "deployed_out",
 }
 
-SWEP.Sounds = {
-	base_ready = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-		{time = 23/30, sound = "CW_KK_INS2_M249_BOLTBACK"},
-		{time = 30/30, sound = "CW_KK_INS2_M249_BOLTRELEASE"},
-		{time = 56/30, sound = "CW_KK_INS2_M249_SHOULDER"},
-	},
-
-	base_draw = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-	},
-
-	base_holster = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
-	},
-
-	base_crawl = {
-		{time = 15/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
-		{time = 38/30, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
-	},
-
-	base_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_M249_EMPTY"},
-	},
-
-	base_reload = {
-		{time = 2/31.5, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
-		{time = 34/31.5, sound = "CW_KK_INS2_M249_COVEROPEN"},
-		{time = 69/31.5, sound = "CW_KK_INS2_M249_MAGOUTFULL"},
-		{time = 90/31.5, sound = "CW_KK_INS2_M249_FETCHMAG"},
-		{time = 129/31.5, sound = "CW_KK_INS2_M249_ARMMOVEMENT1"},
-		{time = 147/31.5, sound = "CW_KK_INS2_M249_MAGHIT"},
-		{time = 154/31.5, sound = "CW_KK_INS2_M249_MAGIN"},
-		{time = 177/31.5, sound = "CW_KK_INS2_M249_BULLETJINGLE"},
-		{time = 184/31.5, sound = "CW_KK_INS2_M249_BELTALIGN"},
-		{time = 208/31.5, sound = "CW_KK_INS2_M249_ARMMOVEMENT2"},
-		{time = 226/31.5, sound = "CW_KK_INS2_M249_COVERCLOSE"},
-		{time = 263/31.5, sound = "CW_KK_INS2_M249_SHOULDER"},
-		// reload at 186/31.5
-	},
-
-	base_reload_empty = {
-		{time = 2/31.5, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
-		{time = 32/31.5, sound = "CW_KK_INS2_M249_BOLTBACK"},
-		{time = 42/31.5, sound = "CW_KK_INS2_M249_BOLTRELEASE"},
-		{time = 77/31.5, sound = "CW_KK_INS2_M249_ARMMOVEMENT2"},
-		{time = 89/31.5, sound = "CW_KK_INS2_M249_COVEROPEN"},
-		{time = 111/31.5, sound = "CW_KK_INS2_M249_ARMMOVEMENT1"},
-		{time = 134/31.5, sound = "CW_KK_INS2_M249_MAGOUT"},
-		{time = 151/31.5, sound = "CW_KK_INS2_M249_FETCHMAG"},
-		{time = 195/31.5, sound = "CW_KK_INS2_M249_ARMMOVEMENT2"},
-		{time = 216/31.5, sound = "CW_KK_INS2_M249_MAGHIT"},
-		{time = 223/31.5, sound = "CW_KK_INS2_M249_MAGIN"},
-		{time = 238/31.5, sound = "CW_KK_INS2_M249_BULLETJINGLE"},
-		{time = 249/31.5, sound = "CW_KK_INS2_M249_BELTALIGN"},
-		{time = 273/31.5, sound = "CW_KK_INS2_M249_ARMMOVEMENT1"},
-		{time = 290/31.5, sound = "CW_KK_INS2_M249_COVERCLOSE"},
-		{time = 324/31.5, sound = "CW_KK_INS2_M249_SHOULDER"},
-		// reload at 150/31.5
-	},
-
-	base_reload_half = {
-		{time = 2/31.5, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
-		{time = 13/31.5, sound = "CW_KK_INS2_M249_ARMMOVEMENT2"},
-		{time = 26/31.5, sound = "CW_KK_INS2_M249_COVEROPEN"},
-		{time = 63/31.5, sound = "CW_KK_INS2_M249_THROWAWAYREMAINING"},
-		{time = 91/31.5, sound = "CW_KK_INS2_M249_MAGOUT"},
-		{time = 108/31.5, sound = "CW_KK_INS2_M249_FETCHMAG"},
-		{time = 150/31.5, sound = "CW_KK_INS2_M249_ARMMOVEMENT1"},
-		{time = 177/31.5, sound = "CW_KK_INS2_M249_MAGHIT"},
-		{time = 185/31.5, sound = "CW_KK_INS2_M249_MAGIN"},
-		{time = 201/31.5, sound = "CW_KK_INS2_M249_BULLETJINGLE"},
-		{time = 211/31.5, sound = "CW_KK_INS2_M249_BELTALIGN"},
-		{time = 233/31.5, sound = "CW_KK_INS2_M249_ARMMOVEMENT2"},
-		{time = 252/31.5, sound = "CW_KK_INS2_M249_COVERCLOSE"},
-		{time = 289/31.5, sound = "CW_KK_INS2_M249_SHOULDER"},
-		// reload at 186/31.5
-	},
-
-	iron_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_M249_EMPTY"},
-	},
-
-	deployed_in = {
-		{time = 17/38, sound = "CW_KK_INS2_M249_BIPODDEPLOY"},
-	},
-
-	deployed_out = {
-		{time = 26/38, sound = "CW_KK_INS2_M249_BIPODRETRACT"},
-	},
-
-	deployed_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_M249_EMPTY"},
-	},
-
-	deployed_reload = {
-		{time = 2/30, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
-		{time = 34/32.5, sound = "CW_KK_INS2_M249_COVEROPEN"},
-		{time = 69/32.5, sound = "CW_KK_INS2_M249_MAGOUTFULL"},
-		{time = 90/32.5, sound = "CW_KK_INS2_M249_FETCHMAG"},
-		{time = 129/32.5, sound = "CW_KK_INS2_M249_ARMMOVEMENT1"},
-		{time = 147/32.5, sound = "CW_KK_INS2_M249_MAGHIT"},
-		{time = 154/32.5, sound = "CW_KK_INS2_M249_MAGIN"},
-		{time = 177/32.5, sound = "CW_KK_INS2_M249_BULLETJINGLE"},
-		{time = 184/32.5, sound = "CW_KK_INS2_M249_BELTALIGN"},
-		{time = 208/32.5, sound = "CW_KK_INS2_M249_ARMMOVEMENT2"},
-		{time = 226/32.5, sound = "CW_KK_INS2_M249_COVERCLOSE"},
-		{time = 263/32.5, sound = "CW_KK_INS2_M249_SHOULDER"},
-		// reload at 186/32.5
-	},
-
-	deployed_reload_half = {
-		{time = 2/32.5, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
-		{time = 13/32.5, sound = "CW_KK_INS2_M249_ARMMOVEMENT2"},
-		{time = 26/32.5, sound = "CW_KK_INS2_M249_COVEROPEN"},
-		{time = 63/32.5, sound = "CW_KK_INS2_M249_THROWAWAYREMAINING"},
-		{time = 91/32.5, sound = "CW_KK_INS2_M249_MAGOUT"},
-		{time = 108/32.5, sound = "CW_KK_INS2_M249_FETCHMAG"},
-		{time = 150/32.5, sound = "CW_KK_INS2_M249_ARMMOVEMENT1"},
-		{time = 177/32.5, sound = "CW_KK_INS2_M249_MAGHIT"},
-		{time = 185/32.5, sound = "CW_KK_INS2_M249_MAGIN"},
-		{time = 201/32.5, sound = "CW_KK_INS2_M249_BULLETJINGLE"},
-		{time = 211/32.5, sound = "CW_KK_INS2_M249_BELTALIGN"},
-		{time = 233/32.5, sound = "CW_KK_INS2_M249_ARMMOVEMENT2"},
-		{time = 252/32.5, sound = "CW_KK_INS2_M249_COVERCLOSE"},
-		{time = 289/32.5, sound = "CW_KK_INS2_M249_SHOULDER"},
-		// reload at 186/32.5
-	},
-
-	deployed_reload_empty = {
-		{time = 2/32.5, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
-		{time = 32/32.5, sound = "CW_KK_INS2_M249_BOLTBACK"},
-		{time = 42/32.5, sound = "CW_KK_INS2_M249_BOLTRELEASE"},
-		{time = 77/32.5, sound = "CW_KK_INS2_M249_ARMMOVEMENT2"},
-		{time = 91/32.5, sound = "CW_KK_INS2_M249_COVEROPEN"},
-		{time = 111/32.5, sound = "CW_KK_INS2_M249_ARMMOVEMENT1"},
-		{time = 129/32.5, sound = "CW_KK_INS2_M249_MAGOUT"},
-		{time = 151/32.5, sound = "CW_KK_INS2_M249_FETCHMAG"},
-		{time = 195/32.5, sound = "CW_KK_INS2_M249_ARMMOVEMENT2"},
-		{time = 201/32.5, sound = "CW_KK_INS2_M249_MAGHIT"},
-		{time = 217/32.5, sound = "CW_KK_INS2_M249_MAGIN"},
-		{time = 234/32.5, sound = "CW_KK_INS2_M249_BULLETJINGLE"},
-		{time = 249/32.5, sound = "CW_KK_INS2_M249_BELTALIGN"},
-		{time = 273/32.5, sound = "CW_KK_INS2_M249_ARMMOVEMENT1"},
-		{time = 283/32.5, sound = "CW_KK_INS2_M249_COVERCLOSE"},
-		{time = 324/32.5, sound = "CW_KK_INS2_M249_SHOULDER"},
-		// reload at 150/32.5
-	},
-
-	deployed_iron_idle = {
-		{time = 0, sound = "Universal.IronIdle"},
-	},
-
-	deployed_iron_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_M249_EMPTY"},
-	},
-}
-	
-SWEP.ReloadTimes = {					
-	-- base_reload = {186/31.5, 9.5},		//qc
-	-- base_reload_half = {186/31.5, 9.84},
-	-- base_reload_empty = {150/31.5, 11},
-	
-	base_reload = {7.3, 9.5},			// CVMT
-	base_reload_half = {8, 9.84},
-	base_reload_empty = {9.35, 11},
-	
-	-- deployed_reload = {186/32.5, 8.77},
-	-- deployed_reload_half = {186/32.5, 9.5},
-	-- deployed_reload_empty = {150/32.5, 10.52},
-	
-	deployed_reload = {7.1, 8.77},
-	deployed_reload_half = {7.9, 9.5},
-	deployed_reload_empty = {8.85, 10.52},
-}
-	
 SWEP.SpeedDec = 30
 
 SWEP.Slot = 3
@@ -281,6 +107,8 @@ SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_mg42.mdl"
 SWEP.WorldModel		= "models/weapons/w_mg42.mdl"
+
+SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2de
 
 SWEP.WMPos = Vector(5.184, 0.935, -1.03)
 SWEP.WMAng = Vector(-10, -1, 180)

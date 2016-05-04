@@ -23,44 +23,83 @@ end)
 	
 -- end)
 
--- if CLIENT then
-	-- usermessage.Hook("CW20_KK_INS_RETICLEINACTIVITY", function(um)
-		-- local ply = LocalPlayer()
-		-- if !IsValid(ply) then return end
+if CLIENT then
+	usermessage.Hook("CW20_KK_INS_RETICLEINACTIVITY", function(um)
+		local ply = LocalPlayer()
+		if !IsValid(ply) then return end
 		
-		-- local wep = ply:GetActiveWeapon()
-		-- if !IsValid(wep) or wep.Base != "cw_kk_ins2_base" then return end
+		local wep = ply:GetActiveWeapon()
+		if !IsValid(wep) or wep.Base != "cw_kk_ins2_base" then return end
 			
 		-- wep.reticleInactivity = UnPredictedCurTime() + um:ReadFloat()
-	-- end)
--- end
+		wep.reticleInactivity = UnPredictedCurTime() + (wep.CW_VM:SequenceDuration())
+	end)
+end
 
-local tab
+local att
 
 CustomizableWeaponry.callbacks:addNew("postAttachAttachment", "KK_INS2_BASE", function(wep,catId,attId)
-	if wep.Base != "cw_kk_ins2_base" then return end
+	if !wep.KKINS2Wep then return end
 	
-	tab = CustomizableWeaponry.registeredAttachmentsSKey[wep.Attachments[catId].atts[attId]]
+	att = CustomizableWeaponry.registeredAttachmentsSKey[wep.Attachments[catId].atts[attId]]
 	
 	if CLIENT then
-		if tab.KK_INS2_playIdle then
+		if att.KK_INS2_playIdle then
 			if wep.dt.State == CW_CUSTOMIZE then
 				wep:idleAnimFunc()
 			else
 				wep:pickupAnimFunc()
 			end
 		end
+		
+		local prim, sec = wep:getPrimarySight(), wep:getSecondarySight()
+		local a
+		
+		if sec then
+			a = CustomizableWeaponry.registeredAttachmentsSKey[sec]
+			wep.AimPos = wep[a.aimPos[1]]
+			wep.AimAng = wep[a.aimPos[2]]
+			wep.AimViewModelFOV = a.AimViewModelFOV or wep.AimViewModelFOV_Orig
+		elseif prim then
+			a = CustomizableWeaponry.registeredAttachmentsSKey[prim]
+			wep.AimPos = wep[a.aimPos[1]]
+			wep.AimAng = wep[a.aimPos[2]]
+			wep.AimViewModelFOV = a.AimViewModelFOV or wep.AimViewModelFOV_Orig
+		else
+			wep.AimPos = wep.IronsightPos
+			wep.AimAng = wep.IronsightAng
+			wep.AimViewModelFOV = wep.AimViewModelFOV_Orig
+		end
 	end
 end)
 
 CustomizableWeaponry.callbacks:addNew("postDetachAttachment", "KK_INS2_BASE", function(wep,attTable,CWMenuCategory)
-	if wep.Base != "cw_kk_ins2_base" then return end
+	if !wep.KKINS2Wep then return end
 	
-	tab = attTable
+	att = attTable
 	
 	if CLIENT then
-		if tab.KK_INS2_playIdle then
+		if att.KK_INS2_playIdle then
 			wep:idleAnimFunc()
+		end
+		
+		local prim, sec = wep:getPrimarySight(), wep:getSecondarySight()
+		local a
+		
+		if sec then
+			a = CustomizableWeaponry.registeredAttachmentsSKey[sec]
+			wep.AimPos = wep[a.aimPos[1]]
+			wep.AimAng = wep[a.aimPos[2]]
+			wep.AimViewModelFOV = a.AimViewModelFOV or wep.AimViewModelFOV_Orig
+		elseif prim then
+			a = CustomizableWeaponry.registeredAttachmentsSKey[prim]
+			wep.AimPos = wep[a.aimPos[1]]
+			wep.AimAng = wep[a.aimPos[2]]
+			wep.AimViewModelFOV = a.AimViewModelFOV or wep.AimViewModelFOV_Orig
+		else
+			wep.AimPos = wep.IronsightPos
+			wep.AimAng = wep.IronsightAng
+			wep.AimViewModelFOV = wep.AimViewModelFOV_Orig
 		end
 	end
 end)
@@ -74,7 +113,7 @@ CustomizableWeaponry.callbacks:addNew("droppedWeapon", "KK_INS2_BASE", function(
 	end
 end)
 
--- if CLIENT then
+if CLIENT then
 	-- local gradient = surface.GetTextureID("cw2/gui/gradient")
 		
 	-- local cwhud24 = "CW_HUD24"
@@ -82,11 +121,18 @@ end)
 
 	-- CustomizableWeaponry.callbacks:addNew("overrideReserveAmmoText", "KK_INS2_BASE", function(wep)
 		-- if (CurTime() % 2) > 1 then
-			-- return false, "lolo", Color(255,100,255,255)
+			-- return true, "lolo", Color(255,100,255,255)
 		-- else
 			-- return false, "lolo", Color(200,255,0,255)
 		-- end
 	-- end)
+	
+	CustomizableWeaponry.callbacks:addNew("overrideReserveAmmoText", "KK_INS2_BASE", function(wep)
+		if !wep.KKINS2Wep then return end
+		if !wep.KKINS2RCE then return end
+		
+		return true, wep.Owner:GetAmmoCount(wep.Primary.Ammo) - 1
+	end)
 
 	-- CustomizableWeaponry.callbacks:addNew("drawTo3D2DHUD", "KK_INS2_BASE", function(wep)
 		
@@ -99,4 +145,4 @@ end)
 	-- CustomizableWeaponry.callbacks:addNew("drawToHUD", "KK_INS2_BASE", function(wep, cwHudEnabled)
 		
 	-- end)
--- end
+end

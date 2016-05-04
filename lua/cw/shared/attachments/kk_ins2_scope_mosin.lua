@@ -3,8 +3,11 @@ att.name = "kk_ins2_scope_mosin"
 att.displayName = "Mosin Scope"
 att.displayNameShort = "Mosin"
 att.aimPos = {"KKINS2ScopeMosinPos", "KKINS2ScopeMosinAng"}
-att.FOVModifier = 15
+att.FOVModifier = 0
+att.AimViewModelFOV = 25
 att.isSight = true
+
+-- att.colorType = CustomizableWeaponry.colorableParts.COLOR_TYPE_SIGHT
 
 att.statModifiers = {
 	OverallMouseSensMult = -0.1
@@ -22,7 +25,7 @@ if CLIENT then
 		{tex = surface.GetTextureID("models/weapons/optics/mosin_crosshair"), offset = {0, 1}},
 	}
 	
-	att._rtFov = 3
+	att._rtFov = 6
 	
 	function att:drawRenderTarget()
 		local scopeEnt = self.AttachmentModelsVM[att.name].ent // to b tuned

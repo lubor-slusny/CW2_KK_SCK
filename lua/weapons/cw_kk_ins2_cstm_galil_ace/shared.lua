@@ -2,8 +2,6 @@ if not CustomizableWeaponry then return end
 
 AddCSLuaFile()
 
-SWEP.magType = "arMag"
-
 if CLIENT then
 	SWEP.DrawCrosshair = false
 	SWEP.PrintName = "Galil ACE 22.5"

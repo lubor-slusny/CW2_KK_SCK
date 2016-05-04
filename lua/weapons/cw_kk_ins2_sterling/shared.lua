@@ -4,8 +4,6 @@ AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
 include("sh_sounds.lua")
 
-SWEP.magType = "smgMag"
-
 if CLIENT then
 	SWEP.DrawCrosshair = false
 	SWEP.PrintName = "Sterling"

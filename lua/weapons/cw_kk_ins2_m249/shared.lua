@@ -6,7 +6,7 @@ include("sh_sounds.lua")
 
 if CustomizableWeaponry.magSystem then
 	CustomizableWeaponry.magSystem:registerMagType("lmgBox", " LMG belt", 2)
-	SWEP.magType = "lmgBox"
+	-- SWEP.magType = "lmgBox"
 end
 
 if CLIENT then
@@ -376,7 +376,13 @@ if CLIENT then
 		local cycle = vm:GetCycle()
 		
 		local clip = self:Clip1()
-		local ammo = self.Owner:GetAmmoCount(self.Primary.Ammo) + clip
+		local ammo 
+		
+		if self.getFullestMag then
+			ammo = math.max(self:Clip1(), self:getFullestMag(), -1)
+		else
+			ammo = self.Owner:GetAmmoCount(self.Primary.Ammo) + clip
+		end
 		
 		if self.Sequence:find("reload") and cycle > 0.4 then
 			self:setBodygroup(1,math.Clamp(ammo,0,16))

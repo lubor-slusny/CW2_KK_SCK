@@ -2,7 +2,9 @@ if not CustomizableWeaponry then return end
 
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
+AddCSLuaFile("sh_soundscript.lua")
 include("sh_sounds.lua")
+include("sh_soundscript.lua")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
@@ -41,10 +43,6 @@ SWEP.Animations = {
 	base_safe = "base_down",
 	base_safe_aim = "iron_down",
 }
-	
-SWEP.Sounds = {
-	
-}
 
 SWEP.SpeedDec = 30
 
@@ -67,7 +65,7 @@ SWEP.ViewModel		= "models/weapons/v_stg44.mdl"
 SWEP.WorldModel		= "models/weapons/w_stg44.mdl"
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2de
-	
+
 SWEP.WMPos = Vector(0.606, 0, 0.151)
 SWEP.WMAng = Vector(0, 0, 180)
 

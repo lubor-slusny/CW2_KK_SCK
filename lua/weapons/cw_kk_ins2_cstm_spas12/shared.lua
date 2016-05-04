@@ -75,9 +75,10 @@ SWEP.Animations = {
 	base_fire_empty = "base_dryfire",
 	base_fire_empty_aim = "iron_dryfire",
 	base_reload_start = "base_reload_start",
+	base_reload_start_empty = "base_reload_start",
 	base_insert = "base_reload_insert",
 	base_reload_end = "base_reload_end",
-	base_reload_empty_end = "base_reload_end_empty",
+	base_reload_end_empty = "base_reload_end_empty",
 	base_idle = "base_idle",
 	base_holster = "base_holster",
 	base_sprint = "base_sprint",
@@ -91,9 +92,10 @@ SWEP.Animations = {
 	foregrip_fire_empty = "foregrip_dryfire",
 	foregrip_fire_empty_aim = "foregrip_iron_dryfire",
 	foregrip_reload_start = "foregrip_reload_start",
+	foregrip_reload_start_empty = "foregrip_reload_start",
 	foregrip_insert = "foregrip_reload_insert",
 	foregrip_reload_end = "foregrip_reload_end",
-	foregrip_reload_empty_end = "foregrip_reload_end_empty",
+	foregrip_reload_end_empty = "foregrip_reload_end_empty",
 	foregrip_idle = "foregrip_draw",
 	foregrip_holster = "foregrip_holster",
 	foregrip_sprint = "foregrip_sprint",
@@ -103,173 +105,173 @@ SWEP.Animations = {
 	
 SWEP.Sounds = {
 	base_draw = {
-		{time = 0, sound = "INS2_UNIVERSAL_DRAW"},
+		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
 	},
 
 	base_holster = {
-		{time = 0, sound = "INS2_UNIVERSAL_HOLSTER"},
+		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
 	},
 
 	base_ready = {
-		{time = 0, sound = "INS2_UNIVERSAL_DRAW"},
-		{time = 26/30, sound = "INS2_TOZ_PUMPBACK"},
-		{time = 36/30, sound = "INS2_TOZ_PUMPFORWARD"},
+		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
+		{time = 26/30, sound = "CW_KK_INS2_TOZ_PUMPBACK"},
+		{time = 36/30, sound = "CW_KK_INS2_TOZ_PUMPFORWARD"},
 	},
 
 	base_crawl = {
-		{time = 15/30, sound = "INS2_UNIVERSAL_kk_ins2_rightCrawl"},
-		{time = 38/30, sound = "INS2_UNIVERSAL_LeftCrawl"},
+		{time = 15/30, sound = "CW_KK_INS2_UNIVERSAL_kk_ins2_rightCrawl"},
+		{time = 38/30, sound = "CW_KK_INS2_UNIVERSAL_LeftCrawl"},
 	},
 
 	base_fire = {
 		// { event AE_CL_CREATE_PARTICLE_BRASS 14 ""},
-		{time = 13/30, sound = "INS2_TOZ_PUMPBACK"},
-		{time = 18/30, sound = "INS2_TOZ_PUMPFORWARD"},
+		{time = 13/30, sound = "CW_KK_INS2_TOZ_PUMPBACK"},
+		{time = 18/30, sound = "CW_KK_INS2_TOZ_PUMPFORWARD"},
 	},
 
 	base_fire_2 = {
 		// { event AE_CL_CREATE_PARTICLE_BRASS 14 ""},
-		{time = 13/30, sound = "INS2_TOZ_PUMPBACK"},
-		{time = 18/30, sound = "INS2_TOZ_PUMPFORWARD"},
+		{time = 13/30, sound = "CW_KK_INS2_TOZ_PUMPBACK"},
+		{time = 18/30, sound = "CW_KK_INS2_TOZ_PUMPFORWARD"},
 	},
 
 	base_dryfire = {
-		{time = 0, sound = "INS2_TOZ_EMPTY"},
+		{time = 0, sound = "CW_KK_INS2_TOZ_EMPTY"},
 	},
 
 	base_reload_start = {
-		{time = 5/30, sound = "INS2_UNIVERSAL_LeanIn"},
+		{time = 5/30, sound = "CW_KK_INS2_UNIVERSAL_LeanIn"},
 	},
 
 	base_reload_start_empty = {
-		{time = 5/30, sound = "INS2_UNIVERSAL_LeanIn"},
+		{time = 5/30, sound = "CW_KK_INS2_UNIVERSAL_LeanIn"},
 	},
 
 	base_reload_insert = {
-		{time = 5/36, sound = "INS2_TOZ_SHELLINSERT"},
+		{time = 5/36, sound = "CW_KK_INS2_TOZ_SHELLINSERT"},
 	},
 
 	base_reload_end = {
-		{time = 5/35, sound = "INS2_UNIVERSAL_LeanIn"},
+		{time = 5/35, sound = "CW_KK_INS2_UNIVERSAL_LeanIn"},
 	},
 
 	base_reload_end_empty = {
 		// { event AE_CL_CREATE_PARTICLE_BRASS 15 ""},
-		{time = 14/35, sound = "INS2_TOZ_PUMPBACK"},
-		{time = 24/35, sound = "INS2_TOZ_PUMPFORWARD"},
+		{time = 14/35, sound = "CW_KK_INS2_TOZ_PUMPBACK"},
+		{time = 24/35, sound = "CW_KK_INS2_TOZ_PUMPFORWARD"},
 	},
 
 	-- iron_fire_1 = {
 		-- // { event AE_CL_CREATE_PARTICLE_BRASS 23 ""},
-		-- {time = 22/40, sound = "INS2_TOZ_PUMPBACK"},
-		-- {time = 30/40, sound = "INS2_TOZ_PUMPFORWARD"},
+		-- {time = 22/40, sound = "CW_KK_INS2_TOZ_PUMPBACK"},
+		-- {time = 30/40, sound = "CW_KK_INS2_TOZ_PUMPFORWARD"},
 	-- },
 
 	-- iron_fire_2 = {
 		-- // { event AE_CL_CREATE_PARTICLE_BRASS 23 ""},
-		-- {time = 22/40, sound = "INS2_TOZ_PUMPBACK"},
-		-- {time = 30/40, sound = "INS2_TOZ_PUMPFORWARD"},
+		-- {time = 22/40, sound = "CW_KK_INS2_TOZ_PUMPBACK"},
+		-- {time = 30/40, sound = "CW_KK_INS2_TOZ_PUMPFORWARD"},
 	-- },
 
 	iron_fire_1 = {
 		// { event AE_CL_CREATE_PARTICLE_BRASS 23 ""},
-		{time = 22/50, sound = "INS2_TOZ_PUMPBACK"},
-		{time = 30/50, sound = "INS2_TOZ_PUMPFORWARD"},
+		{time = 22/50, sound = "CW_KK_INS2_TOZ_PUMPBACK"},
+		{time = 30/50, sound = "CW_KK_INS2_TOZ_PUMPFORWARD"},
 	},
 
 	iron_fire_2 = {
 		// { event AE_CL_CREATE_PARTICLE_BRASS 23 ""},
-		{time = 22/50, sound = "INS2_TOZ_PUMPBACK"},
-		{time = 30/50, sound = "INS2_TOZ_PUMPFORWARD"},
+		{time = 22/50, sound = "CW_KK_INS2_TOZ_PUMPBACK"},
+		{time = 30/50, sound = "CW_KK_INS2_TOZ_PUMPFORWARD"},
 	},
 
 	iron_dryfire = {
-		{time = 0, sound = "INS2_TOZ_EMPTY"},
+		{time = 0, sound = "CW_KK_INS2_TOZ_EMPTY"},
 	},
 
 	foregrip_draw = {
-		{time = 0, sound = "INS2_UNIVERSAL_DRAW"},
+		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
 	},
 
 	foregrip_holster = {
-		{time = 0, sound = "INS2_UNIVERSAL_HOLSTER"},
+		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
 	},
 
 	foregrip_ready = {
-		{time = 0, sound = "INS2_UNIVERSAL_DRAW"},
-		{time = 26/30, sound = "INS2_TOZ_PUMPBACK"},
-		{time = 36/30, sound = "INS2_TOZ_PUMPFORWARD"},
+		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
+		{time = 26/30, sound = "CW_KK_INS2_TOZ_PUMPBACK"},
+		{time = 36/30, sound = "CW_KK_INS2_TOZ_PUMPFORWARD"},
 	},
 
 	foregrip_crawl = {
-		{time = 0, sound = "INS2_UNIVERSAL_LeftCrawl"},
-		{time = 22/30, sound = "INS2_UNIVERSAL_kk_ins2_rightCrawl"},
+		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_LeftCrawl"},
+		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_kk_ins2_rightCrawl"},
 	},
 
 	foregrip_fire_1 = {
 		// { event AE_CL_CREATE_PARTICLE_BRASS 14 ""},
-		{time = 13/30, sound = "INS2_TOZ_PUMPBACK"},
-		{time = 18/30, sound = "INS2_TOZ_PUMPFORWARD"},
+		{time = 13/30, sound = "CW_KK_INS2_TOZ_PUMPBACK"},
+		{time = 18/30, sound = "CW_KK_INS2_TOZ_PUMPFORWARD"},
 	},
 
 	foregrip_fire_2 = {
 		// { event AE_CL_CREATE_PARTICLE_BRASS 14 ""},
-		{time = 13/30, sound = "INS2_TOZ_PUMPBACK"},
-		{time = 18/30, sound = "INS2_TOZ_PUMPFORWARD"},
+		{time = 13/30, sound = "CW_KK_INS2_TOZ_PUMPBACK"},
+		{time = 18/30, sound = "CW_KK_INS2_TOZ_PUMPFORWARD"},
 	},
 
 	foregrip_dryfire = {
-		{time = 0, sound = "INS2_TOZ_EMPTY"},
+		{time = 0, sound = "CW_KK_INS2_TOZ_EMPTY"},
 	},
 
 	foregrip_reload_start = {
-		{time = 5/30, sound = "INS2_UNIVERSAL_LeanIn"},
+		{time = 5/30, sound = "CW_KK_INS2_UNIVERSAL_LeanIn"},
 	},
 
 	foregrip_reload_start_empty = {
-		{time = 5/30, sound = "INS2_UNIVERSAL_LeanIn"},
+		{time = 5/30, sound = "CW_KK_INS2_UNIVERSAL_LeanIn"},
 	},
 
 	foregrip_reload_insert = {
-		{time = 5/36, sound = "INS2_TOZ_SHELLINSERT"},
+		{time = 5/36, sound = "CW_KK_INS2_TOZ_SHELLINSERT"},
 	},
 
 	foregrip_reload_end = {
-		{time = 5/35, sound = "INS2_UNIVERSAL_LeanIn"},
+		{time = 5/35, sound = "CW_KK_INS2_UNIVERSAL_LeanIn"},
 	},
 
 	foregrip_reload_end_empty = {
 		// { event AE_CL_CREATE_PARTICLE_BRASS 15 ""},
-		{time = 14/35, sound = "INS2_TOZ_PUMPBACK"},
-		{time = 24/35, sound = "INS2_TOZ_PUMPFORWARD"},
+		{time = 14/35, sound = "CW_KK_INS2_TOZ_PUMPBACK"},
+		{time = 24/35, sound = "CW_KK_INS2_TOZ_PUMPFORWARD"},
 	},
 
 	-- foregrip_iron_fire_1 = {
 		-- // { event AE_CL_CREATE_PARTICLE_BRASS 23 ""},
-		-- {time = 22/40, sound = "INS2_TOZ_PUMPBACK"},
-		-- {time = 30/40, sound = "INS2_TOZ_PUMPFORWARD"},
+		-- {time = 22/40, sound = "CW_KK_INS2_TOZ_PUMPBACK"},
+		-- {time = 30/40, sound = "CW_KK_INS2_TOZ_PUMPFORWARD"},
 	-- },
 
 	-- foregrip_iron_fire_2 = {
 		-- // { event AE_CL_CREATE_PARTICLE_BRASS 23 ""},
-		-- {time = 22/40, sound = "INS2_TOZ_PUMPBACK"},
-		-- {time = 30/40, sound = "INS2_TOZ_PUMPFORWARD"},
+		-- {time = 22/40, sound = "CW_KK_INS2_TOZ_PUMPBACK"},
+		-- {time = 30/40, sound = "CW_KK_INS2_TOZ_PUMPFORWARD"},
 	-- },
 
 	foregrip_iron_fire_1 = {
 		// { event AE_CL_CREATE_PARTICLE_BRASS 23 ""},
-		{time = 22/50, sound = "INS2_TOZ_PUMPBACK"},
-		{time = 30/50, sound = "INS2_TOZ_PUMPFORWARD"},
+		{time = 22/50, sound = "CW_KK_INS2_TOZ_PUMPBACK"},
+		{time = 30/50, sound = "CW_KK_INS2_TOZ_PUMPFORWARD"},
 	},
 
 	foregrip_iron_fire_2 = {
 		// { event AE_CL_CREATE_PARTICLE_BRASS 23 ""},
-		{time = 22/50, sound = "INS2_TOZ_PUMPBACK"},
-		{time = 30/50, sound = "INS2_TOZ_PUMPFORWARD"},
+		{time = 22/50, sound = "CW_KK_INS2_TOZ_PUMPBACK"},
+		{time = 30/50, sound = "CW_KK_INS2_TOZ_PUMPFORWARD"},
 	},
 
 	foregrip_iron_dryfire = {
-		{time = 0, sound = "INS2_TOZ_EMPTY"},
+		{time = 0, sound = "CW_KK_INS2_TOZ_EMPTY"},
 	},
 }
 
@@ -324,6 +326,8 @@ SWEP.DeployTime = 0.71
 
 SWEP.ReloadSpeed = 1
 
-SWEP.ReloadStartTime = 0.5
+SWEP.ReloadStartTime = 0.7
+SWEP.ReloadStartTimeEmpty = 0.7
 SWEP.InsertShellTime = 0.72
-SWEP.ReloadFinishWait = 1.51
+SWEP.ReloadFinishWait = 0.6
+SWEP.ReloadFinishWaitEmpty = 1.51

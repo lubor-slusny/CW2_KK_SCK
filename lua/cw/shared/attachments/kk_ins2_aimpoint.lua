@@ -3,10 +3,15 @@ att.name = "kk_ins2_aimpoint"
 att.displayName = "Aimpoint"
 att.displayNameShort = "Aimpoint"
 att.aimPos = {"KKINS2AimpointPos", "KKINS2AimpointAng"}
-att.FOVModifier = 20
+att.FOVModifier = 0
+att.AimViewModelFOV = 35
 att.isSight = true
+
 -- att.colorType = CustomizableWeaponry.colorableParts.COLOR_TYPE_SIGHT
-att.statModifiers = {OverallMouseSensMult = -0.07}
+
+att.statModifiers = {
+	OverallMouseSensMult = -0.07
+}
 
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)

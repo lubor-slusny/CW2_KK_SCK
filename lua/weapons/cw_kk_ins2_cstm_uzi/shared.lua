@@ -2,8 +2,6 @@ if not CustomizableWeaponry then return end
 
 AddCSLuaFile()
 
-SWEP.magType = "smgMag"
-
 if CLIENT then
 	SWEP.DrawCrosshair = false
 	SWEP.PrintName = "IMI UZI"

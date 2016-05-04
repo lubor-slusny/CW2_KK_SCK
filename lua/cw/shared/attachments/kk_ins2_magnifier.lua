@@ -32,6 +32,7 @@ att.displayName = "2x Magnifier Scope"
 att.displayNameShort = "2x Zoom"
 att.aimPos = {"KKINS2MagnifierPos", "KKINS2MagnifierAng"}
 att.isSecondarySight = true
+att.AimViewModelFOV = 25
 
 att.statModifiers = {
 	OverallMouseSensMult = -0.07
@@ -61,11 +62,11 @@ if CLIENT then
 		{tex = surface.GetTextureID("models/weapons/attachments/cw_kk_ins2_shared/fake"), offset = {0, 1}},
 	}
 	
-	att._rtFov = 8
+	att._rtFov = 18
 	
 	function att:INS2_DrawRenderTarget()
 		if not self.ActiveAttachments[att.name] then return end
-		local currentPrimarySight = self:getCurrentPrimarySight()
+		local currentPrimarySight = self:getPrimarySight()
 		
 		local rc
 		if currentPrimarySight then
@@ -78,14 +79,11 @@ if CLIENT then
 		local isScopePos = (self.AimPos == self[att.aimPos[1]] and self.AimAng == self[att.aimPos[2]])
 		local isAiming = self:isAiming()
 		
-		// reset aimposition when primary sight is changed
 		if self.lastPrimarySight != currentPrimarySight then
 			local velement = self.AttachmentModelsVM[currentPrimarySight]
 			if velement then
 				velement.active = false
 			end
-			self.AimPos = self[att.aimPos[1]]
-			self.AimAng = self[att.aimPos[2]]
 			
 			magnifierModel = models[velement.model]
 			scopeEnt:SetModel(magnifierModel)
@@ -121,7 +119,7 @@ function att:attachFunc()
 			att.INS2_DrawRenderTarget(self)
 		end
 	
-		local currentPrimarySight = self:getCurrentPrimarySight()
+		local currentPrimarySight = self:getPrimarySight()
 		
 		if currentPrimarySight and self.AttachmentModelsVM and self.AttachmentModelsVM.kk_ins2_magnifier and self.AttachmentModelsVM.kk_ins2_magnifier.ent then
 			magnifierModel = models[self.AttachmentModelsVM[currentPrimarySight].model]
@@ -132,9 +130,6 @@ function att:attachFunc()
 				end
 			end
 		end
-		
-		self.AimPos = self[att.aimPos[1]]
-		self.AimAng = self[att.aimPos[2]]
 	end
 	
 	self.SimpleTelescopicsFOV = 70
@@ -145,22 +140,11 @@ function att:detachFunc()
 	if CLIENT then
 		self.RenderTargetFunc = self._KK_INS2_RTF_original
 		
-		local currentPrimarySight = self:getCurrentPrimarySight()
+		local currentPrimarySight = self:getPrimarySight()
 		
 		if currentPrimarySight and self.AttachmentModelsVM and self.AttachmentModelsVM[currentPrimarySight] then
 			self.AttachmentModelsVM[currentPrimarySight].active = true
 		end
-		
-		// restore aimpositions
-		local cwSight = CustomizableWeaponry.sights[currentPrimarySight]
-		if cwSight then
-			self.AimPos = self[cwSight.aimPos[1]]
-			self.AimAng = self[cwSight.aimPos[2]]
-		else
-			self.AimPos = self.AimPos_Orig
-			self.AimAng = self.AimAng_Orig
-		end
-		
 	end
 	
 	self.SimpleTelescopicsFOV = nil

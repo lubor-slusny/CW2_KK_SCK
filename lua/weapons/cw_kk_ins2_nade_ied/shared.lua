@@ -16,6 +16,7 @@ if CLIENT then
 	SWEP.MoveType = 2
 	SWEP.ViewModelMovementScale = 0.8
 	SWEP.DisableSprintViewSimulation = true
+	SWEP.HUD_MagText = "Planted: "
 end
 
 SWEP.CanRestOnObjects = false
@@ -24,6 +25,7 @@ SWEP.grenadeEnt = "cw_grenade_thrown"
 SWEP.Animations = {
 	draw = "draw",
 	throw = "base_throw",
+	plant = "plant",
 	pullpin = "base_pullback",
 	
 	base_pickup = "draw",
@@ -35,6 +37,8 @@ SWEP.Animations = {
 	det_boom = "det_detonate",
 	det_draw = "det_draw",
 	det_holster = "det_holster",
+	det_idle = "det_idle",
+	det_sprint = "det_sprint",
 }
 
 SWEP.Sounds = {
@@ -125,74 +129,215 @@ SWEP.WMAng = Angle(-28.962, 155.365, 180)
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted()
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()
 
-SWEP.Primary.ClipSize		= -1
-SWEP.Primary.DefaultClip	= 1
+SWEP.Primary.ClipSize		= 256
+SWEP.Primary.DefaultClip	= -1
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "IED"
 
--- SWEP.swapTime = 0.7
+SWEP.HipSpread = 0.045
+SWEP.AimSpread = 0.045
+SWEP.VelocitySensitivity = 0.001
+SWEP.MaxSpreadInc = 0.001
+SWEP.SpreadPerShot = 0.001
+SWEP.SpreadCooldown = 0.001
+
+SWEP.SpeedDec = 0
+SWEP.Recoil = 1
+
+SWEP.KKINS2RCE = true
+
+local SP = game.SinglePlayer()
+
+function SWEP:IndividualInitialize()
+	if SERVER then
+		self.PlantedCharges = {}
+		
+		local clip = self:Clip1()
+		
+		if clip > 0 and IsValid(self.Owner) then
+			self.Owner:GiveAmmo(self.Primary.Ammo, clip)
+			self:SetClip1(0)
+		end
+	end
+end
+
+local curAmmo
+
+function SWEP:IndividualThink()
+	if SERVER then
+		if self.PlantedCharges then
+			for k,v in pairs(self.PlantedCharges) do
+				if !IsValid(v) then
+					self.PlantedCharges[v] = nil
+				end
+			end
+			
+			self:SetClip1(table.Count(self.PlantedCharges))
+		end
+		
+		curAmmo = self.Owner:GetAmmoCount(self.Primary.Ammo)
+		
+		if curAmmo > (self._lastAmmo or 1) and (self._lastAmmo == 1) then
+			self:drawAnimFunc()
+		end
+		
+		self._lastAmmo = curAmmo
+	end
+		
+	weapons.GetStored(self.Base).IndividualThink(self)
+end
 
 function SWEP:throwC4()
 	if CLIENT then
-		self.c4_msg_text = "U tried to throw IED. Damn, dat doesnt sound safe."
-		self.c4_msg_time = CurTime() + 1
+		if SP or IsFirstTimePredicted() then
+			self:playAnim("throw", 1, 0)
+		end
+	end
+	
+	if SERVER then
+		CustomizableWeaponry.actionSequence.new(self, 0.2, nil, function()
+			local pos = self.Owner:GetShootPos()
+			local eyeAng = self.Owner:EyeAngles()
+			local offset = eyeAng:Up() * -3 + eyeAng:Forward() * 0 + eyeAng:Right() * 3
+			local forward = eyeAng:Forward()
+			
+			local nade = ents.Create("cw_kk_ins2_projectile_ied")
+			nade:SetPos(pos + offset)
+			nade:SetAngles(eyeAng)
+			nade:Spawn()
+			nade:Activate()
+			
+			local phys = nade:GetPhysicsObject()
+			
+			if IsValid(phys) then
+				local overallSideMod = self.Owner:KeyDown(IN_SPEED) and 2 or 1
+
+				// take the velocity into account
+				addMod = math.Clamp(self.Owner:GetVelocity():Length() / self.Owner:GetRunSpeed(), 0, 1)
+				
+				local velocity = forward * CustomizableWeaponry.quickGrenade.throwVelocity + CustomizableWeaponry.quickGrenade.addVelocity
+				local velNorm = self.Owner:GetVelocity():GetNormal()
+				velNorm.z = 0
+				
+				// add velocity based on player velocity normal
+				velocity = velocity + velNorm * CustomizableWeaponry.quickGrenade.movementAddVelocity * addMod
+				
+				phys:SetVelocity(velocity / 2)
+				phys:AddAngleVelocity(Vector(math.random(-500, 500), math.random(-500, 500), math.random(-500, 500)))
+			end
+			
+			nade.Detonator = self
+			self.PlantedCharges[nade] = nade
+			
+			local suppressAmmoUsage = CustomizableWeaponry.callbacks.processCategory(self, "shouldSuppressAmmoUsage")
+			if not suppressAmmoUsage then
+				self.Owner:RemoveAmmo(1, self.Primary.Ammo)
+			end
+		end)
 	end
 end
 
 function SWEP:plantC4()
 	if CLIENT then
-		self.c4_msg_text = "U tried to plant C4. Here, have a blast."
-		self.c4_msg_time = CurTime() + 1
+		if SP or IsFirstTimePredicted() then
+			self:playAnim("plant", 1, 0)
+		end
 	end
 	
 	if SERVER then
-		CustomizableWeaponry.actionSequence.new(self, 1.5, nil, function()
-			util.BlastDamage(self, self.Owner, self.Owner:EyePos(), 400, 200)
+		local td = {}
+		local tr, ang
+
+		CustomizableWeaponry.actionSequence.new(self, 0.2, nil, function()
+			td.start = self.Owner:GetShootPos()
+			td.endpos = td.start + (self.Owner:EyeAngles() + self.Owner:GetPunchAngle()):Forward() * 200
+			td.filter = self.Owner
 			
-			local ef = EffectData()
-			ef:SetOrigin(self:GetPos())
-			ef:SetMagnitude(1)
+			tr = util.TraceLine(td)
+			ang = tr.HitNormal:Angle()
+			ang:RotateAroundAxis(ang:Up(), 90)
 			
-			util.Effect("Explosion", ef)
+			if tr.Hit then
+				local nade = ents.Create("cw_kk_ins2_projectile_ied")
+				nade:SetPos(tr.HitPos)
+				nade:SetAngles(ang)
+				nade:Spawn()
+				nade:Activate()
+				
+				if (tr.Entity:GetClass() == worldspawn) then
+					nade:SetMoveType(MOVETYPE_NONE)
+					nade:SetPos(tr.HitPos)
+					nade:SetAngles(ang)
+				else
+					constraint.Weld(tr.Entity, nade, tr.PhysicsBone, 0, 0, true, false)
+				end
+				
+				nade.Detonator = self
+				self.PlantedCharges[nade] = nade
+				
+				local suppressAmmoUsage = CustomizableWeaponry.callbacks.processCategory(self, "shouldSuppressAmmoUsage")
+				if not suppressAmmoUsage then
+					self.Owner:RemoveAmmo(1, self.Primary.Ammo)
+				end
+			end
 		end)
 	end
 end
 
 function SWEP:detonateC4()
-	if CLIENT then
-		self.c4_msg_text = "No planted IEDs, no alahu agbar."
-		self.c4_msg_time = CurTime() + 1.5
-	end
-	
-	
-	if SERVER then
-		if not self.attemptedAlahu then self.attemptedAlahu = 0 end
-		
-		if self.attemptedAlahu > 4 then
-			util.BlastDamage(self, self.Owner, self.Owner:EyePos(), 400, 200)
-			
-			local ef = EffectData()
-			ef:SetOrigin(self:GetPos())
-			ef:SetMagnitude(1)
-			
-			util.Effect("Explosion", ef)
-		else
-			self.attemptedAlahu = self.attemptedAlahu + 1
+	if SERVER then 
+		for k,v in pairs(self.PlantedCharges) do
+			v:Fuse()
 		end
 	end
 end
 
-local SP = game.SinglePlayer()
-
 function SWEP:PrimaryAttack()
+	if self.Owner:KeyDown(IN_USE) then
+		if self.ActiveAttachments.kk_ins2_ww2_knife and CustomizableWeaponry_KK.ins2.canKnife(self) then
+			CustomizableWeaponry_KK.ins2.meleeWW2(self)
+			return 
+		end
+		
+		if CustomizableWeaponry_KK.ins2.canThrow(self) then
+			CustomizableWeaponry_KK.ins2.throwGrenade(self)
+			return
+		end
+		
+		if CustomizableWeaponry_KK.ins2.canKnife(self) then
+			CustomizableWeaponry_KK.ins2.meleeKnife(self)
+			return
+		end
+	end
+	
 	if SP and SERVER then
 		SendUserMessage("OMG_GARRY_PRIMARY", self.Owner)
 	end
 	
-	if self:isNearWall() then
-		self:plantC4()
+	if self.Owner:GetAmmoCount(self.Primary.Ammo) > 1 then
+		self.reticleInactivity = UnPredictedCurTime() + 2
+		
+		if self:isNearWall() then
+			self:plantC4()
+		else
+			self:throwC4()
+			-- self:plantC4()
+		end
+		
+		if self:canAnimate() then
+			CustomizableWeaponry.actionSequence.new(self, 1, nil, function()
+				if self.Owner:GetAmmoCount(self.Primary.Ammo) > 1 then
+					self:drawAnimFunc()
+				else
+					self:sendWeaponAnim("det_draw", 1, 0)
+				end
+			end)
+		end		
+
+		self:SetNextPrimaryFire(CurTime() + 1.5)
+		self:SetNextSecondaryFire(CurTime() + 1.5)
 	else
-		self:throwC4()
+		self:detonateLast()
 	end
 end
 
@@ -205,39 +350,78 @@ function SWEP:SecondaryAttack()
 		SendUserMessage("OMG_GARRY_SECONDARY", self.Owner)
 	end
 	
-	if CLIENT then
-		self.reticleInactivity = UnPredictedCurTime() + 2
+	if self.Owner:GetAmmoCount(self.Primary.Ammo) > 1 then
+		if CLIENT then
+			self.reticleInactivity = UnPredictedCurTime() + 2
+		end
+		
+		if self:canAnimate() then
+			self:_holsterAnimFunc()
+			
+			CustomizableWeaponry.actionSequence.new(self, 0.4, nil, function()
+				self:sendWeaponAnim("det_draw", 1, 0)
+			end)
+			
+			CustomizableWeaponry.actionSequence.new(self, 0.7, nil, function()
+				self:sendWeaponAnim("det_boom", 1, 0)
+			end)
+			
+			CustomizableWeaponry.actionSequence.new(self, 1.7, nil, function()
+				self:drawAnimFunc()
+			end)
+		end
+		
+		CustomizableWeaponry.actionSequence.new(self, 1.1, nil, function()
+			self:detonateC4()
+		end)
+
+		self:SetNextPrimaryFire(CurTime() + 2)
+		self:SetNextSecondaryFire(CurTime() + 2.5)
+	else
+		self:detonateLast()
 	end
-	
+end
+
+function SWEP:detonateLast()
 	if self:canAnimate() then
-		self:_holsterAnimFunc()
+		self:sendWeaponAnim("det_boom", 1, 0)
 		
-		CustomizableWeaponry.actionSequence.new(self, 0.4, nil, function()
-			self:sendWeaponAnim("det_draw", 1, 0)
-		end)
-		
-		CustomizableWeaponry.actionSequence.new(self, 0.9, nil, function()
-			self:sendWeaponAnim("det_boom", 1, 0)
-		end)
-		
-		CustomizableWeaponry.actionSequence.new(self, 1.9, nil, function()
-			self:drawAnimFunc()
+		CustomizableWeaponry.actionSequence.new(self, 0.61, nil, function()
+			self:sendWeaponAnim("det_idle", 1, 0)
 		end)
 	end
 	
-	CustomizableWeaponry.actionSequence.new(self, 1.3, nil, function()
+	CustomizableWeaponry.actionSequence.new(self, 0.5, nil, function()
 		self:detonateC4()
 	end)
 	
-	self:SetNextPrimaryFire(CurTime() + 2)
-	self:SetNextSecondaryFire(CurTime() + 2.5)
+	self:SetNextPrimaryFire(CurTime() + 1)
+	self:SetNextSecondaryFire(CurTime() + 1)
 end
 
+function SWEP:updateReloadTimes() end
+
 function SWEP:getForegripMode()
-	if self.dt.C4detonator then 
-		return "det_"
-	else
+	if self.Owner:GetAmmoCount(self.Primary.Ammo) > 1 then 
 		return "base_"
+	else
+		return "det_"
+	end
+end
+
+function SWEP:drawAnimFunc()
+	if self.Owner:GetAmmoCount(self.Primary.Ammo) > 1 then
+		self:sendWeaponAnim("base_draw", 1, 0)
+	else
+		self:sendWeaponAnim("det_draw", 1, 0)
+	end
+end
+
+function SWEP:idleAnimFunc()
+	if self.Owner:GetAmmoCount(self.Primary.Ammo) > 1 then
+		self:sendWeaponAnim("base_idle", 1, 0)
+	else
+		self:sendWeaponAnim("det_idle", 1, 0)
 	end
 end
 
@@ -259,6 +443,26 @@ if CLIENT then
 		
 		return {Pos = m:GetTranslation(), Ang = m:GetAngles()}
 	end
+end
+
+local mins, maxs = Vector(-8, -8, -1), Vector(8, 8, 1)
+
+local td = {}
+td.mins = mins
+td.maxs = maxs
+
+function SWEP:isNearWall()
+	td.start = self.Owner:GetShootPos()
+	td.endpos = td.start + self.Owner:EyeAngles():Forward() * 50
+	td.filter = self.Owner
+	
+	local tr = util.TraceLine(td)
+	
+	if tr.Hit or (IsValid(tr.Entity) and not tr.Entity:IsPlayer()) then
+		return true
+	end
+	
+	return false
 end
 
 // and now insane framework, just for this gun

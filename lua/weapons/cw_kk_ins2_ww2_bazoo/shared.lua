@@ -2,7 +2,9 @@ if not CustomizableWeaponry then return end
 
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
+AddCSLuaFile("sh_soundscript.lua")
 include("sh_sounds.lua")
+include("sh_soundscript.lua")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
@@ -81,53 +83,6 @@ SWEP.Animations = {
 	base_safe_empty = "empty_down",
 	base_safe_empty_aim = "iron_down_empty",
 }
-	
-SWEP.Sounds = {
-	base_ready = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-		{time = 15/32.5, sound = "CW_KK_INS2_RPG_FETCH"},
-		{time = 77/32.5, sound = "CW_KK_INS2_RPG_LOAD1"},
-		{time = 97/32.5, sound = "CW_KK_INS2_RPG_LOAD2"},
-		{time = 135/32.5, sound = "CW_KK_INS2_RPG_ENDGRAP"},
-	},
-
-	base_draw = {
-		{time = 0/32.5, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-	},
-
-	base_holster = {
-		{time = 0/32.5, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
-	},
-
-	base_crawl = {
-		{time = 0/32, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
-		{time = 13/32, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
-	},
-
-	base_reload = {
-		{time = 15/32.5, sound = "CW_KK_INS2_RPG_FETCH"},
-		{time = 77/32.5, sound = "CW_KK_INS2_RPG_LOAD1"},
-		{time = 97/32.5, sound = "CW_KK_INS2_RPG_LOAD2"},
-		{time = 135/32.5, sound = "CW_KK_INS2_RPG_ENDGRAP"},
-	},
-
-	empty_draw = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-	},
-
-	empty_holster = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
-	},
-
-	empty_dryfire = {
-		{time = 1/30, sound = "CW_KK_INS2_GP30_EMPTY"},
-	},
-
-	empty_crawl = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
-		{time = 13/32, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
-	}
-}
 
 SWEP.SpeedDec = 15
 
@@ -154,16 +109,15 @@ SWEP.DrawCustomWM = true
 SWEP.WMPos = Vector(7.035, 5.085, -0.366)
 SWEP.WMAng = Vector(-10.386, 0, -120)
 
-SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.f1
-SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.gurkha
+SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2us
 
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
 
-SWEP.Primary.ClipSize		= 4
-SWEP.Primary.DefaultClip	= 4
+SWEP.Primary.ClipSize		= 1
+SWEP.Primary.DefaultClip	= 1
 SWEP.Primary.Automatic		= true
-SWEP.Primary.Ammo			= "RPG 40MM"
+SWEP.Primary.Ammo			= "M6A1 Rocket"
 
 SWEP.FireDelay = 0.3
 SWEP.FireSound = "CW_KK_INS2_WW2_BAZOOKA_FIRE"
@@ -181,15 +135,15 @@ SWEP.Damage = 100
 SWEP.FirstDeployTime = 3.06
 SWEP.DeployTime = 0.83
 
--- SWEP.ReloadTime = 2.7
--- SWEP.ReloadTime_Empty = 2.7
--- SWEP.ReloadHalt = 4
--- SWEP.ReloadHalt_Empty = 4
+SWEP.ReloadTime = 2.7
+SWEP.ReloadTime_Empty = 2.7
+SWEP.ReloadHalt = 4
+SWEP.ReloadHalt_Empty = 4
 
-SWEP.ShotgunReload = true
-SWEP.ReloadStartTime = 0
-SWEP.InsertShellTime = 3
-SWEP.ReloadFinishWait = 1
+-- SWEP.ShotgunReload = true
+-- SWEP.ReloadStartTime = 0
+-- SWEP.InsertShellTime = 3
+-- SWEP.ReloadFinishWait = 1
 
 function SWEP:fireAnimFunc()
 	local clip = self:Clip1()

@@ -3,10 +3,15 @@ att.name = "kk_ins2_pso4"
 att.displayName = "PSO-4"
 att.displayNameShort = "PSO-4"
 att.aimPos = {"KKINS2PSO4Pos", "KKINS2PSO4Ang"}
-att.FOVModifier = 15
+att.FOVModifier = 0
+att.AimViewModelFOV = 25
 att.isSight = true
 
-att.statModifiers = {OverallMouseSensMult = -0.1}
+-- att.colorType = CustomizableWeaponry.colorableParts.COLOR_TYPE_SIGHT
+
+att.statModifiers = {
+	OverallMouseSensMult = -0.1
+}
 
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
@@ -20,7 +25,7 @@ if CLIENT then
 		{tex = surface.GetTextureID("models/weapons/optics/po4x_reticule"), offset = {0, 1}},
 	}
 	
-	att._rtFov = 6
+	att._rtFov = 15
 	
 	function att:drawRenderTarget()
 		local scopeEnt = self.AttachmentModelsVM[att.name].ent

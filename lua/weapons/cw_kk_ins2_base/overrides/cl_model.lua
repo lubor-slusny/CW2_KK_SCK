@@ -214,35 +214,7 @@ function SWEP:drawGrenade()
 end
 
 function SWEP:drawKKKnife()
-	if CurTime() > self.knifeTime then
-		return
-	end
-	
-	if self.CW_KK_KNIFE:GetCycle() >= 0.99 then
-		return
-	end
-	
-	pos, ang = EyePos(), EyeAngles()
-	
-	self.GrenadePos.z = Lerp(FrameTime() * 10, self.GrenadePos.z, 0)
-	
-	pos = pos + ang:Up() * self.GrenadePos.z
-	pos = pos + ang:Forward() * 2
-	
-	ang:RotateAroundAxis(ang:Up(), 10)
-	
-	self.CW_KK_KNIFE:SetPos(pos)
-	self.CW_KK_KNIFE:SetAngles(ang)
-	self.CW_KK_KNIFE:FrameAdvance(FrameTime())
-
-	self.CW_KK_HANDS:SetPos(pos)
-	self.CW_KK_HANDS:SetParent(self.CW_KK_KNIFE)
-	self.CW_KK_HANDS:AddEffects(EF_BONEMERGE_FASTCULL)
-	
-	cam.IgnoreZ(true)
-		self.CW_KK_KNIFE:DrawModel()
-		self.CW_KK_HANDS:DrawModel()
-	cam.IgnoreZ(false)
+	CustomizableWeaponry_KK.ins2.drawKKKnife(self)
 end
 
 // attachment models

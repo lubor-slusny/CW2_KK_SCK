@@ -3,8 +3,10 @@ att.name = "kk_ins2_cstm_sureshot"
 att.displayName = "SureShot Reflex Sight"
 att.displayNameShort = "Sureshot"
 att.aimPos = {"KKINS2CSTMSureShotPos", "KKINS2CSTMSureShotAng"}
-att.FOVModifier = 15
+att.FOVModifier = 0
+att.AimViewModelFOV = 40
 att.isSight = true
+
 -- att.colorType = CustomizableWeaponry.colorableParts.COLOR_TYPE_SIGHT
 
 if CLIENT then

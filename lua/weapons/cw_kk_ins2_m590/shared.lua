@@ -84,10 +84,6 @@ SWEP.Attachments = {
 
 SWEP.Animations = {
 	draw = "base_ready",
-	reload_start = "",
-	insert = "",
-	reload_end = "",
-	idle = "",	
 	
 	base_pickup = "base_ready",
 	base_draw = "base_draw",
@@ -97,10 +93,11 @@ SWEP.Animations = {
 	base_fire_empty_aim = "iron_dryfire",
 	base_bolt = {"base_fire_cock_1", "base_fire_cock_2"},
 	base_bolt_aim = {"iron_fire_cock_1", "iron_fire_cock_2"},
-	base_reload_start_empty = "base_reload_start_empty",
 	base_reload_start = "base_reload_start",
+	base_reload_start_empty = "base_reload_start_empty",
 	base_insert = "base_reload_insert",
 	base_reload_end = "base_reload_end",
+	base_reload_end_empty = "base_reload_end",
 	base_idle = "base_idle",
 	base_holster = "base_holster",
 	base_sprint = "base_sprint",
@@ -115,10 +112,11 @@ SWEP.Animations = {
 	foregrip_fire_empty_aim = "foregrip_iron_dryfire",
 	foregrip_bolt = {"foregrip_fire_cock_1", "foregrip_fire_cock_2"},
 	foregrip_bolt_aim = {"foregrip_iron_fire_cock_1", "foregrip_iron_fire_cock_2"},
-	foregrip_reload_start_empty = "foregrip_reload_start_empty",
 	foregrip_reload_start = "foregrip_reload_start",
+	foregrip_reload_start_empty = "foregrip_reload_start_empty",
 	foregrip_insert = "foregrip_reload_insert",
 	foregrip_reload_end = "foregrip_reload_end",
+	foregrip_reload_end_empty = "foregrip_reload_end",
 	foregrip_idle = "foregrip_draw",
 	foregrip_holster = "foregrip_holster",
 	foregrip_sprint = "foregrip_sprint",
@@ -321,7 +319,7 @@ SWEP.Primary.DefaultClip	= 8
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "12 Gauge"
 
-SWEP.FireDelay = 0.95
+SWEP.FireDelay = 0.8
 SWEP.FireSound = "CW_KK_INS2_M590_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_M590_FIRE_SUPPRESSED"
 SWEP.Recoil = 3
@@ -339,35 +337,39 @@ SWEP.Damage = 10
 SWEP.FirstDeployTime = 2.1
 SWEP.DeployTime = 0.71
 
-SWEP.base_ReloadStartTime = 0.5
-SWEP.base_InsertShellTime = 0.72
-SWEP.base_ReloadFinishWait = 0.6
+SWEP.ReloadFirstShell = 2.25
 
-function SWEP:updateReloadTimes()
-	local mode = self:getForegripMode()
+SWEP.ReloadStartTime = 0.6
+SWEP.ReloadStartTimeEmpty = 2.89
+SWEP.InsertShellTime = 0.72
+SWEP.ReloadFinishWait = 0.6
+SWEP.ReloadFinishWaitEmpty = 0.6
 
-	if self:Clip1() == 0 then
-		self.Animations.reload_start = self.Animations[mode .. "reload_start_empty"]
-		self.Animations.insert = nil
-		self.ReloadStartTime = 2.2
-	else
-		self.Animations.reload_start = self.Animations[mode .. "reload_start"]
-		self.Animations.insert = self.Animations[mode .. "insert"]
-		if self.base_ReloadStartTime then
-			self.ReloadStartTime = self[mode .. "ReloadStartTime"] or self.base_ReloadStartTime
-		end
-	end
+-- function SWEP:updateReloadTimes()
+	-- local mode = self:getForegripMode()
+
+	-- if self:Clip1() == 0 then
+		-- self.Animations.reload_start = self.Animations[mode .. "reload_start_empty"]
+		-- self.Animations.insert = nil
+		-- self.ReloadStartTime = 2.2
+	-- else
+		-- self.Animations.reload_start = self.Animations[mode .. "reload_start"]
+		-- self.Animations.insert = self.Animations[mode .. "insert"]
+		-- if self.base_ReloadStartTime then
+			-- self.ReloadStartTime = self[mode .. "ReloadStartTime"] or self.base_ReloadStartTime
+		-- end
+	-- end
 	
-	self.Animations.reload_end = self.Animations[mode .. "reload_end"]
-	self.Animations.idle = self.Animations[mode .. "reload_end"]
+	-- self.Animations.reload_end = self.Animations[mode .. "reload_end"]
+	-- self.Animations.idle = self.Animations[mode .. "reload_end"]
 	
-	if self.base_InsertShellTime then
-		self.InsertShellTime = self[mode .. "InsertShellTime"] or self.base_InsertShellTime
-	end
-	if self.base_ReloadFinishWait then
-		self.ReloadFinishWait = self[mode .. "ReloadFinishWait"] or self.base_ReloadFinishWait
-	end
-end
+	-- if self.base_InsertShellTime then
+		-- self.InsertShellTime = self[mode .. "InsertShellTime"] or self.base_InsertShellTime
+	-- end
+	-- if self.base_ReloadFinishWait then
+		-- self.ReloadFinishWait = self[mode .. "ReloadFinishWait"] or self.base_ReloadFinishWait
+	-- end
+-- end
 
 function SWEP:fireAnimFunc()
 	local clip = self:Clip1()

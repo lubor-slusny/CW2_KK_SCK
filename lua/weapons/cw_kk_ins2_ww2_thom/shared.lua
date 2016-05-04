@@ -145,7 +145,7 @@ SWEP.ViewModel		= "models/weapons/v_thompson.mdl"
 SWEP.WorldModel		= "models/weapons/w_thompson.mdl"
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2us
-	
+
 SWEP.WMPos = Vector(0.699, 0.395, 0.862)
 SWEP.WMAng = Vector(-4.99, 3.065, 180)
 

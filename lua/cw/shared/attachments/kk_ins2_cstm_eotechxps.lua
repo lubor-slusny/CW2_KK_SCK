@@ -3,10 +3,15 @@ att.name = "kk_ins2_cstm_eotechxps"
 att.displayName = "EoTech XPS"
 att.displayNameShort = "XPS"
 att.aimPos = {"KKINS2CSTMEoTechXPSPos", "KKINS2CSTMEoTechXPSAng"}
-att.FOVModifier = 15
+att.FOVModifier = 0
+att.AimViewModelFOV = 40
 att.isSight = true
+
 -- att.colorType = CustomizableWeaponry.colorableParts.COLOR_TYPE_SIGHT
-att.statModifiers = {OverallMouseSensMult = -0.05}
+
+att.statModifiers = {
+	OverallMouseSensMult = -0.05
+}
 
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)

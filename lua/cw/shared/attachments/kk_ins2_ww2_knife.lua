@@ -10,7 +10,7 @@ att.statModifiers = {
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
 	att.description = {
-		
+		{t = "Replaces quick-grenade attack.", c = CustomizableWeaponry.textColors.NEUTRAL},
 	}
 	
 	function att:elementRender()

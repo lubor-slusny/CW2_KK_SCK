@@ -4,8 +4,6 @@ AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
 include("sh_sounds.lua")
 
-SWEP.magType = "arMag"
-
 if CLIENT then
 	SWEP.DrawCrosshair = false
 	SWEP.PrintName = "AKM"
@@ -82,9 +80,9 @@ if CLIENT then
 	SWEP.KKINS2AimpointPos = Vector(-2.305, -2, -0.45) // acceptable
 	SWEP.KKINS2AimpointAng = Vector(0, -0.02, 0)
 	
-	SWEP.KKINS2MagnifierPos = Vector(-2.305, -2, -0.3)
-	SWEP.KKINS2MagnifierAng = Vector(-3.2, 0.05, 0)
-	
+	SWEP.KKINS2MagnifierPos = Vector(-2.3084, -2, -0.5088)
+	SWEP.KKINS2MagnifierAng = Vector(0, 0, 0)
+
 	-- SWEP.IronsightPos_def = Vector(-2.296, -2, 0.062)
 	-- SWEP.IronsightAng_def = Vector(1.3, 0.07, 0)
 	

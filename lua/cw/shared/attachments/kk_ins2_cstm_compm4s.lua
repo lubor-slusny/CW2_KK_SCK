@@ -3,10 +3,15 @@ att.name = "kk_ins2_cstm_compm4s"
 att.displayName = "Aimpoint CompM4S"
 att.displayNameShort = "CompM4S"
 att.aimPos = {"KKINS2CSTMCompM4SPos", "KKINS2CSTMCompM4SAng"}
-att.FOVModifier = 20
+att.FOVModifier = 0
+att.AimViewModelFOV = 40
 att.isSight = true
+
 -- att.colorType = CustomizableWeaponry.colorableParts.COLOR_TYPE_SIGHT
-att.statModifiers = {OverallMouseSensMult = -0.07}
+
+att.statModifiers = {
+	OverallMouseSensMult = -0.07
+}
 
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
@@ -17,7 +22,7 @@ if CLIENT then
 	}
 	
 	att.reticle = "models/weapons/optics/aimpoint_reticule_holo"
-	att._reticleSize = 8
+	att._reticleSize = 6
 	
 	function att:elementRender()
 		CustomizableWeaponry_KK.ins2.stencilSight(self, att)

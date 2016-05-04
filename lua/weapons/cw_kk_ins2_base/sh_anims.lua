@@ -156,6 +156,20 @@ function SWEP:drawAnimFunc()
 	self:sendWeaponAnim(prefix .. "draw" .. suffix,self.DrawSpeed,0)
 end
 
+function SWEP:meleeAnimFunc()
+	clip = self:Clip1()
+	cyc = 0
+	rate = 1
+	prefix = self:getForegripMode()
+	suffix = ""
+	
+	if self.KKINS_emptyIdle and clip == 0 then
+		suffix = "_empty"
+	end
+	
+	self:sendWeaponAnim(prefix .. "melee" .. suffix,rate,cyc)
+end //*/
+	
 function SWEP:fireAnimFunc()
 	clip = self:Clip1()
 	cyc = 0

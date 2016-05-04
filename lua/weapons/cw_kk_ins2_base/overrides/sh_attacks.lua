@@ -7,13 +7,19 @@ function SWEP:PrimaryAttack()
 	end
 	
 	if self.Owner:KeyDown(IN_USE) then
+		if self.ActiveAttachments.kk_ins2_ww2_knife and CustomizableWeaponry_KK.ins2.canKnife(self) then
+			CustomizableWeaponry_KK.ins2.meleeWW2(self)
+			return 
+		end
+		
 		if CustomizableWeaponry_KK.ins2.canThrow(self) then
 			CustomizableWeaponry_KK.ins2.throwGrenade(self)
 			return
-		-- else
-		-- if CustomizableWeaponry_KK.ins2.canKnife(self) then
-			-- CustomizableWeaponry_KK.ins2.meleeKnife(self)
-			-- return
+		end
+		
+		if CustomizableWeaponry_KK.ins2.canKnife(self) then
+			CustomizableWeaponry_KK.ins2.meleeKnife(self)
+			return
 		end
 	end
 	
@@ -86,6 +92,12 @@ function SWEP:PrimaryAttack()
 		
 		if self.Primary.Ammo == "RPG 40MM" then
 			CustomizableWeaponry_KK.ins2.fireRPG(self, IFTP, true)
+		elseif self.Primary.Ammo == "AT4 Launcher" then
+			CustomizableWeaponry_KK.ins2.fireAT4(self, IFTP, true)
+		elseif self.Primary.Ammo == "M6A1 Rocket" then
+			CustomizableWeaponry_KK.ins2.fireM6A1(self, IFTP, true)
+		elseif self.Primary.Ammo == "Panzerfaust" then
+			CustomizableWeaponry_KK.ins2.firePF60(self, IFTP, true)
 		else
 			self:FireBullet(self.Damage, self.CurCone, self.ClumpSpread, self.Shots)
 		end
@@ -117,7 +129,7 @@ function SWEP:PrimaryAttack()
 	end
 	
 	if self:Clip1() == 0 then
-		self:SetNextPrimaryFire(CT + 0.5)
+		self:SetNextPrimaryFire(CT + math.Clamp(self.FireDelay, 0.5, self.FireDelay))
 	else
 		self:SetNextPrimaryFire(CT + self.FireDelay)
 	end

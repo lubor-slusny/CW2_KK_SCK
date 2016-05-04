@@ -4,8 +4,6 @@ AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
 include("sh_sounds.lua")
 
-SWEP.magType = "arMag"
-
 if CLIENT then
 	SWEP.DrawCrosshair = false
 	SWEP.PrintName = "Galil"
@@ -40,7 +38,7 @@ if CLIENT then
 		
 		["kk_ins2_cstm_barska"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_barska.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		-- ["kk_ins2_cstm_barska"] = {model = "models/weapons/upgrades/a_optic_kobra_sureshot.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_cstm_acog"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_acog.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_cstm_acog"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_acog_m.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_cstm_compm4s"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_compm4s.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_cstm_eotechxps"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_eotechxps.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 	}
@@ -102,7 +100,7 @@ if CLIENT then
 	SWEP.KKINS2CSTMEoTechXPSPos = Vector(-2.2341, -2, -0.5023)
 	SWEP.KKINS2CSTMEoTechXPSAng = Vector(0, 0, 0)
 
-	SWEP.KKINS2MagnifierPos = Vector(-2.2276, -3, -0.5042)
+	SWEP.KKINS2MagnifierPos = Vector(-2.2276, -2, -0.5042)
 	SWEP.KKINS2MagnifierAng = Vector(0.1, -0.02, 0)
 
 	SWEP.KKINS2CSTMCompM4SPos = Vector(-2.2265, -2, -0.4997)
@@ -110,6 +108,9 @@ if CLIENT then
 
 	SWEP.KKINS2EoTechPos = Vector(-2.2277, 0, -0.4398)
 	SWEP.KKINS2EoTechAng = Vector(0, 0, 0)
+
+	SWEP.KKINS2CSTMACOGPos = Vector(-2.2234, -2, -0.609)
+	SWEP.KKINS2CSTMACOGAng = Vector(0, 0, 0)
 
 	SWEP.CustomizationMenuScale = 0.016
 end

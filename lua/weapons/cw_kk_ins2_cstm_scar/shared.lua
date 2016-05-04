@@ -7,8 +7,6 @@ include("sh_sounds.lua")
 util.PrecacheModel("models/weapons/v_cw_kk_ins2_cstm_scar_tan.mdl")
 util.PrecacheModel("models/weapons/w_cw_kk_ins2_cstm_scar_tan.mdl")
 
-SWEP.magType = "brMag"
-
 if CLIENT then
 	SWEP.DrawCrosshair = false
 	SWEP.PrintName = "SCAR"

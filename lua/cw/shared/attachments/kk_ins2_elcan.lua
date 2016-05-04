@@ -3,10 +3,15 @@ att.name = "kk_ins2_elcan"
 att.displayName = "Elcan"
 att.displayNameShort = "Elcan"
 att.aimPos = {"KKINS2ElcanPos", "KKINS2ElcanAng"}
-att.FOVModifier = 15
+att.FOVModifier = 0
+att.AimViewModelFOV = 30
 att.isSight = true
 
-att.statModifiers = {OverallMouseSensMult = -0.1}
+-- att.colorType = CustomizableWeaponry.colorableParts.COLOR_TYPE_SIGHT
+
+att.statModifiers = {
+	OverallMouseSensMult = -0.1
+}
 
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
@@ -20,7 +25,7 @@ if CLIENT then
 		{tex = surface.GetTextureID("models/weapons/optics/elcan_reticule"), offset = {0, 1}},
 	}
 	
-	att._rtFov = 6
+	att._rtFov = 15
 	
 	function att:drawRenderTarget()
 		local scopeEnt = self.AttachmentModelsVM[att.name].ent

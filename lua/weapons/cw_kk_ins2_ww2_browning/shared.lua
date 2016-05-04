@@ -2,7 +2,9 @@ if not CustomizableWeaponry then return end
 
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
+AddCSLuaFile("sh_soundscript.lua")
 include("sh_sounds.lua")
+include("sh_soundscript.lua")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
@@ -89,113 +91,6 @@ SWEP.Animations = {
 	bipod_firemode_aim = "deployed_fireselect",
 	bipod_out = "deployed_out",
 }
-	
-SWEP.Sounds = {
-	base_ready = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-		{time = 14/28, sound = "CW_KK_INS2_RPK_FIRESELECT"},
-		{time = 29/28, sound = "CW_KK_INS2_RPK_BOLTBACK"},
-		{time = 41/28, sound = "CW_KK_INS2_RPK_BOLTRELEASE"},
-	},
-
-	base_draw = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-	},
-
-	base_holster = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
-	},
-
-	base_crawl = {
-		{time = 15/30, sound = "CW_KK_INS2_UNIVERSAL_RightCrawl"},
-		{time = 38/30, sound = "CW_KK_INS2_UNIVERSAL_LeftCrawl"},
-	},
-
-	base_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_RPK_EMPTY"},
-	},
-
-	base_fireselect = {
-		{time = 17/30, sound = "CW_KK_INS2_RPK_FIRESELECT"},
-	},
-
-	base_reload = {
-		{time = 20/30, sound = "CW_KK_INS2_RPK_MAGRELEASE"},
-		{time = 23/30, sound = "CW_KK_INS2_RPK_MAGOUT"},
-		{time = 35/30, sound = "CW_KK_INS2_RPK_MAGOUTRATTLE"},
-		{time = 50/30, sound = "CW_KK_INS2_RPK_FETCHMAG"},
-		{time = 97/30, sound = "CW_KK_INS2_RPK_MAGIN"},
-		{time = 122/30, sound = "CW_KK_INS2_RPK_RATTLE"},
-	},
-
-	base_reloadempty = {
-		{time = 20/30, sound = "CW_KK_INS2_RPK_MAGRELEASE"},
-		{time = 23/30, sound = "CW_KK_INS2_RPK_MAGOUT"},
-		{time = 35/30, sound = "CW_KK_INS2_RPK_MAGOUTRATTLE"},
-		{time = 50/30, sound = "CW_KK_INS2_RPK_FETCHMAG"},
-		{time = 97/30, sound = "CW_KK_INS2_RPK_MAGIN"},
-		{time = 122/30, sound = "CW_KK_INS2_RPK_RATTLE"},
-		{time = 146/30, sound = "CW_KK_INS2_RPK_BOLTBACK"},
-		{time = 153/30, sound = "CW_KK_INS2_RPK_BOLTRELEASE"},
-	},
-
-	iron_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_RPK_EMPTY"},
-	},
-
-	iron_fireselect = {
-		{time = 17/30, sound = "CW_KK_INS2_RPK_FIRESELECT"},
-	},
-
-	deployed_in = {
-		{time = 16/30, sound = "CW_KK_INS2_RPK_BIPODDEPLOY"},
-	},
-
-	deployed_out = {
-		{time = 13/30, sound = "CW_KK_INS2_RPK_MAGOUTRATTLE"},
-		{time = 20/30, sound = "CW_KK_INS2_RPK_BIPODRETRACT"},
-	},
-
-	deployed_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_RPK_EMPTY"},
-	},
-
-	deployed_fireselect = {
-		{time = 17/30, sound = "CW_KK_INS2_RPK_FIRESELECT"},
-	},
-
-	deployed_reload = {
-		{time = 16/30, sound = "CW_KK_INS2_RPK_MAGRELEASE"},
-		{time = 35/30, sound = "CW_KK_INS2_RPK_MAGOUT"},
-		{time = 44/30, sound = "CW_KK_INS2_RPK_MAGOUTRATTLE"},
-		{time = 80/30, sound = "CW_KK_INS2_RPK_FETCHMAG"},
-		{time = 111/30, sound = "CW_KK_INS2_RPK_MAGIN"},
-		{time = 130/30, sound = "CW_KK_INS2_RPK_ENDDEPLOYEDRELOAD"},
-	},
-
-	deployed_reloadempty = {
-		{time = 16/30, sound = "CW_KK_INS2_RPK_MAGRELEASE"},
-		{time = 35/30, sound = "CW_KK_INS2_RPK_MAGOUT"},
-		{time = 44/30, sound = "CW_KK_INS2_RPK_MAGOUTRATTLE"},
-		{time = 80/30, sound = "CW_KK_INS2_RPK_FETCHMAG"},
-		{time = 111/30, sound = "CW_KK_INS2_RPK_MAGIN"},
-		{time = 150/30, sound = "CW_KK_INS2_RPK_BOLTBACK"},
-		{time = 157/30, sound = "CW_KK_INS2_RPK_BOLTRELEASE"},
-		{time = 168/30, sound = "CW_KK_INS2_RPK_ENDDEPLOYEDRELOAD"},
-	},
-
-	deployed_iron_idle = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_IronIdle"},
-	},
-
-	deployed_iron_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_RPK_EMPTY"},
-	},
-
-	deployed_iron_fireselect = {
-		{time = 17/30, sound = "CW_KK_INS2_RPK_FIRESELECT"},
-	},
-}
 
 SWEP.SpeedDec = 30
 
@@ -220,8 +115,7 @@ SWEP.WorldModel		= "models/weapons/w_m1919.mdl"
 SWEP.WMPos = Vector(5.627, 0.66, -1.397)
 SWEP.WMAng = Angle(-10, 0, 180)
 
-SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.f1
-SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.gurkha
+SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2us
 
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.ww2ContentMounted()

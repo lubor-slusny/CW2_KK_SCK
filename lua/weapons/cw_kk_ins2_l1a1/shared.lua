@@ -7,8 +7,6 @@ include("sh_sounds.lua")
 util.PrecacheModel("models/weapons/v_l1a1.mdl")
 util.PrecacheModel("models/weapons/w_l1a1.mdl")
 
-SWEP.magType = "brMag"
-
 if CLIENT then
 	SWEP.DrawCrosshair = false
 	SWEP.PrintName = "L1A1"

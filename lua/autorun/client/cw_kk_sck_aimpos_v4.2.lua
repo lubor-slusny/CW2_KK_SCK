@@ -553,48 +553,212 @@ local function buildPanel(panel)
 	MENU.BUTTS.apb_export2.DoClick = buttonExportAll
 	panel:AddItem(MENU.BUTTS.apb_export2)
 	
-	MENU.SLIDERS.fovAim = vgui.Create("DNumSlider", panel)
-	MENU.SLIDERS.fovAim:DockMargin(8, 0, 8, 0)
-	MENU.SLIDERS.fovAim:SetDecimals(0)
-	MENU.SLIDERS.fovAim:SetMinMax(0, 85)
-	MENU.SLIDERS.fovAim:SetValue(0)
-	MENU.SLIDERS.fovAim:SetText("\"ZoomAmount\":")
-	MENU.SLIDERS.fovAim:SetDark(true)
-	
-	function MENU.SLIDERS.fovAim:OnValueChanged(val)
-		if not WEAPON or not SIGHT then return end
+	// AIM PLAYER FOV ADJUSTMENT
 		
-		WEAPON.ZoomAmount = val
-	end
-	
-	function MENU.SLIDERS.fovAim:_KK_SCK_update()
-		if not WEAPON or not SIGHT then return end
+		MENU.LABELS.fovAimSlider = panel:AddControl("Label", {Text = "SWEP.ZoomAmount"})
+		MENU.LABELS.fovAimSlider:DockMargin(8, 0, 0, 0)
 		
-		self:SetValue(WEAPON.ZoomAmount)
-	end
-	
-	panel:AddItem(MENU.SLIDERS.fovAim)
+		MENU.SLIDERS.fovAim = vgui.Create("DNumSlider", panel)
+		MENU.SLIDERS.fovAim:DockMargin(16, 0, 8, 0)
+		MENU.SLIDERS.fovAim:SetDecimals(0)
+		MENU.SLIDERS.fovAim:SetMinMax(0, 85)
+		MENU.SLIDERS.fovAim:SetValue(0)
+		MENU.SLIDERS.fovAim:SetText("_Orig =")
+		MENU.SLIDERS.fovAim:SetDark(true)
+		
+		function MENU.SLIDERS.fovAim:OnValueChanged(val)
+			if not WEAPON or not SIGHT then return end
+			
+			WEAPON.ZoomAmount = val
+		end
+		
+		function MENU.SLIDERS.fovAim:_KK_SCK_update()
+			if not WEAPON or not SIGHT then return end
+			
+			self:SetText("_Orig = " .. WEAPON.ZoomAmount_Orig)
+			self:SetValue(WEAPON.ZoomAmount)
+		end
+		
+		panel:AddItem(MENU.SLIDERS.fovAim)
 
-	-- MENU.SLIDERS.fovVM = vgui.Create("DNumSlider", panel)
-	-- MENU.SLIDERS.fovVM:DockMargin(8, 0, 8, 0)
-	-- MENU.SLIDERS.fovVM:SetDecimals(0)
-	-- MENU.SLIDERS.fovVM:SetMinMax(1, 150)
-	-- MENU.SLIDERS.fovVM:SetValue(0)
-	-- MENU.SLIDERS.fovVM:SetText("ViewModelFOV:")
-	-- MENU.SLIDERS.fovVM:SetDark(true)
-	
-	-- function MENU.SLIDERS.fovVM:OnValueChanged(val)
-		-- if not WEAPON or not SIGHT then return end
-		-- WEAPON.ViewModelFOV = val
-	-- end
-	
-	-- function MENU.SLIDERS.fovVM:_KK_SCK_update()
-		-- if not WEAPON or not SIGHT then return end
-		-- self:SetValue(WEAPON.ViewModelFOV)
-	-- end
-	
-	-- panel:AddItem(MENU.SLIDERS.fovVM)
+	// AIM VM FOV ADJUSTMENT
+		
+		MENU.LABELS.fovVMSlider = panel:AddControl("Label", {Text = "SWEP.AimViewModelFOV"})
+		MENU.LABELS.fovVMSlider:DockMargin(8, 0, 0, 0)
+		
+		MENU.SLIDERS.fovVM = vgui.Create("DNumSlider", panel)
+		MENU.SLIDERS.fovVM:DockMargin(16, 0, 8, 0)
+		MENU.SLIDERS.fovVM:SetDecimals(0)
+		MENU.SLIDERS.fovVM:SetMinMax(1, 150)
+		MENU.SLIDERS.fovVM:SetValue(0)
+		MENU.SLIDERS.fovVM:SetText("_Orig =")
+		MENU.SLIDERS.fovVM:SetDark(true)
+		
+		function MENU.SLIDERS.fovVM:OnValueChanged(val)
+			if not WEAPON or not SIGHT then return end
+			
+			WEAPON.AimViewModelFOV = val
+		end
+		
+		function MENU.SLIDERS.fovVM:_KK_SCK_update()
+			if not WEAPON or not SIGHT then return end
+			
+			self:SetText("_Orig = " .. WEAPON.AimViewModelFOV_Orig)
+			self:SetValue(WEAPON.AimViewModelFOV)
+		end
+		
+		panel:AddItem(MENU.SLIDERS.fovVM)
 
+	// AIM VM SWAY ADJUSTMENT
+		
+		MENU.LABELS.aimSwaySlider = panel:AddControl("Label", {Text = "SWEP.AimSwayIntensity"})
+		MENU.LABELS.aimSwaySlider:DockMargin(8, 0, 0, 0)
+		
+		MENU.SLIDERS.aimSway = vgui.Create("DNumSlider", panel)
+		MENU.SLIDERS.aimSway:DockMargin(16, 0, 8, 0)
+		MENU.SLIDERS.aimSway:SetDecimals(2)
+		MENU.SLIDERS.aimSway:SetMinMax(0, 2)
+		MENU.SLIDERS.aimSway:SetValue(0)
+		MENU.SLIDERS.aimSway:SetText("_Orig =")
+		MENU.SLIDERS.aimSway:SetDark(true)
+		
+		function MENU.SLIDERS.aimSway:OnValueChanged(val)
+			if not WEAPON or not SIGHT then return end
+			
+			WEAPON.AimSwayIntensity = val
+		end
+		
+		function MENU.SLIDERS.aimSway:_KK_SCK_update()
+			if not WEAPON or not SIGHT then return end
+			
+			local num = nil
+			local class = WEAPON:GetClass()
+			
+			while (num == nil and class != nil) do
+				num = weapons.GetStored(class).AimSwayIntensity
+				class = weapons.GetStored(class).Base
+			end
+			
+			num = num or 911
+			self:SetText("_Orig = " .. num)
+			self:SetValue(WEAPON.AimSwayIntensity)
+		end
+		
+		panel:AddItem(MENU.SLIDERS.aimSway)
+
+	// ALTERNATIVE ORIGIN TEMP
+		
+		MENU.LABELS.alternativePosSliders = panel:AddControl("Label", {Text = "SWEP.AlternativePos"})
+		MENU.LABELS.alternativePosSliders:DockMargin(0, 0, 0, 0)
+		
+		local function sliderUpdate(slider)
+			if not WEAPON or not SIGHT then return end
+			
+			if not WEAPON["Alternative" .. slider._KK_SCK_vec] then
+				WEAPON["Alternative" .. slider._KK_SCK_vec] = Vector(0, 0, 0)
+			end
+			
+			slider:SetValue(WEAPON["Alternative" .. slider._KK_SCK_vec][slider._KK_SCK_vec_pos])
+		end
+
+		local function sliderChanged(slider, val)
+			if WEAPON and SIGHT and not _LOCK then
+				local new = math.Round(val,4)
+			
+				local vec = vectorClone(WEAPON["Alternative" .. slider._KK_SCK_vec])
+				vec[slider._KK_SCK_vec_pos] = new
+				
+				WEAPON["Blend" .. slider._KK_SCK_vec] = vectorClone(vec)
+				WEAPON["Alternative" .. slider._KK_SCK_vec] = vectorClone(vec)  // does affect weapon.stored? // nope, does not, we re good
+			end
+		end
+		
+		id = "ap_px"
+		MENU.SLIDERS[id] = vgui.Create("DNumSlider", panel)
+		MENU.SLIDERS[id]:DockMargin(8, 0, 8, 0)
+		MENU.SLIDERS[id]:SetDecimals(4)
+		MENU.SLIDERS[id]:SetMinMax(-50, 50)
+		MENU.SLIDERS[id]:SetValue(0)
+		MENU.SLIDERS[id]:SetText("Pos.x")
+		MENU.SLIDERS[id]:SetDark(true)
+		MENU.SLIDERS[id].OnValueChanged = sliderChanged
+		MENU.SLIDERS[id]._KK_SCK_vec = "Pos"
+		MENU.SLIDERS[id]._KK_SCK_vec_pos = "x"
+		MENU.SLIDERS[id]._KK_SCK_update = sliderUpdate
+		panel:AddItem(MENU.SLIDERS[id])
+
+		id = "ap_py"
+		MENU.SLIDERS[id] = vgui.Create("DNumSlider", panel)
+		MENU.SLIDERS[id]:DockMargin(8, 0, 8, 0)
+		MENU.SLIDERS[id]:SetDecimals(4)
+		MENU.SLIDERS[id]:SetMinMax(-50, 50)
+		MENU.SLIDERS[id]:SetValue(0)
+		MENU.SLIDERS[id]:SetText("Pos.y")
+		MENU.SLIDERS[id]:SetDark(true)
+		MENU.SLIDERS[id].OnValueChanged = sliderChanged
+		MENU.SLIDERS[id]._KK_SCK_vec = "Pos"
+		MENU.SLIDERS[id]._KK_SCK_vec_pos = "y"
+		MENU.SLIDERS[id]._KK_SCK_update = sliderUpdate
+		panel:AddItem(MENU.SLIDERS[id])
+
+		id = "ap_pz"
+		MENU.SLIDERS[id] = vgui.Create("DNumSlider", panel)
+		MENU.SLIDERS[id]:DockMargin(8, 0, 8, 0)
+		MENU.SLIDERS[id]:SetDecimals(4)
+		MENU.SLIDERS[id]:SetMinMax(-50, 50)
+		MENU.SLIDERS[id]:SetValue(0)
+		MENU.SLIDERS[id]:SetText("Pos.z")
+		MENU.SLIDERS[id]:SetDark(true)
+		MENU.SLIDERS[id].OnValueChanged = sliderChanged
+		MENU.SLIDERS[id]._KK_SCK_vec = "Pos"
+		MENU.SLIDERS[id]._KK_SCK_vec_pos = "z"
+		MENU.SLIDERS[id]._KK_SCK_update = sliderUpdate
+		panel:AddItem(MENU.SLIDERS[id])
+
+		id = "ap_ax"
+		MENU.SLIDERS[id] = vgui.Create("DNumSlider", panel)
+		MENU.SLIDERS[id]:DockMargin(8, 0, 8, 0)
+		MENU.SLIDERS[id]:SetDecimals(4)
+		MENU.SLIDERS[id]:SetMinMax(-180, 180)
+		MENU.SLIDERS[id]:SetValue(0)
+		MENU.SLIDERS[id]:SetText("Pitch")
+		MENU.SLIDERS[id]:SetDark(true)
+		MENU.SLIDERS[id].OnValueChanged = sliderChanged
+		MENU.SLIDERS[id]._KK_SCK_vec = "Ang"
+		MENU.SLIDERS[id]._KK_SCK_vec_pos = "x"
+		MENU.SLIDERS[id]._KK_SCK_update = sliderUpdate
+		panel:AddItem(MENU.SLIDERS[id])
+
+		id = "ap_ay"
+		MENU.SLIDERS[id] = vgui.Create("DNumSlider", panel)
+		MENU.SLIDERS[id]:DockMargin(8, 0, 8, 0)
+		MENU.SLIDERS[id]:SetDecimals(4)
+		MENU.SLIDERS[id]:SetMinMax(-180, 180)
+		MENU.SLIDERS[id]:SetValue(0)
+		MENU.SLIDERS[id]:SetText("Yaw")
+		MENU.SLIDERS[id]:SetDark(true)
+		MENU.SLIDERS[id].OnValueChanged = sliderChanged
+		MENU.SLIDERS[id]._KK_SCK_vec = "Ang"
+		MENU.SLIDERS[id]._KK_SCK_vec_pos = "y"
+		MENU.SLIDERS[id]._KK_SCK_update = sliderUpdate
+		panel:AddItem(MENU.SLIDERS[id])
+
+		id = "ap_az"
+		MENU.SLIDERS[id] = vgui.Create("DNumSlider", panel)
+		MENU.SLIDERS[id]:DockMargin(8, 0, 8, 0)
+		MENU.SLIDERS[id]:SetDecimals(4)
+		MENU.SLIDERS[id]:SetMinMax(-180, 180)
+		MENU.SLIDERS[id]:SetValue(0)
+		MENU.SLIDERS[id]:SetText("Roll")
+		MENU.SLIDERS[id]:SetDark(true)
+		MENU.SLIDERS[id].OnValueChanged = sliderChanged
+		MENU.SLIDERS[id]._KK_SCK_vec = "Ang"
+		MENU.SLIDERS[id]._KK_SCK_vec_pos = "z"
+		MENU.SLIDERS[id]._KK_SCK_update = sliderUpdate
+		panel:AddItem(MENU.SLIDERS[id])
+	
+	// hint hint
+	
 	for _,dpanel in pairs(MENU.PANELS) do
 		dpanel:DockPadding(4, 0, 4, 0)
 		dpanel:SetTooltip("Copy to clipboard.")

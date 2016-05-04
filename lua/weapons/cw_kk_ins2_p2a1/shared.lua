@@ -22,6 +22,7 @@ if CLIENT then
 	SWEP.IronsightAng = Vector(0, 0, 0)
 
 	SWEP.CustomizationMenuScale = 0.01
+	SWEP.ReloadViewBobEnabled = false
 end
 
 SWEP.Chamberable = false
@@ -157,10 +158,10 @@ SWEP.Damage = 10
 SWEP.FirstDeployTime = 0.5
 SWEP.DeployTime = 0.5
 
-SWEP.ReloadTime = 103/30
-SWEP.ReloadTime_Empty = 103/30
-SWEP.ReloadHalt = 4.5
-SWEP.ReloadHalt_Empty = 4.8
+SWEP.ReloadTime = 3.15
+SWEP.ReloadTime_Empty = 3.15
+SWEP.ReloadHalt = 5.17
+SWEP.ReloadHalt_Empty = 5.17
 
 function SWEP:FireBullet()
 	if SERVER then

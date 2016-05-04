@@ -2,7 +2,9 @@ if not CustomizableWeaponry then return end
 
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
+AddCSLuaFile("sh_soundscript.lua")
 include("sh_sounds.lua")
+include("sh_soundscript.lua")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
@@ -55,49 +57,6 @@ SWEP.Animations = {
 	bipod_firemode_aim = "deployed_fireselect",
 	bipod_out = "deployed_out",
 }
-	
-SWEP.Sounds = {
-	up_reload = {
-		{time = 1/43, sound = "Weapon_Bar.Draw"},
-		{time = 20/43, sound = "Weapon_Bar.ClipOut"},
-		{time = 17/43, sound = "Player.ReloadRustle"},
-		{time = 50/43, sound = "Weapon_Bar.ClipIn1"},
-		{time = 63/43, sound = "Weapon_Bar.ClipIn2"},
-		{time = 81/43, sound = "Weapon_Bar.Draw"},
-		{time = 91/43, sound = "Weapon_Bar.BoltBack"},
-		{time = 102/43, sound = "Weapon_Bar.BoltForward"},
-	},
-
-	up_draw = {
-		{time = 1/33, sound = "Weapon_Bar.Draw"},
-		{time = 17/33, sound = "Weapon_Bar.BoltBack"},
-		{time = 27/33, sound = "Weapon_Bar.BoltForward"},
-	},
-
-	up_to_down = {
-		{time = 17/33, sound = "Weapon_Bar.SelectorSwitch"},
-	},
-
-	down_reload = {
-		{time = 1/43, sound = "Weapon_Bar.Draw"},
-		{time = 20/43, sound = "Weapon_Bar.ClipOut"},
-		{time = 17/43, sound = "Player.ReloadRustle"},
-		{time = 50/43, sound = "Weapon_Bar.ClipIn1"},
-		{time = 63/43, sound = "Weapon_Bar.ClipIn2"},
-		{time = 91/43, sound = "Weapon_Bar.BoltBack"},
-		{time = 102/43, sound = "Weapon_Bar.BoltForward"},
-	},
-
-	down_draw = {
-		{time = 1/33, sound = "Weapon_Bar.Draw"},
-		{time = 17/33, sound = "Weapon_Bar.BoltBack"},
-		{time = 27/33, sound = "Weapon_Bar.BoltForward"},
-	},
-
-	down_to_up = {
-		{time = 17/33, sound = "Weapon_Bar.SelectorSwitch"},
-	},
-}
 
 SWEP.SpeedDec = 40
 
@@ -118,6 +77,8 @@ SWEP.ViewModelFOV	= 75
 SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_bar.mdl"
 SWEP.WorldModel		= "models/weapons/w_bar.mdl"
+
+SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2us
 
 SWEP.WMPos = Vector(1.197, 0, 1.358)
 SWEP.WMAng = Vector(-12.174, 2.743, 180)

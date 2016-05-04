@@ -127,7 +127,7 @@ SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()
 SWEP.Primary.ClipSize		= 1
 SWEP.Primary.DefaultClip	= 1
 SWEP.Primary.Automatic		= true
-SWEP.Primary.Ammo			= "RPG 40MM"
+SWEP.Primary.Ammo			= "AT4 Launcher"
 
 SWEP.FireDelay = 0.3
 SWEP.FireSound = "CW_KK_INS2_AT4_FIRE"

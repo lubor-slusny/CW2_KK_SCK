@@ -144,7 +144,7 @@ if CLIENT then
 	
 	function SWEP:updateStandardParts()
 		if self.AttachmentModelsVM then
-			if self:getCurrentPrimarySight() != nil then
+			if self:getPrimarySight() != nil then
 				if self.AttachmentModelsVM.kk_ins2_optic_iron then
 					self.AttachmentModelsVM.kk_ins2_optic_iron.active = false
 				end
@@ -200,6 +200,8 @@ function SWEP:hasInstalledRTScope()	// to be extended
 	
 	res = res or self.ActiveAttachments.kk_ins2_cstm_acog
 	
+	res = res or self.ActiveAttachments.kk_ins2_scope_zf4
+	
 	return res
 end
 
@@ -240,9 +242,17 @@ function SWEP:getForegripMode()
 	return "base_"
 end
 
-function SWEP:getCurrentPrimarySight()
+function SWEP:getPrimarySight()
 	for k,v in pairs(self.ActiveAttachments) do
 		if v and CustomizableWeaponry.registeredAttachmentsSKey[k].isSight then
+			return k
+		end
+	end
+end
+
+function SWEP:getSecondarySight()
+	for k,v in pairs(self.ActiveAttachments) do
+		if v and CustomizableWeaponry.registeredAttachmentsSKey[k].isSecondarySight then
 			return k
 		end
 	end
