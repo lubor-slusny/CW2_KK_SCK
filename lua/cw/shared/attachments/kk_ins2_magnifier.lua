@@ -92,6 +92,14 @@ if CLIENT then
 			self.AttachmentModelsVM[att.name].stencilEnt = nil
 			SafeRemoveEntity(rem)
 			
+			for i,mat in pairs(scopeEnt:GetMaterials()) do
+				if CustomizableWeaponry_KK.ins2.nodrawMat[mat] then
+					scopeEnt:SetSubMaterial(i - 1, "models/weapons/attachments/cw_kk_ins2_shared/nodraw")
+				else
+					scopeEnt:SetSubMaterial(i - 1)
+				end
+			end
+			
 			att.zoomTextures[1] = simpleTextures[velement.model] or simpleTextures["_default"]
 			self.ZoomTextures = att.zoomTextures
 		end

@@ -13,8 +13,6 @@ CustomizableWeaponry.callbacks:addNew("initialize", "KK_INS2_BASE", function(sel
 		
 		self.CW_VM._SWEP = self
 	end
-	
-	self.WeaponLength_Orig = self.WeaponLength
 end)
 
 -- CustomizableWeaponry.callbacks:addNew("canReload", "KK_INS2_BASE", function(wep)

@@ -18,7 +18,8 @@ if CLIENT then
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_sterling.mdl", bone = "RPG_Body", pos = Vector(-1.795, -11.804, -2.003), angle = Angle(0, -90, -180), size = Vector(0.899, 0.899, 0.899)},
 		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_sterling.mdl", bone = "RPG_Body", pos = Vector(-1.795, -11.804, -2.003), angle = Angle(0, -90, -180), size = Vector(0.899, 0.899, 0.899)},
-		
+		["kk_ins2_anpeq15"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_anpeq_ring.mdl", bone = "RPG_Body", pos = Vector(-1.795, -11.804, -2.003), angle = Angle(0, -90, -180), size = Vector(0.899, 0.899, 0.899)},
+
 		["kk_ins2_cstm_pgo7"] = { type = "Model", model = "models/weapons/attachments/v_cw_kk_ins2_cstm_pgo7.mdl", bone = "RPG_Body", rel = "", pos = Vector(1.052, -1.989, -0.811), angle = Angle(0, -90, 0), size = Vector(0.949, 0.949, 0.949)},
 		
 		["kk_counter"] = {model = "models/weapons/stattrack.mdl", bone = "RPG_Body", pos = Vector(0.605, -2.793, 2.559), angle = Angle(0, 0, 0), size = Vector(0.28, 0.28, 0.28)},
@@ -65,7 +66,7 @@ SWEP.WeaponLength = 44
 
 SWEP.Attachments = {
 	{header = "Sight", offset = {300, -500}, atts = {"kk_ins2_cstm_pgo7"}},
-	{header = "Extras", offset = {300, 100}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_combo"}},
+	{header = "Extras", offset = {300, 100}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}},
 }
 
 if CustomizableWeaponry_KK.HOME then
@@ -169,7 +170,8 @@ SWEP.WorldModel		= "models/weapons/w_rpg7.mdl"
 
 SWEP.DrawCustomWM = true
 SWEP.WMPos = Vector(7.035, 5.085, -0.366)
-SWEP.WMAng = Vector(-10.386, 0, -120)
+-- SWEP.WMAng = Vector(-10.386, 0, -120)
+SWEP.WMAng = Vector(0, 0, 180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.f1
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.gurkha
@@ -188,18 +190,18 @@ SWEP.FireSoundSuppressed = "CW_KK_INS2_RPG_FIRE"
 SWEP.Recoil = 0.5
 
 SWEP.HipSpread = 0.05
-SWEP.AimSpread = 0.005
-SWEP.VelocitySensitivity = 1.9
-SWEP.MaxSpreadInc = 0.06
-SWEP.SpreadPerShot = 0.01
-SWEP.SpreadCooldown = 0.8
+SWEP.AimSpread = 0
+SWEP.VelocitySensitivity = 0
+SWEP.MaxSpreadInc = 0.01
+SWEP.SpreadPerShot = 0
+SWEP.SpreadCooldown = 0
 SWEP.Shots = 1
 SWEP.Damage = 100
 
 SWEP.FirstDeployTime = 4.71
 SWEP.DeployTime = 1.14
 
-SWEP.ReloadTime = 3.77 // 90/32.5
+SWEP.ReloadTime = 3.77
 SWEP.ReloadTime_Empty = 3.77
 SWEP.ReloadHalt = 5
 SWEP.ReloadHalt_Empty = 5
@@ -231,15 +233,3 @@ if CLIENT then
 		self:SetBodygroup(1, 1 - self:Clip1())
 	end
 end
-
--- function SWEP:IndividualThink()
-	-- weapons.GetStored("cw_kk_ins2_base").IndividualThink(self)
-
-	-- if CLIENT then 
-		-- self.WMEnt:SetBodygroup(1, 1 - self:Clip1())
-	-- else
-		-- self:SetBodygroup(1, 1 - self:Clip1())
-	-- end
-	
-	-- self:SetBodygroup(1, 1 - self:Clip1())
--- end

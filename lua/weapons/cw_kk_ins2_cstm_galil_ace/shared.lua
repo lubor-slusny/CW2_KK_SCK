@@ -27,6 +27,7 @@ if CLIENT then
 		
 		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_band.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_band.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_anpeq15"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_anpeq_band.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_magnifier"] = {model = "models/weapons/upgrades/a_optic_aimp2x.mdl", bone = "Weapon", pos = Vector(0.059, -3.7, 2.759), angle = Angle(0, -90, 0), size = Vector(1, 1, 1)},
 		
@@ -99,7 +100,7 @@ SWEP.Attachments = {
 	{header = "Sight", offset = {300, -600}, atts = {"kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", /*"kk_ins2_cstm_eotechxps", "kk_ins2_eotech", */"kk_ins2_aimpoint", /*"kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"*/}},
 	{header = "Barrel", offset = {-200, -600}, atts = {"kk_ins2_suppressor_sec"}},
 	{header = "Under", offset = {-500, -150}, atts = {"kk_ins2_bipod", "kk_ins2_vertgrip"}},
-	{header = "Extras", offset = {150, -150}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_combo"}},
+	{header = "Extras", offset = {150, -150}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}},
 	{header = "MagZ", offset = {-200, 350}, atts = {"kk_ins2_mag_galil_75"}},
 	{header = "More Sight", offset = {1100, -150}, atts = {"kk_ins2_magnifier"}, dependencies = CustomizableWeaponry_KK.ins2.magnifierDependencies},
 	["+reload"] = {header = "Ammo", offset = {1000, 350}, atts = {"am_magnum", "am_matchgrade"}}

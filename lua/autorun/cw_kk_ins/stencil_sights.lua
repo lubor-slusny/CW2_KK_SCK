@@ -111,6 +111,7 @@ if CLIENT then
 		self._laserStencilCheck = false // this got little NASTY
 			CustomizableWeaponry.registeredAttachmentsSKey["kk_ins2_lam"].elementRender(self)
 			CustomizableWeaponry.registeredAttachmentsSKey["kk_ins2_combo"].elementRender(self)
+			CustomizableWeaponry.registeredAttachmentsSKey["kk_ins2_anpeq15"].elementRender(self)
 		self._laserStencilCheck = true
 		
 		if not self.ActiveAttachments[att.name] then return end

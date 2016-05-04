@@ -137,7 +137,7 @@ function CustomizableWeaponry_KK.ins2:fireHL2EP2(IFTP)
 		local phys = nade:GetPhysicsObject()
 		
 		if IsValid(phys) then
-			phys:SetVelocity(forward * 2996)
+			phys:SetVelocity(forward * 2500)
 		end
 		
 		-- nade:SetKeyValue("Dud Bomb", "false")
@@ -158,7 +158,15 @@ function CustomizableWeaponry_KK.ins2:fireHL2EP2(IFTP)
 		-- nade:Fire("launch")
 		-- nade:Fire("ExplodeIn", "2", 2)
 		-- nade:SetKeyValue("explodein", "2")
-		nade:Fire("explodein", "2")
+		-- nade:Fire("explodein", "2")
+		
+		-- nade:Fire("Launch")
+		-- nade:Fire("Launch", self.Owner)
+		-- nade:SetKeyValue("m_bLaunched", "true")
+		-- nade:Launch(self.Owner)
+		-- nade.m_bLaunched = true
+		-- nade:launch(self.Owner)
+		-- nade:Fire("ExplodeIn", "2", 0)
 	end
 end
 
@@ -167,18 +175,20 @@ function CustomizableWeaponry_KK.ins2:fireHL2EP1(IFTP)
 		local pos = self.Owner:GetShootPos()
 		local eyeAng = self.Owner:EyeAngles()
 		local forward = eyeAng:Forward()
-		local offset = forward * 30 + eyeAng:Right() * 4 - eyeAng:Up() * 3
 		
 		local nade = ents.Create("prop_combine_ball")
 		nade:SetPos(pos)
-		nade:SetAngles(eyeAng)
+		
 		nade:Spawn()
 		nade:Activate()
+		
+		nade:SetSolid(SOLID_VPHYSICS)
 		nade:SetOwner(self.Owner)
+		
 		local phys = nade:GetPhysicsObject()
 		
 		if IsValid(phys) then
-			phys:SetVelocity(forward * 90)
+			phys:SetVelocity(forward * 1000)
 		end
 	end
 end

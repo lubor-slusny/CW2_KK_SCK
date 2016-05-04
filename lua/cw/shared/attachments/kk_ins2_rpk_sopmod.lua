@@ -13,7 +13,7 @@ att.statModifiers = {
 	DamageMult = 0.1,
 	RecoilMult = -0.2,
 	FireDelayMult = -0.071,
-	WeaponLength = -4
+	WeaponLength = -6
 }
 
 if CLIENT then

@@ -157,7 +157,7 @@ SWEP.WeaponLength = 40
 local SP = game.SinglePlayer()
 
 if SERVER then
-	hook.Add("PlayerCanPickupWeapon", "KK_INS2_C4", function(ply, wep)
+	hook.Add("PlayerCanPickupWeapon", "CW_KK_INS2_C4", function(ply, wep)
 		if !wep.KKINS2RCE then return true end
 		
 		if (ply:HasWeapon(wep:GetClass())) then

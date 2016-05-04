@@ -128,6 +128,8 @@ do
 	CustomizableWeaponry:registerRecognizedStat("SpeedDec", "Decreases movement speed", "Increases movement speed", nok, ok)
 	CustomizableWeaponry:registerRecognizedStat("WeaponLength", "Decreases weapon length", "Increases weapon length", ok, nok)
 
+	CustomizableWeaponry.originalValue:add("WeaponLength", false, false)
+	
 	if CLIENT then	
 		local stat = {}
 		stat.varName = "WeaponLength"

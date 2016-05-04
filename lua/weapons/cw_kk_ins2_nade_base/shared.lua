@@ -134,6 +134,8 @@ function SWEP:IndividualThink()
 				if curTime > self.entityTime then
 					if SERVER then
 						local grenade = ents.Create(self.grenadeEnt)
+						grenade.model = self.WM or self.WorldModel
+						
 						grenade:SetPos(self.Owner:GetShootPos())
 						grenade:SetAngles(self.Owner:EyeAngles())
 						grenade:Spawn()

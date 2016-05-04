@@ -2,7 +2,9 @@ if not CustomizableWeaponry then return end
 
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
+AddCSLuaFile("sh_soundscript.lua")
 include("sh_sounds.lua")
+include("sh_soundscript.lua")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
@@ -20,6 +22,8 @@ if CLIENT then
 		["kk_ins2_galil"] = {model = "models/weapons/upgrades/a_standard_galil.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_mount_galil.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
+		["cw_menu_muzzle"] = {model = "models/maxofs2d/cube_tool.mdl", bone = "Weapon", pos = Vector(0.048, 13, 1.325), angle = Angle(0, -90, 0), size = Vector(0, 0, 0), active = true},
+
 		["kk_ins2_mag_galil_35"] = {model = "models/weapons/upgrades/a_magazine_galil_35.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		["kk_ins2_mag_galil_75"] = {model = "models/weapons/upgrades/a_magazine_galil_75.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
@@ -31,6 +35,7 @@ if CLIENT then
 		
 		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_band.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_band.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_anpeq15"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_anpeq_band.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_magnifier"] = {model = "models/weapons/upgrades/a_optic_aimp2x.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
@@ -133,7 +138,7 @@ SWEP.Attachments = {
 	{header = "Sight", offset = {500, -600}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_po4"}},
 	{header = "Barrel", offset = {-200, -600}, atts = {"kk_ins2_suppressor_ins", "kk_ins2_suppressor_sec"}},
 	{header = "Under", offset = {-500, -150}, atts = {"kk_ins2_bipod", "kk_ins2_vertgrip"}},
-	{header = "Extras", offset = {150, -150}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_combo"}},
+	{header = "Extras", offset = {150, -150}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}},
 	{header = "MagZ", offset = {-200, 350}, atts = {"kk_ins2_mag_galil_75"}},
 	{header = "Variant", offset = {400, 350}, atts = {"kk_ins2_galil_sar"}},
 	{header = "More Sight", offset = {1100, -150}, atts = {"kk_ins2_magnifier"}, dependencies = CustomizableWeaponry_KK.ins2.magnifierDependencies},
@@ -255,223 +260,6 @@ SWEP.ReloadTimes = {					//qc
 	-- deployed_reload_empty_drum = {00000/31.8, 7.55},
 -- }
 
-SWEP.Sounds = {
-	base_ready = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-		{time = 20/30, sound = "CW_KK_INS2_GALIL_FIRESELECT"},
-		{time = 39/30, sound = "CW_KK_INS2_GALIL_BOLTBACK"},
-		{time = 48/30, sound = "CW_KK_INS2_GALIL_BOLTRELEASE"},
-		{time = 60/30, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
-	},
-
-	base_draw = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-	},
-
-	base_holster = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
-	},
-
-	base_crawl = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
-		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
-	},
-
-	base_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_GALIL_EMPTY"},
-	},
-
-	base_fireselect = {
-		{time = 13/30, sound = "CW_KK_INS2_GALIL_FIRESELECT"},
-	},
-
-	base_reload = {
-		{time = 19/32.2, sound = "CW_KK_INS2_GALIL_MAGRELEASE"},
-		{time = 22/32.2, sound = "CW_KK_INS2_GALIL_MAGOUT"},
-		{time = 71/32.2, sound = "CW_KK_INS2_GALIL_MAGIN"},
-		{time = 99/32.2, sound = "CW_KK_INS2_GALIL_RATTLE"},
-	},
-
-	base_reloadempty = {
-		{time = 19/32.2, sound = "CW_KK_INS2_GALIL_MAGRELEASE"},
-		{time = 22/32.2, sound = "CW_KK_INS2_GALIL_MAGOUT"},
-		{time = 71/32.2, sound = "CW_KK_INS2_GALIL_MAGIN"},
-		{time = 99/32.2, sound = "CW_KK_INS2_GALIL_RATTLE"},
-		{time = 121/32.2, sound = "CW_KK_INS2_GALIL_BOLTBACK"},
-		{time = 130/32.2, sound = "CW_KK_INS2_GALIL_BOLTRELEASE"},
-	},
-
-	base_reload_drum = {
-		{time = 19/31.8, sound = "CW_KK_INS2_GALIL_MAGRELEASE"},
-		{time = 22/31.8, sound = "CW_KK_INS2_GALIL_DRUM_MAGOUT"},
-		{time = 28/31.8, sound = "CW_KK_INS2_GALIL_DRUM_MAGOUTRATTLE"},
-		{time = 30/31.8, sound = "CW_KK_INS2_GALIL_DRUM_MAGFETCH"},
-		{time = 105/31.8, sound = "CW_KK_INS2_GALIL_DRUM_MAGIN"},
-		{time = 142/31.8, sound = "CW_KK_INS2_GALIL_DRUM_MAGHIT"},
-		{time = 161/31.8, sound = "CW_KK_INS2_GALIL_RATTLE"},
-	},
-
-	base_reloadempty_drum = {
-		{time = 19/31.8, sound = "CW_KK_INS2_GALIL_MAGRELEASE"},
-		{time = 22/31.8, sound = "CW_KK_INS2_GALIL_DRUM_MAGOUT"},
-		{time = 28/31.8, sound = "CW_KK_INS2_GALIL_DRUM_MAGOUTRATTLE"},
-		{time = 30/31.8, sound = "CW_KK_INS2_GALIL_DRUM_MAGFETCH"},
-		{time = 105/31.8, sound = "CW_KK_INS2_GALIL_DRUM_MAGIN"},
-		{time = 142/31.8, sound = "CW_KK_INS2_GALIL_DRUM_MAGHIT"},
-		{time = 161/31.8, sound = "CW_KK_INS2_GALIL_RATTLE"},
-		{time = 190/31.8, sound = "CW_KK_INS2_GALIL_BOLTBACK"},
-		{time = 201/31.8, sound = "CW_KK_INS2_GALIL_BOLTRELEASE"},
-		{time = 223/31.8, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
-	},
-
-	iron_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_GALIL_EMPTY"},
-	},
-
-	iron_fireselect = {
-		{time = 13/30, sound = "CW_KK_INS2_GALIL_FIRESELECT"},
-	},
-
-	foregrip_ready = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-		{time = 20/30, sound = "CW_KK_INS2_GALIL_FIRESELECT"},
-		{time = 39/30, sound = "CW_KK_INS2_GALIL_BOLTBACK"},
-		{time = 48/30, sound = "CW_KK_INS2_GALIL_BOLTRELEASE"},
-		{time = 60/30, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
-	},
-
-	foregrip_draw = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-	},
-
-	foregrip_holster = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
-	},
-
-	foregrip_crawl = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
-		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
-	},
-
-	foregrip_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_GALIL_EMPTY"},
-	},
-
-	foregrip_fireselect = {
-		{time = 13/30, sound = "CW_KK_INS2_GALIL_FIRESELECT"},
-	},
-
-	foregrip_reload = {
-		{time = 19/32.2, sound = "CW_KK_INS2_GALIL_MAGRELEASE"},
-		{time = 22/32.2, sound = "CW_KK_INS2_GALIL_MAGOUT"},
-		{time = 71/32.2, sound = "CW_KK_INS2_GALIL_MAGIN"},
-		{time = 99/32.2, sound = "CW_KK_INS2_GALIL_RATTLE"},
-	},
-
-	foregrip_reloadempty = {
-		{time = 19/32.2, sound = "CW_KK_INS2_GALIL_MAGRELEASE"},
-		{time = 22/32.2, sound = "CW_KK_INS2_GALIL_MAGOUT"},
-		{time = 71/32.2, sound = "CW_KK_INS2_GALIL_MAGIN"},
-		{time = 99/32.2, sound = "CW_KK_INS2_GALIL_RATTLE"},
-		{time = 121/32.2, sound = "CW_KK_INS2_GALIL_BOLTBACK"},
-		{time = 130/32.2, sound = "CW_KK_INS2_GALIL_BOLTRELEASE"},
-	},
-
-	foregrip_reload_drum = {
-		{time = 19/31.8, sound = "CW_KK_INS2_GALIL_MAGRELEASE"},
-		{time = 22/31.8, sound = "CW_KK_INS2_GALIL_DRUM_MAGOUT"},
-		{time = 28/31.8, sound = "CW_KK_INS2_GALIL_DRUM_MAGOUTRATTLE"},
-		{time = 30/31.8, sound = "CW_KK_INS2_GALIL_DRUM_MAGFETCH"},
-		{time = 105/31.8, sound = "CW_KK_INS2_GALIL_DRUM_MAGIN"},
-		{time = 142/31.8, sound = "CW_KK_INS2_GALIL_DRUM_MAGHIT"},
-		{time = 161/31.8, sound = "CW_KK_INS2_GALIL_RATTLE"},
-	},
-
-	foregrip_reloadempty_drum = {
-		{time = 19/31.8, sound = "CW_KK_INS2_GALIL_MAGRELEASE"},
-		{time = 22/31.8, sound = "CW_KK_INS2_GALIL_DRUM_MAGOUT"},
-		{time = 28/31.8, sound = "CW_KK_INS2_GALIL_DRUM_MAGOUTRATTLE"},
-		{time = 30/31.8, sound = "CW_KK_INS2_GALIL_DRUM_MAGFETCH"},
-		{time = 105/31.8, sound = "CW_KK_INS2_GALIL_DRUM_MAGIN"},
-		{time = 142/31.8, sound = "CW_KK_INS2_GALIL_DRUM_MAGHIT"},
-		{time = 161/31.8, sound = "CW_KK_INS2_GALIL_RATTLE"},
-		{time = 190/31.8, sound = "CW_KK_INS2_GALIL_BOLTBACK"},
-		{time = 201/31.8, sound = "CW_KK_INS2_GALIL_BOLTRELEASE"},
-		{time = 223/31.8, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
-	},
-
-	foregrip_iron_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_GALIL_EMPTY"},
-	},
-
-	foregrip_iron_fireselect = {
-		{time = 13/30, sound = "CW_KK_INS2_GALIL_FIRESELECT"},
-	},
-
-	deployed_in = {
-		{time = 20/37.2, sound = "CW_KK_INS2_UNIVERSAL_BIPOD_DEPLOYSTART"},
-		{time = 28/37.2, sound = "CW_KK_INS2_UNIVERSAL_BIPOD_DEPLOYEND"},
-	},
-
-	deployed_out = {
-		{time = 30/37.5, sound = "CW_KK_INS2_UNIVERSAL_BIPOD_RETRACT"},
-	},
-
-	deployed_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_GALIL_EMPTY"},
-	},
-
-	deployed_fireselect = {
-		{time = 13/42, sound = "CW_KK_INS2_GALIL_FIRESELECT"},
-	},
-
-	deployed_reload = {
-		{time = 19/30, sound = "CW_KK_INS2_GALIL_MAGRELEASE"},
-		{time = 22/30, sound = "CW_KK_INS2_GALIL_MAGOUT"},
-		{time = 71/30, sound = "CW_KK_INS2_GALIL_MAGIN"},
-	},
-
-	deployed_reload_empty = {
-		{time = 19/30, sound = "CW_KK_INS2_GALIL_MAGRELEASE"},
-		{time = 22/30, sound = "CW_KK_INS2_GALIL_MAGOUT"},
-		{time = 71/30, sound = "CW_KK_INS2_GALIL_MAGIN"},
-		{time = 100/30, sound = "CW_KK_INS2_GALIL_RATTLE"},
-		{time = 121/30, sound = "CW_KK_INS2_GALIL_BOLTBACK"},
-		{time = 130/30, sound = "CW_KK_INS2_GALIL_BOLTRELEASE"},
-	},
-
-	deployed_reload_drum = {
-		{time = 19/31.8, sound = "CW_KK_INS2_GALIL_MAGRELEASE"},
-		{time = 22/31.8, sound = "CW_KK_INS2_GALIL_DRUM_MAGOUT"},
-		{time = 28/31.8, sound = "CW_KK_INS2_GALIL_DRUM_MAGOUTRATTLE"},
-		{time = 30/31.8, sound = "CW_KK_INS2_GALIL_DRUM_MAGFETCH"},
-		{time = 105/31.8, sound = "CW_KK_INS2_GALIL_DRUM_MAGIN"},
-		{time = 142/31.8, sound = "CW_KK_INS2_GALIL_DRUM_MAGHIT"},
-		{time = 160/31.8, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
-	},
-
-	deployed_reload_empty_drum = {
-		{time = 19/31.8, sound = "CW_KK_INS2_GALIL_MAGRELEASE"},
-		{time = 22/31.8, sound = "CW_KK_INS2_GALIL_DRUM_MAGOUT"},
-		{time = 28/31.8, sound = "CW_KK_INS2_GALIL_DRUM_MAGOUTRATTLE"},
-		{time = 30/31.8, sound = "CW_KK_INS2_GALIL_DRUM_MAGFETCH"},
-		{time = 105/31.8, sound = "CW_KK_INS2_GALIL_DRUM_MAGIN"},
-		{time = 142/31.8, sound = "CW_KK_INS2_GALIL_DRUM_MAGHIT"},
-		{time = 157/31.8, sound = "CW_KK_INS2_GALIL_RATTLE"},
-		{time = 190/31.8, sound = "CW_KK_INS2_GALIL_BOLTBACK"},
-		{time = 201/31.8, sound = "CW_KK_INS2_GALIL_BOLTRELEASE"},
-		{time = 223/31.8, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
-	},
-
-	deployed_iron_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_GALIL_EMPTY"},
-	},
-
-	deployed_iron_fireselect = {
-		{time = 13/30, sound = "CW_KK_INS2_GALIL_FIRESELECT"},
-	},
-}
-
 SWEP.SpeedDec = 30
 
 SWEP.Slot = 3
@@ -523,7 +311,36 @@ SWEP.Damage = 33
 SWEP.FirstDeployTime = 2.6
 SWEP.DeployTime = 0.6
 
-if CLIENT then 
+if CLIENT then
+	local att
+
+	function SWEP:getMuzzlePosition()
+		if self.Owner:ShouldDrawLocalPlayer() then
+			return {
+				Pos = self.WMEnt:GetAttachment(1).Pos, 
+				Ang = EyeAngles()
+			}
+		end
+		
+		if self.CustomizeMenuAlpha > 0 then
+			return {
+				Pos = self.AttachmentModelsVM.cw_menu_muzzle.ent:GetPos(), 
+				Ang = self.AttachmentModelsVM.cw_menu_muzzle.ent:GetAngles()
+			}
+		end
+		
+		att = self.CW_VM:LookupAttachment(self.MuzzleAttachmentName)
+
+		if att and att != 0 then
+			return self.CW_VM:GetAttachment(att)
+		end
+		
+		return {
+			Pos = self.Owner:EyePos(), 
+			Ang = self.Owner:EyeAngles()
+		}
+	end
+
 	function SWEP:updateOtherParts()
 		local active = self.ActiveAttachments
 		

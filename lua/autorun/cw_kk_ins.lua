@@ -32,12 +32,14 @@ AddCSLuaFile("cw_kk_ins/stencil_sights.lua")
 AddCSLuaFile("cw_kk_ins/render_targets.lua")
 AddCSLuaFile("cw_kk_ins/quick_nades.lua")
 AddCSLuaFile("cw_kk_ins/quick_knives.lua")
+AddCSLuaFile("cw_kk_ins/flashlight.lua")
 include("cw_kk_ins/rigs.lua")
 include("cw_kk_ins/rpgs.lua")
 include("cw_kk_ins/stencil_sights.lua")
 include("cw_kk_ins/render_targets.lua")
 include("cw_kk_ins/quick_nades.lua")
 include("cw_kk_ins/quick_knives.lua")
+include("cw_kk_ins/flashlight.lua")
 
 if CLIENT then
 	matproxy.Add({

@@ -46,7 +46,7 @@ CustomizableWeaponry_KK.ins2.quickGrenades.ww2de = {
 }
 
 local nadeEnt = {
-	[0] = "cw_grenade_thrown",
+	[0] = "cw_kk_ins2_projectile_frag",
 	[1] = "cw_flash_thrown",
 	[2] = "cw_smoke_thrown",
 }
@@ -176,6 +176,8 @@ function CustomizableWeaponry_KK.ins2:throwGrenade()
 				local forward = eyeAng:Forward()
 				
 				local nade = ents.Create(entClass)
+				nade.model = quickNadeTweak.wm
+				
 				nade:SetPos(pos + offset)
 				nade:SetAngles(eyeAng)
 				

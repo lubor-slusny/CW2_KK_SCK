@@ -82,8 +82,8 @@ if CLIENT then
 				
 				local x,y = dh * size - size, dv * size - size
 				
-				x = -x
-				y = -y
+				-- x = -x
+				-- y = -y
 					
 					surface.SetDrawColor(255, 255, 255, 255)
 					if att._rtReticle then
@@ -91,6 +91,9 @@ if CLIENT then
 					else
 						surface.SetTexture(innerRim)
 					end
+					surface.DrawTexturedRect(0, 0, size, size)
+					
+					surface.SetTexture(innerRim)
 					surface.DrawTexturedRect(x, y, size, size)
 					
 					surface.SetTexture(outerRim)
@@ -103,22 +106,22 @@ if CLIENT then
 					/*LEFT*/
 					surface.DrawTexturedRect(x - (size*2), y - (size*2), size*2, size*5)
 					
-				x = -x
-				y = -y
+				-- x = -x
+				-- y = -y
 				
-				surface.SetDrawColor(255, 255, 255, 255)
-				surface.SetTexture(innerRim)
-				surface.DrawTexturedRect(x, y, size, size)
+				-- surface.SetDrawColor(255, 255, 255, 255)
+				-- surface.SetTexture(innerRim)
+				-- surface.DrawTexturedRect(x, y, size, size)
 				
-				surface.SetTexture(outerRim)
-				/*UP*/
-				surface.DrawTexturedRect(x, y - (size*2), size, size*2)
-				/*RIGHT*/
-				surface.DrawTexturedRect(x + size, y - (size*2), size*2, size*5)
-				/*DOWN*/
-				surface.DrawTexturedRect(x, y + size, size, size*2)
-				/*LEFT*/
-				surface.DrawTexturedRect(x - (size*2), y - (size*2), size*2, size*5)
+				-- surface.SetTexture(outerRim)
+				-- /*UP*/
+				-- surface.DrawTexturedRect(x, y - (size*2), size, size*2)
+				-- /*RIGHT*/
+				-- surface.DrawTexturedRect(x + size, y - (size*2), size*2, size*5)
+				-- /*DOWN*/
+				-- surface.DrawTexturedRect(x, y + size, size, size*2)
+				-- /*LEFT*/
+				-- surface.DrawTexturedRect(x - (size*2), y - (size*2), size*2, size*5)
 				
 				if GetConVarNumber("cw_kk_freeze_reticles") != 0 then
 					surface.SetDrawColor(255, 255, 255, 255)

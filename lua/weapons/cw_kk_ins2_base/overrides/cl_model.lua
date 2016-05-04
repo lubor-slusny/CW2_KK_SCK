@@ -5,8 +5,10 @@ local att, sh, vm, ang, tweak
 
 function SWEP:getMuzzlePosition()
 	if self.Owner:ShouldDrawLocalPlayer() then
-		-- return self.WMEnt:GetAttachment(1)
-		return {Pos = self.WMEnt:GetAttachment(1).Pos, Ang = EyeAngles()}
+		return {
+			Pos = self.WMEnt:GetAttachment(1).Pos, 
+			Ang = EyeAngles()
+		}
 	end
 	
 	att = self.CW_VM:LookupAttachment(self.MuzzleAttachmentName)
@@ -15,7 +17,10 @@ function SWEP:getMuzzlePosition()
 		return self.CW_VM:GetAttachment(att)
 	end
 	
-	return {Pos = self.Owner:EyePos(), Ang = self.Owner:EyeAngles()}
+	return {
+		Pos = self.Owner:EyePos(), 
+		Ang = self.Owner:EyeAngles()
+	}
 end
 
 function SWEP:CreateShell(sh)

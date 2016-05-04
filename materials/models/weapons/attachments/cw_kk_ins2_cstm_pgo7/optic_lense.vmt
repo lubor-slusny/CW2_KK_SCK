@@ -21,7 +21,7 @@
 		{
 			"resultVar"		"$envmaptint"
 			"ResultDefault"	"2.0 1.0 5.0"
-			"ResultZoomed"	"0.7 0.5 0.8"
+			"ResultZoomed"	"0 0 0"
 		}
 	}
 }

@@ -23,7 +23,6 @@ function att:attachFunc()
 	if CLIENT then
 		self.CW_VM:SetModel("models/weapons/v_galil_sar.mdl")
 		self.WMEnt:SetModel("models/weapons/w_galil_sar.mdl")
-		self.CustomizationMenuScale = 0.014
 		-- self.DrawCustomWM = true
 	end
 	
@@ -35,7 +34,6 @@ function att:detachFunc()
 	if CLIENT then
 		self.CW_VM:SetModel("models/weapons/v_galil.mdl")
 		self.WMEnt:SetModel("models/weapons/w_galil.mdl")
-		self.CustomizationMenuScale = 0.016
 		-- self.DrawCustomWM = false
 	end
 	

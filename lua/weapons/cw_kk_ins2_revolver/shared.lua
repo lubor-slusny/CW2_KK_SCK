@@ -38,7 +38,7 @@ SWEP.WeaponLength = 16
 
 SWEP.Attachments = {
 	-- {header = "Barrel", offset = {-500, -400}, atts = {"md_cobram2"}},
-	-- {header = "Extras", offset = {-500, 50}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_combo"}},
+	-- {header = "Extras", offset = {-500, 50}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}},
 	{header = "Reload Aid", offset = {600, 50}, atts = {"kk_ins2_revolver_mag"}},
 	["+reload"] = {header = "Ammo", offset = {-400, 50}, atts = {"am_magnum", "am_matchgrade"}}
 }

@@ -131,7 +131,7 @@ if CLIENT then
 				end
 			end
 			
-			if self.AttachmentModelsWM then 
+			if self.AttachmentModelsWM then // move somewhere else
 				for k,v in pairs(self.AttachmentModelsVM) do
 					if self.AttachmentModelsWM[k] then
 						self.AttachmentModelsWM[k].active = v.active
@@ -176,19 +176,19 @@ function SWEP:hasInstalledRTScope()	// to be extended
 	return res
 end
 
-function SWEP:hasInstalledStencilSight() // do I even use this?
+function SWEP:hasInstalledStencilSight()
 	local res = false
 	
 	res = res or self.ActiveAttachments.kk_ins2_aimpoint
 	res = res or self.ActiveAttachments.kk_ins2_eotech
 	res = res or self.ActiveAttachments.kk_ins2_kobra
 	
-	res = res or self.ActiveAttachments.kk_ins2_cstm_barska
 	res = res or self.ActiveAttachments.kk_ins2_cstm_cmore
-	res = res or self.ActiveAttachments.kk_ins2_cstm_compm4s
-	res = res or self.ActiveAttachments.kk_ins2_cstm_eotechxps
-	res = res or self.ActiveAttachments.kk_ins2_cstm_microt1
 	res = res or self.ActiveAttachments.kk_ins2_cstm_sureshot
+	res = res or self.ActiveAttachments.kk_ins2_cstm_barska
+	res = res or self.ActiveAttachments.kk_ins2_cstm_microt1
+	res = res or self.ActiveAttachments.kk_ins2_cstm_eotechxps
+	res = res or self.ActiveAttachments.kk_ins2_cstm_compm4s
 	
 	return res
 end

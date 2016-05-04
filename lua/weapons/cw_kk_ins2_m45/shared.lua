@@ -54,7 +54,7 @@ SWEP.Attachments = {
 }
 
 if CustomizableWeaponry_KK.HOME then
-	table.insert(SWEP.Attachments, {header = "CSGO", offset = {500, 450}, atts = {"kk_counter"}})
+	table.insert(SWEP.Attachments, {header = "CSGO", offset = {1500, -400}, atts = {"kk_counter"}})
 end
 
 SWEP.KKINS_emptyIdle = true
