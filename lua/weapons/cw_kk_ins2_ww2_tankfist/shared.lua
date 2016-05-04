@@ -17,20 +17,8 @@ if CLIENT then
 	SWEP.RearEffectw = true
 	SWEP.NoShells = true
 	
-	SWEP.AttachmentModelsVM = {
-		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_sterling.mdl", bone = "RPG_Body", pos = Vector(-1.795, -11.804, -2.003), angle = Angle(0, -90, -180), size = Vector(0.899, 0.899, 0.899)},
-		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_sterling.mdl", bone = "RPG_Body", pos = Vector(-1.795, -11.804, -2.003), angle = Angle(0, -90, -180), size = Vector(0.899, 0.899, 0.899)},
-		
-		["kk_counter"] = {model = "models/weapons/stattrack.mdl", bone = "RPG_Body", pos = Vector(0.605, -2.793, 2.559), angle = Angle(0, 0, 0), size = Vector(0.28, 0.28, 0.28)},
-	}
-	
-	SWEP.AttachmentModelsWM = {
-		-- ["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_sterling.mdl", bone = "ValveBiped.Bip01_R_Hand", pos = Vector(-8.582, -2.365, 0.243), angle = Angle(-10, 0, 0), size = Vector(1.25, 1.25, 1.25)},
-		-- ["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_sterling.mdl", bone = "ValveBiped.Bip01_R_Hand", pos = Vector(-8.582, -2.365, 0.243), angle = Angle(-10, 0, 0), size = Vector(1.25, 1.25, 1.25)},
-		
-		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_sterling.mdl", bone = "R Hand", pos = Vector(-14.497, 1.049, 6.086), angle = Angle(-10, 0, 180), size = Vector(1.25, 1.25, 1.25)},
-		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_sterling.mdl", bone = "R Hand", pos = Vector(-14.497, 1.049, 6.086), angle = Angle(-10, 0, 180), size = Vector(1.25, 1.25, 1.25)},
-	}
+	SWEP.AttachmentModelsVM = {}
+	SWEP.AttachmentModelsWM = {}
 	
 	SWEP.IronsightPos = Vector(-2.6525, -2, 0.2846) // 60M
 	SWEP.IronsightAng = Vector(1.2093, 0, 7)
@@ -161,26 +149,6 @@ function SWEP:getReloadProgress()
 	if self.dt.AT4ReloadEnd < CT then return end
 	
 	return math.Round((CT - self.dt.AT4ReloadEnd + self.ReloadHalt) * 100 / self.ReloadHalt)
-end
-
-local mins, maxs = Vector(-8, -8, -1), Vector(8, 8, 1)
-
-local td = {}
-td.mins = mins
-td.maxs = maxs
-
-function SWEP:isNearWall()
-	td.start = self.Owner:GetShootPos()
-	td.endpos = td.start + self.Owner:EyeAngles():Forward() * 70
-	td.filter = self.Owner
-	
-	local tr = util.TraceLine(td)
-	
-	if tr.Hit or (IsValid(tr.Entity) and not tr.Entity:IsPlayer()) then
-		return true
-	end
-	
-	return false
 end
 
 if CLIENT then 

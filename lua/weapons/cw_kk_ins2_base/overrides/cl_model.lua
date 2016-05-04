@@ -258,6 +258,12 @@ function SWEP:setupAttachmentModels()
 			if v.bone then
 				v._bone = self.CW_VM:LookupBone(v.bone)
 			end
+			
+			for i,mat in pairs(v.ent:GetMaterials()) do
+				if CustomizableWeaponry_KK.ins2.nodrawMat[mat] then
+					v.ent:SetSubMaterial(i - 1, "models/weapons/attachments/cw_kk_ins2_shared/nodraw")
+				end
+			end
 		end
 	end
 	

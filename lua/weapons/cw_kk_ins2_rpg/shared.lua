@@ -64,7 +64,7 @@ SWEP.Attachments = {
 }
 
 if CustomizableWeaponry_KK.HOME then
-	table.insert(SWEP.Attachments, {header = "CSGO", offset = {800, 0}, atts = {"kk_counter"}})
+	table.insert(SWEP.Attachments, {header = "CSGO", offset = {300, 100}, atts = {"kk_counter"}})
 end
 
 SWEP.KKINS_emptyIdle = true
@@ -219,26 +219,6 @@ function SWEP:fireAnimFunc()
 	
 	self:sendWeaponAnim(prefix .. "fire" .. suffix,rate,cyc)
 end //*/
-
-local mins, maxs = Vector(-8, -8, -1), Vector(8, 8, 1)
-
-local td = {}
-td.mins = mins
-td.maxs = maxs
-
-function SWEP:isNearWall()
-	td.start = self.Owner:GetShootPos()
-	td.endpos = td.start + self.Owner:EyeAngles():Forward() * 70
-	td.filter = self.Owner
-	
-	local tr = util.TraceLine(td)
-	
-	if tr.Hit or (IsValid(tr.Entity) and not tr.Entity:IsPlayer()) then
-		return true
-	end
-	
-	return false
-end
 
 if CLIENT then 
 	function SWEP:updateOtherParts()

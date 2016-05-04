@@ -47,36 +47,7 @@ function SWEP:updateReloadTimes()
 		if self.base_ReloadFinishWait then
 			self.ReloadFinishWait = self[mode .. "ReloadFinishWait"] or self.base_ReloadFinishWait
 		end
-	elseif self.Chamberable == false then // open bolt gunz
-		local time, halt = self.ReloadTime, self.ReloadHalt
-		
-		local customSuffix = self._KK_INS_customSuffix or ""
-		
-		self.Animations.reload = self.Animations[mode .. "reload" .. customSuffix]
-		self.Animations.reload_empty = self.Animations[mode .. "reload_empty" .. customSuffix]
-			
-		if self:Clip1() == 0 then
-			if self.base_ReloadTime_Empty then
-				time = self[mode .. "ReloadTime_Empty"] or self.base_ReloadTime_Empty
-			end
-			if self.base_ReloadHalt_Empty then
-				halt = self[mode .. "ReloadHalt_Empty"] or self.base_ReloadHalt_Empty
-			end
-		else
-			if self.base_ReloadTime then
-				time = self[mode .. "ReloadTime"] or self.base_ReloadTime
-			end
-			if self.base_ReloadHalt then
-				halt = self[mode .. "ReloadHalt"] or self.base_ReloadHalt
-			end
-		end
-		
-		self.ReloadTime = time
-		self.ReloadHalt = halt
-		self.ReloadTime_Empty = time
-		self.ReloadHalt_Empty = halt
 	else
-		
 		self.Animations.reload = self.Animations[mode .. "reload" .. customSuffix]
 		self.Animations.reload_empty = self.Animations[mode .. "reload_empty" .. customSuffix]
 			
@@ -194,7 +165,7 @@ function SWEP:hasInstalledRTScope()	// to be extended
 	
 	res = res or self.ActiveAttachments.kk_ins2_magnifier
 	res = res or self.ActiveAttachments.kk_ins2_elcan
-	res = res or self.ActiveAttachments.kk_ins2_pso4
+	res = res or self.ActiveAttachments.kk_ins2_po4
 	res = res or self.ActiveAttachments.kk_ins2_scope_m40
 	res = res or self.ActiveAttachments.kk_ins2_scope_mosin
 	
@@ -205,7 +176,7 @@ function SWEP:hasInstalledRTScope()	// to be extended
 	return res
 end
 
-function SWEP:hasInstalledStencilSight()
+function SWEP:hasInstalledStencilSight() // do I even use this?
 	local res = false
 	
 	res = res or self.ActiveAttachments.kk_ins2_aimpoint

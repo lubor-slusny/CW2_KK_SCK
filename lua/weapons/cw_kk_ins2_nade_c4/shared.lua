@@ -152,6 +152,8 @@ SWEP.SpreadCooldown = 0.001
 SWEP.SpeedDec = 0
 SWEP.Recoil = 1
 
+SWEP.WeaponLength = 40
+
 local SP = game.SinglePlayer()
 
 if SERVER then
@@ -201,6 +203,8 @@ local curAmmo
 
 function SWEP:IndividualThink()
 	if SERVER then
+		if !IsValid(self.Owner) then return end
+		
 		self.Owner:ShouldDropWeapon(true)
 		
 		if self.PlantedCharges then
@@ -240,10 +244,16 @@ function SWEP:throwC4()
 			local forward = eyeAng:Forward()
 			
 			local nade = ents.Create("cw_kk_ins2_projectile_c4")
+			
+			nade.Detonator = self
+			self.PlantedCharges[nade] = nade
+			
 			nade:SetPos(pos + offset)
 			nade:SetAngles(eyeAng)
 			nade:Spawn()
 			nade:Activate()
+			
+			nade:InitPhys()
 			
 			local phys = nade:GetPhysicsObject()
 			
@@ -263,9 +273,6 @@ function SWEP:throwC4()
 				phys:SetVelocity(velocity / 2)
 				phys:AddAngleVelocity(Vector(math.random(-500, 500), math.random(-500, 500), math.random(-500, 500)))
 			end
-			
-			nade.Detonator = self
-			self.PlantedCharges[nade] = nade
 			
 			local suppressAmmoUsage = CustomizableWeaponry.callbacks.processCategory(self, "shouldSuppressAmmoUsage")
 			if not suppressAmmoUsage then
@@ -296,22 +303,21 @@ function SWEP:plantC4()
 			
 			if tr.Hit then
 				local nade = ents.Create("cw_kk_ins2_projectile_c4")
-				-- nade:SetPos(tr.HitPos)
+				
+				nade.Detonator = self
+				self.PlantedCharges[nade] = nade
+				
+				nade:SetPos(tr.HitPos)
 				nade:SetAngles(ang)
 				nade:Spawn()
 				nade:Activate()
 				
-				if (tr.Entity:GetClass() == worldspawn) then
-					nade:SetPos(tr.HitPos + (td.start - td.endpos):Normalized() * 5)
+				if (tr.Entity:GetClass() == "worldspawn") then
 					nade:SetAngles(ang)
-					nade:SetMoveType(MOVETYPE_NONE)
 				else
-					nade:SetPos(tr.HitPos)
+					nade:InitPhys()
 					constraint.Weld(tr.Entity, nade, tr.PhysicsBone, 0, 0, true, false)
 				end
-				
-				nade.Detonator = self
-				self.PlantedCharges[nade] = nade
 				
 				local suppressAmmoUsage = CustomizableWeaponry.callbacks.processCategory(self, "shouldSuppressAmmoUsage")
 				if not suppressAmmoUsage then
@@ -481,26 +487,6 @@ if CLIENT then
 		
 		return {Pos = m:GetTranslation(), Ang = m:GetAngles()}
 	end
-end
-
-local mins, maxs = Vector(-8, -8, -1), Vector(8, 8, 1)
-
-local td = {}
-td.mins = mins
-td.maxs = maxs
-
-function SWEP:isNearWall()
-	td.start = self.Owner:GetShootPos()
-	td.endpos = td.start + self.Owner:EyeAngles():Forward() * 50
-	td.filter = self.Owner
-	
-	local tr = util.TraceLine(td)
-	
-	if tr.Hit or (IsValid(tr.Entity) and not tr.Entity:IsPlayer()) then
-		return true
-	end
-	
-	return false
 end
 
 // and now insane framework, just for this gun

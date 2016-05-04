@@ -29,25 +29,24 @@ if CLIENT then
 end
 
 SWEP.Base = "cw_base"
-SWEP.KKINS2Wep = true
 SWEP.Category = "CW 2.0 KK INS2"
 
 SWEP.Author			= "Knife Kitty"
 SWEP.Contact		= "http://steamcommunity.com/profiles/76561198012236670/"
 SWEP.Purpose		= "detaching shared functions"
-SWEP.Instructions	= "dont spawn this directly"
+SWEP.Instructions	= "dont spawn this directly, have phun"
 
 SWEP.Spawnable			= false
 SWEP.AdminSpawnable		= false
 
 SWEP.LuaViewmodelRecoil = true
-
-SWEP.FirstDeployTime = 3
-
 SWEP.BipodDeployTime = 1.15
 SWEP.BipodUndeployTime = 1.15
-
 SWEP.TSGlass = Material("models/weapons/optics/lense_rt")
+
+SWEP.KKINS2Wep = true
+SWEP.FirstDeployTime = 5
+SWEP.WeaponLength = 30
 
 SWEP.AttachmentExclusions = {
 	["bg_foldsight"] = {"kk_ins2_magnifier"},
@@ -59,7 +58,7 @@ SWEP.AttachmentExclusions = {
 	["kk_ins2_elcan"] = {"kk_ins2_magnifier"},
 	["kk_ins2_eotech"] = {"kk_ins2_magnifier"},
 	["kk_ins2_kobra"] = {"kk_ins2_magnifier"},
-	["kk_ins2_pso4"] = {"kk_ins2_magnifier"},
+	["kk_ins2_po4"] = {"kk_ins2_magnifier"},
 	["kk_ins2_scope_m40"] = {"kk_ins2_magnifier"},
 	["kk_ins2_scope_mosin"] = {"kk_ins2_magnifier"},
 }
@@ -77,9 +76,10 @@ if CLIENT then
 	SWEP.WorldMuzzleAttachmentID = 1
 	SWEP.WorldShellEjectionAttachmentID = 2
 	
-	SWEP.SwayIntensity = 1
-	SWEP.AimSwayIntensity = 0.1
+	SWEP.SwayIntensity = 0.7
+	SWEP.AimSwayIntensity = 0.3
 	SWEP.ZoomAmount = 0
+	SWEP.FOVPerShot = 0
 	
 	SWEP.SprintAnimSpeed = 1.5
 	SWEP.ViewModelMovementScale_sprint = 0
@@ -88,8 +88,6 @@ if CLIENT then
 	SWEP.CW_KK_HANDS_MDL = "models/weapons/v_hands_vip.mdl"
 	
 	SWEP.knifeTime = 0
-	
-	SWEP.FOVPerShot = 0
 	
 	SWEP.SprintPos = Vector(0, 0, 0)
 	SWEP.SprintAng = Vector(0, 0, 0)
@@ -120,8 +118,8 @@ if CLIENT then
 	SWEP.KKINS2MagnifierPos = Vector(0, 0, 0)
 	SWEP.KKINS2MagnifierAng = Vector(0, 0, 0)
 	
-	SWEP.KKINS2PSO4Pos = Vector(0, 0, 0)
-	SWEP.KKINS2PSO4Ang = Vector(0, 0, 0)
+	SWEP.KKINS2PO4Pos = Vector(0, 0, 0)
+	SWEP.KKINS2PO4Ang = Vector(0, 0, 0)
 	
 	SWEP.KKINS2ScopeM40Pos = Vector(0, 0, 0)
 	SWEP.KKINS2ScopeM40Ang = Vector(0, 0, 0)
@@ -269,6 +267,8 @@ function SWEP:unloadMagazine()
 	weapons.GetStored("cw_base").unloadMagazine(self)
 end
 
+// majority of First deploy logic
+
 function SWEP:OnDrop()
 	self:PrepareForPickup(true)
 end
@@ -322,175 +322,4 @@ if CLIENT then
 		
 		wep:PrepareForPickup()
 	end)
-end
-
-// reloads
-
-function SWEP:Reload()
-	CT = CurTime()
-	
-	if self.ReloadDelay or CT < self.ReloadWait or self.dt.State == CW_ACTION or self.ShotgunReloadState != 0 then
-		return
-	end
-	
-	if CT < self.GlobalDelay then
-		return
-	end
-	
-	if self.dt.INS2GLActive then
-		if not self.M203Chamber and self.Owner:GetAmmoCount("40MM") > 0 then
-			if IsFirstTimePredicted() then
-				self:sendWeaponAnim("gl_on_reload",self.ReloadSpeed,0)
-			end
-
-			self:reloadM203()
-			self.dt.State = CW_IDLE
-		end
-		
-		return
-	end
-	
-	weapons.GetStored("cw_base").Reload(self)
-end
-
-local CT, mag, ammo
-
-function SWEP:beginReload()
-	self:updateReloadTimes()
-	
-	if SERVER then
-		SendUserMessage("CWKK_RELOADINACTIVITY", self.Owner)
-	end
-	
-	-- weapons.GetStored("cw_base").beginReload(self)	
-	
-	CT = CurTime()
-	mag, ammo = self:Clip1(), self.Owner:GetAmmoCount(self.Primary.Ammo)
-
-	self.lastMag = mag
-	
-	if self.ShotgunReload then
-		self.WasEmpty = mag == 0
-		
-		local anim = self:getForegripMode() .. "reload_start"
-		local time = CT + self.ReloadStartTime / self.ReloadSpeed
-		
-		if self.WasEmpty then
-			anim = anim .. "_empty"
-			time = CT + self.ReloadStartTimeEmpty / self.ReloadSpeed
-			
-			if SERVER and self.ReloadFirstShell then
-				CustomizableWeaponry.actionSequence.new(self, self.ReloadFirstShell, nil, function() 
-					self:SetClip1(mag + 1)
-					self.Owner:SetAmmo(ammo - 1, self.Primary.Ammo)
-					
-					if ammo - 1 <= 0 then
-						self.ShotgunReloadState = 2
-					end
-				end)
-			end
-		end
-		
-		self:sendWeaponAnim(anim, self.ReloadSpeed)
-		
-		self.ReloadDelay = time
-		self:SetNextPrimaryFire(time)
-		self:SetNextSecondaryFire(time)
-		self.GlobalDelay = time
-		self.ShotgunReloadState = 1
-	else	
-		local reloadTime = nil
-		local reloadHalt = nil
-		
-		if mag == 0 then
-			if self.Chamberable then
-				self.Primary.ClipSize = self.Primary.ClipSize_Orig
-			end
-			
-			reloadTime = self.ReloadTime_Empty
-			reloadHalt = self.ReloadHalt_Empty
-		else
-			reloadTime = self.ReloadTime
-			reloadHalt = self.ReloadHalt
-			
-			if self.Chamberable then
-				self.Primary.ClipSize = self.Primary.ClipSize_Orig + 1
-			end
-		end
-		
-		reloadTime = reloadTime / self.ReloadSpeed
-		reloadHalt = reloadHalt / self.ReloadSpeed
-		
-		self.ReloadDelay = CT + reloadTime
-		self:SetNextPrimaryFire(CT + reloadHalt)
-		self:SetNextSecondaryFire(CT + reloadHalt)
-		self.GlobalDelay = CT + reloadHalt
-				
-		if self.reloadAnimFunc then
-			self:reloadAnimFunc(mag)
-		else
-			if self.Animations.reload_empty and mag == 0 then
-				self:sendWeaponAnim("reload_empty", self.ReloadSpeed)
-			else
-				self:sendWeaponAnim("reload", self.ReloadSpeed)
-			end
-		end
-	end
-	
-	CustomizableWeaponry.callbacks.processCategory(self, "beginReload", mag == 0)
-	
-	self.Owner:SetAnimation(PLAYER_RELOAD)
-end
-
-local keyDown
-
-function SWEP:finishReloadShotgun()
-	CT = CurTime()
-	
-	if self.ShotgunReloadState == 1 then
-		keyDown = self.Owner:KeyDown(IN_ATTACK) or self.Owner:KeyDown(IN_ATTACK2)
-		
-		if self.lastMag < self:Clip1() and keyDown then
-			self.ShotgunReloadState = 2
-		end
-		
-		if CT > self.ReloadDelay then
-			self:sendWeaponAnim(self:getForegripMode() .. "insert", self.ReloadSpeed)
-			
-			if SERVER and not SP then
-				self.Owner:SetAnimation(PLAYER_RELOAD)
-			end
-			
-			mag, ammo = self:Clip1(), self.Owner:GetAmmoCount(self.Primary.Ammo)
-			
-			if SERVER then
-				self:SetClip1(mag + 1)
-				self.Owner:SetAmmo(ammo - 1, self.Primary.Ammo)
-			end
-			
-			self.ReloadDelay = CT + self.InsertShellTime / self.ReloadSpeed
-			
-			if mag + 1 >= self.Primary.ClipSize or ammo - 1 <= 0 then
-				self.ShotgunReloadState = 2
-			end
-		end
-	elseif self.ShotgunReloadState == 2 then
-		if CT > self.ReloadDelay then			
-			local anim = self:getForegripMode() .. "reload_end"
-			local time = CT + self.ReloadFinishWait / self.ReloadSpeed
-			
-			if self.WasEmpty then
-				anim = anim .. "_empty"
-				time = CT + self.ReloadFinishWaitEmpty / self.ReloadSpeed
-			end
-			
-			self:sendWeaponAnim(anim, self.ReloadSpeed)
-			self.ShotgunReloadState = 0
-			
-			self:SetNextPrimaryFire(time)
-			self:SetNextSecondaryFire(time)
-			self.ReloadWait = time
-			self.ReloadDelay = nil
-		end
-	end
 end

@@ -15,6 +15,9 @@ if CLIENT then
 	SWEP.MuzzleEffect = "muzzleflash_m14"
 	SWEP.Shell = "KK_INS2_762x54"
 	
+	SWEP.AttachmentModelsVM = {}
+	SWEP.AttachmentModelsWM = {}
+	
 	SWEP.IronsightPos = Vector(-2.1197, -2, 1.4045)
 	SWEP.IronsightAng = Vector(-0.1832, 0.0054, 0)
 

@@ -1,8 +1,8 @@
 local att = {}
-att.name = "kk_ins2_pso4"
-att.displayName = "PSO-4"
-att.displayNameShort = "PSO-4"
-att.aimPos = {"KKINS2PSO4Pos", "KKINS2PSO4Ang"}
+att.name = "kk_ins2_po4"
+att.displayName = "PO 4x24P"
+att.displayNameShort = "PO4"
+att.aimPos = {"KKINS2PO4Pos", "KKINS2PO4Ang"}
 att.FOVModifier = 0
 att.AimViewModelFOV = 25
 att.isSight = true
@@ -21,11 +21,15 @@ if CLIENT then
 		-- [3] = {t = "Can be disorienting at close range.", c = CustomizableWeaponry.textColors.NEGATIVE}
 	}
 
+	local path = "models/weapons/optics/po4x_reticule"
+	
 	att.zoomTextures = {
-		{tex = surface.GetTextureID("models/weapons/optics/po4x_reticule"), offset = {0, 1}},
+		{tex = surface.GetTextureID(path), offset = {0, 1}},
 	}
 	
 	att._rtFov = 15
+	att._rtReticle = surface.GetTextureID(path)
+	att._reticleMat = Material(path)
 	
 	function att:drawRenderTarget()
 		local scopeEnt = self.AttachmentModelsVM[att.name].ent
@@ -39,7 +43,7 @@ if CLIENT then
 	end
 	
 	function att:elementRender()
-		CustomizableWeaponry_KK.ins2.renderTargetSightSetup(self, att)
+		CustomizableWeaponry_KK.ins2.renderTargetSightStencil(self, att)
 	end
 end
 

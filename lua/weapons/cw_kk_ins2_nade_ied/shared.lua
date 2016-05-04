@@ -144,6 +144,8 @@ SWEP.SpreadCooldown = 0.001
 SWEP.SpeedDec = 0
 SWEP.Recoil = 1
 
+SWEP.WeaponLength = 40
+
 SWEP.KKINS2RCE = true
 
 function SWEP:ShouldDropOnDie()
@@ -169,6 +171,8 @@ local curAmmo
 
 function SWEP:IndividualThink()
 	if SERVER then
+		if !IsValid(self.Owner) then return end
+		
 		self.Owner:ShouldDropWeapon(true)
 		
 		if self.PlantedCharges then
@@ -208,10 +212,16 @@ function SWEP:throwC4()
 			local forward = eyeAng:Forward()
 			
 			local nade = ents.Create("cw_kk_ins2_projectile_ied")
+			
+			nade.Detonator = self
+			self.PlantedCharges[nade] = nade
+			
 			nade:SetPos(pos + offset)
 			nade:SetAngles(eyeAng)
 			nade:Spawn()
 			nade:Activate()
+			
+			nade:InitPhys()
 			
 			local phys = nade:GetPhysicsObject()
 			
@@ -232,9 +242,6 @@ function SWEP:throwC4()
 				phys:AddAngleVelocity(Vector(math.random(-500, 500), math.random(-500, 500), math.random(-500, 500)))
 			end
 			
-			nade.Detonator = self
-			self.PlantedCharges[nade] = nade
-			
 			local suppressAmmoUsage = CustomizableWeaponry.callbacks.processCategory(self, "shouldSuppressAmmoUsage")
 			if not suppressAmmoUsage then
 				self.Owner:RemoveAmmo(1, self.Primary.Ammo)
@@ -252,7 +259,7 @@ function SWEP:plantC4()
 	
 	if SERVER then
 		local td = {}
-		local tr, ang
+		local tr, ang, pos
 
 		CustomizableWeaponry.actionSequence.new(self, 0.2, nil, function()
 			td.start = self.Owner:GetShootPos()
@@ -260,26 +267,29 @@ function SWEP:plantC4()
 			td.filter = self.Owner
 			
 			tr = util.TraceLine(td)
-			ang = tr.HitNormal:Angle()
-			ang:RotateAroundAxis(ang:Up(), 90)
 			
 			if tr.Hit then
+				ang = tr.HitNormal:Angle()
+				pos = tr.HitPos + ang:Right() * 3 + ang:Forward() * 1.5 + ang:Up() * -1.5
+				ang:RotateAroundAxis(ang:Up(), 90)
+				ang:RotateAroundAxis(ang:Right(), -90)
+				
 				local nade = ents.Create("cw_kk_ins2_projectile_ied")
-				nade:SetPos(tr.HitPos)
+				
+				nade.Detonator = self
+				self.PlantedCharges[nade] = nade
+				
+				nade:SetPos(pos)
 				nade:SetAngles(ang)
 				nade:Spawn()
 				nade:Activate()
 				
-				if (tr.Entity:GetClass() == worldspawn) then
-					nade:SetMoveType(MOVETYPE_NONE)
-					nade:SetPos(tr.HitPos)
+				if (tr.Entity:GetClass() == "worldspawn") then
 					nade:SetAngles(ang)
 				else
+					nade:InitPhys()
 					constraint.Weld(tr.Entity, nade, tr.PhysicsBone, 0, 0, true, false)
 				end
-				
-				nade.Detonator = self
-				self.PlantedCharges[nade] = nade
 				
 				local suppressAmmoUsage = CustomizableWeaponry.callbacks.processCategory(self, "shouldSuppressAmmoUsage")
 				if not suppressAmmoUsage then
@@ -449,26 +459,6 @@ if CLIENT then
 		
 		return {Pos = m:GetTranslation(), Ang = m:GetAngles()}
 	end
-end
-
-local mins, maxs = Vector(-8, -8, -1), Vector(8, 8, 1)
-
-local td = {}
-td.mins = mins
-td.maxs = maxs
-
-function SWEP:isNearWall()
-	td.start = self.Owner:GetShootPos()
-	td.endpos = td.start + self.Owner:EyeAngles():Forward() * 50
-	td.filter = self.Owner
-	
-	local tr = util.TraceLine(td)
-	
-	if tr.Hit or (IsValid(tr.Entity) and not tr.Entity:IsPlayer()) then
-		return true
-	end
-	
-	return false
 end
 
 // and now insane framework, just for this gun

@@ -176,8 +176,8 @@ local function menuThink()
 			SIGHT = att
 			
 			WEAPON._KK_SCK_modifiedPositions = WEAPON._KK_SCK_modifiedPositions or {}
-			WEAPON[SIGHT.aimPos[1]] = WEAPON[SIGHT.aimPos[1]] or Vector(0,0,0)
-			WEAPON[SIGHT.aimPos[2]] = WEAPON[SIGHT.aimPos[2]] or Vector(0,0,0)
+			WEAPON[SIGHT.aimPos[1]] = WEAPON[SIGHT.aimPos[1]] or Vector(0, 0, 0)
+			WEAPON[SIGHT.aimPos[2]] = WEAPON[SIGHT.aimPos[2]] or Vector(0, 0, 0)
 			
 			updateSliders()
 		end
@@ -227,8 +227,8 @@ local function buttonReloadAimPos()
 	
 	local stored = weapons.GetStored(WEAPON:GetClass())
 
-	local posCopy = vectorClone(stored[SIGHT.aimPos[1]] or Vector(0,0,0))
-	local angCopy = vectorClone(stored[SIGHT.aimPos[2]] or Vector(0,0,0))
+	local posCopy = vectorClone(stored[SIGHT.aimPos[1]] or Vector(0, 0, 0))
+	local angCopy = vectorClone(stored[SIGHT.aimPos[2]] or Vector(0, 0, 0))
 	
 	WEAPON[SIGHT.aimPos[1]] = posCopy
 	WEAPON[SIGHT.aimPos[2]] = angCopy

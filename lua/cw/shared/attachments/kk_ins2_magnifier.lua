@@ -10,6 +10,7 @@ local models = {
 	["models/weapons/attachments/v_cw_kk_ins2_cstm_eotechxps.mdl"] = "models/weapons/attachments/v_cw_kk_ins2_cstm_eotechxps_2x.mdl",
 	["models/weapons/attachments/v_cw_kk_ins2_cstm_eotechxps_l.mdl"] = "models/weapons/attachments/v_cw_kk_ins2_cstm_eotechxps_l_2x.mdl",
 	["models/weapons/attachments/v_cw_kk_ins2_cstm_eotechxps_m.mdl"] = "models/weapons/attachments/v_cw_kk_ins2_cstm_eotechxps_m_2x.mdl",
+	["models/weapons/attachments/v_cw_kk_ins2_cstm_eotechxps_xl.mdl"] = "models/weapons/attachments/v_cw_kk_ins2_cstm_eotechxps_l_2x.mdl",
 	["primaryModel"] = "magnifModel",
 }
 
@@ -23,6 +24,7 @@ local wmodels = {
 	["models/weapons/attachments/v_cw_kk_ins2_cstm_eotechxps.mdl"] = "magnifModel",
 	["models/weapons/attachments/v_cw_kk_ins2_cstm_eotechxps_l.mdl"] = "magnifModel",
 	["models/weapons/attachments/v_cw_kk_ins2_cstm_eotechxps_m.mdl"] = "magnifModel",
+	["models/weapons/attachments/v_cw_kk_ins2_cstm_eotechxps_xl.mdl"] = "magnifModel",
 	["primaryModel"] = "magnifModel",
 }
 
@@ -106,7 +108,7 @@ if CLIENT then
 	end
 	
 	function att:elementRender()
-		CustomizableWeaponry_KK.ins2.renderTargetSightSetup(self, att)
+		CustomizableWeaponry_KK.ins2.renderTargetSightStencil(self, att)
 	end
 end
 

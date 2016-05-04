@@ -65,7 +65,7 @@
 	CustomizableWeaponry:addFireSound("CW_KK_INS2_WW2_MELEEHIT", {"weapons/universal/weapon_melee_hitworld_01.wav","weapons/universal/weapon_melee_hitworld_02.wav"}, 1, 105, CHAN_STATIC)
 	
 // SHELLS
-	
+do
 	CustomizableWeaponry:addRegularSound("CW_KK_INS2_SHELL_38", {"weapons/bullets/shells/concrete/38_shell_concrete_01.wav", "weapons/bullets/shells/concrete/38_shell_concrete_02.wav", "weapons/bullets/shells/concrete/38_shell_concrete_03.wav", "weapons/bullets/shells/concrete/38_shell_concrete_04.wav", "weapons/bullets/shells/concrete/38_shell_concrete_05.wav", "weapons/bullets/shells/concrete/38_shell_concrete_06.wav"}, 65)
 	CustomizableWeaponry:addRegularSound("CW_KK_INS2_SHELL_9MM", {"weapons/bullets/shells/concrete/9mm_shell_concrete_01.wav", "weapons/bullets/shells/concrete/9mm_shell_concrete_02.wav", "weapons/bullets/shells/concrete/9mm_shell_concrete_03.wav", "weapons/bullets/shells/concrete/9mm_shell_concrete_04.wav", "weapons/bullets/shells/concrete/9mm_shell_concrete_05.wav", "weapons/bullets/shells/concrete/9mm_shell_concrete_06.wav"}, 65)
 	CustomizableWeaponry:addRegularSound("CW_KK_INS2_SHELL_FLARE", {"weapons/bullets/shells/concrete/flare_shell_concrete_01.wav", "weapons/bullets/shells/concrete/flare_shell_concrete_02.wav", "weapons/bullets/shells/concrete/flare_shell_concrete_03.wav", "weapons/bullets/shells/concrete/flare_shell_concrete_04.wav"}, 65)
@@ -94,7 +94,7 @@
 	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_762x51", "models/weapons/shells/762x51.mdl", "CW_KK_INS2_SHELL_38", upneg90, noTweak)
 	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_762x54", "models/weapons/shells/762x54.mdl", "CW_KK_INS2_SHELL_38", upneg90, noTweak)
 	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_THROWABLE", "models/weapons/w_gren_spoon.mdl", "", noTweak, noTweak)
-	
+end
 // AMMO
 	
 	CustomizableWeaponry:registerAmmo(".30 Carbine", ".30 Carbine Rounds", 7.62, 32.76)
@@ -120,6 +120,46 @@
 	CustomizableWeaponry.firemodes:registerFiremode("single", "SINGLE-SHOT", true, 1, 1)
 	-- CustomizableWeaponry.firemodes:registerFiremode("throw", "THROWABLE", true, 1, 1)
 
+// STATS
+do
+	local ok = CustomizableWeaponry.textColors.POSITIVE
+	local nok = CustomizableWeaponry.textColors.NEGATIVE
+
+	CustomizableWeaponry:registerRecognizedStat("SpeedDec", "Decreases movement speed", "Increases movement speed", nok, ok)
+	CustomizableWeaponry:registerRecognizedStat("WeaponLength", "Decreases weapon length", "Increases weapon length", ok, nok)
+
+	if CLIENT then	
+		local stat = {}
+		stat.varName = "WeaponLength"
+		stat.display = "WEAPON LENGTH"
+		stat.desc = "Minimal distance allowed between weapon and target.\nMoving closer to your target will holster your weapon.\nSuppressors and barrel modifications affect this stat."
+		stat.reverse = true
+
+		local out
+		
+		function stat:textFunc(wep)
+			out = "N/A"
+			
+			if wep.WeaponLength then
+				out = wep.WeaponLength .. "u"
+			end
+			
+			return out
+		end
+
+		function stat:origTextFunc(wep)
+			out = "N/A"
+			
+			if wep.WeaponLength_Orig then
+				out = wep.WeaponLength_Orig .. "u"
+			end
+			
+			return out
+		end
+
+		CustomizableWeaponry.statDisplay:addStat(stat)
+	end
+end
 // KILLS
 
 if CLIENT then

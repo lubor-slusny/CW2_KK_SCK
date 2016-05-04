@@ -27,56 +27,15 @@ if CLIENT then
 	}
 	
 	SWEP.AttachmentModelsVM = {
-		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_modkit_mosin.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/a_bayonet.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/a_bayonet.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 
-		["md_saker"] = {model = "models/weapons/upgrades/a_suppressor_ins.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		
-		["kk_ins2_bipod"] = {model = "models/weapons/upgrades/a_bipod_mosin.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		
-		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_band.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_band.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-
-		["kk_ins2_magnifier"] = {model = "models/weapons/upgrades/a_optic_aimp2x_l.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		
-		-- ["kk_ins2_scope_zf4"] = {model = "models/weapons/upgrades/a_optic_zf4.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_scope_mosin"] = {model = "models/weapons/upgrades/a_optic_mosin_l.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_scope_mosin"] = {model = "models/weapons/upgrades/a_optic_mosin_l.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 	}
 
 	SWEP.AttachmentModelsWM = {
-		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/w_modkit_mosin.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/w_bayonet.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
-		["md_saker"] = {model = "models/weapons/upgrades/w_sil_ins1.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		
-		["kk_ins2_bipod"] = {model = "models/weapons/upgrades/w_bipod_mosin.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-
-		["kk_ins2_lam"] = {model = "models/weapons/upgrades/w_laser_ins.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/w_laser_ins.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-
-		["kk_ins2_magnifier"] = {model = "models/weapons/upgrades/w_magaim.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-	
-		["kk_ins2_eotech"] = {model = "models/weapons/upgrades/w_eotech.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_aimpoint"] = {model = "models/weapons/upgrades/w_aimpoint.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_elcan"] = {model = "models/weapons/upgrades/w_elcan.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_scope_m40"] = {model = "models/weapons/upgrades/w_scope_m40.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_scope_mosin"] = {model = "models/weapons/upgrades/w_scope_mosin.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_pso4"] = {model = "models/weapons/upgrades/w_po.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		
-		["kk_ins2_cstm_barska"] = {model = "models/weapons/upgrades/w_eotech.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_cstm_acog"] = {model = "models/weapons/attachments/w_cw_kk_ins2_cstm_acog.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-	}
-	
-	-- SWEP.WElements = {
-		-- ["scout"] = { type = "Model", model = "models/weapons/w_mosin.mdl", bone = "ValveBiped.Bip01_R_Hand", rel = "", pos = Vector(5.281, 0.726, -1.14), angle = Angle(-10, 0, 180), size = Vector(1, 1, 1), color = Color(255, 255, 255, 255), surpresslightning = false, material = "", skin = 0, bodygroup = {} }
-	-- }
-	-- SWEP.WElements = {
-		-- ["awp"] = { type = "Model", model = "models/weapons/w_mosin.mdl", bone = "ValveBiped.Bip01_R_Hand", rel = "", pos = Vector(6.136, 0.786, -1.713), angle = Angle(-10, 0, 180), size = Vector(1, 1, 1), color = Color(255, 255, 255, 255), surpresslightning = false, material = "", skin = 0, bodygroup = {} }
-	-- }
-	
-	SWEP.ForegripOverridePos = {
-		["LeftHandFix"] = {
-			["L Clavicle"] = {scale = Vector(1, 1, 1), pos = Vector(-100,0,0), angle = Angle(0, 0, 0)}
-		},
+		["kk_ins2_scope_mosin"] = {model = "models/weapons/upgrades/w_scope_mosin.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 	}
 	
 	SWEP.IronsightPos = Vector(-2.813, -0, 1.45)
@@ -98,10 +57,10 @@ SWEP.ReticleInactivityPostFire = 2
 SWEP.GlobalDelayOnShoot = 2
 
 SWEP.Attachments = {
-	-- {header = "Sight", offset = {500, -500},  atts = {"kk_ins2_cstm_barska", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_cstm_acog", "kk_ins2_pso4", "kk_ins2_scope_mosin", "kk_ins2_scope_m40"}},
-	{header = "Sight", offset = {500, -500},  atts = {"kk_ins2_scope_mosin"}},
-	{header = "Barrel", offset = {-200, -500},  atts = {"kk_ins2_ww2_knife"}},
-	-- {header = "Under", offset = {-500, 0},  atts = {"kk_ins2_bipod"}},
+	-- {header = "Sight", offset = {500, -500}, atts = {"kk_ins2_cstm_barska", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_cstm_acog", "kk_ins2_po4", "kk_ins2_scope_mosin", "kk_ins2_scope_m40"}},
+	{header = "Sight", offset = {500, -500}, atts = {"kk_ins2_scope_mosin"}},
+	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_ww2_knife"}},
+	-- {header = "Under", offset = {-500, 0}, atts = {"kk_ins2_bipod"}},
 	-- {header = "Extras", offset = {125, 200}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_combo"}},
 	-- {header = "More Sight", offset = {1200, 0}, atts = {"kk_ins2_magnifier"}, dependencies = CustomizableWeaponry_KK.ins2.magnifierDependencies},
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_magnum", "am_matchgrade"}}
@@ -314,7 +273,7 @@ SWEP.Damage = 42
 SWEP.FirstDeployTime = 2.9
 SWEP.DeployTime = 0.73
 
-SWEP.RecoilToSpread = 0.8 -- the M14 in particular will have 30% more recoil from continuous fire to give a feeling of "oh fuck I should stop firing 7.62x51MM in full auto at 750 RPM"
+SWEP.RecoilToSpread = 0.8 
 
 SWEP.BipodDeployTime = 1.15
 SWEP.BipodUndeployTime = 1.15
@@ -326,92 +285,6 @@ SWEP.ReloadFinishWait = 1.05
 SWEP.ReloadFinishWaitEmpty = 1.05
 
 SWEP.SnapToIdlePostReload = false
-
--- function SWEP:updateReloadTimes()
-	-- local mode = self:getForegripMode()
-
-	-- if SERVER or not self.shotgunReloading then
-		-- self.Animations.reload_start = self.Animations[mode .. "reload_start"]
-		-- self.Animations.insert = self.Animations[mode .. "insert"]
-		-- self.Animations.reload_end = self.Animations[mode .. "reload_end"]
-		-- self.Animations.idle = self.Animations[mode .. "reload_end"]
-	-- end
-	
-	-- if self.base_ReloadStartTime then
-		-- self.ReloadStartTime = self[mode .. "ReloadStartTime"] or self.base_ReloadStartTime
-	-- end
-	-- if self.base_InsertShellTime then
-		-- self.InsertShellTime = self[mode .. "InsertShellTime"] or self.base_InsertShellTime
-	-- end
-	-- if self.base_ReloadFinishWait then
-		-- self.ReloadFinishWait = self[mode .. "ReloadFinishWait"] or self.base_ReloadFinishWait
-	-- end
--- end
-
-if CLIENT then 
-	function SWEP:updateOtherParts()
-		local vm = self.CW_VM
-		local cycle = vm:GetCycle()
-		local activity = self.Sequence
-		
-		if activity:find("reload_start") then
-			self.shotgunReloading = true
-		end
-		
-		if activity:find("reload_end") then
-			self.shotgunReloading = false
-		end
-		
-		if self.dt.BipodDeployed then
-			self.AttachmentModelsWM.kk_ins2_bipod.ent:SetSequence(1)
-		else
-			self.AttachmentModelsWM.kk_ins2_bipod.ent:SetSequence(0)
-		end
-		
-		self.ForegripParent = "LeftHandFix"
-		local hs = vm
-		if self.Sequence:find("deployed") and self.Sequence:find("fire") then
-			self.ForegripOverride = true
-			-- hs:ManipulateBonePosition(hs:LookupBone("L Clavicle"), Vector(-100,0,0))
-		else
-			self.ForegripOverride = false
-			-- hs:ManipulateBonePosition(hs:LookupBone("L Clavicle"), Vector(0,0,0))
-		end
-	end
-	
-	function SWEP:playSwitchBipod()
-		local isBipod = self.dt.BipodDeployed
-		local vm = self.CW_VM
-		local cycle = vm:GetCycle()
-		local activity = self.Sequence
-		
-		local canPlay = !(((activity:find("reload") or activity:find("fire_end")) and cycle < 1) or self.shotgunReloading)
-		
-		if isBipod != self.KKINS_wasBipod and self.KKINS_wasBipod != nil then
-			if canPlay then
-				if isBipod then
-					self:playAnim("bipod_in") 
-				else 
-					self:playAnim("bipod_out") 
-				end
-				self.reticleInactivity = UnPredictedCurTime() + (self.CW_VM:SequenceDuration())
-			else
-				self.KKINS_postReloadBipodSwitch = true
-			end
-		end
-		if self.KKINS_postReloadBipodSwitch and canPlay then
-			if isBipod then
-				self:playAnim("bipod_in") 
-			else 
-				self:playAnim("bipod_out") 
-			end
-			self.reticleInactivity = UnPredictedCurTime() + (self.CW_VM:SequenceDuration())
-			self.KKINS_postReloadBipodSwitch = false
-		end
-		
-		self.KKINS_wasBipod = isBipod
-	end
-end
 
 function SWEP:fireAnimFunc()
 	local clip = self:Clip1()

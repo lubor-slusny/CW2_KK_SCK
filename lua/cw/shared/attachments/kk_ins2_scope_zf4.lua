@@ -21,11 +21,15 @@ if CLIENT then
 		-- [3] = {t = "Can be disorienting at close range.", c = CustomizableWeaponry.textColors.NEGATIVE}
 	}
 
+	local path = "models/weapons/optics/mosin_crosshair"
+	
 	att.zoomTextures = {
-		{tex = surface.GetTextureID("models/weapons/optics/mosin_crosshair"), offset = {0, 1}},
+		{tex = surface.GetTextureID(path), offset = {0, 1}},
 	}
 	
 	att._rtFov = 6
+	att._rtReticle = surface.GetTextureID(path)
+	att._reticleMat = Material(path)
 	
 	function att:drawRenderTarget()		
 		local scopeEnt = self.AttachmentModelsVM[att.name].ent
@@ -39,7 +43,7 @@ if CLIENT then
 	end
 	
 	function att:elementRender()
-		CustomizableWeaponry_KK.ins2.renderTargetSightSetup(self, att)
+		CustomizableWeaponry_KK.ins2.renderTargetSightStencil(self, att)
 	end
 end
 

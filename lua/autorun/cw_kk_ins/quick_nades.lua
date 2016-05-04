@@ -178,8 +178,10 @@ function CustomizableWeaponry_KK.ins2:throwGrenade()
 				local nade = ents.Create(entClass)
 				nade:SetPos(pos + offset)
 				nade:SetAngles(eyeAng)
+				
 				nade:Spawn()
 				nade:Activate()
+				
 				nade:Fuse(3)
 				nade:SetOwner(self.Owner)
 				nade:SetModel(quickNadeTweak.wm)

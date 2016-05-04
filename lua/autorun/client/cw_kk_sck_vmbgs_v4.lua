@@ -4,12 +4,16 @@ local VM_ENT
 local RIG_ENT
 local LOCK
 
+local function isReallyValid(ent)
+	return IsValid(ent) and (ent:GetModel() != nil) and (ent:SkinCount() != nil) and (ent:GetSkin() != nil) and (ent:GetNumBodyGroups() != nil)
+end
+
 local function updatePanel()
 	if !IsValid(PANEL) then return end
 	
 	PANEL:ClearControls()
 
-	if !IsValid(VM_ENT) then return end
+	if !isReallyValid(VM_ENT) then return end
 	
 	LOCK = true
 	
@@ -43,7 +47,7 @@ local function updatePanel()
 	if skinCount > 0 then slider:SetDark(true) end
 	
 	function slider:OnValueChanged(val)
-		if LOCK or !IsValid(VM_ENT) then return end
+		if LOCK or !isReallyValid(VM_ENT) then return end
 		VM_ENT:SetSkin(math.Round(val, 0))
 	end	
 	
@@ -72,7 +76,7 @@ local function updatePanel()
 		slider:SetText(bgText)
 		
 		function slider:OnValueChanged(val)
-			if LOCK or !IsValid(VM_ENT) then return end
+			if LOCK or !isReallyValid(VM_ENT) then return end
 			VM_ENT:SetBodygroup(i, math.Round(val, 0))
 		end
 		
@@ -94,9 +98,9 @@ local function KK_SCK_BGS_Think()
 	local ply = LocalPlayer()
 	if !IsValid(ply) then return end
 	
-	local wep = ply:GetActiveWeapon()
-	
 	VM_ENT = ply:GetViewModel()
+	
+	local wep = ply:GetActiveWeapon()
 	
 	if IsValid(wep) then		
 		if wep.CW20Weapon and IsValid(wep.CW_VM) then
@@ -106,7 +110,7 @@ local function KK_SCK_BGS_Think()
 		end
 	end
 	
-	if !IsValid(VM_ENT) then return end
+	if !isReallyValid(VM_ENT) then return end
 	
 	local vm = VM_ENT:GetModel()
 	if vm != LAST_MDL then 

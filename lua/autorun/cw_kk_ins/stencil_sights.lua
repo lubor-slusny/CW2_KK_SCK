@@ -8,6 +8,7 @@ if CLIENT then
 	local nodrawMat = Material(_nodrawMat)
 
 	local white = Color(255,255,255)
+	local whiteHalf = Color(255,255,255,123)
 	
 	CustomizableWeaponry_KK.ins2.stencilLenses = CustomizableWeaponry_KK.ins2.stencilLenses or {}
 	CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/optics/aimpoint_lense"] = true
@@ -15,16 +16,16 @@ if CLIENT then
 	CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/optics/eotech_lense"] = true
 	CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/attachments/cw_kk_ins2_cstm_barska/barska_lense"] = true
 	
-	CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/optics/lense_rt"] = true
-	CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/optics/mosin_lense"] = true
-	CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/optics/optic_lense"] = true
+	-- CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/optics/lense_rt"] = true
+	-- CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/optics/mosin_lense"] = true
+	-- CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/optics/optic_lense"] = true
 	
-	CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/optics/4x_reticule"] = true
-	CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/optics/elcan_reticule"] = true
-	CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/optics/mk4_crosshair"] = true
-	CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/optics/mosin_crosshair"] = true
+	-- CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/optics/4x_reticule"] = true
+	-- CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/optics/elcan_reticule"] = true
+	-- CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/optics/mk4_crosshair"] = true
+	-- CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/optics/mosin_crosshair"] = true
 	CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/optics/parallax_mask"] = true
-	CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/optics/po4x_reticule"] = true
+	-- CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/optics/po4x_reticule"] = true
 	
 	CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/attachments/cw_kk_ins2_cstm_acog/elcan_reticule"] = true
 
@@ -115,7 +116,7 @@ if CLIENT then
 		if not self.ActiveAttachments[att.name] then return end
 		if self.ActiveAttachments.kk_ins2_magnifier then return end
 		
-		size = att._reticleSize
+		size = att._reticleSize * (self.AttachmentModelsVM[att.name].retSizeMult or 1)
 		rc = self:getSightColor(att.name)
 		isAiming = self:isAiming()
 		freeze = GetConVarNumber("cw_kk_freeze_reticles") != 0
@@ -123,6 +124,12 @@ if CLIENT then
 		
 		self.AttachmentModelsVM[att.name].nodraw = false
 		attachmEnt = self.AttachmentModelsVM[att.name].ent
+		
+		retAtt = attachmEnt:GetAttachment(1)
+		
+		if not retAtt then 
+			error("You are using invalid \"" .. self.AttachmentModelsVM[att.name].model .. "\" model. Check your other addons for conflicting files.")
+		end
 		
 		-- if !freeze then
 			/*stencil stuff*/
@@ -152,7 +159,6 @@ if CLIENT then
 		-- end
 		
 		/*prepare reticle pos*/
-		retAtt = attachmEnt:GetAttachment(1)
 		retDist = (retAtt.Pos:Distance(EyePos())) * 50 
 		retPos = retAtt.Pos + retAtt.Ang:Forward() * retDist
 		
@@ -176,13 +182,13 @@ if CLIENT then
 			nearWallOutTime = CurTime()
 		end
 		
-		if freeze then
+		-- if freeze then
 			/*main reticle - centered when aiming and active*/
-			if self:isReticleActive() and isAiming and nearWallOutTime < CurTime() then
+			if self:isReticleActive() and (isAiming or self.dt.BipodDeployed) and nearWallOutTime < CurTime() then
 				EA = self:getReticleAngles()	
 				retPos = EyePos() + EA:Forward() * retDist
 			end
-		end
+		-- end
 		
 		render.SetMaterial(att._reticle)
 		
@@ -192,7 +198,7 @@ if CLIENT then
 		cam.IgnoreZ(true)
 			render.CullMode(MATERIAL_CULLMODE_CW)
 				render.DrawQuadEasy(retPos, retNorm, size, size, white, retAng)
-				render.DrawQuadEasy(retPos, retNorm, size, size, white, retAng)
+				render.DrawQuadEasy(retPos, retNorm, size, size, whiteHalf, retAng)
 			render.CullMode(MATERIAL_CULLMODE_CCW)
 		cam.IgnoreZ(false)
 		

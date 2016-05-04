@@ -2,7 +2,9 @@ if not CustomizableWeaponry then return end
 
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
+AddCSLuaFile("sh_soundscript.lua")
 include("sh_sounds.lua")
+include("sh_soundscript.lua")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
@@ -18,41 +20,41 @@ if CLIENT then
 	SWEP.ShellDelay = 13/30
 	
 	SWEP.AttachmentModelsVM = {
-		["kk_ins2_optic_raul"] = {model = "models/weapons/upgrades/a_modkit_02.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
+		["kk_ins2_optic_raul"] = {model = "models/weapons/upgrades/a_modkit_02.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		
-		["md_saker"] = {model = "models/weapons/upgrades/a_suppressor_12ga.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_suppressor_shotgun"] = {model = "models/weapons/upgrades/a_suppressor_12ga.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/a_foregrip_ins2.mdl", pos = Vector(0,0,0), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), attachment = "Foregrip"},
+		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/a_foregrip_ins2.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), attachment = "Foregrip"},
 		
-		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_ins_shotgun.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_ins_shotgun.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_ins_shotgun.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_ins_shotgun.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 
-		["kk_ins2_magnifier"] = {model = "models/weapons/upgrades/a_optic_aimp2x.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_magnifier"] = {model = "models/weapons/upgrades/a_optic_aimp2x.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_aimpoint"] = {model = "models/weapons/upgrades/a_optic_aimpoint.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_eotech"] = {model = "models/weapons/upgrades/a_optic_eotech.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_kobra"] = {model = "models/weapons/upgrades/a_optic_kobra_l.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_aimpoint"] = {model = "models/weapons/upgrades/a_optic_aimpoint.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_eotech"] = {model = "models/weapons/upgrades/a_optic_eotech.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_kobra"] = {model = "models/weapons/upgrades/a_optic_kobra_l.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, retSizeMult = 1.2},
 		
-		["kk_ins2_cstm_barska"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_barska.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_cstm_barska"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_barska.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 	}
 
 	SWEP.AttachmentModelsWM = {
-		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/w_modkit_2.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/w_modkit_2.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
-		["md_saker"] = {model = "models/weapons/upgrades/w_sil_pistol.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_suppressor_shotgun"] = {model = "models/weapons/upgrades/w_sil_pistol.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/w_ins_foregrip.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/w_ins_foregrip.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 
-		["kk_ins2_lam"] = {model = "models/weapons/upgrades/w_laser_ins.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/w_laser_ins.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_lam"] = {model = "models/weapons/upgrades/w_laser_ins.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/w_laser_ins.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 
-		["kk_ins2_magnifier"] = {model = "models/weapons/upgrades/w_magaim.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_magnifier"] = {model = "models/weapons/upgrades/w_magaim.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 	
-		["kk_ins2_aimpoint"] = {model = "models/weapons/upgrades/w_aimpoint.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_eotech"] = {model = "models/weapons/upgrades/w_eotech.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_kobra"] = {model = "models/weapons/upgrades/w_kobra.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_aimpoint"] = {model = "models/weapons/upgrades/w_aimpoint.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_eotech"] = {model = "models/weapons/upgrades/w_eotech.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_kobra"] = {model = "models/weapons/upgrades/w_kobra.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_cstm_barska"] = {model = "models/weapons/upgrades/w_eotech.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_cstm_barska"] = {model = "models/weapons/upgrades/w_eotech.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 	}
 	
 	SWEP.IronsightPos = Vector(-2.008, -2, 0.9)
@@ -87,10 +89,10 @@ SWEP.ShotgunReload = true
 SWEP.ReticleInactivityPostFire = 1
 
 SWEP.Attachments = {
-	-- {header = "Sight", offset = {500, -450},  atts = {"kk_ins2_cstm_barska", "kk_ins2_aimpoint"}},
+	-- {header = "Sight", offset = {500, -450}, atts = {"kk_ins2_cstm_barska", "kk_ins2_aimpoint"}},
 	{header = "Sight", offset = {500, -450}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint"}},
-	{header = "Barrel", offset = {-200, -450},  atts = {"md_saker"}},
-	{header = "Under", offset = {-500, 0},  atts = {"kk_ins2_vertgrip"}},
+	{header = "Barrel", offset = {-200, -450}, atts = {"kk_ins2_suppressor_shotgun"}},
+	{header = "Under", offset = {-500, 0}, atts = {"kk_ins2_vertgrip"}},
 	{header = "Extras", offset = {125, 200}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_combo"}},
 	{header = "More Sight", offset = {1200, 0}, atts = {"kk_ins2_magnifier"}, dependencies = CustomizableWeaponry_KK.ins2.magnifierDependencies},
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_slugrounds", "am_flechetterounds"}}
@@ -140,171 +142,6 @@ SWEP.Animations = {
 	foregrip_sprint = "foregrip_sprint",
 	foregrip_safe = "foregrip_down",
 	foregrip_safe_aim = "foregrip_iron_down",
-}
-	
-SWEP.Sounds = {
-	base_draw = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-	},
-
-	base_holster = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
-	},
-
-	base_ready = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-		{time = 26/30, sound = "CW_KK_INS2_TOZ_PUMPBACK"},
-		{time = 36/30, sound = "CW_KK_INS2_TOZ_PUMPFORWARD"},
-	},
-
-	base_crawl = {
-		{time = 15/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
-		{time = 38/30, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
-
-	},
-
-	base_fire_cock_1 = {
-		// shell @ 2 ""},
-		{time = 1/24, sound = "CW_KK_INS2_TOZ_PUMPBACK"},
-		{time = 5/24, sound = "CW_KK_INS2_TOZ_PUMPFORWARD"},
-		// pumpedrdy @ 6 ""},
-	},
-
-	base_fire_cock_2 = {
-		// shell @ 2 ""},
-		{time = 1/24, sound = "CW_KK_INS2_TOZ_PUMPBACK"},
-		{time = 5/24, sound = "CW_KK_INS2_TOZ_PUMPFORWARD"},
-		// pumpedrdy @ 6 ""},
-	},
-
-	base_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_TOZ_EMPTY"},
-	},
-
-	base_reload_start = {
-		{time = 5/30, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
-	},
-
-	base_reload_start_empty = {
-		{time = 5/35, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
-		{time = 18/35, sound = "CW_KK_INS2_TOZ_PUMPBACK"},
-		// shell @ 20 ""},
-		{time = 51/35, sound = "CW_KK_INS2_TOZ_SHELLINSERTSINGLE"},
-		{time = 76/35, sound = "CW_KK_INS2_TOZ_PUMPFORWARD"},
-		// reloaded @ 78 ""},
-	},
-
-	base_reload_insert = {
-		{time = 5/36, sound = "CW_KK_INS2_TOZ_SHELLINSERT"},
-		// reloaded @ 15 ""},
-	},
-
-	base_reload_end = {
-		{time = 5/35, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
-	},
-
-	base_reload_end_empty = {
-		{time = 5/35, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
-	},
-
-	iron_fire_cock_1 = {
-		// shell @ 4 ""},
-		{time = 3/35, sound = "CW_KK_INS2_TOZ_PUMPBACK"},
-		{time = 11/35, sound = "CW_KK_INS2_TOZ_PUMPFORWARD"},
-		// pumpedrdy @ 12 ""},
-	},
-
-	iron_fire_cock_2 = {
-		// shell @ 4 ""},
-		{time = 3/35, sound = "CW_KK_INS2_TOZ_PUMPBACK"},
-		{time = 11/35, sound = "CW_KK_INS2_TOZ_PUMPFORWARD"},
-		// pumpedrdy @ 12 ""},
-	},
-
-	iron_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_TOZ_EMPTY"},
-	},
-
-	foregrip_draw = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-	},
-
-	foregrip_holster = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
-	},
-
-	foregrip_ready = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-		{time = 26/30, sound = "CW_KK_INS2_TOZ_PUMPBACK"},
-		{time = 36/30, sound = "CW_KK_INS2_TOZ_PUMPFORWARD"},
-	},
-
-	foregrip_crawl = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
-		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
-	},
-
-	foregrip_fire_cock_1 = {
-		// shell @ 2 ""},
-		{time = 1/24, sound = "CW_KK_INS2_TOZ_PUMPBACK"},
-		{time = 5/24, sound = "CW_KK_INS2_TOZ_PUMPFORWARD"},
-		// pumpedrdy @ 6 ""},
-	},
-
-	foregrip_fire_cock_2 = {
-		// shell @ 2 ""},
-		{time = 1/24, sound = "CW_KK_INS2_TOZ_PUMPBACK"},
-		{time = 5/24, sound = "CW_KK_INS2_TOZ_PUMPFORWARD"},
-		// pumpedrdy @ 6 ""},
-	},
-
-	foregrip_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_TOZ_EMPTY"},
-	},
-
-	foregrip_reload_start = {
-		{time = 5/30, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
-	},
-
-	foregrip_reload_start_empty = {
-		{time = 5/35, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
-		{time = 18/35, sound = "CW_KK_INS2_TOZ_PUMPBACK"},
-		// shell @ 20 ""},
-		{time = 51/35, sound = "CW_KK_INS2_TOZ_SHELLINSERTSINGLE"},
-		{time = 76/35, sound = "CW_KK_INS2_TOZ_PUMPFORWARD"},
-		// reloaded @ 78 ""},
-	},
-
-	foregrip_reload_insert = {
-		{time = 5/36, sound = "CW_KK_INS2_TOZ_SHELLINSERT"},
-		// reloaded @ 15 ""},
-	},
-
-	foregrip_reload_end = {
-		{time = 5/35, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
-	},
-
-	foregrip_reload_end_empty = {
-		{time = 5/35, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
-	},
-
-	foregrip_iron_fire_cock_1 = {
-		// shell @ 3 ""},
-		{time = 3/35, sound = "CW_KK_INS2_TOZ_PUMPBACK"},
-		{time = 11/35, sound = "CW_KK_INS2_TOZ_PUMPFORWARD"},
-		// pumpedrdy @ 12 ""},
-	},
-
-	foregrip_iron_fire_cock_2 = {
-		// shell @ 3 ""},
-		{time = 3/35, sound = "CW_KK_INS2_TOZ_PUMPBACK"},
-		{time = 11/35, sound = "CW_KK_INS2_TOZ_PUMPFORWARD"},
-		// pumpedrdy @ 12 ""},
-	},
-
-	foregrip_iron_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_TOZ_EMPTY"},
-	},
 }
 
 SWEP.SpeedDec = 15

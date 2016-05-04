@@ -13,9 +13,8 @@ if CLIENT then
 	
 	SWEP.IconLetter = "O"
 	
-	SWEP.AttachmentModelsVM = {		
-		["kk_counter"] = {model = "models/weapons/stattrack.mdl", bone = "Spoon", rel = "", pos = Vector(-1.209, 0.05, -0.149), angle = Angle(0, 90, 20), size = Vector(0.419, 0.419, 0.419), ignoreKKBGO = true, active = true, nodraw = true},
-	}
+	SWEP.AttachmentModelsVM = {}
+	SWEP.AttachmentModelsWM = {}
 	
 	SWEP.MoveType = 2
 	SWEP.ViewModelMovementScale = 0.8

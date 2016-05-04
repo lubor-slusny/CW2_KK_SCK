@@ -1,20 +1,3 @@
-
-// MP OR SP
-
-if not CustomizableWeaponry.colorableParts.COLOR_TYPE_KK_FLASHLIGHT then
-	-- local lastButtNotLeast = table.Count(CustomizableWeaponry.colorableParts.colors) + 1
-	CustomizableWeaponry.colorableParts.COLOR_TYPE_KK_FLASHLIGHT = "KK_FL" // fuck numerical ids
-
-	CustomizableWeaponry.colorableParts.colors[CustomizableWeaponry.colorableParts.COLOR_TYPE_KK_FLASHLIGHT] = {
-		{name = "kk_fl_white",	display = "White",		color = Color(255,255,255,255)},
-		{name = "kk_fl_whitew",	display = "Warm White",	color = Color(255,255,150,255)},
-		{name = "kk_fl_whitec",	display = "Cold White",	color = Color(150,255,255,255)},
-	}
-
-	CustomizableWeaponry.colorableParts.colorText[CustomizableWeaponry.colorableParts.COLOR_TYPE_KK_FLASHLIGHT] = " (HOLD - change light color)"
-	CustomizableWeaponry.colorableParts.defaultColors[CustomizableWeaponry.colorableParts.COLOR_TYPE_KK_FLASHLIGHT] = CustomizableWeaponry.colorableParts.colors[CustomizableWeaponry.colorableParts.COLOR_TYPE_KK_FLASHLIGHT][1]
-end
-
 local att = {}
 att.name = "kk_ins2_flashlight"
 att.displayName = "Light Emitting Module v2.1"

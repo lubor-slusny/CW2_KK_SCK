@@ -9,6 +9,9 @@ local phys, ef
 
 function ENT:Initialize()
 	self:SetModel("models/weapons/w_cw_kk_ins2_c4.mdl")
+end
+
+function ENT:InitPhys()
 	self:PhysicsInit(SOLID_VPHYSICS)
 	self:SetMoveType(MOVETYPE_VPHYSICS)
 	self:SetSolid(SOLID_VPHYSICS)

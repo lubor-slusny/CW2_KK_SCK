@@ -14,6 +14,7 @@ if CLIENT then
 	SWEP.IconLetter = "O"
 	
 	SWEP.AttachmentModelsVM = {}
+	SWEP.AttachmentModelsWM = {}
 	
 	SWEP.MoveType = 2
 	SWEP.ViewModelMovementScale = 0.8

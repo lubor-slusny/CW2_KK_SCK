@@ -2,7 +2,9 @@ if not CustomizableWeaponry then return end
 
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
+AddCSLuaFile("sh_soundscript.lua")
 include("sh_sounds.lua")
+include("sh_soundscript.lua")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
@@ -16,7 +18,7 @@ if CLIENT then
 	SWEP.NoShells = true
 	
 	SWEP.AttachmentModelsVM = {
-		["kk_ins2_revolver_loader"] = {model = "models/weapons/upgrades/a_speedloader_rev.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
+		["kk_ins2_revolver_loader"] = {model = "models/weapons/upgrades/a_speedloader_rev.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 	}
 
 	SWEP.IronsightPos = Vector(-1.8544, 0, 1.1093)
@@ -63,73 +65,6 @@ SWEP.Animations = {
 	base_sprint = "base_sprint",
 	base_safe = "base_down",
 	base_safe_aim = "iron_down",
-}
-	
-SWEP.Sounds = {
-	base_ready = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_PISTOL_DRAW"},
-		{time = 27/28, sound = "CW_KK_INS2_REVOLVER_OPENCHAMBER"},
-		{time = 46/28, sound = "CW_KK_INS2_REVOLVER_CLOSECHAMBER"},
-	},
-
-	base_draw = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_PISTOL_DRAW"},
-	},
-
-	base_holster = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_PISTOL_HOLSTER"},
-	},
-
-	base_crawl = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
-		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
-	},
-
-	base_fire = {
-		{time = 0, sound = "CW_KK_INS2_REVOLVER_COCKHAMMER"},
-	},
-
-	base_fire2 = {
-		{time = 0, sound = "CW_KK_INS2_REVOLVER_COCKHAMMER"},
-	},
-
-	base_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_REVOLVER_COCKHAMMER"},
-		{time = 4/30, sound = "CW_KK_INS2_REVOLVER_EMPTY"},
-	},
-
-	base_reload_start = {
-		{time = 1/33.5, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
-		{time = 24/33.5, sound = "CW_KK_INS2_REVOLVER_OPENCHAMBER"},
-		{time = 51/33.5, sound = "CW_KK_INS2_REVOLVER_DUMPROUNDS"},
-	},
-
-	base_reload_insert = {
-		{time = 6/34.6, sound = "CW_KK_INS2_REVOLVER_INSERTSINGLE"},
-		{time = 18/34.6, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
-	},
-
-	base_reload_end = {
-		{time = 6/34.5, sound = "CW_KK_INS2_UNIVERSAL_LEANOUT"},
-		{time = 37/34.5, sound = "CW_KK_INS2_REVOLVER_CLOSECHAMBER"},
-	},
-
-	base_reload_speed = {
-		{time = 1/33.5, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
-		{time = 24/33.5, sound = "CW_KK_INS2_REVOLVER_OPENCHAMBER"},
-		{time = 51/33.5, sound = "CW_KK_INS2_REVOLVER_DUMPROUNDS"},
-		{time = 81/33.5, sound = "CW_KK_INS2_REVOLVER_SPEEDLOADERINSERT"},
-		{time = 113/33.5, sound = "CW_KK_INS2_REVOLVER_CLOSECHAMBER"},
-	},
-
-	iron_fire = {
-		{time = 0, sound = "CW_KK_INS2_REVOLVER_COCKHAMMER"},
-	},
-
-	iron_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_REVOLVER_COCKHAMMER"},
-		{time = 4/30, sound = "CW_KK_INS2_REVOLVER_EMPTY"},
-	},
 }
 
 SWEP.SpeedDec = 10
@@ -198,7 +133,7 @@ function SWEP:beginReload()
 	
 		local time = CT + self.ReloadStartTime / self.ReloadSpeed
 		
-		self.lastMag = mag
+		self.lastMag = 0
 		self.WasEmpty = mag == 0
 		self.ReloadDelay = time
 		self:SetNextPrimaryFire(time)

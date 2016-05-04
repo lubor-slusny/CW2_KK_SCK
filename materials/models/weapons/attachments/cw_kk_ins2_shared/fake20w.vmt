@@ -1,0 +1,7 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "models/weapons/attachments/cw_kk_ins2_shared/fake20w"
+	"$alphatest" 1
+	"$vertexcolor" 1
+	"$vertexalpha" 1
+}
