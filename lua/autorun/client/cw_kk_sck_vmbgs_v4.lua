@@ -121,16 +121,12 @@ local function KK_SCK_BGS_Think()
 end
 
 hook.Add("PopulateToolMenu", "KK_SCK_BGS", function()
-	local cvar = GetConVar("cw_kk_dev_menu")
-	
-	if cvar and cvar:GetInt() != 0 then
-		spawnmenu.AddToolMenuOption("Utilities", "Knife Kitty", "KK_SCK_BGS", "Bodygroups", "", "", function(panel)
-			PANEL = panel
-			updatePanel()
-			
-			hook.Add("Think", "KK_SCK_BGS_Think", KK_SCK_BGS_Think)
-		end)
-	end
+	spawnmenu.AddToolMenuOption("Utilities", "Knife Kitty", "KK_SCK_BGS", "Bodygroups", "", "", function(panel)
+		PANEL = panel
+		updatePanel()
+		
+		hook.Add("Think", "KK_SCK_BGS_Think", KK_SCK_BGS_Think)
+	end)
 end)
 
 hook.Add("PostReloadToolsMenu", "KK_SCK_BGS_Remove", function()

@@ -23,6 +23,7 @@ if CLIENT then
 
 	SWEP.CustomizationMenuScale = 0.01
 	SWEP.ReloadViewBobEnabled = false
+	SWEP.HUD_MagText = "BREECH: "
 end
 
 SWEP.Chamberable = false
@@ -34,7 +35,7 @@ SWEP.Attachments = {
 	-- ["+reload"] = {header = "Ammo", offset = {0, 0}, atts = {"am_slugrounds", "am_flechetterounds"}}
 }
 
-SWEP.KKINS_emptyIdle = true
+SWEP.KK_INS2_emptyIdle = true
 
 SWEP.Animations = {
 	draw = "base_ready",
@@ -116,7 +117,7 @@ SWEP.Slot = 4
 SWEP.SlotPos = 0
 SWEP.NormalHoldType = "revolver"
 SWEP.RunHoldType = "passive"
-SWEP.FireModes = {"double"}
+SWEP.FireModes = {"break"}
 SWEP.Base = "cw_kk_ins2_base"
 SWEP.Category = "CW 2.0 KK INS2"
 

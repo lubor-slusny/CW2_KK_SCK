@@ -56,7 +56,7 @@ if CLIENT then
 	SWEP.SprintPos = Vector(1, -8, 0)
 	SWEP.SprintAng = Vector(0, 0, 0)
 	
-	SWEP.HUD_MagText = "Barrel: "
+	SWEP.HUD_MagText = "BARREL: "
 	SWEP.CustomizationMenuScale = 0.01
 	
 	SWEP.LuaVMRecoilAxisMod = {vert = 1, hor = 1.5, roll = 3, forward = 1, pitch = 4}

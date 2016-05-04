@@ -103,27 +103,32 @@ if CLIENT then
 	end
 	
 	local nearWallOutTime
+	local cvFreeze
 	
 	function CustomizableWeaponry_KK.ins2:stencilSight(att)
 		if not self.AttachmentModelsVM then return end
 		if not self.AttachmentModelsVM[att.name] then return end
 		
-		self._laserStencilCheck = false // this got little NASTY
+		self._KK_INS2_stencilsDisableLaser = false // this got little NASTY
 			CustomizableWeaponry.registeredAttachmentsSKey["kk_ins2_lam"].elementRender(self)
 			CustomizableWeaponry.registeredAttachmentsSKey["kk_ins2_m6x"].elementRender(self)
 			CustomizableWeaponry.registeredAttachmentsSKey["kk_ins2_anpeq15"].elementRender(self)
-		self._laserStencilCheck = true
+		self._KK_INS2_stencilsDisableLaser = true
 		
 		if not self.ActiveAttachments[att.name] then return end
 		if self.ActiveAttachments.kk_ins2_magnifier then return end
 		
+		if not cvFreeze then
+			cvFreeze = GetConVar("cw_kk_freeze_reticles")
+			return
+		end
+		
 		size = att._reticleSize * (self.AttachmentModelsVM[att.name].retSizeMult or 1)
 		rc = self:getSightColor(att.name)
 		isAiming = self:isAiming()
-		freeze = GetConVarNumber("cw_kk_freeze_reticles") != 0
+		freeze = cvFreeze:GetInt() != 0
 		isScopePos = (self.AimPos == self[att.aimPos[1]] and self.AimAng == self[att.aimPos[2]])
-		
-		self.AttachmentModelsVM[att.name].nodraw = false
+		-- self.AttachmentModelsVM[att.name].nodraw = false
 		attachmEnt = self.AttachmentModelsVM[att.name].ent
 		
 		retAtt = attachmEnt:GetAttachment(1)

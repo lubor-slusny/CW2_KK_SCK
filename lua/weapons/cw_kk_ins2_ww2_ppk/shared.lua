@@ -34,7 +34,7 @@ SWEP.Attachments = {
 	["+reload"] = {header = "Ammo", offset = {500, 50}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
-SWEP.KKINS_emptyIdle = true
+SWEP.KK_INS2_emptyIdle = true
 
 SWEP.Animations = {
 	draw = "base_ready",

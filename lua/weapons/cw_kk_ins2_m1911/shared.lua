@@ -51,13 +51,13 @@ SWEP.CanRestOnObjects = false
 SWEP.WeaponLength = 16
 
 SWEP.Attachments = {
-	{header = "Extras", offset = {500, -400}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_m6x"}},
+	{header = "Lasers", offset = {500, -400}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_m6x"}},
 	{header = "Barrel", offset = {-500, -400}, atts = {"kk_ins2_suppressor_pistol"}},
-	{header = "MagZ", offset = {-500, 50}, atts = {"kk_ins2_mag_m1911_15"}},
+	{header = "Magazine", offset = {-500, 50}, atts = {"kk_ins2_mag_m1911_15"}},
 	["+reload"] = {header = "Ammo", offset = {500, 50}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
-SWEP.KKINS_emptyIdle = true
+SWEP.KK_INS2_emptyIdle = true
 
 SWEP.Animations = {
 	draw = "base_ready",

@@ -49,8 +49,12 @@ if CLIENT then
 		
 		["kk_ins2_scope_mosin"] = {model = "models/weapons/upgrades/a_optic_mosin_l.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_cstm_barska"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_barska_l.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, retSizeMult = 1.2},
-		["kk_ins2_cstm_acog"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_acog.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_cstm_cmore"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_cmore.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_cstm_compm4s"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_compm4s.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_cstm_microt1"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_microt1.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_cstm_acog"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_acog_m.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, retSizeMult = 0.85},
+		["kk_ins2_cstm_barska"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_barska.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_cstm_eotechxps"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_eotechxps.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 	}
 
 	SWEP.AttachmentModelsWM = {
@@ -74,8 +78,12 @@ if CLIENT then
 		
 		["kk_ins2_scope_mosin"] = {model = "models/weapons/upgrades/w_scope_mosin.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_cstm_barska"] = {model = "models/weapons/upgrades/w_eotech.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_cstm_cmore"] = {model = "models/weapons/attachments/w_cw_kk_ins2_cstm_cmore.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_cstm_compm4s"] = {model = "models/weapons/upgrades/w_aimpoint.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_cstm_microt1"] = {model = "models/weapons/upgrades/w_aimpoint.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_cstm_acog"] = {model = "models/weapons/attachments/w_cw_kk_ins2_cstm_acog.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_cstm_barska"] = {model = "models/weapons/upgrades/w_eotech.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_cstm_eotechxps"] = {model = "models/weapons/attachments/w_cw_kk_ins2_cstm_eotechxps.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 	}
 	
 	-- SWEP.WElements = {
@@ -83,46 +91,23 @@ if CLIENT then
 		-- ["awp"] = { type = "Model", model = "models/weapons/w_m40.mdl", bone = "ValveBiped.Bip01_R_Hand", rel = "", pos = Vector(4.919, 0.822, -1.236), angle = Angle(-10, 0, 180), size = Vector(1, 1, 1), color = Color(255, 255, 255, 255), surpresslightning = false, material = "", skin = 0, bodygroup = {} }
 	-- }
 	
-	SWEP.IronsightPos = Vector(-2.815, -1, 0.2)
-	SWEP.IronsightAng = Vector(-0.03, 0.03, 0)
-	
-	SWEP.KKINS2CSTMBarskaPos = Vector(-2.7983, -2, 0.1274)
-	SWEP.KKINS2CSTMBarskaAng = Vector(0, 0, 0)
-
-	SWEP.KKINS2AimpointPos = Vector(-2.815, -2, 0.05)
-	SWEP.KKINS2AimpointAng = Vector(0, 0, 0)
-	
-	SWEP.KKINS2MagnifierPos = Vector(-2.815, -2, 0.05)
-	SWEP.KKINS2MagnifierAng = Vector(0, 0, 0)
-	
-	SWEP.KKINS2ElcanPos = Vector(-2.8131, -2, 0.0286)
-	SWEP.KKINS2ElcanAng = Vector(0, 0, 0)
-
-	SWEP.KKINS2CSTMACOGPos = Vector(-2.8131, -2, 0.0286)
-	SWEP.KKINS2CSTMACOGAng = Vector(0, 0, 0)
-
-	SWEP.KKINS2ScopeM40Pos = Vector(-2.8224, -0, 0.2303)
-	SWEP.KKINS2ScopeM40Ang = Vector(0, 0, 0)
-
-	-- SWEP.AimPos = SWEP.KKINS2AimpointPos
-	-- SWEP.AimAng = SWEP.KKINS2AimpointAng
-	
-	SWEP.KKINS2PO4Pos = Vector(-2.7347, -2, 0.2492)
-	SWEP.KKINS2PO4Ang = Vector(0, 0, 0)
-
 	SWEP.KKINS2ScopeMosinPos = Vector(-2.791, -2, 0.479)
 	SWEP.KKINS2ScopeMosinAng = Vector(0, 0, 0)
 
-	// sth sth sth theater
-	
+	SWEP.IronsightPos = Vector(-2.815, -1, 0.2)
+	SWEP.IronsightAng = Vector(-0.03, 0.03, 0)
+
+	SWEP.KKINS2KobraPos = Vector(-2.8054, -2, 0.2518)
+	SWEP.KKINS2KobraAng = Vector(0, 0, 0)
+
 	SWEP.KKINS2EoTechPos = Vector(-2.8057, -2, 0.3303)
 	SWEP.KKINS2EoTechAng = Vector(0, 0, 0)
 
 	SWEP.KKINS2AimpointPos = Vector(-2.8108, -2, 0.3609)
 	SWEP.KKINS2AimpointAng = Vector(0, 0, 0)
 
-	SWEP.KKINS2KobraPos = Vector(-2.8054, -2, 0.2518)
-	SWEP.KKINS2KobraAng = Vector(0, 0, 0)
+	SWEP.KKINS2ElcanPos = Vector(-2.8018, -3, 0.248)
+	SWEP.KKINS2ElcanAng = Vector(0, 0, 0)
 
 	SWEP.KKINS2PO4Pos = Vector(-2.7451, -3, 0.4511)
 	SWEP.KKINS2PO4Ang = Vector(0, 0, 0)
@@ -132,9 +117,6 @@ if CLIENT then
 
 	SWEP.KKINS2MagnifierPos = Vector(-2.8017, -3, 0.3467)
 	SWEP.KKINS2MagnifierAng = Vector(0, 0, 0)
-
-	SWEP.KKINS2ElcanPos = Vector(-2.8018, -3, 0.248)
-	SWEP.KKINS2ElcanAng = Vector(0, 0, 0)
 
 	SWEP.CustomizationMenuScale = 0.022
 end
@@ -148,12 +130,12 @@ SWEP.GlobalDelayOnShoot = 1.9
 SWEP.WeaponLength = 38
 
 SWEP.Attachments = {
-	-- {header = "Sight", offset = {600, -500}, atts = {"kk_ins2_cstm_barska", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_cstm_acog", "kk_ins2_po4", "kk_ins2_scope_mosin", "kk_ins2_scope_m40"}},
-	{header = "Sight", offset = {600, -500}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_po4", "kk_ins2_scope_m40"}},
-	{header = "Barrel", offset = {-100, -500}, atts = {"kk_ins2_suppressor_sec"}},
+	{header = "Sight", offset = {500, -450}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_po4", "kk_ins2_scope_m40", "kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_microt1", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"}},
+	{header = "Barrel", offset = {-100, -450}, atts = {"kk_ins2_suppressor_sec"}},
 	{header = "Under", offset = {-400, 0}, atts = {"kk_ins2_bipod"}},
-	{header = "Extras", offset = {225, 200}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}},
-	{header = "More Sight", offset = {1300, 0}, atts = {"kk_ins2_magnifier"}, dependencies = CustomizableWeaponry_KK.ins2.magnifierDependencies},
+	{header = "Lasers", offset = {225, 400}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}},
+	{header = "More Sight", offset = {1100, 0}, atts = {"kk_ins2_magnifier"}, dependencies = CustomizableWeaponry_KK.ins2.magnifierDependencies},
+	["+use"] = {header = "Sight Contract", offset = {500, -0}, atts = {"kk_ins2_sights_cstm"}},
 	["+reload"] = {header = "Ammo", offset = {1000, 500}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
@@ -432,7 +414,7 @@ if CLIENT then
 		
 		local canPlay = !(((activity:find("reload") or activity:find("fire_end")) and cycle < 1) or self.shotgunReloading)
 		
-		if isBipod != self.KKINS_wasBipod and self.KKINS_wasBipod != nil then
+		if isBipod != self._KK_INS2_wasBipod and self._KK_INS2_wasBipod != nil then
 			if canPlay then
 				if isBipod then
 					self:playAnim("bipod_in") 
@@ -454,7 +436,7 @@ if CLIENT then
 			self.KKINS_postReloadBipodSwitch = false
 		end
 		
-		self.KKINS_wasBipod = isBipod
+		self._KK_INS2_wasBipod = isBipod
 	end
 end
 

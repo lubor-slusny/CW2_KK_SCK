@@ -28,7 +28,7 @@ if CLIENT then
 	SWEP.DisableSprintViewSimulation = true
 	
 	SWEP.CustomizationMenuScale = 0.01
-	SWEP.HUD_MagText = "Tube: "
+	SWEP.HUD_MagText = "TUBE: "
 end
 
 SWEP.Chamberable = false
@@ -37,7 +37,7 @@ SWEP.WeaponLength = 35
 SWEP.Attachments = {
 }
 
-SWEP.KKINS_emptyIdle = true
+SWEP.KK_INS2_emptyIdle = true
 
 SWEP.Animations = {
 	draw = "panzerfaust_ready",

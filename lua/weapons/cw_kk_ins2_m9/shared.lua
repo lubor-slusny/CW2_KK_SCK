@@ -46,7 +46,7 @@ if CLIENT then
 end
 
 SWEP.Attachments = {
-	{header = "Extras", offset = {500, -400}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_m6x"}},
+	{header = "Lasers", offset = {500, -400}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_m6x"}},
 	{header = "Barrel", offset = {-500, -400}, atts = {"kk_ins2_suppressor_pistol"}},
 	["+reload"] = {header = "Ammo", offset = {500, 50}, atts = {"am_magnum", "am_matchgrade"}}
 }
@@ -108,7 +108,7 @@ SWEP.Primary.DefaultClip	= 15
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "9x19MM"
 
-SWEP.KKINS_emptyIdle = true
+SWEP.KK_INS2_emptyIdle = true
 SWEP.CanRestOnObjects = false
 SWEP.WeaponLength = 16
 

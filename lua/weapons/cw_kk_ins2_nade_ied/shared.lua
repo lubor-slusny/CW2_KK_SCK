@@ -16,7 +16,7 @@ if CLIENT then
 	SWEP.MoveType = 2
 	SWEP.ViewModelMovementScale = 0.8
 	SWEP.DisableSprintViewSimulation = true
-	SWEP.HUD_MagText = "Planted: "
+	SWEP.HUD_MagText = "PLANTED: "
 end
 
 SWEP.CanRestOnObjects = false

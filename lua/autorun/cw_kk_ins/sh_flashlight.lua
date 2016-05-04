@@ -13,8 +13,8 @@ if CLIENT then
 		if not ProjectedTexture then return end
 		if not attBeamSource then return end
 		
-		if not self._ptKKINS2FL then
-			print("CLPT INIT")
+		if not self._KK_INS2_CL_FL then
+			-- print("CLPT INIT")
 			local pt = ProjectedTexture()
 			pt:SetTexture(texture)
 			pt:SetEnableShadows(true)
@@ -42,22 +42,22 @@ if CLIENT then
 				end
 			end)
 			
-			self._ptKKINS2FL = pt
+			self._KK_INS2_CL_FL = pt
 		end
 		
 		if bOn then
-			self._ptKKINS2FL:SetNearZ(1)
+			self._KK_INS2_CL_FL:SetNearZ(1)
 			
 			local col = self:getSightColor("kk_ins2_flashlight") or white
 			
-			self._ptKKINS2FL:SetColor(col)
-			self._ptKKINS2FL:SetAngles(attBeamSource.Ang)
-			self._ptKKINS2FL:SetPos(attBeamSource.Pos)
+			self._KK_INS2_CL_FL:SetColor(col)
+			self._KK_INS2_CL_FL:SetAngles(attBeamSource.Ang)
+			self._KK_INS2_CL_FL:SetPos(attBeamSource.Pos)
 		else
-			self._ptKKINS2FL:SetNearZ(0)
+			self._KK_INS2_CL_FL:SetNearZ(0)
 		end
 		
-		self._ptKKINS2FL:Update()
+		self._KK_INS2_CL_FL:Update()
 	end
 end
 
@@ -229,7 +229,7 @@ end
 
 function CustomizableWeaponry_KK.ins2.flashlight.v3:attach()
 	if SERVER then
-		if !IsValid(self.Owner._KK_INS_FL) then
+		if !IsValid(self.Owner._KK_INS2_SV_FL) then
 			// make ept ent
 			
 			local ent = ents.Create("env_projectedtexture")
@@ -255,7 +255,7 @@ function CustomizableWeaponry_KK.ins2.flashlight.v3:attach()
 			// link them
 			
 			ent._KK_Owner = ply
-			ply._KK_INS_FL = ent
+			ply._KK_INS2_SV_FL = ent
 			
 			// thinking
 			
@@ -300,8 +300,8 @@ end
 
 function CustomizableWeaponry_KK.ins2.flashlight.v3:detach()
 	if SERVER then
-		if IsValid(self.Owner._KK_INS_FL) then
-			self.Owner._KK_INS_FL._KK_Owner = nil
+		if IsValid(self.Owner._KK_INS2_SV_FL) then
+			self.Owner._KK_INS2_SV_FL._KK_Owner = nil
 		end
 	end
 end
@@ -335,19 +335,19 @@ if SERVER then
 
 	net.Receive(CustomizableWeaponry_KK.ins2.flashlight.v2.NWString, function()
 		local wep = net.ReadEntity()
-		if IsValid(wep) and IsValid(wep._KK_INS_FL) then
-			wep._KK_INS_FL:SetPos(net.ReadVector() or Vector(0, 0, 0))
-			wep._KK_INS_FL:SetAngles(net.ReadAngle() or Angle(0, 0, 0))
+		if IsValid(wep) and IsValid(wep._KK_INS2_SV_FL) then
+			wep._KK_INS2_SV_FL:SetPos(net.ReadVector() or Vector(0, 0, 0))
+			wep._KK_INS2_SV_FL:SetAngles(net.ReadAngle() or Angle(0, 0, 0))
 			
-			wep._KK_INS_FL._KK_COL = CustomizableWeaponry.colorableParts.colors[CustomizableWeaponry.colorableParts.COLOR_TYPE_KK_FLASHLIGHT][net.ReadInt(3)].color or Color(0,255,255,255)
-			wep._KK_INS_FL._KK_TTL = CurTime() + 0.1
+			wep._KK_INS2_SV_FL._KK_COL = CustomizableWeaponry.colorableParts.colors[CustomizableWeaponry.colorableParts.COLOR_TYPE_KK_FLASHLIGHT][net.ReadInt(3)].color or Color(0,255,255,255)
+			wep._KK_INS2_SV_FL._KK_TTL = CurTime() + 0.1
 		end
 	end)
 end
 
 function CustomizableWeaponry_KK.ins2.flashlight.v2:attach()
 	if SERVER then
-		if !IsValid(self._KK_INS_FL) then
+		if !IsValid(self._KK_INS2_SV_FL) then
 			
 			// constructor
 			
@@ -373,7 +373,7 @@ function CustomizableWeaponry_KK.ins2.flashlight.v2:attach()
 			
 			ent:Spawn()
 			
-			self._KK_INS_FL = ent
+			self._KK_INS2_SV_FL = ent
 			
 			// thinking
 			
@@ -389,7 +389,7 @@ function CustomizableWeaponry_KK.ins2.flashlight.v2:attach()
 			// destructor
 			
 			self._KK_INS_onRemove = function()
-				SafeRemoveEntity(self._KK_INS_FL)
+				SafeRemoveEntity(self._KK_INS2_SV_FL)
 			end
 			
 			if not self.OnRemove then

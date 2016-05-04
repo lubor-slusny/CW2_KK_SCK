@@ -3,7 +3,6 @@ AddCSLuaFile()
 local cvXH = CreateClientConVar("cw_kk_gm_xhair", 0, false, false)
 local cvFR = CreateClientConVar("cw_kk_freeze_reticles", 0, false, false)
 local cvLA = CreateClientConVar("cw_kk_sck_lock_ads", 0, false, false)
-local cvDM = CreateClientConVar("cw_kk_dev_menu", 0, true, false)
 
 hook.Add("Think", "cw_kk_gm_xhair_think", function()
 	local ply = LocalPlayer()
@@ -28,9 +27,3 @@ hook.Add("Think", "cw_kk_sck_lock_ads_think", function()
 	end
 	_ADS_LAST = cur
 end)
-
-cvars.AddChangeCallback("cw_kk_dev_menu", function(name, old, new)
-	if old != new then
-		RunConsoleCommand("spawnmenu_reload")
-	end
-end, "cw_kk_dev_menu_callback")

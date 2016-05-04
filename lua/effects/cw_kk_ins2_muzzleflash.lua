@@ -64,13 +64,30 @@ function EFFECT:Init(fx)
 				if IsValid(ent) then
 					shellAtt = attachModel:GetAttachment(ent.WorldShellEjectionAttachmentID)
 					local ejectVelocity = shellAtt.Ang:Forward() * (ent.ShellEjectVelocity or 200)
-					shellAtt.Ang:RotateAroundAxis(shellAtt.Ang:Right(), 90)
-					CustomizableWeaponry.shells.make(ent, shellAtt.Pos, shellAtt.Ang, ejectVelocity, 0.5, 10)
+					
+					local ang = shellAtt.Ang
+					local tweak = ent._shellTable.angleTweakWorld
+					if tweak then
+						ang:RotateAroundAxis(ang:Right(), tweak.Right)
+						ang:RotateAroundAxis(ang:Forward(), tweak.Forward)
+						ang:RotateAroundAxis(ang:Up(), tweak.Up)
+					end
+					
+					CustomizableWeaponry.shells.make(ent, shellAtt.Pos, ang, ejectVelocity, 0.5, 10)
 					
 					if ent.Shell2 then
-						ent._shellTable = CustomizableWeaponry.shells:getShell(ent.Shell2)
+						ent._shellTable = ent._shellTable2
+						
+						local ang = shellAtt.Ang
+						local tweak = ent._shellTable.angleTweakWorld
+						if tweak then
+							ang:RotateAroundAxis(ang:Right(), tweak.Right)
+							ang:RotateAroundAxis(ang:Forward(), tweak.Forward)
+							ang:RotateAroundAxis(ang:Up(), tweak.Up)
+						end
+						
 						CustomizableWeaponry.shells.make(ent, shellAtt.Pos, ang, ejectVelocity, 0.5, 10)
-						ent._shellTable = CustomizableWeaponry.shells:getShell(ent.Shell)
+						ent._shellTable = ent._shellTable1
 					end
 				end
 			end)
@@ -78,7 +95,7 @@ function EFFECT:Init(fx)
 			local ejectVelocity = shellAtt.Ang:Forward() * (ent.ShellEjectVelocity or 200)
 			
 			local ang = shellAtt.Ang
-			local tweak = CustomizableWeaponry.shells.cache[ent.Shell].angleTweakWorld
+			local tweak = ent._shellTable.angleTweakWorld
 			if tweak then
 				ang:RotateAroundAxis(ang:Right(), tweak.Right)
 				ang:RotateAroundAxis(ang:Forward(), tweak.Forward)
@@ -88,9 +105,18 @@ function EFFECT:Init(fx)
 			CustomizableWeaponry.shells.make(ent, shellAtt.Pos, ang, ejectVelocity, 0.5, 10)
 			
 			if ent.Shell2 then
-				ent._shellTable = CustomizableWeaponry.shells:getShell(ent.Shell2)
+				ent._shellTable = ent._shellTable2
+				
+				local ang = shellAtt.Ang
+				local tweak = ent._shellTable.angleTweakWorld
+				if tweak then
+					ang:RotateAroundAxis(ang:Right(), tweak.Right)
+					ang:RotateAroundAxis(ang:Forward(), tweak.Forward)
+					ang:RotateAroundAxis(ang:Up(), tweak.Up)
+				end
+				
 				CustomizableWeaponry.shells.make(ent, shellAtt.Pos, ang, ejectVelocity + VectorRand() * 10, 0.5, 10)
-				ent._shellTable = CustomizableWeaponry.shells:getShell(ent.Shell)
+				ent._shellTable = ent._shellTable1
 			end
 		end
 	end

@@ -87,9 +87,9 @@ if CLIENT then
 	SWEP.KKINS2ElcanPos = Vector(-2.3082, -1, -0.5938)
 	SWEP.KKINS2ElcanAng = Vector(0, 0, 0)
 
-	SWEP.KKINS2PO4Pos = Vector(-2.2501, -1, -0.3898)
+	SWEP.KKINS2PO4Pos = Vector(-2.2501, 0, -0.3898)
 	SWEP.KKINS2PO4Ang = Vector(0, 0, 0)
-	
+
 	SWEP.KKINS2MagnifierPos = Vector(-2.305, -1, -0.4895)
 	SWEP.KKINS2MagnifierAng = Vector(0, 0, 0)
 	
@@ -115,13 +115,13 @@ if CLIENT then
 end
 
 SWEP.Attachments = {
-	{header = "Sight", offset = {400, -500}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_po4"}},
-	-- {header = "Sight", offset = {400, -500}, atts = {"kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_microt1", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"}},
-	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_pbs5"}},
-	{header = "Under", offset = {-500, -100}, atts = {"kk_ins2_vertgrip"}},
-	{header = "Extras", offset = {0, 100}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}},
-	{header = "More Sight", offset = {1000, -100}, atts = {"kk_ins2_magnifier"}, dependencies = CustomizableWeaponry_KK.ins2.magnifierDependencies},
-	["+reload"] = {header = "Ammo", offset = {700, 300}, atts = {"am_magnum", "am_matchgrade"}}
+	{header = "Sight", offset = {400, -450}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_po4", "kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_microt1", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"}},
+	{header = "Barrel", offset = {-100, -450}, atts = {"kk_ins2_pbs5"}},
+	{header = "Under", offset = {-400, 0}, atts = {"kk_ins2_vertgrip"}},
+	{header = "Lasers", offset = {100, 300}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}},
+	{header = "More Sight", offset = {1000, 0}, atts = {"kk_ins2_magnifier"}, dependencies = CustomizableWeaponry_KK.ins2.magnifierDependencies},
+	["+use"] = {header = "Sight Contract", offset = {400, -0}, atts = {"kk_ins2_sights_cstm"}},
+	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
 SWEP.Animations = {

@@ -13,14 +13,14 @@ if CLIENT then
 end
 
 function att:attachFunc()
-	self._KK_INS_customSuffix = "_mm"
+	self._KK_INS2_customSuffix = "_mm"
 	self:unloadWeapon()
 	self.Primary.ClipSize = 75
 	self.Primary.ClipSize_Orig = 75
 end
 
 function att:detachFunc()
-	self._KK_INS_customSuffix = ""
+	self._KK_INS2_customSuffix = ""
 	self:unloadWeapon()
 	self.Primary.ClipSize = self.Primary.ClipSize_ORIG_REAL
 	self.Primary.ClipSize_Orig = self.Primary.ClipSize_ORIG_REAL

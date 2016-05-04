@@ -81,7 +81,7 @@ if CLIENT then
 		local isScopePos = (self.AimPos == self[att.aimPos[1]] and self.AimAng == self[att.aimPos[2]])
 		local isAiming = self:isAiming()
 		
-		if self.lastPrimarySight != currentPrimarySight then
+		if self._KK_INS2_magnifierLastPrimary != currentPrimarySight then
 			local velement = self.AttachmentModelsVM[currentPrimarySight]
 			
 			velement.active = false
@@ -103,7 +103,7 @@ if CLIENT then
 			att.zoomTextures[1] = simpleTextures[velement.model] or simpleTextures["_default"]
 			self.ZoomTextures = att.zoomTextures
 		end
-		self.lastPrimarySight = currentPrimarySight
+		self._KK_INS2_magnifierLastPrimary = currentPrimarySight
 		
 		// magnifier velement stuff
 		if isAiming then 

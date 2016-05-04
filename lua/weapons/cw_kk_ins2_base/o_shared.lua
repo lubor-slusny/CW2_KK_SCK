@@ -150,7 +150,7 @@ if CLIENT then
 	usermessage.Hook("CW_KK_INS_FIREMODE", CW_ReceiveFireMode)
 end
 
-// updating reload times
+// custom GL reload
 
 function SWEP:Reload()
 	CT = CurTime()
@@ -178,6 +178,8 @@ function SWEP:Reload()
 	
 	weapons.GetStored("cw_base").Reload(self)
 end
+
+// updating reload times
 
 local CT, mag, ammo
 

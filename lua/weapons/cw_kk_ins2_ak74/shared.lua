@@ -127,15 +127,13 @@ if CLIENT then
 	SWEP.CustomizationMenuScale = 0.016
 end
 
-SWEP.WeaponLength = 22
-
 SWEP.Attachments = {
-	{header = "Sight", offset = {500, -500}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_po4"}},
-	-- {header = "Sight", offset = {500, -500}, atts = {"kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_microt1", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"}},
-	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_pbs5"}},
-	{header = "Under", offset = {-500, 0}, atts = {"kk_ins2_vertgrip", "kk_ins2_gl_gp25"}},
-	{header = "Extras", offset = {200, 200}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}},
-	{header = "More Sight", offset = {1200, 0}, atts = {"kk_ins2_magnifier"}, dependencies = CustomizableWeaponry_KK.ins2.magnifierDependencies},
+	{header = "Sight", offset = {400, -450}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_po4", "kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_microt1", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"}},
+	{header = "Barrel", offset = {-100, -450}, atts = {"kk_ins2_pbs5"}},
+	{header = "Under", offset = {-400, 0}, atts = {"kk_ins2_vertgrip", "kk_ins2_gl_gp25"}},
+	{header = "Lasers", offset = {200, 400}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}},
+	{header = "More Sight", offset = {1000, 0}, atts = {"kk_ins2_magnifier"}, dependencies = CustomizableWeaponry_KK.ins2.magnifierDependencies},
+	["+use"] = {header = "Sight Contract", offset = {400, -0}, atts = {"kk_ins2_sights_cstm"}},
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
@@ -254,8 +252,8 @@ SWEP.Primary.Ammo			= "5.45x39MM"
 SWEP.FireDelay = 0.092307692307692
 SWEP.FireSound = "CW_KK_INS2_AK74_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_AK74_FIRE_SUPPRESSED"
-SWEP.Recoil = 1.2
 
+SWEP.Recoil = 1.2
 SWEP.HipSpread = 0.043
 SWEP.AimSpread = 0.005
 SWEP.VelocitySensitivity = 1.6
@@ -265,8 +263,10 @@ SWEP.SpreadCooldown = 0.13
 SWEP.Shots = 1
 SWEP.Damage = 33
 
-SWEP.FirstDeployTime = 2
 SWEP.DeployTime = 0.6
+
+SWEP.FirstDeployTime = 2
+SWEP.WeaponLength = 22
 
 if CLIENT then 
 	function SWEP:updateOtherParts()

@@ -24,8 +24,8 @@ if CLIENT then
 	function att:elementRender()
 		beamAtt = nil
 		
-		if self.KKINS_FL_ATT_OVERRIDE then
-			beamAtt = self:KKINS_FL_ATT_OVERRIDE()
+		if self.KK_INS2_FL_SRC_OVERRIDE then
+			beamAtt = self:KK_INS2_FL_SRC_OVERRIDE()
 		end
 		
 		if beamAtt == nil and self.AttachmentModelsVM[att.name] then
@@ -43,10 +43,10 @@ if CLIENT then
 		end
 		
 		if !self.dt.Safe then
-			self._KK_INS_FL_turnOffWhenSafe = CurTime() + 0.1
+			self._KK_INS2_SV_FL_turnOffWhenSafe = CurTime() + 0.1
 		end
 		
-		if self._KK_INS_FL_turnOffWhenSafe and self._KK_INS_FL_turnOffWhenSafe < CurTime() then return end
+		if self._KK_INS2_SV_FL_turnOffWhenSafe and self._KK_INS2_SV_FL_turnOffWhenSafe < CurTime() then return end
 		
 		CustomizableWeaponry_KK.ins2.flashlight.v3.elementRender(self, beamAtt)
 	end

@@ -44,11 +44,12 @@ if CLIENT then
 		["kk_ins2_po4"] = {model = "models/weapons/upgrades/a_optic_po4x24.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},		
 		["kk_ins2_scope_mosin"] = {model = "models/weapons/upgrades/a_optic_mosin_l.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},		
 		
-				
-		["kk_ins2_cstm_eotechxps"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_eotechxps.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},		
-		["kk_ins2_cstm_barska"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_barska.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},		
-		["kk_ins2_cstm_compm4s"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_compm4s.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},		
-		["kk_ins2_cstm_acog"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_acog.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},		
+		["kk_ins2_cstm_cmore"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_cmore.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_cstm_compm4s"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_compm4s.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_cstm_microt1"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_microt1.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_cstm_acog"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_acog_m.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, retSizeMult = 0.85},
+		["kk_ins2_cstm_barska"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_barska.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_cstm_eotechxps"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_eotechxps.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 	}
 	
 	SWEP.AttachmentModelsWM = {
@@ -69,71 +70,50 @@ if CLIENT then
 		["kk_ins2_po4"] = {model = "models/weapons/upgrades/w_po.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_scope_mosin"] = {model = "models/weapons/upgrades/w_scope_mosin.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_cstm_microt1"] = {model = "models/weapons/upgrades/w_aimpoint.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_cstm_eotechxps"] = {model = "models/weapons/attachments/w_cw_kk_ins2_cstm_eotechxps.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_cstm_barska"] = {model = "models/weapons/upgrades/w_eotech.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_cstm_cmore"] = {model = "models/weapons/attachments/w_cw_kk_ins2_cstm_cmore.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_cstm_compm4s"] = {model = "models/weapons/upgrades/w_aimpoint.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_cstm_microt1"] = {model = "models/weapons/upgrades/w_aimpoint.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_cstm_acog"] = {model = "models/weapons/attachments/w_cw_kk_ins2_cstm_acog.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_cstm_barska"] = {model = "models/weapons/upgrades/w_eotech.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_cstm_eotechxps"] = {model = "models/weapons/attachments/w_cw_kk_ins2_cstm_eotechxps.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 	}
 	
 	SWEP.IronsightPos = Vector(-2.485, -2, 0.4526)
 	SWEP.IronsightAng = Vector(0.6052, 0, 0)
 
-	SWEP.KKINS2AimpointPos = Vector(-2.47, -2, -0.25)
-	SWEP.KKINS2AimpointAng = Vector(0, 0, 0)
-	
-	SWEP.KKINS2MagnifierPos = Vector(-2.47, -2, -0.2819)
-	SWEP.KKINS2MagnifierAng = Vector(0, 0, 0)
-
-	SWEP.KKINS2CSTMBarskaPos = Vector(-2.47, -2, -0.2842)
-	SWEP.KKINS2CSTMBarskaAng = Vector(0, 0, 0)
+	SWEP.KKINS2KobraPos = Vector(-2.4696, -2, -0.3519)
+	SWEP.KKINS2KobraAng = Vector(0, 0, 0)
 
 	SWEP.KKINS2EoTechPos = Vector(-2.4707, -2, -0.2911)
 	SWEP.KKINS2EoTechAng = Vector(0, 0, 0)
 
+	SWEP.KKINS2AimpointPos = Vector(-2.47, -2, -0.25)
+	SWEP.KKINS2AimpointAng = Vector(0, 0, 0)
+	
 	SWEP.KKINS2ElcanPos = Vector(-2.4738, -2, -0.3768)
 	SWEP.KKINS2ElcanAng = Vector(0, 0, 0)
 
-	SWEP.KKINS2KobraPos = Vector(-2.4696, -2, -0.1385)
-	SWEP.KKINS2KobraAng = Vector(0, 0, 0)
-
-	SWEP.KKINS2CSTMACOGPos = Vector(-2.4729, -1, -0.6027)
-	SWEP.KKINS2CSTMACOGAng = Vector(0, 0, 0)
-
-	SWEP.KKINS2CSTMMicroT1Pos = Vector(-2.4788, -2, -0.2754)
-	SWEP.KKINS2CSTMMicroT1Ang = Vector(0, 0, 0)
-
-	SWEP.KKINS2CSTMEoTechXPSPos = Vector(-2.4749, -2, -0.2717)
-	SWEP.KKINS2CSTMEoTechXPSAng = Vector(0, 0, 0)
-
-	SWEP.KKINS2CSTMCompM4SPos = Vector(-2.4683, -2, -0.2642)
-	SWEP.KKINS2CSTMCompM4SAng = Vector(0, 0, 0)
-
-	// sth sth sth theater fk this
-	
 	SWEP.KKINS2PO4Pos = Vector(-2.4123, -2, -0.177)
 	SWEP.KKINS2PO4Ang = Vector(0, 0, 0)
 
 	SWEP.KKINS2ScopeMosinPos = Vector(-2.4489, -1, -0.1553)
 	SWEP.KKINS2ScopeMosinAng = Vector(0, 0, 0)
 
-	SWEP.KKINS2KobraPos = Vector(-2.4696, -2, -0.3519)
-	SWEP.KKINS2KobraAng = Vector(0, 0, 0)
+	SWEP.KKINS2MagnifierPos = Vector(-2.47, -2, -0.2819)
+	SWEP.KKINS2MagnifierAng = Vector(0, 0, 0)
 
-	SWEP.CustomizationMenuScale = 0.02
+	SWEP.CustomizationMenuScale = 0.019
 end
 
-SWEP.WeaponLength = 28
-
 SWEP.Attachments = {
-	-- {header = "Sight", offset = {200, -500}, atts = {"kk_ins2_kobra", "kk_ins2_cstm_microt1", "kk_ins2_cstm_barska", "kk_ins2_cstm_eotechxps", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_cstm_compm4s", "kk_ins2_elcan", "kk_ins2_cstm_acog"}},
-	{header = "Sight", offset = {500, -500}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_po4", "kk_ins2_scope_mosin"}},
+	{header = "Sight", offset = {600, -500}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_po4", "kk_ins2_scope_mosin", "kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_microt1", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"}},
 	{header = "Barrel", offset = {-300, -500}, atts = {"kk_ins2_suppressor_sec"}},
-	{header = "Under", offset = {-500, -50}, atts = {"kk_ins2_bipod", "kk_ins2_vertgrip"}},
-	{header = "Extras", offset = {100, 0}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}},
-	{header = "MagZ", offset = {-50, 500}, atts = {"kk_ins2_mag_fal_30"}},
+	{header = "Under", offset = {-400, -25}, atts = {"kk_ins2_bipod", "kk_ins2_vertgrip"}},
+	{header = "Lasers", offset = {200, -25}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}},
 	{header = "More Sight", offset = {1000, -25}, atts = {"kk_ins2_magnifier"}, dependencies = CustomizableWeaponry_KK.ins2.magnifierDependencies},
-	["+reload"] = {header = "Ammo", offset = {800, 500}, atts = {"am_magnum", "am_matchgrade"}}
+	{header = "Magazine", offset = {-150, 500}, atts = {"kk_ins2_mag_fal_30"}},
+	["+use"] = {header = "Sight Contract", offset = {200, -500}, atts = {"kk_ins2_sights_cstm"}},
+	["+reload"] = {header = "Ammo", offset = {600, 500}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
 SWEP.Animations = {
@@ -149,8 +129,8 @@ SWEP.Animations = {
 	base_reload_empty = "base_reloadempty",
 	base_idle = "base_idle",
 	base_holster = "base_holster",
-	base_firemode = "base_fireselect",
-	base_firemode_aim = "iron_fireselect",
+	-- base_firemode = "base_fireselect",
+	-- base_firemode_aim = "iron_fireselect",
 	base_sprint = "base_sprint",
 	base_safe = "base_down",
 	base_safe_aim = "iron_down",
@@ -165,8 +145,8 @@ SWEP.Animations = {
 	foregrip_reload_empty = "foregrip_reloadempty",
 	foregrip_idle = "foregrip_draw",
 	foregrip_holster = "foregrip_holster",
-	foregrip_firemode = "foregrip_fireselect",
-	foregrip_firemode_aim = "foregrip_iron_fireselect_b",
+	-- foregrip_firemode = "foregrip_fireselect",
+	-- foregrip_firemode_aim = "foregrip_iron_fireselect_b",
 	foregrip_sprint = "foregrip_sprint",
 	foregrip_safe = "foregrip_down",
 	foregrip_safe_aim = "foregrip_iron_down",
@@ -178,18 +158,9 @@ SWEP.Animations = {
 	bipod_fire_empty_aim = "deployed_iron_dryfire",
 	bipod_reload = "deployed_reload",
 	bipod_reload_empty = "deployed_reloadempty",
-	bipod_firemode = "deployed_fireselect",
-	bipod_firemode_aim = "deployed_iron_fireselect",
+	-- bipod_firemode = "deployed_fireselect",
+	-- bipod_firemode_aim = "deployed_iron_fireselect",
 	bipod_out = "deployed_out",
-}
-
-SWEP.ReloadTimes = {
-	base_reload = {2.3, 3.4},
-	base_reloadempty = {2.3, 4.3},
-	foregrip_reload = {2.3, 3.4},
-	foregrip_reloadempty = {2.3, 4.3},
-	deployed_reload = {2.2, 3.27},
-	deployed_reloadempty = {2.2, 4}
 }
 
 SWEP.Sounds = {
@@ -339,7 +310,7 @@ SWEP.Slot = 3
 SWEP.SlotPos = 0
 SWEP.NormalHoldType = "ar2"
 SWEP.RunHoldType = "passive"
-SWEP.FireModes = {"auto", "semi"}
+SWEP.FireModes = {"semi"}
 SWEP.Base = "cw_kk_ins2_base"
 SWEP.Category = "CW 2.0 KK INS2"
 
@@ -367,8 +338,9 @@ SWEP.Primary.Ammo			= "7.62x51MM"
 SWEP.FireDelay = 60/650
 SWEP.FireSound = "CW_KK_INS2_FNFAL_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_FNFAL_FIRE_SUPPRESSED"
-SWEP.Recoil = 1.6
 
+SWEP.Recoil = 1.6
+SWEP.RecoilToSpread = 0.8 
 SWEP.HipSpread = 0.055
 SWEP.AimSpread = 0.002
 SWEP.VelocitySensitivity = 2.1
@@ -378,13 +350,22 @@ SWEP.SpreadCooldown = 0.12
 SWEP.Shots = 1
 SWEP.Damage = 42
 
-SWEP.FirstDeployTime = 1.8
 SWEP.DeployTime = 0.5
-
-SWEP.RecoilToSpread = 0.8 
 
 SWEP.BipodDeployTime = 1.15
 SWEP.BipodUndeployTime = 1.15
+
+SWEP.ReloadTimes = {
+	base_reload = {2.3, 3.4},
+	base_reloadempty = {2.3, 4.3},
+	foregrip_reload = {2.3, 3.4},
+	foregrip_reloadempty = {2.3, 4.3},
+	deployed_reload = {2.2, 3.27},
+	deployed_reloadempty = {2.2, 4}
+}
+
+SWEP.FirstDeployTime = 1.8
+SWEP.WeaponLength = 28
 
 if CLIENT then
 	function SWEP:updateOtherParts()

@@ -247,7 +247,7 @@ end
 // concommand
 
 local function cw_kk_melee(ply)
-	print("Qnife call;", ply)
+	-- print("Qnife call;", ply)
 	
 	if !IsValid(ply) then return end
 	

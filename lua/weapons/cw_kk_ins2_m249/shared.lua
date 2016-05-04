@@ -44,7 +44,7 @@ if CLIENT then
 		["kk_ins2_eotech"] = {model = "models/weapons/upgrades/a_optic_eotech.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_kobra"] = {model = "models/weapons/upgrades/a_optic_kobra.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_po4"] = {model = "models/weapons/upgrades/a_optic_po4x24_m.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, retSizeMult = 0.85},
-	
+
 		["kk_ins2_cstm_cmore"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_cmore.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_cstm_compm4s"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_compm4s.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_cstm_microt1"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_microt1.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
@@ -125,11 +125,11 @@ SWEP.BipodInstalled = true
 SWEP.WeaponLength = 28
 
 SWEP.Attachments = {
-	{header = "Sight", offset = {400, -500}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_po4"}},
-	-- {header = "Sight", offset = {400, -500}, atts = {"kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_microt1", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"}},
+	{header = "Sight", offset = {400, -500}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_po4", "kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_microt1", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"}},
 	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_suppressor_sec"}},
-	{header = "Extras", offset = {-400, 0}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}},
-	{header = "More Sight", offset = {800, 100}, atts = {"kk_ins2_magnifier"}, dependencies = CustomizableWeaponry_KK.ins2.magnifierDependencies},
+	{header = "Lasers", offset = {-400, 0}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}},
+	{header = "More Sight", offset = {1000, 0}, atts = {"kk_ins2_magnifier"}, dependencies = CustomizableWeaponry_KK.ins2.magnifierDependencies},
+	["+use"] = {header = "Sight Contract", offset = {400, 0}, atts = {"kk_ins2_sights_cstm"}},
 	["+reload"] = {header = "Ammo", offset = {200, 500}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
@@ -296,13 +296,13 @@ if CLIENT then
 		
 		// main shell
 		
-		self._shellTable = CustomizableWeaponry.shells:getShell("KK_INS2_556x45")
+		self._shellTable = self._shellTable1
 		
 		att = vm:GetAttachment(3)
 		dir = att.Ang:Forward()
 		
 		ang = EyeAngles()
-		tweak = CustomizableWeaponry.shells.cache["KK_INS2_556x45"].angleTweak
+		tweak = self._shellTable.angleTweak
 		if tweak then
 			ang:RotateAroundAxis(ang:Right(), tweak.Right)
 			ang:RotateAroundAxis(ang:Forward(), tweak.Forward)
@@ -313,13 +313,13 @@ if CLIENT then
 		
 		-- // shell link
 		
-		self._shellTable = CustomizableWeaponry.shells:getShell("KK_INS2_556x45_link")
+		self._shellTable = self._shellTable2
 		
 		att = vm:GetAttachment(4)
 		dir = att.Ang:Forward()
 		
 		ang = EyeAngles()
-		tweak = CustomizableWeaponry.shells.cache["KK_INS2_556x45_link"].angleTweak
+		tweak = self._shellTable.angleTweak
 		if tweak then
 			ang:RotateAroundAxis(ang:Right(), tweak.Right)
 			ang:RotateAroundAxis(ang:Forward(), tweak.Forward)

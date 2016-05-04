@@ -236,7 +236,7 @@ end)
 // concommand
 
 local function cw_kk_throwfrag(ply)
-	print("Qnade call;", ply)
+	-- print("Qnade call;", ply)
 	
 	if !IsValid(ply) then return end
 	

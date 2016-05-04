@@ -22,8 +22,8 @@ if CLIENT then
 		
 		beamAtt = nil
 		
-		if self.KKINS_FL_ATT_OVERRIDE then
-			beamAtt = self:KKINS_FL_ATT_OVERRIDE()
+		if self.KK_INS2_FL_SRC_OVERRIDE then
+			beamAtt = self:KK_INS2_FL_SRC_OVERRIDE()
 		end
 		
 		if beamAtt == nil and self.AttachmentModelsVM[att.name] then

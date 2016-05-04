@@ -2,7 +2,9 @@ if not CustomizableWeaponry then return end
 
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
+AddCSLuaFile("sh_soundscript.lua")
 include("sh_sounds.lua")
+include("sh_soundscript.lua")
 
 util.PrecacheModel("models/weapons/v_cw_kk_ins2_cstm_scar_tan.mdl")
 util.PrecacheModel("models/weapons/w_cw_kk_ins2_cstm_scar_tan.mdl")
@@ -63,6 +65,7 @@ if CLIENT then
 		["kk_ins2_eotech"] = {model = "models/weapons/upgrades/w_eotech.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_kobra"] = {model = "models/weapons/upgrades/w_kobra.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_po4"] = {model = "models/weapons/upgrades/w_po.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_scope_m40"] = {model = "models/weapons/upgrades/w_scope_m40.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_cstm_cmore"] = {model = "models/weapons/attachments/w_cw_kk_ins2_cstm_cmore.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_cstm_compm4s"] = {model = "models/weapons/upgrades/w_aimpoint.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
@@ -72,128 +75,72 @@ if CLIENT then
 		["kk_ins2_cstm_eotechxps"] = {model = "models/weapons/attachments/w_cw_kk_ins2_cstm_eotechxps.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 	}
 	
-	SWEP.KKINS2AimpointPos = Vector(-2.7191, -3, 0.5321)
-	SWEP.KKINS2AimpointAng = Vector(0, 0, 0)
-
-	SWEP.KKINS2CSTMMicroT1Pos = Vector(-2.7189, -2, 0.4852)
-	SWEP.KKINS2CSTMMicroT1Ang = Vector(0, 0, 0)
-
-	SWEP.KKINS2CSTMCompM4SPos = Vector(-2.7241, -2, 0.5298)
-	SWEP.KKINS2CSTMCompM4SAng = Vector(0, 0, 0)
-
-	SWEP.KKINS2CSTMBarskaPos = Vector(-2.7118, -3, 0.6052)
-	SWEP.KKINS2CSTMBarskaAng = Vector(0, 0, 0)
-
-	SWEP.KKINS2EoTechPos = Vector(-2.7273, -2, 0.5787)
-	SWEP.KKINS2EoTechAng = Vector(0, 0, 0)
-
-	SWEP.KKINS2ScopeM40Pos = Vector(-2.7246, -1.5, 0.7025)
-	SWEP.KKINS2ScopeM40Ang = Vector(0, 0, 0)
-
-	SWEP.KKINS2KobraPos = Vector(-2.723, -2, 0.7233)
-	SWEP.KKINS2KobraAng = Vector(0, 0, 0)
-
-	SWEP.KKINS2ElcanPos = Vector(-2.7241, 0, 0.4991)
-	SWEP.KKINS2ElcanAng = Vector(0, 0, 0)
-
-	SWEP.KKINS2CSTMACOGPos = Vector(-2.7206, -3, 0.4974)
-	SWEP.KKINS2CSTMACOGAng = Vector(0, 0, 0)
-
-	SWEP.KKINS2CSTMEoTechXPSPos = Vector(-2.7297, -2, 0.6352)
-	SWEP.KKINS2CSTMEoTechXPSAng = Vector(0, 0, 0)
-
-	SWEP.KKINS2MagnifierPos = Vector(-2.7244, -2, 0.5407)
-	SWEP.KKINS2MagnifierAng = Vector(-0.2, -0.05, 0)
-
-	SWEP.IronsightPos = Vector(-2.7302, -2, 1.4336)
-	SWEP.IronsightAng = Vector(0.0885, 0, 0)
-
 	SWEP.CustomizePos = Vector(5.488, -1.627, -0.321)
 	SWEP.CustomizeAng = Vector(17.009, 29.971, 16.669)
 	
-	-- SWEP.KKINS2CSTMCompM4SPos = Vector(-2.7241, -12, 0.5298)
-	-- SWEP.KKINS2CSTMCompM4SAng = Vector(0, 0, 0)
-	
-	// sth sth sth cutcut
-	
-	SWEP.KKINS2AimpointPos = Vector(-2.7194, -3, 0.8211)
-	SWEP.KKINS2AimpointAng = Vector(0, 0, 0)
-
-	SWEP.KKINS2CSTMEoTechXPSPos = Vector(-2.7241, -3, 0.8174)
-	SWEP.KKINS2CSTMEoTechXPSAng = Vector(0, 0, 0)
-
-	SWEP.KKINS2ElcanPos = Vector(-2.7197, -4, 0.7178)
-	SWEP.KKINS2ElcanAng = Vector(0, 0, 0)
-
-	SWEP.KKINS2CSTMCompM4SPos = Vector(-2.7177, -3, 0.811)
-	SWEP.KKINS2CSTMCompM4SAng = Vector(0, 0, 0)
-
-	SWEP.KKINS2CSTMBarskaPos = Vector(-2.7164, -3, 0.7912)
-	SWEP.KKINS2CSTMBarskaAng = Vector(0, 0, 0)
-
-	SWEP.KKINS2EoTechPos = Vector(-2.7149, -3, 0.8153)
-	SWEP.KKINS2EoTechAng = Vector(0, 0, 0)
+	SWEP.IronsightPos = Vector(-2.7302, -2, 1.4336)
+	SWEP.IronsightAng = Vector(0.0885, 0, 0)
 
 	SWEP.KKINS2KobraPos = Vector(-2.723, -3, 0.7389)
 	SWEP.KKINS2KobraAng = Vector(0, 0, 0)
 
+	SWEP.KKINS2EoTechPos = Vector(-2.7149, -3, 0.8153)
+	SWEP.KKINS2EoTechAng = Vector(0, 0, 0)
+
+	SWEP.KKINS2AimpointPos = Vector(-2.7194, -3, 0.8211)
+	SWEP.KKINS2AimpointAng = Vector(0, 0, 0)
+
+	SWEP.KKINS2ElcanPos = Vector(-2.7197, -4, 0.7178)
+	SWEP.KKINS2ElcanAng = Vector(0, 0, 0)
+
 	SWEP.KKINS2PO4Pos = Vector(-2.6695, -5, 1.0781)
 	SWEP.KKINS2PO4Ang = Vector(0, 0, 0)
-
-	SWEP.KKINS2CSTMCMorePos = Vector(-2.7262, -3, 0.8146)
-	SWEP.KKINS2CSTMCMoreAng = Vector(0, 0, 0)
 
 	SWEP.KKINS2ScopeM40Pos = Vector(-2.7217, -1.5, 0.7025)
 	SWEP.KKINS2ScopeM40Ang = Vector(0, 0, 0)
 
-	SWEP.KKINS2CSTMACOGPos = Vector(-2.7158, -4, 0.7121)
-	SWEP.KKINS2CSTMACOGAng = Vector(0, 0, 0)
-
 	SWEP.KKINS2MagnifierPos = Vector(-2.7185, -3, 0.822)
 	SWEP.KKINS2MagnifierAng = Vector(0, 0, 0)
 	
-	SWEP.KKINS2CSTMMicroT1Pos = Vector(-2.7189, -3, 0.8326)
-	SWEP.KKINS2CSTMMicroT1Ang = Vector(0, 0, 0)
-
-	SWEP.CustomizationMenuScale = 0.018
+	SWEP.CustomizationMenuScale = 0.016
 end
 
-SWEP.WeaponLength = 28
-
 SWEP.Attachments = {
-	-- {header = "Sight", offset = {300, -500}, atts = {"kk_ins2_kobra", "kk_ins2_cstm_microt1", "kk_ins2_cstm_barska", "kk_ins2_cstm_eotechxps", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_cstm_compm4s", "kk_ins2_elcan", "kk_ins2_cstm_acog", "kk_ins2_scope_m40"}},
-	-- {header = "Sight", offset = {300, -500}, atts = {"kk_ins2_kobra", "kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_eotechxps", "kk_ins2_eotech", "kk_ins2_cstm_microt1", "kk_ins2_aimpoint", "kk_ins2_cstm_compm4s", "kk_ins2_elcan", "kk_ins2_cstm_acog", "kk_ins2_scope_m40"}},
-	{header = "Sight", offset = {300, -500}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_scope_m40", "kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_microt1", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"}},
-	{header = "Barrel", offset = {-300, -500}, atts = {"kk_ins2_suppressor_sec"}},
-	{header = "Under", offset = {-500, -50}, atts = {"kk_ins2_bipod", "kk_ins2_vertgrip"}},
-	{header = "Extras", offset = {100, 0}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}},
-	{header = "Something", offset = {-50, 500}, atts = {"kk_ins2_cstm_scar_skin"}},
+	{header = "Sight", offset = {400, -500}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_scope_m40", "kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_microt1", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"}, /*dependencies = {["kk_ins2_sights_base"] = true, ["kk_ins2_sights_cstm"] = true}*/ },
+	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_suppressor_sec"}},
+	{header = "Under", offset = {-400, -50}, atts = {"kk_ins2_bipod", "kk_ins2_vertgrip"}},
+	{header = "Lasers", offset = {150, 300}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}},
 	{header = "More Sight", offset = {1000, -25}, atts = {"kk_ins2_magnifier"}, dependencies = CustomizableWeaponry_KK.ins2.magnifierDependencies},
+	{header = "Flavor", offset = {-300, 500}, atts = {"kk_ins2_cstm_scar_skin"}},
+	-- ["+use"] = {header = "Sight Contract", offset = {400, -25}, atts = {"kk_ins2_sights_base", "kk_ins2_sights_cstm"}},
+	["+use"] = {header = "Sight Contract", offset = {400, -25}, atts = {"kk_ins2_sights_cstm"}},
 	["+reload"] = {header = "Ammo", offset = {800, 500}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
-SWEP.AttachmentExclusions = {
-	["kk_ins2_kobra"] = {"kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_microt1", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"},
-	["kk_ins2_eotech"] = {"kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_microt1", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"},
-	["kk_ins2_aimpoint"] = {"kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_microt1", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"},
-	["kk_ins2_elcan"] = {"kk_ins2_cstm_barska", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_microt1", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"},
-	["kk_ins2_scope_m40"] = {"kk_ins2_cstm_barska", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_microt1", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"},
-	["kk_ins2_cstm_barska"] = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_scope_m40"},
-	["kk_ins2_cstm_eotechxps"] = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_scope_m40"},
-	["kk_ins2_cstm_microt1"] = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_scope_m40"},
-	["kk_ins2_cstm_compm4s"] = {"kk_ins2_cstm_cmore", "kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_scope_m40"},
-	["kk_ins2_cstm_acog"] = {"kk_ins2_cstm_cmore", "kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_scope_m40"},
-}
+// this was too fun to just delete
 
-SWEP.AttachmentDependencies = {
-	["kk_ins2_cstm_barska"] = {"kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_microt1", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"},
-	["kk_ins2_cstm_eotechxps"] = {"kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_microt1", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"},
-	["kk_ins2_cstm_microt1"] = {"kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_microt1", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"},
-	["kk_ins2_cstm_compm4s"] = {"kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_microt1", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"},
-	["kk_ins2_cstm_acog"] = {"kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_microt1", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"},
-}
+-- SWEP.AttachmentExclusions = {
+	-- ["kk_ins2_kobra"] = {"kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_microt1", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"},
+	-- ["kk_ins2_eotech"] = {"kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_microt1", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"},
+	-- ["kk_ins2_aimpoint"] = {"kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_microt1", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"},
+	-- ["kk_ins2_elcan"] = {"kk_ins2_cstm_barska", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_microt1", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"},
+	-- ["kk_ins2_scope_m40"] = {"kk_ins2_cstm_barska", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_microt1", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"},
+	-- ["kk_ins2_cstm_barska"] = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_scope_m40"},
+	-- ["kk_ins2_cstm_eotechxps"] = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_scope_m40"},
+	-- ["kk_ins2_cstm_microt1"] = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_scope_m40"},
+	-- ["kk_ins2_cstm_compm4s"] = {"kk_ins2_cstm_cmore", "kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_scope_m40"},
+	-- ["kk_ins2_cstm_acog"] = {"kk_ins2_cstm_cmore", "kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_scope_m40"},
+-- }
 
-SWEP.KKINS_emptyIdle = true
+-- SWEP.AttachmentDependencies = {
+	-- ["kk_ins2_cstm_barska"] = {"kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_microt1", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"},
+	-- ["kk_ins2_cstm_eotechxps"] = {"kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_microt1", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"},
+	-- ["kk_ins2_cstm_microt1"] = {"kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_microt1", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"},
+	-- ["kk_ins2_cstm_compm4s"] = {"kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_microt1", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"},
+	-- ["kk_ins2_cstm_acog"] = {"kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_microt1", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"},
+-- }
+
+SWEP.KK_INS2_emptyIdle = true
 
 SWEP.Animations = {
 	draw = "base_ready",
@@ -304,8 +251,9 @@ SWEP.Primary.Ammo			= "7.62x51MM"
 SWEP.FireDelay = 60/625
 SWEP.FireSound = "CW_KK_INS2_CSTM_SCAR_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_M14_FIRE_SUPPRESSED"
-SWEP.Recoil = 1.6
 
+SWEP.Recoil = 1.6
+SWEP.RecoilToSpread = 0.8 
 SWEP.HipSpread = 0.055
 SWEP.AimSpread = 0.002
 SWEP.VelocitySensitivity = 2.1
@@ -315,10 +263,7 @@ SWEP.SpreadCooldown = 0.12
 SWEP.Shots = 1
 SWEP.Damage = 42
 
-SWEP.FirstDeployTime = 1.5
 SWEP.DeployTime = 0.71
-
-SWEP.RecoilToSpread = 0.8 
 
 SWEP.base_ReloadTime = 2.7
 SWEP.base_ReloadTime_Empty = 2.7
@@ -331,6 +276,9 @@ SWEP.bipod_ReloadHalt = 3.2
 SWEP.bipod_ReloadHalt_Empty = 4.5
 
 SWEP.SnapToIdlePostReload = false
+
+SWEP.FirstDeployTime = 1.5
+SWEP.WeaponLength = 28
 
 if CLIENT then 
 	function SWEP:updateOtherParts()

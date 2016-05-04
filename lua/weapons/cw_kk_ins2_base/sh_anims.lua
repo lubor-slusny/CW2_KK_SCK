@@ -8,12 +8,12 @@ if CLIENT then
 			return
 		end
 		
-		wasBipod = self.KKINS_wasBipod
+		wasBipod = self._KK_INS2_wasBipod
 		isBipod = self.dt.BipodDeployed
 		cycle = self.CW_VM:GetCycle()
 		activity = self.Sequence
 
-		if self:Clip1() == 0 and self.KKINS_emptyIdle then
+		if self:Clip1() == 0 and self.KK_INS2_emptyIdle then
 			suffix = "_empty"
 		else
 			suffix = ""
@@ -21,7 +21,7 @@ if CLIENT then
 			
 		if isBipod != wasBipod and wasBipod != nil then
 			if activity:find("reload") and cycle < 1 then
-				self._KK_INS_postReloadBipodSwitch = true
+				self._KK_INS2_postReloadBipodSwitch = true
 			else
 				if isBipod then
 					self:playAnim("bipod_in" .. suffix) 
@@ -31,17 +31,17 @@ if CLIENT then
 			end
 			self.reticleInactivity = UnPredictedCurTime() + (self.CW_VM:SequenceDuration())
 		end
-		if self._KK_INS_postReloadBipodSwitch and activity:find("reload") and cycle > 0.9 then
+		if self._KK_INS2_postReloadBipodSwitch and activity:find("reload") and cycle > 0.9 then
 			if isBipod then
 				self:playAnim("bipod_in" .. suffix) 
 			else 
 				self:playAnim("bipod_out" .. suffix) 
 			end
 			self.reticleInactivity = UnPredictedCurTime() + (self.CW_VM:SequenceDuration())
-			self._KK_INS_postReloadBipodSwitch = false
+			self._KK_INS2_postReloadBipodSwitch = false
 		end
 		
-		self.KKINS_wasBipod = isBipod
+		self._KK_INS2_wasBipod = isBipod
 	end
 	
 	function SWEP:sprintAnimFunc()
@@ -54,7 +54,7 @@ if CLIENT then
 		prefix = self:getForegripMode()
 		suffix = ""
 			
-		if self:Clip1() == 0 and self.KKINS_emptyIdle then
+		if self:Clip1() == 0 and self.KK_INS2_emptyIdle then
 			suffix = "_empty"
 		end
 	
@@ -71,7 +71,7 @@ if CLIENT then
 		prefix = self:getForegripMode()
 		suffix = ""
 		
-		if self:Clip1() == 0 and self.KKINS_emptyIdle then
+		if self:Clip1() == 0 and self.KK_INS2_emptyIdle then
 			suffix = "_empty"
 		end
 		
@@ -88,7 +88,7 @@ if CLIENT then
 		prefix = self:getForegripMode()
 		suffix = ""
 		
-		if self:Clip1() == 0 and self.KKINS_emptyIdle then
+		if self:Clip1() == 0 and self.KK_INS2_emptyIdle then
 			suffix = "_empty"
 		end
 		
@@ -112,7 +112,7 @@ if CLIENT then
 		-- cycle = 0.45
 		cycle = 0
 		
-		if self:Clip1() == 0 and self.KKINS_emptyIdle then
+		if self:Clip1() == 0 and self.KK_INS2_emptyIdle then
 			suffix = "_empty"
 		end
 		
@@ -143,13 +143,13 @@ function SWEP:drawAnimFunc()
 	if not self._KK_INS2_PickedUp then
 		self._KK_INS2_PickedUp = true
 		
-		if !(clip == 0 and self.KKINS_emptyIdle) and self.Owner then // wtf owner?
+		if !(clip == 0 and self.KK_INS2_emptyIdle) and self.Owner then // wtf owner?
 			self:pickupAnimFunc(prefix)
 			return		
 		end
 	end
 	
-	if clip == 0 and self.KKINS_emptyIdle then
+	if clip == 0 and self.KK_INS2_emptyIdle then
 		suffix = "_empty"
 	end
 	
@@ -163,7 +163,7 @@ function SWEP:meleeAnimFunc()
 	prefix = self:getForegripMode()
 	suffix = ""
 	
-	if self.KKINS_emptyIdle and clip == 0 then
+	if self.KK_INS2_emptyIdle and clip == 0 then
 		suffix = "_empty"
 	end
 	
@@ -177,7 +177,7 @@ function SWEP:fireAnimFunc()
 	prefix = self:getForegripMode()
 	suffix = ""
 	
-	if clip == 1 and self.KKINS_emptyIdle then
+	if clip == 1 and self.KK_INS2_emptyIdle then
 		suffix = "_last"
 	elseif (clip == 0 and not self.dt.INS2GLActive) or (self.dt.INS2GLActive and not self.M203Chamber) then
 		suffix = "_empty"
@@ -203,7 +203,7 @@ function SWEP:_holsterAnimFunc()
 	prefix = self:getForegripMode()
 	suffix = ""
 	
-	if self:Clip1() == 0 and self.KKINS_emptyIdle then
+	if self:Clip1() == 0 and self.KK_INS2_emptyIdle then
 		suffix = "_empty"
 	end
 	

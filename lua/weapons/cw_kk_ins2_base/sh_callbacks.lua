@@ -1,8 +1,22 @@
 
 local SP = game.SinglePlayer()
 
+//yea im layzeeee
+local copyPaste = {
+	["KKINS2CSTMCMore"] = "KKINS2Aimpoint",
+	["KKINS2CSTMBarska"] = "KKINS2EoTech",
+	["KKINS2CSTMMicroT1"] = "KKINS2Aimpoint",
+	["KKINS2CSTMEoTechXPS"] = "KKINS2EoTech",
+	["KKINS2CSTMCompM4S"] = "KKINS2Aimpoint",
+	["KKINS2CSTMACOG"] = "KKINS2Elcan",
+}
+local copyPasteSx = {
+	"Pos", "Ang"
+}
+
 CustomizableWeaponry.callbacks:addNew("initialize", "KK_INS2_BASE", function(self)
 	if CLIENT then
+		self.CW_VM._SWEP = self
 		if self.AttachmentModelsVM then
 			for _, v in pairs(self.AttachmentModelsVM) do
 				if IsValid(v.ent) then
@@ -11,8 +25,23 @@ CustomizableWeaponry.callbacks:addNew("initialize", "KK_INS2_BASE", function(sel
 			end
 		end
 		
-		self.CW_VM._SWEP = self
 		-- self.ReticleInactivityPostFire = self.ReticleInactivityPostFire or self.FireDelay
+		
+		if self.Shell then
+			self._shellTable1 = CustomizableWeaponry.shells:getShell(self.Shell)
+		end
+		
+		if self.Shell2 then
+			self._shellTable2 = CustomizableWeaponry.shells:getShell(self.Shell2)
+		end
+		
+		for k,v in pairs(copyPaste) do
+			for _,x in pairs(copyPasteSx) do
+				if not self[k .. x] then
+					self[k .. x] = self[v .. x]
+				end
+			end
+		end
 	end
 end)
 

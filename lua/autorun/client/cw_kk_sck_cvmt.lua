@@ -1,5 +1,3 @@
-if not CustomizableWeaponry_KK.HOME then return end
-
 AddCSLuaFile()
 
 local CVMT = {
@@ -15,6 +13,7 @@ local function buildPanel(panel)
 
 	panel:AddControl("CheckBox", {Label = "Enable HUD elements", Command = "cvmt_enabled"}):DockMargin(8, 0, 8, 8)
 	panel:AddControl("CheckBox", {Label = "Show anim list", Command = "cvmt_animlist"}):DockMargin(8, 0, 8, 8)
+	panel:AddControl("CheckBox", {Label = "Show sequence ids in ^^", Command = "cvmt_animlist_numbers"}):DockMargin(8, 0, 8, 8)
 	
 	CVMT.SLIDERS["cvmt_cycle"] = vgui.Create("DNumSlider", panel)
 	CVMT.SLIDERS["cvmt_cycle"]:DockMargin(8, 0, 8, 8)
@@ -70,11 +69,7 @@ local function buildPanel(panel)
 end
 
 hook.Add("PopulateToolMenu", "KK_SCK_CVMT", function()
-	local cvar = GetConVar("cw_kk_dev_menu")
-	
-	if cvar and cvar:GetInt() != 0 then
-		spawnmenu.AddToolMenuOption("Utilities", "Knife Kitty", "KK_SCK_CVMT", "CVMT Panel", "", "", buildPanel)
-	end
+	spawnmenu.AddToolMenuOption("Utilities", "Knife Kitty", "KK_SCK_CVMT", "CVMT Panel", "", "", buildPanel)
 end)
 
 -- RunConsoleCommand("spawnmenu_reload")

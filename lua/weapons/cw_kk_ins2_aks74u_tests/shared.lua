@@ -129,8 +129,8 @@ SWEP.Attachments = {
 	{header = "Sight", offset = {400, -500}, atts = {"kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_microt1", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog", "kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_po4"}},
 	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_pbs5"}},
 	{header = "Under", offset = {-500, -100}, atts = {"kk_ins2_vertgrip"}},
-	-- {header = "Extras", offset = {0, 100}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}},
-	{header = "Extras", offset = {0, 100}, atts = {"kk_ins2_flashlight", "kk_ins2_flashlight6"}},
+	-- {header = "Lasers", offset = {0, 100}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}},
+	{header = "Lasers", offset = {0, 100}, atts = {"kk_ins2_flashlight", "kk_ins2_flashlight6"}},
 	{header = "More Sight", offset = {1000, -100}, atts = {"kk_ins2_magnifier"}, dependencies = CustomizableWeaponry_KK.ins2.magnifierDependencies},
 	["+reload"] = {header = "Ammo", offset = {700, 300}, atts = {"am_magnum", "am_matchgrade"}}
 }

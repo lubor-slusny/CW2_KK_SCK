@@ -58,7 +58,7 @@ if CLIENT then
 	SWEP.DisableSprintViewSimulation = true
 	
 	SWEP.CustomizationMenuScale = 0.01
-	SWEP.HUD_MagText = "Tube: "
+	SWEP.HUD_MagText = "TUBE: "
 end
 
 SWEP.Chamberable = false
@@ -66,14 +66,14 @@ SWEP.WeaponLength = 44
 
 SWEP.Attachments = {
 	{header = "Sight", offset = {300, -500}, atts = {"kk_ins2_cstm_pgo7"}},
-	{header = "Extras", offset = {300, 100}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}},
+	{header = "Lasers", offset = {300, 100}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}},
 }
 
 if CustomizableWeaponry_KK.HOME then
 	table.insert(SWEP.Attachments, {header = "CSGO", offset = {1000, -500}, atts = {"kk_counter"}})
 end
 
-SWEP.KKINS_emptyIdle = true
+SWEP.KK_INS2_emptyIdle = true
 
 SWEP.Animations = {
 	draw = "base_ready",

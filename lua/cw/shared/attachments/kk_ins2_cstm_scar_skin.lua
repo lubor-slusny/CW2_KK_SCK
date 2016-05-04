@@ -12,7 +12,7 @@ att.statModifiers = {
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
 	att.description = {
-		{t = "Secksy as phuck.", c = CustomizableWeaponry.textColors.VPOSITIVE},
+		-- {t = "Secksy as phuck.", c = CustomizableWeaponry.textColors.VPOSITIVE},
 	}
 	
 	function att:attachFunc()

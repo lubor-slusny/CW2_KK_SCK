@@ -312,7 +312,7 @@ local function buildPanel(panel)
 	panel:AddControl("CheckBox", {Label = "Hold aim (+attack2 spam)", Command = "cw_kk_sck_lock_ads"}):DockMargin(8, 0, 8, 0)
 	panel:AddControl("CheckBox", {Label = "Free Aim (shortcut)", Command = "cw_freeaim"}):DockMargin(8, 0, 8, 0)
 	
-	MENU.LABELS.buildHeader = panel:AddControl("Label", {Text = "AimPos Building:"})
+	MENU.LABELS.buildHeader = panel:AddControl("Label", {Text = "Sight setup:"})
 	MENU.LABELS.buildHeader:DockMargin(0, 0, 0, 0)
 	
 	MENU.BUTTS.apb_reload = vgui.Create("DButton", panel)
@@ -774,12 +774,8 @@ local function buildPanel(panel)
 	hook.Add("Think", "CW_KK_DEV_MENU_" .. BUILD, menuThink)
 end
 
-local cvar = CreateClientConVar("cw_kk_dev_menu", 0, true, false)
-
 hook.Add( "PopulateToolMenu", "KK_SCK_AIMPOS_" .. BUILD, function()
-	if cvar:GetInt() != 0 then 
-		spawnmenu.AddToolMenuOption("Utilities", "Knife Kitty", "KK_SCK_AIMPOS_" .. BUILD, "Sight positions 4.2", "", "", buildPanel) 
-	end
+	spawnmenu.AddToolMenuOption("Utilities", "Knife Kitty", "KK_SCK_AIMPOS_" .. BUILD, "AimPos Builder 4.2", "", "", buildPanel)
 end)
 
 hook.Add("PostReloadToolsMenu", "CW_KK_DEV_MENU_" .. BUILD .. "_REMOVER", function()

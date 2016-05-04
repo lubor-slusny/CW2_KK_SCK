@@ -48,18 +48,36 @@ SWEP.FirstDeployTime = 5
 SWEP.WeaponLength = 20
 
 SWEP.AttachmentExclusions = {
-	["bg_foldsight"] = {"kk_ins2_magnifier"},
+	["bg_foldsight"] = {"kk_ins2_magnifier", "kk_ins2_sights_cstm"},
 	["kk_ins2_cstm_acog"] = {"kk_ins2_magnifier"},
 	["kk_ins2_cstm_cmore"] = {"kk_ins2_magnifier"},
 	["kk_ins2_cstm_barska"] = {"kk_ins2_magnifier"},
 	["kk_ins2_cstm_microt1"] = {"kk_ins2_magnifier"},
 	["kk_ins2_cstm_sureshot"] = {"kk_ins2_magnifier"},
-	["kk_ins2_elcan"] = {"kk_ins2_magnifier"},
-	["kk_ins2_eotech"] = {"kk_ins2_magnifier"},
-	["kk_ins2_kobra"] = {"kk_ins2_magnifier"},
-	["kk_ins2_po4"] = {"kk_ins2_magnifier"},
-	["kk_ins2_scope_m40"] = {"kk_ins2_magnifier"},
-	["kk_ins2_scope_mosin"] = {"kk_ins2_magnifier"},
+	["kk_ins2_aimpoint"] = {"kk_ins2_sights_cstm"},
+	["kk_ins2_elcan"] = {"kk_ins2_magnifier", "kk_ins2_sights_cstm"},
+	["kk_ins2_eotech"] = {"kk_ins2_magnifier", "kk_ins2_sights_cstm"},
+	["kk_ins2_kobra"] = {"kk_ins2_magnifier", "kk_ins2_sights_cstm"},
+	["kk_ins2_po4"] = {"kk_ins2_magnifier", "kk_ins2_sights_cstm"},
+	["kk_ins2_scope_m40"] = {"kk_ins2_magnifier", "kk_ins2_sights_cstm"},
+	["kk_ins2_scope_mosin"] = {"kk_ins2_magnifier", "kk_ins2_sights_cstm"},
+}
+
+SWEP.AttachmentDependencies = {
+	-- ["kk_ins2_aimpoint"] = {"kk_ins2_sights_base"},
+	-- ["kk_ins2_elcan"] = {"kk_ins2_sights_base"},
+	-- ["kk_ins2_eotech"] = {"kk_ins2_sights_base"},
+	-- ["kk_ins2_kobra"] = {"kk_ins2_sights_base"},
+	-- ["kk_ins2_po4"] = {"kk_ins2_sights_base"},
+	-- ["kk_ins2_scope_m40"] = {"kk_ins2_sights_base"},
+	-- ["kk_ins2_scope_mosin"] = {"kk_ins2_sights_base"},
+	
+	["kk_ins2_cstm_cmore"] = {"kk_ins2_sights_cstm"},
+	["kk_ins2_cstm_barska"] = {"kk_ins2_sights_cstm"},
+	["kk_ins2_cstm_eotechxps"] = {"kk_ins2_sights_cstm"},
+	["kk_ins2_cstm_microt1"] = {"kk_ins2_sights_cstm"},
+	["kk_ins2_cstm_compm4s"] = {"kk_ins2_sights_cstm"},
+	["kk_ins2_cstm_acog"] = {"kk_ins2_sights_cstm"},
 }
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.m67
@@ -132,26 +150,26 @@ if CLIENT then
 	
 	// Custom sights
 	
-	SWEP.KKINS2CSTMACOGPos = Vector(0, 0, 0)
-	SWEP.KKINS2CSTMACOGAng = Vector(0, 0, 0)
+	-- SWEP.KKINS2CSTMACOGPos = Vector(0, 0, 0)
+	-- SWEP.KKINS2CSTMACOGAng = Vector(0, 0, 0)
 	
-	SWEP.KKINS2CSTMCMorePos = Vector(0, 0, 0)
-	SWEP.KKINS2CSTMCMoreAng = Vector(0, 0, 0)
+	-- SWEP.KKINS2CSTMCMorePos = Vector(0, 0, 0)
+	-- SWEP.KKINS2CSTMCMoreAng = Vector(0, 0, 0)
 	
-	SWEP.KKINS2CSTMBarskaPos = Vector(0, 0, 0)
-	SWEP.KKINS2CSTMBarskaAng = Vector(0, 0, 0)
+	-- SWEP.KKINS2CSTMBarskaPos = Vector(0, 0, 0)
+	-- SWEP.KKINS2CSTMBarskaAng = Vector(0, 0, 0)
 	
-	SWEP.KKINS2CSTMCompM4SPos = Vector(0, 0, 0)
-	SWEP.KKINS2CSTMCompM4SAng = Vector(0, 0, 0)
+	-- SWEP.KKINS2CSTMCompM4SPos = Vector(0, 0, 0)
+	-- SWEP.KKINS2CSTMCompM4SAng = Vector(0, 0, 0)
 	
-	SWEP.KKINS2CSTMEoTechXPSPos = Vector(0, 0, 0)
-	SWEP.KKINS2CSTMEoTechXPSAng = Vector(0, 0, 0)
+	-- SWEP.KKINS2CSTMEoTechXPSPos = Vector(0, 0, 0)
+	-- SWEP.KKINS2CSTMEoTechXPSAng = Vector(0, 0, 0)
 	
-	SWEP.KKINS2CSTMMicroT1Pos = Vector(0, 0, 0)
-	SWEP.KKINS2CSTMMicroT1Ang = Vector(0, 0, 0)
+	-- SWEP.KKINS2CSTMMicroT1Pos = Vector(0, 0, 0)
+	-- SWEP.KKINS2CSTMMicroT1Ang = Vector(0, 0, 0)
 	
-	SWEP.KKINS2CSTMSureShotPos = Vector(0, 0, 0)
-	SWEP.KKINS2CSTMSureShotAng = Vector(0, 0, 0)
+	-- SWEP.KKINS2CSTMSureShotPos = Vector(0, 0, 0)
+	-- SWEP.KKINS2CSTMSureShotAng = Vector(0, 0, 0)
 	
 	// WW2
 	
@@ -255,7 +273,7 @@ function SWEP:unloadWeapon()
 	weapons.GetStored("cw_base").unloadWeapon(self)
 	
 	if CLIENT then
-		if self.KKINS_emptyIdle then
+		if self.KK_INS2_emptyIdle then
 			self:idleAnimFunc()
 		end
 	end
@@ -283,7 +301,7 @@ function SWEP:PrepareForPickup(drop)
 			self:drawAnimFunc()
 		end
 		
-		if self.KKINS_emptyIdle and self:Clip1() == 0 then return end
+		if self.KK_INS2_emptyIdle and self:Clip1() == 0 then return end
 		
 		if drop then
 			self:setGlobalDelay(self.FirstDeployTime - 0.2)
@@ -306,7 +324,7 @@ function SWEP:PrepareForPickup(drop)
 			prefix = self:getForegripMode()
 			suffix = ""
 			
-			if self:Clip1() == 0 and self.KKINS_emptyIdle then
+			if self:Clip1() == 0 and self.KK_INS2_emptyIdle then
 				suffix = "_empty"
 			end
 			

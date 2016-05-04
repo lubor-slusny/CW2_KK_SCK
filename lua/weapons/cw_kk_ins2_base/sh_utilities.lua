@@ -5,7 +5,7 @@ local mode, customSuffix, fullA, emptyA, fullT, emptyT
 
 function SWEP:updateReloadTimes()
 	mode = self:getForegripMode()
-	customSuffix = self._KK_INS_customSuffix or ""
+	customSuffix = self._KK_INS2_customSuffix or ""
 
 	if self.ReloadTimes then	// extend, finish
 		//	2do: 

@@ -1,6 +1,6 @@
 local att = {}
 att.name = "kk_ins2_fnfal_skin2"
-att.displayName = "Secksy Green Finnish"
+att.displayName = "Green Finnish"
 att.displayNameShort = "Green"
 att.isBG = true
 
@@ -11,7 +11,7 @@ att.statModifiers = {
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
 	att.description = {
-		{t = "Secksy as phuck.", c = CustomizableWeaponry.textColors.VPOSITIVE},
+		-- {t = "Secksy as phuck.", c = CustomizableWeaponry.textColors.VPOSITIVE},
 	}
 	
 	function att:attachFunc()

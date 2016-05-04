@@ -16,31 +16,24 @@ if CLIENT then
 	SWEP.NoShells = true
 	
 	SWEP.AttachmentModelsVM = {
-		-- ["kk_ins2_rig"] = {model = "models/weapons/v_hands_vip.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
-		
 		["kk_counter_front"] = {model = "models/weapons/stattrack.mdl", bone = "AT4", rel = "", pos = Vector(-0.029, 3.767, 2.51), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), ignoreKKBGO = true, active = true, nodraw = true},
 		["kk_counter_mid"] = {model = "models/weapons/stattrack.mdl", bone = "AT4", rel = "", pos = Vector(1.218, -8.176, 1.179), angle = Angle(-47.401, 0, 0), size = Vector(0.699, 0.699, 0.699), ignoreKKBGO = true, active = true, nodraw = true},
 		["kk_counter_back"] = {model = "models/weapons/stattrack.mdl", bone = "AT4", rel = "", pos = Vector(-0.788, -10.893, 2.131), angle = Angle(0, -90, 15), size = Vector(1, 1, 1), ignoreKKBGO = true, active = true, nodraw = true},
-		
 	}
 	
-	SWEP.IronsightPos = Vector(-1.292, -2, 0.5674)
-	SWEP.IronsightAng = Vector(2.0493, -1.9418, 0)
+	-- SWEP.IronsightPos = Vector(-1.292, -2, 0.5674)
+	-- SWEP.IronsightAng = Vector(2.0493, -1.9418, 0)
 	
-	SWEP.IronsightPos = Vector(-1.292, -2, 0.5674) // zeroed for rpg drop
-	SWEP.IronsightAng = Vector(1.2005, -1.9418, 0)
+	-- SWEP.IronsightPos = Vector(-1.292, -2, 0.5674) // zeroed for rpg drop
+	-- SWEP.IronsightAng = Vector(1.2005, -1.9418, 0)
 
 	SWEP.IronsightPos = Vector(-1.292, -2, 0.5674) // rpg drop fixed
 	SWEP.IronsightAng = Vector(1.9728, -1.9566, 0)
 
 	SWEP.ViewModelMovementScale_sprint = 0.5
 	SWEP.CustomizationMenuScale = 0.01
-	SWEP.HUD_MagText = "Tube: "
+	SWEP.HUD_MagText = "TUBE: "
 end
-
-SWEP.Chamberable = false
-SWEP.CanCustomize = false
-SWEP.WeaponLength = 40
 
 SWEP.Attachments = {
 	{header = "Nope, no attachments for this one.", offset = {-250, 0}, atts = {}},
@@ -133,8 +126,8 @@ SWEP.Primary.Ammo			= "AT4 Launcher"
 SWEP.FireDelay = 0.3
 SWEP.FireSound = "CW_KK_INS2_AT4_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_AT4_FIRE"
-SWEP.Recoil = 0.5
 
+SWEP.Recoil = 0.5
 SWEP.HipSpread = 0.05
 SWEP.AimSpread = 0.005
 SWEP.VelocitySensitivity = 1.9
@@ -144,13 +137,18 @@ SWEP.SpreadCooldown = 0.8
 SWEP.Shots = 1
 SWEP.Damage = 100
 
-SWEP.FirstDeployTime = 3.4
 SWEP.DeployTime = 0.5
 
 SWEP.ReloadTime = 5.1
 SWEP.ReloadTime_Empty = 5.1
 SWEP.ReloadHalt = 5.2
 SWEP.ReloadHalt_Empty = 5.2
+
+SWEP.Chamberable = false
+SWEP.CanCustomize = false
+
+SWEP.FirstDeployTime = 3.4
+SWEP.WeaponLength = 40
 
 function SWEP:updateReloadTimes() end
 	
