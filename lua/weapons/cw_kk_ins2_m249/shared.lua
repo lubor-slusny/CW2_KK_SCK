@@ -117,7 +117,6 @@ if CLIENT then
 	SWEP.KKINS2CSTMACOGPos = Vector(-2.0071, -2, -0.0976)
 	SWEP.KKINS2CSTMACOGAng = Vector(0, 0, 0)
 
-	SWEP.KKINS_implicitBipod = true // srsly wtf
 	SWEP.CustomizationMenuScale = 0.017
 end
 

@@ -1,24 +1,24 @@
 AddCSLuaFile()
 
-CreateClientConVar("cw_kk_gm_xhair", 0, false, false)
-CreateClientConVar("cw_kk_freeze_reticles", 0, false, false)
-CreateClientConVar("cw_kk_sck_lock_ads", 0, false, false)
-CreateClientConVar("cw_kk_dev_menu", 0, true, false)
+local cvXH = CreateClientConVar("cw_kk_gm_xhair", 0, false, false)
+local cvFR = CreateClientConVar("cw_kk_freeze_reticles", 0, false, false)
+local cvLA = CreateClientConVar("cw_kk_sck_lock_ads", 0, false, false)
+local cvDM = CreateClientConVar("cw_kk_dev_menu", 0, true, false)
 
-hook.Add("Think", "CW_KK_ThinkWithCrosshairs", function()
+hook.Add("Think", "cw_kk_gm_xhair_think", function()
 	local ply = LocalPlayer()
 	local wep = ply:GetActiveWeapon()
 	
-	if GetConVarNumber("cw_kk_gm_xhair") == 0 then
-		wep.DrawCrosshair = false
-	else
+	if cvXH:GetInt() == 1 then
 		wep.DrawCrosshair = true
+	else
+		wep.DrawCrosshair = false
 	end
 end)
 
 local _ADS_LAST
-hook.Add("Think", "CW_KK_LockAiming", function() 
-	local cur = GetConVarNumber("cw_kk_sck_lock_ads")
+hook.Add("Think", "cw_kk_sck_lock_ads_think", function() 
+	local cur = cvLA:GetInt()
 	if cur != _ADS_LAST and _ADS_LAST != nil then
 		if cur == 0 then
 			RunConsoleCommand("-attack2")

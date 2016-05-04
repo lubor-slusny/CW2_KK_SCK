@@ -1,17 +1,16 @@
 local att = {}
-att.name = "kk_ins2_flashlight"
-att.displayName = "Light Emitting Module v2.2"
+att.name = "kk_ins2_flashlight5"
+att.displayName = "Light Emitting Module v5"
 att.displayNameShort = "LEM"
 att.colorType = CustomizableWeaponry.colorableParts.COLOR_TYPE_KK_FLASHLIGHT
 
-att.statModifiers = {
-	OverallMouseSensMult = -0.05
-}
+att.statModifiers = {}
 
 if CLIENT then
-	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
+	-- att.displayIcon = surface.GetTextureID("atts/" .. att.name)
+	att.displayIcon = surface.GetTextureID("atts/wipshit")
 	att.description = {
-		{t = "[impulse 100] toggles on/off.", c = CustomizableWeaponry.textColors.REGULAR},
+		{t = "FKIN MAGIC", c = CustomizableWeaponry.textColors.VPOSITIVE},
 	}
 	
 	att.reticle = "cw2/reticles/aim_reticule"
@@ -23,7 +22,7 @@ if CLIENT then
 		
 		beamAtt = nil
 		
-		if (self._KK_INS2_LAM_MODE % 2) == 0 then return end
+		-- if (self._KK_INS2_LAM_MODE % 2) == 0 then return end
 		
 		if self.KKINS_FL_ATT_OVERRIDE then
 			beamAtt = self:KKINS_FL_ATT_OVERRIDE()
@@ -40,15 +39,16 @@ if CLIENT then
 		end
 
 		CustomizableWeaponry_KK.ins2.flashlight.v2.elementRender(self, beamAtt)
+		CustomizableWeaponry_KK.ins2.flashlight.v5.elementRender(self, beamAtt)
 	end
 end
 
 function att:attachFunc()
-	CustomizableWeaponry_KK.ins2.flashlight.v2.attach(self)
+	CustomizableWeaponry_KK.ins2.flashlight.v5.attach(self)
 end
 
 function att:detachFunc()
-	CustomizableWeaponry_KK.ins2.flashlight.v2.detach(self)
+	CustomizableWeaponry_KK.ins2.flashlight.v5.detach(self)
 end
 
 CustomizableWeaponry:registerAttachment(att)

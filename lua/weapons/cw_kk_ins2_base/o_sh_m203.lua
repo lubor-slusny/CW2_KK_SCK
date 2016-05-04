@@ -17,7 +17,7 @@ function SWEP:fireM203(firstTimePrediction)
 	CustomizableWeaponry.grenadeTypes.selectFireFunc(self, firstTimePrediction)
 	
 	if self:filterPrediction() then
-		self.Owner:ViewPunch(Angle(math.Rand(-5, -4), math.Rand(-2, 2), math.Rand(-1, 1)))
+		self:MakeRecoil(5)
 	end
 	
 	local suppressAmmoUsage = CustomizableWeaponry.callbacks.processCategory(wep, "shouldSuppressAmmoUsage")
@@ -31,8 +31,6 @@ function SWEP:fireM203(firstTimePrediction)
 	self.Owner:SetAnimation(PLAYER_ATTACK1)
 	
 	if CLIENT then
-		self:makeVMRecoil(5)
-		
 		local vm = self.CW_VM
 		local attId = vm:LookupAttachment("muzzle_gl")
 		
@@ -45,8 +43,6 @@ function SWEP:fireM203(firstTimePrediction)
 			
 			attId = 1
 		end
-		
-		-- ParticleEffectAttach("muzzleflash_m3", PATTACH_POINT_FOLLOW, vm, attId)
 		
 		if self.AttachmentModelsVM.kk_ins2_gl_gp25 then
 			ParticleEffectAttach("muzzleflash_pistol", PATTACH_POINT_FOLLOW, self.AttachmentModelsWM.kk_ins2_gl_gp25.ent, 1)

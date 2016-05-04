@@ -20,8 +20,6 @@ if CLIENT then
 	
 	SWEP.IronsightPos = Vector(-2.1197, -2, 1.4045)
 	SWEP.IronsightAng = Vector(-0.1832, 0.0054, 0)
-
-	SWEP.KKINS_implicitBipod = true
 end
 
 SWEP.WeaponLength = 28

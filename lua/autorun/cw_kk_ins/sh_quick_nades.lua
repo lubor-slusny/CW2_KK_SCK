@@ -1,38 +1,4 @@
 
-// qnade throw bind
-local meta = FindMetaTable("Player")
-
-if meta then 
-	function meta:cwkkqnade()
-		local wep = self:GetActiveWeapon()
-		
-		if !IsValid(wep) then return end
-		if !wep.CW20Weapon then return end
-		
-		if wep.KKINS2Wep then
-			if wep.KKINS2Nade then
-				wep:PrimaryAttack()
-				return
-			end
-			
-			if CustomizableWeaponry_KK.ins2.canThrow(wep) then
-				CustomizableWeaponry_KK.ins2.throwGrenade(wep)
-			end
-		else
-			if wep.Base == "cw_grenade_base" then
-				wep:PrimaryAttack()
-				return
-			end
-			
-			if CustomizableWeaponry.quickGrenade.canThrow(wep) then
-				CustomizableWeaponry.quickGrenade.throw(wep)
-			end
-		end
-	end
-
-	concommand.Add("cw_kk_throwfrag", meta.cwkkqnade)
-end
-
 local SP = game.SinglePlayer()
 
 if CLIENT then
@@ -205,14 +171,15 @@ function CustomizableWeaponry_KK.ins2:throwGrenade()
 		if SERVER then
 			CustomizableWeaponry.actionSequence.new(self, 1.2, nil, function()
 				local pos = self.Owner:GetShootPos()
-				local offset = CustomizableWeaponry.quickGrenade.getThrowOffset(self)
+				-- local offset = CustomizableWeaponry.quickGrenade.getThrowOffset(self)
 				local eyeAng = self.Owner:EyeAngles()
 				local forward = eyeAng:Forward()
 				
 				local nade = ents.Create(entClass)
 				nade.model = quickNadeTweak.wm
 				
-				nade:SetPos(pos + offset)
+				-- nade:SetPos(pos + offset)
+				nade:SetPos(pos)
 				nade:SetAngles(eyeAng)
 				
 				nade:Spawn()
@@ -266,7 +233,52 @@ usermessage.Hook("CW20_THROWGRENADE_KK_INS", function()
 	end
 end)
 
--- for _,v in pairs(CustomizableWeaponry_KK.ins2.quickGrenades) do
-	-- util.PrecacheModel(v.vm)
-	-- util.PrecacheModel(v.wm)
--- end
+// concommand
+
+local function cw_kk_throwfrag(ply)
+	print("Qnade call;", ply)
+	
+	if !IsValid(ply) then return end
+	
+	local wep = ply:GetActiveWeapon()
+	if !IsValid(wep) then return end
+	if !wep.CW20Weapon then return end
+	
+	if CurTime() < wep:GetNextPrimaryFire() then return end
+	if not wep:canFireWeapon(1) then return end
+	
+	if wep.KKINS2Wep then
+		if wep.KKINS2Nade then
+			wep:PrimaryAttack()
+			return
+		end
+		
+		if CustomizableWeaponry_KK.ins2.canThrow(wep) then
+			CustomizableWeaponry_KK.ins2.throwGrenade(wep)
+		end
+	else
+		if wep.Base == "cw_grenade_base" then
+			wep:PrimaryAttack()
+			return
+		end
+		
+		if CustomizableWeaponry.quickGrenade.canThrow(wep) then
+			CustomizableWeaponry.quickGrenade.throw(wep)
+		end
+	end
+end
+
+concommand.Remove("cw_kk_throwfrag")
+
+-- if CLIENT then return end
+
+concommand.Add(
+	"cw_kk_throwfrag", 
+	cw_kk_throwfrag, 
+	nil, 
+	"Alternative to [+use][+attack] combo"
+	-- ,{FCVAR_REPLICATED}
+	-- ,{FCVAR_CLIENTCMD_CAN_EXECUTE}
+	,{FCVAR_REPLICATED, FCVAR_CLIENTCMD_CAN_EXECUTE}
+	-- ,{FCVAR_USERINFO}
+)

@@ -3,12 +3,13 @@
 
 local att, sh, vm, ang, tweak
 
+local muz = {}
+
 function SWEP:getMuzzlePosition()
 	if self.Owner:ShouldDrawLocalPlayer() then
-		return {
-			Pos = self.WMEnt:GetAttachment(1).Pos, 
-			Ang = EyeAngles()
-		}
+		muz.Pos = self.WMEnt:GetAttachment(1).Pos
+		muz.Ang = EyeAngles()
+		return muz
 	end
 	
 	att = self.CW_VM:LookupAttachment(self.MuzzleAttachmentName)
@@ -17,10 +18,9 @@ function SWEP:getMuzzlePosition()
 		return self.CW_VM:GetAttachment(att)
 	end
 	
-	return {
-		Pos = self.Owner:EyePos(), 
-		Ang = self.Owner:EyeAngles()
-	}
+	muz.Pos = self.Owner:EyePos()
+	muz.Ang = self.Owner:EyeAngles()
+	return muz
 end
 
 function SWEP:CreateShell(sh)
@@ -137,6 +137,27 @@ function SWEP:createCustomVM(mdl)
 	self.WMEnt:SetNoDraw(true)
 end
 
+local FT
+
+function SWEP:drawViewModel()
+	if not self.CW_VM then
+		return
+	end
+	
+	self:offsetBones()
+	
+	FT = FrameTime()
+	
+	self.LuaVMRecoilIntensity = math.Approach(self.LuaVMRecoilIntensity, 0, FT * 10 * self.LuaVMRecoilLowerSpeed)
+	self.LuaVMRecoilLowerSpeed = math.Approach(self.LuaVMRecoilLowerSpeed, 1, FT * 2)
+	
+	self:applyOffsetToVM()
+	self:_drawViewModel()
+	
+	self:drawGrenade()
+	self:drawKKKnife()
+end
+
 function SWEP:_drawViewModel()
 	self.CW_VM:FrameAdvance(FrameTime())
 	self.CW_VM:SetupBones()
@@ -160,27 +181,6 @@ function SWEP:_drawViewModel()
 	if GetConVarNumber("cw_customhud_ammo") >= 1 then
 		self:draw3D2DHUD()
 	end
-end
-
-local FT
-
-function SWEP:drawViewModel()
-	if not self.CW_VM then
-		return
-	end
-	
-	self:offsetBones()
-	
-	FT = FrameTime()
-	
-	self.LuaVMRecoilIntensity = math.Approach(self.LuaVMRecoilIntensity, 0, FT * 10 * self.LuaVMRecoilLowerSpeed)
-	self.LuaVMRecoilLowerSpeed = math.Approach(self.LuaVMRecoilLowerSpeed, 1, FT * 2)
-	
-	self:applyOffsetToVM()
-	self:_drawViewModel()
-	
-	self:drawGrenade()
-	self:drawKKKnife()
 end
 
 // grenade override

@@ -1,13 +1,16 @@
 local att = {}
 att.name = "kk_ins2_flashlight3"
-att.displayName = "Light Emitting Module v3"
+att.displayName = "Light Emitting Module v3.1"
 att.displayNameShort = "LEM"
 att.colorType = CustomizableWeaponry.colorableParts.COLOR_TYPE_KK_FLASHLIGHT
 
-att.statModifiers = {}
+att.statModifiers = {
+	OverallMouseSensMult = -0.05
+}
 
 if CLIENT then
-	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
+	-- att.displayIcon = surface.GetTextureID("atts/" .. att.name)
+	att.displayIcon = surface.GetTextureID("atts/wipshit")
 	att.description = {
 		{t = "Less files, less ents.", c = CustomizableWeaponry.textColors.VPOSITIVE},
 		{t = "Shitty like first one.", c = CustomizableWeaponry.textColors.VNEGATIVE},
@@ -15,15 +18,6 @@ if CLIENT then
 	}
 	
 	att.reticle = "cw2/reticles/aim_reticule"
-	
-	CreateClientConVar("_cw_kk_ins2_flashlight3_x", "0", false, true)	// x
-	CreateClientConVar("_cw_kk_ins2_flashlight3_y", "0", false, true)	// y
-	CreateClientConVar("_cw_kk_ins2_flashlight3_z", "0", false, true)	// z
-	CreateClientConVar("_cw_kk_ins2_flashlight3_p", "0", false, true)	// p
-	CreateClientConVar("_cw_kk_ins2_flashlight3_j", "0", false, true)	// yaw
-	CreateClientConVar("_cw_kk_ins2_flashlight3_r", "0", false, true)	// roll
-	CreateClientConVar("_cw_kk_ins2_flashlight3_c", "0", false, true)	// color
-	CreateClientConVar("_cw_kk_ins2_flashlight3_t", "0", false, true)	// ttl
 	
 	local model, beamAtt, pos, ang, col
 	
@@ -54,99 +48,16 @@ if CLIENT then
 		
 		if self._KK_INS_FL_turnOffWhenSafe and self._KK_INS_FL_turnOffWhenSafe < CurTime() then return end
 		
-		pos = beamAtt.Pos
-		ang = beamAtt.Ang
-		col = self.SightColors[att.name].last
-		
-		RunConsoleCommand("_cw_kk_ins2_flashlight3_x", pos.x)
-		RunConsoleCommand("_cw_kk_ins2_flashlight3_y", pos.y)
-		RunConsoleCommand("_cw_kk_ins2_flashlight3_z", pos.z)
-		RunConsoleCommand("_cw_kk_ins2_flashlight3_p", ang.p)
-		RunConsoleCommand("_cw_kk_ins2_flashlight3_j", ang.y)
-		RunConsoleCommand("_cw_kk_ins2_flashlight3_r", ang.r)
-		RunConsoleCommand("_cw_kk_ins2_flashlight3_c", col)
-		-- RunConsoleCommand("_cw_kk_ins2_flashlight3_t", CurTime())
-		RunConsoleCommand("_cw_kk_ins2_flashlight3_t", CurTime() + 1)
+		CustomizableWeaponry_KK.ins2.flashlight.v3.elementRender(self, beamAtt)
 	end
 end
 
 function att:attachFunc()
-	if SERVER then
-		if !IsValid(self.Owner._KK_INS_FL) then
-			// make ept ent
-			
-			local ent = ents.Create("env_projectedtexture")
-			local ply = self.Owner
-			
-			ent.KKINS_parentWep = self
-	
-			ent:SetLocalPos(Vector(0, 0, 0))
-			ent:SetLocalAngles(Angle(0, 0, 0))
-			
-			ent:SetKeyValue("enableshadows", 1)
-			ent:SetKeyValue("texture", "")
-			ent:SetKeyValue("farz", 2048)
-			ent:SetKeyValue("nearz", 0.01)
-			ent:SetKeyValue("lightfov", "60")
-			ent:SetKeyValue("AlwaysUpdateOn", 1)
-			
-			ent:SetPos(ply:EyePos())
-			ent:SetAngles(ply:EyeAngles())
-			
-			ent:Spawn()
-			
-			// link them
-			
-			ent._KK_Owner = ply
-			ply._KK_INS_FL = ent
-			
-			// thinking
-			
-			hook.Add("Think", ent, function()
-				local ply = ent._KK_Owner
-				
-				if not IsValid(ply) then
-					SafeRemoveEntity(ent)
-					return
-				end
-				
-				ent:SetPos(Vector(
-					ply:GetInfoNum("_cw_kk_ins2_flashlight3_x", 0),
-					ply:GetInfoNum("_cw_kk_ins2_flashlight3_y", 0),
-					ply:GetInfoNum("_cw_kk_ins2_flashlight3_z", 0)
-				))
-				
-				ent:SetAngles(Angle(
-					ply:GetInfoNum("_cw_kk_ins2_flashlight3_p", 0),
-					ply:GetInfoNum("_cw_kk_ins2_flashlight3_j", 0),
-					ply:GetInfoNum("_cw_kk_ins2_flashlight3_r", 0)
-				))
-				
-				local t = ply:GetInfoNum("_cw_kk_ins2_flashlight3_t", 0)
-				
-				-- if t != ent._KK_lastT then
-				if t > CurTime() then
-					local c = CustomizableWeaponry.colorableParts.colors[CustomizableWeaponry.colorableParts.COLOR_TYPE_KK_FLASHLIGHT][
-						ply:GetInfoNum("_cw_kk_ins2_flashlight3_c", 1)
-					].color
-					
-					ent:SetKeyValue("lightcolor", Format("%i %i %i %i", c.r, c.g, c.b, 255))
-				else
-					ent:SetKeyValue("lightcolor", Format("%i %i %i %i", 0, 0, 0, 0))
-				end
-				
-				-- ent._KK_lastT = t
-			end)
-		end
-	end
+	CustomizableWeaponry_KK.ins2.flashlight.v3.attach(self)
 end
 
 function att:detachFunc()
-	if SERVER then
-		if IsValid(self.Owner._KK_INS_FL) then
-			self.Owner._KK_INS_FL._KK_Owner = nil
-		end
-	end
+	CustomizableWeaponry_KK.ins2.flashlight.v3.detach(self)
 end
 	
 CustomizableWeaponry:registerAttachment(att)

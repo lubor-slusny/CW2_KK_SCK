@@ -1,3 +1,6 @@
+if not CustomizableWeaponry_KK.HOME then return end
+
+AddCSLuaFile()
 
 local PANEL
 
@@ -44,7 +47,9 @@ function KK_SCK_VELEMENTS_Think()
 end
 
 hook.Add("PopulateToolMenu", "KK_SCK_VELEMENTS", function()
-	if GetConVarNumber("cw_kk_dev_menu") != 0 then 
+	local cvar = GetConVar("cw_kk_dev_menu")
+	
+	if cvar and cvar:GetInt() != 0 then
 		spawnmenu.AddToolMenuOption("Utilities", "Knife Kitty", "KK_SCK_VELEMENTS", "VElements", "", "", function(panel)
 			PANEL = panel
 			updatePanel()
@@ -58,5 +63,4 @@ hook.Add("PostReloadToolsMenu", "KK_SCK_VELEMENTS_Remove", function()
 	hook.Remove("Think", "KK_SCK_VELEMENTS_Think")
 end)
 
-// DELETE BELOW // debug code
-RunConsoleCommand("spawnmenu_reload")
+-- RunConsoleCommand("spawnmenu_reload")

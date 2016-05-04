@@ -113,7 +113,7 @@ if CLIENT then
 	SWEP.KKINS2KobraPos = Vector(-2.4883, -6, -0.2561)
 	SWEP.KKINS2KobraAng = Vector(0, 0, 0)
 
-	SWEP.KKINS2PO4Pos = Vector(-2.4367, -10, 0.1056)
+	SWEP.KKINS2PO4Pos = Vector(-2.4367, -8, 0.1056)
 	SWEP.KKINS2PO4Ang = Vector(0, 0, 0)
 
 	SWEP.KKINS2MagnifierPos = Vector(-2.4834, -6, -0.1578)

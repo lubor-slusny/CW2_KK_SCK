@@ -1,6 +1,6 @@
 AddCSLuaFile()
 
-local BUILD = "425"
+local BUILD = "427"
 
 // static
 local IRONSIGHTSATT = {
@@ -77,6 +77,7 @@ local function getWeaponAtt(wep)
 	end
 	
 	if not att._KK_SCK_prefix then
+		att.aimPos = att.aimPos or {"IronsightPos", "IronsightAng"}
 		att._KK_SCK_prefix = string.sub(att.aimPos[1], 1, string.len(att.aimPos[1]) - 3)
 	end
 	
@@ -133,7 +134,7 @@ local function updateLabels()
 		return
 	end
 	
-	MENU.LABELS.sightPrint:SetText("Current weapon does not use CW2 Base.")
+	MENU.LABELS.sightPrint:SetText("Your active weapon does not use CW2 Base.")
 	MENU.LABELS.sightCode:SetText("")
 	MENU.LABELS.sightModel:SetText("")
 	MENU.LABELS.sightPrefix:SetText("")
@@ -359,12 +360,18 @@ local function buildPanel(panel)
 		MENU.LABELS.sightCode:SetMouseInputEnabled(true)
 		
 		function MENU.LABELS.sightCode:_KK_setText(t)
-			self:SetText("Code: [\"" .. t .. "\"]")
+			t = t == ("nil") and "N/A" or "[\"" .. t .. "\"]"
+			self:SetText("Code: " .. t)
 		end
 		
 		function MENU.LABELS.sightCode:DoClick()
 			if not WEAPON or not SIGHT then return end
-			SetClipboardText(SIGHT.name)
+		
+			if SIGHT.name == ("nil") then
+				SetClipboardText("N/A")
+			else
+				SetClipboardText(SIGHT.name)
+			end
 		end
 		
 		MENU.PANELS.sightCode:DockMargin(8, -4, 8, -4)
@@ -767,10 +774,10 @@ local function buildPanel(panel)
 	hook.Add("Think", "CW_KK_DEV_MENU_" .. BUILD, menuThink)
 end
 
-CreateClientConVar("cw_kk_dev_menu", 0, true, false)
+local cvar = CreateClientConVar("cw_kk_dev_menu", 0, true, false)
 
 hook.Add( "PopulateToolMenu", "KK_SCK_AIMPOS_" .. BUILD, function()
-	if GetConVarNumber("cw_kk_dev_menu") != 0 then 
+	if cvar:GetInt() != 0 then 
 		spawnmenu.AddToolMenuOption("Utilities", "Knife Kitty", "KK_SCK_AIMPOS_" .. BUILD, "Sight positions 4.2", "", "", buildPanel) 
 	end
 end)
@@ -779,5 +786,4 @@ hook.Add("PostReloadToolsMenu", "CW_KK_DEV_MENU_" .. BUILD .. "_REMOVER", functi
 	hook.Remove("Think", "CW_KK_DEV_MENU_" .. BUILD)
 end)
 
-// DELETE BELOW // debug code
 RunConsoleCommand("spawnmenu_reload")

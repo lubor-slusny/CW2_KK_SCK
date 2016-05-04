@@ -79,19 +79,19 @@ SWEP.Sounds = {
 }
 
 if CLIENT then
-	local att, m
-
+	local m
+	local muz = {}
+	
 	function SWEP:getMuzzlePosition()
 		if self.Owner:ShouldDrawLocalPlayer() then
-			-- m = self:GetBoneMatrix(0)
 			m = self.Owner:GetBoneMatrix(self.Owner:LookupBone("ValveBiped.Bip01_R_Hand"))
 		else
-			-- print(self.CW_VM:LookupBone("R Hand")) // 29
-			-- m = self.CW_VM:GetBoneMatrix(57) // weapon
 			m = self.CW_VM:GetBoneMatrix(32)
 		end
 		
-		return {Pos = m:GetTranslation(), Ang = m:GetAngles()}
+		muz.Pos = m:GetTranslation()
+		muz.Ang = m:GetAngles()
+		return muz
 	end
 end
 
@@ -154,9 +154,9 @@ function SWEP:PrimaryAttack()
 					-- end
 				end
 				
-				self:MakeRecoil(math.random(20,40) / 10 * math.pow(-1,math.random(2,3)))
+				self.Owner:ViewPunch(Angle(math.Rand(-5, -4), math.Rand(-2, 2), math.Rand(-1, 1)))
 			else
-				self:MakeRecoil(math.random(5,10) / 10 * math.pow(-1,math.random(2,3)))				
+				self.Owner:ViewPunch(Angle(math.Rand(-5, -4), math.Rand(-2, 2), math.Rand(-1, 1)))
 			end
 		end)
 	end

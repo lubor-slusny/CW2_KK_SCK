@@ -22,7 +22,8 @@ if CLIENT then
 end
 
 SWEP.CanRestOnObjects = false
-SWEP.grenadeEnt = "cw_grenade_thrown"
+-- SWEP.grenadeEnt = "cw_grenade_thrown"
+SWEP.grenadeEnt = "cw_kk_ins2_projectile_frag"
 
 SWEP.Animations = {
 	draw = "draw",
@@ -106,8 +107,8 @@ SWEP.WorldModel		= "models/weapons/w_mk2.mdl"
 SWEP.WMPos = Vector(3.891, 2.295, -1.765)
 SWEP.WMAng = Angle(-28.962, 155.365, 180)
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
 
 SWEP.Primary.ClipSize		= -1
 SWEP.Primary.DefaultClip	= 1

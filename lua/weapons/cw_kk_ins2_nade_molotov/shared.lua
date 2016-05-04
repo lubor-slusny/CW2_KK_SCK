@@ -1,4 +1,5 @@
 if not CustomizableWeaponry then return end
+if not CustomizableWeaponry_KK.HOME then return end
 
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
@@ -153,6 +154,20 @@ if CLIENT then
 	end
 	
 	function SWEP:getMuzzlePosition()
+		return self.CW_VM:GetAttachment(2)
+	end
+	
+	local m
+	local muz = {}
+	
+	function SWEP:getMuzzlePosition()
+		if self.Owner:ShouldDrawLocalPlayer() then
+			m = self.Owner:GetBoneMatrix(self.Owner:LookupBone("ValveBiped.Bip01_R_Hand"))
+			muz.Pos = m:GetTranslation()
+			muz.Ang = m:GetAngles()
+			return muz
+		end
+		
 		return self.CW_VM:GetAttachment(2)
 	end
 end

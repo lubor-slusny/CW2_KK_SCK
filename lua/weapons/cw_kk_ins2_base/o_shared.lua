@@ -16,15 +16,42 @@ end
 
 // LUA VM Recoil only for RT scopes
 
--- function SWEP:simulateRecoil()
-	-- if self:hasInstalledRTScope() and (self:isAiming() or self.ShotgunReload) then
-		-- weapons.GetStored("cw_base").simulateRecoil(self)
-	-- end
+function SWEP:simulateRecoil()
+	if self.dt.State ~= CW_AIMING and not self.freeAimOn then
+		self.FOVHoldTime = UnPredictedCurTime() + self.FireDelay * 2
+		
+		if self.HipFireFOVIncrease then
+			self.FOVTarget = math.Clamp(self.FOVTarget + 8 / (self.Primary.ClipSize_Orig * 0.75) * self.FOVPerShot, 0, 7)
+		end
+	end
 	
-	-- if self.ReticleInactivityPostFire then
-		-- self.reticleInactivity = UnPredictedCurTime() + self.ReticleInactivityPostFire
-	-- end
--- end
+	if self.freeAimOn and not self.dt.BipodDeployed then -- we only want to add the 'roll' view shake when we're not using a bipod in free-aim mode
+		self.lastViewRoll = math.Clamp(self.lastViewRoll + self.Recoil * 0.5, 0, 15)
+		self.lastViewRollTime = UnPredictedCurTime() + FrameTime() * 3
+	end
+	
+	self.lastShotTime = CurTime() + math.Clamp(self.FireDelay * 3, 0, 0.3) -- save the last time we shot
+	
+	if self.BoltBone then
+		self:offsetBoltBone()
+	end
+	
+	if self.LuaViewmodelRecoil then
+		if (self.dt.State ~= CW_AIMING and not self.FullAimViewmodelRecoil) or self.FullAimViewmodelRecoil then
+			-- increase intensity of the viewmodel recoil with each shot
+			self.LuaVMRecoilIntensity = math.Approach(self.LuaVMRecoilIntensity, 1, self.Recoil * 0.15)
+			self.LuaVMRecoilLowerSpeed = 0
+			
+			if not self.dt.BipodDeployed then
+				self:makeVMRecoil()
+			end
+		end
+	end
+	
+	if self.ReticleInactivityPostFire then
+		self.reticleInactivity = UnPredictedCurTime() + self.ReticleInactivityPostFire
+	end
+end
 
 // firemode switch animations and reticle inactivity
 

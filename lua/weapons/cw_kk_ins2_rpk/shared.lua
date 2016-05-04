@@ -85,7 +85,7 @@ if CLIENT then
 	SWEP.KKINS2ElcanPos_def = Vector(-2.3062, -2, -0.5652)
 	SWEP.KKINS2ElcanAng_def = Vector(0, 0, 0)
 
-	SWEP.KKINS2PO4Pos_def = Vector(-2.2495, -2, -0.3634)
+	SWEP.KKINS2PO4Pos_def = Vector(-2.2495, -1, -0.3634)
 	SWEP.KKINS2PO4Ang_def = Vector(0, 0, 0)
 
 	SWEP.KKINS2MagnifierPos_def = Vector(-2.307, -2, -0.4629)
@@ -149,7 +149,6 @@ if CLIENT then
 	SWEP.KKINS2CSTMACOGPos_sopmod = Vector(-2.3068, -10, -0.401)
 	SWEP.KKINS2CSTMACOGAng_sopmod = Vector(0, 0, 0)
 
-	SWEP.KKINS_implicitBipod = true
 	SWEP.CustomizationMenuScale = 0.018
 end
 

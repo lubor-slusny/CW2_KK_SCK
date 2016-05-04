@@ -448,16 +448,23 @@ if CLIENT then
 		self.WMEnt:SetBodygroup(1,1)
 	end
 	
+	local m
+	local muz = {}
+	
 	function SWEP:getMuzzlePosition()
-		local m 
-		
-		if self:isReticleActive() then
-			m = self.CW_VM:GetBoneMatrix(57)
-		else
-			m = self.CW_VM:GetBoneMatrix(61)
+		if self.Owner:ShouldDrawLocalPlayer() then
+			m = self.Owner:GetBoneMatrix(self.Owner:LookupBone("ValveBiped.Bip01_R_Hand"))
+		else			
+			if self:isReticleActive() then
+				m = self.CW_VM:GetBoneMatrix(57)
+			else
+				m = self.CW_VM:GetBoneMatrix(61)
+			end		
 		end
-		
-		return {Pos = m:GetTranslation(), Ang = m:GetAngles()}
+
+		muz.Pos = m:GetTranslation()
+		muz.Ang = m:GetAngles()
+		return muz
 	end
 end
 

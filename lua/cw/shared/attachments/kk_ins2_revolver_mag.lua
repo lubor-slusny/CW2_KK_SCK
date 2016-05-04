@@ -13,12 +13,12 @@ if CLIENT then
 end
 
 function att:attachFunc()
-	self:unloadWeapon()
+	-- self:unloadWeapon()
 	self.ShotgunReload = false
 end
 
 function att:detachFunc()
-	self:unloadWeapon()
+	-- self:unloadWeapon()
 	self.ShotgunReload = true
 end
 

@@ -2,30 +2,28 @@ if not CustomizableWeaponry then return end
 
 AddCSLuaFile()
 AddCSLuaFile("sh_anims.lua")
-AddCSLuaFile("sh_content.lua")
 AddCSLuaFile("sh_callbacks.lua")
 AddCSLuaFile("sh_utilities.lua")
 
-AddCSLuaFile("overrides/cl_hud.lua")
-AddCSLuaFile("overrides/cl_model.lua")
-AddCSLuaFile("overrides/sh_attacks.lua")
-AddCSLuaFile("overrides/sh_m203.lua")
-AddCSLuaFile("overrides/sh_think.lua")
-AddCSLuaFile("overrides/shared.lua")
+AddCSLuaFile("o_cl_hud.lua")
+AddCSLuaFile("o_cl_model.lua")
+AddCSLuaFile("o_sh_attacks.lua")
+AddCSLuaFile("o_sh_m203.lua")
+AddCSLuaFile("o_sh_think.lua")
+AddCSLuaFile("o_shared.lua")
 
 include("sh_anims.lua")
-include("sh_content.lua")
 include("sh_callbacks.lua")
 include("sh_utilities.lua")
 
-include("overrides/sh_attacks.lua")
-include("overrides/sh_m203.lua")
-include("overrides/sh_think.lua")
-include("overrides/shared.lua")
+include("o_sh_attacks.lua")
+include("o_sh_m203.lua")
+include("o_sh_think.lua")
+include("o_shared.lua")
 
 if CLIENT then
-	include("overrides/cl_hud.lua")
-	include("overrides/cl_model.lua")
+	include("o_cl_hud.lua")
+	include("o_cl_model.lua")
 end
 
 SWEP.Base = "cw_base"
@@ -40,9 +38,6 @@ SWEP.Spawnable			= false
 SWEP.AdminSpawnable		= false
 
 SWEP.LuaViewmodelRecoil = false
-SWEP.FullAimViewmodelRecoil = false
--- SWEP.LuaVMRecoilAxisMod = {hor = 0, vert = 0, roll = 0, forward = 0}
-SWEP.FireMoveMod = 0
 
 SWEP.BipodDeployTime = 1.15
 SWEP.BipodUndeployTime = 1.15
@@ -69,6 +64,7 @@ SWEP.AttachmentExclusions = {
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.m67
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.bayonet
+SWEP.CW_KK_40MM_MDL = "models/weapons/upgrades/a_projectile_m203.mdl"
 	
 if CLIENT then	
 	SWEP.PosBasedMuz = true

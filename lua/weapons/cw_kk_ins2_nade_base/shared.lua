@@ -81,6 +81,7 @@ end
 
 if CLIENT then
 	local m
+	local muz = {}
 	
 	function SWEP:getMuzzlePosition()
 		if self.Owner:ShouldDrawLocalPlayer() then
@@ -89,7 +90,9 @@ if CLIENT then
 			m = self.CW_VM:GetBoneMatrix(59)
 		end
 		
-		return {Pos = m:GetTranslation(), Ang = m:GetAngles()}
+		muz.Pos = m:GetTranslation()
+		muz.Ang = m:GetAngles()
+		return muz
 	end
 	
 	SWEP.DrawCustomWM = true
@@ -133,6 +136,7 @@ function SWEP:IndividualThink()
 						
 						grenade:SetPos(self.Owner:GetShootPos())
 						grenade:SetAngles(self.Owner:EyeAngles())
+						grenade.model = self.WM or self.WorldModel
 						grenade:Spawn()
 						grenade:Activate()
 						grenade:SetModel(self.WM or self.WorldModel)

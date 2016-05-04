@@ -118,7 +118,7 @@ if CLIENT then
 	SWEP.KKINS2KobraPos = Vector(-2.2149, -2, -0.587)
 	SWEP.KKINS2KobraAng = Vector(0, 0, 0)
 
-	SWEP.KKINS2PO4Pos = Vector(-2.1738, -4, -0.2444)
+	SWEP.KKINS2PO4Pos = Vector(-2.1738, -3, -0.2444)
 	SWEP.KKINS2PO4Ang = Vector(0, 0, 0)
 
 	SWEP.KKINS2ElcanPos = Vector(-2.2233, -2, -0.601)
@@ -313,20 +313,19 @@ SWEP.DeployTime = 0.6
 
 if CLIENT then
 	local att
+	local muz = {}
 
 	function SWEP:getMuzzlePosition()
 		if self.Owner:ShouldDrawLocalPlayer() then
-			return {
-				Pos = self.WMEnt:GetAttachment(1).Pos, 
-				Ang = EyeAngles()
-			}
+			muz.Pos = self.WMEnt:GetAttachment(1).Pos
+			muz.Ang = EyeAngles()
+			return muz
 		end
 		
 		if self.CustomizeMenuAlpha > 0 then
-			return {
-				Pos = self.AttachmentModelsVM.cw_menu_muzzle.ent:GetPos(), 
-				Ang = self.AttachmentModelsVM.cw_menu_muzzle.ent:GetAngles()
-			}
+			muz.Pos = self.AttachmentModelsVM.cw_menu_muzzle.ent:GetPos()
+			muz.Ang = self.AttachmentModelsVM.cw_menu_muzzle.ent:GetAngles()
+			return muz
 		end
 		
 		att = self.CW_VM:LookupAttachment(self.MuzzleAttachmentName)
@@ -335,10 +334,9 @@ if CLIENT then
 			return self.CW_VM:GetAttachment(att)
 		end
 		
-		return {
-			Pos = self.Owner:EyePos(), 
-			Ang = self.Owner:EyeAngles()
-		}
+		muz.Pos = self.Owner:EyePos()
+		muz.Ang = self.Owner:EyeAngles()
+		return muz
 	end
 
 	function SWEP:updateOtherParts()

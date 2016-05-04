@@ -25,7 +25,6 @@ if CLIENT then
 	SWEP.IronsightPos = Vector(-2.3517, -2, 1.2473)
 	SWEP.IronsightAng = Vector(0.0334, 0, 0)
 
-	SWEP.KKINS_implicitBipod = true
 	SWEP.CustomizationMenuScale = 0.015
 end
 

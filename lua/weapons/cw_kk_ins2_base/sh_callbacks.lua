@@ -12,16 +12,9 @@ CustomizableWeaponry.callbacks:addNew("initialize", "KK_INS2_BASE", function(sel
 		end
 		
 		self.CW_VM._SWEP = self
+		-- self.ReticleInactivityPostFire = self.ReticleInactivityPostFire or self.FireDelay
 	end
 end)
-
--- CustomizableWeaponry.callbacks:addNew("canReload", "KK_INS2_BASE", function(wep)
-
--- end)
-
--- CustomizableWeaponry.callbacks:addNew("preFire", "KK_INS2_BASE", function(wep)
-	
--- end)
 
 if CLIENT then
 	usermessage.Hook("CW20_KK_INS_RETICLEINACTIVITY", function(um)
@@ -109,40 +102,14 @@ CustomizableWeaponry.callbacks:addNew("droppedWeapon", "KK_INS2_BASE", function(
 		-- function ent:Draw()
 			
 		-- end
-		
 	end
 end)
 
 if CLIENT then
-	-- local gradient = surface.GetTextureID("cw2/gui/gradient")
-		
-	-- local cwhud24 = "CW_HUD24"
-	-- local cwhud22 = "CW_HUD22"
-
-	-- CustomizableWeaponry.callbacks:addNew("overrideReserveAmmoText", "KK_INS2_BASE", function(wep)
-		-- if (CurTime() % 2) > 1 then
-			-- return true, "lolo", Color(255,100,255,255)
-		-- else
-			-- return false, "lolo", Color(200,255,0,255)
-		-- end
-	-- end)
-	
 	CustomizableWeaponry.callbacks:addNew("overrideReserveAmmoText", "KK_INS2_BASE", function(wep)
 		if !wep.KKINS2Wep then return end
 		if !wep.KKINS2RCE then return end
 		
 		return true, wep.Owner:GetAmmoCount(wep.Primary.Ammo) - 1
 	end)
-
-	-- CustomizableWeaponry.callbacks:addNew("drawTo3D2DHUD", "KK_INS2_BASE", function(wep)
-		
-	-- end)
-		
-	-- CustomizableWeaponry.callbacks:addNew("suppressHUDElements", "KK_INS2_BASE", function(wep, cwHudEnabled)
-		-- return false, false, false
-	-- end)
-
-	-- CustomizableWeaponry.callbacks:addNew("drawToHUD", "KK_INS2_BASE", function(wep, cwHudEnabled)
-		
-	-- end)
 end

@@ -37,15 +37,7 @@ if CLIENT then
 		ang:RotateAroundAxis(ang:Up(), self.LaserAngAdjust.y)
 		ang:RotateAroundAxis(ang:Forward(), self.LaserAngAdjust.r)
 		
-		local dir = ang * 1
-		
-		if not self.freeAimOn then
-			if self.dt.State == CW_AIMING and not self:isNearWall() then
-				dir.p = self.Owner:EyeAngles().p
-			end
-		end
-		
-		local fw = dir:Forward()
+		local fw = ang:Forward()
 		
 		local laserPos = pos + ang:Right() * self.LaserPosAdjust.x + ang:Forward() * self.LaserPosAdjust.y + ang:Up() * self.LaserPosAdjust.z
 		

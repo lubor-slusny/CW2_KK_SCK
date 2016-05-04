@@ -198,6 +198,16 @@ SWEP.FireDelay = 60/700
 SWEP.FireSound = "CW_KK_INS2_AKS74U_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_AKS74U_FIRE_SUPPRESSED"
 
+SWEP.Recoil = 1
+SWEP.HipSpread = 0.043
+SWEP.AimSpread = 0.005
+SWEP.VelocitySensitivity = 1.6
+SWEP.MaxSpreadInc = 0.05
+SWEP.SpreadPerShot = 0.007
+SWEP.SpreadCooldown = 0.13
+SWEP.Shots = 1
+SWEP.Damage = 33
+
 SWEP.DeployTime = 0.6
 
 SWEP.FirstDeployTime = 2
@@ -219,93 +229,3 @@ if CLIENT then
 		end
 	end
 end
-
-SWEP.HipFireFOVIncrease = 1
-SWEP.Recoil = 1
-
--- "recoil_lateral_range"			"-0.80 1.05"
--- "recoil_vertical_range"			"1.875 2.325"
-
-SWEP.HipSpread = 0.043
-SWEP.AimSpread = 0.005
-SWEP.VelocitySensitivity = 1.6
-SWEP.MaxSpreadInc = 0.05
-SWEP.SpreadPerShot = 0.007
-SWEP.SpreadCooldown = 0.13
-SWEP.Shots = 1
-SWEP.Damage = 33
-
-local ang
-
-function SWEP:MakeRecoil(mod)
-	local mod = self:GetRecoilModifier(mod)
-	
-	if (SP and SERVER) or (not SP and CLIENT) then
-		ang = self.Owner:EyeAngles()
-		ang.p = ang.p - self.Recoil * 0.5 * mod
-		ang.y = ang.y + math.Rand(-1, 1) * self.Recoil * 0.5 * mod
-	
-		self.Owner:SetEyeAngles(ang)
-	end
-
-	local freeAimOn = self:isFreeAimOn()
-	
-	if not freeAimOn or (freeAimOn and self.dt.BipodDeployed) then
-		self.Owner:ViewPunch(Angle(-self.Recoil * 1.25 * mod, 0, 0))
-	end
-	
-	if CLIENT then
-		if self.AimBreathingEnabled then
-			if self.holdingBreath then
-				self:reduceBreathAmount(mod)
-			else
-				self:reduceBreathAmount(0)
-			end
-		end
-	end
-end
-
--- function SWEP:simulateRecoil()
-	-- if self.dt.State ~= CW_AIMING and not self.freeAimOn then
-		-- self.FOVHoldTime = UnPredictedCurTime() + self.FireDelay * 2
-		
-		-- if self.HipFireFOVIncrease then
-			-- self.FOVTarget = math.Clamp(self.FOVTarget + 8 / (self.Primary.ClipSize_Orig * 0.75) * self.FOVPerShot, 0, 7)
-		-- end
-	-- end
-	
-	-- if self.freeAimOn and not self.dt.BipodDeployed then -- we only want to add the 'roll' view shake when we're not using a bipod in free-aim mode
-		-- self.lastViewRoll = math.Clamp(self.lastViewRoll + self.Recoil * 0.5, 0, 15)
-		-- self.lastViewRollTime = UnPredictedCurTime() + FrameTime() * 3
-	-- end
-	
-	-- self.lastShotTime = CurTime() + math.Clamp(self.FireDelay * 3, 0, 0.3) -- save the last time we shot
-	
-	-- if self.BoltBone then
-		-- self:offsetBoltBone()
-	-- end
-	
-	-- if self.LuaViewmodelRecoil then
-		-- if (self.dt.State ~= CW_AIMING and not self.FullAimViewmodelRecoil) or self.FullAimViewmodelRecoil then
-			-- // increase intensity of the viewmodel recoil with each shot
-			-- self.LuaVMRecoilIntensity = math.Approach(self.LuaVMRecoilIntensity, 1, self.Recoil * 0.15)
-			-- self.LuaVMRecoilLowerSpeed = 0
-			
-			-- if not self.dt.BipodDeployed then
-				-- self:makeVMRecoil()
-			-- end
-		-- end
-	-- end
-	
-	-- if self.ReticleInactivityPostFire then
-		-- self.reticleInactivity = UnPredictedCurTime() + self.ReticleInactivityPostFire
-	-- end
--- end
-
-function SWEP:fireAnimFunc()
-end
-
--- if CLIENT then
-	-- function SWEP:makeVMRecoil(mod)
-	-- end
--- end

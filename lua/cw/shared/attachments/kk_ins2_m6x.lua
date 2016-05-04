@@ -14,7 +14,6 @@ att.statModifiers = {
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
 	att.description = {
-		-- {t = "Combines... things.", c = Color(0,255,0,255)},
 		{t = "[impulse 100] cycles through modes.", c = CustomizableWeaponry.textColors.REGULAR},
 		{t = "Mode resets on re-attach.", c = CustomizableWeaponry.textColors.REGULAR},
 		-- {t = "Colors are determined by previous atts in category.", c = CustomizableWeaponry.textColors.REGULAR},
@@ -25,8 +24,6 @@ if CLIENT then
 	
 	function att:elementRender()
 		if not self.ActiveAttachments[att.name] then return end
-		
-		-- att.description[1].c[rgb[math.random(1,3)]] = math.random(255)
 		
 		mode = self._KK_INS2_LAM_MODE
 		
@@ -45,16 +42,17 @@ if CLIENT then
 		end
 		
 		if mode > 1 then
-			CustomizableWeaponry.registeredAttachmentsSKey["kk_ins2_flashlight"]._elementRender(self, lightAtt)
+			CustomizableWeaponry_KK.ins2.flashlight.v2.elementRender(self, lightAtt)
 		end
+		
+		-- CustomizableWeaponry_KK.ins2.flashlight.v6.elementRender(self, lightAtt, mode > 1)
 	end
 end
 
 function att:attachFunc()
-	CustomizableWeaponry.registeredAttachmentsSKey["kk_ins2_flashlight"].attachFunc(self)
+	CustomizableWeaponry_KK.ins2.flashlight.v2.attach(self)
 	
 	if CLIENT then
-		self._KK_INS2_LAM_MODE = 0
 		if not self.AttachmentModelsVM[att.name] then
 			self.AttachmentModelsVM["kk_ins2_flashlight"].active = true
 			self.AttachmentModelsVM["kk_ins2_lam"].active = true

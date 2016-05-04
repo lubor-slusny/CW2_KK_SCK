@@ -67,7 +67,7 @@ function SWEP:updateReloadTimes()
 end
 
 if CLIENT then
-	// ragecode, 
+	// temporary workaround (horrible hack)
 		// replace w/ customInactivity mayb?
 	function SWEP:reloadInactivity()
 		if self.ShotgunReload then
@@ -102,7 +102,9 @@ if CLIENT then
 		wep:reloadInactivity()
 	end)
 	// ========
-	
+end
+
+if CLIENT then
 	function SWEP:getGLAttName()
 		for k,v in pairs(self.ActiveAttachments) do
 			if v and CustomizableWeaponry.registeredAttachmentsSKey[k].isGrenadeLauncher then
@@ -170,6 +172,7 @@ function SWEP:hasInstalledRTScope()	// to be extended
 	res = res or self.ActiveAttachments.kk_ins2_scope_mosin
 	
 	res = res or self.ActiveAttachments.kk_ins2_cstm_acog
+	res = res or self.ActiveAttachments.kk_ins2_cstm_pgo7
 	
 	res = res or self.ActiveAttachments.kk_ins2_scope_zf4
 	

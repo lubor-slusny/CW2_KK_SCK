@@ -1,14 +1,13 @@
 if not CustomizableWeaponry then return end
+if not CustomizableWeaponry_KK.HOME then return end
 
 AddCSLuaFile()
-AddCSLuaFile("sh_sounds.lua")
 AddCSLuaFile("sh_soundscript.lua")
-include("sh_sounds.lua")
 include("sh_soundscript.lua")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "Beretta M9"
+	SWEP.PrintName = "Beretta M9 tests"
 	SWEP.CSMuzzleFlashes = true
 	
 	SWEP.IconLetter = "f"
@@ -116,6 +115,7 @@ SWEP.FireSound = "CW_KK_INS2_M9_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_M9_FIRE_SUPPRESSED"
 
 SWEP.Recoil = 0.77
+-- SWEP.Recoil = 2
 SWEP.HipSpread = 0.034
 SWEP.AimSpread = 0.012
 SWEP.VelocitySensitivity = 1.2
@@ -134,3 +134,44 @@ SWEP.ReloadHalt = 2.65
 
 SWEP.ReloadTime_Empty = 2
 SWEP.ReloadHalt_Empty = 2.65
+
+-- "recoil_lateral_range"			"-1.15 1.45"
+-- "recoil_vertical_range"			"2.55 3.6"
+-- "recoil_aim_punch"			"0.65 0.75"
+-- "recoil_rest_rate"			"4"
+-- "recoil_rest_delay"			"0.18"
+-- "recoil_roll_range"			"-1.35 -1.35"
+-- "recoil_roll_rest_rate"			"180"
+-- "recoil_shot_reset_time"		"0.75"
+-- "recoil_punch_additive_factor"		"0.85"
+
+local ang
+
+function SWEP:MakeRecoil(mod)
+	local mod = self:GetRecoilModifier(mod)
+	
+	if (SP and SERVER) or (not SP and CLIENT) then
+		ang = self.Owner:EyeAngles()
+		ang.p = ang.p - self.Recoil * 0.5 * mod
+		-- ang.y = ang.y + math.Rand(-1, 1) * self.Recoil * 0.5 * mod
+		ang.y = ang.y + math.Rand(-1.15, 1.45) * self.Recoil * 0.5 * mod
+	
+		self.Owner:SetEyeAngles(ang)
+	end
+
+	local freeAimOn = self:isFreeAimOn()
+	
+	if not freeAimOn or (freeAimOn and self.dt.BipodDeployed) then
+		self.Owner:ViewPunch(Angle(-self.Recoil * 1.25 * mod, 0, 0))
+	end
+	
+	if CLIENT then
+		if self.AimBreathingEnabled then
+			if self.holdingBreath then
+				self:reduceBreathAmount(mod)
+			else
+				self:reduceBreathAmount(0)
+			end
+		end
+	end
+end

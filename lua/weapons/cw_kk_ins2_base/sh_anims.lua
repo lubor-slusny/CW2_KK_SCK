@@ -188,7 +188,7 @@ function SWEP:fireAnimFunc()
 			// 2bd? :P
 		else
 			if self:hasInstalledRTScope() and suffix == "" then
-				cyc = 1
+				-- cyc = 1
 			end
 		end
 		suffix = suffix .. "_aim"
@@ -196,7 +196,9 @@ function SWEP:fireAnimFunc()
 	
 	self:sendWeaponAnim(prefix .. "fire" .. suffix,rate,cyc)
 end //*/
-	
+
+-- function SWEP:fireAnimFunc() end
+
 function SWEP:_holsterAnimFunc()
 	prefix = self:getForegripMode()
 	suffix = ""

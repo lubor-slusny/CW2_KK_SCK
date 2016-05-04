@@ -75,7 +75,9 @@ local function buildPanel(panel)
 end
 
 hook.Add("PopulateToolMenu", "KK_SCK_CHCTRL", function()
-	if GetConVarNumber("cw_kk_dev_menu") != 0 then
+	local cvar = GetConVar("cw_kk_dev_menu")
+	
+	if cvar and cvar:GetInt() != 0 then
 		spawnmenu.AddToolMenuOption("Utilities", "Knife Kitty", "KK_SCK_CHCTRL", "C-Hands Controller", "", "", buildPanel)
 	end
 end)
@@ -84,5 +86,4 @@ hook.Add("PostReloadToolsMenu", "KK_SCK_CHCTRL", function()
 	hook.Remove("Think", "KK_SCK_CHCTRL")
 end)
 
-// DELETE BELOW // debug code
-RunConsoleCommand("spawnmenu_reload")
+-- RunConsoleCommand("spawnmenu_reload")

@@ -1,3 +1,4 @@
+AddCSLuaFile()
 
 local PANEL
 local VM_ENT
@@ -120,7 +121,9 @@ local function KK_SCK_BGS_Think()
 end
 
 hook.Add("PopulateToolMenu", "KK_SCK_BGS", function()
-	if GetConVarNumber("cw_kk_dev_menu") != 0 then 
+	local cvar = GetConVar("cw_kk_dev_menu")
+	
+	if cvar and cvar:GetInt() != 0 then
 		spawnmenu.AddToolMenuOption("Utilities", "Knife Kitty", "KK_SCK_BGS", "Bodygroups", "", "", function(panel)
 			PANEL = panel
 			updatePanel()
@@ -134,5 +137,4 @@ hook.Add("PostReloadToolsMenu", "KK_SCK_BGS_Remove", function()
 	hook.Remove("Think", "KK_SCK_BGS_Think")
 end)
 
-// DELETE BELOW // debug code
-RunConsoleCommand("spawnmenu_reload")
+-- RunConsoleCommand("spawnmenu_reload")

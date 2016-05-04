@@ -45,14 +45,6 @@ if CLIENT then
 		["kk_ins2_cstm_acog"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_acog_m.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, retSizeMult = 0.85},
 		["kk_ins2_cstm_barska"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_barska.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_cstm_eotechxps"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_eotechxps.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		
-		["40mm_kk_1337"] = {model = "models/weapons/w_at4_projectile.mdl", bone = "GL_Round", pos = Vector(1.75,0,0), angle = Angle(0, 180, 0), size = Vector(0.85, 0.85, 0.85),
-			active = function(self)
-				local correctAmmo = CustomizableWeaponry.grenadeTypes.registered[self.Grenade40MM] and CustomizableWeaponry.grenadeTypes.registered[self.Grenade40MM].name == "40mm_kk_1337"
-				local nadeVisible = self.AttachmentModelsVM.kk_ins2_gl_gp25.active and self.M203Chamber or (self.Sequence == self.Animations.gl_on_reload and self.CW_VM:GetCycle() > 0.2)
-				return correctAmmo and nadeVisible
-			end
-		},
 	}
 
 	SWEP.AttachmentModelsWM = {
@@ -98,10 +90,10 @@ if CLIENT then
 	SWEP.KKINS2AimpointPos = Vector(-2.3114, -2, -0.4725)
 	SWEP.KKINS2AimpointAng = Vector(0, 0, 0)
 
-	SWEP.KKINS2ElcanPos = Vector(-2.3106, -3, -0.606)
+	SWEP.KKINS2ElcanPos = Vector(-2.3106, -2, -0.606)
 	SWEP.KKINS2ElcanAng = Vector(0, 0, 0)
 
-	SWEP.KKINS2PO4Pos = Vector(-2.2519, -3, -0.4049)
+	SWEP.KKINS2PO4Pos = Vector(-2.2519, -2, -0.4049)
 	SWEP.KKINS2PO4Ang = Vector(0, 0, 0)
 
 	SWEP.KKINS2MagnifierPos = Vector(-2.3084, -2, -0.5088)
@@ -240,6 +232,7 @@ SWEP.WMAng = Angle(-10, 0, 180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.f1
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.gurkha
+SWEP.CW_KK_40MM_MDL = "models/weapons/upgrades/a_projectile_gp25.mdl"
 
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted()
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()

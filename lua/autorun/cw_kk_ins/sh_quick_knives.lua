@@ -1,34 +1,4 @@
 
-// melee bind
-local meta = FindMetaTable("Player")
-
-if meta then 
-	function meta:cwkkmelee()
-		local wep = self:GetActiveWeapon()
-		
-		if !IsValid(wep) then return end
-		if !wep.CW20Weapon then return end
-		if !wep.KKINS2Wep then return end
-		
-		if CurTime() < wep:GetNextPrimaryFire() then return end
-		
-		if wep.KKINS2Melee then 
-			wep:PrimaryAttack()
-			return
-		end
-		
-		if CustomizableWeaponry_KK.ins2.canKnife(wep) then
-			if wep.ActiveAttachments.kk_ins2_ww2_knife then
-				CustomizableWeaponry_KK.ins2.meleeWW2(wep)
-			else
-				CustomizableWeaponry_KK.ins2.meleeKnife(wep)
-			end
-		end
-	end
-
-	concommand.Add("cw_kk_melee", meta.cwkkmelee)
-end
-
 local SP = game.SinglePlayer()
 
 CustomizableWeaponry_KK.ins2.quickKnives = {}
@@ -176,10 +146,10 @@ function CustomizableWeaponry_KK.ins2:meleeKnife()
 					end
 				end
 				
-				self:MakeRecoil(math.random(20,40) / 10 * math.pow(-1,math.random(2,3)))
+				self.Owner:ViewPunch(Angle(math.Rand(-5, -4), math.Rand(-2, 2), math.Rand(-1, 1)))
 			end
 			
-			self:MakeRecoil(math.random(5,10) / 10 * math.pow(-1,math.random(2,3)))
+			self.Owner:ViewPunch(Angle(math.Rand(-5, -4), math.Rand(-2, 2), math.Rand(-1, 1)))
 		end)
 	end
 end
@@ -266,12 +236,49 @@ function CustomizableWeaponry_KK.ins2:meleeWW2()
 				end
 			end
 			
-			self:MakeRecoil(math.random(20,40) / 10 * math.pow(-1,math.random(2,3)))
+			self.Owner:ViewPunch(Angle(math.Rand(-5, -4), math.Rand(-2, 2), math.Rand(-1, 1)))
 		else
-			self:MakeRecoil(math.random(5,10) / 10 * math.pow(-1,math.random(2,3)))				
+			self.Owner:ViewPunch(Angle(math.Rand(-5, -4), math.Rand(-2, 2), math.Rand(-1, 1)))
 		end
 		
 	end
 end
 
+// concommand
 
+local function cw_kk_melee(ply)
+	print("Qnife call;", ply)
+	
+	if !IsValid(ply) then return end
+	
+	local wep = ply:GetActiveWeapon()
+	if !IsValid(wep) then return end
+	if !wep.CW20Weapon then return end
+	if !wep.KKINS2Wep then return end
+	
+	if CurTime() < wep:GetNextPrimaryFire() then return end
+	if not wep:canFireWeapon(1) then return end
+	
+	if wep.KKINS2Melee then 
+		wep:PrimaryAttack()
+		return
+	end
+	
+	if CustomizableWeaponry_KK.ins2.canKnife(wep) then
+		if wep.ActiveAttachments.kk_ins2_ww2_knife then
+			CustomizableWeaponry_KK.ins2.meleeWW2(wep)
+		else
+			CustomizableWeaponry_KK.ins2.meleeKnife(wep)
+		end
+	end
+end
+
+concommand.Add(
+	"cw_kk_melee",
+	cw_kk_melee,
+	nil, 
+	"CW2 KK INS2 Melee attack"
+	-- ,{FCVAR_REPLICATED}
+	-- ,{FCVAR_CLIENTCMD_CAN_EXECUTE}
+	,{FCVAR_REPLICATED, FCVAR_CLIENTCMD_CAN_EXECUTE}
+)

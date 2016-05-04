@@ -22,6 +22,26 @@ function ENT:clusterFuckRackit()
 		phys:SetVelocity(self:GetVelocity() + VectorRand() * 300)
 		phys:AddAngleVelocity(Vector(math.random(-500, 500), math.random(-500, 500), math.random(-500, 500)))
 	end
+	
+	// KEK
+	local ply = self.Owner
+	local ent = ents.Create("gmod_cameraprop")
+	print(ent)
+	if !IsValid(ent) then return end
+	ent:SetKey(0)
+	ent.controlkey = 0
+	ent:SetPlayer(ply)
+	ent.toggle = 0
+	ent.locked = 0
+	ent:Spawn()
+	ent:SetTracking(NULL, Vector(0))
+	ent:SetLocked(0)
+	
+	ply:SetViewEntity(ent)
+	ply.UsingCamera = ent
+	ent.UsingPlayer = ply
+	
+	self.cum = ent
 end
 
 function ENT:clusterFuckHENade()
@@ -81,6 +101,11 @@ function ENT:clusterFuckNades()
 end
 
 function ENT:Think()
+	if IsValid(self.cum) then
+		self.cum:SetPos(self:GetPos())
+		self.cum:SetAngles(self:GetAngles())
+	end
+	
 	self:SetBodygroup(0,1)
 		
 	if self.dt.State == self.States.misfired then 
@@ -141,6 +166,7 @@ function ENT:Use(activator, caller)
 end
 
 function ENT:OnRemove()
+	SafeRemoveEntity(self.cum)
 	return false
 end 
 
