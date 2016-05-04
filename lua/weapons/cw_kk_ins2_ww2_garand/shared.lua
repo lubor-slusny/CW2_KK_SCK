@@ -42,6 +42,8 @@ if CLIENT then
 	SWEP.CustomizationMenuScale = 0.02
 end
 
+SWEP.WeaponLength = 22
+
 SWEP.Attachments = {
 	-- {header = "Sight", offset = {500, -500}, atts = {"kk_ins2_cstm_barska", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_cstm_acog", "kk_ins2_po4", "kk_ins2_scope_mosin", "kk_ins2_scope_m40"}},
 	{header = "Sight", offset = {500, -500}, atts = {"kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_scope_zf4"}},

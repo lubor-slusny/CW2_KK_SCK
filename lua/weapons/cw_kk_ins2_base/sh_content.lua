@@ -135,13 +135,27 @@ do
 		stat.desc = "Minimal distance allowed between weapon and target.\nMoving closer to your target will holster your weapon.\nSuppressors and barrel modifications affect this stat."
 		stat.reverse = true
 
+		function stat:compare(wep)
+			local var1, var2 = wep[self.varName], wep[self.origVarName]
+
+			if !var1 or !var2 then 
+				return CustomizableWeaponry.textColors.REGULAR 
+			end
+			
+			if var1 < var2 then
+				return CustomizableWeaponry.textColors.POSITIVE
+			elseif var1 > var2 then
+				return CustomizableWeaponry.textColors.NEGATIVE
+			end
+		end
+		
 		local out
 		
 		function stat:textFunc(wep)
 			out = "N/A"
 			
 			if wep.WeaponLength then
-				out = wep.WeaponLength .. "u"
+				out = (math.Round(wep.WeaponLength * 0.0254, 2)) .. "M"
 			end
 			
 			return out
@@ -151,7 +165,7 @@ do
 			out = "N/A"
 			
 			if wep.WeaponLength_Orig then
-				out = wep.WeaponLength_Orig .. "u"
+				out = (math.Round(wep.WeaponLength_Orig * 0.0254, 2)) .. "M"
 			end
 			
 			return out
@@ -294,4 +308,26 @@ if CustomizableWeaponry_KK.HOME then
 	end
 
 	CustomizableWeaponry.grenadeTypes:addNew(gren)	
+	
+	// magnuss
+	local gren = {}
+	gren.name = "40mm_kk_1339"
+	gren.display = " - ANTI-STRIDER"
+
+	function gren:fireFunc()
+		CustomizableWeaponry_KK.ins2.fireHL2EP2(self, IsFirstTimePredicted())
+	end
+
+	CustomizableWeaponry.grenadeTypes:addNew(gren)
+	
+	// balls
+	local gren = {}
+	gren.name = "40mm_kk_13399"
+	gren.display = " - BALLSBALLSBALLSBALLS"
+
+	function gren:fireFunc()
+		CustomizableWeaponry_KK.ins2.fireHL2EP1(self, IsFirstTimePredicted())
+	end
+
+	CustomizableWeaponry.grenadeTypes:addNew(gren)
 end

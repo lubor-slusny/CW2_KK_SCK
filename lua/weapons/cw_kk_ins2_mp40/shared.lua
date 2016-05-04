@@ -87,6 +87,8 @@ if CLIENT then
 
 end
 
+SWEP.WeaponLength = 16 // this things gotta b longer than MP5k
+
 SWEP.Attachments = {
 	-- {header = "Sight", offset = {300, -500}, atts = {"kk_ins2_cstm_barska", "kk_ins2_aimpoint"}},
 	{header = "Sight", offset = {300, -500}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_po4"}},

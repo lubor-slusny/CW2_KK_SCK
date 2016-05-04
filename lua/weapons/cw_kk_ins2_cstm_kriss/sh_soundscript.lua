@@ -2,8 +2,10 @@
 SWEP.Sounds = {
 	base_ready = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-		{time = 12/30, sound = "CW_KK_INS2_MP5K_BOLTLOCK"},
-		{time = 13/30, sound = "CW_KK_INS2_MP5K_BOLTRELEASE"},
+		{time = 18/30, sound = "CW_KK_INS2_MP5K_BOLTLOCK"},
+		{time = 23/30, sound = "CW_KK_INS2_MP5K_BOLTBACK"},
+		{time = 35/30, sound = "CW_KK_INS2_MP5K_BOLTRELEASE"},
+		{time = 50/30, sound = "CW_KK_INS2_GALIL_RATTLE"},
 	},
 
 	base_draw = {
@@ -14,28 +16,33 @@ SWEP.Sounds = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
 	},
 
+	base_crawl = {
+		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
+		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
+	},
+
 	base_dryfire = {
 		{time = 0, sound = "CW_KK_INS2_MP5K_EMPTY"},
 	},
 
 	base_fireselect = {
-		{time = 6/30, sound = "CW_KK_INS2_MP5K_FIRESELECT"},
+		{time = 12/30, sound = "CW_KK_INS2_MP5K_FIRESELECT"},
 	},
 
 	base_reload = {
-		{time = 19/30, sound = "CW_KK_INS2_MP5K_MAGRELEASE"},
-		{time = 24/30, sound = "CW_KK_INS2_MP5K_MAGOUT"},
-		{time = 70/30, sound = "CW_KK_INS2_MP5K_MAGIN"},
+		{time = 18/31.89, sound = "CW_KK_INS2_MP5K_MAGRELEASE"},
+		{time = 20/31.89, sound = "CW_KK_INS2_MP5K_MAGOUT"},
+		{time = 66/31.89, sound = "CW_KK_INS2_MP5K_MAGIN"},
+		-- { event 46 67 ""},
 	},
 
 	base_reloadempty = {
-		{time = 12/30, sound = "CW_KK_INS2_MP5K_BOLTBACK"},
-		{time = 18/30, sound = "CW_KK_INS2_MP5K_BOLTLOCK"},
-		{time = 40/30, sound = "CW_KK_INS2_MP5K_MAGRELEASE"},
-		{time = 47/30, sound = "CW_KK_INS2_MP5K_MAGOUT"},
-		{time = 94/30, sound = "CW_KK_INS2_MP5K_MAGIN"},
-		{time = 113/30, sound = "CW_KK_INS2_MP5K_BOLTLOCK"},
-		{time = 114/30, sound = "CW_KK_INS2_MP5K_BOLTRELEASE"},
+		{time = 18/30, sound = "CW_KK_INS2_MP5K_MAGRELEASE"},
+		{time = 20/30, sound = "CW_KK_INS2_MP5K_MAGOUT"},
+		{time = 76/30, sound = "CW_KK_INS2_MP5K_MAGIN"},
+		-- { event 46 77 ""},
+		{time = 99/30, sound = "CW_KK_INS2_GALIL_RATTLE"},
+		{time = 107/30, sound = "CW_KK_INS2_MP5K_BOLTRELEASE"},
 	},
 
 	iron_dryfire = {
@@ -43,6 +50,6 @@ SWEP.Sounds = {
 	},
 
 	iron_fireselect = {
-		{time = 6/30, sound = "CW_KK_INS2_MP5K_FIRESELECT"},
+		{time = 12/30, sound = "CW_KK_INS2_MP5K_FIRESELECT"},
 	},
 }

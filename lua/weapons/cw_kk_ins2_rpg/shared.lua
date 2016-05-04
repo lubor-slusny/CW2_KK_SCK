@@ -19,6 +19,8 @@ if CLIENT then
 		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_sterling.mdl", bone = "RPG_Body", pos = Vector(-1.795, -11.804, -2.003), angle = Angle(0, -90, -180), size = Vector(0.899, 0.899, 0.899)},
 		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_sterling.mdl", bone = "RPG_Body", pos = Vector(-1.795, -11.804, -2.003), angle = Angle(0, -90, -180), size = Vector(0.899, 0.899, 0.899)},
 		
+		["kk_ins2_cstm_pgo7"] = { type = "Model", model = "models/weapons/attachments/v_cw_kk_ins2_cstm_pgo7.mdl", bone = "RPG_Body", rel = "", pos = Vector(1.052, -1.989, -0.811), angle = Angle(0, -90, 0), size = Vector(0.949, 0.949, 0.949)},
+		
 		["kk_counter"] = {model = "models/weapons/stattrack.mdl", bone = "RPG_Body", pos = Vector(0.605, -2.793, 2.559), angle = Angle(0, 0, 0), size = Vector(0.28, 0.28, 0.28)},
 	}
 	
@@ -32,20 +34,23 @@ if CLIENT then
 	
 	SWEP.LaserAngAdjust = Angle(0,-1,0)
 	
-	SWEP.IronsightPos = Vector(-2.1193, -2, -0.9167) // cod stayle
-	SWEP.IronsightAng = Vector(2.7606, 0.032, 0)
+	-- SWEP.IronsightPos = Vector(-2.1193, -2, -0.9167) // cod stayle
+	-- SWEP.IronsightAng = Vector(2.7606, 0.032, 0)
 
-	SWEP.IronsightPos = Vector(-2.1193, -2, -0.9167) // zeroed for rpg drop
-	SWEP.IronsightAng = Vector(1.5694, 0.032, 0)
+	-- SWEP.IronsightPos = Vector(-2.1193, -2, -0.9167) // zeroed for rpg drop
+	-- SWEP.IronsightAng = Vector(1.5694, 0.032, 0)
 
 	SWEP.IronsightPos = Vector(-2.1193, -2, -0.9167) // rpg drop got fixed
 	SWEP.IronsightAng = Vector(2.6952, 0.0549, 0)
 
-	SWEP.SprintPos = Vector(0, -1, 0)
-	SWEP.SprintAng = Vector(1.8, 0, 0)
+	SWEP.KKINS2CSTMPGO7Pos = Vector(-0.8264, -1, -0.3879)
+	SWEP.KKINS2CSTMPGO7Ang = Vector(2.6952, -0.3054, 7.5)
+
+	-- SWEP.SprintPos = Vector(0, -1, 0)
+	-- SWEP.SprintAng = Vector(1.8, 0, 0)
 	
-	SWEP.AlternativePos = Vector(0, -1, 0)
-	SWEP.AlternativeAng = Vector(1.8, 0, 0)
+	-- SWEP.AlternativePos = Vector(0, -1, 0)
+	-- SWEP.AlternativeAng = Vector(1.8, 0, 0)
 	
 	SWEP.SprintAnimSpeed = 1
 	SWEP.ViewModelMovementScale_sprint = 0.6
@@ -56,15 +61,15 @@ if CLIENT then
 end
 
 SWEP.Chamberable = false
+SWEP.WeaponLength = 44
 
 SWEP.Attachments = {
-	-- {header = "Nope, no attachments for this one.", offset = {-250, 0}, atts = {}},
-	-- {header = "Just sit back and enjoy awsum rpg rockets.", offset = {-250, 75}, atts = {}}
-	{header = "Sry, this had to happen.", offset = {300, -500}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_combo"}},
+	{header = "Sight", offset = {300, -500}, atts = {"kk_ins2_cstm_pgo7"}},
+	{header = "Extras", offset = {300, 100}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_combo"}},
 }
 
 if CustomizableWeaponry_KK.HOME then
-	table.insert(SWEP.Attachments, {header = "CSGO", offset = {300, 100}, atts = {"kk_counter"}})
+	table.insert(SWEP.Attachments, {header = "CSGO", offset = {1000, -500}, atts = {"kk_counter"}})
 end
 
 SWEP.KKINS_emptyIdle = true

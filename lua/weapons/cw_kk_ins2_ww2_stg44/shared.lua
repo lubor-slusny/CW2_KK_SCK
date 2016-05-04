@@ -23,6 +23,8 @@ if CLIENT then
 
 end
 
+SWEP.WeaponLength = 22
+
 SWEP.Attachments = {
 	["+reload"] = {header = "Ammo", offset = {700, 300}, atts = {"am_magnum", "am_matchgrade"}}
 }

@@ -19,6 +19,7 @@ if CLIENT then
 end
 
 SWEP.CanRestOnObjects = false
+SWEP.WeaponLength = 0
 	
 -- SWEP.SprintingEnabled = false
 SWEP.AimingEnabled = false

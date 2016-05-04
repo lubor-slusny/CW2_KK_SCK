@@ -12,7 +12,8 @@ att.statModifiers = {
 	OverallMouseSensMult = -0.1,
 	DamageMult = 0.1,
 	RecoilMult = -0.2,
-	FireDelayMult = -0.071
+	FireDelayMult = -0.071,
+	WeaponLength = -4
 }
 
 if CLIENT then

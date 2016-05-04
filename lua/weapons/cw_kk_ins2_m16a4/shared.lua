@@ -110,6 +110,8 @@ if CLIENT then
 	SWEP.CustomizationMenuScale = 0.018
 end
 
+SWEP.WeaponLength = 24
+
 SWEP.SightBGs = {main = 0, foldsight = 0}
 
 SWEP.Attachments = {

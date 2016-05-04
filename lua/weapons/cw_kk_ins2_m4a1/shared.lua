@@ -124,6 +124,8 @@ if CLIENT then
 	SWEP.KKINS2CSTMACOGAng = Vector(0, 0, 0)
 end
 
+SWEP.WeaponLength = 22
+
 SWEP.SightBGs = {main = 0, foldsight = 0}
 
 SWEP.Attachments = {

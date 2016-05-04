@@ -117,6 +117,8 @@ if CLIENT then
 	SWEP.KKINS2CSTMACOGAng = Vector(0, 0, 0)
 end
 
+SWEP.WeaponLength = 20
+
 SWEP.Attachments = {
 	{header = "Sight", offset = {400, -600}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_po4"}},
 	-- {header = "Sight", offset = {400, -600}, atts = {"kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_microt1", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"}},

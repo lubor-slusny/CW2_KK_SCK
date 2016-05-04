@@ -153,6 +153,8 @@ if CLIENT then
 end
 
 SWEP.BipodInstalled = true
+SWEP.WeaponLength = 26
+-- SWEP.WeaponLength = 22 // sopmod
 
 SWEP.Attachments = {
 	-- {header = "Sight", offset = {600, -500}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_po4"}},

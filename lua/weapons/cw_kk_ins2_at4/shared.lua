@@ -40,6 +40,7 @@ end
 
 SWEP.Chamberable = false
 SWEP.CanCustomize = false
+SWEP.WeaponLength = 40
 
 SWEP.Attachments = {
 	{header = "Nope, no attachments for this one.", offset = {-250, 0}, atts = {}},

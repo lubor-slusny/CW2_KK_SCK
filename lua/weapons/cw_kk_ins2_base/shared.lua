@@ -46,7 +46,7 @@ SWEP.TSGlass = Material("models/weapons/optics/lense_rt")
 
 SWEP.KKINS2Wep = true
 SWEP.FirstDeployTime = 5
-SWEP.WeaponLength = 30
+SWEP.WeaponLength = 20
 
 SWEP.AttachmentExclusions = {
 	["bg_foldsight"] = {"kk_ins2_magnifier"},

@@ -31,6 +31,7 @@ end
 
 SWEP.Chamberable = false
 SWEP.BipodInstalled = true
+SWEP.WeaponLength = 26
 
 SWEP.Attachments = {
 	["+reload"] = {header = "Ammo", offset = {200, 600}, atts = {"am_magnum", "am_matchgrade"}}
@@ -110,6 +111,9 @@ SWEP.SpreadPerShot = 0.007
 SWEP.SpreadCooldown = 0.13
 SWEP.Shots = 1
 SWEP.Damage = 28
+
+SWEP.BipodDeployTime = 2.18
+SWEP.BipodUndeployTime = 1.73
 
 SWEP.FirstDeployTime = 3.13
 SWEP.DeployTime = 0.83

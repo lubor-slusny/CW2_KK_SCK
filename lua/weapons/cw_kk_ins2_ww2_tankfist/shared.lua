@@ -32,14 +32,10 @@ if CLIENT then
 end
 
 SWEP.Chamberable = false
+SWEP.WeaponLength = 35
 
 SWEP.Attachments = {
-	-- {header = "Sry, this had to happen.", offset = {300, -500}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_combo"}},
 }
-
--- if CustomizableWeaponry_KK.HOME then
-	-- table.insert(SWEP.Attachments, {header = "CSGO", offset = {800, 0}, atts = {"kk_counter"}})
--- end
 
 SWEP.KKINS_emptyIdle = true
 

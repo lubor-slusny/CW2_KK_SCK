@@ -38,6 +38,7 @@ if CLIENT then
 end
 
 SWEP.CanRestOnObjects = false
+SWEP.WeaponLength = 16
 
 SWEP.Attachments = {
 	{header = "Extras", offset = {500, -400}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_combo"}},

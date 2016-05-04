@@ -40,6 +40,8 @@ if CLIENT then
 
 end
 
+SWEP.WeaponLength = 16
+
 SWEP.Attachments = {
 	-- {header = "Sight", offset = {500, -500}, atts = {"kk_ins2_cstm_barska", "kk_ins2_aimpoint"}},
 	-- {header = "Barrel", offset = {-200, -500}, atts = {"md_saker"}},

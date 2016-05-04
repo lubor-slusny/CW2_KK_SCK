@@ -24,6 +24,8 @@ if CLIENT then
 	SWEP.KKINS_implicitBipod = true
 end
 
+SWEP.WeaponLength = 28
+
 SWEP.Attachments = {
 	["+reload"] = {header = "Ammo", offset = {700, 300}, atts = {"am_magnum", "am_matchgrade"}}
 }
@@ -108,6 +110,9 @@ SWEP.SpreadPerShot = 0.01
 SWEP.SpreadCooldown = 0.12
 SWEP.Shots = 1
 SWEP.Damage = 42
+
+SWEP.BipodDeployTime = 0.91
+SWEP.BipodUndeployTime = 1.16
 
 SWEP.FirstDeployTime = 2.53
 SWEP.DeployTime = 1.36

@@ -306,7 +306,7 @@ td.maxs = maxs
 
 function SWEP:isNearWall()
 	td.start = self.Owner:GetShootPos()
-	td.endpos = td.start + self.Owner:EyeAngles():Forward() * self.WeaponLength
+	td.endpos = td.start + self.Owner:EyeAngles():Forward() * (self.WeaponLength + 10)
 	td.filter = self.Owner
 	
 	local tr = util.TraceLine(td)

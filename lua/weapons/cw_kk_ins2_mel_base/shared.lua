@@ -10,6 +10,8 @@ if CLIENT then
 	SWEP.IconLetter = "j"
 end
 
+SWEP.WeaponLength = 0
+
 SWEP.Base = "cw_kk_ins2_base"
 SWEP.Category = "CW 2.0 KK INS2"
 

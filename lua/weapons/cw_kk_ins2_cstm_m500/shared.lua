@@ -81,6 +81,8 @@ SWEP.ShotgunReload = true
 SWEP.ReticleInactivityPostFire = 1
 SWEP.GlobalDelayOnShoot = 0.8
 
+SWEP.WeaponLength = 16
+
 SWEP.Attachments = {
 	{header = "Sight", offset = {500, -450}, atts = {"kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_aimpoint"}},
 	{header = "Barrel", offset = {-200, -450}, atts = {"kk_ins2_suppressor_shotgun"}},

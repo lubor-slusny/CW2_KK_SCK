@@ -1,0 +1,16 @@
+"VertexLitGeneric"
+{
+	"$basetexture"	"models/weapons/attachments/cw_kk_ins2_cstm_pgo7/pgo7_d"
+	"$bumpmap"	"models/weapons/attachments/cw_kk_ins2_cstm_pgo7/pgo7_n"
+	// "$bumpmap"	"models/weapons/attachments/cw_kk_ins2_cstm_pgo7/pgo7_n_rgba8888"
+	
+	"$envmap"	"env_cubemap"
+	"$envmaptint"	"[.05 .05 .05]"
+	"$normalmapalphaenvmapmask"	"1"
+
+	"$phong"	"1"
+	"$phongboost"	"1.5"
+	"$phongexponent"	"74"
+	"$phongfresnelranges"	"[.25 2 4]"
+	"$phongtint"	"[.6 .8 1]"
+}

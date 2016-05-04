@@ -125,6 +125,9 @@ if CLIENT then
 	SWEP.CustomizationMenuScale = 0.016
 end
 
+SWEP.WeaponLength = 28
+-- SWEP.WeaponLength = 24 // SAR
+
 SWEP.Attachments = {
 	-- {header = "Sight", offset = {300, -600}, atts = {"kk_ins2_cstm_barska", "kk_ins2_cstm_eotechxps", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"}},
 	{header = "Sight", offset = {500, -600}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_po4"}},

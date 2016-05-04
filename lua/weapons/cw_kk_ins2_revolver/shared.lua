@@ -34,6 +34,7 @@ end
 SWEP.CanRestOnObjects = false
 SWEP.Chamberable = false
 SWEP.ShotgunReload = true
+SWEP.WeaponLength = 16
 
 SWEP.Attachments = {
 	-- {header = "Barrel", offset = {-500, -400}, atts = {"md_cobram2"}},
