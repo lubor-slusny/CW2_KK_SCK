@@ -1,4 +1,34 @@
 
+// melee bind
+local meta = FindMetaTable("Player")
+
+if meta then 
+	function meta:cwkkmelee()
+		local wep = self:GetActiveWeapon()
+		
+		if !IsValid(wep) then return end
+		if !wep.CW20Weapon then return end
+		if !wep.KKINS2Wep then return end
+		
+		if CurTime() < wep:GetNextPrimaryFire() then return end
+		
+		if wep.KKINS2Melee then 
+			wep:PrimaryAttack()
+			return
+		end
+		
+		if CustomizableWeaponry_KK.ins2.canKnife(wep) then
+			if wep.ActiveAttachments.kk_ins2_ww2_knife then
+				CustomizableWeaponry_KK.ins2.meleeWW2(wep)
+			else
+				CustomizableWeaponry_KK.ins2.meleeKnife(wep)
+			end
+		end
+	end
+
+	concommand.Add("cw_kk_melee", meta.cwkkmelee)
+end
+
 local SP = game.SinglePlayer()
 
 CustomizableWeaponry_KK.ins2.quickKnives = {}
@@ -196,8 +226,10 @@ function CustomizableWeaponry_KK.ins2:meleeWW2()
 	
 	if IsFirstTimePredicted() then
 		self:meleeAnimFunc()
-		self:SetNextPrimaryFire(CurTime() + 1)
 		
+		self:setGlobalDelay(1)
+		self:SetNextPrimaryFire(CurTime() + 1)
+	
 		if SERVER and SP then
 			SendUserMessage("CW20_KK_INS_RETICLEINACTIVITY", self.Owner)
 		end

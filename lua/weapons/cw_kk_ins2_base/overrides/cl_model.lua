@@ -269,6 +269,10 @@ function SWEP:setupAttachmentModels()
 					v.ent:SetSubMaterial(i - 1, "models/weapons/attachments/cw_kk_ins2_shared/nodraw")
 				end
 			end
+			
+			if v.material then 
+				v.ent:SetMaterial(v.material)
+			end
 		end
 	end
 	

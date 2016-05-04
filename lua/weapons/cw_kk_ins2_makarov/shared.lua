@@ -22,6 +22,12 @@ if CLIENT then
 		
 		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_mak.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_mak.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_m6x"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_m6x.mdl", bone = "Weapon", pos = Vector(-0.051, 1.011, -1.127), angle = Angle(0, -90, 0), size = Vector(0.85, 0.85, 0.85)},
+		
+		["kk_ins2_m6x_rail"] = {model = "models/cw2/attachments/lowerpistolrail.mdl", bone = "Weapon", pos = Vector(-0.049, 0.575, -0.477), angle = Angle(0, 90, 0), size = Vector(0.119, 0.119, 0.119), 
+			material = "models/weapons/attachments/cw_kk_ins2_cstm_m6x/rail_gy",
+			active = function(self) return self.ActiveAttachments.kk_ins2_m6x end
+		},
 	}
 
 	SWEP.AttachmentModelsWM = {
@@ -46,7 +52,7 @@ SWEP.CanRestOnObjects = false
 SWEP.WeaponLength = 14
 
 SWEP.Attachments = {
-	{header = "Extras", offset = {500, -400}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_combo"}},
+	{header = "Extras", offset = {500, -400}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_m6x"}},
 	{header = "Barrel", offset = {-500, -400}, atts = {"kk_ins2_suppressor_pistol"}},
 	{header = "MagZ", offset = {-500, 50}, atts = {"kk_ins2_mag_makarov_15"}},
 	["+reload"] = {header = "Ammo", offset = {500, 50}, atts = {"am_magnum", "am_matchgrade"}}

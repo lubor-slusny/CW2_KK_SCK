@@ -39,7 +39,11 @@ SWEP.Instructions	= "dont spawn this directly, have phun"
 SWEP.Spawnable			= false
 SWEP.AdminSpawnable		= false
 
-SWEP.LuaViewmodelRecoil = true
+SWEP.LuaViewmodelRecoil = false
+SWEP.FullAimViewmodelRecoil = false
+-- SWEP.LuaVMRecoilAxisMod = {hor = 0, vert = 0, roll = 0, forward = 0}
+SWEP.FireMoveMod = 0
+
 SWEP.BipodDeployTime = 1.15
 SWEP.BipodUndeployTime = 1.15
 SWEP.TSGlass = Material("models/weapons/optics/lense_rt")
@@ -67,7 +71,7 @@ SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.m67
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.bayonet
 	
 if CLIENT then	
-	SWEP.PosBasedMuz = false
+	SWEP.PosBasedMuz = true
 	
 	SWEP.MuzzleAttachmentName = "muzzle"
 	SWEP.ShellAttachmentName = "shell"

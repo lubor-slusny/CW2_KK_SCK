@@ -23,6 +23,9 @@ function att:attachFunc()
 	if CLIENT then
 		self.CW_VM:SetModel("models/weapons/v_galil_sar.mdl")
 		self.WMEnt:SetModel("models/weapons/w_galil_sar.mdl")
+		
+		self.AttachmentModelsVM.kk_ins2_vertgrip.ent:SetModel("models/weapons/upgrades/a_foregrip_sec2.mdl")
+		
 		-- self.DrawCustomWM = true
 	end
 	
@@ -34,6 +37,9 @@ function att:detachFunc()
 	if CLIENT then
 		self.CW_VM:SetModel("models/weapons/v_galil.mdl")
 		self.WMEnt:SetModel("models/weapons/w_galil.mdl")
+		
+		self.AttachmentModelsVM.kk_ins2_vertgrip.ent:SetModel("models/weapons/upgrades/a_foregrip_ins.mdl")
+		
 		-- self.DrawCustomWM = false
 	end
 	

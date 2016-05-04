@@ -16,15 +16,15 @@ end
 
 // LUA VM Recoil only for RT scopes
 
-function SWEP:simulateRecoil()
-	if self:hasInstalledRTScope() and (self:isAiming() or self.ShotgunReload) then
-		weapons.GetStored("cw_base").simulateRecoil(self)
-	end
+-- function SWEP:simulateRecoil()
+	-- if self:hasInstalledRTScope() and (self:isAiming() or self.ShotgunReload) then
+		-- weapons.GetStored("cw_base").simulateRecoil(self)
+	-- end
 	
-	if self.ReticleInactivityPostFire then
-		self.reticleInactivity = UnPredictedCurTime() + self.ReticleInactivityPostFire
-	end
-end
+	-- if self.ReticleInactivityPostFire then
+		-- self.reticleInactivity = UnPredictedCurTime() + self.ReticleInactivityPostFire
+	-- end
+-- end
 
 // firemode switch animations and reticle inactivity
 

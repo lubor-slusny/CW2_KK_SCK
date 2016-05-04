@@ -1,11 +1,7 @@
 if not CustomizableWeaponry then return end
-
 AddCSLuaFile()
 
-/*
- *	It is a copy pasta.
- *	Sry bout dat.
- */
+SWEP.KKINS2Nade = true
 
 if CLIENT then	
 	SWEP.DrawCrosshair = false
@@ -19,7 +15,6 @@ if CLIENT then
 end
 
 SWEP.CanRestOnObjects = false
-SWEP.WeaponLength = 0
 	
 -- SWEP.SprintingEnabled = false
 SWEP.AimingEnabled = false
@@ -28,8 +23,6 @@ SWEP.AccuracyEnabled = false
 
 SWEP.Attachments = {}
 SWEP.Sounds = {}
-
-SWEP.SpeedDec = 5
 
 SWEP.Slot = 1
 SWEP.SlotPos = 0
@@ -59,15 +52,17 @@ SWEP.Primary.Ammo			= ""
 
 SWEP.HipSpread = 0.045
 SWEP.AimSpread = 0.045
-SWEP.VelocitySensitivity = 0
-SWEP.MaxSpreadInc = 0
-SWEP.SpreadPerShot = 0
-SWEP.SpreadCooldown = 0
-SWEP.Shots = 1
-SWEP.Damage = 56
+SWEP.VelocitySensitivity = 0.001
+SWEP.MaxSpreadInc = 0.001
+SWEP.SpreadPerShot = 0.001
+SWEP.SpreadCooldown = 0.001
+SWEP.Recoil = 3
 
 SWEP.FirstDeployTime = 0.5
 SWEP.DeployTime = 0.5
+
+SWEP.SpeedDec = 0
+SWEP.WeaponLength = 0
 
 SWEP.timeToThrow = 0.7
 SWEP.swapTime = 0.4

@@ -11,8 +11,6 @@ if CLIENT then
 	SWEP.PrintName = "AKS74U"
 	SWEP.CSMuzzleFlashes = true
 	
-	SWEP.ViewModelMovementScale = 1.15
-	
 	SWEP.IconLetter = "b"
 	
 	SWEP.MuzzleEffect = "muzzleflash_ak74"
@@ -116,8 +114,6 @@ if CLIENT then
 	SWEP.CustomizationMenuScale = 0.0145
 end
 
-SWEP.WeaponLength = 16
-
 SWEP.Attachments = {
 	{header = "Sight", offset = {400, -500}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_po4"}},
 	-- {header = "Sight", offset = {400, -500}, atts = {"kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_microt1", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"}},
@@ -134,7 +130,8 @@ SWEP.Animations = {
 	base_pickup = "base_ready",
 	base_draw = "base_draw",
 	base_fire = "base_fire",
-	base_fire_aim = {"iron_fire","iron_fire_a","iron_fire_b","iron_fire_c","iron_fire_d","iron_fire_e","iron_fire_f"},
+	-- base_fire_aim = {"iron_fire","iron_fire_a","iron_fire_b","iron_fire_c","iron_fire_d","iron_fire_e","iron_fire_f"},
+	base_fire_aim = nil,
 	base_fire_empty = "base_dryfire",
 	base_fire_empty_aim = "iron_dryfire",
 	base_reload = "base_reload",
@@ -162,13 +159,6 @@ SWEP.Animations = {
 	foregrip_sprint = "foregrip_sprint",
 	foregrip_safe = "foregrip_down",
 	foregrip_safe_aim = "foregrip_iron_down",
-}
-
-SWEP.ReloadTimes = {
-	base_reload = {2.2, 3.15},
-	base_reloadempty = {2.2, 4.35},
-	foregrip_reload = {2.2, 3.15},
-	foregrip_reloadempty = {2.2, 4.35}
 }
 
 SWEP.SpeedDec = 30
@@ -208,7 +198,14 @@ SWEP.Primary.Ammo			= "5.45x39MM"
 SWEP.FireDelay = 60/700
 SWEP.FireSound = "CW_KK_INS2_AKS74U_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_AKS74U_FIRE_SUPPRESSED"
-SWEP.Recoil = 1.2
+SWEP.Recoil = 0
+
+-- SWEP.LuaViewmodelRecoil = false
+-- SWEP.FullAimViewmodelRecoil = false
+-- SWEP.LuaVMRecoilAxisMod = {hor = 0, vert = 0, roll = 0, forward = 0}
+-- SWEP.FireMoveMod = 0
+-- "recoil_lateral_range"			"-0.80 1.05"
+-- "recoil_vertical_range"			"1.875 2.325"
 
 SWEP.HipSpread = 0.043
 SWEP.AimSpread = 0.005
@@ -221,6 +218,15 @@ SWEP.Damage = 33
 
 SWEP.FirstDeployTime = 2
 SWEP.DeployTime = 0.6
+
+SWEP.WeaponLength = 16
+
+SWEP.ReloadTimes = {
+	base_reload = {2.2, 3.15},
+	base_reloadempty = {2.2, 4.35},
+	foregrip_reload = {2.2, 3.15},
+	foregrip_reloadempty = {2.2, 4.35}
+}
 
 if CLIENT then 
 	function SWEP:updateOtherParts()

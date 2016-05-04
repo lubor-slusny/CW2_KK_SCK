@@ -1,7 +1,7 @@
 
 local switchableAttachments = {
 	["kk_ins2_anpeq15"] = 2,
-	["kk_ins2_combo"] = 2,
+	["kk_ins2_m6x"] = 2,
 	["kk_ins2_flashlight"] = 1,
 	["kk_ins2_lam"] = 1,
 }

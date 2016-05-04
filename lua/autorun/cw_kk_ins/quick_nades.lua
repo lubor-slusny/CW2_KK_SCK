@@ -1,4 +1,38 @@
 
+// qnade throw bind
+local meta = FindMetaTable("Player")
+
+if meta then 
+	function meta:cwkkqnade()
+		local wep = self:GetActiveWeapon()
+		
+		if !IsValid(wep) then return end
+		if !wep.CW20Weapon then return end
+		
+		if wep.KKINS2Wep then
+			if wep.KKINS2Nade then
+				wep:PrimaryAttack()
+				return
+			end
+			
+			if CustomizableWeaponry_KK.ins2.canThrow(wep) then
+				CustomizableWeaponry_KK.ins2.throwGrenade(wep)
+			end
+		else
+			if wep.Base == "cw_grenade_base" then
+				wep:PrimaryAttack()
+				return
+			end
+			
+			if CustomizableWeaponry.quickGrenade.canThrow(wep) then
+				CustomizableWeaponry.quickGrenade.throw(wep)
+			end
+		end
+	end
+
+	concommand.Add("cw_kk_throwfrag", meta.cwkkqnade)
+end
+
 local SP = game.SinglePlayer()
 
 if CLIENT then

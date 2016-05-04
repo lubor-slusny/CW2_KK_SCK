@@ -1,5 +1,7 @@
 if not CustomizableWeaponry then return end
+AddCSLuaFile()
 
+SWEP.KKINS2Melee = true
 
 if CLIENT then
 	SWEP.SprintAnimSpeed = 1.2
@@ -10,7 +12,7 @@ if CLIENT then
 	SWEP.IconLetter = "j"
 end
 
-SWEP.WeaponLength = 0
+SWEP.Attachments = {}
 
 SWEP.Base = "cw_kk_ins2_base"
 SWEP.Category = "CW 2.0 KK INS2"
@@ -42,12 +44,6 @@ SWEP.VelocitySensitivity = 0.001
 SWEP.MaxSpreadInc = 0.001
 SWEP.SpreadPerShot = 0.001
 SWEP.SpreadCooldown = 0.001
-SWEP.Shots = 1
-SWEP.Damage = 56
-
-SWEP.Attachments = {}
-
-SWEP.SpeedDec = 0
 SWEP.Recoil = 3
 
 SWEP.FireDelay = 0.6
@@ -55,6 +51,9 @@ SWEP.ReticleInactivityPostFire = 0.6
 
 SWEP.FirstDeployTime = 0.6
 SWEP.DeployTime = 0.6
+
+SWEP.SpeedDec = 0
+SWEP.WeaponLength = 0
 
 SWEP.Animations = {
 	draw = "draw",

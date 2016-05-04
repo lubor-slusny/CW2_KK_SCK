@@ -7,18 +7,8 @@ function SWEP:PrimaryAttack()
 	end
 	
 	if self.Owner:KeyDown(IN_USE) then
-		if self.ActiveAttachments.kk_ins2_ww2_knife and CustomizableWeaponry_KK.ins2.canKnife(self) then
-			CustomizableWeaponry_KK.ins2.meleeWW2(self)
-			return 
-		end
-		
 		if CustomizableWeaponry_KK.ins2.canThrow(self) then
 			CustomizableWeaponry_KK.ins2.throwGrenade(self)
-			return
-		end
-		
-		if CustomizableWeaponry_KK.ins2.canKnife(self) then
-			CustomizableWeaponry_KK.ins2.meleeKnife(self)
 			return
 		end
 	end

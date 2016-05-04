@@ -100,6 +100,7 @@ end
 	CustomizableWeaponry:registerAmmo(".30 Carbine", ".30 Carbine Rounds", 7.62, 32.76)
 	CustomizableWeaponry:registerAmmo(".38 Special", ".38 Special Rounds", 9.1, 29.3)
 	CustomizableWeaponry:registerAmmo(".22 LR", ".22 LR Rounds", 5.6, 15)
+	CustomizableWeaponry:registerAmmo(".357 Magnum", ".357 Magnum Rounds", 9.1, 33)
 	
 	CustomizableWeaponry:registerAmmo("7.92x57MM", "7.92x57MM Rounds", 7.92, 57)
 	CustomizableWeaponry:registerAmmo("7.92x33MM", "7.92x33MM Rounds", 7.92, 33)
