@@ -85,8 +85,8 @@ SWEP.WorldModel		= "models/weapons/w_bar.mdl"
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2us
 
-SWEP.WMPos = Vector(1.197, 0, 1.358)
-SWEP.WMAng = Vector(-12.174, 2.743, 180)
+SWEP.WMPos = Vector(18.197, 0, -2)
+SWEP.WMAng = Vector(-10, 2.743, 180)
 
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
@@ -98,7 +98,7 @@ SWEP.Primary.Ammo			= "7.92x57MM"
 
 SWEP.Secondary.Automatic	= false
 
-SWEP.FireDelay = 0.12
+SWEP.FireDelay = 60/500
 SWEP.FireSound = "CW_KK_INS2_WW2_BAR_FIRE"
 SWEP.Recoil = 1.6
 

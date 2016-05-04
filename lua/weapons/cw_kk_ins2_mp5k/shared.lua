@@ -20,6 +20,9 @@ if CLIENT then
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_modkit_05.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
+		["kk_counter"] = {model = "models/weapons/stattrack.mdl", bone = "Weapon", pos = Vector(0.256, -1.492, 0.4), angle = Angle(0, -90, 2), size = Vector(0.8, 0.8, 0.8)},
+		["kk_textbox"] = {model = "models/weapons/uid.mdl", bone = "Weapon", pos = Vector(0.41, -4.783, 0.549), angle = Angle(0, -90, 2), size = Vector(0.8, 0.8, 0.8)},
+
 		["kk_ins2_suppressor_sec"] = {model = "models/weapons/upgrades/a_suppressor_sec.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), attachment = "Suppressor"},
 		
 		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_band.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
@@ -118,6 +121,13 @@ SWEP.Attachments = {
 	["+use"] = {header = "Sight Contract", offset = {300, -200}, atts = {"kk_ins2_sights_cstm"}},
 	["+reload"] = {header = "Ammo", offset = {0, 300}, atts = {"am_magnum", "am_matchgrade"}}
 }
+
+if CustomizableWeaponry_KK.HOME then
+	-- table.insert(SWEP.Attachments, {header = "Skill1", offset = {2100, -800}, atts = {"kk_aimbot"}})
+	-- table.insert(SWEP.Attachments, {header = "Skill2", offset = {2100, -400}, atts = {"kk_wallhaq"}})
+	table.insert(SWEP.Attachments, {header = "CSGO", offset = {2100, 0}, atts = {"kk_counter"}})
+	table.insert(SWEP.Attachments, {header = "CSGO", offset = {2100, 400}, atts = {"kk_textbox"}})
+end
 
 SWEP.Animations = {
 	draw = "base_ready",
@@ -239,3 +249,24 @@ SWEP.ReloadTime = 2.43
 SWEP.ReloadTime_Empty = 3.27
 SWEP.ReloadHalt = 3.1
 SWEP.ReloadHalt_Empty = 4.45
+
+if CLIENT then
+	function SWEP:nametagElementRender()
+		local ent = self.AttachmentModelsVM.kk_textbox.ent
+		
+		local total = self:Clip1() + self.Owner:GetAmmoCount(self.Primary.Ammo)
+		
+		for k,v in pairs(self.allocatedMags) do
+			total = total + v
+		end
+		
+		ent._KKCSGOOFFSET = 0
+		ent._KKCSGOTXT = string.format(
+			"Ammo: %02d/%d/%03d/%04d ",
+			self:Clip1(),
+			#self.allocatedMags,
+			self.Owner:GetAmmoCount(self.Primary.Ammo),
+			total
+		)
+	end
+end

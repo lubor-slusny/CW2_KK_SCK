@@ -88,8 +88,8 @@ SWEP.ViewModel		= "models/weapons/v_bazooka.mdl"
 SWEP.WorldModel		= "models/weapons/w_bazooka.mdl"
 
 SWEP.DrawCustomWM = true
-SWEP.WMPos = Vector(7.035, 5.085, -0.366)
-SWEP.WMAng = Vector(-10.386, 0, -120)
+SWEP.WMPos = Vector(6.035, 2, -2.366)
+SWEP.WMAng = Vector(-8, 0, -180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2us
 

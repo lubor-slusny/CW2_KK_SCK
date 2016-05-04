@@ -14,6 +14,8 @@ att.statModifiers = {
 	MaxSpreadIncMult = -0.25
 }
 
+local colDefault = CustomizableWeaponry.colorableParts.defaultColors[att.colorType].color
+
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
 	att.description = {
@@ -54,7 +56,7 @@ if CLIENT then
 		local dist = math.Clamp(att.laserRange * tr.Fraction, 0, att.laserBeamRange)
 		
 		if util.PointContents(tr.HitPos) != CONTENTS_SOLID and not self.NearWall then
-			local renderColor = self:getSightColor(att.name)
+			local renderColor = self:getSightColor(att.name) or colDefault
 			local laserHQ = GetConVarNumber("cw_laser_quality") > 1
 			
 			renderColor.a = 100

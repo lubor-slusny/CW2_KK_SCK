@@ -61,7 +61,6 @@ if CLIENT then
 		if self.Slot == 2 or self.Slot == 3 then
 			self:playAnim(prefix .. anim .. suffix,1,0)
 		else
-			self.ViewModelMovementScale = self.ViewModelMovementScale_sprint
 			self:playAnim(prefix .. anim .. suffix,self.SprintAnimSpeed,0)
 		end
 	end
@@ -125,7 +124,6 @@ if CLIENT then
 			-- cycle = 0.5
 		-- end
 		
-		self.ViewModelMovementScale = self.ViewModelMovementScale_base
 		self:playAnim(prefix .. anim .. suffix,rate,cycle)
 	end
 end

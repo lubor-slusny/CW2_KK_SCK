@@ -169,9 +169,8 @@ SWEP.ViewModel		= "models/weapons/v_cw_kk_ins2_rpg.mdl"
 SWEP.WorldModel		= "models/weapons/w_rpg7.mdl"
 
 SWEP.DrawCustomWM = true
-SWEP.WMPos = Vector(7.035, 5.085, -0.366)
--- SWEP.WMAng = Vector(-10.386, 0, -120)
-SWEP.WMAng = Vector(0, 0, 180)
+SWEP.WMPos = Vector(7, 1, -2)
+SWEP.WMAng = Vector(-10, 0, 180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.f1
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.gurkha

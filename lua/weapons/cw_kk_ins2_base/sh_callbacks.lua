@@ -73,7 +73,7 @@ CustomizableWeaponry.callbacks:addNew("initialize", "KK_INS2_BASE", function(sel
 end)
 
 if CLIENT then
-	usermessage.Hook("CW20_KK_INS_RETICLEINACTIVITY", function(um)
+	usermessage.Hook("CW_KK_INS2_RETICLEINACTIVITY", function(um)
 		local ply = LocalPlayer()
 		if !IsValid(ply) then return end
 		

@@ -44,19 +44,23 @@ function EFFECT:Init(fx)
 	end
 	
 	if ent.RearEffectw then	// RPGs
-		ParticleEffectAttach("muzzleflash_m3", PATTACH_POINT_FOLLOW, attachModel, 2)
-		ParticleEffectAttach("muzzleflash_m3", PATTACH_POINT_FOLLOW, attachModel, 2)
-
-		local dlight = DynamicLight(self:EntIndex())
+		local att = attachModel:GetAttachment(2)
 		
-		dlight.r = 255 
-		dlight.g = 218
-		dlight.b = 74
-		dlight.Brightness = 4
-		dlight.Pos = attachModel:GetAttachment(2).Pos
-		dlight.Size = 128
-		dlight.Decay = 128
-		dlight.DieTime = CurTime() + FrameTime()
+		if att then
+			ParticleEffectAttach("muzzleflash_m3", PATTACH_POINT_FOLLOW, attachModel, 2)
+			ParticleEffectAttach("muzzleflash_m3", PATTACH_POINT_FOLLOW, attachModel, 2)
+			
+			local dlight = DynamicLight(self:EntIndex())
+			
+			dlight.r = 255 
+			dlight.g = 218
+			dlight.b = 74
+			dlight.Brightness = 4
+			dlight.Pos = att.Pos
+			dlight.Size = 128
+			dlight.Decay = 128
+			dlight.DieTime = CurTime() + FrameTime()
+		end
 	end
 	
 	if ent.NoShells then return end

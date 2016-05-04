@@ -245,7 +245,7 @@ SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_kar98k.mdl"
 SWEP.WorldModel		= "models/weapons/w_kar98k.mdl"
 
-SWEP.WMPos = Vector(6.136, 0.786, -1.713)
+SWEP.WMPos = Vector(14, 0.5, -3)
 SWEP.WMAng = Vector(-10, 0, 180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2de
@@ -256,7 +256,7 @@ SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
 SWEP.Primary.ClipSize		= 5
 SWEP.Primary.DefaultClip	= 5
 SWEP.Primary.Automatic		= false
-SWEP.Primary.Ammo			= "7.62x54MMR"
+SWEP.Primary.Ammo			= "7.92x57MM"
 
 SWEP.FireDelay = 1.75
 SWEP.FireSound = "CW_KK_INS2_MOSIN_FIRE"

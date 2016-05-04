@@ -317,7 +317,7 @@ if CLIENT then
 		
 		pos = beamAtt.Pos
 		ang = beamAtt.Ang
-		col = self.SightColors["kk_ins2_flashlight"].last
+		col = (self.SightColors["kk_ins2_flashlight"] and self.SightColors["kk_ins2_flashlight"].last) or 1
 		
 		net.Start("CW_KK_INS2_FLASHLIGHT")
 			net.WriteEntity(self)

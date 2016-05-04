@@ -31,8 +31,6 @@ if CLIENT then
 
 	SWEP.AttachmentModelsWM = {
 		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/w_modkit_4.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-
-		
 	}
 	
 	SWEP.IronsightPos = Vector(-2.4403, -2, 0.8474)
@@ -113,7 +111,7 @@ SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_g43.mdl"
 SWEP.WorldModel		= "models/weapons/w_g43.mdl"
 
-SWEP.WMPos = Vector(3, 1.009, 0)
+SWEP.WMPos = Vector(10, 1.009, -4)
 SWEP.WMAng = Vector(-10, 0, 180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2de

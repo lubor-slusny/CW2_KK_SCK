@@ -1,4 +1,5 @@
 if not CustomizableWeaponry then return end
+if not CustomizableWeaponry_KK.HOME then return end
 
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
@@ -8,7 +9,7 @@ include("sh_soundscript.lua")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "King Cobra"
+	SWEP.PrintName = "[AO5] Snap"
 	SWEP.CSMuzzleFlashes = true
 	
 	SWEP.IconLetter = "f"
@@ -17,19 +18,20 @@ if CLIENT then
 	SWEP.Shell = "KK_INS2_762x33"
 	SWEP.NoShells = true
 	SWEP.ShellScale = 2
-	SWEP.Shell2 = "KK_INS2_REVOLVER"
 	
 	SWEP.AttachmentModelsVM = {
-		["kk_ins2_revolver_mag"] = {model = "models/weapons/upgrades/a_cobraloader_rev.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-
-		["kk_counter"] = {model = "models/weapons/stattrack_cut.mdl", bone = "Weapon", pos = Vector(0.31, -0.57, 0.347), angle = Angle(0, -90, 0), size = Vector(0.4, 0.449, 0.449)}, 
+		["kk_ins2_revolver_mag"] = {model = "models/weapons/upgrades/a_speedloader_rev.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_mak.mdl", bone = "Weapon", pos = Vector(0, 2.588, -0.066), angle = Angle(0, -90, 0), size = Vector(1, 1, 1)},
-		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_mak.mdl", bone = "Weapon", pos = Vector(0, 2.588, -0.066), angle = Angle(0, -90, 0), size = Vector(1, 1, 1)},
+		-- ["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_band.mdl", bone = "Weapon", pos = Vector(0, 3.437, 1.531), angle = Angle(0, -90, 0), size = Vector(0.8, 0.8, 0.8)},
+		-- ["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_band.mdl", bone = "Weapon", pos = Vector(0, 3.437, 1.531), angle = Angle(0, -90, 0), size = Vector(0.8, 0.8, 0.8)},
+		-- ["kk_ins2_anpeq15"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_anpeq_band.mdl", bone = "Weapon", pos = Vector(0, 3.437, 1.531), angle = Angle(0, -90, 0), size = Vector(0.8, 0.8, 0.8)},
+		
+		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_mak.mdl", bone = "Weapon", pos = Vector(0, 2.602, -0.06), angle = Angle(0, -90, 0), size = Vector(1, 1, 1)},
+		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_mak.mdl", bone = "Weapon", pos = Vector(0, 2.602, -0.06), angle = Angle(0, -90, 0), size = Vector(1, 1, 1)},
 	}
 
-	SWEP.IronsightPos = Vector(-1.8503, 0, -0.1013)
-	SWEP.IronsightAng = Vector(0, 0.0104, 0)
+	SWEP.IronsightPos = Vector(-1.8544, 0, 1.1093)
+	SWEP.IronsightAng = Vector(-1.7862, 0.0008, 0)
 
 	SWEP.CustomizationMenuScale = 0.01
 
@@ -45,10 +47,6 @@ SWEP.Attachments = {
 	{header = "Reload Aid", offset = {500, -400}, atts = {"kk_ins2_revolver_mag"}},
 	["+reload"] = {header = "Ammo", offset = {500, 150}, atts = {"am_magnum", "am_matchgrade"}}
 }
-
-if CustomizableWeaponry_KK.HOME then
-	table.insert(SWEP.Attachments, {header = "CSGO", offset = {1300, -400}, atts = {"kk_counter"}})
-end
 
 SWEP.Animations = {
 	draw = "base_ready",
@@ -83,7 +81,7 @@ SWEP.NormalHoldType = "revolver"
 SWEP.RunHoldType = "normal"
 SWEP.FireModes = {"semi"}
 SWEP.Base = "cw_kk_ins2_base"
-SWEP.Category = "CW 2.0 KK INS2 WS"
+SWEP.Category = "CW 2.0 KK INS2"
 
 SWEP.Author			= "Spy"
 SWEP.Contact		= ""
@@ -92,22 +90,22 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/v_cw_kk_ins2_cstm_cobra.mdl"
-SWEP.WorldModel		= "models/weapons/w_cw_kk_ins2_cstm_cobra.mdl"
+SWEP.ViewModel		= "models/weapons/v_snub.mdl"
+SWEP.WorldModel		= "models/weapons/w_snub.mdl"
 
 SWEP.WMPos = Vector(5.309, 1.623, -1.616)
 SWEP.WMAng = Vector(-3, -5, 180)
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.wsContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.wsContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted()
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()
 
 SWEP.Primary.ClipSize		= 6
 SWEP.Primary.DefaultClip	= 6
 SWEP.Primary.Automatic		= false
-SWEP.Primary.Ammo			= ".357 Magnum"
+SWEP.Primary.Ammo			= ".38 Special"
 
 SWEP.FireDelay = 0.1
-SWEP.FireSound = "CW_KK_INS2_CSTM_COBRA_FIRE"
+SWEP.FireSound = "CW_KK_INS2_REVOLVER_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_REVOLVER_FIRE_SUPPRESSED"
 SWEP.Recoil = 2.6
 
@@ -185,37 +183,15 @@ if CLIENT then
 			makeShell(self, att.Pos, ang, velocity, 0.6, 10)
 		end
 	end
-	
-	function SWEP:createExtraShell()
-		if self.Owner:ShouldDrawLocalPlayer() then
-			return
-		end
-		
-		if self._xhellCoolDown and self._xhellCoolDown > CurTime() then
-			return
-		end
-		
-		self._xhellCoolDown = CurTime() + 3
-	
-		self._shellTable = self._shellTable2
-		att = self.CW_VM:GetAttachment(2)
-		ang = EyeAngles()
-		
-		ang:RotateAroundAxis(ang:Right(), random(-90, 90))
-		ang:RotateAroundAxis(ang:Forward(), random(-90, 90))
-		ang:RotateAroundAxis(ang:Up(), random(-90, 90))
-		
-		makeShell(self, att.Pos, ang, velocity, 0.6, 10)
-	end
 end
 
-if CLIENT then 	
+if CLIENT then 
 	function SWEP:updateOtherParts()
 		local vm = self.CW_VM
 		local cyc = vm:GetCycle()
 		
 		local clip = math.Clamp(self:Clip1(),0,6)
-	
+		
 		local ammoType = self:getActiveAttachmentInCategory("+reload")
 			local ammoSwitched = ammoType != self._lastAmmoType
 			local unloadSwitched = self.unloadedMagazine and self.unloadedMagazine != self._lastUnload
@@ -266,10 +242,6 @@ if CLIENT then
 				self._lastLoadedAmount = math.Clamp(reserve,0,6)
 				self:setBodygroup(bgBullets,self._lastLoadedAmount)
 				self:setBodygroup(bgShells,self._lastLoadedAmount)
-				
-				if cyc >= 0.75 then
-					self:createExtraShell()
-				end
 			end
 		end
 	end
@@ -321,7 +293,7 @@ function SWEP:finishReloadShotgun()
 	if self.ShotgunReloadState == 1 then
 		keyDown = self.Owner:KeyDown(IN_ATTACK) or self.Owner:KeyDown(IN_ATTACK2)
 		
-		if self:Clip1() > 0 and keyDown then
+		if 0 < self:Clip1() and keyDown then
 			self.ShotgunReloadState = 2
 		end
 		

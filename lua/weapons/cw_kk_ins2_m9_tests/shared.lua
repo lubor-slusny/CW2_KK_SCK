@@ -9,7 +9,7 @@ SWEP.magType = "pistolMag"
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "Beretta M9 tests"
+	SWEP.PrintName = "[X] Beretta M9"
 	SWEP.CSMuzzleFlashes = true
 	
 	SWEP.IconLetter = "f"

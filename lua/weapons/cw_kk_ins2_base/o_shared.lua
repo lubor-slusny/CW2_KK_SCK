@@ -113,7 +113,7 @@ function SWEP:SelectFiremode(n)
 		self.dt.Safe = false
 	end
 	
-	umsg.Start("CW_KK_INS_FIREMODE")
+	umsg.Start("CW_KK_INS2_FIREMODE")
 		umsg.Entity(self.Owner)
 		umsg.String(n)
 	umsg.End()
@@ -147,7 +147,7 @@ if CLIENT then
 		end
 	end
 
-	usermessage.Hook("CW_KK_INS_FIREMODE", CW_ReceiveFireMode)
+	usermessage.Hook("CW_KK_INS2_FIREMODE", CW_ReceiveFireMode)
 end
 
 // custom GL reload
@@ -187,7 +187,7 @@ function SWEP:beginReload()
 	self:updateReloadTimes()
 	
 	if SERVER then
-		SendUserMessage("CWKK_RELOADINACTIVITY", self.Owner)
+		SendUserMessage("CW_KK_INS2_RELOADINACTIVITY", self.Owner)
 	end
 	
 	-- weapons.GetStored("cw_base").beginReload(self)	

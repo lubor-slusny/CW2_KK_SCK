@@ -67,22 +67,9 @@ function SWEP:updateReloadTimes()
 end
 
 if CLIENT then
-	// temporary workaround (horrible hack)
-		// replace w/ customInactivity mayb?
 	function SWEP:reloadInactivity()
 		if self.ShotgunReload then
-			local t = self.ReloadStartTime
-			local clip = self:Clip1()
-			
-			if clip == 0 then
-				t = t + self.ReloadFinishWait
-			else
-				t = t + 0.4
-			end
-			
-			t = t + (self.Primary.ClipSize - clip) * self.InsertShellTime
-			
-			self.reticleInactivity = UnPredictedCurTime() + t // screw this fkin shit already
+			self.reticleInactivity = UnPredictedCurTime() + 1 // (self.CW_VM:SequenceDuration()) + 1
 		else
 			if self:Clip1() == 0 then
 				self.reticleInactivity = UnPredictedCurTime() + self.ReloadHalt_Empty
@@ -92,7 +79,7 @@ if CLIENT then
 		end
 	end
 
-	usermessage.Hook("CWKK_RELOADINACTIVITY", function()
+	usermessage.Hook("CW_KK_INS2_RELOADINACTIVITY", function()
 		local ply = LocalPlayer()
 		if !IsValid(ply) then return end
 		
@@ -101,7 +88,6 @@ if CLIENT then
 			
 		wep:reloadInactivity()
 	end)
-	// ========
 end
 
 if CLIENT then

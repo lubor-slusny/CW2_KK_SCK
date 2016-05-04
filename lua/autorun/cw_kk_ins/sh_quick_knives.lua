@@ -77,7 +77,7 @@ function CustomizableWeaponry_KK.ins2:meleeKnife()
 	self:SetNextPrimaryFire(CT + 1.2)
 	
 	if SERVER and SP then
-		SendUserMessage("CW20_KK_INS_KNIFE_MELEE", self.Owner)
+		SendUserMessage("CW_KK_INS2_QUICKKNIFE", self.Owner)
 	end
 	
 	self.dt.State = CW_ACTION
@@ -154,7 +154,7 @@ function CustomizableWeaponry_KK.ins2:meleeKnife()
 	end
 end
 
-usermessage.Hook("CW20_KK_INS_KNIFE_MELEE", function()
+usermessage.Hook("CW_KK_INS2_QUICKKNIFE", function()
 	local ply = LocalPlayer()
 	local wep = ply:GetActiveWeapon()
 
@@ -201,7 +201,7 @@ function CustomizableWeaponry_KK.ins2:meleeWW2()
 		self:SetNextPrimaryFire(CurTime() + 1)
 	
 		if SERVER and SP then
-			SendUserMessage("CW20_KK_INS_RETICLEINACTIVITY", self.Owner)
+			SendUserMessage("CW_KK_INS2_RETICLEINACTIVITY", self.Owner)
 		end
 		
 		local start = self.Owner:GetShootPos()

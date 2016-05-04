@@ -151,8 +151,8 @@ SWEP.WorldModel		= "models/weapons/w_thompson.mdl"
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2us
 
-SWEP.WMPos = Vector(0.699, 0.395, 0.862)
-SWEP.WMAng = Vector(-4.99, 3.065, 180)
+SWEP.WMPos = Vector(4, 0.395, -2)
+SWEP.WMAng = Vector(-10, 0, 180)
 
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.ww2ContentMounted()

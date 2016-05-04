@@ -102,7 +102,7 @@ SWEP.Primary.DefaultClip	= 18
 SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= "7.92x57MM"
 
-SWEP.FireDelay = 0.1
+SWEP.FireDelay = 60/500
 SWEP.FireSound = "CW_KK_INS2_WW2_BROWNING_FIRE"
 SWEP.Recoil = 1.2
 

@@ -9,7 +9,7 @@ SWEP.magType = "arMag"
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "AKS74U tests"
+	SWEP.PrintName = "[X] AKS74U"
 	SWEP.CSMuzzleFlashes = true
 	
 	SWEP.IconLetter = "b"

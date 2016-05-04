@@ -112,8 +112,8 @@ SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_at4.mdl"
 SWEP.WorldModel		= "models/weapons/w_at4.mdl"
 
-SWEP.WMPos = Vector(4.044, 6.593, 2)
-SWEP.WMAng = Vector(-10.386, 0, -120)
+SWEP.WMPos = Vector(7, 1, -2)
+SWEP.WMAng = Vector(-10, 0, 180)
 
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted()
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()

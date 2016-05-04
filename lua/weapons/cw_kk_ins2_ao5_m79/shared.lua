@@ -1,12 +1,11 @@
 if not CustomizableWeaponry then return end
+if not CustomizableWeaponry_KK.HOME then return end
 
 AddCSLuaFile()
-AddCSLuaFile("sh_sounds.lua")
-include("sh_sounds.lua")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "HK P2A1"
+	SWEP.PrintName = "[AO5] M79"
 	SWEP.CSMuzzleFlashes = true
 	SWEP.ViewModelMovementScale = 1.15
 	
@@ -46,7 +45,7 @@ SWEP.Animations = {
 	base_fire_last = "base_fire",
 	base_fire_last_aim = "iron_fire",
 	base_fire_empty = "base_dryfire",
-	base_fire_empty_aim = "base_dryfire",
+	base_fire_empty_aim = "iron_dryfire",
 	base_reload = "base_reload",
 	base_reload_empty = "base_reload",
 	base_idle = "base_idle",
@@ -62,60 +61,14 @@ SWEP.Animations = {
 }
 	
 SWEP.Sounds = {
-	base_ready = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_PISTOL_DRAW"},
-	},
 
-	base_draw = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_PISTOL_DRAW"},
-	},
-
-	base_holster = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_PISTOL_HOLSTER"},
-	},
-
-	base_crawl = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
-		{time = 22/35, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
-	},
-
-	base_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_P2A1_EMPTY"},
-	},
-
-	base_reload = {
-		{time = 18/30, sound = "CW_KK_INS2_P2A1_OPENBARREL"},
-		{time = 39/30, sound = "CW_KK_INS2_P2A1_REMOVEFLARE"},
-		{time = 61/30, sound = "CW_KK_INS2_P2A1_FlareDrop"},
-		{time = 75/30, sound = "CW_KK_INS2_P2A1_INSERTFLARESTART"},
-		{time = 90/30, sound = "CW_KK_INS2_P2A1_INSERTFLARE"},
-		{time = 113/30, sound = "CW_KK_INS2_P2A1_CLOSEBARREL"},
-		{time = 129/30, sound = "CW_KK_INS2_P2A1_COCKHAMMER"},
-	},
-
-	empty_draw = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_PISTOL_DRAW"},
-	},
-
-	empty_holster = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_PISTOL_HOLSTER"},
-	},
-
-	empty_crawl = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
-		{time = 22/35, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
-	},
-
-	iron_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_P2A1_EMPTY"},
-	},
 }
 
 SWEP.SpeedDec = 15
 
 SWEP.Slot = 4
 SWEP.SlotPos = 0
-SWEP.NormalHoldType = "revolver"
+SWEP.NormalHoldType = "ar2"
 SWEP.RunHoldType = "passive"
 SWEP.FireModes = {"break"}
 SWEP.Base = "cw_kk_ins2_base"
@@ -128,11 +81,11 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/v_p2a1.mdl"
-SWEP.WorldModel		= "models/weapons/w_p2a1.mdl"
+SWEP.ViewModel		= "models/weapons/aof/v_m79.mdl"
+SWEP.WorldModel		= "models/weapons/aof/w_m79.mdl"
 
 SWEP.WMPos = Vector(5.243, 1.562, -1.657)
-SWEP.WMAng = Vector(-1, -5, 180)
+SWEP.WMAng = Vector(-15, 1, 180)
 
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted()
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()
@@ -140,7 +93,7 @@ SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()
 SWEP.Primary.ClipSize		= 1
 SWEP.Primary.DefaultClip	= 1
 SWEP.Primary.Automatic		= false
-SWEP.Primary.Ammo			= "25MM Flare"
+SWEP.Primary.Ammo			= "40MM"
 
 SWEP.FireDelay = 0.8
 SWEP.FireSound = "CW_KK_INS2_P2A1_FIRE"
@@ -153,7 +106,7 @@ SWEP.VelocitySensitivity = 1.9
 SWEP.MaxSpreadInc = 0.06
 SWEP.SpreadPerShot = 0.01
 SWEP.SpreadCooldown = 0.8
-SWEP.Shots = 12
+SWEP.Shots = 1
 SWEP.Damage = 10
 
 SWEP.FirstDeployTime = 0.5
@@ -164,24 +117,18 @@ SWEP.ReloadTime_Empty = 3.15
 SWEP.ReloadHalt = 5.17
 SWEP.ReloadHalt_Empty = 5.17
 
-function SWEP:FireBullet()
-	if SERVER then
-		local pos = self.Owner:GetShootPos()
-		local eyeAng = self.Owner:EyeAngles()
-		local forward = eyeAng:Forward()
-		local offset = /*forward * 30 +*/ eyeAng:Right() * 4 - eyeAng:Up() * 3
-		
-		local nade = ents.Create("cw_kk_ins2_projectile_flare")
-		nade:SetPos(pos + offset)
-		nade:SetAngles(eyeAng)
-		nade:Spawn()
-		nade:Activate()
-		nade:SetOwner(self:GetOwner())
-		
-		local phys = nade:GetPhysicsObject()
-		
-		if IsValid(phys) then
-			phys:SetVelocity(forward * 3395.6625)
+function SWEP:FireBullet(Damage, CurCone, ClumpSpread, Shots)
+	if Shots == 1 then
+		local target = CustomizableWeaponry.grenadeTypes.registered[self.Grenade40MM]
+
+		if not target then
+			CustomizableWeaponry.grenadeTypes.defaultFireFunc(self)
+		else
+			target.fireFunc(self)
 		end
+		
+		CustomizableWeaponry.grenadeTypes.selectFireSound(self, target)
+	else
+		weapons.GetStored("cw_base").FireBullet(self, Damage, CurCone, ClumpSpread, Shots)
 	end
 end

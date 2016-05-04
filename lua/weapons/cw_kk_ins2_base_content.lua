@@ -89,7 +89,6 @@ do
 	local upneg90 = {Forward = 0, Right = 0, Up = -90}
 	local up180 = {Forward = 0, Right = 0, Up = 180}
 	
-	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_9x19", "models/weapons/shells/9x19.mdl", "CW_KK_INS2_SHELL_38", up90, up180, Vector(-0.2, -0.4, -0.2), Vector(0.2, 0.4, 0.2))
 	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_12guage", "models/weapons/shells/12guage.mdl", "CW_KK_INS2_SHELL_12G", upneg90, noTweak, Vector(-0.4, -1.2, -0.4), Vector(0.4, 1.2, 0.4))
 	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_40mm", "models/weapons/shells/40mm.mdl", "CW_KK_INS2_SHELL_M203", upneg90, noTweak, Vector(-0.8, -0.8, 0), Vector(0.8, 0.8, 2))
 	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_45apc", "models/weapons/shells/45apc.mdl", "CW_KK_INS2_SHELL_38", upneg90, noTweak, Vector(-0.25, -0.5, -0.25), Vector(0.25, 0.5, 0.25))
@@ -100,9 +99,15 @@ do
 	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_762x39", "models/weapons/shells/762x39.mdl", "CW_KK_INS2_SHELL_38", upneg90, noTweak, Vector(-0.2, -0.9, -0.2), Vector(0.2, 0.9, 0.2))
 	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_762x51", "models/weapons/shells/762x51.mdl", "CW_KK_INS2_SHELL_38", upneg90, noTweak, Vector(-0.25, -1.25, -0.25), Vector(0.25, 1.25, 0.25))
 	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_762x54", "models/weapons/shells/762x54.mdl", "CW_KK_INS2_SHELL_38", upneg90, noTweak, Vector(-0.25, -1.25, -0.25), Vector(0.25, 1.25, 0.25))
-	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_THROWABLE", "models/weapons/w_gren_spoon.mdl", "", noTweak, noTweak)
+	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_9x19", "models/weapons/shells/9x19.mdl", "CW_KK_INS2_SHELL_38", up90, up180, Vector(-0.2, -0.4, -0.2), Vector(0.2, 0.4, 0.2))
+	
+	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_SPOON", "models/weapons/w_gren_spoon.mdl", "", noTweak, noTweak)
 	
 	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_GARAND", "models/weapons/shells/garand_clip.mdl", "CW_KK_INS2_SHELL_M203", noTweak, up90, Vector(-0.55, -0.45, -0.85), Vector(0.55, 0.45, 0.85))
+	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_REVOLVER", "models/weapons/upgrades/a_speedloader_rev.mdl", "", noTweak, noTweak, Vector(-0.8, -0.55, -0.55), Vector(0.25, 0.55, 0.55))
+	
+	// models/weapons/w_at4.mdl Vector(-33, -3, -1), Vector(9.5, 3, 5)
+	// 
 end
 // AMMO
 	
@@ -110,17 +115,18 @@ end
 	CustomizableWeaponry:registerAmmo(".38 Special", ".38 Special Rounds", 9.1, 29.3)
 	CustomizableWeaponry:registerAmmo(".22 LR", ".22 LR Rounds", 5.6, 15)
 	CustomizableWeaponry:registerAmmo(".357 Magnum", ".357 Magnum Rounds", 9.1, 33)
+	CustomizableWeaponry:registerAmmo("4.6x30MM", "4.6x30MM Rounds", 4.6, 30)
 	
 	CustomizableWeaponry:registerAmmo("7.92x57MM", "7.92x57MM Rounds", 7.92, 57)
 	CustomizableWeaponry:registerAmmo("7.92x33MM", "7.92x33MM Rounds", 7.92, 33)
 	CustomizableWeaponry:registerAmmo("7.62x63MM", "7.62x63MM Rounds", 7.62, 63)
 	
-	CustomizableWeaponry:registerAmmo("RPG 40MM", "40MM Rocket Propelled Grenades", 0, 0)
+	CustomizableWeaponry:registerAmmo("RPG 40MM", "PG-7VM Grenades", 0, 0)
 	CustomizableWeaponry:registerAmmo("AT4 Launcher", "AT4 Rocket Launchers", 0, 0)
 	CustomizableWeaponry:registerAmmo("M6A1 Rocket", "M6A1 Rockets", 0, 0)
 	CustomizableWeaponry:registerAmmo("Panzerfaust", "Panzerfaust Rocket Launchers", 0, 0)
 	
-	CustomizableWeaponry:registerAmmo("Flare", "Flares for flare gun", 0, 0)
+	CustomizableWeaponry:registerAmmo("25MM Flare", "25MM Flares", 0, 0)
 	CustomizableWeaponry:registerAmmo("C4", "C4 explosives", 0, 0)
 	CustomizableWeaponry:registerAmmo("IED", "Improvised explosives", 0, 0)
 	CustomizableWeaponry:registerAmmo("Incediary", "Incendiary explosives", 0, 0)
@@ -238,6 +244,9 @@ if CLIENT then
 	
 	killicon.AddFont("cw_kk_ins2_mel_cstm_ninjato",	"CW_KillIcons", "j", killCol)
 	
+	killicon.AddFont("cw_kk_ins2_cstm_cobra",		"HL2MPTypeDeath", ".", killCol)
+	
+	killicon.AddFont("cw_kk_ins2_cstm_kriss",			"CW_KillIcons", "a", killCol)
 	killicon.AddFont("cw_kk_ins2_cstm_mp7",			"CW_KillIcons", "a", killCol)
 	killicon.AddFont("cw_kk_ins2_cstm_sten",		"CW_KillIcons", "a", killCol)
 	killicon.AddFont("cw_kk_ins2_cstm_uzi",			"CW_KillIcons", "l", killCol)
@@ -258,13 +267,13 @@ end
 if CLIENT then
 	language.Add("cw_kk_ins2_projectile_m6a1", "M6A1 rocket")
 	language.Add("cw_kk_ins2_projectile_pf60", "Panzerfaust projectile")
-	language.Add("cw_kk_ins2_projectile_rpg", "PG-7V grenade")
-	language.Add("cw_kk_ins2_projectile_rpg_2", "PG-7V grenade")
+	language.Add("cw_kk_ins2_projectile_rpg", "PG-7VM grenade")
+	language.Add("cw_kk_ins2_projectile_rpg_2", "PG-7VM grenade")
 	language.Add("cw_kk_ins2_thrown_molotov", "Fake Molotov")
 	language.Add("cw_kk_ins2_projectile_at4", "AT4 rocket")
 	language.Add("cw_kk_ins2_projectile_c4", "Active C4 charge")
 	language.Add("cw_kk_ins2_projectile_ied", "Active IED")
-	language.Add("cw_kk_ins2_projectile_flare", "P2A1 flare")
+	language.Add("cw_kk_ins2_projectile_flare", "25MM Flare")
 end
 
 // MAG SYSTEM

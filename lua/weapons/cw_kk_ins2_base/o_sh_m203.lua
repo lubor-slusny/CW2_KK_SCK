@@ -91,12 +91,12 @@ function SWEP:unloadM203()
 	
 	if SERVER then
 		self.Owner:GiveAmmo(1, "40MM", true)
-		SendUserMessage("CWKK_UNLOADM203", self.Owner)
+		SendUserMessage("CW_KK_INS2_UNLOADM203", self.Owner)
 	end	
 end
 
 if CLIENT then
-	usermessage.Hook("CWKK_UNLOADM203", function()
+	usermessage.Hook("CW_KK_INS2_UNLOADM203", function()
 		local ply = LocalPlayer()
 		if !IsValid(ply) then return end
 		

@@ -125,7 +125,7 @@ function CustomizableWeaponry_KK.ins2:throwGrenade()
 	self:SetNextPrimaryFire(CT + 1.9)
 	
 	if SERVER and SP then
-		SendUserMessage("CW20_THROWGRENADE_KK_INS", self.Owner)
+		SendUserMessage("CW_KK_INS2_THROWGRENADE", self.Owner)
 	end
 	
 	self.dt.State = CW_ACTION
@@ -224,7 +224,7 @@ function CustomizableWeaponry_KK.ins2:throwGrenade()
 	end
 end
 
-usermessage.Hook("CW20_THROWGRENADE_KK_INS", function()
+usermessage.Hook("CW_KK_INS2_THROWGRENADE", function()
 	local ply = LocalPlayer()
 	local wep = ply:GetActiveWeapon()
 

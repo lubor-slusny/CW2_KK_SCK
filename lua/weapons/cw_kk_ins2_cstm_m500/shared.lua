@@ -168,7 +168,7 @@ SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_cw_kk_ins2_cstm_m500.mdl"
 SWEP.WorldModel		= "models/weapons/w_cw_kk_ins2_cstm_m500.mdl"
 
-SWEP.WMPos = Vector(4.763, 0.935, -1.945)
+SWEP.WMPos = Vector(5.763, 0.935, -2.5)
 SWEP.WMAng = Vector(-10, 0, 180)
 
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.wsContentMounted()

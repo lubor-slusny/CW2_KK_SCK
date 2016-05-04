@@ -149,8 +149,8 @@ SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_lugerp08.mdl"
 SWEP.WorldModel		= "models/weapons/w_lugerp08.mdl"
 
-SWEP.WMPos = Vector(4.84, 1.608, -1.584)
-SWEP.WMAng = Vector(-3, -5, 180)
+SWEP.WMPos = Vector(4.5, 1, -3.5)
+SWEP.WMAng = Vector(-8, 0, 180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2de
 

@@ -5,7 +5,7 @@ AddCSLuaFile()
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "ANM14 Incendiary"
+	SWEP.PrintName = "[2D] ANM14 Incendiary"
 	
 	SWEP.IconLetter = "O"
 	

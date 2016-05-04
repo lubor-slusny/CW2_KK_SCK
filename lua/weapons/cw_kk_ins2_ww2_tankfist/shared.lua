@@ -84,8 +84,8 @@ SWEP.ViewModel		= "models/weapons/v_panzerfaust.mdl"
 SWEP.WorldModel		= "models/weapons/w_panzerfaust.mdl"
 
 SWEP.DrawCustomWM = true
-SWEP.WMPos = Vector(7.035, 5.085, -0.366)
-SWEP.WMAng = Vector(-10.386, 0, -120)
+SWEP.WMPos = Vector(6.035, 0.5, -3)
+SWEP.WMAng = Vector(-8, 0, -180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2de
 

@@ -14,15 +14,19 @@ if CLIENT then
 	SWEP.IconLetter = "f"
 	
 	SWEP.MuzzleEffect = "muzzleflash_pistol"
-	SWEP.Shell = "KK_INS2_45apc"
+	SWEP.Shell = "KK_INS2_762x33"
 	SWEP.NoShells = true
+	SWEP.ShellScale = 2
 	
 	SWEP.AttachmentModelsVM = {
-		["kk_ins2_revolver_loader"] = {model = "models/weapons/upgrades/a_speedloader_rev.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_revolver_mag"] = {model = "models/weapons/upgrades/a_speedloader_rev.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_band.mdl", bone = "Weapon", pos = Vector(0, 3.437, 1.531), angle = Angle(0, -90, 0), size = Vector(0.8, 0.8, 0.8)},
-		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_band.mdl", bone = "Weapon", pos = Vector(0, 3.437, 1.531), angle = Angle(0, -90, 0), size = Vector(0.8, 0.8, 0.8)},
-		["kk_ins2_anpeq15"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_anpeq_band.mdl", bone = "Weapon", pos = Vector(0, 3.437, 1.531), angle = Angle(0, -90, 0), size = Vector(0.8, 0.8, 0.8)},
+		-- ["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_band.mdl", bone = "Weapon", pos = Vector(0, 3.437, 1.531), angle = Angle(0, -90, 0), size = Vector(0.8, 0.8, 0.8)},
+		-- ["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_band.mdl", bone = "Weapon", pos = Vector(0, 3.437, 1.531), angle = Angle(0, -90, 0), size = Vector(0.8, 0.8, 0.8)},
+		-- ["kk_ins2_anpeq15"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_anpeq_band.mdl", bone = "Weapon", pos = Vector(0, 3.437, 1.531), angle = Angle(0, -90, 0), size = Vector(0.8, 0.8, 0.8)},
+		
+		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_mak.mdl", bone = "Weapon", pos = Vector(0, 2.602, -0.06), angle = Angle(0, -90, 0), size = Vector(1, 1, 1)},
+		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_mak.mdl", bone = "Weapon", pos = Vector(0, 2.602, -0.06), angle = Angle(0, -90, 0), size = Vector(1, 1, 1)},
 	}
 
 	SWEP.IronsightPos = Vector(-1.8544, 0, 1.1093)
@@ -37,10 +41,10 @@ if CLIENT then
 end
 
 SWEP.Attachments = {
-	-- {header = "Barrel", offset = {-500, -400}, atts = {"md_cobram2"}},
-	-- {header = "Lasers", offset = {-0, -600}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}},
-	{header = "Reload Aid", offset = {600, 50}, atts = {"kk_ins2_revolver_mag"}},
-	["+reload"] = {header = "Ammo", offset = {-400, 50}, atts = {"am_magnum", "am_matchgrade"}}
+	{header = "Lasers", offset = {-400, -400}, atts = {"kk_ins2_lam", "kk_ins2_flashlight"}},
+	-- {header = "Barrel", offset = {-500, -400}, atts = {"kk_ins2_suppressor_pistol"}},
+	{header = "Reload Aid", offset = {500, -400}, atts = {"kk_ins2_revolver_mag"}},
+	["+reload"] = {header = "Ammo", offset = {500, 150}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
 SWEP.Animations = {
@@ -130,14 +134,123 @@ SWEP.ReloadFinishWaitEmpty = 1.74
 
 SWEP.CanRestOnObjects = false
 SWEP.Chamberable = false
-SWEP.ShotgunReload = true
 SWEP.WeaponLength = 16
+
+local bgBullets = 1
+local bgShells = 2
 
 function SWEP:IndividualInitialize()
 	self.magType = "NONE"
+	self.ShotgunReload = true
+	
+	if CLIENT then 
+		self._lastLoadedAmount = 6
+		self:setBodygroup(bgBullets,self._lastLoadedAmount)
+		self:setBodygroup(bgShells,self._lastLoadedAmount)
+	end
+end
+
+if CLIENT then 
+	local makeShell = CustomizableWeaponry_KK.ins2.makeShell
+	local random = math.random
+	local velocity = Vector(0,0,50)
+	
+	local att, ang
+	
+	function SWEP:createShells()
+		if self.Owner:ShouldDrawLocalPlayer() then
+			return
+		end
+		
+		if self._shellCoolDown and self._shellCoolDown > CurTime() then
+			return
+		end
+		
+		self._shellCoolDown = CurTime() + 3
+		
+		local shells = math.Clamp(self._lastLoadedAmount - self:Clip1(), 0, 6)
+		
+		for i = 1, shells do
+			self._shellTable = self._shellTable1
+			att = self.CW_VM:GetAttachment(2)
+			ang = EyeAngles()
+			
+			ang:RotateAroundAxis(ang:Right(), random(-90, 90))
+			ang:RotateAroundAxis(ang:Forward(), random(-90, 90))
+			ang:RotateAroundAxis(ang:Up(), random(-90, 90))
+			
+			makeShell(self, att.Pos, ang, velocity, 0.6, 10)
+		end
+	end
+end
+
+if CLIENT then 
+	function SWEP:updateOtherParts()
+		local vm = self.CW_VM
+		local cyc = vm:GetCycle()
+		
+		local clip = math.Clamp(self:Clip1(),0,6)
+		
+		local ammoType = self:getActiveAttachmentInCategory("+reload")
+			local ammoSwitched = ammoType != self._lastAmmoType
+			local unloadSwitched = self.unloadedMagazine and self.unloadedMagazine != self._lastUnload
+			
+			if ammoSwitched or unloadSwitched then
+				self._lastLoadedAmount = 0
+				self:setBodygroup(bgBullets,self._lastLoadedAmount)
+				self:setBodygroup(bgShells,self._lastLoadedAmount)
+			end
+		self._lastUnload = self.unloadedMagazine
+		self._lastAmmoType = ammoType
+		
+		if self.ShotgunReload then
+			local dumping = self.Sequence == self.Animations.base_reload_start
+			local loading = self.Sequence == self.Animations.base_insert
+		
+			if dumping then
+				self:setBodygroup(bgBullets,clip)
+				if cyc > 0.8 then
+					self:setBodygroup(bgShells,0)
+				end
+				if cyc >= 0.7 then
+					self:createShells()
+				end
+			elseif loading then				
+				self._lastLoadedAmount = clip
+				self:setBodygroup(bgShells,self._lastLoadedAmount)
+			end
+		else
+			local dumping = self.Sequence == self.Animations.base_reload and cyc < 0.41
+			local loading = self.Sequence == self.Animations.base_reload and cyc > 0.41 and cyc != 1
+		
+			if dumping then
+				self:setBodygroup(bgBullets,clip)
+				self:setBodygroup(bgShells,self._lastLoadedAmount)
+				if cyc >= 0.4 then
+					self:createShells()
+				end
+			elseif loading then
+				local reserve
+				
+				if self.getFullestMag then
+					reserve = math.max(self:Clip1(), self:getFullestMag(), -1)
+				else
+					reserve = self.Owner:GetAmmoCount(self.Primary.Ammo) + clip
+				end
+				
+				self._lastLoadedAmount = math.Clamp(reserve,0,6)
+				self:setBodygroup(bgBullets,self._lastLoadedAmount)
+				self:setBodygroup(bgShells,self._lastLoadedAmount)
+			end
+		end
+	end
 end
 
 function SWEP:beginReload()
+	if SERVER then
+		SendUserMessage("CW_KK_INS2_RELOADINACTIVITY", self.Owner)
+	end
+	
 	if self.ShotgunReload then
 		mag = self:Clip1()
 	
@@ -157,15 +270,16 @@ function SWEP:beginReload()
 			local amt = self:Clip1()
 			self.Owner:SetAmmo(self.Owner:GetAmmoCount(self.Primary.Ammo) + amt, self.Primary.Ammo)
 			self:SetClip1(0)
+			self.ShotgunReloadState = 1
 		end)
 		
 		CustomizableWeaponry.callbacks.processCategory(self, "beginReload", mag == 0)
 		
 		self.Owner:SetAnimation(PLAYER_RELOAD)
 	else
-		if CustomizableWeaponry.magSystem then
-			weapons.GetStored("cw_base").unloadWeapon(self)
-		end
+		-- if CustomizableWeaponry.magSystem then
+			-- weapons.GetStored("cw_base").unloadWeapon(self)
+		-- end
 		weapons.GetStored("cw_base").beginReload(self)
 	end
 end
@@ -219,54 +333,6 @@ function SWEP:finishReloadShotgun()
 			self:SetNextSecondaryFire(time)
 			self.ReloadWait = time
 			self.ReloadDelay = nil
-		end
-	end
-end
-
-if CLIENT then 
-	local bgBullets = 1
-	local bgShells = 2
-
-	SWEP._lastLoadedAmount = 6
-	
-	function SWEP:updateOtherParts()
-		local vm = self.CW_VM
-		local cyc = vm:GetCycle()
-		
-		local clip = self:Clip1()
-		local reserve = self.Owner:GetAmmoCount(self.Primary.Ammo) + clip
-		
-		if self.ShotgunReload then
-			local dumping = self.Sequence == self.Animations.base_reload_start
-			local loading = self.Sequence == self.Animations.base_insert // or self.Sequence == self.Animations.base_reload_end
-		
-			if dumping then 
-				self:setBodygroup(bgBullets,clip)
-			else
-				self:setBodygroup(bgBullets,6)
-			end
-			
-			if loading then
-				self._lastLoadedAmount = clip
-			end
-			
-			self:setBodygroup(bgShells,self._lastLoadedAmount)
-		else
-			local dumping = self.Sequence == self.Animations.base_reload and cyc < 0.41
-			local loading = self.Sequence == self.Animations.base_reload and cyc > 0.41 and cyc < 1
-		
-			if self.getFullestMag then
-				reserve = math.max(self:Clip1(), self:getFullestMag(), -1)
-			end
-			
-			if loading then
-				self._lastLoadedAmount = math.Clamp(reserve,0,6)
-				self:setBodygroup(bgBullets,self._lastLoadedAmount)
-				self:setBodygroup(bgShells,self._lastLoadedAmount)
-			else
-				self:setBodygroup(bgBullets,clip)
-				self:setBodygroup(bgShells,self._lastLoadedAmount)
-			end
 		end
 	end
 end

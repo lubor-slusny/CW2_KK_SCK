@@ -43,6 +43,8 @@ SWEP.LuaViewmodelRecoil = false
 SWEP.BipodDeployTime = 1.15
 SWEP.BipodUndeployTime = 1.15
 
+SWEP.KK_IGNORE_MAGSYS_TWEAK = true
+
 SWEP.KKINS2Wep = true
 SWEP.KKINS2RCE = false
 SWEP.KKINS2Melee = false
@@ -175,6 +177,15 @@ function SWEP:IndividualThink()
 		
 		if !SP and not IsFirstTimePredicted() then return end
 		
+		
+		if self.Slot != 2 and self.Slot != 3 then
+			if self.Sequence:find("sprint") then
+				self.ViewModelMovementScale = self.ViewModelMovementScale_sprint
+			else
+				self.ViewModelMovementScale = self.ViewModelMovementScale_base
+			end
+		end
+		
 		// I can afford coz times are based on anims
 		// and anims are based purely on attachments
 		// (FAS2 M60 has stuff based on attachments AND current clip)
@@ -244,13 +255,20 @@ function SWEP:Initialize()
 	self:updateReloadTimes()
 	
 	weapons.GetStored("cw_base").Initialize(self)
+	
 	self:PrepareForPickup()
 end
 
-function SWEP:unloadWeapon()
-	if self.dt.State != CW_CUSTOMIZE then return end
+function SWEP:unloadWeapon(force)
+	if !force and self.dt.State != CW_CUSTOMIZE then return end
 	
 	weapons.GetStored("cw_base").unloadWeapon(self)
+	
+	if SERVER then
+		if self.usesMagazines and self:usesMagazines() then
+			weapons.GetStored("cw_base").unloadMagazine(self)
+		end
+	end
 	
 	if CLIENT then
 		if self.KK_INS2_emptyIdle then
@@ -259,16 +277,18 @@ function SWEP:unloadWeapon()
 	end
 end
 
-function SWEP:unloadMagazine()
-	if self.dt.State != CW_CUSTOMIZE then return end
-	
-	weapons.GetStored("cw_base").unloadMagazine(self)
-end
-
 // majority of First deploy logic
 
-function SWEP:OnDrop()
+function SWEP:OnDrop(...)
 	self:PrepareForPickup(true)
+	
+	-- if self.allocatedMags and #self.allocatedMags > 0 then
+		-- for key, roundCount in ipairs(self.allocatedMags) do
+			-- self.Owner:GiveAmmo(roundCount, self.Primary.Ammo, true)
+		-- end
+		
+		-- self.Owner:cwAddMagazine(self.magType, #self.allocatedMags)
+	-- end
 end
 
 local prefix, suffix
@@ -295,7 +315,7 @@ function SWEP:PrepareForPickup(drop)
 		self.dt.INS2GLActive = false
 	
 		if !SP then
-			umsg.Start("CW20_KK_INS_PREPAREFORPICKUP")
+			umsg.Start("CW_KK_INS2_PREPAREFORPICKUP")
 				umsg.Entity(self)
 			umsg.End()
 		end
@@ -314,7 +334,7 @@ function SWEP:PrepareForPickup(drop)
 end
 
 if CLIENT then
-	usermessage.Hook("CW20_KK_INS_PREPAREFORPICKUP", function(um)
+	usermessage.Hook("CW_KK_INS2_PREPAREFORPICKUP", function(um)
 		local wep = um:ReadEntity()
 		if !IsValid(wep) or wep.Base != "cw_kk_ins2_base" then return end
 		
