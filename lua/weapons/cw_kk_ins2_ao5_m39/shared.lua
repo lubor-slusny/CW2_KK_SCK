@@ -1,11 +1,13 @@
 if not CustomizableWeaponry then return end
 
-if not file.Exists("models/weapons/v_m39.mdl", "GAME") then return end
-if not file.Exists("models/weapons/w_m39.mdl", "GAME") then return end
-
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
 include("sh_sounds.lua")
+
+if not file.Exists("models/weapons/v_m39.mdl", "GAME") then return end
+if not file.Exists("models/weapons/w_m39.mdl", "GAME") then return end
+
+SWEP.Sounds = {}
 
 SWEP.magType = "brMag"
 

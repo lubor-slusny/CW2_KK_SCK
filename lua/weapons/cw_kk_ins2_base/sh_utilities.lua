@@ -91,52 +91,15 @@ if CLIENT then
 end
 
 if CLIENT then
-	function SWEP:getGLAttName()
-		for k,v in pairs(self.ActiveAttachments) do
-			if v and CustomizableWeaponry.registeredAttachmentsSKey[k].isGrenadeLauncher then
-				return CustomizableWeaponry.registeredAttachmentsSKey[k].displayNameShort
-			end
-		end
-		
-		return "No GL attached."
-	end
-	
 	function SWEP:updateStandardParts()
-		if self.AttachmentModelsVM then
-			if self:getPrimarySight() != nil then
-				if self.AttachmentModelsVM.kk_ins2_optic_iron then
-					self.AttachmentModelsVM.kk_ins2_optic_iron.active = false
-				end
-				if self.AttachmentModelsVM.kk_ins2_optic_rail then
-					self.AttachmentModelsVM.kk_ins2_optic_rail.active = true
-				end
-			else
-				if self.AttachmentModelsVM.kk_ins2_optic_iron then
-					self.AttachmentModelsVM.kk_ins2_optic_iron.active = true
-				end
-				if self.AttachmentModelsVM.kk_ins2_optic_rail then
-					self.AttachmentModelsVM.kk_ins2_optic_rail.active = false
-				end
-			end
-			
-			if self.AttachmentModelsWM then // move somewhere else
-				for k,v in pairs(self.AttachmentModelsVM) do
-					if self.AttachmentModelsWM[k] then
-						self.AttachmentModelsWM[k].active = v.active
-					end
-				end
-			end
-		end
-		
-		self:updateOtherParts()
 		self:updateHands()
+		self:updateOtherParts()
 	end
 	
-	function SWEP:updateOtherParts()
-	end
+	local cvRig = GetConVar("cw_kk_ins2_rig")
 	
 	function SWEP:updateHands()
-		local currentRig = math.Round(math.Clamp(GetConVarNumber("cw_kk_ins2_rig"),1,table.Count(CustomizableWeaponry_KK.ins2.hands)), 0)
+		local currentRig = math.Round(math.Clamp(cvRig:GetInt(),1,table.Count(CustomizableWeaponry_KK.ins2.hands)), 0)
 		
 		if self._KK_INS2_rig != currentRig then
 			if self.CW_KK_HANDS then
@@ -146,44 +109,42 @@ if CLIENT then
 		
 		self._KK_INS2_rig = currentRig
 	end
+	
+	function SWEP:updateOtherParts() end
 end
 
-function SWEP:hasInstalledRTScope()	// to be extended
-	local res = false
-	
-	res = res or self.ActiveAttachments.kk_ins2_magnifier
-	res = res or self.ActiveAttachments.kk_ins2_elcan
-	res = res or self.ActiveAttachments.kk_ins2_po4
-	res = res or self.ActiveAttachments.kk_ins2_scope_m40
-	res = res or self.ActiveAttachments.kk_ins2_scope_mosin
-	
-	res = res or self.ActiveAttachments.kk_ins2_cstm_acog
-	res = res or self.ActiveAttachments.kk_ins2_cstm_pgo7
-	
-	res = res or self.ActiveAttachments.kk_ins2_scope_zf4
-	
-	return res
+function SWEP:hasInstalledRTScope()
+	return 
+		self.ActiveAttachments.kk_ins2_magnifier or
+		self.ActiveAttachments.kk_ins2_elcan or
+		self.ActiveAttachments.kk_ins2_po4 or
+		self.ActiveAttachments.kk_ins2_scope_m40 or
+		self.ActiveAttachments.kk_ins2_scope_mosin or
+		
+		self.ActiveAttachments.kk_ins2_cstm_acog or
+		self.ActiveAttachments.kk_ins2_cstm_pgo7 or
+		
+		self.ActiveAttachments.kk_ins2_scope_zf4
 end
 
 function SWEP:hasInstalledStencilSight()
-	local res = false
-	
-	res = res or self.ActiveAttachments.kk_ins2_aimpoint
-	res = res or self.ActiveAttachments.kk_ins2_eotech
-	res = res or self.ActiveAttachments.kk_ins2_kobra
-	
-	res = res or self.ActiveAttachments.kk_ins2_cstm_cmore
-	res = res or self.ActiveAttachments.kk_ins2_cstm_sureshot
-	res = res or self.ActiveAttachments.kk_ins2_cstm_barska
-	res = res or self.ActiveAttachments.kk_ins2_cstm_microt1
-	res = res or self.ActiveAttachments.kk_ins2_cstm_eotechxps
-	res = res or self.ActiveAttachments.kk_ins2_cstm_compm4s
-	
-	return res
+	return 
+		self.ActiveAttachments.kk_ins2_aimpoint or
+		self.ActiveAttachments.kk_ins2_eotech or
+		self.ActiveAttachments.kk_ins2_kobra or
+		
+		self.ActiveAttachments.kk_ins2_cstm_cmore or
+		self.ActiveAttachments.kk_ins2_cstm_sureshot or
+		self.ActiveAttachments.kk_ins2_cstm_barska or
+		self.ActiveAttachments.kk_ins2_cstm_microt1 or
+		self.ActiveAttachments.kk_ins2_cstm_eotechxps or
+		self.ActiveAttachments.kk_ins2_cstm_compm4s
 end
 
-function SWEP:hasInstalledGL()	// to be extended
-	return self.ActiveAttachments.kk_ins2_gl_gp25 or self.ActiveAttachments.kk_ins2_gl_m203
+function SWEP:hasInstalledGL()
+	return 
+		self.ActiveAttachments.kk_ins2_gl_gp25 or 
+		self.ActiveAttachments.kk_ins2_gl_m203
 end
 
 function SWEP:getForegripMode()
@@ -202,9 +163,11 @@ function SWEP:getForegripMode()
 	return "base_"
 end
 
+local CW2_ATTS = CustomizableWeaponry.registeredAttachmentsSKey
+
 function SWEP:getPrimarySight()
 	for k,v in pairs(self.ActiveAttachments) do
-		if v and CustomizableWeaponry.registeredAttachmentsSKey[k].isSight then
+		if v and CW2_ATTS[k].isSight then
 			return k
 		end
 	end
@@ -212,8 +175,18 @@ end
 
 function SWEP:getSecondarySight()
 	for k,v in pairs(self.ActiveAttachments) do
-		if v and CustomizableWeaponry.registeredAttachmentsSKey[k].isSecondarySight then
+		if v and CW2_ATTS[k].isSecondarySight then
 			return k
 		end
 	end
+end
+
+function SWEP:getGLAttName()
+	for k,v in pairs(self.ActiveAttachments) do
+		if v and CW2_ATTS[k].isGrenadeLauncher then
+			return CW2_ATTS[k].displayNameShort
+		end
+	end
+	
+	return "No grenade launcher attached."
 end

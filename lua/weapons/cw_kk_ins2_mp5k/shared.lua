@@ -254,7 +254,7 @@ if CLIENT then
 	function SWEP:nametagElementRender()
 		local ent = self.AttachmentModelsVM.kk_textbox.ent
 		
-		local mags = self:Clip1()
+		local mags = 0
 		
 		for k,v in pairs(self.allocatedMags) do
 			mags = mags + v

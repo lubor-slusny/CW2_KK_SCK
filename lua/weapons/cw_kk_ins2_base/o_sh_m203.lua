@@ -59,6 +59,8 @@ function SWEP:reloadM203()
 	
 	if CLIENT and self.ActiveAttachments.kk_ins2_gl_m203 then
 		CustomizableWeaponry.actionSequence.new(self, 1.18, nil, function()
+			if self.Sequence != self.Animations.gl_on_reload then return end
+			
 			local att = self.AttachmentModelsVM.kk_ins2_gl_m203.ent:GetAttachment(2)
 		
 			local dir = att.Ang:Forward()
@@ -74,6 +76,8 @@ function SWEP:reloadM203()
 	end
 	
 	CustomizableWeaponry.actionSequence.new(self, self.gl_on_ReloadTime or 2, nil, function()
+		-- if !self.ReloadDelay then return end // feeeeex
+		
 		if SERVER then
 			self.Owner:RemoveAmmo(1, "40MM")
 		end

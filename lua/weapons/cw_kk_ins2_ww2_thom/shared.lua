@@ -27,6 +27,10 @@ if CLIENT then
 		["kk_ins2_suppressor_sec"] = {model = "models/weapons/upgrades/a_suppressor_sec.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 
 		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/a_thompson_foregrip.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), merge = true},
+
+		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_band.mdl", bone = "M1928A1", pos = Vector(0.007, 12.043, 1.338), angle = Angle(0, -90, -90), size = Vector(0.8, 0.8, 0.8)},
+		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_band.mdl", bone = "M1928A1", pos = Vector(0.007, 12.043, 1.338), angle = Angle(0, -90, -90), size = Vector(0.8, 0.8, 0.8)},
+		["kk_ins2_anpeq15"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_anpeq_band.mdl", bone = "M1928A1", pos = Vector(0.007, 12.043, 1.338), angle = Angle(0, -90, -90), size = Vector(0.8, 0.8, 0.8)},
 	}
 	
 	SWEP.AttachmentModelsWM = {
@@ -47,13 +51,14 @@ end
 SWEP.WeaponLength = 16
 
 SWEP.Attachments = {
-	-- {header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_suppressor_sec"}},
 	{header = "Under", offset = {-500, 0}, atts = {"kk_ins2_vertgrip"}},
-	-- {header = "Lasers", offset = {125, 100}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}},
 	{header = "Magazine", offset = {-50, 500}, atts = {"kk_ins2_mag_thom_30", "kk_ins2_mag_thom_50"}},
-	-- {header = "More Sight", offset = {1200, 0}, atts = {"kk_ins2_magnifier"}, dependencies = CustomizableWeaponry_KK.ins2.magnifierDependencies},
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_magnum", "am_matchgrade"}}
 }
+
+if CustomizableWeaponry_KK.HOME then
+	table.insert(SWEP.Attachments, {header = "Lasers", offset = {125, 0}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}})
+end
 
 SWEP.Chamberable = false
 SWEP.KK_INS2_emptyIdle = true
@@ -162,7 +167,7 @@ SWEP.Primary.DefaultClip	= 20
 SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= ".45 ACP"
 
-SWEP.FireDelay = 0.085
+SWEP.FireDelay = 60/700
 SWEP.FireSound = "CW_KK_INS2_WW2_THOMPSON_FIRE"
 SWEP.Recoil = 0.7
 

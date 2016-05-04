@@ -4,6 +4,8 @@
 	"tags"		:	[ "fun", "realism" ], 
 	"ignore"	:
 	[
+		"*.git*",
+		"*.md*",
 		"*.svn*", 
 		"*_src*", 
 		"*_cof*", 

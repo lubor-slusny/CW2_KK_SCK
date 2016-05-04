@@ -173,6 +173,9 @@ end
 local vel, len
 
 function ENT:Touch(ent)
+	if !IsValid(ent) then return end
+	if !ent:IsPlayer() and !ent:IsNPC() then return end
+	
 	if self.dt.State != self.States.misfired and CurTime() > self.ArmTime then
 		self:SelfDestruct()
 	end

@@ -155,16 +155,8 @@ if CLIENT then
 			wep._KK_INS2_LAM_MODE = max
 		end
 		
-		-- if wep.ActiveAttachments["kk_ins2_anpeq15"] then
-			wep:EmitSound("CW_KK_INS2_UMP45_FIRESELECT")
-		-- else			
-			-- if (wep._KK_INS2_LAM_MODE % 2) == 1 then
-				-- wep:EmitSound("player/flashlight_on.wav")
-			-- else
-				-- wep:EmitSound("player/flashlight_off.wav")
-			-- end
-		-- end
-	
+		wep:EmitSound("CW_KK_INS2_UMP45_FIRESELECT")
+			
 		return true
 	end
 

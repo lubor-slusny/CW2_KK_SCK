@@ -208,7 +208,9 @@ function SWEP:beginReload()
 			time = CT + self.ReloadStartTimeEmpty / self.ReloadSpeed
 			
 			if SERVER and self.ReloadFirstShell then
-				CustomizableWeaponry.actionSequence.new(self, self.ReloadFirstShell, nil, function() 
+				CustomizableWeaponry.actionSequence.new(self, self.ReloadFirstShell, nil, function()
+					if self.ShotgunReloadState == 0 then return end
+					
 					self:SetClip1(mag + 1)
 					self.Owner:SetAmmo(ammo - 1, self.Primary.Ammo)
 					

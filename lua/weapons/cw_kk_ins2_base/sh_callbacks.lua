@@ -85,12 +85,56 @@ if CLIENT then
 	end)
 end
 
+local CW2_ATTS = CustomizableWeaponry.registeredAttachmentsSKey
+
+local function sharedAttachDetach(self)
+	if CLIENT then
+		local prim, sec = wep:getPrimarySight(), wep:getSecondarySight()
+		
+		// magnifier scope		
+		if sec then
+			local a = CW2_ATTS[sec]
+			wep.AimPos = wep[a.aimPos[1]]
+			wep.AimAng = wep[a.aimPos[2]]
+			wep.AimViewModelFOV = a.AimViewModelFOV or wep.AimViewModelFOV_Orig
+		elseif prim then
+			local a = CW2_ATTS[prim]
+			wep.AimPos = wep[a.aimPos[1]]
+			wep.AimAng = wep[a.aimPos[2]]
+			wep.AimViewModelFOV = a.AimViewModelFOV or wep.AimViewModelFOV_Orig
+		else
+			wep.AimPos = wep.IronsightPos
+			wep.AimAng = wep.IronsightAng
+			wep.AimViewModelFOV = wep.AimViewModelFOV_Orig
+		end
+		
+		// previously standard parts update called every Think
+		if self.AttachmentModelsVM then
+			if prim != nil then
+				if self.AttachmentModelsVM.kk_ins2_optic_iron then
+					self.AttachmentModelsVM.kk_ins2_optic_iron.active = false
+				end
+				if self.AttachmentModelsVM.kk_ins2_optic_rail then
+					self.AttachmentModelsVM.kk_ins2_optic_rail.active = true
+				end
+			else
+				if self.AttachmentModelsVM.kk_ins2_optic_iron then
+					self.AttachmentModelsVM.kk_ins2_optic_iron.active = true
+				end
+				if self.AttachmentModelsVM.kk_ins2_optic_rail then
+					self.AttachmentModelsVM.kk_ins2_optic_rail.active = false
+				end
+			end
+		end
+	end
+end
+
 local att
 
 CustomizableWeaponry.callbacks:addNew("postAttachAttachment", "KK_INS2_BASE", function(wep,catId,attId)
 	if !wep.KKINS2Wep then return end
 	
-	att = CustomizableWeaponry.registeredAttachmentsSKey[wep.Attachments[catId].atts[attId]]
+	att = CW2_ATTS[wep.Attachments[catId].atts[attId]]
 	
 	if CLIENT then
 		if att.KK_INS2_playIdle then
@@ -100,26 +144,9 @@ CustomizableWeaponry.callbacks:addNew("postAttachAttachment", "KK_INS2_BASE", fu
 				wep:pickupAnimFunc()
 			end
 		end
-		
-		local prim, sec = wep:getPrimarySight(), wep:getSecondarySight()
-		local a
-		
-		if sec then
-			a = CustomizableWeaponry.registeredAttachmentsSKey[sec]
-			wep.AimPos = wep[a.aimPos[1]]
-			wep.AimAng = wep[a.aimPos[2]]
-			wep.AimViewModelFOV = a.AimViewModelFOV or wep.AimViewModelFOV_Orig
-		elseif prim then
-			a = CustomizableWeaponry.registeredAttachmentsSKey[prim]
-			wep.AimPos = wep[a.aimPos[1]]
-			wep.AimAng = wep[a.aimPos[2]]
-			wep.AimViewModelFOV = a.AimViewModelFOV or wep.AimViewModelFOV_Orig
-		else
-			wep.AimPos = wep.IronsightPos
-			wep.AimAng = wep.IronsightAng
-			wep.AimViewModelFOV = wep.AimViewModelFOV_Orig
-		end
 	end
+	
+	sharedAttachDetach(wep)
 end)
 
 CustomizableWeaponry.callbacks:addNew("postDetachAttachment", "KK_INS2_BASE", function(wep,attTable,CWMenuCategory)
@@ -131,38 +158,7 @@ CustomizableWeaponry.callbacks:addNew("postDetachAttachment", "KK_INS2_BASE", fu
 		if att.KK_INS2_playIdle then
 			wep:idleAnimFunc()
 		end
-		
-		local prim, sec = wep:getPrimarySight(), wep:getSecondarySight()
-		local a
-		
-		if sec then
-			a = CustomizableWeaponry.registeredAttachmentsSKey[sec]
-			wep.AimPos = wep[a.aimPos[1]]
-			wep.AimAng = wep[a.aimPos[2]]
-			wep.AimViewModelFOV = a.AimViewModelFOV or wep.AimViewModelFOV_Orig
-		elseif prim then
-			a = CustomizableWeaponry.registeredAttachmentsSKey[prim]
-			wep.AimPos = wep[a.aimPos[1]]
-			wep.AimAng = wep[a.aimPos[2]]
-			wep.AimViewModelFOV = a.AimViewModelFOV or wep.AimViewModelFOV_Orig
-		else
-			wep.AimPos = wep.IronsightPos
-			wep.AimAng = wep.IronsightAng
-			wep.AimViewModelFOV = wep.AimViewModelFOV_Orig
-		end
 	end
+	
+	sharedAttachDetach(wep)
 end)
-
--- CustomizableWeaponry.callbacks:addNew("droppedWeapon", "KK_INS2_BASE", function(ent)
-	-- if CLIENT then
-		-- function ent:Draw()
-			
-		-- end
-	-- end
--- end)
-
--- if CLIENT then
-	-- CustomizableWeaponry.callbacks:addNew("overrideReserveAmmoText", "KK_INS2_BASE", function(wep)
-		
-	-- end)
--- end

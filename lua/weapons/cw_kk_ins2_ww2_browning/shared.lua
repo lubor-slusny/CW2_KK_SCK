@@ -97,8 +97,8 @@ SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2us
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
 
-SWEP.Primary.ClipSize		= 18
-SWEP.Primary.DefaultClip	= 18
+SWEP.Primary.ClipSize		= 250
+SWEP.Primary.DefaultClip	= 250
 SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= ".30-06"
 

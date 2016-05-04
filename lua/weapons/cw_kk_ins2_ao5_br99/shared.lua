@@ -1,11 +1,13 @@
 if not CustomizableWeaponry then return end
 
-if not file.Exists("models/weapons/v_br99.mdl", "GAME") then return end
-if not file.Exists("models/weapons/w_br99.mdl", "GAME") then return end
-
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
 include("sh_sounds.lua")
+
+if not file.Exists("models/weapons/v_br99.mdl", "GAME") then return end
+if not file.Exists("models/weapons/w_br99.mdl", "GAME") then return end
+
+SWEP.Sounds = {}
 
 SWEP.magType = "arMag"
 
@@ -21,7 +23,7 @@ if CLIENT then
 	SWEP.Shell = "KK_INS2_12guage"
 
 	SWEP.AttachmentModelsVM = {
-		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_standard_br99.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_standard_br99.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		
 		["kk_ins2_suppressor_shotgun"] = {model = "models/weapons/upgrades/a_suppressor_12ga.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		

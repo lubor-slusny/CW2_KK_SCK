@@ -2,6 +2,10 @@ AddCSLuaFile()
 
 if not CustomizableWeaponry then return end
 
+if SERVER then
+	-- resource.AddWorkshop("657241323")
+end
+
 // for the best
 
 CustomizableWeaponry_KK = CustomizableWeaponry_KK or {}

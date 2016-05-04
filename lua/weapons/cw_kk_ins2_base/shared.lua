@@ -132,7 +132,7 @@ if CLIENT then
 	SWEP.KKINS2ScopeZF4Pos = Vector(0, 0, 0)
 	SWEP.KKINS2ScopeZF4Ang = Vector(0, 0, 0)
 end
-	
+
 SWEP.AttachmentExclusions = {
 	["bg_foldsight"] = {"kk_ins2_magnifier", "kk_ins2_sights_cstm"},
 	["kk_ins2_cstm_acog"] = {"kk_ins2_magnifier"},
@@ -168,6 +168,24 @@ SWEP.AttachmentDependencies = {
 
 local SP = game.SinglePlayer()
 local shouldDrawCrosshair, cycle, canDoStuff, wasSprint, isSprint, wasSafe, isSafe
+
+function SWEP:CW_KK_MELEE()
+	if SERVER then
+		if self._KK_INS2_PickedUp == false then return end
+		if self.meleeAttackDelay and self.meleeAttackDelay > CurTime() then return end
+	
+		-- if self.KKINS2Melee then
+			-- if self.CanPrimaryAttack() then
+				-- self:PrimaryAttack()
+				-- return
+			-- end
+		-- end
+		
+		if CustomizableWeaponry_KK.ins2.canKnife(self) then
+			CustomizableWeaponry_KK.ins2.meleeKnife(self)
+		end
+	end
+end
 
 function SWEP:IndividualThink()
 	self:DrawShadow(false)
@@ -313,6 +331,10 @@ function SWEP:PrepareForPickup(drop)
 			self:setGlobalDelay(self.FirstDeployTime - 0.1)
 			-- self:SetClip1(self.Primary.ClipSize)
 		end
+	end)
+	
+	CustomizableWeaponry.actionSequence.new(self, self.FirstDeployTime - 0.5, nil, function()
+		self._KK_INS2_PickedUp = true
 	end)
 	
 	if SERVER then

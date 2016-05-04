@@ -1,9 +1,11 @@
 if not CustomizableWeaponry then return end
 
+AddCSLuaFile()
+
 if not file.Exists("models/weapons/aof/v_m79.mdl", "GAME") then return end
 if not file.Exists("models/weapons/aof/w_m79.mdl", "GAME") then return end
 
-AddCSLuaFile()
+SWEP.Sounds = {}
 
 if CLIENT then
 	SWEP.DrawCrosshair = false

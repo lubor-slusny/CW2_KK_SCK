@@ -260,6 +260,8 @@ if CLIENT then
 	killicon.AddFont("cw_kk_ins2_projectile_c4",	"CW_KillIcons", "I", killCol)
 	killicon.AddFont("cw_kk_ins2_projectile_ied",	"CW_KillIcons", "I", killCol)
 	
+	killicon.AddFont("cw_kk_ins2_projectile_frag",	"CW_KillIcons", "h", killCol)
+	
 	// WS pack
 	
 	killicon.AddFont("cw_kk_ins2_mel_cstm_ninjato",	"CW_KillIcons", "j", killCol)

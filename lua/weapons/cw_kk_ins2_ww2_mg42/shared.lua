@@ -22,7 +22,7 @@ if CLIENT then
 	SWEP.AttachmentModelsVM = {}
 	SWEP.AttachmentModelsWM = {}
 	
-	SWEP.CustomizePos = Vector(4.488, -1.627, -0.821)
+	SWEP.CustomizePos = Vector(6.488, -1.627, -2.821)
 	SWEP.CustomizeAng = Vector(17.009, 29.971, 16.669)
 	
 	SWEP.IronsightPos = Vector(-2.3517, -2, 1.2473)
@@ -96,8 +96,8 @@ SWEP.WMAng = Vector(-5, 0, 180)
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
 
-SWEP.Primary.ClipSize		= 18
-SWEP.Primary.DefaultClip	= 18
+SWEP.Primary.ClipSize		= 250
+SWEP.Primary.DefaultClip	= 250
 SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= "7.92x57MM"
 

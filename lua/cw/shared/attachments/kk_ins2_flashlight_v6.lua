@@ -1,5 +1,5 @@
 local att = {}
-att.name = "kk_ins2_flashlight6"
+att.name = "kk_ins2_flashlight"
 att.displayName = "Light Emitting Module v6"
 att.displayNameShort = "LEM6"
 att.colorType = CustomizableWeaponry.colorableParts.COLOR_TYPE_KK_FLASHLIGHT
@@ -46,6 +46,10 @@ end
 
 function att:detachFunc()
 	CustomizableWeaponry_KK.ins2.flashlight.v6.detach(self)
+end
+
+if CLIENT then
+	CustomizableWeaponry:createStatText(att)
 end
 
 CustomizableWeaponry:registerAttachment(att)

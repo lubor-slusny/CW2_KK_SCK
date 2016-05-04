@@ -99,7 +99,7 @@ SWEP.Animations = {
 SWEP.SpeedDec = 10
 
 SWEP.Slot = 1
-SWEP.SlotPos = 0
+SWEP.SlotPos = 1
 SWEP.NormalHoldType = "revolver"
 SWEP.RunHoldType = "normal"
 SWEP.FireModes = {"semi"}
@@ -322,10 +322,13 @@ function SWEP:beginReload()
 		
 		self:sendWeaponAnim("reload_start")
 		
-		CustomizableWeaponry.actionSequence.new(self, 2, nil, function()
+		CustomizableWeaponry.actionSequence.new(self, 1.6, nil, function()
+			if self.ShotgunReloadState == 0 then return end // its also possible that its already 2 because user pressed attack button
+			
 			local amt = self:Clip1()
 			self.Owner:SetAmmo(self.Owner:GetAmmoCount(self.Primary.Ammo) + amt, self.Primary.Ammo)
 			self:SetClip1(0)
+			
 			self.ShotgunReloadState = 1
 		end)
 		

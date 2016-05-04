@@ -72,53 +72,53 @@ end
 local td = {}
 
 function CustomizableWeaponry_KK.ins2:canThrow()
-	-- it's disabled, can't throw
+	// it's disabled, can't throw
 	if not CustomizableWeaponry.quickGrenade.enabled then
 		return false
 	end
 	
-	-- can't throw if we're within a restricted state
+	// can't throw if we're within a restricted state
 	if CustomizableWeaponry.quickGrenade.restrictedStates[self.dt.State] then
 		return false
 	end
 	
-	-- can't throw while reloading
-	if self.ReloadDelay then
-		return false
-	end
+	-- // can't throw while reloading
+	-- if self.ReloadDelay then
+		-- return false
+	-- end
 	
-	-- can't throw with an active bipod
+	// can't throw with an active bipod
 	if self.dt.BipodDeployed then
 		return false
 	end
 	
-	-- can't throw while changing weapons
+	// can't throw while changing weapons
 	if self.HolsterDelay then
 		return false
 	end
 	
-	-- can't throw with no grenades
+	// can't throw with no grenades
 	if self.Owner:GetAmmoCount(CustomizableWeaponry_KK.ins2.getNadeAmmo(self)) <= 0 then
 		return false
 	end
 	
-	-- can't throw the grenade if we're really close to an object
+	// can't throw the grenade if we're really close to an object
 	td.start = self.Owner:GetShootPos()
 	td.endpos = td.start + CustomizableWeaponry.quickGrenade.getThrowOffset(self)
 	td.filter = self.Owner
 	
 	local tr = util.TraceLine(td)
 	
-	-- something in front of us, can't throw
+	// something in front of us, can't throw
 	if tr.Hit then
 		return false
 	end
 	
-	-- everything passes, can throw, woo!
+	// everything passes, can throw, woo!
 	return true
 end
 
-function CustomizableWeaponry_KK.ins2:throwGrenade()
+function CustomizableWeaponry_KK.ins2:throwGrenade(IFTP)
 	local CT = CurTime()
 	
 	self:setGlobalDelay(1.9)
@@ -130,7 +130,9 @@ function CustomizableWeaponry_KK.ins2:throwGrenade()
 	
 	self.dt.State = CW_ACTION
 	
-	if (not SP and IsFirstTimePredicted()) or SP then
+	IFTP = IFTP or IsFirstTimePredicted()
+	
+	if (not SP and IFTP) or SP then
 		if self:filterPrediction() then
 			self:EmitSound("CW_HOLSTER")
 		end
@@ -224,61 +226,65 @@ function CustomizableWeaponry_KK.ins2:throwGrenade()
 	end
 end
 
-usermessage.Hook("CW_KK_INS2_THROWGRENADE", function()
-	local ply = LocalPlayer()
-	local wep = ply:GetActiveWeapon()
+if CLIENT then
+	usermessage.Hook("CW_KK_INS2_THROWGRENADE", function()
+		local ply = LocalPlayer()
+		local wep = ply:GetActiveWeapon()
 
-	if IsValid(wep) and wep.CW20Weapon then
-		CustomizableWeaponry_KK.ins2.throwGrenade(wep)
-	end
-end)
+		if IsValid(wep) and wep.CW20Weapon then
+			CustomizableWeaponry_KK.ins2.throwGrenade(wep)
+		end
+	end)
+end
 
 // concommand
 
-local function cw_kk_throwfrag(ply)
-	-- print("Qnade call;", ply)
-	
-	if !IsValid(ply) then return end
-	
-	local wep = ply:GetActiveWeapon()
-	if !IsValid(wep) then return end
-	if !wep.CW20Weapon then return end
-	
-	if CurTime() < wep:GetNextPrimaryFire() then return end
-	if not wep:canFireWeapon(1) then return end
-	
-	if wep.KKINS2Wep then
-		if wep.KKINS2Nade then
-			wep:PrimaryAttack()
-			return
-		end
+if SERVER then
+	local function cw_kk_throwfrag(ply)
+		-- print("Qnade call;", ply)
 		
-		if CustomizableWeaponry_KK.ins2.canThrow(wep) then
-			CustomizableWeaponry_KK.ins2.throwGrenade(wep)
-		end
-	else
-		if wep.Base == "cw_grenade_base" then
-			wep:PrimaryAttack()
-			return
-		end
+		if !IsValid(ply) then return end
 		
-		if CustomizableWeaponry.quickGrenade.canThrow(wep) then
-			CustomizableWeaponry.quickGrenade.throw(wep)
+		local wep = ply:GetActiveWeapon()
+		if !IsValid(wep) then return end
+		if !wep.CW20Weapon then return end
+		
+		if CurTime() < wep:GetNextPrimaryFire() then return end
+		if not wep:canFireWeapon(1) then return end
+		
+		if wep.KKINS2Wep then
+			if wep.KKINS2Nade then
+				wep:PrimaryAttack()
+				return
+			end
+			
+			if CustomizableWeaponry_KK.ins2.canThrow(wep) then
+				CustomizableWeaponry_KK.ins2.throwGrenade(wep, true)
+			end
+		else
+			if wep.Base == "cw_grenade_base" then
+				wep:PrimaryAttack()
+				return
+			end
+			
+			if CustomizableWeaponry.quickGrenade.canThrow(wep) then
+				CustomizableWeaponry.quickGrenade.throw(wep)
+			end
 		end
 	end
+
+	concommand.Remove("cw_kk_throwfrag")
+
+	-- if CLIENT then return end
+
+	concommand.Add(
+		"cw_kk_throwfrag", 
+		cw_kk_throwfrag, 
+		nil, 
+		"Alternative to [+use][+attack] combo"
+		-- ,{FCVAR_REPLICATED}
+		-- ,{FCVAR_CLIENTCMD_CAN_EXECUTE}
+		,{FCVAR_REPLICATED, FCVAR_CLIENTCMD_CAN_EXECUTE}
+		-- ,{FCVAR_USERINFO}
+	)
 end
-
-concommand.Remove("cw_kk_throwfrag")
-
--- if CLIENT then return end
-
-concommand.Add(
-	"cw_kk_throwfrag", 
-	cw_kk_throwfrag, 
-	nil, 
-	"Alternative to [+use][+attack] combo"
-	-- ,{FCVAR_REPLICATED}
-	-- ,{FCVAR_CLIENTCMD_CAN_EXECUTE}
-	,{FCVAR_REPLICATED, FCVAR_CLIENTCMD_CAN_EXECUTE}
-	-- ,{FCVAR_USERINFO}
-)

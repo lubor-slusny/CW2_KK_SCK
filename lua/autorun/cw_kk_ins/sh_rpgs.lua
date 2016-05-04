@@ -87,8 +87,6 @@ function CustomizableWeaponry_KK.ins2:fireM6A1(IFTP, legit)
 			if IsValid(phys) then
 				phys:SetVelocity(forward * 4000)
 			end
-			
-			ParticleEffect("cstm_smoke", self:GetPos(), Angle(0, 0, 0), self)
 		end
 	end
 end

@@ -2,7 +2,9 @@ if not CustomizableWeaponry then return end
 
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
+AddCSLuaFile("sh_soundscript.lua")
 include("sh_sounds.lua")
+include("sh_soundscript.lua")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
@@ -124,14 +126,6 @@ if CLIENT then
 	SWEP.CustomizationMenuScale = 0.022
 end
 
-SWEP.Chamberable = false
-SWEP.SnapToIdlePostReload = false
-SWEP.ShotgunReload = true
-SWEP.ReticleInactivityPostFire = 1.9
-SWEP.GlobalDelayOnShoot = 1.9
-
-SWEP.WeaponLength = 38
-
 SWEP.Attachments = {
 	{header = "Sight", offset = {500, -450}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_po4", "kk_ins2_scope_m40", "kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_microt1", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"}},
 	{header = "Barrel", offset = {-100, -450}, atts = {"kk_ins2_suppressor_sec"}},
@@ -189,134 +183,11 @@ SWEP.Animations = {
 	bipod_reload_end_empty = "deployed_reload_end",
 	bipod_out = "deploy_out",
 }
-	
-SWEP.Sounds = {
-	base_ready = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-		{time = 19/25, sound = "CW_KK_INS2_M40A1_BOLTRELEASE"},
-		{time = 24/25, sound = "CW_KK_INS2_M40A1_BOLTBACK"},
-		{time = 33/25, sound = "CW_KK_INS2_M40A1_BOLTFORWARD"},
-		{time = 38/25, sound = "CW_KK_INS2_M40A1_BOLTLATCH"},
-		{time = 56/25, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
-	},
-
-	base_draw = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-	},
-
-	base_holster = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
-	},
-
-	base_crawl = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
-		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
-	},
-
-	base_fire_end = {
-		// shell @ 15 ""},
-		{time = 7/30, sound = "CW_KK_INS2_M40A1_BOLTRELEASE"},
-		{time = 13/30, sound = "CW_KK_INS2_M40A1_BOLTBACK"},
-		{time = 24/30, sound = "CW_KK_INS2_M40A1_BOLTFORWARD"},
-		// pumpedrdy @ 26 ""},
-		{time = 28/30, sound = "CW_KK_INS2_M40A1_BOLTLATCH"},
-	},
-
-	base_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_M40A1_EMPTY"},
-	},
-
-	base_reload_start = {
-		// shell @ 15 ""},
-		{time = 5/30, sound = "CW_KK_INS2_M40A1_BOLTRELEASE"},
-		{time = 11/30, sound = "CW_KK_INS2_M40A1_BOLTBACK"},
-	},
-
-	base_reload_insert = {
-		{time = 12/32, sound = "CW_KK_INS2_M40A1_BULLETIN"},
-		// reloaded @ 12 ""},
-	},
-
-	base_reload_end = {
-		{time = 6/30, sound = "CW_KK_INS2_M40A1_BOLTFORWARD"},
-		{time = 11/30, sound = "CW_KK_INS2_M40A1_BOLTLATCH"},
-	},
-
-	base_reload_end_empty = {
-		{time = 6/30, sound = "CW_KK_INS2_M40A1_BOLTFORWARD"},
-		{time = 11/30, sound = "CW_KK_INS2_M40A1_BOLTLATCH"},
-	},
-
-	iron_fire_end = {
-		// shell @ 17 ""},
-		{time = 11/28.5, sound = "CW_KK_INS2_M40A1_BOLTRELEASE"},
-		{time = 15/28.5, sound = "CW_KK_INS2_M40A1_BOLTBACK"},
-		{time = 23/28.5, sound = "CW_KK_INS2_M40A1_BOLTFORWARD"},
-		// pumpedrdy @ 27 ""},
-		{time = 27/28.5, sound = "CW_KK_INS2_M40A1_BOLTLATCH"},
-		{time = 45/28.5, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
-	},
-
-	iron_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_M40A1_EMPTY"},
-	},
-
-	deploy_in = {
-		{time = 12/20, sound = "CW_KK_INS2_UNIVERSAL_BIPOD_DEPLOYSTART"},
-		{time = 16/20, sound = "CW_KK_INS2_UNIVERSAL_BIPOD_DEPLOYEND"},
-	},
-
-	deploy_out = {
-		{time = 6/20, sound = "CW_KK_INS2_UNIVERSAL_BIPOD_RETRACT"},
-	},
-
-	deployed_fire_end = {
-		// shell @ 12 ""},
-		{time = 7/30, sound = "CW_KK_INS2_M40A1_BOLTRELEASE"},
-		{time = 13/30, sound = "CW_KK_INS2_M40A1_BOLTBACK"},
-		{time = 24/30, sound = "CW_KK_INS2_M40A1_BOLTFORWARD"},
-		// pumpedrdy @ 26 ""},
-		{time = 28/30, sound = "CW_KK_INS2_M40A1_BOLTLATCH"},
-	},
-
-	deployed_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_M40A1_EMPTY"},
-	},
-
-	deployed_reload_start = {
-		// shell @ 15 ""},
-		{time = 5/30, sound = "CW_KK_INS2_M40A1_BOLTRELEASE"},
-		{time = 11/30, sound = "CW_KK_INS2_M40A1_BOLTBACK"},
-	},
-
-	deployed_reload_insert = {
-		{time = 8/30, sound = "CW_KK_INS2_M40A1_BULLETIN"},
-		// reloaded @ 12 ""},
-	},
-
-	deployed_reload_end = {
-		{time = 6/30, sound = "CW_KK_INS2_M40A1_BOLTFORWARD"},
-		{time = 11/30, sound = "CW_KK_INS2_M40A1_BOLTLATCH"},
-	},
-
-	deployed_iron_fire_end = {
-		// shell @ 15 ""},
-		{time = 7/34, sound = "CW_KK_INS2_M40A1_BOLTRELEASE"},
-		{time = 13/34, sound = "CW_KK_INS2_M40A1_BOLTBACK"},
-		{time = 24/34, sound = "CW_KK_INS2_M40A1_BOLTFORWARD"},
-		// pumpedrdy @ 26 ""},
-		{time = 28/34, sound = "CW_KK_INS2_M40A1_BOLTLATCH"},
-	},
-
-	deployed_iron_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_M40A1_EMPTY"},
-	},
-}
 
 SWEP.SpeedDec = 40
 
 SWEP.Slot = 3
-SWEP.SlotPos = 0
+SWEP.SlotPos = 2
 SWEP.NormalHoldType = "ar2"
 SWEP.RunHoldType = "passive"
 SWEP.FireModes = {"bolt"}
@@ -344,7 +215,7 @@ SWEP.Primary.DefaultClip	= 5
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "7.62x51MM"
 
-SWEP.FireDelay = 1.75
+SWEP.FireDelay = 60/33
 SWEP.FireSound = "CW_KK_INS2_M40A1_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_M40A1_FIRE_SUPPRESSED"
 SWEP.Recoil = 1.6
@@ -373,6 +244,14 @@ SWEP.ReloadFinishWait = 1.1
 SWEP.ReloadFinishWaitEmpty = 1.1
 
 SWEP.SnapToIdlePostReload = false
+
+SWEP.Chamberable = false
+SWEP.SnapToIdlePostReload = false
+SWEP.ShotgunReload = true
+SWEP.ReticleInactivityPostFire = SWEP.FireDelay + 0.3
+SWEP.GlobalDelayOnShoot = SWEP.FireDelay
+
+SWEP.WeaponLength = 38
 
 -- function SWEP:updateReloadTimes()
 	-- local mode = self:getForegripMode()

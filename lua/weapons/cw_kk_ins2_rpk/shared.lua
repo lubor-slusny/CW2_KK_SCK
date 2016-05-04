@@ -24,7 +24,7 @@ if CLIENT then
 	SWEP.Shell = "KK_INS2_762x39"
 	
 	SWEP.AttachmentModelsVM = {
-		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_modkit_06.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
+		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_modkit_06.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_counter"] = {model = "models/weapons/stattrack.mdl", bone = "Weapon", pos = Vector(0.33, -3.289, -0.137), angle = Angle(0, -90, 0), size = Vector(1, 1, 1)},
 		["kk_counter_mag"] = {model = "models/weapons/stattrack.mdl", bone = "Magazine", pos = Vector(0.941, -1.086, 0.783), angle = Angle(-31.362, -9.11, -16.441), size = Vector(0.449, 0.449, 0.449)},
@@ -52,7 +52,7 @@ if CLIENT then
 	}
 	
 	SWEP.AttachmentModelsWM = {
-		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/w_modkit_6.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
+		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/w_modkit_6.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_pbs1"] = {model = "models/weapons/upgrades/w_sil_ins1.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
@@ -215,7 +215,7 @@ SWEP.Animations = {
 SWEP.SpeedDec = 30
 
 SWEP.Slot = 3
-SWEP.SlotPos = 0
+SWEP.SlotPos = 1
 SWEP.NormalHoldType = "ar2"
 SWEP.RunHoldType = "passive"
 SWEP.FireModes = {"auto", "semi"}

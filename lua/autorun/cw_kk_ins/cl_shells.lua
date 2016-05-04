@@ -32,6 +32,7 @@ if CLIENT then
 		ent:SetMoveType(MOVETYPE_VPHYSICS) 
 		ent:SetSolid(SOLID_VPHYSICS) 
 		ent:SetCollisionGroup(COLLISION_GROUP_DEBRIS)
+		-- ent:SetCollisionGroup(COLLISION_GROUP_NONE)
 		
 		if cvarSSF:GetInt() == 3 then
 			ent._shSnd = t.s

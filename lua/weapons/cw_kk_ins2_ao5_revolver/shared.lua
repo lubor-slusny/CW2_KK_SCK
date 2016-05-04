@@ -1,13 +1,13 @@
 if not CustomizableWeaponry then return end
 
-if not file.Exists("models/weapons/v_snub.mdl", "GAME") then return end
-if not file.Exists("models/weapons/w_snub.mdl", "GAME") then return end
-
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
 AddCSLuaFile("sh_soundscript.lua")
 include("sh_sounds.lua")
 include("sh_soundscript.lua")
+
+if not file.Exists("models/weapons/v_snub.mdl", "GAME") then return end
+if not file.Exists("models/weapons/w_snub.mdl", "GAME") then return end
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
@@ -269,10 +269,13 @@ function SWEP:beginReload()
 		
 		self:sendWeaponAnim("reload_start")
 		
-		CustomizableWeaponry.actionSequence.new(self, 2, nil, function()
+		CustomizableWeaponry.actionSequence.new(self, 1.6, nil, function()
+			if self.ShotgunReloadState == 0 then return end // its also possible that its already 2 because user pressed attack button
+			
 			local amt = self:Clip1()
 			self.Owner:SetAmmo(self.Owner:GetAmmoCount(self.Primary.Ammo) + amt, self.Primary.Ammo)
 			self:SetClip1(0)
+			
 			self.ShotgunReloadState = 1
 		end)
 		
