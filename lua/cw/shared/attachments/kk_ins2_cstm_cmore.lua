@@ -2,7 +2,7 @@ local att = {}
 att.name = "kk_ins2_cstm_cmore"
 att.displayName = "Seymore Sigh"
 att.displayNameShort = "Cmore"
-att.aimPos = {"KKINS2CmorePos", "KKINS2CmoreAng"}
+att.aimPos = {"KKINS2CSTMCMorePos", "KKINS2CSTMCMoreAng"}
 att.FOVModifier = 0
 att.AimViewModelFOV = 40
 att.isSight = true
@@ -19,8 +19,8 @@ if CLIENT then
 		[1] = {t = "Provides a bright reticle to ease aiming.", c = CustomizableWeaponry.textColors.POSITIVE}
 	}
 	
-	att.reticle = "models/weapons/optics/kobra_dot"
-	att._reticleSize = 16
+	att.reticle = "models/weapons/optics/aimpoint_reticule_holo"
+	att._reticleSize = 7
 	
 	function att:elementRender()
 		CustomizableWeaponry_KK.ins2.stencilSight(self, att)

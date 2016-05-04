@@ -16,8 +16,8 @@ if CLIENT then
 		[3] = {t = "Narrow scope may decrease awareness.", c = CustomizableWeaponry.textColors.NEGATIVE}
 	}
 	
-	att.reticle = "models/weapons/optics/aimpoint_reticule_holo"
-	att._reticleSize = 9
+	att.reticle = "models/weapons/attachments/cw_kk_ins2_cstm_barska/barska_reticule"
+	att._reticleSize = 16
 	
 	function att:elementRender()
 		CustomizableWeaponry_KK.ins2.stencilSight(self, att)

@@ -30,6 +30,7 @@ if CLIENT then
 		["kk_ins2_aimpoint"] = {model = "models/weapons/upgrades/a_optic_aimpoint.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_cstm_barska"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_barska.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_cstm_cmore"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_cmore.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 	}
 
 	SWEP.AttachmentModelsWM = {
@@ -62,6 +63,9 @@ if CLIENT then
 	SWEP.KKINS2AimpointPos = Vector(-2.0085, -4, -0.1769)
 	SWEP.KKINS2AimpointAng = Vector(0, 0, 0)
 
+	SWEP.KKINS2CSTMCMorePos = Vector(-2.0085, -4, -0.1769)
+	SWEP.KKINS2CSTMCMoreAng = Vector(0, 0, 0)
+
 	SWEP.KKINS2MagnifierPos = Vector(-2.004, -8, -0.1865)
 	SWEP.KKINS2MagnifierAng = Vector(0.0136, 0.0009, 0)
 
@@ -74,11 +78,11 @@ end
 SWEP.Chamberable = false
 SWEP.SnapToIdlePostReload = false
 SWEP.ShotgunReload = true
-SWEP.ReticleInactivityPostFire = 0.8
+SWEP.ReticleInactivityPostFire = 1
 SWEP.GlobalDelayOnShoot = 0.8
 
 SWEP.Attachments = {
-	{header = "Sight", offset = {500, -450},  atts = {"kk_ins2_cstm_barska", "kk_ins2_aimpoint"}},
+	{header = "Sight", offset = {500, -450},  atts = {"kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_aimpoint"}},
 	{header = "Barrel", offset = {-200, -450},  atts = {"md_saker"}},
 	{header = "Under", offset = {-500, 0},  atts = {"kk_ins2_vertgrip"}},
 	{header = "Extras", offset = {125, 200}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_combo"}},

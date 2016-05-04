@@ -82,7 +82,7 @@ end
 SWEP.Chamberable = false
 SWEP.SnapToIdlePostReload = false
 SWEP.ShotgunReload = true
-SWEP.ReticleInactivityPostFire = 0.8
+SWEP.ReticleInactivityPostFire = 1
 SWEP.GlobalDelayOnShoot = 0.8
 
 SWEP.Attachments = {

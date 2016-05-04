@@ -23,11 +23,16 @@ if CLIENT then
 		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_sterling.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_sterling.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 
-		["kk_ins2_magnifier"] = {model = "models/weapons/upgrades/a_optic_aimpoint.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_magnifier"] = {model = "models/weapons/upgrades/a_optic_aimp2x_m.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 
-		["kk_ins2_aimpoint"] = {model = "models/weapons/upgrades/a_optic_aimpoint.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_aimpoint"] = {model = "models/weapons/upgrades/a_optic_aimpoint_m.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_elcan"] = {model = "models/weapons/upgrades/a_optic_elcan_m.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_eotech"] = {model = "models/weapons/upgrades/a_optic_eotech_m.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_kobra"] = {model = "models/weapons/upgrades/a_optic_kobra.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_pso4"] = {model = "models/weapons/upgrades/a_optic_po4x24_m.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_cstm_barska"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_barska.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_cstm_cmore"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_cmore_m.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_cstm_barska"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_barska_m.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_cstm_acog"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_acog_m.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 	}
 	
@@ -48,14 +53,17 @@ if CLIENT then
 	SWEP.IronsightPos = Vector(-1.9912, -1, 1.0954)
 	SWEP.IronsightAng = Vector(-0.109, 0.0333, 0)
 
-	SWEP.KKINS2CSTMBarskaPos = Vector(-1.9781, -2, 0.0626)
+	SWEP.KKINS2CSTMBarskaPos = Vector(-1.9781, -2, 0.222)
 	SWEP.KKINS2CSTMBarskaAng = Vector(0, 0, 0)
 
-	SWEP.KKINS2MagnifierPos = Vector(-2.0826, -2, 0.0692)
-	SWEP.KKINS2MagnifierAng = Vector(-0.05, -1, 0)
+	SWEP.KKINS2CSTMCMorePos = Vector(-1.9674, -2, 0.2379)
+	SWEP.KKINS2CSTMCMoreAng = Vector(-0.05, 0, 0)
 
-	SWEP.KKINS2AimpointPos = Vector(-1.9674, -2, 0.0848)
+	SWEP.KKINS2AimpointPos = Vector(-1.9674, -2, 0.2379)
 	SWEP.KKINS2AimpointAng = Vector(-0.05, 0, 0)
+
+	SWEP.KKINS2MagnifierPos = Vector(-1.9724, -3, 0.2424)
+	SWEP.KKINS2MagnifierAng = Vector(-0.05, 0, 0)
 
 	SWEP.KKINS2CSTMACOGPos = Vector(-1.9727, -5, -0.0326)
 	SWEP.KKINS2CSTMACOGAng = Vector(-0.0502, 0, 0)
@@ -64,7 +72,7 @@ if CLIENT then
 end
 
 SWEP.Attachments = {
-	{header = "Sight", offset = {300, -600}, atts = {"kk_ins2_cstm_barska", "kk_ins2_aimpoint", "kk_ins2_cstm_acog"}},
+	{header = "Sight", offset = {300, -600}, atts = {"kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_aimpoint", "kk_ins2_cstm_acog"}},
 	{header = "Barrel", offset = {-300, -600}, atts = {"md_tundra9mm"}},
 	{header = "Extras", offset = {-500, -100}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_combo"}},
 	{header = "More Sight", offset = {800, -100}, atts = {"kk_ins2_magnifier"}, dependencies = CustomizableWeaponry_KK.ins2.magnifierDependencies},
@@ -75,7 +83,7 @@ SWEP.Chamberable = false
 SWEP.KKINS_emptyIdle = true
 
 SWEP.Animations = {
-	draw = "base_ready", // coz drawanimfunc doesnt play always
+	draw = "base_ready",
 	
 	base_pickup = "base_ready",
 	base_draw = "base_draw",

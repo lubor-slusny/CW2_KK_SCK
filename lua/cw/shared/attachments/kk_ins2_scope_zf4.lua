@@ -30,9 +30,9 @@ if CLIENT then
 	function att:drawRenderTarget()		
 		local scopeEnt = self.AttachmentModelsVM[att.name].ent
 		if self:isAiming() then 
-			scopeEnt:SetSequence(1)
-		else
 			scopeEnt:SetSequence(2)
+		else
+			scopeEnt:SetSequence(1)
 		end
 		
 		CustomizableWeaponry_KK.ins2.renderTargetSight(self, att)

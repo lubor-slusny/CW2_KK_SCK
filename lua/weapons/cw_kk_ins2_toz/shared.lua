@@ -84,7 +84,7 @@ end
 SWEP.Chamberable = false
 SWEP.SnapToIdlePostReload = false
 SWEP.ShotgunReload = true
-SWEP.ReticleInactivityPostFire = 0.8
+SWEP.ReticleInactivityPostFire = 1
 
 SWEP.Attachments = {
 	-- {header = "Sight", offset = {500, -450},  atts = {"kk_ins2_cstm_barska", "kk_ins2_aimpoint"}},

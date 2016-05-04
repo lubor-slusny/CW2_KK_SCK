@@ -52,6 +52,7 @@ SWEP.TSGlass = Material("models/weapons/optics/lense_rt")
 SWEP.AttachmentExclusions = {
 	["bg_foldsight"] = {"kk_ins2_magnifier"},
 	["kk_ins2_cstm_acog"] = {"kk_ins2_magnifier"},
+	["kk_ins2_cstm_cmore"] = {"kk_ins2_magnifier"},
 	["kk_ins2_cstm_barska"] = {"kk_ins2_magnifier"},
 	["kk_ins2_cstm_microt1"] = {"kk_ins2_magnifier"},
 	["kk_ins2_cstm_sureshot"] = {"kk_ins2_magnifier"},
@@ -128,13 +129,16 @@ if CLIENT then
 	SWEP.KKINS2ScopeMosinPos = Vector(0, 0, 0)
 	SWEP.KKINS2ScopeMosinAng = Vector(0, 0, 0)
 	
+	SWEP.KKINS2ElcanPos = Vector(0, 0, 0)
+	SWEP.KKINS2ElcanAng = Vector(0, 0, 0)
+	
 	// Custom sights
 	
 	SWEP.KKINS2CSTMACOGPos = Vector(0, 0, 0)
 	SWEP.KKINS2CSTMACOGAng = Vector(0, 0, 0)
 	
-	SWEP.KKINS2CmorePos = Vector(0, 0, 0)
-	SWEP.KKINS2CmoreAng = Vector(0, 0, 0)
+	SWEP.KKINS2CSTMCMorePos = Vector(0, 0, 0)
+	SWEP.KKINS2CSTMCMoreAng = Vector(0, 0, 0)
 	
 	SWEP.KKINS2CSTMBarskaPos = Vector(0, 0, 0)
 	SWEP.KKINS2CSTMBarskaAng = Vector(0, 0, 0)
@@ -150,9 +154,6 @@ if CLIENT then
 	
 	SWEP.KKINS2CSTMSureShotPos = Vector(0, 0, 0)
 	SWEP.KKINS2CSTMSureShotAng = Vector(0, 0, 0)
-	
-	SWEP.KKINS2ElcanPos = Vector(0, 0, 0)
-	SWEP.KKINS2ElcanAng = Vector(0, 0, 0)
 	
 	// WW2
 	

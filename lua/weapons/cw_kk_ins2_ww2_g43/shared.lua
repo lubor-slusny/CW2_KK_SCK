@@ -21,7 +21,10 @@ if CLIENT then
 		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_modkit_g43.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/a_bayonet.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 
-		["kk_ins2_cstm_barska"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_barska.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_scope_zf4"] = {model = "models/weapons/upgrades/a_optic_zf4.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		
+		["kk_ins2_cstm_cmore"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_cmore_m.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_cstm_barska"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_barska_m.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 	}
 
 	SWEP.AttachmentModelsWM = {
@@ -47,14 +50,20 @@ if CLIENT then
 	SWEP.IronsightPos = Vector(-2.4403, -2, 0.8474)
 	SWEP.IronsightAng = Vector(0.3287, 0.0068, 0)
 
-	SWEP.KKINS2CSTMBarskaPos = Vector(-2.3866, 0, -0.4831)
+	SWEP.KKINS2CSTMBarskaPos = Vector(-2.3987, 0, -0.3412)
 	SWEP.KKINS2CSTMBarskaAng = Vector(0, 0, 0)
+
+	SWEP.KKINS2CSTMCMorePos = Vector(-2.3953, 0, -0.3158)
+	SWEP.KKINS2CSTMCMoreAng = Vector(0, 0, 0)
+
+	SWEP.KKINS2ScopeZF4Pos = Vector(-2.376, -2, -0.0463)
+	SWEP.KKINS2ScopeZF4Ang = Vector(0, 0, 0)
 
 	SWEP.CustomizationMenuScale = 0.019
 end
 
 SWEP.Attachments = {
-	{header = "Sight", offset = {500, -500},  atts = {"kk_ins2_cstm_barska"}},
+	{header = "Sight", offset = {500, -500},  atts = {"kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_scope_zf4"}},
 	{header = "Barrel", offset = {-200, -500},  atts = {"kk_ins2_ww2_knife"}},
 	-- {header = "Under", offset = {-500, 0},  atts = {"kk_ins2_vertgrip"}},
 	-- {header = "Extras", offset = {125, 100}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_combo"}},
@@ -66,7 +75,7 @@ SWEP.Attachments = {
 SWEP.KKINS_emptyIdle = true
 
 SWEP.Animations = {
-	draw = "base_ready", // coz drawanimfunc doesnt play always
+	draw = "base_ready",
 	
 	base_pickup = "base_ready",
 	base_draw = "base_draw",

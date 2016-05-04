@@ -39,7 +39,8 @@ if CLIENT then
 
 		["kk_ins2_magnifier"] = {model = "models/weapons/upgrades/a_optic_aimp2x_l.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_scope_zf4"] = {model = "models/weapons/upgrades/a_optic_zf4.mdl", pos = Vector(0,0,0), angle = Angle(90, 0, 90), size = Vector(1, 1, 1), merge = true},
+		-- ["kk_ins2_scope_zf4"] = {model = "models/weapons/upgrades/a_optic_zf4.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_scope_mosin"] = {model = "models/weapons/upgrades/a_optic_mosin_l.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 	}
 
 	SWEP.AttachmentModelsWM = {
@@ -84,6 +85,9 @@ if CLIENT then
 	SWEP.KKINS2ScopeZF4Pos = Vector(-2.8233, -2, 1.2934)
 	SWEP.KKINS2ScopeZF4Ang = Vector(0, 0, 0)
 
+	SWEP.KKINS2ScopeMosinPos = Vector(-2.8003, 0, 0.9761)
+	SWEP.KKINS2ScopeMosinAng = Vector(0, 0, 0)
+
 	SWEP.CustomizationMenuScale = 0.025
 end
 
@@ -95,7 +99,7 @@ SWEP.GlobalDelayOnShoot = 2
 
 SWEP.Attachments = {
 	-- {header = "Sight", offset = {500, -500},  atts = {"kk_ins2_cstm_barska", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_cstm_acog", "kk_ins2_pso4", "kk_ins2_scope_mosin", "kk_ins2_scope_m40"}},
-	{header = "Sight", offset = {500, -500},  atts = {"kk_ins2_scope_zf4"}},
+	{header = "Sight", offset = {500, -500},  atts = {"kk_ins2_scope_mosin"}},
 	{header = "Barrel", offset = {-200, -500},  atts = {"kk_ins2_ww2_knife"}},
 	-- {header = "Under", offset = {-500, 0},  atts = {"kk_ins2_bipod"}},
 	-- {header = "Extras", offset = {125, 200}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_combo"}},

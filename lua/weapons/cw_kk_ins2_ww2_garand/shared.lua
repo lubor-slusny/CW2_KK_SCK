@@ -20,25 +20,31 @@ if CLIENT then
 		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_modkit_m1a1.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/a_bayonet.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		
-		["kk_ins2_cstm_barska"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_barska_l.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+
 		["kk_ins2_scope_zf4"] = {model = "models/weapons/upgrades/a_optic_zf4.mdl", pos = Vector(0,0,-3.5), angle = Angle(90, 0, 90), size = Vector(1, 1, 1), attachment = "Optic"},
+		
+		["kk_ins2_cstm_cmore"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_cmore_l.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_cstm_barska"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_barska_l.mdl", pos = Vector(0,0,0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 	}
 
 	SWEP.IronsightPos = Vector(-2.4643, -2, 1.1174)
 	SWEP.IronsightAng = Vector(-0.4782, 0.006, 0)
 
-	SWEP.KKINS2CSTMBarskaPos = Vector(-2.4416, -4, -0.041)
+	SWEP.KKINS2CSTMBarskaPos = Vector(-2.4533, -4, -0.0716)
 	SWEP.KKINS2CSTMBarskaAng = Vector(0, 0, 0)
 
-	SWEP.KKINS2ScopeZF4Pos = Vector(-2.4415, -8, 0.6457)
+	SWEP.KKINS2CSTMCMorePos = Vector(-2.448, -4, -0.0874)
+	SWEP.KKINS2CSTMCMoreAng = Vector(0, 0, 0)
+
+	SWEP.KKINS2ScopeZF4Pos = Vector(-2.4251, -8, 0.6407)
 	SWEP.KKINS2ScopeZF4Ang = Vector(0, 0, 0)
 
+	SWEP.CustomizationMenuScale = 0.02
 end
 
 SWEP.Attachments = {
 	-- {header = "Sight", offset = {500, -500},  atts = {"kk_ins2_cstm_barska", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_cstm_acog", "kk_ins2_pso4", "kk_ins2_scope_mosin", "kk_ins2_scope_m40"}},
-	{header = "Sight", offset = {500, -500},  atts = {"kk_ins2_cstm_barska", "kk_ins2_scope_zf4"}},
+	{header = "Sight", offset = {500, -500},  atts = {"kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_scope_zf4"}},
 	{header = "Barrel", offset = {-200, -500},  atts = {"kk_ins2_ww2_knife"}},
 	-- {header = "Under", offset = {-500, 0},  atts = {"kk_ins2_bipod"}},
 	-- {header = "Extras", offset = {125, 200}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_combo"}},
@@ -50,7 +56,7 @@ SWEP.Chamberable = false
 SWEP.KKINS_emptyIdle = true
 
 SWEP.Animations = {
-	draw = "base_ready", // coz drawanimfunc doesnt play always
+	draw = "base_ready",
 
 	base_pickup = "base_ready",
 	base_draw = "base_draw",

@@ -59,23 +59,6 @@ if CLIENT then
 	local size, rc, isAiming, freeze, isScopePos, attachmEnt, retAtt, retDist, retPos, EA, retAng, retNorm, v
 	
 	function CustomizableWeaponry_KK.ins2:drawStencilEnt(att)
-		-- /*"canvas" for reticle, materialoverride*/
-		-- if att.stencilMats then
-			-- for i,is in pairs(att.stencilMats) do
-				-- if is then
-					-- render.MaterialOverrideByIndex(i, stencilMat) // DOESNT DO ANYTHING AT ALL
-				-- else
-					-- render.MaterialOverrideByIndex(i, nodrawMat)
-				-- end
-			-- end
-		-- else
-			-- render.MaterialOverride(nodrawMat)
-			-- render.MaterialOverride(stencilMat)
-		-- end
-		-- attachmEnt:DrawModel()
-		-- render.MaterialOverride(nil)
-		
-		/*"canvas" for reticle, extra ent mode*/
 		v = self.AttachmentModelsVM[att.name]
 		if not v.stencilEnt then
 			v.stencilEnt = self:createManagedCModel(v.ent:GetModel(), RENDERGROUP_BOTH)
@@ -102,9 +85,9 @@ if CLIENT then
 			
 			for i,m in pairs(v.stencilEnt:GetMaterials()) do
 				if isLense[m] then
-					v.stencilEnt:SetSubMaterial(i - 1, _stencilMat) // DOESNT DO ANYTHING WITH BONEMERGED ENTITIES
+					v.stencilEnt:SetSubMaterial(i - 1, _stencilMat)
 				else
-					v.stencilEnt:SetSubMaterial(i - 1, _nodrawMat) // ALSO WHAT THE FUCK THAT INDEXES START @0 IN SETTER AND @1 IN GETTER
+					v.stencilEnt:SetSubMaterial(i - 1, _nodrawMat)
 				end
 			end
 		else
@@ -193,10 +176,12 @@ if CLIENT then
 			nearWallOutTime = CurTime()
 		end
 		
-		/*main reticle - centered when aiming and active*/
-		if self:isReticleActive() and isAiming and nearWallOutTime < CurTime() then
-			EA = self:getReticleAngles()	
-			retPos = EyePos() + EA:Forward() * retDist
+		if freeze then
+			/*main reticle - centered when aiming and active*/
+			if self:isReticleActive() and isAiming and nearWallOutTime < CurTime() then
+				EA = self:getReticleAngles()	
+				retPos = EyePos() + EA:Forward() * retDist
+			end
 		end
 		
 		render.SetMaterial(att._reticle)

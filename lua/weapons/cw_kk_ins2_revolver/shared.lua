@@ -41,7 +41,7 @@ SWEP.Attachments = {
 }
 
 SWEP.Animations = {
-	draw = "base_ready", // coz drawanimfunc doesnt play always
+	draw = "base_ready",
 	
 	base_reload_start = "base_reload_start",
 	base_reload_start_empty = "base_reload_start",
