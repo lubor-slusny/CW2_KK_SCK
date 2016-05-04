@@ -374,14 +374,14 @@ function SWEP:DrawWorldModel()
 	self.WMEnt:SetPos(pos)			// kept for cw_muzzleflash effect 	
 	self.WMEnt:SetAngles(ang)		// even if I keep calling RemoveBoneMerge - get:attachment still returns crotchpos
 	
-	if self.DrawCustomWM then
-		self.WMEnt:DrawModel()
-		self.WMEnt:DrawShadow(true)
-		self:drawAttachmentsWorld(self.WMEnt)	
-	else
+	if !self.DrawCustomWM then
 		self:RemoveEffects(EF_BONEMERGE)
 		self:DrawModel()
 		self:drawAttachmentsWorld(self)
+	else
+		self.WMEnt:DrawModel()
+		self.WMEnt:DrawShadow(true)
+		self:drawAttachmentsWorld(self.WMEnt)
 	end
 	
 	self.HUD_3D2DScale = self.HUD_3D2DScale * 1.5

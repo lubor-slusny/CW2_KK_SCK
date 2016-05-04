@@ -100,7 +100,7 @@ SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
 SWEP.Primary.ClipSize		= 18
 SWEP.Primary.DefaultClip	= 18
 SWEP.Primary.Automatic		= true
-SWEP.Primary.Ammo			= "7.92x57MM"
+SWEP.Primary.Ammo			= ".30-06"
 
 SWEP.FireDelay = 60/500
 SWEP.FireSound = "CW_KK_INS2_WW2_BROWNING_FIRE"
@@ -113,7 +113,7 @@ SWEP.MaxSpreadInc = 0.05
 SWEP.SpreadPerShot = 0.007
 SWEP.SpreadCooldown = 0.13
 SWEP.Shots = 1
-SWEP.Damage = 33
+SWEP.Damage = 60
 
 SWEP.FirstDeployTime = 3.13
 SWEP.DeployTime = 0.94

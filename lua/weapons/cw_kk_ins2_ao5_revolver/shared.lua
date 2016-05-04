@@ -1,5 +1,7 @@
 if not CustomizableWeaponry then return end
-if not CustomizableWeaponry_KK.HOME then return end
+
+if not file.Exists("models/weapons/v_snub.mdl", "GAME") then return end
+if not file.Exists("models/weapons/w_snub.mdl", "GAME") then return end
 
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
@@ -116,7 +118,7 @@ SWEP.MaxSpreadInc = 0.06
 SWEP.SpreadPerShot = 0.02
 SWEP.SpreadCooldown = 0.25
 SWEP.Shots = 1
-SWEP.Damage = 50
+SWEP.Damage = 30
 
 SWEP.FirstDeployTime = 2.54
 SWEP.DeployTime = 0.46

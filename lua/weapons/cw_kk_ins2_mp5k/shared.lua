@@ -23,7 +23,7 @@ if CLIENT then
 		["kk_counter"] = {model = "models/weapons/stattrack.mdl", bone = "Weapon", pos = Vector(0.256, -1.492, 0.4), angle = Angle(0, -90, 2), size = Vector(0.8, 0.8, 0.8)},
 		["kk_textbox"] = {model = "models/weapons/uid.mdl", bone = "Weapon", pos = Vector(0.41, -4.783, 0.549), angle = Angle(0, -90, 2), size = Vector(0.8, 0.8, 0.8)},
 
-		["kk_ins2_suppressor_sec"] = {model = "models/weapons/upgrades/a_suppressor_sec.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), attachment = "Suppressor"},
+		["kk_ins2_suppressor_sec"] = {model = "models/weapons/upgrades/a_suppressor_sec.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_band.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_band.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
@@ -240,7 +240,7 @@ SWEP.MaxSpreadInc = 0.03
 SWEP.SpreadPerShot = 0.005
 SWEP.SpreadCooldown = 0.13
 SWEP.Shots = 1
-SWEP.Damage = 20
+SWEP.Damage = 25
 
 SWEP.FirstDeployTime = 1.2
 SWEP.DeployTime = 0.8
@@ -254,19 +254,19 @@ if CLIENT then
 	function SWEP:nametagElementRender()
 		local ent = self.AttachmentModelsVM.kk_textbox.ent
 		
-		local total = self:Clip1() + self.Owner:GetAmmoCount(self.Primary.Ammo)
+		local mags = self:Clip1()
 		
 		for k,v in pairs(self.allocatedMags) do
-			total = total + v
+			mags = mags + v
 		end
 		
 		ent._KKCSGOOFFSET = 0
 		ent._KKCSGOTXT = string.format(
-			"Ammo: %02d/%d/%03d/%04d ",
+			"Ammo: %02d/%02d:%03d/%04d",
 			self:Clip1(),
 			#self.allocatedMags,
-			self.Owner:GetAmmoCount(self.Primary.Ammo),
-			total
+			mags,
+			self.Owner:GetAmmoCount(self.Primary.Ammo)
 		)
 	end
 end

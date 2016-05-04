@@ -68,6 +68,10 @@ SWEP.timeToThrow = 0.7
 SWEP.swapTime = 0.4
 SWEP.fuseTime = 3
 
+function SWEP:Initialize()
+	weapons.GetStored("cw_base").Initialize(self)
+end
+
 function SWEP:SetupDataTables()
 	self:DTVar("Int", 0, "State")
 	self:DTVar("Int", 1, "Shots")

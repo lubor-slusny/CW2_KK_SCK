@@ -10,8 +10,8 @@ if CLIENT then
 	SWEP.DrawCrosshair = false
 	SWEP.PrintName = "Panzerfaust"
 	
-	SWEP.SelectFont = "HL2MPTypeDeath"
-	SWEP.IconLetter = "3"
+	SWEP.SelectFont = "CW_SelectIcons2"
+	SWEP.IconLetter = "i"
 	
 	SWEP.MuzzleEffect = "muzzleflash_pistol"
 	SWEP.RearEffectw = true
@@ -29,6 +29,7 @@ if CLIENT then
 	
 	SWEP.CustomizationMenuScale = 0.01
 	SWEP.HUD_MagText = "TUBE: "
+	SWEP.MuzzleAttachmentName = "glmuzzle"
 end
 
 SWEP.Chamberable = false

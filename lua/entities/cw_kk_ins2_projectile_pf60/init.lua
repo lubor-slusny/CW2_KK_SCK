@@ -23,7 +23,7 @@ function ENT:PhysicsCollide(data, physobj)
 		
 	local impactAngle = math.deg(math.acos(data.OurOldVelocity:GetNormalized():Dot(data.HitNormal:GetNormalized()))) // so much math
 	
-	if data.Speed > 100 and impactAngle < 70 then
+	if data.Speed > 100 and impactAngle < 85 then
 		self:SelfDestruct()
 	end
 end
@@ -33,17 +33,22 @@ function ENT:SelfDestruct()
 	
 	if self.DontDestroy then return end
 	
-	util.BlastDamage(self, self.Owner, self:GetPos(), self.BlastRadius, self.BlastDamage)
+	-- util.BlastDamage(self, self.Owner, self:GetPos(), self.BlastRadius, self.BlastDamage)
 	
-	local ef = EffectData()
-	ef:SetOrigin(self:GetPos())
-	ef:SetMagnitude(1)
+	-- local ef = EffectData()
+	-- ef:SetOrigin(self:GetPos())
+	-- ef:SetMagnitude(1)
 	
-	util.Effect("Explosion", ef)
+	-- util.Effect("Explosion", ef)
 	
-	if self.doAClusterFuck then 		
-		self:clusterFuckNades()
-	end
+	local expl = ents.Create("env_explosion")
+	expl.CW_KK_INS2_inflictor = self
+	expl:SetPos(self:GetPos())
+	expl:SetOwner(self.Owner or ents.GetByIndex(1))
+	expl:Spawn()
+	expl:SetKeyValue("iMagnitude", tostring(self.BlastDamage))
+	expl:SetKeyValue("iRadiusOverride", tostring(self.BlastRadius))
+	expl:Fire("Explode",0,0)
 	
 	self:Remove()
 end

@@ -88,7 +88,7 @@ if CLIENT then
 	SWEP.CustomizationMenuScale = 0.015
 end
 
-SWEP.Chamberable = false
+SWEP.Chamberable = true
 SWEP.SnapToIdlePostReload = false
 SWEP.ShotgunReload = true
 SWEP.ReticleInactivityPostFire = 1
@@ -363,7 +363,7 @@ SWEP.ClumpSpread = 0.013
 SWEP.SpreadPerShot = 0.01
 SWEP.SpreadCooldown = 0.8
 SWEP.Shots = 12
-SWEP.Damage = 10
+SWEP.Damage = 11
 
 SWEP.FirstDeployTime = 2.1
 SWEP.DeployTime = 0.71

@@ -94,7 +94,7 @@ SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
 SWEP.Primary.ClipSize		= 20
 SWEP.Primary.DefaultClip	= 20
 SWEP.Primary.Automatic		= true
-SWEP.Primary.Ammo			= "7.92x57MM"
+SWEP.Primary.Ammo			= ".30-06"
 
 SWEP.Secondary.Automatic	= false
 
@@ -109,7 +109,7 @@ SWEP.MaxSpreadInc = 0.07
 SWEP.SpreadPerShot = 0.01
 SWEP.SpreadCooldown = 0.12
 SWEP.Shots = 1
-SWEP.Damage = 42
+SWEP.Damage = 59
 
 SWEP.BipodDeployTime = 0.91
 SWEP.BipodUndeployTime = 1.16

@@ -89,11 +89,9 @@ if CLIENT then
 		local ply = LocalPlayer()
 		local wep = ply:GetActiveWeapon()
 		
-		if cvXH:GetInt() == 1 then
-			wep.DrawCrosshair = true
-		else
-			wep.DrawCrosshair = false
-		end
+		if !wep.CW20Weapon then return end
+		
+		wep.DrawCrosshair = cvXH:GetInt() == 1
 	end)
 
 	local _ADS_LAST

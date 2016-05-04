@@ -1,14 +1,13 @@
-CustomizableWeaponry:addFireSound("CW_KK_INS2_MOSIN_FIRE", "weapons/mosin/mosin_fp.wav", 1, 105, CHAN_STATIC)
-CustomizableWeaponry:addFireSound("CW_KK_INS2_MOSIN_FIRE_SUPPRESSED", "weapons/mosin/mosin_suppressed_fp.wav", 1, 75, CHAN_STATIC)
+CustomizableWeaponry:addFireSound("CW_KK_INS2_WW2_SPRING_FIRE", "weapons/springfield/springfield_fp.wav", 1, 105, CHAN_STATIC)
 
-CustomizableWeaponry:addReloadSound("CW_KK_INS2_MOSIN_BOLTBACK", "weapons/mosin/handling/mosin_boltback.wav")
-CustomizableWeaponry:addReloadSound("CW_KK_INS2_MOSIN_BOLTFORWARD", "weapons/mosin/handling/mosin_boltforward.wav")
-CustomizableWeaponry:addReloadSound("CW_KK_INS2_MOSIN_BOLTLATCH", "weapons/mosin/handling/mosin_boltlatch.wav")
-CustomizableWeaponry:addReloadSound("CW_KK_INS2_MOSIN_BOLTRELEASE", "weapons/mosin/handling/mosin_boltrelease.wav")
-CustomizableWeaponry:addReloadSound("CW_KK_INS2_MOSIN_BULLETIN", {
-	"weapons/mosin/handling/mosin_bulletin_1.wav",
-	"weapons/mosin/handling/mosin_bulletin_2.wav",
-	"weapons/mosin/handling/mosin_bulletin_3.wav",
-	"weapons/mosin/handling/mosin_bulletin_4.wav"
+CustomizableWeaponry:addReloadSound("CW_KK_INS2_WW2_SPRING_BOLTBACK", "weapons/springfield/handling/springfield_boltback.wav")
+CustomizableWeaponry:addReloadSound("CW_KK_INS2_WW2_SPRING_BOLTFORWARD", "weapons/springfield/handling/springfield_boltforward.wav")
+CustomizableWeaponry:addReloadSound("CW_KK_INS2_WW2_SPRING_BOLTLATCH", "weapons/springfield/handling/springfield_boltlatch.wav")
+CustomizableWeaponry:addReloadSound("CW_KK_INS2_WW2_SPRING_BOLTRELEASE", "weapons/springfield/handling/springfield_boltrelease.wav")
+CustomizableWeaponry:addReloadSound("CW_KK_INS2_WW2_SPRING_BULLETIN", {
+	"weapons/springfield/handling/springfield_bulletin_1.wav",
+	"weapons/springfield/handling/springfield_bulletin_2.wav",
+	"weapons/springfield/handling/springfield_bulletin_3.wav",
+	"weapons/springfield/handling/springfield_bulletin_4.wav"
 })
-CustomizableWeaponry:addReloadSound("CW_KK_INS2_MOSIN_EMPTY", "weapons/mosin/handling/mosin_empty.wav")
+CustomizableWeaponry:addReloadSound("CW_KK_INS2_WW2_SPRING_EMPTY", "weapons/springfield/handling/springfield_empty.wav")

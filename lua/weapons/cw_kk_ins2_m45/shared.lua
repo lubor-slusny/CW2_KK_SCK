@@ -57,7 +57,7 @@ SWEP.WeaponLength = 16
 SWEP.Attachments = {
 	{header = "Lasers", offset = {500, -400}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_m6x"}},
 	{header = "Barrel", offset = {-500, -400}, atts = {"kk_ins2_suppressor_pistol"}},
-	{header = "Reload Aid", offset = {-500, 150}, atts = {"kk_ins2_mag_m45_15"}},
+	{header = "Magazine", offset = {-500, 150}, atts = {"kk_ins2_mag_m45_15"}},
 	["+reload"] = {header = "Ammo", offset = {500, 150}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
@@ -201,7 +201,7 @@ SWEP.MaxSpreadInc = 0.036
 SWEP.SpreadPerShot = 0.0125
 SWEP.SpreadCooldown = 0.22
 SWEP.Shots = 1
-SWEP.Damage = 25
+SWEP.Damage = 31
 
 SWEP.FirstDeployTime = 1.2
 SWEP.DeployTime = 0.46

@@ -1,15 +1,18 @@
 ENT.Type = "anim"
 ENT.Base = "base_entity"
-ENT.PrintName = "Rocket Propelled Grenade"
+ENT.PrintName = "PG-7V Grenade"
 ENT.Author = "L337N008"
-ENT.Information = "A 40MM grenade modified to be launched from RPG7 and AT4"
+ENT.Information = "A 40MM grenade modified to be launched from RPG7"
 ENT.Spawnable = false
 ENT.AdminSpawnable = false 
 
 ENT.Editable = true
 
-ENT.BlastDamage = 200
-ENT.BlastRadius = 400
+-- ENT.BlastDamage = 200
+-- ENT.BlastRadius = 400
+
+ENT.BlastDamage = 230
+ENT.BlastRadius = 500 // 1000
 
 ENT.SpeedStarter = 4527.55
 ENT.SpeedThruster = 11574.78
@@ -22,21 +25,17 @@ ENT.doAClusterFuck = false
 
 function ENT:Initialize()
 	if SERVER then
-		-- self:SetModel("models/weapons/w_at4_projectile.mdl") 
-		-- self:PhysicsInitBox(Vector(0,-2,-2), Vector(40,2,2))
-		-- self:SetMoveType(MOVETYPE_VPHYSICS)
-		-- self:SetSolid(SOLID_VPHYSICS)
-		-- self:SetCollisionGroup(COLLISION_GROUP_NONE) // HL2 racket
-		
-		self:SetModel("models/weapons/w_cw_kk_ins2_rpg7_projectile_pd2.mdl") 
-		self:PhysicsInit(SOLID_VPHYSICS)
+		self:SetModel(self.Model or "models/weapons/w_cw_kk_ins2_rpg7_projectile_pd2.mdl") 
+		-- self:PhysicsInit(SOLID_VPHYSICS)
+		self:PhysicsInitBox(Vector(10,-2,-2), Vector(42,2,2))
 		self:SetMoveType(MOVETYPE_VPHYSICS)
 		self:SetSolid(SOLID_VPHYSICS)
-		self:SetCollisionGroup(COLLISION_GROUP_NONE)
+		self:SetCollisionGroup(COLLISION_GROUP_PROJECTILE)
 		
 		local phys = self:GetPhysicsObject()
 
 		if phys and phys:IsValid() then
+			phys:SetMass(10)
 			phys:Wake()
 		end
 

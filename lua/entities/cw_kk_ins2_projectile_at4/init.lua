@@ -2,84 +2,6 @@ AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("shared.lua")
 include("shared.lua")
 
-function ENT:clusterFuckRackit()
-	local pos = self:GetPos()
-	local ang = self:GetAngles()
-	
-	local nade = ents.Create("cw_kk_ins2_projectile_rpg")
-	nade:SetPos(pos)
-	nade:SetAngles(ang)
-	nade:Spawn()
-	nade:Activate()
-	nade:SetOwner(self.Owner)
-	nade.OnTakeDamage = nil
-	
-	nade.safetyBypass = true
-	
-	local phys = nade:GetPhysicsObject()
-	
-	if IsValid(phys) then
-		phys:SetVelocity(self:GetVelocity() + VectorRand() * 300)
-		phys:AddAngleVelocity(Vector(math.random(-500, 500), math.random(-500, 500), math.random(-500, 500)))
-	end
-end
-
-function ENT:clusterFuckHENade()
-	local pos = self:GetPos()
-	local ang = self:GetAngles()
-	
-	local nade = ents.Create("cw_grenade_thrown")
-	nade:SetPos(pos - ang:Forward())
-	nade:SetAngles(ang)
-	nade:Spawn()
-	nade:Activate()
-	nade:Fuse(math.random(2,8))
-	nade:SetOwner(self.Owner)
-	-- nade.OnTakeDamage = nil
-	
-	local phys = nade:GetPhysicsObject()
-	
-	if IsValid(phys) then
-		phys:AddAngleVelocity(Vector(math.random(-500, 500), math.random(-500, 500), math.random(-500, 500)))
-	end
-end
-
-local shraps = {
-	"cw_kk_ins2_projectile_rpg",
-	"cw_grenade_thrown",
-	"cw_grenade_thrown",
-	"cw_grenade_thrown",
-	"cw_grenade_thrown",
-	"cw_grenade_thrown",
-	"cw_grenade_thrown",
-	"cw_grenade_thrown",
-	"cw_flash_thrown",
-	"cw_flash_thrown",
-	"cw_smoke_thrown",
-}
-
-function ENT:clusterFuckNades()
-	for i = 1,math.random(10,15) do
-		local pos = self:GetPos()
-		local ang = self:GetAngles()
-		
-		local nade = ents.Create(shraps[math.random(table.Count(shraps))])
-		nade:SetPos(pos - ang:Forward())
-		nade:SetAngles(ang)
-		nade:Spawn()
-		nade:Activate()
-		if nade.Fuse then nade:Fuse(2 + math.random(20) / 10) end
-		nade:SetOwner(self.Owner)
-		-- nade.OnTakeDamage = nil
-		
-		local phys = nade:GetPhysicsObject()
-		
-		if IsValid(phys) then
-			phys:AddAngleVelocity(Vector(math.random(-500, 500), math.random(-500, 500), math.random(-500, 500)))
-		end
-	end
-end
-
 function ENT:Think()
 	self:SetBodygroup(0,1)
 		
@@ -100,18 +22,6 @@ function ENT:Think()
 		
 		self:SearchNDestroy()
 		
-		if self.doAClusterFuck and CT > self.ArmTime + 0.3 then
-			for i = 1,math.random(5,7) do
-				self:clusterFuckRackit()
-			end
-			
-			for i = 1,math.random(10,15) do
-				self:clusterFuckHENade()
-			end
-			
-			self.doAClusterFuck = false
-		end
-	
 		local phys = self:GetPhysicsObject()
 				
 		if IsValid(phys) then
@@ -164,10 +74,6 @@ function ENT:PhysicsCollide(data, physobj)
 		return
 	end
 	
-	if self.doAClusterFuck then
-		self:clusterFuckRackit()
-	end
-	
 	if CurTime() > self.ArmTime then
 		-- if math.random(5) != 2 then
 		if self.safetyBypass and self.missfiredArmTime and (CurTime() < self.missfiredArmTime) then
@@ -197,17 +103,22 @@ function ENT:SelfDestruct()
 	
 	if self.DontDestroy then return end
 	
-	util.BlastDamage(self, self.Owner, self:GetPos(), self.BlastRadius, self.BlastDamage)
+	-- util.BlastDamage(self, self.Owner, self:GetPos(), self.BlastRadius, self.BlastDamage)
 	
-	local ef = EffectData()
-	ef:SetOrigin(self:GetPos())
-	ef:SetMagnitude(1)
+	-- local ef = EffectData()
+	-- ef:SetOrigin(self:GetPos())
+	-- ef:SetMagnitude(1)
 	
-	util.Effect("Explosion", ef)
+	-- util.Effect("Explosion", ef)
 	
-	if self.doAClusterFuck then 		
-		self:clusterFuckNades()
-	end
+	local expl = ents.Create("env_explosion")
+	expl.CW_KK_INS2_inflictor = self
+	expl:SetPos(self:GetPos())
+	expl:SetOwner(self.Owner or ents.GetByIndex(1))
+	expl:Spawn()
+	expl:SetKeyValue("iMagnitude", tostring(self.BlastDamage))
+	expl:SetKeyValue("iRadiusOverride", tostring(self.BlastRadius))
+	expl:Fire("Explode",0,0)
 	
 	self:Remove()
 end

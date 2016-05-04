@@ -8,7 +8,7 @@ SWEP.magType = "arMag"
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "M1A1"
+	SWEP.PrintName = "M1 Carbine"
 	SWEP.CSMuzzleFlashes = true
 	SWEP.ViewModelMovementScale = 1.15
 	
@@ -299,7 +299,7 @@ SWEP.MaxSpreadInc = 0.07
 SWEP.SpreadPerShot = 0.01
 SWEP.SpreadCooldown = 0.12
 SWEP.Shots = 1
-SWEP.Damage = 42
+SWEP.Damage = 41
 
 SWEP.FirstDeployTime = 1.5
 SWEP.DeployTime = 0.5

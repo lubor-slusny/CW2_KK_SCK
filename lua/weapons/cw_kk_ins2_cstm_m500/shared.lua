@@ -21,6 +21,8 @@ if CLIENT then
 		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_standard_m590.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_modkit_04.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
+		["kk_counter"] = {model = "models/weapons/stattrack.mdl", bone = "Weapon", pos = Vector(0.592, -4.961, -0.223), angle = Angle(0, -90, 0), size = Vector(0.8, 0.8, 0.8)},
+
 		["kk_ins2_suppressor_shotgun"] = {model = "models/weapons/upgrades/a_suppressor_12ga.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/a_foregrip_sec2.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), attachment = "Foregrip"},
@@ -102,6 +104,13 @@ SWEP.Attachments = {
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_slugrounds", "am_flechetterounds"}}
 }
 
+if CustomizableWeaponry_KK.HOME then
+	-- table.insert(SWEP.Attachments, {header = "Skill1", offset = {2100, -800}, atts = {"kk_aimbot"}})
+	-- table.insert(SWEP.Attachments, {header = "Skill2", offset = {2100, -400}, atts = {"kk_wallhaq"}})
+	table.insert(SWEP.Attachments, {header = "CSGO", offset = {2300, 0}, atts = {"kk_counter"}})
+	-- table.insert(SWEP.Attachments, {header = "CSGO", offset = {2100, 400}, atts = {"kk_textbox"}})
+end
+
 SWEP.Animations = {
 	draw = "base_ready",
 	reload_start = "",
@@ -174,8 +183,8 @@ SWEP.WMAng = Vector(-10, 0, 180)
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.wsContentMounted()
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.wsContentMounted()
 
-SWEP.Primary.ClipSize		= 8
-SWEP.Primary.DefaultClip	= 8
+SWEP.Primary.ClipSize		= 5
+SWEP.Primary.DefaultClip	= 6
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "12 Gauge"
 
@@ -192,11 +201,11 @@ SWEP.ClumpSpread = 0.013
 SWEP.SpreadPerShot = 0.01
 SWEP.SpreadCooldown = 0.8
 SWEP.Shots = 12
-SWEP.Damage = 10
+SWEP.Damage = 11
 
 SWEP.DeployTime = 0.71
 
-SWEP.Chamberable = false
+SWEP.Chamberable = true
 SWEP.SnapToIdlePostReload = false
 SWEP.ShotgunReload = true
 SWEP.ReticleInactivityPostFire = 1

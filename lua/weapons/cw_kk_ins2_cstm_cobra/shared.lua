@@ -20,16 +20,25 @@ if CLIENT then
 	SWEP.Shell2 = "KK_INS2_REVOLVER"
 	
 	SWEP.AttachmentModelsVM = {
+		-- ["kk_ins2_optic_rail"] = {model = "models/v_fas2_leupold_mounts.mdl", bone = "Weapon", pos = Vector(0, -1.895, 3.381), angle = Angle(0, -90, 0), size = Vector(1.8, 1.8, 1.8), bodygroups = {6},
+			-- material = "models/weapons/view/pistols/ragingbull/ragingbullmount",
+		-- },
+	
 		["kk_ins2_revolver_mag"] = {model = "models/weapons/upgrades/a_cobraloader_rev.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 
 		["kk_counter"] = {model = "models/weapons/stattrack_cut.mdl", bone = "Weapon", pos = Vector(0.31, -0.57, 0.347), angle = Angle(0, -90, 0), size = Vector(0.4, 0.449, 0.449)}, 
 		
 		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_mak.mdl", bone = "Weapon", pos = Vector(0, 2.588, -0.066), angle = Angle(0, -90, 0), size = Vector(1, 1, 1)},
 		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_mak.mdl", bone = "Weapon", pos = Vector(0, 2.588, -0.066), angle = Angle(0, -90, 0), size = Vector(1, 1, 1)},
+		
+		-- ["kk_holosight"] = {model = "models/weapons/attachments/c_cw_kk_holosight.mdl", bone = "Weapon", pos = Vector(0.028, -1.219, -1.505), angle = Angle(0, -90, 0), size = Vector(0.75, 0.75, 0.75)},
 	}
 
 	SWEP.IronsightPos = Vector(-1.8503, 0, -0.1013)
 	SWEP.IronsightAng = Vector(0, 0.0104, 0)
+
+	SWEP.KKFAS2HolosightPos = Vector(-1.8426, -2, -1.4575)
+	SWEP.KKFAS2HolosightAng = Vector(0.2617, 0, 0)
 
 	SWEP.CustomizationMenuScale = 0.01
 
@@ -39,15 +48,27 @@ if CLIENT then
 	SWEP.HUD_MagText = "CYLINDER: "
 end
 
-SWEP.Attachments = {
-	{header = "Lasers", offset = {-400, -400}, atts = {"kk_ins2_lam", "kk_ins2_flashlight"}},
-	-- {header = "Barrel", offset = {-500, -400}, atts = {"kk_ins2_suppressor_pistol"}},
-	{header = "Reload Aid", offset = {500, -400}, atts = {"kk_ins2_revolver_mag"}},
-	["+reload"] = {header = "Ammo", offset = {500, 150}, atts = {"am_magnum", "am_matchgrade"}}
-}
-
-if CustomizableWeaponry_KK.HOME then
-	table.insert(SWEP.Attachments, {header = "CSGO", offset = {1300, -400}, atts = {"kk_counter"}})
+if CustomizableWeaponry_KK.HOME == nil then
+	SWEP.Attachments = {
+		{header = "Lasers", offset = {-400, -400}, atts = {"kk_ins2_lam", "kk_ins2_flashlight"}},
+		{header = "Reload Aid", offset = {500, -400}, atts = {"kk_ins2_revolver_mag"}},
+		["+reload"] = {header = "Ammo", offset = {500, 150}, atts = {"am_magnum", "am_matchgrade"}}
+	}
+else
+	-- SWEP.Attachments = {
+		-- {header = "Sigh", offset = {500, -400}, atts = {"kk_holosight"}},
+		-- {header = "Lasers", offset = {-400, -400}, atts = {"kk_ins2_lam", "kk_ins2_flashlight"}},
+		-- {header = "Reload Aid", offset = {-400, 150}, atts = {"kk_ins2_revolver_mag"}},
+		-- {header = "CSGO", offset = {1000, 150}, atts = {"kk_counter"}},
+		-- ["+reload"] = {header = "Ammo", offset = {500, 150}, atts = {"am_magnum", "am_matchgrade"}}
+	-- }
+	
+	SWEP.Attachments = {
+		{header = "Lasers", offset = {-400, -400}, atts = {"kk_ins2_lam", "kk_ins2_flashlight"}},
+		{header = "Reload Aid", offset = {500, -400}, atts = {"kk_ins2_revolver_mag"}},
+		{header = "CSGO", offset = {-400, 150}, atts = {"kk_counter"}},
+		["+reload"] = {header = "Ammo", offset = {500, 150}, atts = {"am_magnum", "am_matchgrade"}}
+	}
 end
 
 SWEP.Animations = {
@@ -118,7 +139,7 @@ SWEP.MaxSpreadInc = 0.06
 SWEP.SpreadPerShot = 0.02
 SWEP.SpreadCooldown = 0.25
 SWEP.Shots = 1
-SWEP.Damage = 50
+SWEP.Damage = 32
 
 SWEP.FirstDeployTime = 2.54
 SWEP.DeployTime = 0.46
@@ -186,7 +207,13 @@ if CLIENT then
 		end
 	end
 	
+	local nope = !CustomizableWeaponry_KK.HOME
+	
 	function SWEP:createExtraShell()
+		if nope then
+			return
+		end
+		
 		if self.Owner:ShouldDrawLocalPlayer() then
 			return
 		end

@@ -1,7 +1,17 @@
 
 local SP = game.SinglePlayer()
 
-CustomizableWeaponry_KK.ins2.quickKnives = {}
+CustomizableWeaponry_KK.ins2.quickKnives = CustomizableWeaponry_KK.ins2.quickKnives or {}
+
+// funny idea
+
+hook.Add("InitPostEntity", "CW_KK_INS2_MELEE_ICON", function()
+	if SERVER then
+		CustomizableWeaponry_KK.ins2.quickKnives._inflictor = ents.Create("cw_kk_ins2_damage_melee")
+	end
+end)
+
+// lets see if it works
 
 CustomizableWeaponry_KK.ins2.quickKnives.gurkha = {
 	vm = "models/weapons/v_gurkha.mdl",
@@ -43,32 +53,14 @@ function CustomizableWeaponry_KK.ins2:canKnife()
 	return true
 end
 
-local function aimAssist(self)
-	if SERVER then
-		local dir = self.Owner:GetAimVector()
-		local targets = ents.FindInCone(self.Owner:GetShootPos(), dir, 100, 30)
-		local nearestDist = 200
-		local nearestEnt = nil
-		
-		for _,v in pairs(targets) do
-			if (v.IsNPC and v:IsNPC()) or (v.IsPlayer and v:IsPlayer() and v != self.Owner) then
-				local d = self.Owner:EyePos():Distance(v:EyePos())
-				if d <= nearestDist then
-					nearestDist = d
-					nearestEnt = v
-				end
-			end
-		end
-			
-		if nearestEnt then
-			local target = nearestEnt:GetShootPos()
-			local src = self.Owner:GetShootPos()
-			
-			local ang = (target - src):Angle()
-			self.Owner:SetEyeAngles(ang)
-		end
-	end
-end
+local knifeRange = 60
+
+local knifeTD = {
+	mins = Vector(-6, -6, -6),
+	maxs = Vector(6, 6, 6)
+}
+
+local knifeTR
 
 function CustomizableWeaponry_KK.ins2:meleeKnife()
 	local CT = CurTime()
@@ -111,38 +103,39 @@ function CustomizableWeaponry_KK.ins2:meleeKnife()
 			end)
 		end
 		
-		CustomizableWeaponry.actionSequence.new(self, 0.37, nil, function() 
-			local start = self.Owner:GetShootPos()
-
-			-- aimAssist(self)
+		CustomizableWeaponry.actionSequence.new(self, 0.37, nil, function()			
+			knifeTD.start = self.Owner:GetShootPos()
+			knifeTD.endpos = knifeTD.start + self.Owner:GetAimVector() * knifeRange
+			knifeTD.filter = self.Owner
 			
-			local tr = util.TraceLine({
-				start = start,
-				endpos = start + self.Owner:GetAimVector() * 60,
-				filter = self.Owner
-			})
-		
-			if tr.Hit then
+			knifeTR = util.TraceHull(knifeTD)
+			
+			if knifeTR.Hit then
 				self:EmitSound("CW_KK_INS2_KNIFE")
 				
-				local ent = tr.Entity
+				local ent = knifeTR.Entity
 				
 				if IsValid(ent) then
 					if SERVER then
 						local d = DamageInfo()
 						
 						d:SetAttacker(self.Owner)
-						d:SetInflictor(self)
+						-- d:SetInflictor(self)
+						d:SetInflictor(CustomizableWeaponry_KK.ins2.quickKnives._inflictor)
 						
 						d:SetDamage(math.random(10) + 25)
 						
-						local dir = self.Owner:GetAimVector() - start
-						d:SetDamageForce((tr.HitPos + dir) * 200)
+						local dir = self.Owner:GetAimVector() - knifeTD.start
+						d:SetDamageForce((knifeTR.HitPos + dir) * 200)
 						d:SetDamageType(DMG_SLASH)
-						d:SetDamagePosition(tr.HitPos)
-						d:SetReportedPosition(start)
+						d:SetDamagePosition(knifeTR.HitPos)
+						d:SetReportedPosition(knifeTD.start)
 						
 						ent:TakeDamageInfo(d)
+
+						if ent:IsNPC() then
+							ent:SetVelocity(self.Owner:GetForward() * 2000)
+						end
 					end
 				end
 				
@@ -191,6 +184,15 @@ if CLIENT then
 	end
 end
 
+local bayonetRange = 100
+
+local bayonetTD = {
+	mins = Vector(-5, -5, -5),
+	maxs = Vector(5, 5, 5)
+}
+
+local bayonetTR
+
 function CustomizableWeaponry_KK.ins2:meleeWW2()
 	self.Owner:SetAnimation(PLAYER_ATTACK1)
 	
@@ -204,35 +206,36 @@ function CustomizableWeaponry_KK.ins2:meleeWW2()
 			SendUserMessage("CW_KK_INS2_RETICLEINACTIVITY", self.Owner)
 		end
 		
-		local start = self.Owner:GetShootPos()
+		bayonetTD.start = self.Owner:GetShootPos()
+		bayonetTD.endpos = bayonetTD.start + self.Owner:GetAimVector() * bayonetRange
+		bayonetTD.filter = self.Owner
 		
-		-- aimAssist(self)
+		bayonetTR = util.TraceHull(bayonetTD)
 		
-		local tr = util.TraceLine({
-			start = start,
-			endpos = start + self.Owner:GetAimVector() * 80,
-			filter = self.Owner
-		})
-	
-		if tr.Hit then
+		if bayonetTR.Hit then
 			self:EmitSound("CW_KK_INS2_KNIFE")
-			local ent = tr.Entity
+			local ent = bayonetTR.Entity
 			
 			if IsValid(ent) then
 				if SERVER then
 					local d = DamageInfo()
 					
 					d:SetAttacker(self.Owner)
-					d:SetInflictor(self)
+					-- d:SetInflictor(self)
+					d:SetInflictor(CustomizableWeaponry_KK.ins2.quickKnives._inflictor)
 					
 					d:SetDamage(math.random(10) + 45)
 					
-					local dir = self.Owner:GetAimVector() - start
+					local dir = self.Owner:GetAimVector() - bayonetTD.start
 					d:SetDamageType(DMG_SLASH)
-					d:SetDamagePosition(tr.HitPos)
-					d:SetReportedPosition(start)
+					d:SetDamagePosition(bayonetTR.HitPos)
+					d:SetReportedPosition(bayonetTD.start)
 					
 					ent:TakeDamageInfo(d)
+
+					if ent:IsNPC() and ent:Health() > 0 then
+						ent:SetVelocity(self.Owner:GetForward() * 1500)
+					end
 				end
 			end
 			

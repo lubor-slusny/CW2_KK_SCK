@@ -113,7 +113,7 @@ SWEP.AdminOnly			= true
 SWEP.Primary.ClipSize		= -1
 SWEP.Primary.DefaultClip	= 1
 SWEP.Primary.Automatic		= false
-SWEP.Primary.Ammo			= "RPG 40MM"
+SWEP.Primary.Ammo			= "PG-7VM Grenade"
 
 SWEP.timeToThrow = 1.2
 

@@ -5,3 +5,9 @@ ENT.Author = "Spy"
 ENT.Information = "Planted IED"
 ENT.Spawnable = false
 ENT.AdminSpawnable = false 
+
+-- ENT.BlastDamage = 100
+-- ENT.BlastRadius = 434
+
+ENT.BlastDamage = 380
+ENT.BlastRadius = 600 // 1200

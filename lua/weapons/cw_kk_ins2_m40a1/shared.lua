@@ -30,10 +30,10 @@ if CLIENT then
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_standard_m40.mdl", pos = Vector(0, 0, 0), angle = Angle(90, 90, 0), size = Vector(1, 1, 1), merge = true, active = true},
 
-		["kk_ins2_suppressor_sec"] = {model = "models/weapons/upgrades/a_suppressor_sec.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		
 		["kk_counter"] = {model = "models/weapons/stattrack.mdl", bone = "Weapon", rel = "", pos = Vector(1.236, -7.261, 1.273), angle = Angle(0, -90, 0), size = Vector(1, 1, 1)},
 		["kk_textbox"] = {model = "models/weapons/uid.mdl", bone = "Weapon", rel = "", pos = Vector(1.4, -6, 2.15), angle = Angle(0, -90, 0), size = Vector(1.5, 1.5, 1.5)},
+		
+		["kk_ins2_suppressor_sec"] = {model = "models/weapons/upgrades/a_suppressor_sec.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_bipod"] = {model = "models/weapons/upgrades/a_bipod_m40.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
@@ -356,7 +356,7 @@ SWEP.MaxSpreadInc = 0.07
 SWEP.SpreadPerShot = 0.01
 SWEP.SpreadCooldown = 0.12
 SWEP.Shots = 1
-SWEP.Damage = 42
+SWEP.Damage = 66
 
 SWEP.FirstDeployTime = 2.96
 SWEP.DeployTime = 0.71

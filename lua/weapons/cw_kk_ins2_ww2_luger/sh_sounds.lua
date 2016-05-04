@@ -1,3 +1,10 @@
 CustomizableWeaponry:addFireSound("CW_KK_INS2_WW2_LUGER_FIRE", "weapons/p08/p08_fp.wav", 1, 105, CHAN_STATIC)
 
--- CustomizableWeaponry:addReloadSound("CW_KK_INS2_WW2_LUGER_SAFETY", "weapons/p08/handling/p08_safety.wav")
+CustomizableWeaponry:addReloadSound("CW_KK_INS2_WW2_LUGER_BOLTBACK", "weapons/p08/handling/p08_boltback.wav")
+CustomizableWeaponry:addReloadSound("CW_KK_INS2_WW2_LUGER_BOLTRELEASE", "weapons/p08/handling/p08_boltrelease.wav")
+CustomizableWeaponry:addReloadSound("CW_KK_INS2_WW2_LUGER_EMPTY", "weapons/p08/handling/p08_empty.wav")
+CustomizableWeaponry:addReloadSound("CW_KK_INS2_WW2_LUGER_MAGHIT", "weapons/p08/handling/p08_maghit.wav")
+CustomizableWeaponry:addReloadSound("CW_KK_INS2_WW2_LUGER_MAGIN", "weapons/p08/handling/p08_magin.wav")
+CustomizableWeaponry:addReloadSound("CW_KK_INS2_WW2_LUGER_MAGOUT", "weapons/p08/handling/p08_magout.wav")
+CustomizableWeaponry:addReloadSound("CW_KK_INS2_WW2_LUGER_MAGRELEASE", "weapons/p08/handling/p08_magrelease.wav")
+CustomizableWeaponry:addReloadSound("CW_KK_INS2_WW2_LUGER_SAFETY", "weapons/p08/handling/p08_safety.wav")

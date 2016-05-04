@@ -87,7 +87,11 @@ end
 function SWEP:unloadM203()
 	if not self.M203Chamber then return end
 
-	self.M203Chamber = false
+	if self.Primary.Ammo == "40MM" then 
+		self:SetClip1(0)
+	else
+		self.M203Chamber = false
+	end
 	
 	if SERVER then
 		self.Owner:GiveAmmo(1, "40MM", true)

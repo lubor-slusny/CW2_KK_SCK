@@ -112,7 +112,7 @@ SWEP.MaxSpreadInc = 0.04
 SWEP.SpreadPerShot = 0.007
 SWEP.SpreadCooldown = 0.13
 SWEP.Shots = 1
-SWEP.Damage = 28
+SWEP.Damage = 60
 
 SWEP.BipodDeployTime = 2.18
 SWEP.BipodUndeployTime = 1.73

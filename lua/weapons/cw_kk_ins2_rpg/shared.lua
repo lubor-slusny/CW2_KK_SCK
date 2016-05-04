@@ -8,8 +8,8 @@ if CLIENT then
 	SWEP.DrawCrosshair = false
 	SWEP.PrintName = "RPG7"
 	
-	SWEP.SelectFont = "HL2MPTypeDeath"
-	SWEP.IconLetter = "3"
+	SWEP.SelectFont = "CW_SelectIcons2"
+	SWEP.IconLetter = "i"
 	
 	SWEP.MuzzleEffect = "muzzleflash_pistol"
 	SWEP.RearEffectw = true
@@ -71,6 +71,7 @@ SWEP.Attachments = {
 
 if CustomizableWeaponry_KK.HOME then
 	table.insert(SWEP.Attachments, {header = "CSGO", offset = {1000, -500}, atts = {"kk_counter"}})
+	-- table.insert(SWEP.Attachments, {header = "CSGO", offset = {1000, 100}, atts = {"kk_wallhaq"}})
 end
 
 SWEP.KK_INS2_emptyIdle = true
@@ -181,7 +182,7 @@ SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()
 SWEP.Primary.ClipSize		= 1
 SWEP.Primary.DefaultClip	= 1
 SWEP.Primary.Automatic		= true
-SWEP.Primary.Ammo			= "RPG 40MM"
+SWEP.Primary.Ammo			= "PG-7VM Grenade"
 
 SWEP.FireDelay = 0.3
 SWEP.FireSound = "CW_KK_INS2_RPG_FIRE"

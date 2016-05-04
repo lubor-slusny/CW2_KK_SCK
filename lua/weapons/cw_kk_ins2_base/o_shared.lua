@@ -300,7 +300,13 @@ function SWEP:finishReloadShotgun()
 			
 			self.ReloadDelay = CT + self.InsertShellTime / self.ReloadSpeed
 			
-			if mag + 1 >= self.Primary.ClipSize or ammo - 1 <= 0 then
+			local clipSize = self.Primary.ClipSize
+			
+			if self.Chamberable and (self.ReloadFirstShell or !self.WasEmpty) then
+				clipSize = clipSize + 1
+			end
+			
+			if (mag + 1) >= (clipSize) or ammo - 1 <= 0 then
 				self.ShotgunReloadState = 2
 			end
 		end

@@ -4,6 +4,7 @@ AddCSLuaFile()
 AddCSLuaFile("sh_anims.lua")
 AddCSLuaFile("sh_callbacks.lua")
 AddCSLuaFile("sh_utilities.lua")
+AddCSLuaFile("sv_hooks.lua")
 
 AddCSLuaFile("o_cl_hud.lua")
 AddCSLuaFile("o_cl_model.lua")
@@ -15,6 +16,7 @@ AddCSLuaFile("o_shared.lua")
 include("sh_anims.lua")
 include("sh_callbacks.lua")
 include("sh_utilities.lua")
+include("sv_hooks.lua")
 
 include("o_sh_attacks.lua")
 include("o_sh_m203.lua")
@@ -39,9 +41,11 @@ SWEP.AdminSpawnable		= false
 
 SWEP.TSGlass = Material("models/weapons/optics/lense_rt")
 
+SWEP.NoFreeAim = true
 SWEP.LuaViewmodelRecoil = false
 SWEP.BipodDeployTime = 1.15
 SWEP.BipodUndeployTime = 1.15
+SWEP.HolsterTime = 0.4
 
 SWEP.KK_IGNORE_MAGSYS_TWEAK = true
 
@@ -173,7 +177,7 @@ function SWEP:IndividualThink()
 		self.CrosshairEnabled = shouldDrawCrosshair
 		self.FadeCrosshairOnAim = !shouldDrawCrosshair
 		
-		self.NoFreeAim = self:getPrimarySight() != nil // and self:isAiming()
+		-- self.NoFreeAim = self:getPrimarySight() != nil // and self:isAiming()
 		
 		if !SP and not IsFirstTimePredicted() then return end
 		

@@ -319,7 +319,7 @@ if CLIENT then
 		ang = beamAtt.Ang
 		col = (self.SightColors["kk_ins2_flashlight"] and self.SightColors["kk_ins2_flashlight"].last) or 1
 		
-		net.Start("CW_KK_INS2_FLASHLIGHT")
+		net.Start(CustomizableWeaponry_KK.ins2.flashlight.v2.NWString)
 			net.WriteEntity(self)
 			net.WriteVector(pos)
 			net.WriteAngle(ang)

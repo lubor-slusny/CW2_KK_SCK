@@ -2,9 +2,6 @@ AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("shared.lua")
 include("shared.lua")
 
-ENT.ExplodeRadius = 434
-ENT.ExplodeDamage = 100
-
 local phys, ef
 
 function ENT:Initialize()
@@ -53,13 +50,28 @@ end
 
 function ENT:Fuse(t)
 	if self:IsValid() then
-		util.BlastDamage(self, (self.Detonator and self.Detonator.Owner) or ents.GetByIndex(1), self:GetPos(), self.ExplodeRadius, self.ExplodeDamage)
+		-- util.BlastDamage(
+			-- self, 
+			-- (self.Detonator and self.Detonator.Owner) or ents.GetByIndex(1), 
+			-- self:GetPos(), 
+			-- self.BlastRadius, 
+			-- self.BlastDamage
+		-- )
 		
-		ef = EffectData()
-		ef:SetOrigin(self:GetPos())
-		ef:SetMagnitude(1)
+		-- ef = EffectData()
+		-- ef:SetOrigin(self:GetPos())
+		-- ef:SetMagnitude(1)
 		
-		util.Effect("Explosion", ef)
+		-- util.Effect("Explosion", ef)
+			
+		local expl = ents.Create("env_explosion")
+		expl.CW_KK_INS2_inflictor = IsValid(self.Detonator) and self.Detonator				//inflictor
+		expl:SetOwner((self.Detonator and self.Detonator.Owner) or ents.GetByIndex(1))		//attacker
+		expl:SetPos(self:GetPos())
+		expl:Spawn()
+		expl:SetKeyValue("iMagnitude", tostring(self.BlastDamage))
+		expl:SetKeyValue("iRadiusOverride", tostring(self.BlastRadius))
+		expl:Fire("Explode",0,0)
 		
 		self:Remove()
 	end

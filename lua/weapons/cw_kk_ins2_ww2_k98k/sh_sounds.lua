@@ -1,14 +1,13 @@
-CustomizableWeaponry:addFireSound("CW_KK_INS2_MOSIN_FIRE", "weapons/mosin/mosin_fp.wav", 1, 105, CHAN_STATIC)
-CustomizableWeaponry:addFireSound("CW_KK_INS2_MOSIN_FIRE_SUPPRESSED", "weapons/mosin/mosin_suppressed_fp.wav", 1, 75, CHAN_STATIC)
+CustomizableWeaponry:addFireSound("CW_KK_INS2_WW2_K98_FIRE", "weapons/kar98/kar98_fp.wav", 1, 105, CHAN_STATIC)
 
-CustomizableWeaponry:addReloadSound("CW_KK_INS2_MOSIN_BOLTBACK", "weapons/mosin/handling/mosin_boltback.wav")
-CustomizableWeaponry:addReloadSound("CW_KK_INS2_MOSIN_BOLTFORWARD", "weapons/mosin/handling/mosin_boltforward.wav")
-CustomizableWeaponry:addReloadSound("CW_KK_INS2_MOSIN_BOLTLATCH", "weapons/mosin/handling/mosin_boltlatch.wav")
-CustomizableWeaponry:addReloadSound("CW_KK_INS2_MOSIN_BOLTRELEASE", "weapons/mosin/handling/mosin_boltrelease.wav")
-CustomizableWeaponry:addReloadSound("CW_KK_INS2_MOSIN_BULLETIN", {
-	"weapons/mosin/handling/mosin_bulletin_1.wav",
-	"weapons/mosin/handling/mosin_bulletin_2.wav",
-	"weapons/mosin/handling/mosin_bulletin_3.wav",
-	"weapons/mosin/handling/mosin_bulletin_4.wav"
+CustomizableWeaponry:addReloadSound("CW_KK_INS2_WW2_K98_BOLTBACK", "weapons/kar98/handling/kar98_boltback.wav")
+CustomizableWeaponry:addReloadSound("CW_KK_INS2_WW2_K98_BOLTFORWARD", "weapons/kar98/handling/kar98_boltforward.wav")
+CustomizableWeaponry:addReloadSound("CW_KK_INS2_WW2_K98_BOLTLATCH", "weapons/kar98/handling/kar98_boltlatch.wav")
+CustomizableWeaponry:addReloadSound("CW_KK_INS2_WW2_K98_BOLTRELEASE", "weapons/kar98/handling/kar98_boltrelease.wav")
+CustomizableWeaponry:addReloadSound("CW_KK_INS2_WW2_K98_BULLETIN", {
+	"weapons/kar98/handling/kar98_bulletin_1.wav",
+	"weapons/kar98/handling/kar98_bulletin_2.wav",
+	"weapons/kar98/handling/kar98_bulletin_3.wav",
+	"weapons/kar98/handling/kar98_bulletin_4.wav"
 })
-CustomizableWeaponry:addReloadSound("CW_KK_INS2_MOSIN_EMPTY", "weapons/mosin/handling/mosin_empty.wav")
+CustomizableWeaponry:addReloadSound("CW_KK_INS2_WW2_K98_EMPTY", "weapons/kar98/handling/kar98_empty.wav")

@@ -1,5 +1,7 @@
 if not CustomizableWeaponry then return end
-if not CustomizableWeaponry_KK.HOME then return end
+
+if not file.Exists("models/weapons/aof/v_m79.mdl", "GAME") then return end
+if not file.Exists("models/weapons/aof/w_m79.mdl", "GAME") then return end
 
 AddCSLuaFile()
 
@@ -17,12 +19,12 @@ if CLIENT then
 	
 	SWEP.AttachmentModelsVM = {}
 	
-	SWEP.IronsightPos = Vector(-2.4598, -2, 0.5881)
-	SWEP.IronsightAng = Vector(0, 0, 0)
+	SWEP.IronsightPos = Vector(-2.3908, -2, 0.3153)
+	SWEP.IronsightAng = Vector(0.9848, 0, 0)
 
-	SWEP.CustomizationMenuScale = 0.01
 	SWEP.ReloadViewBobEnabled = false
 	SWEP.HUD_MagText = "BREECH: "
+	SWEP.CustomizationMenuScale = 0.015
 end
 
 SWEP.Chamberable = false
@@ -31,7 +33,7 @@ SWEP.ShotgunReload = false
 SWEP.ReticleInactivityPostFire = 0.8
 
 SWEP.Attachments = {
-	-- ["+reload"] = {header = "Ammo", offset = {0, 0}, atts = {"am_slugrounds", "am_flechetterounds"}}
+	{header = "", offset = {500, 0}, atts = {"kk_ins2_gp25_ammo"}},
 }
 
 SWEP.KK_INS2_emptyIdle = true
@@ -112,8 +114,8 @@ SWEP.Damage = 10
 SWEP.FirstDeployTime = 0.5
 SWEP.DeployTime = 0.5
 
-SWEP.ReloadTime = 3.15
-SWEP.ReloadTime_Empty = 3.15
+SWEP.ReloadTime = 4.6
+SWEP.ReloadTime_Empty = 4.6
 SWEP.ReloadHalt = 5.17
 SWEP.ReloadHalt_Empty = 5.17
 

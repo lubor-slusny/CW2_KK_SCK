@@ -170,7 +170,7 @@ SWEP.Instructions	= ""
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_m1911.mdl"
-SWEP.WorldModel		= "models/weapons/w_1911.mdl"
+SWEP.WorldModel		= "models/weapons/w_cw_kk_ins2_m1911.mdl"
 
 SWEP.WMPos = Vector(5.309, 1.623, -1.616)
 SWEP.WMAng = Vector(-3, -5, 180)
@@ -198,7 +198,7 @@ SWEP.MaxSpreadInc = 0.036
 SWEP.SpreadPerShot = 0.0125
 SWEP.SpreadCooldown = 0.22
 SWEP.Shots = 1
-SWEP.Damage = 25
+SWEP.Damage = 31
 
 SWEP.FirstDeployTime = 1.2
 SWEP.DeployTime = 0.46

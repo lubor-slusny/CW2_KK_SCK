@@ -26,6 +26,9 @@ if CLIENT then
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_modkit_06.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		
+		["kk_counter"] = {model = "models/weapons/stattrack.mdl", bone = "Weapon", pos = Vector(0.33, -3.289, -0.137), angle = Angle(0, -90, 0), size = Vector(1, 1, 1)},
+		["kk_counter_mag"] = {model = "models/weapons/stattrack.mdl", bone = "Magazine", pos = Vector(0.941, -1.086, 0.783), angle = Angle(-31.362, -9.11, -16.441), size = Vector(0.449, 0.449, 0.449)},
+
 		["kk_ins2_pbs1"] = {model = "models/weapons/upgrades/a_suppressor_ak.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_band.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
@@ -171,6 +174,13 @@ if CustomizableWeaponry_KK.ins2.wsContentMounted() then
 	table.insert(SWEP.Attachments, 3, {header = "Package", offset = {-400, 0}, atts = {"kk_ins2_rpk_sopmod"}})
 end
 
+if CustomizableWeaponry_KK.HOME then
+	-- table.insert(SWEP.Attachments, {header = "Skill1", offset = {2400, -700}, atts = {"kk_aimbot"}})
+	-- table.insert(SWEP.Attachments, {header = "Skill2", offset = {2400, -200}, atts = {"kk_wallhaq"}})
+	table.insert(SWEP.Attachments, {header = "CSGO", offset = {2400, 300}, atts = {"kk_counter"}})
+	-- table.insert(SWEP.Attachments, {header = "CSGO", offset = {2400, 800}, atts = {"kk_textbox"}})
+end
+
 SWEP.Animations = {
 	draw = "base_ready",
 	
@@ -248,7 +258,7 @@ SWEP.MaxSpreadInc = 0.05
 SWEP.SpreadPerShot = 0.007
 SWEP.SpreadCooldown = 0.13
 SWEP.Shots = 1
-SWEP.Damage = 33
+SWEP.Damage = 41
 
 SWEP.FirstDeployTime = 2.1
 SWEP.DeployTime = 0.94
@@ -272,6 +282,8 @@ SWEP.bipod_ReloadHalt = 4.8
 SWEP.bipod_ReloadHalt_Empty = 6
 
 if CLIENT then
+	local counterExists = file.Exists("models/weapons/stattrack.mdl", "GAME")
+	
 	function SWEP:updateOtherParts()
 		local hasInstalledScope = self:getActiveAttachmentInCategory(1) != nil
 		local isBipod = self.ActiveAttachments.kk_ins2_rpk_sopmod
@@ -317,6 +329,26 @@ if CLIENT then
 		else
 			self.WMEnt:SetSequence(0)
 			self:SetSequence(0)
+		end
+
+		if CustomizableWeaponry_KK.HOME then
+			local cycle = self.CW_VM:GetCycle()
+			local clip = self:Clip1()
+			local ammo
+
+			if self.getFullestMag then
+				ammo = math.max(self:Clip1(), self:getFullestMag(), -1)
+			else
+				ammo = self.Owner:GetAmmoCount(self.Primary.Ammo) + clip
+			end
+			
+			if self.Sequence:find("reload") and cycle > 0.3 and cycle < 1 then
+				self.AttachmentModelsVM.kk_counter_mag.ent._KKCSGONUM = ammo
+			else
+				self.AttachmentModelsVM.kk_counter_mag.ent._KKCSGONUM = clip
+			end
+			
+			self.AttachmentModelsVM.kk_counter_mag.active = counterExists
 		end
 	end
 end

@@ -23,7 +23,7 @@ if CLIENT then
 		["kk_ins2_mag_m1a1_15"] = {model = "models/weapons/upgrades/a_magazine_colt_15.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		["kk_ins2_mag_m1a1_30"] = {model = "models/weapons/upgrades/a_magazine_colt_30.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_suppressor_ins"] = {model = "models/weapons/upgrades/a_suppressor_ins.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_suppressor_sec"] = {model = "models/weapons/upgrades/a_suppressor_sec.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/a_foregrip_ins.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), attachment = "Foregrip"},
 		
@@ -53,7 +53,7 @@ if CLIENT then
 		["kk_ins2_mag_m1a1_15"] = {model = "models/weapons/upgrades/w_magazine_colt_15.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		["kk_ins2_mag_m1a1_30"] = {model = "models/weapons/upgrades/w_magazine_colt_30.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_suppressor_ins"] = {model = "models/weapons/upgrades/w_sil_ins1.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_suppressor_sec"] = {model = "models/weapons/upgrades/w_sil_sec1.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/w_ins_foregrip.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
@@ -104,7 +104,7 @@ SWEP.WeaponLength = 20
 
 SWEP.Attachments = {
 	{header = "Sight", offset = {400, -500}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_po4", "kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_microt1", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"}},
-	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_suppressor_ins"}},
+	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_suppressor_sec"}},
 	{header = "Under", offset = {-500, -50}, atts = {"kk_ins2_vertgrip"}},
 	{header = "Lasers", offset = {125, 300}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}},
 	{header = "Magazine", offset = {-200, 600}, atts = {"kk_ins2_mag_m1a1_30"}},
@@ -175,14 +175,14 @@ SWEP.WMAng = Vector(-10, 0, 180)
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.wsContentMounted()
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.wsContentMounted()
 
-SWEP.Primary.ClipSize		= 15
-SWEP.Primary.DefaultClip	= 15
+SWEP.Primary.ClipSize		= 20
+SWEP.Primary.DefaultClip	= 20
 SWEP.Primary.Automatic		= false
-SWEP.Primary.Ammo			= ".30 Carbine"
+SWEP.Primary.Ammo			= "5.56x45MM"
 
 SWEP.FireDelay = 60/900
-SWEP.FireSound = "CW_KK_INS2_M1A1_FIRE"
-SWEP.FireSoundSuppressed = "CW_KK_INS2_M1A1_FIRE_SUPPRESSED"
+SWEP.FireSound = "CW_KK_INS2_M4A1_FIRE"
+SWEP.FireSoundSuppressed = "CW_KK_INS2_M4A1_FIRE_SUPPRESSED"
 SWEP.Recoil = 1.6
 
 SWEP.HipSpread = 0.055
@@ -192,7 +192,7 @@ SWEP.MaxSpreadInc = 0.07
 SWEP.SpreadPerShot = 0.01
 SWEP.SpreadCooldown = 0.12
 SWEP.Shots = 1
-SWEP.Damage = 42
+SWEP.Damage = 38
 
 SWEP.FirstDeployTime = 1.5
 SWEP.DeployTime = 0.5

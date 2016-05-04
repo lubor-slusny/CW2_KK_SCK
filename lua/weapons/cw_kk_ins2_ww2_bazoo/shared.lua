@@ -8,10 +8,10 @@ include("sh_soundscript.lua")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "Bazooooka"
+	SWEP.PrintName = "M9A1 Bazooka"
 	
-	SWEP.SelectFont = "HL2MPTypeDeath"
-	SWEP.IconLetter = "3"
+	SWEP.SelectFont = "CW_SelectIcons2"
+	SWEP.IconLetter = "i"
 	
 	SWEP.MuzzleEffect = "muzzleflash_pistol"
 	SWEP.RearEffectw = true

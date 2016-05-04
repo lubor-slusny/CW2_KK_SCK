@@ -104,24 +104,33 @@ do
 	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_SPOON", "models/weapons/w_gren_spoon.mdl", "", noTweak, noTweak)
 	
 	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_GARAND", "models/weapons/shells/garand_clip.mdl", "CW_KK_INS2_SHELL_M203", noTweak, up90, Vector(-0.55, -0.45, -0.85), Vector(0.55, 0.45, 0.85))
-	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_REVOLVER", "models/weapons/upgrades/a_speedloader_rev.mdl", "", noTweak, noTweak, Vector(-0.8, -0.55, -0.55), Vector(0.25, 0.55, 0.55))
+	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_REVOLVER", "models/weapons/upgrades/a_speedloader_rev.mdl", "CW_KK_INS2_SHELL_12G", noTweak, noTweak, Vector(-0.8, -0.55, -0.55), Vector(0.25, 0.55, 0.55))
 	
 	// models/weapons/w_at4.mdl Vector(-33, -3, -1), Vector(9.5, 3, 5)
 	// 
+	
+	CustomizableWeaponry:addRegularSound("CW_KK_CSS_M72_SHELL", "weapons/cw_kk_css_m72/law_shell.wav", 65)
+	CustomizableWeaponry.shells:addNew_KKINS2("KK_CSS_M72", "models/weapons/w_cw_kk_css_m72.mdl", "CW_KK_CSS_M72_SHELL", noTweak, noTweak, Vector(-18.5, -1.7, -0.2), Vector(18, 1, 2.5))
 end
 // AMMO
 	
 	CustomizableWeaponry:registerAmmo(".30 Carbine", ".30 Carbine Rounds", 7.62, 32.76)
 	CustomizableWeaponry:registerAmmo(".38 Special", ".38 Special Rounds", 9.1, 29.3)
-	CustomizableWeaponry:registerAmmo(".22 LR", ".22 LR Rounds", 5.6, 15)
 	CustomizableWeaponry:registerAmmo(".357 Magnum", ".357 Magnum Rounds", 9.1, 33)
+	CustomizableWeaponry:registerAmmo(".380 ACP", ".380 ACP Rounds", 9, 17.3)
+	
+	CustomizableWeaponry:registerAmmo(".22 LR", ".22 LR Rounds", 5.6, 15)
 	CustomizableWeaponry:registerAmmo("4.6x30MM", "4.6x30MM Rounds", 4.6, 30)
 	
-	CustomizableWeaponry:registerAmmo("7.92x57MM", "7.92x57MM Rounds", 7.92, 57)
-	CustomizableWeaponry:registerAmmo("7.92x33MM", "7.92x33MM Rounds", 7.92, 33)
-	CustomizableWeaponry:registerAmmo("7.62x63MM", "7.62x63MM Rounds", 7.62, 63)
+	CustomizableWeaponry:registerAmmo(".30-06", ".30-06 Springfield Rounds", 7.62, 63.3)
+	CustomizableWeaponry:registerAmmo("7.92x57MM", "7.92x57MM Mauser Rounds", 7.92, 57)
+	CustomizableWeaponry:registerAmmo("7.92x33MM", "7.92x33MM Kurz Rounds", 7.92, 33)
 	
-	CustomizableWeaponry:registerAmmo("RPG 40MM", "PG-7VM Grenades", 0, 0)
+	-- CustomizableWeaponry:registerAmmo(".30-06 Springfield", ".30-06 Springfield Rounds", 7.62, 63.3)
+	-- CustomizableWeaponry:registerAmmo("7.92x57MM Mauser", "7.92x57MM Mauser Rounds", 7.92, 57)
+	-- CustomizableWeaponry:registerAmmo("7.92x33MM Kurz", "7.92x33MM Kurz Rounds", 7.92, 33)
+	
+	CustomizableWeaponry:registerAmmo("PG-7VM Grenade", "PG-7VM Grenades", 0, 0)
 	CustomizableWeaponry:registerAmmo("AT4 Launcher", "AT4 Rocket Launchers", 0, 0)
 	CustomizableWeaponry:registerAmmo("M6A1 Rocket", "M6A1 Rockets", 0, 0)
 	CustomizableWeaponry:registerAmmo("Panzerfaust", "Panzerfaust Rocket Launchers", 0, 0)
@@ -199,6 +208,8 @@ if CLIENT then
 	local killCol = Color(255, 80, 0, 150)
 	local white = Color(255, 255, 255, 150)
 
+	killicon.AddFont("cw_kk_ins2_damage_melee",	"CW_KillIcons", "j", killCol)
+	
 	killicon.AddFont("cw_kk_ins2_mel_bayonet",		"CW_KillIcons", "j", killCol)
 	killicon.AddFont("cw_kk_ins2_mel_gurkha",		"CW_KillIcons", "j", killCol)
 	
@@ -210,70 +221,108 @@ if CLIENT then
 	
 	killicon.AddFont("cw_kk_ins2_mp5k",				"CW_KillIcons", "x", killCol)
 	killicon.AddFont("cw_kk_ins2_mp40",				"CW_KillIcons", "x", killCol)
-	killicon.AddFont("cw_kk_ins2_sterling",			"CW_KillIcons", "a", killCol)
+	killicon.AddFont("cw_kk_ins2_sterling",			"CW_KillIcons", "x", killCol)
 	killicon.AddFont("cw_kk_ins2_ump45",			"CW_KillIcons", "q", killCol)
 	
 	killicon.AddFont("cw_kk_ins2_ak74",				"CW_KillIcons", "b", killCol)
 	killicon.AddFont("cw_kk_ins2_akm",				"CW_KillIcons", "b", killCol)
 	killicon.AddFont("cw_kk_ins2_aks74u",			"CW_KillIcons", "b", killCol)
-	killicon.AddFont("cw_kk_ins2_fnfal",			"CW_KillIcons", "a", killCol)
+	killicon.AddFont("cw_kk_ins2_fnfal",			"CW_KillIcons", "i", killCol)
 	killicon.AddFont("cw_kk_ins2_galil",			"CW_KillIcons", "v", killCol)
-	killicon.AddFont("cw_kk_ins2_l1a1",				"CW_KillIcons", "a", killCol)
-	killicon.AddFont("cw_kk_ins2_m1a1",				"CW_KillIcons", "a", killCol)
+	killicon.AddFont("cw_kk_ins2_l1a1",				"CW_KillIcons", "i", killCol)
+	killicon.AddFont("cw_kk_ins2_m1a1",				"CW_KillIcons", "o", killCol)
 	killicon.AddFont("cw_kk_ins2_m4a1",				"CW_KillIcons", "w", killCol)
+	-- killicon.AddFont("cw_kk_ins2_m14",				"CW_KillIcons", "i", white)
 	killicon.AddFont("cw_kk_ins2_m14",				"CW_HUD22", "M14 EBR", white)
 	killicon.AddFont("cw_kk_ins2_m16a4",			"CW_KillIcons", "w", killCol)
 	killicon.AddFont("cw_kk_ins2_m40a1",			"CW_KillIcons", "r", killCol)
 	killicon.AddFont("cw_kk_ins2_m249",				"CW_KillIcons", "z", killCol)
 	killicon.AddFont("cw_kk_ins2_m590",				"CW_KillIcons", "k", killCol)
-	killicon.AddFont("cw_kk_ins2_mini14",			"CW_KillIcons", "a", killCol)
+	killicon.AddFont("cw_kk_ins2_mini14",			"CW_KillIcons", "o", killCol)
 	killicon.AddFont("cw_kk_ins2_mk18",				"CW_KillIcons", "w", killCol)
 	killicon.AddFont("cw_kk_ins2_mosin",			"CW_KillIcons", "r", killCol)
 	killicon.AddFont("cw_kk_ins2_rpk",				"CW_KillIcons", "b", killCol)
-	killicon.AddFont("cw_kk_ins2_sks",				"CW_KillIcons", "a", killCol)
+	killicon.AddFont("cw_kk_ins2_sks",				"CW_KillIcons", "o", killCol)
 	killicon.AddFont("cw_kk_ins2_toz",				"CW_KillIcons", "k", killCol)
 	
-	killicon.AddFont("cw_kk_ins2_at4",				"CW_SelectIcons2", "i", killCol)
+	killicon.AddFont("cw_kk_ins2_at4",				"HL2MPTypeDeath", "3", killCol)
 	killicon.AddFont("cw_kk_ins2_p2a1",				"CW_KillIcons", "a", killCol)
-	killicon.AddFont("cw_kk_ins2_rpg",				"CW_SelectIcons2", "i", killCol)
+	killicon.AddFont("cw_kk_ins2_rpg",				"HL2MPTypeDeath", "3", killCol)
+	killicon.AddFont("cw_kk_ins2_nade_c4",			"CW_KillIcons", "I", killCol)
+	killicon.AddFont("cw_kk_ins2_nade_ied",			"CW_KillIcons", "I", killCol)
 	
 	killicon.AddFont("cw_kk_ins2_gp25",				"HL2MPTypeDeath", "7", killCol)
 	killicon.AddFont("cw_kk_ins2_rpg_pro",			"CW_KillIcons", "a", killCol)
+	
+	killicon.AddFont("cw_kk_ins2_projectile_at4",	"HL2MPTypeDeath", "3", killCol)
+	killicon.AddFont("cw_kk_ins2_projectile_flare",	"CW_KillIcons", "a", killCol)
+	killicon.AddFont("cw_kk_ins2_projectile_rpg",	"HL2MPTypeDeath", "3", killCol)
+	killicon.AddFont("cw_kk_ins2_projectile_c4",	"CW_KillIcons", "I", killCol)
+	killicon.AddFont("cw_kk_ins2_projectile_ied",	"CW_KillIcons", "I", killCol)
 	
 	// WS pack
 	
 	killicon.AddFont("cw_kk_ins2_mel_cstm_ninjato",	"CW_KillIcons", "j", killCol)
 	
 	killicon.AddFont("cw_kk_ins2_cstm_cobra",		"HL2MPTypeDeath", ".", killCol)
+	killicon.AddFont("cw_kk_ins2_cstm_mateba",		"HL2MPTypeDeath", ".", killCol)
 	
-	killicon.AddFont("cw_kk_ins2_cstm_kriss",			"CW_KillIcons", "a", killCol)
-	killicon.AddFont("cw_kk_ins2_cstm_mp7",			"CW_KillIcons", "a", killCol)
-	killicon.AddFont("cw_kk_ins2_cstm_sten",		"CW_KillIcons", "a", killCol)
+	killicon.AddFont("cw_kk_ins2_cstm_kriss",		"CW_KillIcons", "x", killCol)
+	killicon.AddFont("cw_kk_ins2_cstm_mp7",			"CW_KillIcons", "x", killCol)
+	killicon.AddFont("cw_kk_ins2_cstm_sten",		"CW_KillIcons", "x", killCol)
 	killicon.AddFont("cw_kk_ins2_cstm_uzi",			"CW_KillIcons", "l", killCol)
 	
 	killicon.AddFont("cw_kk_ins2_cstm_aug",			"CW_KillIcons", "e", killCol)
+	killicon.AddFont("cw_kk_ins2_cstm_colt",		"CW_KillIcons", "w", killCol)
 	killicon.AddFont("cw_kk_ins2_cstm_famas",		"CW_KillIcons", "t", killCol)
-	killicon.AddFont("cw_kk_ins2_cstm_g36c",		"CW_KillIcons", "a", killCol)
+	killicon.AddFont("cw_kk_ins2_cstm_g36c",		"CW_KillIcons", "o", killCol)
 	killicon.AddFont("cw_kk_ins2_cstm_galil_ace",	"CW_KillIcons", "v", killCol)
 	killicon.AddFont("cw_kk_ins2_cstm_ksg",			"CW_KillIcons", "k", killCol)
-	killicon.AddFont("cw_kk_ins2_cstm_m14",			"CW_KillIcons", "a", killCol)
-	killicon.AddFont("cw_kk_ins2_cstm_scar",		"CW_KillIcons", "a", killCol)
+	killicon.AddFont("cw_kk_ins2_cstm_m14",			"CW_KillIcons", "i", killCol)
+	killicon.AddFont("cw_kk_ins2_cstm_m500",		"CW_KillIcons", "k", killCol)
+	killicon.AddFont("cw_kk_ins2_cstm_scar",		"CW_KillIcons", "i", killCol)
 	killicon.AddFont("cw_kk_ins2_cstm_spas12",		"CW_KillIcons", "k", killCol)
 	
 	// WW2 pack
+	killicon.AddFont("cw_kk_ins2_ww2_luger",		"CW_KillIcons", "a", killCol)
+	killicon.AddFont("cw_kk_ins2_ww2_p38",			"CW_KillIcons", "a", killCol)
+	killicon.AddFont("cw_kk_ins2_ww2_ppk",			"CW_KillIcons", "a", killCol)
 	
+	killicon.AddFont("cw_kk_ins2_ww2_thom",			"CW_KillIcons", "q", killCol)
+	
+	killicon.AddFont("cw_kk_ins2_ww2_k98k",			"CW_KillIcons", "r", killCol)
+	killicon.AddFont("cw_kk_ins2_ww2_spring",		"CW_KillIcons", "r", killCol)
+	killicon.AddFont("cw_kk_ins2_ww2_bar",			"CW_KillIcons", "i", killCol)
+	killicon.AddFont("cw_kk_ins2_ww2_g43",			"CW_KillIcons", "i", killCol)
+	killicon.AddFont("cw_kk_ins2_ww2_garand",		"CW_KillIcons", "i", killCol)
+	killicon.AddFont("cw_kk_ins2_ww2_stg44",		"CW_KillIcons", "o", killCol)
+	killicon.AddFont("cw_kk_ins2_ww2_browning",		"CW_KillIcons", "z", killCol)
+	killicon.AddFont("cw_kk_ins2_ww2_mg42",			"CW_KillIcons", "z", killCol)
+	
+	killicon.AddFont("cw_kk_ins2_ww2_bazoo",		"HL2MPTypeDeath", "3", killCol)
+	killicon.AddFont("cw_kk_ins2_ww2_frag_de",		"CW_KillIcons", "e", killCol)
+	killicon.AddFont("cw_kk_ins2_ww2_frag_us",		"CW_KillIcons", "e", killCol)
+	killicon.AddFont("cw_kk_ins2_ww2_tankfist",		"HL2MPTypeDeath", "3", killCol)
+	
+	killicon.AddFont("cw_kk_ins2_projectile_m6a1",	"HL2MPTypeDeath", "3", killCol)
+	killicon.AddFont("cw_kk_ins2_projectile_pf60",	"HL2MPTypeDeath", "3", killCol)
 end
 
 if CLIENT then
-	language.Add("cw_kk_ins2_projectile_m6a1", "M6A1 rocket")
-	language.Add("cw_kk_ins2_projectile_pf60", "Panzerfaust projectile")
+	language.Add("cw_kk_ins2_damage_melee", "Melee attack")
+	
 	language.Add("cw_kk_ins2_projectile_rpg", "PG-7VM grenade")
 	language.Add("cw_kk_ins2_projectile_rpg_2", "PG-7VM grenade")
-	language.Add("cw_kk_ins2_thrown_molotov", "Fake Molotov")
 	language.Add("cw_kk_ins2_projectile_at4", "AT4 rocket")
+	
 	language.Add("cw_kk_ins2_projectile_c4", "Active C4 charge")
 	language.Add("cw_kk_ins2_projectile_ied", "Active IED")
 	language.Add("cw_kk_ins2_projectile_flare", "25MM Flare")
+	
+	language.Add("cw_kk_ins2_thrown_molotov", "Fake Molotov")
+	
+	language.Add("cw_kk_ins2_projectile_m6a1", "M6A1 rocket")
+	language.Add("cw_kk_ins2_projectile_pf60", "Panzerfaust projectile")
 end
 
 // MAG SYSTEM

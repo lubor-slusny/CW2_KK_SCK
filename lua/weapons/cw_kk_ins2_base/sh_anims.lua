@@ -74,7 +74,7 @@ if CLIENT then
 			suffix = "_empty"
 		end
 		
-		if self:isAiming() then
+		if self:isAiming() or self.Slot == 1 then
 			suffix = suffix .. "_aim"
 		end
 		

@@ -82,7 +82,7 @@ if CLIENT then
 	SWEP.CustomizationMenuScale = 0.013
 end
 
-SWEP.Chamberable = false
+SWEP.Chamberable = true
 SWEP.SnapToIdlePostReload = false
 SWEP.ShotgunReload = true
 SWEP.ReticleInactivityPostFire = 1
@@ -167,8 +167,8 @@ SWEP.WMAng = Vector(-10, 0, 180)
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.wsContentMounted()
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.wsContentMounted()
 
-SWEP.Primary.ClipSize		= 8
-SWEP.Primary.DefaultClip	= 8
+SWEP.Primary.ClipSize		= 7 // 7+7+1 according to wiki
+SWEP.Primary.DefaultClip	= 7 // 7+1 according to wiki+viewmodel - reload only loads into left tube
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "12 Gauge"
 
@@ -185,7 +185,7 @@ SWEP.ClumpSpread = 0.013
 SWEP.SpreadPerShot = 0.01
 SWEP.SpreadCooldown = 0.8
 SWEP.Shots = 12
-SWEP.Damage = 10
+SWEP.Damage = 11
 
 SWEP.FirstDeployTime = 2.1
 SWEP.DeployTime = 0.5
