@@ -152,6 +152,8 @@ end
 
 // custom GL reload
 
+local CT, mag
+
 function SWEP:Reload()
 	CT = CurTime()
 	
@@ -165,18 +167,46 @@ function SWEP:Reload()
 	
 	if self.dt.INS2GLActive then
 		if not self.M203Chamber and self.Owner:GetAmmoCount("40MM") > 0 then
-			if IsFirstTimePredicted() then
-				self:sendWeaponAnim("gl_on_reload",self.ReloadSpeed,0)
-			end
-
-			self:reloadM203()
 			self.dt.State = CW_IDLE
+			
+			self:beginReload()
 		end
 		
 		return
 	end
 	
-	weapons.GetStored("cw_base").Reload(self)
+	if self.Owner:KeyDown(IN_USE) and self.dt.State != CW_RUNNING then
+		self:CycleFiremodes()
+		return
+	end
+	
+	mag = self:Clip1()
+	
+	local cantReload, overrideMagCheck, overrideAmmoCheck = CustomizableWeaponry.callbacks.processCategory(self, "canReload", mag == 0)
+	
+	if cantReload then
+		return
+	end
+	
+	if not overrideMagCheck then
+		if (self.Chamberable and mag >= self.Primary.ClipSize_Orig + 1) then
+			return
+		end
+	end
+	
+	if not overrideAmmoCheck then
+		if self.Owner:GetAmmoCount(self.Primary.Ammo) == 0 then
+			return
+		end
+	end
+	
+	if not self.Chamberable and mag >= self.Primary.ClipSize then
+		return
+	end
+		
+	self.dt.State = CW_IDLE
+	
+	self:beginReload()
 end
 
 // updating reload times
@@ -185,12 +215,6 @@ local CT, mag, ammo
 
 function SWEP:beginReload()
 	self:updateReloadTimes()
-	
-	if SERVER then
-		SendUserMessage("CW_KK_INS2_RELOADINACTIVITY", self.Owner)
-	end
-	
-	-- weapons.GetStored("cw_base").beginReload(self)	
 	
 	CT = CurTime()
 	mag, ammo = self:Clip1(), self.Owner:GetAmmoCount(self.Primary.Ammo)
@@ -209,7 +233,7 @@ function SWEP:beginReload()
 			
 			if SERVER and self.ReloadFirstShell then
 				CustomizableWeaponry.actionSequence.new(self, self.ReloadFirstShell, nil, function()
-					if self.ShotgunReloadState == 0 then return end
+					if self.ShotgunReloadState == 0 then return end	// melee attack interuption
 					
 					self:SetClip1(mag + 1)
 					self.Owner:SetAmmo(ammo - 1, self.Primary.Ammo)
@@ -232,7 +256,11 @@ function SWEP:beginReload()
 		local reloadTime = nil
 		local reloadHalt = nil
 		
-		if mag == 0 then
+		// maybe make some custom getReloadTime function for all this?
+		if self.dt.INS2GLActive then
+			reloadTime = self.gl_on_ReloadTime or 2
+			reloadHalt = self.gl_on_ReloadHalt or 2.6
+		elseif mag == 0 then
 			if self.Chamberable then
 				self.Primary.ClipSize = self.Primary.ClipSize_Orig
 			end
@@ -247,6 +275,7 @@ function SWEP:beginReload()
 				self.Primary.ClipSize = self.Primary.ClipSize_Orig + 1
 			end
 		end
+		// ===========================================================
 		
 		reloadTime = reloadTime / self.ReloadSpeed
 		reloadHalt = reloadHalt / self.ReloadSpeed
@@ -255,7 +284,7 @@ function SWEP:beginReload()
 		self:SetNextPrimaryFire(CT + reloadHalt)
 		self:SetNextSecondaryFire(CT + reloadHalt)
 		self.GlobalDelay = CT + reloadHalt
-				
+		
 		if self.reloadAnimFunc then
 			self:reloadAnimFunc(mag)
 		else
@@ -267,14 +296,79 @@ function SWEP:beginReload()
 		end
 	end
 	
+	if SERVER then
+		SendUserMessage("CW_KK_INS2_RELOADINACTIVITY", self.Owner)
+	end
+	
 	CustomizableWeaponry.callbacks.processCategory(self, "beginReload", mag == 0)
 	
 	self.Owner:SetAnimation(PLAYER_RELOAD)
 end
 
+// M203 2 - for melee attacks that interupt reloads
+
+local mag, ammo
+
+function SWEP:finishReload()
+	if self.dt.INS2GLActive then
+		if SERVER then
+			self.Owner:RemoveAmmo(1, "40MM")
+			SendUserMessage("CW_KK_INS2_READYM203", self.Owner)
+		end
+		
+		self.M203Chamber = true
+		self.ReloadDelay = nil
+		
+		return
+	end
+
+	mag, ammo = self:Clip1(), self.Owner:GetAmmoCount(self.Primary.Ammo)
+
+	local suppressReloadLogic = CustomizableWeaponry.callbacks.processCategory(self, "defaultReloadLogic", mag == 0)
+	
+	if not suppressReloadLogic then
+		if self.ReloadAmount then
+			if SERVER then
+				self:SetClip1(math.Clamp(mag + self.ReloadAmount, 0, self.Primary.ClipSize))
+				self.Owner:RemoveAmmo(self.ReloadAmount, self.Primary.Ammo)
+			end
+		else
+			if mag > 0 then
+				if ammo >= self.Primary.ClipSize - mag then
+					if SERVER then
+						self:SetClip1(math.Clamp(self.Primary.ClipSize, 0, self.Primary.ClipSize))
+						self.Owner:RemoveAmmo(self.Primary.ClipSize - mag, self.Primary.Ammo)
+					end
+				else
+					if SERVER then
+						self:SetClip1(math.Clamp(mag + ammo, 0, self.Primary.ClipSize))
+						self.Owner:RemoveAmmo(ammo, self.Primary.Ammo)
+					end
+				end
+			else
+				if ammo >= self.Primary.ClipSize then
+					if SERVER then
+						self:SetClip1(math.Clamp(self.Primary.ClipSize, 0, self.Primary.ClipSize))
+						self.Owner:RemoveAmmo(self.Primary.ClipSize, self.Primary.Ammo)
+					end
+				else
+					if SERVER then
+						self:SetClip1(math.Clamp(ammo, 0, self.Primary.ClipSize))
+						self.Owner:RemoveAmmo(ammo, self.Primary.Ammo)
+					end
+				end
+			end
+		end
+	end
+	
+	CustomizableWeaponry.callbacks.processCategory(self, "finishReload")
+	
+	self.ReloadDelay = nil
+end
+
 // custom shotgun reload finishing/interupting
 
-local keyDown
+local CT, keyDown, mag, ammo
 
 function SWEP:finishReloadShotgun()
 	CT = CurTime()
@@ -354,4 +448,3 @@ function SWEP:isNearWall()
 	
 	return false
 end
-

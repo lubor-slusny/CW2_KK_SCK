@@ -1,5 +1,5 @@
 local att = {}
-att.name = "kk_ins2_flashlight2"
+att.name = "kk_ins2_flashlight"
 att.displayName = "Light Emitting Module v2.2"
 att.displayNameShort = "LEM"
 att.colorType = CustomizableWeaponry.colorableParts.COLOR_TYPE_KK_FLASHLIGHT

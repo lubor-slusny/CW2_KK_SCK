@@ -261,6 +261,9 @@ SWEP.DeployTime = 0.6
 SWEP.FirstDeployTime = 2
 SWEP.WeaponLength = 22
 
+SWEP.gl_on_ReloadTime = 1.7
+SWEP.gl_on_ReloadHalt = 2.81
+
 if CLIENT then 
 	function SWEP:updateOtherParts()
 		self.AttachmentModelsVM.handguardStandard.active = !self.ActiveAttachments.kk_ins2_vertgrip

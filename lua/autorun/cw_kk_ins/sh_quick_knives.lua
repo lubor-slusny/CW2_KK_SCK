@@ -71,6 +71,9 @@ function CustomizableWeaponry_KK.ins2:meleeKnife()
 	self.ReloadDelay = nil
 	self.ReloadWait = CT
 	self.ShotgunReloadState = 0
+	if self.dt.AT4ReloadEnd then
+		self.dt.AT4ReloadEnd = 0
+	end
 	
 	if CLIENT then
 		self:idleAnimFunc()
@@ -117,7 +120,7 @@ function CustomizableWeaponry_KK.ins2:meleeKnife()
 				
 				CustomizableWeaponry.actionSequence.new(self, 0.1, nil, function()
 					self.GrenadePos.z = -15
-					self.knifeTime = CurTime() + 1.2
+					self.knifeTime = CurTime() + 1
 					self:playAnim(self.CW_KK_KNIFE_TWEAK.a_attack, 0, 0.1, self.CW_KK_KNIFE)
 				end)
 				
@@ -141,20 +144,20 @@ function CustomizableWeaponry_KK.ins2:meleeKnife()
 			npcForceMult = 2000
 		end
 		
-		CustomizableWeaponry.actionSequence.new(self, dmgTime, nil, function()			
-			td.start = self.Owner:GetShootPos()
-			td.endpos = td.start + self.Owner:GetAimVector() * range
-			td.filter = self.Owner
-			
-			tr = util.TraceHull(td)
-			
-			if tr.Hit then
-				self:EmitSound("CW_KK_INS2_KNIFE")
+		if SERVER then
+			CustomizableWeaponry.actionSequence.new(self, dmgTime, nil, function()			
+				td.start = self.Owner:GetShootPos()
+				td.endpos = td.start + self.Owner:GetAimVector() * range
+				td.filter = self.Owner
 				
-				local ent = tr.Entity
-				
-				if IsValid(ent) then
-					if SERVER then
+				tr = util.TraceHull(td)
+			
+				if tr.Hit then
+					self.Owner:EmitSound("CW_KK_INS2_KNIFE")
+					
+					local ent = tr.Entity
+					
+					if IsValid(ent) then
 						local d = DamageInfo()
 						
 						d:SetAttacker(self.Owner)
@@ -175,13 +178,13 @@ function CustomizableWeaponry_KK.ins2:meleeKnife()
 							ent:SetVelocity(self.Owner:GetForward() * npcForceMult)
 						end
 					end
+					
+					self.Owner:ViewPunch(Angle(math.Rand(-5, -4), math.Rand(-2, 2), math.Rand(-1, 1)))
+				else
+					self.Owner:ViewPunch(Angle(math.Rand(-5, -4), math.Rand(-2, 2), math.Rand(-1, 1)))
 				end
-				
-				-- self.Owner:ViewPunch(Angle(math.Rand(-5, -4), math.Rand(-2, 2), math.Rand(-1, 1)))
-			else
-				-- self.Owner:ViewPunch(Angle(math.Rand(-5, -4), math.Rand(-2, 2), math.Rand(-1, 1)))
-			end
-		end)
+			end)
+		end
 	end
 end
 
@@ -190,7 +193,7 @@ if CLIENT then
 		local ply = LocalPlayer()
 		local wep = ply:GetActiveWeapon()
 
-		if IsValid(wep) and wep.CW20Weapon and wep.CW_KK_MELEE then 
+		if IsValid(wep) and wep.CW20Weapon then 
 			CustomizableWeaponry_KK.ins2.meleeKnife(wep)
 		end
 	end)

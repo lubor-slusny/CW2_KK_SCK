@@ -103,7 +103,7 @@ SWEP.Primary.DefaultClip	= 6
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= ".38 Special"
 
-SWEP.FireDelay = 60/600
+SWEP.FireDelay = 60/380
 SWEP.FireSound = "CW_KK_INS2_REVOLVER_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_REVOLVER_FIRE_SUPPRESSED"
 SWEP.Recoil = 2.6

@@ -50,14 +50,6 @@ if CLIENT then
 	SWEP.CustomizationMenuScale = 0.025
 end
 
-SWEP.Chamberable = false
-SWEP.SnapToIdlePostReload = false
-SWEP.ShotgunReload = true
-SWEP.ReticleInactivityPostFire = 2
-SWEP.GlobalDelayOnShoot = 2
-
-SWEP.WeaponLength = 38
-
 SWEP.Attachments = {
 	-- {header = "Sight", offset = {500, -500}, atts = {"kk_ins2_cstm_barska", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_cstm_acog", "kk_ins2_po4", "kk_ins2_scope_mosin", "kk_ins2_scope_m40"}},
 	{header = "Sight", offset = {500, -500}, atts = {"kk_ins2_scope_mosin"}},
@@ -143,7 +135,7 @@ SWEP.Primary.DefaultClip	= 5
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "7.92x57MM"
 
-SWEP.FireDelay = 1.75
+SWEP.FireDelay = 60/36
 SWEP.FireSound = "CW_KK_INS2_WW2_K98_FIRE"
 SWEP.Recoil = 1.6
 
@@ -171,6 +163,14 @@ SWEP.ReloadFinishWait = 1.05
 SWEP.ReloadFinishWaitEmpty = 1.05
 
 SWEP.SnapToIdlePostReload = false
+
+SWEP.Chamberable = false
+SWEP.SnapToIdlePostReload = false
+SWEP.ShotgunReload = true
+SWEP.ReticleInactivityPostFire = SWEP.FireDelay + 0.2
+SWEP.GlobalDelayOnShoot = SWEP.FireDelay
+
+SWEP.WeaponLength = 38
 
 function SWEP:fireAnimFunc()
 	local clip = self:Clip1()

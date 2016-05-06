@@ -99,7 +99,7 @@ if CLIENT then
 	local cvRig = GetConVar("cw_kk_ins2_rig")
 	
 	function SWEP:updateHands()
-		local currentRig = math.Round(math.Clamp(cvRig:GetInt(),1,table.Count(CustomizableWeaponry_KK.ins2.hands)), 0)
+		local currentRig = math.Round(math.Clamp(cvRig:GetInt(),1,#CustomizableWeaponry_KK.ins2.hands), 0)
 		
 		if self._KK_INS2_rig != currentRig then
 			if self.CW_KK_HANDS then
@@ -110,7 +110,9 @@ if CLIENT then
 		self._KK_INS2_rig = currentRig
 	end
 	
-	function SWEP:updateOtherParts() end
+	function SWEP:updateOtherParts()
+		// whatever u want
+	end
 end
 
 function SWEP:hasInstalledRTScope()

@@ -129,23 +129,19 @@ if CLIENT then
 		"^^ [KK INS2] callback, custom sound"
 	}
 	
-	local function cleanUpShells()
-		for _,v in pairs(CustomizableWeaponry_KK.ins2.deployedShells) do
-			SafeRemoveEntity(v)
-		end
-	end
-	
 	CustomizableWeaponry_KK.panels.ins2 = function(panel)
 		panel:AddControl("Label", {Text = "INS2 Pack:"}):DockMargin(0, 0, 8, 0)
 				
+		// hands model slider
 		panel:AddControl("Slider", {
 			Label = "Rig:",
 			Type = "Integer",
 			Min = "1",
-			Max = table.Count(CustomizableWeaponry_KK.ins2.hands),
+			Max = #CustomizableWeaponry_KK.ins2.hands,
 			Command = "cw_kk_ins2_rig"
 		}):DockMargin(8, 0, 8, 0)
 		
+		// shell sound function slider
 		local ssslider = panel:AddControl("Slider", {
 			Label = "Shell sound function:",
 			Type = "Integer",
@@ -164,6 +160,7 @@ if CLIENT then
 			sslabel:SetText(sslabeltxt[math.Clamp(math.Round(v or 1), 1, 3)] or "meh")
 		end
 		
+		// shell life time slider
 		panel:AddControl("Slider", {
 			Label = "Shell life time:",
 			Type = "Float",
@@ -171,14 +168,47 @@ if CLIENT then
 			Max = "60",
 			Command = "cw_kk_ins2_shell_time"
 		}):DockMargin(8, 0, 8, 0)
-		
-		local cusbutt = panel:AddControl("Button", {
-			Text = "Clean up shells"
-		})
 
-		cusbutt:DockMargin(8, 0, 8, 0)
-		cusbutt.DoClick = cleanUpShells
+		// shell cleanup button		
+		local cusbutt = panel:AddControl("Button", {Text = "meh"})
 		
+		cusbutt:DockMargin(8, 0, 8, 0)
+		
+		function cusbutt:DoClick()
+			for _,v in pairs(CustomizableWeaponry_KK.ins2.deployedShells) do
+				SafeRemoveEntity(v)
+			end
+			
+			self:updateLabel()
+		end
+		
+		function cusbutt:updateLabel()
+			local i, t = 1, CustomizableWeaponry_KK.ins2.deployedShells
+		
+			for _ = 1, #t do
+				if !IsValid(t[i]) then
+					table.remove(t, i)
+				else
+					i = i + 1
+				end
+			end
+			
+			cusbutt:SetText("Clean up shells [" .. #CustomizableWeaponry_KK.ins2.deployedShells .. "]")
+		end
+		
+		cusbutt:updateLabel()
+		
+		timer.Create("CW_KK_INS2_SHELL_COUNTER", 3, 0, function()
+			if IsValid(cusbutt) then
+				cusbutt:updateLabel()
+			end
+		end)
+		
+		hook.Add("PostReloadToolsMenu", "CW_KK_INS2_SHELL_COUNTER_REMOVER", function()
+			timer.Remove("CW_KK_INS2_SHELL_COUNTER")
+		end)
+		
+		// tickbox for always animated reticles
 		panel:AddControl("CheckBox", {
 			Label = "Always animate stencil sight reticle", 
 			Command = "cw_kk_ins2_animate_reticle"
@@ -186,11 +216,12 @@ if CLIENT then
 		
 		if not CustomizableWeaponry_KK.HOME then return end
 		
+		// cam3d experiments
 		panel:AddControl("CheckBox", {
 			Label = "Draw viewmodels in render target scopes", 
 			Command = "cw_kk_ins2_draw_vm_in_rt"
 		}):DockMargin(8, 8, 8, 0)
-	end	
+	end
 end
 
 for k, v in pairs(file.Find("autorun/cw_kk_ins/*", "LUA")) do

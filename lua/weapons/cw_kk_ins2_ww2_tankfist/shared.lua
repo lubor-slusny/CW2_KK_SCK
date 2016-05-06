@@ -125,6 +125,7 @@ function SWEP:reloadAnimFunc(lm)
 	self:sendWeaponAnim("base_reload_start",self.ReloadSpeed,0)
 
 	CustomizableWeaponry.actionSequence.new(self, 1.8, nil, function() 
+		if not self.ReloadDelay then return end
 		self:sendWeaponAnim("base_reload_end",self.ReloadSpeed,0)
 	end)
 end //*/

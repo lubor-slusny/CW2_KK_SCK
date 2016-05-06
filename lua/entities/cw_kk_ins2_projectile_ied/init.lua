@@ -17,6 +17,7 @@ function ENT:InitPhys()
 	phys = self:GetPhysicsObject()
 
 	if phys and phys:IsValid() then
+		phys:SetMass(6)
 		phys:Wake()
 	end
 	

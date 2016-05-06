@@ -26,79 +26,51 @@ function SWEP:fireM203(firstTimePrediction)
 	self.Owner:SetAnimation(PLAYER_ATTACK1)
 	
 	if CLIENT then
-		local vm = self.CW_VM
-		local attId = vm:LookupAttachment("muzzle_gl")
-		
-		if attId == 0 then
-			if self.AttachmentModelsVM.kk_ins2_gl_gp25 then
-				vm = self.AttachmentModelsVM.kk_ins2_gl_gp25.ent
-			elseif self.AttachmentModelsVM.kk_ins2_gl_m203 then
-				vm = self.AttachmentModelsVM.kk_ins2_gl_m203.ent
-			end
-			
-			attId = 1
+		local vm 
+	
+		if self.ActiveAttachments.kk_ins2_gl_gp25 then
+			vm = self.AttachmentModelsVM.kk_ins2_gl_gp25 and self.AttachmentModelsVM.kk_ins2_gl_gp25.ent
+		elseif self.ActiveAttachments.kk_ins2_gl_m203 then
+			vm = self.AttachmentModelsVM.kk_ins2_gl_m203 and self.AttachmentModelsVM.kk_ins2_gl_m203.ent
 		end
 		
-		if self.AttachmentModelsVM.kk_ins2_gl_gp25 then
-			ParticleEffectAttach("muzzleflash_pistol", PATTACH_POINT_FOLLOW, self.AttachmentModelsWM.kk_ins2_gl_gp25.ent, 1)
-		elseif self.AttachmentModelsVM.kk_ins2_gl_m203 then
-			ParticleEffectAttach("muzzleflash_pistol", PATTACH_POINT_FOLLOW, self.AttachmentModelsWM.kk_ins2_gl_m203.ent, 1)
+		if IsValid(vm) then
+			ParticleEffectAttach("muzzleflash_pistol", PATTACH_POINT_FOLLOW, vm, 1)
 		end
 	end
 end
 
-local shell = CustomizableWeaponry.shells:getShell("KK_INS2_40mm")
-local down = Vector(0,0,1)
-
 function SWEP:reloadM203()
-	if SERVER and SP then
-		SendUserMessage("CW20_RELOADM203", self.Owner)
-	end
-	
-	self:setGlobalDelay(self.gl_on_ReloadHalt or 2.6)
-	
-	if CLIENT and self.ActiveAttachments.kk_ins2_gl_m203 then
-		CustomizableWeaponry.actionSequence.new(self, 1.18, nil, function()
-			if self.Sequence != self.Animations.gl_on_reload then return end
+	// moved to SWEP:Reload(), SWEP:beginReload() and SWEP:finishReload()
+end
+
+if CLIENT then
+	usermessage.Hook("CW_KK_INS2_READYM203", function()
+		local ply = LocalPlayer()
+		if !IsValid(ply) then return end
+		
+		local wep = ply:GetActiveWeapon()
+		if !IsValid(wep) or not wep.CW20Weapon then return end
 			
-			local att = self.AttachmentModelsVM.kk_ins2_gl_m203.ent:GetAttachment(2)
-		
-			local dir = att.Ang:Forward()
-			local pos = att.Pos + dir * 10
-		
-			local ang = self.Owner:EyeAngles()
-			ang:RotateAroundAxis(ang:Up(), 180)
-			
-			self._shellTable = shell
-				CustomizableWeaponry.shells.make(self, pos, ang, down, 0.6, 10)
-			self._shellTable = self._shellTable1
-		end)
-	end
-	
-	CustomizableWeaponry.actionSequence.new(self, self.gl_on_ReloadTime or 2, nil, function()
-		-- if !self.ReloadDelay then return end // feeeeex
-		
-		if SERVER then
-			self.Owner:RemoveAmmo(1, "40MM")
-		end
-		
-		self.M203Chamber = true
+		wep.M203Chamber = true
 	end)
 end
 
 // GL unloading upon changing ammo
 
 function SWEP:unloadM203()
-	if not self.M203Chamber then return end
+	local give = 0
 
-	if self.Primary.Ammo == "40MM" then 
+	if self.Primary.Ammo == "40MM" then
+		give = self:Clip1()
 		self:SetClip1(0)
 	else
+		give = self.M203Chamber and 1 or 0
 		self.M203Chamber = false
 	end
 	
 	if SERVER then
-		self.Owner:GiveAmmo(1, "40MM", true)
+		self.Owner:GiveAmmo(give, "40MM", true)
 		SendUserMessage("CW_KK_INS2_UNLOADM203", self.Owner)
 	end	
 end

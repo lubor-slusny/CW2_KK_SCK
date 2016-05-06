@@ -17,17 +17,44 @@ if CLIENT then
 		[1] = {t = "Allows the user to fire 40MM rounds.", c = CustomizableWeaponry.textColors.POSITIVE}
 	}
 	
+	local down = Vector(0,0,10)
+	
 	function att:elementRender()
-		if self.AttachmentModelsVM and self.AttachmentModelsVM[att.name] and self.AttachmentModelsVM[att.name].ent then 
-			local ent = self.AttachmentModelsVM[att.name].ent
-			if self.Grenade40MM == 2 then
-				ent:SetSkin(1)
-			else
-				ent:SetSkin(0)
+		if not self.AttachmentModelsVM then return end
+		if not self.AttachmentModelsVM[att.name] then return end
+		
+		local ent = self.AttachmentModelsVM[att.name].ent
+		
+		if !IsValid(ent) then return end
+		
+		// grenade skin
+		if self.Grenade40MM == 2 then
+			ent:SetSkin(1)
+		else
+			ent:SetSkin(0)
+		end
+		
+		// grenade shell
+		local cyc = self.CW_VM:GetCycle()
+		
+		if self.Sequence == self.Animations.gl_on_reload and cyc > 0.3 and cyc < 0.7 then
+			if self._shellCoolDown and self._shellCoolDown > CurTime() then
+				return
 			end
+			
+			self._shellCoolDown = CurTime() + 3
+			
+			local att = ent:GetAttachment(2)
+			local dir = att.Ang:Forward()
+			local pos = att.Pos + dir * 10
+			local ang = self.Owner:EyeAngles()
+			ang:RotateAroundAxis(ang:Up(), 180)
+			
+			self._shellTable = CustomizableWeaponry.shells:getShell("KK_INS2_40mm")
+				CustomizableWeaponry_KK.ins2.makeShell(self, pos, ang, down, 0.6, 10)
+			self._shellTable = self._shellTable1
 		end
 	end
-	
 end
 
 function att:attachFunc()

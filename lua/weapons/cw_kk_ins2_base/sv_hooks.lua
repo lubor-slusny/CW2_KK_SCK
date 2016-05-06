@@ -6,6 +6,7 @@ local isProjectile = {
 	cw_kk_ins2_projectile_pf60 = true,
 	cw_kk_ins2_projectile_rpg = true,
 	cw_kk_ins2_projectile_rpg_2 = true,
+	cw_kk_css_projectile_m72 = true,
 }
 
 local function takeDmg(ent, d)

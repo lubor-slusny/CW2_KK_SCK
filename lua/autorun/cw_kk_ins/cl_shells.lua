@@ -8,8 +8,8 @@ if CLIENT then
 
 	local function playSound(self)
 		if self._sndPld then return end
-		sound.Play(self._shSnd, self:GetPos())	
 		self._sndPld = true
+		sound.Play(self._shSnd, self:GetPos())	
 	end
 	
 	local fallbackShell = CustomizableWeaponry.shells:getShell("mainshell")
@@ -32,16 +32,10 @@ if CLIENT then
 		ent:SetMoveType(MOVETYPE_VPHYSICS) 
 		ent:SetSolid(SOLID_VPHYSICS) 
 		ent:SetCollisionGroup(COLLISION_GROUP_DEBRIS)
-		-- ent:SetCollisionGroup(COLLISION_GROUP_NONE)
-		
-		if cvarSSF:GetInt() == 3 then
-			ent._shSnd = t.s
-			ent:AddCallback("PhysicsCollide", playSound)
-		end
 		
 		local phys = ent:GetPhysicsObject()
 		
-		if cvarSSF:GetInt() == 1 then
+		if cvarSSF:GetInt() == 1 then // no function lol
 			phys:SetMaterial("grenade")
 		else
 			phys:SetMaterial("gmod_silent")
@@ -50,7 +44,7 @@ if CLIENT then
 		phys:SetMass(10)
 		phys:SetVelocity(velocity)
 
-		if cvarSSF:GetInt() == 2 then
+		if cvarSSF:GetInt() == 2 then // function creation spam
 			timer.Simple(soundTime or 0.5, function()
 				if t.s and IsValid(ent) then
 					sound.Play(t.s, ent:GetPos())
@@ -58,10 +52,15 @@ if CLIENT then
 			end)
 		end
 		
+		if cvarSSF:GetInt() == 3 then // recycled function
+			ent._shSnd = t.s
+			ent:AddCallback("PhysicsCollide", playSound)
+		end
+		
 		table.insert(CustomizableWeaponry_KK.ins2.deployedShells, ent)
 		
 		SafeRemoveEntityDelayed(ent, cvarSLT:GetFloat() or removeTime or 10)
 		
-		return ent
+		return ent // M1 garand
 	end
 end

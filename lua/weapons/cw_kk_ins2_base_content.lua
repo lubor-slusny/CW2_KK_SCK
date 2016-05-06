@@ -335,82 +335,82 @@ if CustomizableWeaponry.magSystem then
 	CustomizableWeaponry.magSystem:registerMagType("m1Clip", " M1 Garand Clip", 6)	
 end
 
-// KEK
+-- // KEK
 
-if CustomizableWeaponry_KK.HOME then
-	// RPG
-	local gren = {}
-	gren.name = "40mm_kk_1337"
-	gren.display = " - 1337 ROFLKEK"
+-- if CustomizableWeaponry_KK.HOME then
+	-- // RPG
+	-- local gren = {}
+	-- gren.name = "40mm_kk_1337"
+	-- gren.display = " - 1337 ROFLKEK"
 
-	function gren:fireFunc()
-		CustomizableWeaponry_KK.ins2.fireRPG(self, IsFirstTimePredicted()) // yay I can doo this two
-	end
+	-- function gren:fireFunc()
+		-- CustomizableWeaponry_KK.ins2.fireRPG(self, IsFirstTimePredicted()) // yay I can doo this two
+	-- end
 
-	CustomizableWeaponry.grenadeTypes:addNew(gren)
+	-- CustomizableWeaponry.grenadeTypes:addNew(gren)
 	
-	// FRAG
-	local gren = {}
-	gren.name = "40mm_kk_1338"
-	gren.display = " - 1338 ROFLKEK"
+	-- // FRAG
+	-- local gren = {}
+	-- gren.name = "40mm_kk_1338"
+	-- gren.display = " - 1338 ROFLKEK"
 
-	function gren:fireFunc()
-		local pos = self.Owner:GetShootPos()
-		local offset = CustomizableWeaponry.quickGrenade.getThrowOffset(self)
-		local eyeAng = self.Owner:EyeAngles()
-		local forward = eyeAng:Forward()
+	-- function gren:fireFunc()
+		-- local pos = self.Owner:GetShootPos()
+		-- local offset = CustomizableWeaponry.quickGrenade.getThrowOffset(self)
+		-- local eyeAng = self.Owner:EyeAngles()
+		-- local forward = eyeAng:Forward()
 		
-		local nade = ents.Create("cw_grenade_thrown")
-		nade:SetPos(pos + offset)
-		nade:SetAngles(eyeAng)
-		nade:Spawn()
-		nade:Activate()
-		nade:Fuse(3)
-		nade:SetOwner(self.Owner)
+		-- local nade = ents.Create("cw_grenade_thrown")
+		-- nade:SetPos(pos + offset)
+		-- nade:SetAngles(eyeAng)
+		-- nade:Spawn()
+		-- nade:Activate()
+		-- nade:Fuse(3)
+		-- nade:SetOwner(self.Owner)
 		
-		local phys = nade:GetPhysicsObject()
+		-- local phys = nade:GetPhysicsObject()
 		
-		if IsValid(phys) then
-			local overallSideMod = self.Owner:KeyDown(IN_SPEED) and 2 or 1
+		-- if IsValid(phys) then
+			-- local overallSideMod = self.Owner:KeyDown(IN_SPEED) and 2 or 1
 
-			-- take the velocity into account
-			addMod = math.Clamp(self.Owner:GetVelocity():Length() / self.Owner:GetRunSpeed(), 0, 1)
+			-- // take the velocity into account
+			-- addMod = math.Clamp(self.Owner:GetVelocity():Length() / self.Owner:GetRunSpeed(), 0, 1)
 			
-			local velocity = forward * CustomizableWeaponry.quickGrenade.throwVelocity + CustomizableWeaponry.quickGrenade.addVelocity
-			local velNorm = self.Owner:GetVelocity():GetNormal()
-			velNorm.z = 0
+			-- local velocity = forward * CustomizableWeaponry.quickGrenade.throwVelocity + CustomizableWeaponry.quickGrenade.addVelocity
+			-- local velNorm = self.Owner:GetVelocity():GetNormal()
+			-- velNorm.z = 0
 			
-			-- add velocity based on player velocity normal
-			velocity = velocity + velNorm * CustomizableWeaponry.quickGrenade.movementAddVelocity * addMod
+			-- // add velocity based on player velocity normal
+			-- velocity = velocity + velNorm * CustomizableWeaponry.quickGrenade.movementAddVelocity * addMod
 			
-			phys:SetVelocity(velocity)
-			phys:AddAngleVelocity(Vector(math.random(-500, 500), math.random(-500, 500), math.random(-500, 500)))
-		end
-	end
+			-- phys:SetVelocity(velocity)
+			-- phys:AddAngleVelocity(Vector(math.random(-500, 500), math.random(-500, 500), math.random(-500, 500)))
+		-- end
+	-- end
 
-	CustomizableWeaponry.grenadeTypes:addNew(gren)	
+	-- CustomizableWeaponry.grenadeTypes:addNew(gren)	
 	
-	// magnuss
-	local gren = {}
-	gren.name = "40mm_kk_1339"
-	gren.display = " - ANTI-STRIDER"
+	-- // magnuss
+	-- local gren = {}
+	-- gren.name = "40mm_kk_1339"
+	-- gren.display = " - ANTI-STRIDER"
 
-	function gren:fireFunc()
-		CustomizableWeaponry_KK.ins2.fireHL2EP2(self, IsFirstTimePredicted())
-	end
+	-- function gren:fireFunc()
+		-- CustomizableWeaponry_KK.ins2.fireHL2EP2(self, IsFirstTimePredicted())
+	-- end
 
-	CustomizableWeaponry.grenadeTypes:addNew(gren)
+	-- CustomizableWeaponry.grenadeTypes:addNew(gren)
 	
-	// balls
-	local gren = {}
-	gren.name = "40mm_kk_13399"
-	gren.display = " - BALLSBALLSBALLSBALLS"
+	-- // balls
+	-- local gren = {}
+	-- gren.name = "40mm_kk_13399"
+	-- gren.display = " - BALLSBALLSBALLSBALLS"
 
-	function gren:fireFunc()
-		CustomizableWeaponry_KK.ins2.fireHL2EP1(self, IsFirstTimePredicted())
-	end
+	-- function gren:fireFunc()
+		-- CustomizableWeaponry_KK.ins2.fireHL2EP1(self, IsFirstTimePredicted())
+	-- end
 
-	CustomizableWeaponry.grenadeTypes:addNew(gren)
+	-- CustomizableWeaponry.grenadeTypes:addNew(gren)
 	
-	// add mw2 m203 flare kek
-end
+	-- // add mw2 m203 flare kek
+-- end
