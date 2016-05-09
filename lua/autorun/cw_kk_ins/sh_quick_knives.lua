@@ -189,15 +189,19 @@ function CustomizableWeaponry_KK.ins2:meleeKnife()
 end
 
 if CLIENT then
+	local ply, wep
+	
 	usermessage.Hook("CW_KK_INS2_QUICKKNIFE", function()
-		local ply = LocalPlayer()
-		local wep = ply:GetActiveWeapon()
+		ply = LocalPlayer()
+		wep = ply:GetActiveWeapon()
 
 		if IsValid(wep) and wep.CW20Weapon then 
 			CustomizableWeaponry_KK.ins2.meleeKnife(wep)
 		end
 	end)
 
+	local pos, ang
+	
 	function CustomizableWeaponry_KK.ins2:drawKKKnife()
 		if CurTime() > self.knifeTime then
 			return
@@ -228,10 +232,12 @@ end
 // concommand
 
 if SERVER then
+	local wep
+	
 	concommand.Add("cw_kk_melee", function(ply)
 		if !IsValid(ply) then return end
 		
-		local wep = ply:GetActiveWeapon()
+		wep = ply:GetActiveWeapon()
 		if !IsValid(wep) then return end
 		if !wep.CW20Weapon then return end
 		

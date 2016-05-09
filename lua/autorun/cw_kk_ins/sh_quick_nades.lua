@@ -197,14 +197,14 @@ function CustomizableWeaponry_KK.ins2:throwGrenade(IFTP)
 					local overallSideMod = self.Owner:KeyDown(IN_SPEED) and 2 or 1
 
 					-- take the velocity into account
-					addMod = math.Clamp(self.Owner:GetVelocity():Length() / self.Owner:GetRunSpeed(), 0, 1)
+					local addMod = math.Clamp(self.Owner:GetVelocity():Length() / self.Owner:GetRunSpeed(), 0, 1)
 					
 					local velocity = forward * CustomizableWeaponry.quickGrenade.throwVelocity + CustomizableWeaponry.quickGrenade.addVelocity
 					local velNorm = self.Owner:GetVelocity():GetNormal()
 					velNorm.z = 0
 					
 					-- add velocity based on player velocity normal
-					velocity = velocity + velNorm * CustomizableWeaponry.quickGrenade.movementAddVelocity * addMod
+					local velocity = velocity + velNorm * CustomizableWeaponry.quickGrenade.movementAddVelocity * addMod
 					
 					phys:SetVelocity(velocity)
 					phys:AddAngleVelocity(Vector(math.random(-500, 500), math.random(-500, 500), math.random(-500, 500)))
@@ -227,9 +227,11 @@ function CustomizableWeaponry_KK.ins2:throwGrenade(IFTP)
 end
 
 if CLIENT then
+	local ply, wep
+	
 	usermessage.Hook("CW_KK_INS2_THROWGRENADE", function()
-		local ply = LocalPlayer()
-		local wep = ply:GetActiveWeapon()
+		ply = LocalPlayer()
+		wep = ply:GetActiveWeapon()
 
 		if IsValid(wep) and wep.CW20Weapon then
 			CustomizableWeaponry_KK.ins2.throwGrenade(wep)
@@ -240,12 +242,14 @@ end
 // concommand
 
 if SERVER then
+	local wep
+	
 	local function cw_kk_throwfrag(ply)
 		-- print("Qnade call;", ply)
 		
 		if !IsValid(ply) then return end
 		
-		local wep = ply:GetActiveWeapon()
+		wep = ply:GetActiveWeapon()
 		if !IsValid(wep) then return end
 		if !wep.CW20Weapon then return end
 		
@@ -273,18 +277,5 @@ if SERVER then
 		end
 	end
 
-	concommand.Remove("cw_kk_throwfrag")
-
-	-- if CLIENT then return end
-
-	concommand.Add(
-		"cw_kk_throwfrag", 
-		cw_kk_throwfrag, 
-		nil, 
-		"Alternative to [+use][+attack] combo"
-		-- ,{FCVAR_REPLICATED}
-		-- ,{FCVAR_CLIENTCMD_CAN_EXECUTE}
-		,{FCVAR_REPLICATED, FCVAR_CLIENTCMD_CAN_EXECUTE}
-		-- ,{FCVAR_USERINFO}
-	)
+	concommand.Add("cw_kk_throwfrag", cw_kk_throwfrag)
 end

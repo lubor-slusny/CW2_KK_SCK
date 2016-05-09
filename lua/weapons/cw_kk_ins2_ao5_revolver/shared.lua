@@ -1,13 +1,10 @@
 if not CustomizableWeaponry then return end
 
 AddCSLuaFile()
-AddCSLuaFile("sh_sounds.lua")
 AddCSLuaFile("sh_soundscript.lua")
-include("sh_sounds.lua")
 include("sh_soundscript.lua")
 
-if not file.Exists("models/weapons/v_snub.mdl", "GAME") then return end
-if not file.Exists("models/weapons/w_snub.mdl", "GAME") then return end
+local spawnable = file.Exists("models/weapons/v_snub.mdl", "GAME") and file.Exists("models/weapons/w_snub.mdl", "GAME")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
@@ -45,7 +42,6 @@ end
 
 SWEP.Attachments = {
 	{header = "Lasers", offset = {-400, -400}, atts = {"kk_ins2_lam", "kk_ins2_flashlight"}},
-	-- {header = "Barrel", offset = {-500, -400}, atts = {"kk_ins2_suppressor_pistol"}},
 	{header = "Reload Aid", offset = {500, -400}, atts = {"kk_ins2_revolver_mag"}},
 	["+reload"] = {header = "Ammo", offset = {500, 150}, atts = {"am_magnum", "am_matchgrade"}}
 }
@@ -98,8 +94,8 @@ SWEP.WorldModel		= "models/weapons/w_snub.mdl"
 SWEP.WMPos = Vector(5.309, 1.623, -1.616)
 SWEP.WMAng = Vector(-3, -5, 180)
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted() and spawnable
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted() and spawnable
 
 SWEP.Primary.ClipSize		= 6
 SWEP.Primary.DefaultClip	= 6

@@ -1,11 +1,10 @@
 if not CustomizableWeaponry then return end
 
 AddCSLuaFile()
+AddCSLuaFile("sh_soundscript.lua")
+include("sh_soundscript.lua")
 
-if not file.Exists("models/weapons/aof/v_m79.mdl", "GAME") then return end
-if not file.Exists("models/weapons/aof/w_m79.mdl", "GAME") then return end
-
-SWEP.Sounds = {}
+local spawnable = file.Exists("models/weapons/aof/v_m79.mdl", "GAME") and file.Exists("models/weapons/aof/w_m79.mdl", "GAME")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
@@ -63,10 +62,6 @@ SWEP.Animations = {
 	base_safe_empty = "empty_down",
 	base_safe_empty_aim = "empty_iron_down",
 }
-	
-SWEP.Sounds = {
-
-}
 
 SWEP.SpeedDec = 15
 
@@ -91,8 +86,8 @@ SWEP.WorldModel		= "models/weapons/aof/w_m79.mdl"
 SWEP.WMPos = Vector(5.243, 1.562, -1.657)
 SWEP.WMAng = Vector(-15, 1, 180)
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted() and spawnable
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted() and spawnable
 
 SWEP.Primary.ClipSize		= 1
 SWEP.Primary.DefaultClip	= 1

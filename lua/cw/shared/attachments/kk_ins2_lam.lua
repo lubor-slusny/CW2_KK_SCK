@@ -113,10 +113,10 @@ if CLIENT then
 			
 			if self.AttachmentModelsVM[att.name] then
 				model = self.AttachmentModelsVM[att.name].ent
-				beamAtt = model:GetAttachment(model:LookupAttachment("Laser"))
+				beamAtt = model:GetAttachment(1)
 				if beamAtt == nil then
 					model = self.CW_VM
-					beamAtt = model:GetAttachment(model:LookupAttachment("Laser"))
+					beamAtt = model:GetAttachment(1)
 				end
 			end
 			

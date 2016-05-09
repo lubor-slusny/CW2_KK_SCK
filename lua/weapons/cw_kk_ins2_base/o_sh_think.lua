@@ -2,19 +2,12 @@
 local math = math
 
 local SP = game.SinglePlayer()
-local tbl, tbl2
 
-local vm, CT, aim, cone, vel, CT, tr
-local td = {}
+local vm, CT, aim, cone, vel
 
 local reg = debug.getregistry()
 local GetVelocity = reg.Entity.GetVelocity
 local Length = reg.Vector.Length
-local GetAimVector = reg.Player.GetAimVector
-
-local calculateAccuracy = "calculateAccuracy"
-
-local mag, ammo
 
 local IFTP
 local wl, ws

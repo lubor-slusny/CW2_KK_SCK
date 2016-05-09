@@ -31,12 +31,12 @@ if CLIENT then
 		
 		if beamAtt == nil and self.AttachmentModelsVM[att.name] then
 			model = self.AttachmentModelsVM[att.name].ent
-			beamAtt = model:GetAttachment(model:LookupAttachment("Laser"))
+			beamAtt = model:GetAttachment(1)
 		end
 		
 		if beamAtt == nil then
 			model = self.CW_VM
-			beamAtt = model:GetAttachment(model:LookupAttachment("Laser"))
+			beamAtt = model:GetAttachment(1)
 		end
 
 		CustomizableWeaponry_KK.ins2.flashlight.v2.elementRender(self, beamAtt)

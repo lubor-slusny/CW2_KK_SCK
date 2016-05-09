@@ -1,6 +1,6 @@
 
 local SP = game.SinglePlayer()
-local isBipod, wasBipod, cycle, activity, suffix, anim, prefix, rate, clip
+local isBipod, wasBipod, cycle, suffix, anim, prefix, rate, clip
 
 if CLIENT then
 	function SWEP:playSwitchBipod()
@@ -11,7 +11,6 @@ if CLIENT then
 		wasBipod = self._KK_INS2_wasBipod
 		isBipod = self.dt.BipodDeployed
 		cycle = self.CW_VM:GetCycle()
-		activity = self.Sequence
 
 		if self:Clip1() == 0 and self.KK_INS2_emptyIdle then
 			suffix = "_empty"
@@ -20,7 +19,7 @@ if CLIENT then
 		end
 			
 		if isBipod != wasBipod and wasBipod != nil then
-			if activity:find("reload") and cycle < 1 then
+			if self.Sequence:find("reload") and cycle < 1 then
 				self._KK_INS2_postReloadBipodSwitch = true
 			else
 				if isBipod then
@@ -31,7 +30,7 @@ if CLIENT then
 			end
 			self.reticleInactivity = UnPredictedCurTime() + (self.CW_VM:SequenceDuration())
 		end
-		if self._KK_INS2_postReloadBipodSwitch and activity:find("reload") and cycle > 0.9 then
+		if self._KK_INS2_postReloadBipodSwitch and self.Sequence:find("reload") and cycle > 0.9 then
 			if isBipod then
 				self:playAnim("bipod_in" .. suffix) 
 			else 
@@ -74,7 +73,7 @@ if CLIENT then
 			suffix = "_empty"
 		end
 		
-		if self:isAiming() or self.Slot == 1 then
+		if self:isAiming() /*or self.Slot == 1*/ then
 			suffix = suffix .. "_aim"
 		end
 		

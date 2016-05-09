@@ -310,10 +310,8 @@ if CLIENT then
 			return muz
 		end
 		
-		att = self.CW_VM:LookupAttachment(self.MuzzleAttachmentName)
-
-		if att and att != 0 then
-			return self.CW_VM:GetAttachment(att)
+		if self.ViewMuzzleAttachmentID != 0 then
+			return self.CW_VM:GetAttachment(self.ViewMuzzleAttachmentID)
 		end
 		
 		muz.Pos = self.Owner:EyePos()

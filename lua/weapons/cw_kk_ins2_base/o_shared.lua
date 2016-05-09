@@ -55,14 +55,11 @@ end
 
 // firemode switch animations and reticle inactivity
 
-local delay, lastFM
-
 function SWEP:CycleFiremodes()
 	if self.dt.INS2GLActive then return end
 	
-	lastFM = self.FireMode
-	
-	t = self.FireModes
+	local lastFM = self.FireMode
+	local t = self.FireModes
 	
 	if not t.last then
 		t.last = 2
@@ -80,16 +77,16 @@ function SWEP:CycleFiremodes()
 		end
 	end
 	
+	local delay = 1
+	
 	if (#self.FireModes < 3) then // why # instead of table.Count?
 		delay = 0.25
 	elseif lastFM == "safe" then
 		delay = 0.2
-	else
-		delay = 1
 	end
 	
 	if self.FireMode != self.FireModes[t.last] and self.FireModes[t.last] then
-		CT = CurTime()
+		local CT = CurTime()
 		self:SelectFiremode(self.FireModes[t.last])
 		self:SetNextPrimaryFire(CT + delay)
 		self:SetNextSecondaryFire(CT + delay)
@@ -102,7 +99,7 @@ function SWEP:SelectFiremode(n)
 		return
 	end
 	
-	t = CustomizableWeaponry.firemodes.registeredByID[n]
+	local t = CustomizableWeaponry.firemodes.registeredByID[n]
 	self.Primary.Automatic = t.auto
 	self.FireMode = n
 	self.BurstAmount = t.burstamt
@@ -120,18 +117,20 @@ function SWEP:SelectFiremode(n)
 end
 
 if CLIENT then
+	local ply, mode, wep, lastFM
+	
 	local function CW_ReceiveFireMode(um)
 		ply = um:ReadEntity()
-		Mode = um:ReadString()
+		mode = um:ReadString()
 		
 		if IsValid(ply) then
 			wep = ply:GetActiveWeapon()
 			lastFM = wep.FireMode
-			wep.FireMode = Mode
+			wep.FireMode = mode
 			
 			if IsValid(ply) and IsValid(wep) and wep.CW20Weapon then
-				if CustomizableWeaponry.firemodes.registeredByID[Mode] then
-					t = CustomizableWeaponry.firemodes.registeredByID[Mode]
+				if CustomizableWeaponry.firemodes.registeredByID[mode] then
+					t = CustomizableWeaponry.firemodes.registeredByID[mode]
 					
 					wep.Primary.Automatic = t.auto
 					wep.BurstAmount = t.burstamt

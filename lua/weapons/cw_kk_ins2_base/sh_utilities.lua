@@ -79,11 +79,13 @@ if CLIENT then
 		end
 	end
 
+	local ply, wep
+	
 	usermessage.Hook("CW_KK_INS2_RELOADINACTIVITY", function()
-		local ply = LocalPlayer()
+		ply = LocalPlayer()
 		if !IsValid(ply) then return end
 		
-		local wep = ply:GetActiveWeapon()
+		wep = ply:GetActiveWeapon()
 		if !IsValid(wep) or not wep.CW20Weapon then return end
 			
 		wep:reloadInactivity()
@@ -97,9 +99,10 @@ if CLIENT then
 	end
 	
 	local cvRig = GetConVar("cw_kk_ins2_rig")
+	local currentRig
 	
 	function SWEP:updateHands()
-		local currentRig = math.Round(math.Clamp(cvRig:GetInt(),1,#CustomizableWeaponry_KK.ins2.hands), 0)
+		currentRig = math.Round(math.Clamp(cvRig:GetInt(),1,#CustomizableWeaponry_KK.ins2.hands), 0)
 		
 		if self._KK_INS2_rig != currentRig then
 			if self.CW_KK_HANDS then

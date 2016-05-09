@@ -1,7 +1,7 @@
 
 local SP = game.SinglePlayer()
 
-local IFTP
+local IFTP, CT
 
 function SWEP:PrimaryAttack()
 	if not self:canFireWeapon(1) then
@@ -174,7 +174,7 @@ function SWEP:SecondaryAttack()
 		return
 	end
 	
-	local IFTP = IsFirstTimePredicted()
+	IFTP = IsFirstTimePredicted()
 	
 	if self.Owner:KeyDown(IN_USE) then
 		if self:hasInstalledGL() then

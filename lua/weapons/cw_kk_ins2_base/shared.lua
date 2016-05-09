@@ -195,10 +195,7 @@ function SWEP:IndividualThink()
 		self.CrosshairEnabled = shouldDrawCrosshair
 		self.FadeCrosshairOnAim = !shouldDrawCrosshair
 		
-		-- self.NoFreeAim = self:getPrimarySight() != nil // and self:isAiming()
-		
 		if !SP and not IsFirstTimePredicted() then return end
-		
 		
 		if self.Slot != 2 and self.Slot != 3 then
 			if self.Sequence:find("sprint") then

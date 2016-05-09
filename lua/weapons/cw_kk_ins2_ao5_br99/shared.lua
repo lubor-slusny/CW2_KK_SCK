@@ -1,13 +1,10 @@
 if not CustomizableWeaponry then return end
 
 AddCSLuaFile()
-AddCSLuaFile("sh_sounds.lua")
-include("sh_sounds.lua")
+AddCSLuaFile("sh_soundscript.lua")
+include("sh_soundscript.lua")
 
-if not file.Exists("models/weapons/v_br99.mdl", "GAME") then return end
-if not file.Exists("models/weapons/w_br99.mdl", "GAME") then return end
-
-SWEP.Sounds = {}
+local spawnable = file.Exists("models/weapons/v_br99.mdl", "GAME") and file.Exists("models/weapons/w_br99.mdl", "GAME")
 
 SWEP.magType = "arMag"
 
@@ -228,8 +225,8 @@ SWEP.WorldModel		= "models/weapons/w_br99.mdl"
 SWEP.WMPos = Vector(5.219, 0.554, -0.893)
 SWEP.WMAng = Vector(-10, -1, 180)
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted() and spawnable
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted() and spawnable
 
 SWEP.Primary.ClipSize		= 10
 SWEP.Primary.DefaultClip	= 10

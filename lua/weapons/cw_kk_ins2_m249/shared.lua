@@ -48,6 +48,9 @@ if CLIENT then
 		["kk_ins2_cstm_acog"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_acog_m.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, retSizeMult = 0.85},
 		["kk_ins2_cstm_barska"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_barska.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_cstm_eotechxps"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_eotechxps.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		
+		-- ["fas2"] = {model = "models/gmod4phun/60rndmag.mdl", bone = "Weapon", pos = Vector(1.47, 1.057, 2.095), angle = Angle(45, 0, 0), size = Vector(0.779, 0.779, 0.779)},
+		["fas2"] = {model = "models/gmod4phun/60rndmag.mdl", bone = "Magazine", pos = Vector(1.294, 1.832, 2.471), angle = Angle(45, 0, 0), size = Vector(0.779, 0.779, 0.779)},
 	}
 	
 	SWEP.AttachmentModelsWM = {
@@ -265,6 +268,11 @@ if CLIENT then
 		end
 		
 		self.AttachmentModelsVM.kk_counter_mag.active = counterExists and CustomizableWeaponry_KK.HOME
+		
+		-- self.AttachmentModelsVM.kk_counter_mag.active = false
+		-- self.AttachmentModelsVM.fas2.active = true
+		-- self:setBodygroup(1,0)
+		-- self.CW_VM:ManipulateBoneScale(self.CW_VM:LookupBone("Magazine"), Vector(0.01,0.01,0.01))
 	end
 	
 	local makeShell = CustomizableWeaponry_KK.ins2.makeShell
@@ -287,7 +295,8 @@ if CLIENT then
 			ang:RotateAroundAxis(ang:Up(), tweak.Up)
 		end
 		
-		makeShell(self, att.Pos, ang, att.Ang:Forward() * 50, 0.6, 10)
+		CustomizableWeaponry_KK.ins2.makeShell(self, att.Pos, ang, att.Ang:Forward() * 50, 0.6, 10)
+		-- makeShell(self, att.Pos, ang, att.Ang:Forward() * 50, 0.6, 10)
 		
 		-- // shell link
 		self._shellTable = self._shellTable2
@@ -300,6 +309,7 @@ if CLIENT then
 			ang:RotateAroundAxis(ang:Up(), tweak.Up)
 		end
 		
-		makeShell(self, att.Pos, ang, att.Ang:Forward() * 50, 0.6, 10)
+		CustomizableWeaponry_KK.ins2.makeShell(self, att.Pos, ang, att.Ang:Forward() * 50, 0.6, 10)
+		-- makeShell(self, att.Pos, ang, att.Ang:Forward() * 50, 0.6, 10)
 	end
 end

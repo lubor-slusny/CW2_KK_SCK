@@ -63,7 +63,7 @@ function CustomizableWeaponry_KK.ins2:fireAT4(IFTP)
 	end
 end
 
-function CustomizableWeaponry_KK.ins2:fireM6A1(IFTP, legit)
+function CustomizableWeaponry_KK.ins2:fireM6A1(IFTP)
 	if IFTP then
 		if SERVER then
 			local pos = self.Owner:GetShootPos()
@@ -91,7 +91,7 @@ function CustomizableWeaponry_KK.ins2:fireM6A1(IFTP, legit)
 	end
 end
 
-function CustomizableWeaponry_KK.ins2:firePF60(IFTP, legit)
+function CustomizableWeaponry_KK.ins2:firePF60(IFTP)
 	if IFTP then
 		if SERVER then
 			local pos = self.Owner:GetShootPos()

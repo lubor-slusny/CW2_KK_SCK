@@ -12,10 +12,8 @@ function SWEP:getMuzzlePosition()
 		return muz
 	end
 	
-	att = self.CW_VM:LookupAttachment(self.MuzzleAttachmentName)
-
-	if att and att != 0 then
-		return self.CW_VM:GetAttachment(att)
+	if self.ViewMuzzleAttachmentID != 0 then
+		return self.CW_VM:GetAttachment(self.ViewMuzzleAttachmentID)
 	end
 	
 	muz.Pos = self.Owner:EyePos()
@@ -24,6 +22,7 @@ function SWEP:getMuzzlePosition()
 end
 
 local makeShell = CustomizableWeaponry_KK.ins2.makeShell
+local dir, ang, tweak
 
 function SWEP:CreateShell(sh)
 	if self.Owner:ShouldDrawLocalPlayer() or self.NoShells then
@@ -33,12 +32,12 @@ function SWEP:CreateShell(sh)
 	sh = self.Shell or sh
 	vm = self.CW_VM
 	
-	att = vm:GetAttachment(vm:LookupAttachment(self.ShellAttachmentName))
+	att = vm:GetAttachment(self.ViewShellAttachmentID)
 	
 	if att then
 		if self.ShellDelay then
 			CustomizableWeaponry.actionSequence.new(self, self.ShellDelay, nil, function()
-				att = vm:GetAttachment(vm:LookupAttachment(self.ShellAttachmentName))
+				att = vm:GetAttachment(self.ViewShellAttachmentID)
 				
 				if self.InvertShellEjectAngle then
 					dir = -att.Ang:Forward()
@@ -52,8 +51,8 @@ function SWEP:CreateShell(sh)
 					att.Pos = att.Pos + (self.ShellPosOffset.z) * att.Ang:Up()
 				end
 		
-				local ang = EyeAngles()
-				local tweak = self._shellTable.rv
+				ang = EyeAngles()
+				tweak = self._shellTable.rv
 				
 				if tweak then
 					ang:RotateAroundAxis(ang:Right(), tweak.Right)
@@ -64,7 +63,7 @@ function SWEP:CreateShell(sh)
 				makeShell(self, att.Pos + dir * self.ShellOffsetMul, ang, dir * 200, 0.6, 10)
 			end)
 		else
-			att = vm:GetAttachment(vm:LookupAttachment(self.ShellAttachmentName))
+			att = vm:GetAttachment(self.ViewShellAttachmentID)
 			
 			if self.InvertShellEjectAngle then
 				dir = -att.Ang:Forward()
@@ -78,8 +77,8 @@ function SWEP:CreateShell(sh)
 				att.Pos = att.Pos + (self.ShellPosOffset.z) * att.Ang:Up()
 			end
 			
-			local ang = EyeAngles()
-			local tweak = self._shellTable.rv
+			ang = EyeAngles()
+			tweak = self._shellTable.rv
 				
 			if tweak then
 				ang:RotateAroundAxis(ang:Right(), tweak.Right)
@@ -156,6 +155,8 @@ function SWEP:drawViewModel()
 	self:drawKKKnife()
 end
 
+local cvAmmoHud = GetConVar("cw_customhud_ammo")
+
 function SWEP:_drawViewModel()
 	self.CW_VM:FrameAdvance(FrameTime())
 	self.CW_VM:SetupBones()
@@ -176,7 +177,7 @@ function SWEP:_drawViewModel()
 		self.reticleFunc(self)
 	end
 	
-	if GetConVarNumber("cw_customhud_ammo") >= 1 then
+	if cvAmmoHud:GetInt() >= 1 then
 		self:draw3D2DHUD()
 	end
 end
@@ -184,7 +185,11 @@ end
 // grenade override
 // custom models + bonemerged hands
 
-function SWEP:createGrenadeModel() end
+function SWEP:createGrenadeModel() 
+	// moved somewhere
+end
+
+local pos, ang
 
 function SWEP:drawGrenade()
 	if CurTime() > self.grenadeTime then
@@ -229,6 +234,7 @@ function SWEP:setupAttachmentModels()
 			v.ent:SetNoDraw(true)
 			
 			v.active = v.active or false
+			v.nodraw = v.nodraw or false
 			
 			if v.size then
 				v.matrix = Matrix()
@@ -390,7 +396,7 @@ function SWEP:DrawWorldModel()
 	if IsValid(self.Owner) and self.Owner == LocalPlayer() then
 		cam.IgnoreZ(true)
 		self:drawInteractionMenu()
-		if GetConVarNumber("cw_customhud_ammo") >= 1 then
+		if cvAmmoHud:GetInt() >= 1 then
 			self:draw3D2DHUD()
 		end
 		cam.IgnoreZ(false)

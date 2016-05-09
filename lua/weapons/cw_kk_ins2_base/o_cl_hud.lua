@@ -165,8 +165,6 @@ function SWEP:draw3D2DHUD()
 				
 				draw.ShadowText(self.Primary.Ammo, "CW_HUD48", 90, 100, self.HUDColors.white, self.HUDColors.black, 2, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
 				
-				local nadeText
-				
 				local nadeType = GetConVarNumber("cw_kk_ins2_qnadetype") or 0
 				
 				local nadeCount = self.Owner:GetAmmoCount(nadeAmmo[nadeType])

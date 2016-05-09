@@ -22,62 +22,72 @@ local customFireFuncs = {
 	["Panzerfaust"] = CustomizableWeaponry_KK.ins2.firePF60,
 }
 
-CustomizableWeaponry.callbacks:addNew("initialize", "KK_INS2_BASE", function(self)
+CustomizableWeaponry.callbacks:addNew("initialize", "KK_INS2_BASE", function(wep)
 	if CLIENT then
 		// SWEP parent for client side models - for lense cubemap proxy
-		self.CW_VM._SWEP = self
-		if self.AttachmentModelsVM then
-			for _, v in pairs(self.AttachmentModelsVM) do
+		wep.CW_VM._SWEP = wep
+		if wep.AttachmentModelsVM then
+			for _, v in pairs(wep.AttachmentModelsVM) do
 				if IsValid(v.ent) then
-					v.ent._SWEP = self
+					v.ent._SWEP = wep
 				end
 			end
 		end
 		
-		-- self.ReticleInactivityPostFire = self.ReticleInactivityPostFire or self.FireDelay
+		-- wep.ReticleInactivityPostFire = wep.ReticleInactivityPostFire or wep.FireDelay
 		
 		// moved shell table getters here so they dont have to be called every createShell time
-		if self.Shell then
-			self._shellTable1 = CustomizableWeaponry.shells:getShell(self.Shell)
+		if wep.Shell then
+			wep._shellTable1 = CustomizableWeaponry.shells:getShell(wep.Shell)
 		end
 		
-		if self.Shell2 then
-			self._shellTable2 = CustomizableWeaponry.shells:getShell(self.Shell2)
+		if wep.Shell2 then
+			wep._shellTable2 = CustomizableWeaponry.shells:getShell(wep.Shell2)
 		end
 		
 		// fastest way to setup sights from Workshop sight contract
 		for k,v in pairs(copyPaste) do
 			for _,x in pairs(copyPasteSx) do
-				if not self[k .. x] then
-					self[k .. x] = self[v .. x]
+				if not wep[k .. x] then
+					wep[k .. x] = wep[v .. x]
 				end
 			end
+		end
+		
+		// reducing lookup calls
+		if wep.MuzzleAttachmentName then
+			wep.ViewMuzzleAttachmentID = wep.CW_VM:LookupAttachment(wep.MuzzleAttachmentName)
+		end
+		if wep.ShellAttachmentName then
+			wep.ViewShellAttachmentID = wep.CW_VM:LookupAttachment(wep.ShellAttachmentName)
 		end
 	end
 	
 	// Ive never really used ammo crate before so here s quickfix for explosives
-	if self.KKINS2RCE or self.KKINS2Nade then
-		self.Primary.ClipSize_Orig = 1
+	if wep.KKINS2RCE or wep.KKINS2Nade then
+		wep.Primary.ClipSize_Orig = 1
 	end
 	
 	// bullet-firing-weapons really shouldnt do these checks every time theyre about to fire a bullet
-	local fireFunc = customFireFuncs[self.Primary.Ammo]
+	local fireFunc = customFireFuncs[wep.Primary.Ammo]
 	
 	if fireFunc then
-		self.FireBullet = function(self)
+		wep.FireBullet = function(wep)
 			local IFTP = IsFirstTimePredicted()
 			
-			fireFunc(self, IFTP, true)
+			fireFunc(wep, IFTP, true)
 		end
 	end
 end)
 
 if CLIENT then
+	local wep
+	
 	usermessage.Hook("CW_KK_INS2_RETICLEINACTIVITY", function(um)
 		local ply = LocalPlayer()
 		if !IsValid(ply) then return end
 		
-		local wep = ply:GetActiveWeapon()
+		wep = ply:GetActiveWeapon()
 		if !IsValid(wep) or wep.Base != "cw_kk_ins2_base" then return end
 			
 		-- wep.reticleInactivity = UnPredictedCurTime() + um:ReadFloat()
@@ -87,7 +97,7 @@ end
 
 local CW2_ATTS = CustomizableWeaponry.registeredAttachmentsSKey
 
-local function sharedAttachDetach(self)
+local function sharedAttachDetach(wep)
 	if CLIENT then
 		local prim, sec = wep:getPrimarySight(), wep:getSecondarySight()
 		
@@ -109,20 +119,20 @@ local function sharedAttachDetach(self)
 		end
 		
 		// previously standard parts update called every Think
-		if self.AttachmentModelsVM then
+		if wep.AttachmentModelsVM then
 			if prim != nil then
-				if self.AttachmentModelsVM.kk_ins2_optic_iron then
-					self.AttachmentModelsVM.kk_ins2_optic_iron.active = false
+				if wep.AttachmentModelsVM.kk_ins2_optic_iron then
+					wep.AttachmentModelsVM.kk_ins2_optic_iron.active = false
 				end
-				if self.AttachmentModelsVM.kk_ins2_optic_rail then
-					self.AttachmentModelsVM.kk_ins2_optic_rail.active = true
+				if wep.AttachmentModelsVM.kk_ins2_optic_rail then
+					wep.AttachmentModelsVM.kk_ins2_optic_rail.active = true
 				end
 			else
-				if self.AttachmentModelsVM.kk_ins2_optic_iron then
-					self.AttachmentModelsVM.kk_ins2_optic_iron.active = true
+				if wep.AttachmentModelsVM.kk_ins2_optic_iron then
+					wep.AttachmentModelsVM.kk_ins2_optic_iron.active = true
 				end
-				if self.AttachmentModelsVM.kk_ins2_optic_rail then
-					self.AttachmentModelsVM.kk_ins2_optic_rail.active = false
+				if wep.AttachmentModelsVM.kk_ins2_optic_rail then
+					wep.AttachmentModelsVM.kk_ins2_optic_rail.active = false
 				end
 			end
 		end

@@ -89,18 +89,20 @@ if CLIENT then
 	local cvXH = CreateClientConVar("cw_kk_gm_xhair", 0, false, false)
 	local cvLA = CreateClientConVar("cw_kk_sck_lock_ads", 0, false, false)
 
+	local ply, wep
+	
 	hook.Add("Think", "cw_kk_gm_xhair_think", function()
-		local ply = LocalPlayer()
-		local wep = ply:GetActiveWeapon()
+		ply = LocalPlayer()
+		wep = ply:GetActiveWeapon()
 		
 		if !wep.CW20Weapon then return end
 		
 		wep.DrawCrosshair = cvXH:GetInt() == 1
 	end)
 
-	local _ADS_LAST
+	local _ADS_LAST, cur
 	hook.Add("Think", "cw_kk_sck_lock_ads_think", function() 
-		local cur = cvLA:GetInt()
+		cur = cvLA:GetInt()
 		if cur != _ADS_LAST and _ADS_LAST != nil then
 			if cur == 0 then
 				RunConsoleCommand("-attack2")
@@ -126,7 +128,8 @@ if CLIENT then
 	local sslabeltxt = {
 		"^^ [Cheapest] physmaterial sound",
 		"^^ [CW2 Base] timer, custom sound",
-		"^^ [KK INS2] callback, custom sound"
+		"^^ [KK INS2] callback, custom sound",
+		"^^ [KK INS2] custom physmaterial"
 	}
 	
 	CustomizableWeaponry_KK.panels.ins2 = function(panel)
@@ -146,7 +149,7 @@ if CLIENT then
 			Label = "Shell sound function:",
 			Type = "Integer",
 			Min = "1",
-			Max = "3",
+			Max = #sslabeltxt,
 			Command = "cw_kk_ins2_shell_sound"
 		})
 		
@@ -157,7 +160,7 @@ if CLIENT then
 		sslabel:DockMargin(8, 0, 8, 16)
 		
 		function ssslider:OnValueChanged(v)
-			sslabel:SetText(sslabeltxt[math.Clamp(math.Round(v or 1), 1, 3)] or "meh")
+			sslabel:SetText(sslabeltxt[math.Clamp(math.Round(v or 1), 1, #sslabeltxt)] or "meh")
 		end
 		
 		// shell life time slider
@@ -261,12 +264,12 @@ end
 // for mental sickness
 
 if CLIENT then
-	CreateClientConVar("cw_kk_add_epilepsy", 0, true, false)
+	local cvEp = CreateClientConVar("cw_kk_add_epilepsy", 0, true, false)
 	
 	local onceStarted
 	
 	hook.Add("RenderScene", "CW20_KK_Epilepsy-ator", function()
-		if (GetConVarNumber("cw_kk_add_epilepsy") == 0) and not onceStarted then return end
+		if (cvEp:GetInt() == 0) and not onceStarted then return end
 		
 		onceStarted = true
 		

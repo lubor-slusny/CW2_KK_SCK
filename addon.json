@@ -5,14 +5,15 @@
 	"ignore"	:
 	[
 		"*.git*",
-		"*.md*",
 		"*.svn*", 
 		"*_src*", 
 		"*_cof*", 
+		
 		"*.jpg", 
 		"*.dds", 
 		"*.tga",
 		"*.txt",
-		"*.ini"
+		"*.ini",
+		"*.md",
 	]
 }
