@@ -1,16 +1,18 @@
 {
-	"title"		:	"CWKK INS2 Pack", 
+	"title"		:	"[CW 2.0] KK INS2 SWEPs", 
 	"type"		:	"weapon", 
-	"tags"		:	[ "fun", "realism" ], 
-	"ignore"	:
-	[
+	"tags"		:	[
+		"fun",
+		"realism"
+	], 
+	"ignore"	:	[
 		"*.git*",
-		"*.svn*", 
-		"*_src*", 
-		"*_cof*", 
+		"*.svn*",
+		"*_src*",
+		"*_cof*",
 		
-		"*.jpg", 
-		"*.dds", 
+		"*.jpg",
+		"*.dds",
 		"*.tga",
 		"*.txt",
 		"*.ini",

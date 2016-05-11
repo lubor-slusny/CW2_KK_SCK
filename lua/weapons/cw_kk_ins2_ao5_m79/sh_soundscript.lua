@@ -1,15 +1,16 @@
 
 SWEP.Sounds = {
 	base_ready = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_PISTOL_DRAW"},
+		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
+		{time = 17/30, sound = "CW_KK_INS2_M203_CLOSEBARREL"},
 	},
 
 	base_draw = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_PISTOL_DRAW"},
+		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
 	},
 
 	base_holster = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_PISTOL_HOLSTER"},
+		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
 	},
 
 	base_crawl = {
@@ -22,21 +23,20 @@ SWEP.Sounds = {
 	},
 
 	base_reload = {
-		{time = 18/30, sound = "CW_KK_INS2_P2A1_OPENBARREL"},
-		{time = 39/30, sound = "CW_KK_INS2_P2A1_REMOVEFLARE"},
-		{time = 61/30, sound = "CW_KK_INS2_P2A1_FlareDrop"},
-		{time = 75/30, sound = "CW_KK_INS2_P2A1_INSERTFLARESTART"},
-		{time = 90/30, sound = "CW_KK_INS2_P2A1_INSERTFLARE"},
-		{time = 113/30, sound = "CW_KK_INS2_P2A1_CLOSEBARREL"},
-		{time = 129/30, sound = "CW_KK_INS2_P2A1_COCKHAMMER"},
+		{time = 9/30, sound = "CW_KK_INS2_P2A1_OPENBARREL"},
+		{time = 40/30, sound = "CW_KK_INS2_P2A1_REMOVEFLARE"},
+		-- {time = 62/30, sound = "CW_KK_INS2_m203_GrenadeDrop"},
+		{time = 92/30, sound = "CW_KK_INS2_P2A1_INSERTFLARESTART"},
+		{time = 94/30, sound = "CW_KK_INS2_M203_INSERTGRENADE"},
+		{time = 133/30, sound = "CW_KK_INS2_M203_CLOSEBARREL"},
 	},
 
 	empty_draw = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_PISTOL_DRAW"},
+		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
 	},
 
 	empty_holster = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_PISTOL_HOLSTER"},
+		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
 	},
 
 	empty_crawl = {

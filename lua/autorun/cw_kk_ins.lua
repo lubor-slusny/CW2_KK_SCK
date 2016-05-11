@@ -129,7 +129,7 @@ if CLIENT then
 		"^^ [Cheapest] physmaterial sound",
 		"^^ [CW2 Base] timer, custom sound",
 		"^^ [KK INS2] callback, custom sound",
-		"^^ [KK INS2] custom physmaterial"
+		-- "^^ [KK INS2] custom physmaterial"
 	}
 	
 	CustomizableWeaponry_KK.panels.ins2 = function(panel)

@@ -4,8 +4,8 @@ local CURMODELLABEL, BOX, BUTT
 local MODEL
 
 local function apply()
-	local ent = LocalPlayer()
-	if !IsValid(ent) then return end
+	local ply = LocalPlayer()
+	if !IsValid(ply) then return end
 	
 	local ent = ply:GetHands()
 	if !IsValid(ent) then return end
@@ -64,8 +64,8 @@ local function buildPanel(panel)
 	hook.Add("Think", "KK_SCK_CHCTRL", function()
 		BUTT:SetEnabled(MODEL)
 			
-		local ent = LocalPlayer()
-		if !IsValid(ent) then return end
+		local ply = LocalPlayer()
+		if !IsValid(ply) then return end
 		
 		local ent = ply:GetHands()
 		if !IsValid(ent) then return end

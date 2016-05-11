@@ -126,6 +126,7 @@ do
 		CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_762x39", "models/weapons/shells/762x39.mdl", "CW_KK_INS2_SHELL_38", upneg90, noTweak, Vector(-0.2, -0.9, -0.2), Vector(0.2, 0.9, 0.2))
 		CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_762x51", "models/weapons/shells/762x51.mdl", "CW_KK_INS2_SHELL_38", upneg90, noTweak, Vector(-0.25, -1.25, -0.25), Vector(0.25, 1.25, 0.25))
 		CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_762x54", "models/weapons/shells/762x54.mdl", "CW_KK_INS2_SHELL_38", upneg90, noTweak, Vector(-0.25, -1.25, -0.25), Vector(0.25, 1.25, 0.25))
+		CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_9x19", "models/weapons/shells/9x19.mdl", "CW_KK_INS2_SHELL_38", up90, up180, Vector(-0.2, -0.4, -0.2), Vector(0.2, 0.4, 0.2))
 		
 		CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_SPOON", "models/weapons/w_gren_spoon.mdl", "", noTweak, noTweak)
 		
@@ -137,8 +138,6 @@ do
 		
 		CustomizableWeaponry:addRegularSound("CW_KK_CSS_SHELL_M72", "weapons/cw_kk_css_m72/law_shell.wav", 65)
 		CustomizableWeaponry.shells:addNew_KKINS2("KK_CSS_M72", "models/weapons/w_cw_kk_css_m72.mdl", "CW_KK_CSS_SHELL_M72", noTweak, noTweak, Vector(-18.5, -1.7, -0.2), Vector(18, 1, 2.5))
-		
-		CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_9x19", "models/weapons/shells/9x19.mdl", "CW_KK_INS2_SHELL_38", up90, up180, Vector(-0.2, -0.4, -0.2), Vector(0.2, 0.4, 0.2))
 	end
 end
 // AMMO
@@ -299,6 +298,7 @@ if CLIENT then
 	killicon.AddFont("cw_kk_ins2_cstm_mateba",		"HL2MPTypeDeath", ".", killCol)
 	
 	killicon.AddFont("cw_kk_ins2_cstm_kriss",		"CW_KillIcons", "x", killCol)
+	killicon.AddFont("cw_kk_ins2_cstm_mp5a4",		"CW_KillIcons", "x", killCol)
 	killicon.AddFont("cw_kk_ins2_cstm_mp7",			"CW_KillIcons", "x", killCol)
 	killicon.AddFont("cw_kk_ins2_cstm_sten",		"CW_KillIcons", "x", killCol)
 	killicon.AddFont("cw_kk_ins2_cstm_uzi",			"CW_KillIcons", "l", killCol)

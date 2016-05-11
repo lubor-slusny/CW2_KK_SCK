@@ -295,8 +295,8 @@ if CLIENT then
 			ang:RotateAroundAxis(ang:Up(), tweak.Up)
 		end
 		
-		CustomizableWeaponry_KK.ins2.makeShell(self, att.Pos, ang, att.Ang:Forward() * 50, 0.6, 10)
-		-- makeShell(self, att.Pos, ang, att.Ang:Forward() * 50, 0.6, 10)
+		-- CustomizableWeaponry_KK.ins2.makeShell(self, att.Pos, ang, att.Ang:Forward() * 50, 0.6, 10)
+		makeShell(self, att.Pos, ang, att.Ang:Forward() * 50, 0.6, 10)
 		
 		-- // shell link
 		self._shellTable = self._shellTable2
@@ -309,7 +309,7 @@ if CLIENT then
 			ang:RotateAroundAxis(ang:Up(), tweak.Up)
 		end
 		
-		CustomizableWeaponry_KK.ins2.makeShell(self, att.Pos, ang, att.Ang:Forward() * 50, 0.6, 10)
-		-- makeShell(self, att.Pos, ang, att.Ang:Forward() * 50, 0.6, 10)
+		-- CustomizableWeaponry_KK.ins2.makeShell(self, att.Pos, ang, att.Ang:Forward() * 50, 0.6, 10)
+		makeShell(self, att.Pos, ang, att.Ang:Forward() * 50, 0.6, 10)
 	end
 end

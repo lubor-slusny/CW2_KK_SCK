@@ -2,7 +2,9 @@ if not CustomizableWeaponry then return end
 
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
+AddCSLuaFile("sh_soundscript.lua")
 include("sh_sounds.lua")
+include("sh_soundscript.lua")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
@@ -16,18 +18,12 @@ if CLIENT then
 	SWEP.NoShells = true
 	
 	SWEP.AttachmentModelsVM = {
-		["kk_counter_front"] = {model = "models/weapons/stattrack.mdl", bone = "AT4", rel = "", pos = Vector(-0.029, 3.767, 2.51), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), ignoreKKBGO = true, active = true, nodraw = true},
-		["kk_counter_mid"] = {model = "models/weapons/stattrack.mdl", bone = "AT4", rel = "", pos = Vector(1.218, -8.176, 1.179), angle = Angle(-47.401, 0, 0), size = Vector(0.699, 0.699, 0.699), ignoreKKBGO = true, active = true, nodraw = true},
-		["kk_counter_back"] = {model = "models/weapons/stattrack.mdl", bone = "AT4", rel = "", pos = Vector(-0.788, -10.893, 2.131), angle = Angle(0, -90, 15), size = Vector(1, 1, 1), ignoreKKBGO = true, active = true, nodraw = true},
+		["kk_counter_front"] = {model = "models/weapons/stattrack.mdl", bone = "AT4", rel = "", pos = Vector(-0.029, 3.767, 2.51), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), ignoreKKBGO = true},
+		["kk_counter_mid"] = {model = "models/weapons/stattrack.mdl", bone = "AT4", rel = "", pos = Vector(1.218, -8.176, 1.179), angle = Angle(-47.401, 0, 0), size = Vector(0.699, 0.699, 0.699), ignoreKKBGO = true},
+		["kk_counter_back"] = {model = "models/weapons/stattrack.mdl", bone = "AT4", rel = "", pos = Vector(-0.788, -10.893, 2.131), angle = Angle(0, -90, 15), size = Vector(1, 1, 1), ignoreKKBGO = true},
 	}
-	
-	-- SWEP.IronsightPos = Vector(-1.292, -2, 0.5674)
-	-- SWEP.IronsightAng = Vector(2.0493, -1.9418, 0)
-	
-	-- SWEP.IronsightPos = Vector(-1.292, -2, 0.5674) // zeroed for rpg drop
-	-- SWEP.IronsightAng = Vector(1.2005, -1.9418, 0)
 
-	SWEP.IronsightPos = Vector(-1.292, -2, 0.5674) // rpg drop fixed
+	SWEP.IronsightPos = Vector(-1.292, -2, 0.5674)
 	SWEP.IronsightAng = Vector(1.9728, -1.9566, 0)
 
 	SWEP.ViewModelMovementScale_sprint = 0.5
@@ -54,42 +50,6 @@ SWEP.Animations = {
 	base_sprint = "at4_sprint",
 	base_safe = "at4_down",
 	base_safe_aim = "at4_iron_down",
-}
-	
-SWEP.Sounds = {
-	at4_crawl = {
-		{time = 15.0000004470348/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
-		{time = 38.0000004172325/30, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
-	},
-
-	at4_fire = {
-		{time = 3.00000004470348/30, sound = "CW_KK_INS2_M9_SAFETY"},
-	},
-
-	at4_iron_fire = {
-		{time = 3.00000004470348/30, sound = "CW_KK_INS2_M9_SAFETY"},
-	},
-
-	at4_draw = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-	},
-
-	at4_holster = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
-	},
-
-	at4_ready = {
-		{time = 0, sound = "Draw"},
-		{time = 16.0000006109476/31, sound = "CW_KK_INS2_AT4_READY"},
-		{time = 42.0000006258488/31, sound = "CW_KK_INS2_AT4_LATCH01"},
-		{time = 50.0000001490116/31, sound = "CW_KK_INS2_AT4_LATCH02"},
-		{time = 75.0000017881393/31, sound = "CW_KK_INS2_AT4_SHOULDER"},
-	},
-
-	at4_toss = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_LEANOUT"},
-		{time = 20.9999990463257/31, sound = "CW_KK_INS2_UNIVERSAL_WEAPONLOWER"},
-	},
 }
 
 SWEP.SpeedDec = 15
@@ -198,9 +158,4 @@ function SWEP:getReloadProgress()
 	if self.dt.AT4ReloadEnd < CT then return end
 	
 	return math.Round((CT - self.dt.AT4ReloadEnd + self.ReloadHalt) * 100 / self.ReloadHalt)
-end
-
-if CustomizableWeaponry_KK.HOME then 
-	AddCSLuaFile("_src_go.lua")
-	include("_src_go.lua")
 end

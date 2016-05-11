@@ -173,10 +173,11 @@ SWEP.Sounds = {
 
 	glsetup_reload = {
 		{time = 0, sound = "CW_KK_INS2_GL_BEGINRELOAD"},
-		{time = 40/30, sound = "CW_KK_INS2_GP30_INSERTGRENADE"},
-		{time = 54/30, sound = "CW_KK_INS2_GP30_INSERTGRENADECLICK"},
+		{time = 41/31, sound = "CW_KK_INS2_GP30_INSERTGRENADE"},
+		{time = 50/31, sound = "CW_KK_INS2_GP30_INSERTGRENADECLICK"},
+		{time = 70/31, sound = "CW_KK_INS2_AKM_RATTLE"},
 	},
-
+	
 	glsetup_iron_dryfire = {
 		{time = 0, sound = "CW_KK_INS2_GP30_EMPTY"},
 	},

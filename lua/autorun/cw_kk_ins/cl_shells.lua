@@ -40,8 +40,7 @@ if CLIENT then
 		ent:SetModelScale((self.ShellScale or 1), 0)
 		ent:SetMoveType(MOVETYPE_VPHYSICS) 
 		ent:SetSolid(SOLID_VPHYSICS) 
-		-- ent:SetCollisionGroup(COLLISION_GROUP_DEBRIS)
-		ent:SetCollisionGroup(COLLISION_GROUP_NONE)
+		ent:SetCollisionGroup(COLLISION_GROUP_DEBRIS)
 		
 		local phys = ent:GetPhysicsObject()
 	
