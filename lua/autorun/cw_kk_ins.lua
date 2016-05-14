@@ -2,6 +2,8 @@ AddCSLuaFile()
 
 if not CustomizableWeaponry then return end
 
+local WS_PACK_REVISION = 2
+
 if SERVER then
 	-- resource.AddWorkshop("657241323")
 end
@@ -49,10 +51,14 @@ CustomizableWeaponry_KK.ins2.baseContentMounted = function()
 	return baseOk
 end
 
+local WSOk
+
 CustomizableWeaponry_KK.ins2.wsContentMounted = function()
-	return 
-		CustomizableWeaponry_KK.ins2.baseContentMounted() and
-		CustomizableWeaponry_KK.ins2.ws
+	if WSOk == nil then
+		WSOk = (CustomizableWeaponry_KK.ins2.baseContentMounted()) and (CustomizableWeaponry_KK.ins2.ws == WS_PACK_REVISION)
+	end
+	
+	return WSOk
 end
 
 local DOIFiles = {
@@ -225,6 +231,19 @@ if CLIENT then
 			Command = "cw_kk_ins2_draw_vm_in_rt"
 		}):DockMargin(8, 8, 8, 0)
 	end
+	
+	hook.Add("InitPostEntity", "CW_KK_INS2_WS_UPDATE_NOTIFY", function()
+		timer.Simple(5, function()
+			if CustomizableWeaponry_KK.ins2.baseContentMounted() and (CustomizableWeaponry_KK.ins2.ws != nil) and not CustomizableWeaponry_KK.ins2.wsContentMounted() then
+				chat.AddText(
+					Color(200, 157, 96),
+					"[KK INS2 SWEPS] ",
+					Color(255, 255, 255),
+					"Hi, it looks like you are using outdated WS content. Make sure you get most recent version from GitHub."
+				)
+			end
+		end)
+	end)
 end
 
 for k, v in pairs(file.Find("autorun/cw_kk_ins/*", "LUA")) do

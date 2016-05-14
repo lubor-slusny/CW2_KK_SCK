@@ -162,7 +162,7 @@ function CustomizableWeaponry_KK.ins2:meleeKnife()
 						
 						d:SetAttacker(self.Owner)
 						-- d:SetInflictor(self)
-						d:SetInflictor(CustomizableWeaponry_KK.ins2.quickKnives._inflictor)
+						d:SetInflictor(CustomizableWeaponry_KK.ins2.quickKnives._inflictor or self)
 						
 						d:SetDamage(dmg)
 						

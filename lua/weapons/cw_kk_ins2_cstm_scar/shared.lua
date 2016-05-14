@@ -104,6 +104,8 @@ if CLIENT then
 	SWEP.KKINS2MagnifierPos = Vector(-2.7185, -3, 0.822)
 	SWEP.KKINS2MagnifierAng = Vector(0, 0, 0)
 	
+	SWEP.AlternativePos = Vector(0, -1, 0.5)
+	
 	SWEP.CustomizationMenuScale = 0.016
 end
 
