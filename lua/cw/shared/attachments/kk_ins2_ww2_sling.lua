@@ -4,7 +4,7 @@ att.displayNameShort = "Sling"
 att.displayName = "Weapon Sling"
 
 att.statModifiers = {
-	DrawSpeedMult = 0.5
+	DrawSpeedMult = 0.3
 }
 
 if CLIENT then

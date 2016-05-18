@@ -53,12 +53,13 @@ SWEP.WeaponLength = 16
 SWEP.Attachments = {
 	{header = "Under", offset = {-500, 0}, atts = {"kk_ins2_vertgrip"}},
 	{header = "Magazine", offset = {-50, 500}, atts = {"kk_ins2_mag_thom_30", "kk_ins2_mag_thom_50"}},
+	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
-if CustomizableWeaponry_KK.HOME then
-	table.insert(SWEP.Attachments, {header = "Lasers", offset = {125, 0}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}})
-end
+-- if CustomizableWeaponry_KK.HOME then
+	-- table.insert(SWEP.Attachments, {header = "Lasers", offset = {125, 0}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}})
+-- end
 
 SWEP.Chamberable = false
 SWEP.KK_INS2_emptyIdle = true

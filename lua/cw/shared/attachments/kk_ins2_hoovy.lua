@@ -1,7 +1,7 @@
 local att = {}
 att.name = "kk_ins2_hoovy"
 att.displayName = "Heavy Barrel"
-att.displayNameShort = "HeavyB"
+att.displayNameShort = "Heavy"
 
 att.statModifiers = {
 	VelocitySensitivityMult = -0.3,

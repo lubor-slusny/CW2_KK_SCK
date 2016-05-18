@@ -51,12 +51,9 @@ if CLIENT then
 end
 
 SWEP.Attachments = {
-	-- {header = "Sight", offset = {500, -500}, atts = {"kk_ins2_cstm_barska", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_cstm_acog", "kk_ins2_po4", "kk_ins2_scope_mosin", "kk_ins2_scope_m40"}},
 	{header = "Sight", offset = {500, -500}, atts = {"kk_ins2_scope_mosin"}},
 	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_ww2_knife"}},
-	-- {header = "Under", offset = {-500, 0}, atts = {"kk_ins2_bipod"}},
-	-- {header = "Lasers", offset = {125, 200}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}},
-	-- {header = "More Sight", offset = {1200, 0}, atts = {"kk_ins2_magnifier"}, dependencies = CustomizableWeaponry_KK.ins2.magnifierDependencies},
+	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_magnum", "am_matchgrade"}}
 }
 

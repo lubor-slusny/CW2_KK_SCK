@@ -23,12 +23,14 @@ if CLIENT then
 	SWEP.IronsightPos = Vector(-2.2883, -2, 0.6171)
 	SWEP.IronsightAng = Vector(0.8206, 0, 0)
 
+	SWEP.CustomizationMenuScale = 0.02
 end
 
 SWEP.WeaponLength = 22
 
 SWEP.Attachments = {
-	["+reload"] = {header = "Ammo", offset = {700, 300}, atts = {"am_magnum", "am_matchgrade"}}
+	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
+	["+reload"] = {header = "Ammo", offset = {500, 300}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
 SWEP.Animations = {
@@ -84,7 +86,7 @@ SWEP.Primary.DefaultClip	= 30
 SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= "7.92x33MM"
 
-SWEP.FireDelay = 0.12
+SWEP.FireDelay = 60/600
 SWEP.FireSound = "CW_KK_INS2_WW2_STG44_FIRE"
 SWEP.Recoil = 1.05
 

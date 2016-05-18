@@ -8,7 +8,7 @@ include("sh_soundscript.lua")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "Revolver Pistol Gun"
+	SWEP.PrintName = "SnW Model 10"
 	SWEP.CSMuzzleFlashes = true
 	
 	SWEP.IconLetter = "f"

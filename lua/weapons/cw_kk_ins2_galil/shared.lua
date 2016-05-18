@@ -111,7 +111,7 @@ end
 
 SWEP.Attachments = {
 	{header = "Sight", offset = {650, -500}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_po4", "kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_microt1", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"}},
-	{header = "Barrel", offset = {-300, -500}, atts = {"kk_ins2_suppressor_ins", "kk_ins2_suppressor_sec"}},
+	{header = "Barrel", offset = {-300, -500}, atts = {"kk_ins2_suppressor_ins", "kk_ins2_suppressor_sec", "kk_ins2_hoovy"}},
 	{header = "Under", offset = {-400, -25}, atts = {"kk_ins2_bipod", "kk_ins2_vertgrip"}},
 	{header = "Lasers", offset = {250, -25}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}},
 	{header = "More Sight", offset = {1200, -25}, atts = {"kk_ins2_magnifier"}, dependencies = CustomizableWeaponry_KK.ins2.magnifierDependencies},

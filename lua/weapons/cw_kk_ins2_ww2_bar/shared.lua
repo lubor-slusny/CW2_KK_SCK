@@ -27,6 +27,7 @@ end
 SWEP.WeaponLength = 28
 
 SWEP.Attachments = {
+	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
 	["+reload"] = {header = "Ammo", offset = {700, 300}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
