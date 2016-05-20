@@ -1,6 +1,6 @@
 AddCSLuaFile()
 
-local BUILD = "427"
+local BUILD = "428"
 
 // static
 local IRONSIGHTSATT = {
@@ -95,7 +95,7 @@ local function updateSliders()
 end
 
 local function vec2fstring(v)
-	return "Vector(" .. math.Round(v.x,4) .. ", " .. math.Round(v.y,4) .. ", " .. math.Round(v.z,4) .. ")"
+	return v and ("Vector(" .. math.Round(v.x,4) .. ", " .. math.Round(v.y,4) .. ", " .. math.Round(v.z,4) .. ")") or "nil"
 end
 
 local function controlsSetEnabled(b)
@@ -242,11 +242,11 @@ local function buttonReloadAimPos()
 	updateSliders()
 end
 
-local function buttonResetSliders()
+local function buttonResetCurrent()
 	if not WEAPON or not SIGHT then return end
 	
-	for _,slider in pairs(MENU.SLIDERS) do
-		if slider._KK_SCK_vec then
+	for id,slider in pairs(MENU.SLIDERS) do
+		if #id == 2 and slider._KK_SCK_vec then
 			slider:SetValue(0)
 		end
 	end
@@ -304,6 +304,27 @@ local function buttonExportAll()
 	SetClipboardText(out)
 end
 
+local function buttonExportCurrentBackup()
+	if not WEAPON or not SIGHT then return end
+	
+	local out = ""
+	
+	if !WEAPON.BackupSights then
+		out = "\n	SWEP.BackupSights = {"
+	end
+	
+	out = out .. "\n		"
+	out = out .. "[\"" .. SIGHT.name .. "\"] = {\n			"
+	out = out .. vec2fstring(WEAPON[SIGHT.aimPos[1]]) .. ",\n			"
+	out = out .. vec2fstring(WEAPON[SIGHT.aimPos[2]]) .. "\n		},\n"
+	
+	if !WEAPON.BackupSights then
+		out = out .. "	}\n	"
+	end
+	
+	SetClipboardText(out)
+end
+
 local function buildPanel(panel)
 	panel:ClearControls()
 	
@@ -326,7 +347,7 @@ local function buildPanel(panel)
 	MENU.BUTTS.apb_000000:SetText("Wipe AimPos")
 	MENU.BUTTS.apb_000000:SetTooltip("Sets all aimpos sliders to 0.")
 	MENU.BUTTS.apb_000000:DockMargin(8, 0, 8, 0)
-	MENU.BUTTS.apb_000000.DoClick = buttonResetSliders
+	MENU.BUTTS.apb_000000.DoClick = buttonResetCurrent
 	panel:AddItem(MENU.BUTTS.apb_000000)
 	
 	MENU.PANELS.sightPrint = vgui.Create("DPanel", panel)
@@ -553,9 +574,16 @@ local function buildPanel(panel)
 		
 	panel:AddItem(MENU.PANELS.sum)
 	
+	MENU.BUTTS.apb_exportbackup = vgui.Create("DButton", panel)
+	MENU.BUTTS.apb_exportbackup:SetText("Export as backup sight")
+	MENU.BUTTS.apb_exportbackup:SetTooltip("Copy current AimPositions in backup sight format to clipboard.")
+	MENU.BUTTS.apb_exportbackup:DockMargin(8, 0, 8, 0)
+	MENU.BUTTS.apb_exportbackup.DoClick = buttonExportCurrentBackup
+	panel:AddItem(MENU.BUTTS.apb_exportbackup)
+	
 	MENU.BUTTS.apb_export2 = vgui.Create("DButton", panel)
 	MENU.BUTTS.apb_export2:SetText("Export all modified")
-	MENU.BUTTS.apb_export2:SetTooltip("Copies all modified AimPositions of current weapon to clipboard.")
+	MENU.BUTTS.apb_export2:SetTooltip("Copy all modified AimPositions of current weapon to clipboard.")
 	MENU.BUTTS.apb_export2:DockMargin(8, 0, 8, 0)
 	MENU.BUTTS.apb_export2.DoClick = buttonExportAll
 	panel:AddItem(MENU.BUTTS.apb_export2)
@@ -680,6 +708,23 @@ local function buildPanel(panel)
 			end
 		end
 		
+		MENU.BUTTS.origin_wipe = vgui.Create("DButton", panel)
+		MENU.BUTTS.origin_wipe:SetText("Wipe origin")
+		MENU.BUTTS.origin_wipe:SetTooltip("Resets origin settings to zeros.")
+		MENU.BUTTS.origin_wipe:DockMargin(8, 0, 8, 0)
+		
+		function MENU.BUTTS.origin_wipe:DoClick()
+			if not WEAPON or not SIGHT then return end
+			
+			for id,slider in pairs(MENU.SLIDERS) do
+				if #id == 5 and slider._KK_SCK_vec then
+					slider:SetValue(0)
+				end
+			end
+		end
+		
+		panel:AddItem(MENU.BUTTS.origin_wipe)
+		
 		id = "ap_px"
 		MENU.SLIDERS[id] = vgui.Create("DNumSlider", panel)
 		MENU.SLIDERS[id]:DockMargin(8, 0, 8, 0)
@@ -764,6 +809,25 @@ local function buildPanel(panel)
 		MENU.SLIDERS[id]._KK_SCK_update = sliderUpdate
 		panel:AddItem(MENU.SLIDERS[id])
 	
+		MENU.BUTTS.origin_export = vgui.Create("DButton", panel)
+		MENU.BUTTS.origin_export:SetText("Export origin")
+		MENU.BUTTS.origin_export:SetTooltip("Copy formated origin setting from above to clipboard.")
+		MENU.BUTTS.origin_export:DockMargin(8, 0, 8, 0)
+		
+		function MENU.BUTTS.origin_export:DoClick()
+			if not WEAPON or not SIGHT then return end
+			
+			local out = "\n	"
+			out = out .. "SWEP.AlternativePos = "
+			out = out .. vec2fstring(WEAPON.AlternativePos) .. "\n	"
+			out = out .. "SWEP.AlternativeAng = "
+			out = out .. vec2fstring(WEAPON.AlternativeAng) .. "\n"
+			
+			SetClipboardText(out)
+		end
+		
+		panel:AddItem(MENU.BUTTS.origin_export)
+		
 	// hint hint
 	
 	for _,dpanel in pairs(MENU.PANELS) do

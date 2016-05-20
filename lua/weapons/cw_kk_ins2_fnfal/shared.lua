@@ -19,6 +19,13 @@ if CLIENT then
 	SWEP.MuzzleEffect = "muzzleflash_m14"
 	SWEP.Shell = "KK_INS2_762x51"
 	
+	SWEP.BackupSights = {
+		["kk_ins2_elcan"] = {
+			Vector(-2.47, -2, -1.3036),
+			Vector(-0.5, 0, 0)
+		},
+	}
+	
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_standard_fal.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_modkit_fal.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},

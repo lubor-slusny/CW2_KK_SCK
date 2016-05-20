@@ -20,13 +20,9 @@ if CLIENT then
 	
 	SWEP.BackupSights = {
 		["kk_ins2_elcan"] = {
-			Vector(-2.7946, -2, -1.0583),
-			Vector(-0.4447, 0.0147, 0)
+			Vector(-2.8091, -3, -0.673),
+			Vector(-0.4423, 0.0292, 0)
 		},
-		["kk_ins2_cstm_acog"] = {
-			Vector(-1.3473, -2, -0.5532),
-			Vector(0, 0, 0)
-		}
 	}
 	
 	SWEP.AttachmentModelsVM = {

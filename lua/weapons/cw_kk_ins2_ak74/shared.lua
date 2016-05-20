@@ -20,6 +20,13 @@ if CLIENT then
 	SWEP.MuzzleEffect = "muzzleflash_ak74"
 	SWEP.Shell = "KK_INS2_545x39"
 	
+	SWEP.BackupSights = {
+		["kk_ins2_elcan"] = {
+			Vector(-2.3004, -3, -1.4735),
+			Vector(-0.5597, 0, 0)
+		},
+	}
+	
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_modkit_06.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		["handguardStandard"] = {model = "models/weapons/upgrades/a_standard_ak74.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
@@ -331,7 +338,7 @@ if CLIENT then
 		local isGL = self.dt.INS2GLActive
 		
 		// bipod aimpos switch // 3rd iteration kek
-		if self.ActiveAttachments.kk_ins2_magnifier then
+		if self.ActiveAttachments.kk_ins2_magnifier then // tbd
 			local name = "KKINS2Magnifier"
 			if isGL then
 				self.AimPos = self.M203Pos
