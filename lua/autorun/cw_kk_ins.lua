@@ -2,7 +2,7 @@ AddCSLuaFile()
 
 if not CustomizableWeaponry then return end
 
-local WS_PACK_REVISION = 2
+local WS_PACK_REVISION = 3
 
 if SERVER then
 	-- resource.AddWorkshop("657241323")

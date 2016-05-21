@@ -14,13 +14,7 @@ function doStuff(self)
 		return
 	end
 	
-	if self.dt.INS2GLActive then
-		if not self.M203Chamber and self.Owner:GetAmmoCount("40MM") > 0 then
-			self.dt.State = CW_IDLE
-			
-			self:beginReload()
-		end
-		
+	if self.dt.INS2GLActive or self.dt.M203Active then
 		return
 	end
 	

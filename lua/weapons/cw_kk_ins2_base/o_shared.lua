@@ -14,6 +14,10 @@ function SWEP:SetupDataTables()
 	self:DTVar("Angle", 0, "ViewOffset")
 end
 
+function SWEP:SetINS2GLActive(val)
+	self.dt.INS2GLActive = val
+end
+
 // LUA VM Recoil only for RT scopes
 
 function SWEP:simulateRecoil()

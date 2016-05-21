@@ -1,4 +1,4 @@
-
+/*
 SWEP.Sounds = {
 	base_ready = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
@@ -101,7 +101,7 @@ SWEP.Sounds = {
 		{time = 96/30, sound = "CW_KK_INS2_FNFAL_BOLTBACK"},
 		{time = 106/30, sound = "CW_KK_INS2_FNFAL_BOLTRELEASE"},
 	},
-}
+} */
 
 // new anims
 
@@ -121,8 +121,8 @@ SWEP.Sounds = {
 	},
 
 	base_crawl = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
-		{time = 30/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
+		{time = 2/30, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
+		{time = 29/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
 	},
 
 	base_dryfire = {

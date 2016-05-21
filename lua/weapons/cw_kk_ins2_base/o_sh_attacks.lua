@@ -179,21 +179,7 @@ function SWEP:SecondaryAttack()
 	if self.Owner:KeyDown(IN_USE) then
 		if self:hasInstalledGL() then
 			if self.ToggleM203States[self.dt.State] then
-				if self.dt.INS2GLActive then
-					self.dt.INS2GLActive = false
-					
-					if (SERVER and SP) or (CLIENT and !SP and IFTP) then
-						self:sendWeaponAnim("gl_turn_off",1.5,0)
-					end
-				else
-					self.dt.INS2GLActive = true
-					
-					if (SERVER and SP) or (CLIENT and !SP and IFTP) then
-						self:sendWeaponAnim("gl_turn_on",1.5,0)
-					end
-				end
-				
-				self:delayEverything(0.6)
+				self:toggleGLMode(IFTP)
 				
 				return
 			end
