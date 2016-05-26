@@ -191,6 +191,7 @@ function SWEP:IndividualThink()
 	self:DrawShadow(false)
 	
 	if CLIENT then
+		-- self.NoFreeAim = self:isAiming()
 		shouldDrawCrosshair = self.Owner:ShouldDrawLocalPlayer()
 		self.CrosshairEnabled = shouldDrawCrosshair
 		self.FadeCrosshairOnAim = !shouldDrawCrosshair

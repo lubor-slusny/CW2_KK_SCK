@@ -328,10 +328,10 @@ end
 local function buildPanel(panel)
 	panel:ClearControls()
 	
-	panel:AddControl("CheckBox", {Label = "[Override] Force GM crosshair", Command = "cw_kk_gm_xhair"}):DockMargin(8, 0, 8, 0)
-	panel:AddControl("CheckBox", {Label = "Freeze reticles (if supported)", Command = "cw_kk_freeze_reticles"}):DockMargin(8, 0, 8, 0)
+	panel:AddControl("CheckBox", {Label = "Force GM crosshair", Command = "cw_kk_gm_xhair"}):DockMargin(8, 0, 8, 0)
+	panel:AddControl("CheckBox", {Label = "Freeze reticles (supported sights only)", Command = "cw_kk_freeze_reticles"}):DockMargin(8, 0, 8, 0)
 	panel:AddControl("CheckBox", {Label = "Hold aim (+attack2 spam)", Command = "cw_kk_sck_lock_ads"}):DockMargin(8, 0, 8, 0)
-	panel:AddControl("CheckBox", {Label = "Free Aim (shortcut)", Command = "cw_freeaim"}):DockMargin(8, 0, 8, 0)
+	panel:AddControl("CheckBox", {Label = "Free Aim: Enabled (shortcut)", Command = "cw_freeaim"}):DockMargin(8, 0, 8, 0)
 	
 	MENU.LABELS.buildHeader = panel:AddControl("Label", {Text = "Sight setup:"})
 	MENU.LABELS.buildHeader:DockMargin(0, 0, 0, 0)
@@ -447,11 +447,11 @@ local function buildPanel(panel)
 	MENU.LABELS.suffixLabel = vgui.Create("DLabel", panel)
 	MENU.LABELS.suffixLabel:SetText("Mod suffix:")
 	MENU.LABELS.suffixLabel:SetDark(true)
-	MENU.LABELS.suffixLabel:DockMargin(12, 0, 8, 0)
+	MENU.LABELS.suffixLabel:DockMargin(12, 0, 0, 0)
 	
 	MENU.OTHER.suffixEntry = vgui.Create("DTextEntry", panel)
 	MENU.OTHER.suffixEntry:Dock(TOP)
-	MENU.OTHER.suffixEntry:DockMargin(8, -4, 12, -4)
+	MENU.OTHER.suffixEntry:DockMargin(0, 0, 8, 0)
 	
 	function MENU.OTHER.suffixEntry:OnEnter()
 		SUFFIX = self:GetValue()

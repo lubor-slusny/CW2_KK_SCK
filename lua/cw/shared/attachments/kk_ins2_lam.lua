@@ -30,7 +30,7 @@ if CLIENT then
 	
 	function att:_elementRender(beamAtt)
 		if not beamAtt then return end
-		if (self:hasInstalledStencilSight() and self._KK_INS2_stencilsDisableLaser) then return end
+		if (self.hasInstalledStencilSight and self:hasInstalledStencilSight() and self._KK_INS2_stencilsDisableLaser) then return end
 		
 		pos = beamAtt.Pos
 		ang = beamAtt.Ang
