@@ -44,7 +44,7 @@ if CLIENT then
 	SWEP.ForegripParent = "righthandfix"
 	SWEP.ForegripOverride = true
 	
-	SWEP.IronsightPos = Vector(-0.5914, -8, 0.5979)
+	SWEP.IronsightPos = Vector(-0.539, -8, 1.0201)
 	SWEP.IronsightAng = Vector(5.3932, 0.0032, 0)
 
 	SWEP.AlternativePos = Vector(1, -8, 0)

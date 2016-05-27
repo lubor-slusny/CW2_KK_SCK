@@ -22,6 +22,10 @@ SWEP.Sounds = {
 		{time = 8/30, sound = "CW_KK_INS2_M14_FIRESELECT"},
 	},
 
+	base_fireselect_empty = {
+		{time = 8/30, sound = "CW_KK_INS2_M14_FIRESELECT"},
+	},
+
 	base_reload = {
 		{time = 19/30, sound = "CW_KK_INS2_M14_MAGRELEASE"},
 		{time = 24/30, sound = "CW_KK_INS2_M14_MAGOUT"},
@@ -41,6 +45,10 @@ SWEP.Sounds = {
 	},
 
 	iron_fireselect = {
+		{time = 14/30, sound = "CW_KK_INS2_M14_FIRESELECT"},
+	},
+
+	iron_fireselect_empty = {
 		{time = 14/30, sound = "CW_KK_INS2_M14_FIRESELECT"},
 	},
 
@@ -80,7 +88,19 @@ SWEP.Sounds = {
 		{time = 0, sound = "CW_KK_INS2_M14_EMPTY"},
 	},
 
-	foregrip_iron_fireselect_b = {
+	foregrip_iron_fireselect = {
+		{time = 14/30, sound = "CW_KK_INS2_M14_FIRESELECT"},
+	},
+
+	foregrip_iron_fireselect_empty = {
+		{time = 14/30, sound = "CW_KK_INS2_M14_FIRESELECT"},
+	},
+
+	foregrip_fireselect_empty = {
+		{time = 14/30, sound = "CW_KK_INS2_M14_FIRESELECT"},
+	},
+
+	foregrip_fireselect = {
 		{time = 14/30, sound = "CW_KK_INS2_M14_FIRESELECT"},
 	},
 
@@ -110,6 +130,10 @@ SWEP.Sounds = {
 		{time = 8/24, sound = "CW_KK_INS2_M14_FIRESELECT"},
 	},
 
+	deployed_fireselect_empty = {
+		{time = 8/24, sound = "CW_KK_INS2_M14_FIRESELECT"},
+	},
+
 	deployed_reload_half = {
 		{time = 19/30, sound = "CW_KK_INS2_M14_MAGRELEASE"},
 		{time = 23/30, sound = "CW_KK_INS2_M14_MAGOUT"},
@@ -129,6 +153,10 @@ SWEP.Sounds = {
 	},
 
 	deployed_iron_fireselect = {
+		{time = 8/24, sound = "CW_KK_INS2_M14_FIRESELECT"},
+	},
+	
+	deployed_iron_fireselect_empty = {
 		{time = 8/24, sound = "CW_KK_INS2_M14_FIRESELECT"},
 	},
 }

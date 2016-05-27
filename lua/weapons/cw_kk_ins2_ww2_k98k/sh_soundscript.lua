@@ -1,5 +1,14 @@
 
 SWEP.Sounds = {
+	base_ready = {
+		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
+		{time = 21/30, sound = "CW_KK_INS2_WW2_K98_BOLTRELEASE"},
+		{time = 26/30, sound = "CW_KK_INS2_WW2_K98_BOLTBACK"},
+		{time = 40/30, sound = "CW_KK_INS2_WW2_K98_BOLTFORWARD"},
+		{time = 45/30, sound = "CW_KK_INS2_WW2_K98_BOLTLATCH"},
+		{time = 64/30, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
+	},
+
 	base_draw = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
 	},
@@ -8,108 +17,101 @@ SWEP.Sounds = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
 	},
 
-	base_ready = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-		{time = 19/25, sound = "CW_KK_INS2_WW2_K98_BOLTRELEASE"},
-		{time = 24/25, sound = "CW_KK_INS2_WW2_K98_BOLTBACK"},
-		{time = 33/25, sound = "CW_KK_INS2_WW2_K98_BOLTFORWARD"},
-		{time = 38/25, sound = "CW_KK_INS2_WW2_K98_BOLTLATCH"},
-		{time = 56/25, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
-	},
-
 	base_crawl = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
 		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
 	},
 
 	base_fire_end = {
-		// shell @ 15 ""},
-		{time = 8/30, sound = "CW_KK_INS2_WW2_K98_BOLTRELEASE"},
-		{time = 13/30, sound = "CW_KK_INS2_WW2_K98_BOLTBACK"},
-		{time = 24/30, sound = "CW_KK_INS2_WW2_K98_BOLTFORWARD"},
-		{time = 28/30, sound = "CW_KK_INS2_WW2_K98_BOLTLATCH"},
+		{time = 13/30, sound = "CW_KK_INS2_WW2_K98_BOLTRELEASE"},
+		{time = 14/30, sound = "CW_KK_INS2_WW2_K98_BOLTBACK"},
+		{time = 22/30, sound = "CW_KK_INS2_WW2_K98_BOLTFORWARD"},
+		{time = 26/30, sound = "CW_KK_INS2_WW2_K98_BOLTLATCH"},
 	},
 
 	base_dryfire = {
 		{time = 0, sound = "CW_KK_INS2_WW2_K98_EMPTY"},
 	},
 
+	base_melee = {
+		{time = 1/30, sound = "CW_KK_INS2_WW2_MELEE"},
+	},
+
+	/*
+	$Sequence "base_reload_empty_stripper" {
+		"v_kar98k_anims\base_reload_empty_stripper.smd"
+		activity "ACT_VM_RELOADEMPTY_CLIP" 1
+		{ event AE_CL_CREATE_PARTICLE_BRASS 29 "" }
+		{ event 5004 19 "Weapon_kar98.BoltRelease" }
+		{ event 5004 27 "Weapon_kar98.Boltback" }
+		{ event 46 40 "" }
+		{ event 5004 37 "Weapon_kar98.MagFetch" }
+		{ event 5004 64 "Weapon_kar98.MagIn" }
+		{ event 5004 80 "Weapon_kar98.RoundsIn" }
+		{ event 5004 111 "Weapon_kar98.BoltforwardStripperClip" }
+		{ event 5004 112 "Weapon_kar98.StripperClipEject" }
+		{ event 5004 119 "Weapon_kar98.BoltLatch" }
+		fadein 0.2
+		fadeout 0.2
+		fps 33.4
+	}
+	*/
+	
+	base_reload_empty_stripper = {
+		{time = 19/33.4, sound = "CW_KK_INS2_WW2_K98_BOLTRELEASE"},
+		{time = 27/33.4, sound = "CW_KK_INS2_WW2_K98_BOLTBACK"},
+		{time = 37/33.4, sound = "CW_KK_INS2_WW2_GARAND_FETCHMAG"},
+		{time = 64/33.4, sound = "CW_KK_INS2_WW2_GARAND_MAGIN"},
+		{time = 80/33.4, sound = "CW_KK_INS2_WW2_GARAND_MAGHIT"},
+		{time = 111/33.4, sound = "CW_KK_INS2_WW2_K98_BOLTFORWARD"},
+		{time = 112/33.4, sound = "CW_KK_INS2_SHELL_38"},
+		{time = 119/33.4, sound = "CW_KK_INS2_WW2_K98_BOLTLATCH"},
+	},
+
 	base_reload_start = {
-		// shell @ 15 "MOSIN EJECT"},
-		{time = 4/30, sound = "CW_KK_INS2_WW2_K98_BOLTRELEASE"},
-		{time = 10/30, sound = "CW_KK_INS2_WW2_K98_BOLTBACK"},
+		{time = 19/33.5, sound = "CW_KK_INS2_WW2_K98_BOLTRELEASE"},
+		{time = 27/33.5, sound = "CW_KK_INS2_WW2_K98_BOLTBACK"},
+	},
+
+	base_reload_start_empty = {
+		{time = 19/33.5, sound = "CW_KK_INS2_WW2_K98_BOLTRELEASE"},
+		{time = 27/33.5, sound = "CW_KK_INS2_WW2_K98_BOLTBACK"},
 	},
 
 	base_reload_insert = {
-		{time = 8/30, sound = "CW_KK_INS2_WW2_K98_BULLETIN"},
-		// reloaded @ 14 ""},
+		{time = 14/37.2, sound = "CW_KK_INS2_WW2_K98_BULLETIN"},
 	},
 
 	base_reload_end = {
-		{time = 7/30, sound = "CW_KK_INS2_WW2_K98_BOLTFORWARD"},
-		{time = 11/30, sound = "CW_KK_INS2_WW2_K98_BOLTLATCH"},
+		{time = 14/33.5, sound = "CW_KK_INS2_WW2_K98_BOLTFORWARD"},
+		{time = 21/33.5, sound = "CW_KK_INS2_WW2_K98_BOLTLATCH"},
 	},
 
 	iron_fire_end = {
-		// shell @ 17 ""},
-		{time = 11/28.5, sound = "CW_KK_INS2_WW2_K98_BOLTRELEASE"},
-		{time = 15/28.5, sound = "CW_KK_INS2_WW2_K98_BOLTBACK"},
-		{time = 25/28.5, sound = "CW_KK_INS2_WW2_K98_BOLTFORWARD"},
-		// pumpedrdy @ 27 ""},
-		{time = 29/28.5, sound = "CW_KK_INS2_WW2_K98_BOLTLATCH"},
-		{time = 45/28.5, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
+		{time = 13/30.5, sound = "CW_KK_INS2_WW2_K98_BOLTRELEASE"},
+		{time = 16/30.5, sound = "CW_KK_INS2_WW2_K98_BOLTBACK"},
+		{time = 24/30.5, sound = "CW_KK_INS2_WW2_K98_BOLTFORWARD"},
+		{time = 27/30.5, sound = "CW_KK_INS2_WW2_K98_BOLTLATCH"},
 	},
 
 	iron_dryfire = {
 		{time = 0, sound = "CW_KK_INS2_WW2_K98_EMPTY"},
 	},
 
-	deployed_in = {
-		{time = 12/20, sound = "CW_KK_INS2_UNIVERSAL_BIPOD_DEPLOYSTART"},
-		{time = 16/20, sound = "CW_KK_INS2_UNIVERSAL_BIPOD_DEPLOYEND"},
+	base_draw_empty = {
+		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
 	},
 
-	deployed_out = {
-		{time = 6/20, sound = "CW_KK_INS2_UNIVERSAL_BIPOD_RETRACT"},
+	base_holster_empty = {
+		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
 	},
 
-	deployed_fire_end = {
-		// shell @ 15 ""},
-		{time = 8/30, sound = "CW_KK_INS2_WW2_K98_BOLTRELEASE"},
-		{time = 13/30, sound = "CW_KK_INS2_WW2_K98_BOLTBACK"},
-		{time = 24/30, sound = "CW_KK_INS2_WW2_K98_BOLTFORWARD"},
-		{time = 28/30, sound = "CW_KK_INS2_WW2_K98_BOLTLATCH"},
+	base_crawl_empty = {
+		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
+		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
 	},
 
-	deployed_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_WW2_K98_EMPTY"},
-	},
-
-	deployed_reload_start = {
-		// shell @ 15 ""},
-		{time = 4/30, sound = "CW_KK_INS2_WW2_K98_BOLTRELEASE"},
-		{time = 10/30, sound = "CW_KK_INS2_WW2_K98_BOLTBACK"},
-	},
-
-	deployed_reload_insert = {
-		{time = 8/30, sound = "CW_KK_INS2_WW2_K98_BULLETIN"},
-		// reloaded @ 12 ""},
-	},
-
-	deployed_reload_end = {
-		{time = 7/30, sound = "CW_KK_INS2_WW2_K98_BOLTFORWARD"},
-		{time = 11/30, sound = "CW_KK_INS2_WW2_K98_BOLTLATCH"},
-	},
-
-	iron_fire_deployed_end = {
-		// shell @ 15 ""},
-		{time = 8/34, sound = "CW_KK_INS2_WW2_K98_BOLTRELEASE"},
-		{time = 13/34, sound = "CW_KK_INS2_WW2_K98_BOLTBACK"},
-		{time = 24/34, sound = "CW_KK_INS2_WW2_K98_BOLTFORWARD"},
-		{time = 28/34, sound = "CW_KK_INS2_WW2_K98_BOLTLATCH"},
-	},
-
-	iron_dryfire_deployed = {
-		{time = 0, sound = "CW_KK_INS2_WW2_K98_EMPTY"},
-	},
+	base_melee_empty = {
+		{time = 1/30, sound = "CW_KK_INS2_WW2_MELEE"},
+	}
 }

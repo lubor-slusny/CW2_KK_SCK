@@ -18,6 +18,8 @@ if CLIENT then
 	SWEP.Shell = "KK_INS2_45apc"
 
 	SWEP.AttachmentModelsVM = {
+		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_iron_thompson_s.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), merge = true, active = true},
+		
 		["handguard"] = {model = "models/weapons/upgrades/a_thompson_standard.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), merge = true, active = true},
 		["kk_ins2_mag_thom_20"] = {model = "models/weapons/upgrades/a_thompson_mag_20.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		

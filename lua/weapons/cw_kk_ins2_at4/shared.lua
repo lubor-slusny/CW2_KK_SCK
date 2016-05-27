@@ -37,19 +37,19 @@ SWEP.Attachments = {
 }
 
 SWEP.Animations = {
-	draw = "at4_ready",
+	draw = "base_ready",
 
-	base_pickup = "at4_ready",
-	base_draw = "at4_draw",
-	base_fire = "at4_fire",
-	base_fire_aim = "at4_iron_fire",
-	base_reload_start = "at4_toss",
-	base_reload_end = "at4_ready",
+	base_pickup = "base_ready",
+	base_draw = "base_draw",
+	base_fire = "base_fire",
+	base_fire_aim = "base_iron_fire",
+	base_reload_start = "base_toss",
+	base_reload_end = "base_ready",
 	base_idle = "idle",
-	base_holster = "at4_holster",
-	base_sprint = "at4_sprint",
-	base_safe = "at4_down",
-	base_safe_aim = "at4_iron_down",
+	base_holster = "base_holster",
+	base_sprint = "base_sprint",
+	base_safe = "base_down",
+	base_safe_aim = "base_iron_down",
 }
 
 SWEP.SpeedDec = 15

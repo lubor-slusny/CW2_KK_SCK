@@ -107,17 +107,17 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/v_cw_kk_ins2_mp40.mdl"
-SWEP.WorldModel		= "models/weapons/w_cw_kk_ins2_mp40.mdl"
+SWEP.ViewModel		= "models/weapons/v_mp40_doi.mdl"
+SWEP.WorldModel		= "models/weapons/w_mp40_doi.mdl"
 
 SWEP.WMPos = Vector(5.176, 0.889, -1.417)
 SWEP.WMAng = Vector(-10, 0, 180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2de
-SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.gurkha
+SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.ww2de
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
 
 SWEP.Primary.ClipSize		= 32
 SWEP.Primary.DefaultClip	= 32

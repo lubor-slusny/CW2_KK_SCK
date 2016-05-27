@@ -25,7 +25,7 @@ local makeShell = CustomizableWeaponry_KK.ins2.makeShell
 local dir, ang, tweak
 
 function SWEP:CreateShell(sh)
-	if self.Owner:ShouldDrawLocalPlayer() or self.NoShells then
+	if self.Owner:ShouldDrawLocalPlayer() then
 		return
 	end
 	
@@ -37,6 +37,8 @@ function SWEP:CreateShell(sh)
 	if att then
 		if self.ShellDelay then
 			CustomizableWeaponry.actionSequence.new(self, self.ShellDelay, nil, function()
+				if self.NoShells then return end
+				
 				att = vm:GetAttachment(self.ViewShellAttachmentID)
 				
 				if self.InvertShellEjectAngle then
@@ -63,6 +65,8 @@ function SWEP:CreateShell(sh)
 				makeShell(self, att.Pos + dir * self.ShellOffsetMul, ang, dir * 200, 0.6, 10)
 			end)
 		else
+			if self.NoShells then return end
+			
 			att = vm:GetAttachment(self.ViewShellAttachmentID)
 			
 			if self.InvertShellEjectAngle then

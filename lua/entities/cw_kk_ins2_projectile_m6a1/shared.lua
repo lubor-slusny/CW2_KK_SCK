@@ -14,8 +14,9 @@ ENT.BlastRadius = 400 // 800
 
 function ENT:Initialize()
 	if SERVER then
-		self:SetModel(self.Model or "models/weapons/w_cw_kk_ins2_at4_projectile_dods.mdl") 
-		self:PhysicsInit(SOLID_VPHYSICS)
+		-- self:SetModel(self.Model or "models/weapons/w_cw_kk_ins2_at4_projectile_dods.mdl") 
+		self:SetModel(self.Model or "models/weapons/w_bazooka_projectile.mdl") 
+		self:PhysicsInitBox(Vector(-23,-2,-2), Vector(0,2,2))
 		self:SetMoveType(MOVETYPE_VPHYSICS)
 		self:SetSolid(SOLID_VPHYSICS)
 		self:SetCollisionGroup(COLLISION_GROUP_PROJECTILE)

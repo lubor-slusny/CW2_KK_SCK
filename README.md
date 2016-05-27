@@ -14,7 +14,7 @@ Content sources:
 - CMore sight 
 	- model: http://steamcommunity.com/sharedfiles/filedetails/?id=498237368
 	- texture: http://steamcommunity.com/sharedfiles/filedetails/?id=421634782
-- v_rpg, vw_m67, vw_mp40, w_c4, w_1911, w_m14
+- v_rpg, vw_m67, vw_mp40, w_c4, w_1911, w_m14, M1A1 models+textures
 	- http://store.steampowered.com/app/222880/
 - Bazooka rocket model
 	- http://store.steampowered.com/app/300/

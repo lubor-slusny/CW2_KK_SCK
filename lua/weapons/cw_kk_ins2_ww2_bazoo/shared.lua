@@ -17,11 +17,17 @@ if CLIENT then
 	SWEP.RearEffectw = true
 	SWEP.NoShells = true
 	
-	SWEP.AttachmentModelsVM = {}
+	SWEP.AttachmentModelsVM = {
+		["rack-it"] = {model = "models/weapons/upgrades/a_warhead_bazooka_1.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
+	}
+	
 	SWEP.AttachmentModelsWM = {}
 	
 	SWEP.IronsightPos = Vector(-0.8269, -5, 1.5462)
 	SWEP.IronsightAng = Vector(0, 0, 0)
+
+	SWEP.IronsightPos = Vector(-1.7264, 0, -0.281)
+	SWEP.IronsightAng = Vector(7.5622, -0.9048, 13.5897)
 
 	SWEP.SprintAnimSpeed = 1
 	SWEP.ViewModelMovementScale_sprint = 0.6
@@ -37,33 +43,22 @@ SWEP.WeaponLength = 44
 SWEP.Attachments = {
 }
 
-SWEP.KK_INS2_emptyIdle = true
-
 SWEP.Animations = {
 	draw = "base_ready",
 	base_insert = "base_reload",
 	
 	base_pickup = "base_ready",
 	base_draw = "base_draw",
-	base_draw_empty = "empty_draw",
 	base_fire = "base_fire",
 	base_fire_aim = "iron_fire",
-	base_fire_last = "base_fire",
-	base_fire_last_aim = "iron_fire",
-	base_fire_empty = "empty_dryfire",
-	base_fire_empty_aim = "empty_dryfire",
+	base_fire_empty = "base_dryfire",
+	base_fire_empty_aim = "iron_dryfire",
 	base_reload = "base_reload",
-	base_reload_empty = "base_reload",
 	base_idle = "base_idle",
-	base_idle_empty = "empty_idle",
 	base_holster = "base_holster",
-	base_holster_empty = "empty_holster",
 	base_sprint = "base_sprint",
-	base_sprint_empty = "empty_sprint",
 	base_safe = "base_down",
 	base_safe_aim = "iron_down",
-	base_safe_empty = "empty_down",
-	base_safe_empty_aim = "iron_down_empty",
 }
 
 SWEP.SpeedDec = 15
@@ -114,36 +109,10 @@ SWEP.SpreadCooldown = 0.8
 SWEP.Shots = 1
 SWEP.Damage = 100
 
-SWEP.FirstDeployTime = 3.06
+SWEP.FirstDeployTime = 6.87
 SWEP.DeployTime = 0.83
 
-SWEP.ReloadTime = 2.7
-SWEP.ReloadTime_Empty = 2.7
-SWEP.ReloadHalt = 4
-SWEP.ReloadHalt_Empty = 4
-
--- SWEP.ShotgunReload = true
--- SWEP.ReloadStartTime = 0
--- SWEP.InsertShellTime = 3
--- SWEP.ReloadFinishWait = 1
-
-function SWEP:fireAnimFunc()
-	local clip = self:Clip1()
-	local cyc = 0.3
-	local rate = 1
-	local prefix = "base_"
-	local suffix = ""
-	
-	if clip == 1 then
-		suffix = "_last"
-	elseif clip == 0 then
-		suffix = "_empty"
-		cyc = 0
-	end
-	
-	if self:isAiming() then
-		suffix = suffix .. "_aim"
-	end
-	
-	self:sendWeaponAnim(prefix .. "fire" .. suffix,rate,cyc)
-end //*/
+SWEP.ReloadTime = 4.4
+SWEP.ReloadTime_Empty = 4.4
+SWEP.ReloadHalt = 6.4
+SWEP.ReloadHalt_Empty = 6.4

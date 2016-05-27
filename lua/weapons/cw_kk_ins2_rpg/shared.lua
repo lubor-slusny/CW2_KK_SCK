@@ -15,6 +15,13 @@ if CLIENT then
 	SWEP.RearEffectw = true
 	SWEP.NoShells = true
 	
+	SWEP.BackupSights = {
+		["kk_ins2_cstm_pgo7"] = {
+			Vector(-2.1193, -2, -0.9167),
+			Vector(2.6952, 0.0549, 0)
+		},
+	}
+	
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_sterling.mdl", bone = "RPG_Body", pos = Vector(-1.795, -11.804, -2.003), angle = Angle(0, -90, -180), size = Vector(0.899, 0.899, 0.899)},
 		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_sterling.mdl", bone = "RPG_Body", pos = Vector(-1.795, -11.804, -2.003), angle = Angle(0, -90, -180), size = Vector(0.899, 0.899, 0.899)},

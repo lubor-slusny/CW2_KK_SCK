@@ -81,45 +81,27 @@ if CLIENT then
 		["kk_ins2_cstm_eotechxps"] = {model = "models/weapons/attachments/w_cw_kk_ins2_cstm_eotechxps.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 	}
 	
-	SWEP.IronsightPos = Vector(-2.3, -2, 0.13)
-	SWEP.IronsightAng = Vector(0.55, 0.05, 0)
+	SWEP.IronsightPos = Vector(-2.2358, -2, 0.5763)
+	SWEP.IronsightAng = Vector(0.0713, -0.0056, 0)
 
-	SWEP.KKINS2KobraPos = Vector(-2.3079, -1, -0.5745)
+	SWEP.KKINS2KobraPos = Vector(-2.2509, 0, -0.2497)
 	SWEP.KKINS2KobraAng = Vector(0, 0, 0)
 
-	SWEP.KKINS2EoTechPos = Vector(-2.3088, -1, -0.4859)
+	SWEP.KKINS2EoTechPos = Vector(-2.2495, 0, -0.1693)
 	SWEP.KKINS2EoTechAng = Vector(0, 0, 0)
 
-	SWEP.KKINS2AimpointPos = Vector(-2.305, -1, -0.45)
+	SWEP.KKINS2AimpointPos = Vector(-2.235, 0, -0.1616)
 	SWEP.KKINS2AimpointAng = Vector(0, 0, 0)
 
-	SWEP.KKINS2ElcanPos = Vector(-2.3082, -1, -0.5938)
+	SWEP.KKINS2ElcanPos = Vector(-2.2438, 0, -0.2544)
 	SWEP.KKINS2ElcanAng = Vector(0, 0, 0)
 
-	SWEP.KKINS2PO4Pos = Vector(-2.2501, 0, -0.3898)
+	SWEP.KKINS2PO4Pos = Vector(-2.1856, 0, -0.0499)
 	SWEP.KKINS2PO4Ang = Vector(0, 0, 0)
 
-	SWEP.KKINS2MagnifierPos = Vector(-2.305, -1, -0.4895)
+	SWEP.KKINS2MagnifierPos = Vector(-2.2412, 0, -0.152)
 	SWEP.KKINS2MagnifierAng = Vector(0, 0, 0)
-	
-	SWEP.KKINS2CSTMCMorePos = Vector(-2.305, -1, -0.4751)
-	SWEP.KKINS2CSTMCMoreAng = Vector(0, 0, 0)
 
-	SWEP.KKINS2CSTMBarskaPos = Vector(-2.3088, -1, -0.5071)
-	SWEP.KKINS2CSTMBarskaAng = Vector(0, 0, 0)
-
-	SWEP.KKINS2CSTMEoTechXPSPos = Vector(-2.3088, -1, -0.4923)
-	SWEP.KKINS2CSTMEoTechXPSAng = Vector(0, 0, 0)
-
-	SWEP.KKINS2CSTMMicroT1Pos = Vector(-2.305, -1, -0.4733)
-	SWEP.KKINS2CSTMMicroT1Ang = Vector(0, 0, 0)
-
-	SWEP.KKINS2CSTMCompM4SPos = Vector(-2.3075, -1, -0.4791)
-	SWEP.KKINS2CSTMCompM4SAng = Vector(0, 0, 0)
-
-	SWEP.KKINS2CSTMACOGPos = Vector(-2.3082, -1, -0.5938)
-	SWEP.KKINS2CSTMACOGAng = Vector(0, 0, 0)
-	
 	SWEP.CustomizationMenuScale = 0.0145
 end
 
@@ -157,7 +139,7 @@ SWEP.Animations = {
 	foregrip_fire = "foregrip_fire",
 	foregrip_fire_aim = {"foregrip_iron_fire", "foregrip_iron_fire_2"},
 	foregrip_fire_empty = "foregrip_dryfire",
-	foregrip_fire_empty_aim = "foregrip_iron_dryfire_b",
+	foregrip_fire_empty_aim = "foregrip_iron_dryfire",
 	foregrip_reload = "foregrip_reload",
 	foregrip_reload_empty = "foregrip_reloadempty",
 	foregrip_idle = "foregrip_draw",

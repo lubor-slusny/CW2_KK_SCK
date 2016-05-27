@@ -66,7 +66,7 @@ local DOIFiles = {
 	"models/weapons/w_stielhandgranate.phy",
 	"models/weapons/shells/garand_clip.phy",
 	"models/weapons/upgrades/w_thompson_foregrip.mdl",
-	"models/weapons/upgrades/a_standard_garand.mdl",
+	-- "models/weapons/upgrades/a_standard_garand.mdl",
 }
 
 local DOIOk
@@ -319,6 +319,7 @@ if CLIENT then
 	CustomizableWeaponry_KK.ins2.nodrawMat["models/weapons/optics/po4x_reticule"] = true
 	CustomizableWeaponry_KK.ins2.nodrawMat["models/weapons/optics/mosin_crosshair"] = true
 	CustomizableWeaponry_KK.ins2.nodrawMat["models/weapons/optics/mk4_crosshair"] = true
+	CustomizableWeaponry_KK.ins2.nodrawMat["models/weapons/optics/kar98k_crosshair"] = true
 	
 	-- CustomizableWeaponry_KK.ins2.nodrawMat["models/weapons/attachments/cw_kk_ins2_cstm_eotechxps/4x_reticule"] = true
 end

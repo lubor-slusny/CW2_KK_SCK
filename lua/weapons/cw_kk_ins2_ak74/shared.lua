@@ -86,47 +86,29 @@ if CLIENT then
 		["kk_ins2_cstm_eotechxps"] = {model = "models/weapons/attachments/w_cw_kk_ins2_cstm_eotechxps.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 	}
 	
-	SWEP.IronsightPos = Vector(-2.305, -4, 0.375)
-	SWEP.IronsightAng = Vector(0.35, 0.03, 0)
-	
+	SWEP.IronsightPos = Vector(-2.2449, -2, 0.6504)
+	SWEP.IronsightAng = Vector(0.35, 0, 0)
+
 	SWEP.M203Pos = Vector(-1.0384, -4, 0.8356)
 	SWEP.M203Ang = Vector(1.0405, -0.0059, 0)
 	
-	SWEP.KKINS2KobraPos = Vector(-2.3128, -2, -0.5297)
+	SWEP.KKINS2KobraPos = Vector(-2.2509, -1, -0.2497)
 	SWEP.KKINS2KobraAng = Vector(0, 0, 0)
 
-	SWEP.KKINS2EoTechPos = Vector(-2.3057, -2, -0.4387)
+	SWEP.KKINS2EoTechPos = Vector(-2.2495, -1, -0.1693)
 	SWEP.KKINS2EoTechAng = Vector(0, 0, 0)
 
-	SWEP.KKINS2AimpointPos = Vector(-2.305, -2, -0.45)
-	SWEP.KKINS2AimpointAng = Vector(0, -0.02, 0)
+	SWEP.KKINS2AimpointPos = Vector(-2.235, -1, -0.1616)
+	SWEP.KKINS2AimpointAng = Vector(0, 0, 0)
 
-	SWEP.KKINS2ElcanPos = Vector(-2.3004, -3, -0.5463)
+	SWEP.KKINS2ElcanPos = Vector(-2.2438, -2, -0.2544)
 	SWEP.KKINS2ElcanAng = Vector(0, 0, 0)
 
-	SWEP.KKINS2PO4Pos = Vector(-2.2415, -2, -0.3429)
+	SWEP.KKINS2PO4Pos = Vector(-2.1856, -1, -0.0499)
 	SWEP.KKINS2PO4Ang = Vector(0, 0, 0)
 
-	SWEP.KKINS2MagnifierPos = Vector(-2.2988, -2, -0.4461)
+	SWEP.KKINS2MagnifierPos = Vector(-2.2412, -1, -0.152)
 	SWEP.KKINS2MagnifierAng = Vector(0, 0, 0)
-
-	SWEP.KKINS2CSTMCMorePos = Vector(-2.305, -2, -0.45)
-	SWEP.KKINS2CSTMCMoreAng = Vector(0, 0, 0)
-
-	SWEP.KKINS2CSTMBarskaPos = Vector(-2.305, -2, -0.4635)
-	SWEP.KKINS2CSTMBarskaAng = Vector(0, -0.02, 0)
-
-	SWEP.KKINS2CSTMMicroT1Pos = Vector(-2.3057, -2, -0.4334)
-	SWEP.KKINS2CSTMMicroT1Ang = Vector(0, 0, 0)
-	
-	SWEP.KKINS2CSTMEoTechXPSPos = Vector(-2.3057, -2, -0.4387)
-	SWEP.KKINS2CSTMEoTechXPSAng = Vector(0, 0, 0)
-
-	SWEP.KKINS2CSTMCompM4SPos = Vector(-2.305, -2, -0.45)
-	SWEP.KKINS2CSTMCompM4SAng = Vector(0, 0, 0)
-
-	SWEP.KKINS2CSTMACOGPos = Vector(-2.3004, -3, -0.5463)
-	SWEP.KKINS2CSTMACOGAng = Vector(0, 0, 0)
 
 	// for the keks
 	

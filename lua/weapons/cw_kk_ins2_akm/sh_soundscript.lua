@@ -90,7 +90,7 @@ SWEP.Sounds = {
 		{time = 104/30, sound = "CW_KK_INS2_AKM_BOLTRELEASE"},
 	},
 
-	foregrip_iron_dryfire_b = {
+	foregrip_iron_dryfire = {
 		{time = 0, sound = "CW_KK_INS2_AKM_EMPTY"},
 	},
 
@@ -139,11 +139,11 @@ SWEP.Sounds = {
 		{time = 104/30, sound = "CW_KK_INS2_AKM_BOLTRELEASE"},
 	},
 
-	gl_iron_dryfire_b = {
+	gl_iron_dryfire = {
 		{time = 0, sound = "CW_KK_INS2_AKM_EMPTY"},
 	},
 
-	gl_iron_fireselect_b = {
+	gl_iron_fireselect = {
 		{time = 14/30, sound = "CW_KK_INS2_AKM_FIRESELECT"},
 	},
 

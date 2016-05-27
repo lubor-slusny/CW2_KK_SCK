@@ -28,6 +28,11 @@ CustomizableWeaponry_KK.ins2.quickKnives.ninjato = {
 	a_attack = "hitcenter1"
 }
 
+CustomizableWeaponry_KK.ins2.quickKnives.ww2de = {
+	vm = "models/weapons/v_k98kbayonet.mdl",
+	a_attack = "hitcenter3"
+}
+
 function CustomizableWeaponry_KK.ins2:canKnife()
 	// can't throw if we're within a restricted state
 	if CustomizableWeaponry.quickGrenade.restrictedStates[self.dt.State] then
@@ -79,7 +84,7 @@ function CustomizableWeaponry_KK.ins2:meleeKnife()
 		self:idleAnimFunc()
 	end
 	
-	self.meleeAttackDelay = CT + 1.2
+	self.meleeAttackDelay = CT + 0.6
 	
 	if SERVER then
 		SendUserMessage("CW_KK_INS2_QUICKKNIFE", self.Owner)
@@ -95,7 +100,7 @@ function CustomizableWeaponry_KK.ins2:meleeKnife()
 				self:meleeAnimFunc()
 			end
 			
-			self:setGlobalDelay(1)
+			self:setGlobalDelay(0.7)
 			self:SetNextPrimaryFire(CT + 1)
 		
 			td = bayonetTD

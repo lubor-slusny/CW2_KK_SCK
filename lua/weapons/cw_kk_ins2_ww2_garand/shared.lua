@@ -19,13 +19,13 @@ if CLIENT then
 	SWEP.Shell2 = "KK_INS2_GARAND"
 	
 	SWEP.AttachmentModelsVM = {
-		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_standard_garand.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
-		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_modkit_m1a1.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		-- ["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_standard_garand.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
+		-- ["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_modkit_m1a1.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 	
 		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/a_bayonet.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_suppressor_sec"] = {model = "models/weapons/upgrades/a_suppressor_sec.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 
-		["kk_ins2_scope_zf4"] = {model = "models/weapons/upgrades/a_optic_zf4.mdl", pos = Vector(0,0,-3.5), angle = Angle(90, 0, 90), size = Vector(1, 1, 1), attachment = "Optic"},
+		-- ["kk_ins2_scope_zf4"] = {model = "models/weapons/upgrades/a_optic_zf4.mdl", pos = Vector(0,0,-3.5), angle = Angle(90, 0, 90), size = Vector(1, 1, 1), attachment = "Optic"},
 	}
 	
 	SWEP.AttachmentModelsWM = {
@@ -45,7 +45,7 @@ end
 SWEP.WeaponLength = 22
 
 SWEP.Attachments = {
-	{header = "Sight", offset = {500, -500}, atts = {"kk_ins2_scope_zf4"}, exclusions = {kk_ins2_ww2_knife = true}},
+	-- {header = "Sight", offset = {500, -500}, atts = {"kk_ins2_scope_zf4"}, exclusions = {kk_ins2_ww2_knife = true}},
 	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_suppressor_sec", "kk_ins2_ww2_knife"}},
 	{header = "More Sight", offset = {1000, -50}, atts = {"kk_ins2_magnifier"}, dependencies = CustomizableWeaponry_KK.ins2.magnifierDependencies},
 	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
