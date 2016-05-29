@@ -73,32 +73,35 @@ do
 	CustomizableWeaponry:addRegularSound("CW_KK_INS2_SHELL_LINK", {"weapons/bullets/shells/concrete/m249_link_concrete_01.wav", "weapons/bullets/shells/concrete/m249_link_concrete_02.wav", "weapons/bullets/shells/concrete/m249_link_concrete_03.wav", "weapons/bullets/shells/concrete/m249_link_concrete_04.wav", "weapons/bullets/shells/concrete/m249_link_concrete_05.wav", "weapons/bullets/shells/concrete/m249_link_concrete_06.wav", "weapons/bullets/shells/concrete/m249_link_concrete_07.wav", "weapons/bullets/shells/concrete/m249_link_concrete_08.wav"}, 65)
 	CustomizableWeaponry:addRegularSound("CW_KK_INS2_SHELL_12G", {"weapons/bullets/shells/concrete/shotgun_shell_concrete_01.wav", "weapons/bullets/shells/concrete/shotgun_shell_concrete_02.wav", "weapons/bullets/shells/concrete/shotgun_shell_concrete_03.wav", "weapons/bullets/shells/concrete/shotgun_shell_concrete_04.wav", "weapons/bullets/shells/concrete/shotgun_shell_concrete_05.wav", "weapons/bullets/shells/concrete/shotgun_shell_concrete_06.wav"}, 65)
 	
-	-- CustomizableWeaponry:addRegularSound("CW_KK_INS2_SHELL_38", "weapons/bullets/shells/concrete/38_shell_concrete_01.wav", 65)
-	-- CustomizableWeaponry:addRegularSound("CW_KK_INS2_SHELL_LINK", "weapons/bullets/shells/concrete/m249_link_concrete_01.wav", 65)
-	
 	if CLIENT then
-		physenv.AddSurfaceData([[
-			"cw_kk_shell"
-			{
-				"stepleft"		"DoorSound.Null"
-				"stepright"		"DoorSound.Null"
-				"bulletimpact"	"DoorSound.Null"
-				"scraperough"	"DoorSound.Null"
-				"scrapesmooth"	"DoorSound.Null"
-			}
-		]])
+		local convertedSounds = {}
+		local allMaterials = ""
+		
+		hook.Add("InitPostEntity", "CW_KK_INS2_INIT_PHYSMAT", function()
+			-- print("initializing physmats:", allMaterials)
+			physenv.AddSurfaceData(allMaterials)
+		end)
 		
 		function CustomizableWeaponry.shells:addNew_KKINS2(name, model, sound, rotationView, rotationWorld, BBoxMins, BBoxMaxs)
-			local pmid = "kkpm" .. string.sub(string.lower(sound), 17, #sound)
-			
-			physenv.AddSurfaceData([[
-				"]] .. pmid .. [["
-				{
-					"base"			"cw_kk_shell"
-					"impacthard"	"]] .. sound .. [["
-					"impactsoft"	"]] .. sound .. [["
-				}
-			]])
+			if not convertedSounds[sound] then
+
+				allMaterials = [[
+"]] .. sound .. [["
+{
+	"impacthard"	"]] .. sound .. [["
+	"impactsoft"	"]] .. sound .. [["
+	
+	"audiohardnessfactor" "0.0"
+	"audioroughnessfactor" "0.0"
+
+	"scrapeRoughThreshold" "1.0"
+	"impactHardThreshold" "1.0"
+}
+
+]] .. allMaterials
+
+				convertedSounds[sound] = true
+			end
 			
 			self.cache[name] = {
 				m = model, 
@@ -106,8 +109,7 @@ do
 				rv = rotationView, 
 				rw = rotationWorld, 
 				bbmin = BBoxMins, 
-				bbmax = BBoxMaxs,
-				pm = pmid
+				bbmax = BBoxMaxs
 			}
 		end
 		
@@ -128,7 +130,7 @@ do
 		CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_762x54", "models/weapons/shells/762x54.mdl", "CW_KK_INS2_SHELL_38", upneg90, noTweak, Vector(-0.25, -1.25, -0.25), Vector(0.25, 1.25, 0.25))
 		CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_9x19", "models/weapons/shells/9x19.mdl", "CW_KK_INS2_SHELL_38", up90, up180, Vector(-0.2, -0.4, -0.2), Vector(0.2, 0.4, 0.2))
 		
-		CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_SPOON", "models/weapons/w_gren_spoon.mdl", "", noTweak, noTweak)
+		CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_SPOON", "models/weapons/w_gren_spoon.mdl", "CW_KK_INS2_SHELL_M203", noTweak, noTweak)
 		
 		CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_GARAND", "models/weapons/shells/garand_clip.mdl", "CW_KK_INS2_SHELL_M203", noTweak, up90, Vector(-0.55, -0.45, -0.85), Vector(0.55, 0.45, 0.85))
 		CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_REVOLVER", "models/weapons/upgrades/a_speedloader_rev.mdl", "CW_KK_INS2_SHELL_12G", noTweak, noTweak, Vector(-0.8, -0.55, -0.55), Vector(0.25, 0.55, 0.55))
@@ -236,7 +238,7 @@ if CLIENT then
 	local killCol = Color(255, 80, 0, 150)
 	local white = Color(255, 255, 255, 150)
 
-	killicon.AddFont("cw_kk_ins2_damage_melee",	"CW_KillIcons", "j", killCol)
+	killicon.AddFont("cw_kk_ins2_damage_melee",		"CW_KillIcons", "j", killCol)
 	
 	killicon.AddFont("cw_kk_ins2_mel_bayonet",		"CW_KillIcons", "j", killCol)
 	killicon.AddFont("cw_kk_ins2_mel_gurkha",		"CW_KillIcons", "j", killCol)
@@ -259,6 +261,7 @@ if CLIENT then
 	killicon.AddFont("cw_kk_ins2_galil",			"CW_KillIcons", "v", killCol)
 	killicon.AddFont("cw_kk_ins2_l1a1",				"CW_KillIcons", "i", killCol)
 	killicon.AddFont("cw_kk_ins2_m1a1",				"CW_KillIcons", "o", killCol)
+	killicon.AddFont("cw_kk_ins2_m1a1_para",		"CW_KillIcons", "o", killCol)
 	killicon.AddFont("cw_kk_ins2_m4a1",				"CW_KillIcons", "w", killCol)
 	-- killicon.AddFont("cw_kk_ins2_m14",				"CW_KillIcons", "i", white)
 	killicon.AddFont("cw_kk_ins2_m14",				"CW_HUD22", "M14 EBR", white)
@@ -315,10 +318,14 @@ if CLIENT then
 	killicon.AddFont("cw_kk_ins2_cstm_spas12",		"CW_KillIcons", "k", killCol)
 	
 	// WW2 pack
+	killicon.AddFont("cw_kk_ins2_ww2_k98kknife",	"CW_KillIcons", "j", killCol)
+	
 	killicon.AddFont("cw_kk_ins2_ww2_luger",		"CW_KillIcons", "a", killCol)
 	killicon.AddFont("cw_kk_ins2_ww2_p38",			"CW_KillIcons", "a", killCol)
 	killicon.AddFont("cw_kk_ins2_ww2_ppk",			"CW_KillIcons", "a", killCol)
+	killicon.AddFont("cw_kk_ins2_ww2_m1911",		"CW_KillIcons", "a", killCol)
 	
+	killicon.AddFont("cw_kk_ins2_ww2_mp40",			"CW_KillIcons", "x", killCol)
 	killicon.AddFont("cw_kk_ins2_ww2_thom",			"CW_KillIcons", "q", killCol)
 	
 	killicon.AddFont("cw_kk_ins2_ww2_k98k",			"CW_KillIcons", "r", killCol)
@@ -329,6 +336,8 @@ if CLIENT then
 	killicon.AddFont("cw_kk_ins2_ww2_stg44",		"CW_KillIcons", "o", killCol)
 	killicon.AddFont("cw_kk_ins2_ww2_browning",		"CW_KillIcons", "z", killCol)
 	killicon.AddFont("cw_kk_ins2_ww2_mg42",			"CW_KillIcons", "z", killCol)
+	killicon.AddFont("cw_kk_ins2_ww2_m1",			"CW_KillIcons", "o", killCol)
+	killicon.AddFont("cw_kk_ins2_ww2_pump",			"CW_KillIcons", "k", killCol)
 	
 	killicon.AddFont("cw_kk_ins2_ww2_bazoo",		"HL2MPTypeDeath", "3", killCol)
 	killicon.AddFont("cw_kk_ins2_ww2_frag_de",		"CW_KillIcons", "e", killCol)

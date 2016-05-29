@@ -43,13 +43,18 @@ if CLIENT then
 		-- ["std_railedguard"] = {model = "models/weapons/aesthetic/a_rg_m16_colt.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		-- ["std_railedguard"] = {model = "models/weapons/upgrades/a_railguard_sdmr.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		["std_railedguard"] = {model = "models/weapons/upgrades/a_railguard2_sdmr.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
-		["std_muzzle"] = {model = "models/weapons/muzzle/a_mb3_556.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
+		-- ["std_muzzle"] = {model = "models/weapons/muzzle/a_mb3_556.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		-- ["std_stock_fall"] = {model = "models/weapons/stock/a_bs_fallback_b.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		-- ["std_stock_m4"] = {model = "models/weapons/upgrades/a_buttstock_m4.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		-- ["std_stock_m4"] = {model = "models/weapons/upgrades/a_buttstock_m4_long.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		-- ["std_stock_m4"] = {model = "models/weapons/stock/a_bs_sr25.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		["std_stock_m4"] = {model = "models/weapons/stock/a_bs_sr25_b.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 	
+		["kk_ins2_hoovy"] = {model = "models/weapons/muzzle/a_mb2_556.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["std_muzzle"] = {model = "models/weapons/muzzle/a_mb3_556.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = function(self)
+			return !self.ActiveAttachments.kk_ins2_hoovy
+		end},
+		
 		["kk_ins2_suppressor_sec"] = {model = "models/weapons/upgrades/a_suppressor_sec.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_bipod"] = {model = "models/weapons/underslung/a_bp_ar.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},

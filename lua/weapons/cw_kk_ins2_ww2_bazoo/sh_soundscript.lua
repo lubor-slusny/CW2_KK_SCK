@@ -2,11 +2,14 @@
 SWEP.Sounds = {
 	base_ready = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-		{time = 10/32.5, sound = "CW_KK_INS2_BAZOOKA_FETCH"},
-		{time = 32/32.5, sound = "CW_KK_INS2_BAZOOKA_LOAD1"},
-		{time = 62/32.5, sound = "CW_KK_INS2_BAZOOKA_LOAD2"},
-		{time = 86/32.5, sound = "CW_KK_INS2_BAZOOKA_RATTLE"},
-		{time = 110/32.5, sound = "CW_KK_INS2_BAZOOKA_SHOULDER"},
+		{time = 27/30, sound = "CW_KK_INS2_BAZOOKA_RATTLE"},
+		{time = 47/30, sound = "CW_KK_INS2_BAZOOKA_FETCH"},
+		{time = 75/30, sound = "CW_KK_INS2_BAZOOKA_LOAD1"},
+		{time = 84/30, sound = "CW_KK_INS2_BAZOOKA_LOAD2"},
+		{time = 112/30, sound = "CW_KK_INS2_BAZOOKA_WIRE"},
+		{time = 160/30, sound = "CW_KK_INS2_BAZOOKA_RESHOULDER"},
+		{time = 177/30, sound = "CW_KK_INS2_BAZOOKA_RATTLE"},
+		{time = 196/30, sound = "CW_KK_INS2_BAZOOKA_SHOULDER"},
 	},
 
 	base_draw = {
@@ -23,35 +26,21 @@ SWEP.Sounds = {
 	},
 
 	base_reload = {
-		{time = 20/32.5, sound = "CW_KK_INS2_BAZOOKA_FETCH"},
-		{time = 48/32.5, sound = "CW_KK_INS2_BAZOOKA_LOAD1"},
-		{time = 78/32.5, sound = "CW_KK_INS2_BAZOOKA_LOAD2"},
-		{time = 102/32.5, sound = "CW_KK_INS2_BAZOOKA_RATTLE"},
-		{time = 120/32.5, sound = "CW_KK_INS2_BAZOOKA_SHOULDER"},
-		// reload time = 83 ""},
+		{time = 30/32.5, sound = "CW_KK_INS2_BAZOOKA_RATTLE"},
+		{time = 50/32.5, sound = "CW_KK_INS2_BAZOOKA_FETCH"},
+		{time = 78/32.5, sound = "CW_KK_INS2_BAZOOKA_LOAD1"},
+		{time = 87/32.5, sound = "CW_KK_INS2_BAZOOKA_LOAD2"},
+		{time = 114/32.5, sound = "CW_KK_INS2_BAZOOKA_WIRE"},
+		{time = 160/32.5, sound = "CW_KK_INS2_BAZOOKA_RESHOULDER"},
+		{time = 180/32.5, sound = "CW_KK_INS2_BAZOOKA_RATTLE"},
+		{time = 199/32.5, sound = "CW_KK_INS2_BAZOOKA_SHOULDER"},
 	},
 
-	empty_draw = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-	},
-
-	empty_holster = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
-	},
-
-	empty_dryfire = {
-		-- {time = 1/30, sound = "CW_KK_INS2_BAZOOKA_EMPTY"},
+	base_dryfire = {
 		{time = 1/30, sound = "CW_KK_INS2_GP30_EMPTY"},
 	},
 
-	empty_crawl = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
-		{time = 13/32, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
-
-	},
-
 	iron_dryfire = {
-		-- {time = 1/30, sound = "CW_KK_INS2_BAZOOKA_EMPTY"},
 		{time = 1/30, sound = "CW_KK_INS2_GP30_EMPTY"},
 	},
 }

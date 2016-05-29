@@ -68,7 +68,7 @@ if CLIENT then
 		end
 	
 		if cvarSSF:GetInt() == 4 then // fail
-			phys:SetMaterial(t.pm or "grenade")
+			phys:SetMaterial(t.s)
 		end
 	
 		-- SafeRemoveEntityDelayed(ent, cvarSLT:GetFloat() or removeTime or 10) // function creation spam

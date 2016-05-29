@@ -17,17 +17,27 @@ if CLIENT then
 	SWEP.RearEffectw = true
 	SWEP.NoShells = true
 	
+	SWEP.BackupSights = {
+		["nil"] = {
+			Vector(-1.4887, 0, -1.3139),
+			Vector(7.5622, -0.9048, 13.5897)
+		},
+	}
+	
 	SWEP.AttachmentModelsVM = {
 		["rack-it"] = {model = "models/weapons/upgrades/a_warhead_bazooka_1.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 	}
 	
 	SWEP.AttachmentModelsWM = {}
 	
-	SWEP.IronsightPos = Vector(-0.8269, -5, 1.5462)
-	SWEP.IronsightAng = Vector(0, 0, 0)
-
 	SWEP.IronsightPos = Vector(-1.7264, 0, -0.281)
 	SWEP.IronsightAng = Vector(7.5622, -0.9048, 13.5897)
+
+	SWEP.ActualSightPos = Vector(-1.7264, 0, -0.281)
+	SWEP.ActualSightAng = Vector(7.5622, -0.9048, 13.5897)
+
+	SWEP.SightBackUpPos = Vector(-1.4887, 0, -1.3139)
+	SWEP.SightBackUpAng = Vector(7.5622, -0.9048, 13.5897)
 
 	SWEP.SprintAnimSpeed = 1
 	SWEP.ViewModelMovementScale_sprint = 0.6
@@ -83,8 +93,8 @@ SWEP.ViewModel		= "models/weapons/v_bazooka.mdl"
 SWEP.WorldModel		= "models/weapons/w_bazooka.mdl"
 
 SWEP.DrawCustomWM = true
-SWEP.WMPos = Vector(6.035, 2, -2.366)
-SWEP.WMAng = Vector(-8, 0, -180)
+SWEP.WMPos = Vector(-5, 0, -0.5)
+SWEP.WMAng = Vector(8, 180, -180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2us
 
@@ -116,3 +126,31 @@ SWEP.ReloadTime = 4.4
 SWEP.ReloadTime_Empty = 4.4
 SWEP.ReloadHalt = 6.4
 SWEP.ReloadHalt_Empty = 6.4
+
+local clip, cyc, rate, prefix, suffix
+
+function SWEP:fireAnimFunc()
+	clip = self:Clip1()
+	cyc = 0.25
+	rate = 1
+	prefix = "base_"
+	suffix = ""
+	
+	if (clip == 0) then
+		cyc = 0
+		suffix = "_empty"
+	end
+	
+	if self:isAiming() then
+		suffix = suffix .. "_aim"
+	end
+	
+	self:sendWeaponAnim(prefix .. "fire" .. suffix,rate,cyc)
+end //*/
+
+if CLIENT then 
+	function SWEP:updateOtherParts()
+		self.WMEnt:SetBodygroup(1, 1 - self:Clip1())
+		self:SetBodygroup(1, 1 - self:Clip1())
+	end
+end
