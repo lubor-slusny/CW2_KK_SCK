@@ -104,7 +104,7 @@ function CustomizableWeaponry_KK.ins2:canThrow()
 	
 	// can't throw the grenade if we're really close to an object
 	td.start = self.Owner:GetShootPos()
-	td.endpos = td.start + CustomizableWeaponry.quickGrenade.getThrowOffset(self)
+	td.endpos = td.start // + CustomizableWeaponry.quickGrenade.getThrowOffset(self.Owner)
 	td.filter = self.Owner
 	
 	local tr = util.TraceLine(td)
@@ -173,7 +173,7 @@ function CustomizableWeaponry_KK.ins2:throwGrenade(IFTP)
 		if SERVER then
 			CustomizableWeaponry.actionSequence.new(self, 1.2, nil, function()
 				local pos = self.Owner:GetShootPos()
-				-- local offset = CustomizableWeaponry.quickGrenade.getThrowOffset(self)
+				-- local offset = CustomizableWeaponry.quickGrenade.getThrowOffset(self.Owner)
 				local eyeAng = self.Owner:EyeAngles()
 				local forward = eyeAng:Forward()
 				

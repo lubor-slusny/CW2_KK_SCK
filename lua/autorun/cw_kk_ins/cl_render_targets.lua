@@ -39,11 +39,13 @@ if CLIENT then
 	local attachmEnt, mdlAttRear, mdlAttFront
 	local retPos, retAng, retNorm
 	
+	local complexTelescopics, rtSize, oldStencilChk
+	
 	function CustomizableWeaponry_KK.ins2:renderTargetSight(att)
 		if not att then return end
 		if not self.ActiveAttachments[att.name] then return end
 		
-		local complexTelescopics = self:canUseComplexTelescopics()
+		complexTelescopics = self:canUseComplexTelescopics()
 		
 		if not complexTelescopics then
 			self.TSGlass:SetTexture("$basetexture", iMatLens:GetTexture("$basetexture"))
@@ -67,7 +69,7 @@ if CLIENT then
 			ang:RotateAroundAxis(ang:Forward(), -90)
 		end
 		
-		local rtSize = self:getRenderTargetSize()
+		rtSize = self:getRenderTargetSize()
 		
 		cd.w = rtSize
 		cd.h = rtSize
@@ -89,7 +91,7 @@ if CLIENT then
 					self.CW_VM:DrawModel()
 				end
 				
-				local oldStencilChk = self._KK_INS2_stencilsDisableLaser
+				oldStencilChk = self._KK_INS2_stencilsDisableLaser
 				
 				self._KK_INS2_stencilsDisableLaser = false
 					for _,lam in pairs(tblLams) do

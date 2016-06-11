@@ -342,7 +342,9 @@ end
 // NEW WM CODE
 // original ins w_models + attachment welements
 
+
 local GetBonePosition = debug.getregistry().Entity.GetBonePosition
+local LookupBone = debug.getregistry().Entity.LookupBone
 
 function SWEP:DrawWorldModel()
 	if self.dt.Safe then
@@ -370,7 +372,7 @@ function SWEP:DrawWorldModel()
 		self:DrawShadow(false)
 		self:RemoveEffects(EF_BONEMERGE) // probably needs to be called on server
 		
-		pos, ang = GetBonePosition(self.Owner, self.Owner:LookupBone("ValveBiped.Bip01_R_Hand"))
+		pos, ang = GetBonePosition(self.Owner, LookupBone(self.Owner, "ValveBiped.Bip01_R_Hand"))
 		
 		pos = (pos + ang:Forward() * self.WMPos.x + ang:Right() * self.WMPos.y + ang:Up() * self.WMPos.z)
 		ang:RotateAroundAxis(ang:Up(), self.WMAng.y)

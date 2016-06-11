@@ -18,7 +18,19 @@ if CLIENT then
 	SWEP.MuzzleEffect = "muzzleflash_pistol"
 	SWEP.Shell = "KK_INS2_9x19"
 		
-	SWEP.AttachmentModelsVM = {}
+	SWEP.AttachmentModelsVM = {
+		["kk_ins2_suppressor_pistol"] = {model = "models/weapons/upgrades/a_suppressor_pistol.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), merge = true},
+		
+		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_mak.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_mak.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_m6x"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_m6x.mdl", bone = "Weapon", pos = Vector(-0.051, 1.011, -1.127), angle = Angle(0, -90, 0), size = Vector(0.85, 0.85, 0.85)},
+		
+		["kk_ins2_m6x_rail"] = {model = "models/cw2/attachments/lowerpistolrail.mdl", bone = "Weapon", pos = Vector(-0.049, 0.575, -0.477), angle = Angle(0, 90, 0), size = Vector(0.119, 0.119, 0.119), 
+			material = "models/weapons/attachments/cw_kk_ins2_cstm_m6x/rail_gy",
+			active = function(self) return self.ActiveAttachments.kk_ins2_m6x end
+		},
+	}
+	
 	SWEP.AttachmentModelsWM = {}
 	
 	SWEP.IronsightPos = Vector(-1.9131, 0, 0.5582)
@@ -33,6 +45,8 @@ SWEP.CanRestOnObjects = false
 SWEP.WeaponLength = 16
 
 SWEP.Attachments = {
+	-- {header = "Lasers", offset = {500, -400}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_m6x"}},
+	-- {header = "Barrel", offset = {-500, -400}, atts = {"kk_ins2_suppressor_pistol"}},
 	["+reload"] = {header = "Ammo", offset = {500, 50}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
@@ -102,6 +116,7 @@ SWEP.Primary.Ammo			= ".380 ACP"
 
 SWEP.FireDelay = 0.1
 SWEP.FireSound = "CW_KK_INS2_WW2_PPK_FIRE"
+SWEP.FireSoundSuppressed = "CW_KK_INS2_M9_FIRE_SUPPRESSED"
 SWEP.Recoil = 0.77
 
 SWEP.HipSpread = 0.034

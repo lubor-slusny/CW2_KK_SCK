@@ -7,14 +7,17 @@ function EFFECT:Init(fx)
 	local ent = fx:GetEntity()
 	
 	if not IsValid(ent) then
+		self:Remove()
 		return
 	end
 	
 	if not IsValid(ent.Owner) then
+		self:Remove()
 		return
 	end
 	
 	if not ent.Owner:ShouldDrawLocalPlayer() and ent.Owner == LocalPlayer() then -- don't create the effect if we're in first person
+		self:Remove()
 		return
 	end
 	
@@ -22,6 +25,7 @@ function EFFECT:Init(fx)
 	local attachModel = ent:getMuzzleModel()
 	
 	if not IsValid(attachModel) then
+		self:Remove()
 		return
 	end
 	
@@ -63,7 +67,10 @@ function EFFECT:Init(fx)
 		end
 	end
 	
-	if ent.NoShells then return end
+	if ent.NoShells then
+		self:Remove() 
+		return 
+	end
 	
 	if shellAtt and ent.Shell then
 		if ent.ShellDelay then

@@ -394,7 +394,7 @@ end
 
 	-- function gren:fireFunc()
 		-- local pos = self.Owner:GetShootPos()
-		-- local offset = CustomizableWeaponry.quickGrenade.getThrowOffset(self)
+		-- local offset = CustomizableWeaponry.quickGrenade.getThrowOffset(self.Owner)
 		-- local eyeAng = self.Owner:EyeAngles()
 		-- local forward = eyeAng:Forward()
 		

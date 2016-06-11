@@ -59,7 +59,7 @@ function SWEP:Think()
 	IFTP = IsFirstTimePredicted()
 	
 	if (not SP and IFTP) or SP then
-		self:CalculateSpread(vel)
+		self:CalculateSpread(vel, FrameTime())
 	end
 	
 	if CT > self.GlobalDelay then
@@ -165,7 +165,7 @@ function SWEP:Think()
 	if IFTP then
 		self:finishReloadShotgun()
 	end
-	
+
 	if SERVER then
 		if self.dt.Safe then
 			if self.CHoldType != self.RunHoldType then

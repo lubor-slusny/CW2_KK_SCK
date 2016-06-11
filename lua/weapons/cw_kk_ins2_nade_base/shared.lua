@@ -146,7 +146,7 @@ function SWEP:IndividualThink()
 						grenade:SetModel(self.WM or self.WorldModel)
 						grenade:Fuse(self.fuseTime)
 						grenade:SetOwner(self.Owner)
-						CustomizableWeaponry.quickGrenade.applyThrowVelocity(self, grenade)
+						CustomizableWeaponry.quickGrenade:applyThrowVelocity(self.Owner, grenade, 800, Vector(0, 0, 150))
 						
 						if not CustomizableWeaponry.callbacks.processCategory(wep, "shouldSuppressAmmoUsage") then
 							self:TakePrimaryAmmo(1)

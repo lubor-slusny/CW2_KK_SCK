@@ -160,6 +160,8 @@ if CLIENT then
 			self.WMEnt:SetSequence(0)
 			self:SetSequence(0)
 		end
+		
+		-- vm:ManipulateBoneScale(vm:LookupBone("M1919_BIPOD"), Vector())
 	end
 	
 	local makeShell = CustomizableWeaponry_KK.ins2.makeShell
