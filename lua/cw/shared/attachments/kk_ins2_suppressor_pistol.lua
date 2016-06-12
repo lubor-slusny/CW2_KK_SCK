@@ -3,18 +3,19 @@ att.name = "kk_ins2_suppressor_pistol"
 att.displayName = "Pistol suppressor"
 att.displayNameShort = "Silencer"
 att.isSuppressor = true
+att.WeaponLength = 8
 
 att.statModifiers = {
 	OverallMouseSensMult = -0.1,
 	RecoilMult = -0.15,
-	WeaponLength = 8,
+	-- WeaponLength = 8,
 }
 
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
 	att.description = {
 		[1] = {t = "Decreases firing noise.", c = CustomizableWeaponry.textColors.POSITIVE},
-		[2] = {t = "Increases weapon length.", c = CustomizableWeaponry.textColors.NEGATIVE}
+		-- [2] = {t = "Increases weapon length.", c = CustomizableWeaponry.textColors.NEGATIVE}
 	}
 end
 

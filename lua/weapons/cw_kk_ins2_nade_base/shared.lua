@@ -136,14 +136,16 @@ function SWEP:IndividualThink()
 				if curTime > self.entityTime then
 					if SERVER then
 						local grenade = ents.Create(self.grenadeEnt)
-						grenade.model = self.WM or self.WorldModel
+						grenade.Model = self.WM or self.WorldModel
+						
+						if self:GetClass() == "cw_kk_ins2_nade_anm14" then
+							grenade.BreakOnImpact = false
+						end
 						
 						grenade:SetPos(self.Owner:GetShootPos())
 						grenade:SetAngles(self.Owner:EyeAngles())
-						grenade.model = self.WM or self.WorldModel
 						grenade:Spawn()
 						grenade:Activate()
-						grenade:SetModel(self.WM or self.WorldModel)
 						grenade:Fuse(self.fuseTime)
 						grenade:SetOwner(self.Owner)
 						CustomizableWeaponry.quickGrenade:applyThrowVelocity(self.Owner, grenade, 800, Vector(0, 0, 150))

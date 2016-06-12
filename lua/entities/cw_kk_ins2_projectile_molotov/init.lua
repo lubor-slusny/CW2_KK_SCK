@@ -5,10 +5,13 @@ include("shared.lua")
 ENT.ExplodeRadius = 384
 ENT.ExplodeDamage = 100
 
+ENT.Model = "models/weapons/w_molotov.mdl"
+ENT.BreakOnImpact = true
+
 local phys, ef
 
 function ENT:Initialize()
-	self:SetModel("models/weapons/w_eq_smokegrenade_thrown.mdl") 
+	self:SetModel(self.Model) 
 	self:PhysicsInit(SOLID_VPHYSICS)
 	self:SetMoveType(MOVETYPE_VPHYSICS)
 	self:SetSolid(SOLID_VPHYSICS)
@@ -34,6 +37,11 @@ end
 local vel, len, CT
 
 function ENT:PhysicsCollide(data, physobj)
+	if self.BreakOnImpact then
+		self:Detonate()
+		return
+	end
+
 	vel = physobj:GetVelocity()
 	len = vel:Length()
 	
@@ -56,14 +64,20 @@ function ENT:Fuse(t)
 	
 	timer.Simple(t, function()
 		if self:IsValid() then
-			local hitPos = self:GetPos()
-			
-			local smokeScreen = ents.Create("cw_smokescreen_impact")
-			smokeScreen:SetPos(hitPos)
-			smokeScreen:Spawn()
-			smokeScreen:CreateParticles()
-			
-			self:Remove()
+			self:Detonate()
 		end
 	end)
+end
+
+function ENT:Detonate()
+	if self:IsValid() then
+		local hitPos = self:GetPos()
+		
+		local smokeScreen = ents.Create("cw_smokescreen_impact")
+		smokeScreen:SetPos(hitPos)
+		smokeScreen:Spawn()
+		smokeScreen:CreateParticles()
+		
+		self:Remove()
+	end
 end

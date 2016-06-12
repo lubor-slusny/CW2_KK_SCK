@@ -17,6 +17,7 @@ if CLIENT then
 	
 	SWEP.MuzzleEffect = "muzzleflash_pistol"
 	SWEP.NoShells = true
+	SWEP.Shell = "KK_INS2_40mm"
 	
 	SWEP.AttachmentModelsVM = {}
 	
@@ -129,5 +130,29 @@ function SWEP:FireBullet(Damage, CurCone, ClumpSpread, Shots)
 		CustomizableWeaponry.grenadeTypes.selectFireSound(self, target)
 	else
 		weapons.GetStored("cw_base").FireBullet(self, Damage, CurCone, ClumpSpread, Shots)
+	end
+end
+
+if CLIENT then
+	local down = Vector(0,0,10)
+	
+	function SWEP:updateOtherParts()
+		local cyc = self.CW_VM:GetCycle()
+		
+		if self.Sequence == self.Animations.base_reload and cyc > 0.25 and cyc < 0.4 then
+			if self._shellCoolDown and self._shellCoolDown > CurTime() then
+				return
+			end
+			
+			self._shellCoolDown = CurTime() + 3
+			
+			local att = self.CW_VM:GetAttachment(2)
+			local dir = att.Ang:Forward()
+			local pos = att.Pos + dir * 10
+			local ang = self.Owner:EyeAngles()
+			ang:RotateAroundAxis(ang:Up(), 180)
+			
+			CustomizableWeaponry_KK.ins2.makeShell(self, pos, ang, down, 0.6, 10)
+		end
 	end
 end

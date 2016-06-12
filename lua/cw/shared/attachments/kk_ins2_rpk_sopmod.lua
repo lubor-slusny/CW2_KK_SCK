@@ -4,6 +4,7 @@ att.displayName = "Tacticool RPK Mod"
 att.displayNameShort = "SOPMOD"
 att.isBG = true
 att.KK_INS2_playIdle = true
+att.WeaponLength = -6
 
 att.statModifiers = {
 	AimSpreadMult = 1,
@@ -13,7 +14,7 @@ att.statModifiers = {
 	DamageMult = 0.1,
 	RecoilMult = -0.2,
 	FireDelayMult = -0.071,
-	WeaponLength = -6
+	-- WeaponLength = -6
 }
 
 if CLIENT then

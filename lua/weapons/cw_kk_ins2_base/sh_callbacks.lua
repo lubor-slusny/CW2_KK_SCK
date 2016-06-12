@@ -172,3 +172,31 @@ CustomizableWeaponry.callbacks:addNew("postDetachAttachment", "KK_INS2_BASE", fu
 	
 	sharedAttachDetach(wep)
 end)
+
+if CLIENT then
+	local orig = Color(255, 167, 112, 255)
+	local red = Color(255, 100, 100, 255)
+	local green = Color(100, 255, 100, 255)
+	local blu = Color(255, 255, 100, 255)
+
+	CustomizableWeaponry.callbacks:addNew("finalizePhysicalBullet", "KK_INS2_BASE", function(wep, data)
+		-- if type(wep) == "Weapon" and IsValid(wep) then
+			-- if !wep.KKINS2Wep then return end
+			
+			-- local clip = wep:Clip1()
+			
+			-- print(clip)
+			
+			-- data.isTracer = clip % 3 == 0 or clip < 6
+			
+			-- if clip < 6 then
+				-- data.clr = red
+			-- elseif clip > (wep.Primary.ClipSize / 2) then
+				-- data.clr = green
+			-- else
+				-- data.clr = blu
+			-- end
+		-- end
+	end)
+end
+

@@ -4,13 +4,14 @@ att.displayName = "Short Assault Rifle"
 att.displayNameShort = "SAR"
 att.isBG = true
 att.KK_INS2_playIdle = true
+att.WeaponLength = -4
 
 att.statModifiers = {
 	AimSpreadMult = 0.3,
 	DrawSpeedMult = 0.05,
 	DamageMult = 0.1,
 	RecoilMult = 0.1,
-	WeaponLength = -4
+	-- WeaponLength = -4
 }
 
 if CLIENT then

@@ -46,7 +46,7 @@ CustomizableWeaponry_KK.ins2.quickGrenades.ww2de = {
 }
 
 local nadeEnt = {
-	[0] = "cw_kk_ins2_projectile_frag",
+	[0] = "cw_grenade_thrown",
 	[1] = "cw_flash_thrown",
 	[2] = "cw_smoke_thrown",
 }
@@ -102,17 +102,17 @@ function CustomizableWeaponry_KK.ins2:canThrow()
 		return false
 	end
 	
-	// can't throw the grenade if we're really close to an object
-	td.start = self.Owner:GetShootPos()
-	td.endpos = td.start // + CustomizableWeaponry.quickGrenade.getThrowOffset(self.Owner)
-	td.filter = self.Owner
+	-- // can't throw the grenade if we're really close to an object
+	-- td.start = self.Owner:GetShootPos()
+	-- td.endpos = td.start + CustomizableWeaponry.quickGrenade:getThrowOffset(self.Owner)
+	-- td.filter = self.Owner
 	
-	local tr = util.TraceLine(td)
+	-- local tr = util.TraceLine(td)
 	
-	// something in front of us, can't throw
-	if tr.Hit then
-		return false
-	end
+	-- // something in front of us, can't throw
+	-- if tr.Hit then
+		-- return false
+	-- end
 	
 	// everything passes, can throw, woo!
 	return true
@@ -178,7 +178,7 @@ function CustomizableWeaponry_KK.ins2:throwGrenade(IFTP)
 				local forward = eyeAng:Forward()
 				
 				local nade = ents.Create(entClass)
-				nade.model = quickNadeTweak.wm
+				nade.Model = quickNadeTweak.wm
 				
 				-- nade:SetPos(pos + offset)
 				nade:SetPos(pos)
@@ -189,7 +189,6 @@ function CustomizableWeaponry_KK.ins2:throwGrenade(IFTP)
 				
 				nade:Fuse(3)
 				nade:SetOwner(self.Owner)
-				nade:SetModel(quickNadeTweak.wm)
 				
 				local phys = nade:GetPhysicsObject()
 				

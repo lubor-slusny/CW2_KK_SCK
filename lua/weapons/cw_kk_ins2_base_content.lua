@@ -177,60 +177,7 @@ end
 
 // STATS
 do
-	local ok = CustomizableWeaponry.textColors.POSITIVE
-	local nok = CustomizableWeaponry.textColors.NEGATIVE
-
-	CustomizableWeaponry:registerRecognizedStat("SpeedDec", "Decreases movement speed", "Increases movement speed", nok, ok)
-	CustomizableWeaponry:registerRecognizedStat("WeaponLength", "Decreases weapon length", "Increases weapon length", ok, nok)
-
-	CustomizableWeaponry.originalValue:add("SpeedDec", false, false)
-	CustomizableWeaponry.originalValue:add("WeaponLength", false, false)
 	
-	if CLIENT then	
-		local stat = {}
-		stat.varName = "WeaponLength"
-		stat.display = "WEAPON LENGTH"
-		stat.desc = "Minimal distance allowed between weapon and target.\nMoving closer to your target will holster your weapon.\nSuppressors and barrel modifications affect this stat."
-		stat.reverse = true
-
-		function stat:compare(wep)
-			local var1, var2 = wep[self.varName], wep[self.origVarName]
-
-			if !var1 or !var2 then 
-				return CustomizableWeaponry.textColors.REGULAR 
-			end
-			
-			if var1 < var2 then
-				return CustomizableWeaponry.textColors.POSITIVE
-			elseif var1 > var2 then
-				return CustomizableWeaponry.textColors.NEGATIVE
-			end
-		end
-		
-		local out
-		
-		function stat:textFunc(wep)
-			out = "N/A"
-			
-			if wep.WeaponLength then
-				out = (math.Round(wep.WeaponLength * 0.0254, 2)) .. "M"
-			end
-			
-			return out
-		end
-
-		function stat:origTextFunc(wep)
-			out = "N/A"
-			
-			if wep.WeaponLength_Orig then
-				out = (math.Round(wep.WeaponLength_Orig * 0.0254, 2)) .. "M"
-			end
-			
-			return out
-		end
-
-		CustomizableWeaponry.statDisplay:addStat(stat)
-	end
 end
 // KILLS
 

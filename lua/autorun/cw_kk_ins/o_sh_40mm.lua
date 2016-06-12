@@ -10,17 +10,14 @@ if SERVER then
 		local nade = ents.Create(name)
 		nade:SetPos(pos + offset)
 		nade:SetAngles(eyeAng)
-		
-		-- if self.CW_KK_40MM_MDL then
-			-- nade.model = self.CW_KK_40MM_MDL // w8 for CW2 update
-		-- end
-		
 		nade:Spawn()
 		nade:Activate()
 		nade:SetOwner(self.Owner)
 		
 		if self.CW_KK_40MM_MDL then
 			nade:SetModel(self.CW_KK_40MM_MDL)
+			nade:PhysicsDestroy()
+			nade:PhysicsInit(SOLID_VPHYSICS)
 		end
 		
 		local phys = nade:GetPhysicsObject()

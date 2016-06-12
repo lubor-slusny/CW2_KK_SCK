@@ -158,7 +158,7 @@ local SP = game.SinglePlayer()
 
 if SERVER then
 	hook.Add("PlayerCanPickupWeapon", "ZZZZZ_CW_KK_INS2_C4", function(ply, wep)
-		if !wep.KKINS2RCE then return end
+		if !wep.KKINS2RCE then return nil end
 		
 		if (ply:HasWeapon(wep:GetClass())) then
 			owned = ply:GetWeapon(wep:GetClass())

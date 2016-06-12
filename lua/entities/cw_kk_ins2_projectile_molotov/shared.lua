@@ -1,7 +1,7 @@
 ENT.Type = "anim"
 ENT.Base = "base_entity"
-ENT.PrintName = "Thrown smoke grenade"
+ENT.PrintName = "Thrown incendiary grenade"
 ENT.Author = "Spy"
-ENT.Information = "Thrown smoke grenade"
+ENT.Information = "Thrown incendiary grenade"
 ENT.Spawnable = false
 ENT.AdminSpawnable = false 

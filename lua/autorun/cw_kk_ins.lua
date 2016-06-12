@@ -134,9 +134,12 @@ if CLIENT then
 	local sslabeltxt = {
 		"^^ [Cheapest] physmaterial sound",
 		"^^ [CW2 Base] timer, custom sound",
-		"^^ [KK INS2] callback, custom sound",
-		"^^ [KK INS2] custom physmaterial"
+		"^^ [KK INS2] callback, custom sound"
 	}
+	
+	if CustomizableWeaponry_KK.HOME then
+		table.insert(sslabeltxt, "^^ [KK INS2] custom physmaterial")
+	end
 	
 	CustomizableWeaponry_KK.panels.ins2 = function(panel)
 		panel:AddControl("Label", {Text = "INS2 Pack:"}):DockMargin(0, 0, 8, 0)
