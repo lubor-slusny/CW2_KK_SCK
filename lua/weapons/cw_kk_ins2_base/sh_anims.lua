@@ -135,7 +135,7 @@ function SWEP:drawAnimFunc()
 	prefix = self:getForegripMode()
 	
 	if not self._KK_INS2_PickedUp then
-		if !(clip == 0 and self.KK_INS2_emptyIdle) and self.Owner then // wtf owner?
+		if !(clip == 0 and self.KK_INS2_emptyIdle) and IsValid(self.Owner) then // wtf owner?
 			self:pickupAnimFunc(prefix)
 			return		
 		end
@@ -144,8 +144,14 @@ function SWEP:drawAnimFunc()
 	clip = self:Clip1()
 	suffix = ""
 	
-	if clip == 0 and self.KK_INS2_emptyIdle then
-		suffix = "_empty"
+	if self.dt.INS2GLActive then
+		if !self.M203Chamber and self.KK_INS2_emptyIdleGL then
+			suffix = "_empty"
+		end
+	else
+		if clip == 0 and self.KK_INS2_emptyIdle then
+			suffix = "_empty"
+		end
 	end
 	
 	self:sendWeaponAnim(prefix .. "draw" .. suffix,self.DrawSpeed,0)

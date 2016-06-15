@@ -32,7 +32,7 @@ function SWEP:updateReloadTimes()
 		
 	// delete below once above is finished	
 	
-	if self.ShotgunReload then
+	if self.ShotgunReload and !self.dt.INS2GLActive then
 		self.Animations.reload_start = self.Animations[mode .. "reload_start"]
 		self.Animations.insert = self.Animations[mode .. "insert"]
 		self.Animations.reload_end = self.Animations[mode .. "reload_end"]

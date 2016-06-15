@@ -224,38 +224,7 @@ function SWEP:beginReload()
 
 	self.lastMag = mag
 	
-	if self.ShotgunReload then
-		self.WasEmpty = mag == 0
-		
-		local anim = self:getForegripMode() .. "reload_start"
-		local time = CT + self.ReloadStartTime / self.ReloadSpeed
-		
-		if self.WasEmpty then
-			anim = anim .. "_empty"
-			time = CT + self.ReloadStartTimeEmpty / self.ReloadSpeed
-			
-			if SERVER and self.ReloadFirstShell then
-				CustomizableWeaponry.actionSequence.new(self, self.ReloadFirstShell, nil, function()
-					if self.ShotgunReloadState == 0 then return end	// melee attack interuption
-					
-					self:SetClip1(mag + 1)
-					self.Owner:SetAmmo(ammo - 1, self.Primary.Ammo)
-					
-					if ammo - 1 <= 0 then
-						self.ShotgunReloadState = 2
-					end
-				end)
-			end
-		end
-		
-		self:sendWeaponAnim(anim, self.ReloadSpeed)
-		
-		self.ReloadDelay = time
-		self:SetNextPrimaryFire(time)
-		self:SetNextSecondaryFire(time)
-		self.GlobalDelay = time
-		self.ShotgunReloadState = 1
-	else	
+	if self.dt.INS2GLActive or !self.ShotgunReload then
 		local reloadTime = nil
 		local reloadHalt = nil
 		
@@ -297,6 +266,37 @@ function SWEP:beginReload()
 				self:sendWeaponAnim("reload", self.ReloadSpeed)
 			end
 		end
+	else	
+		self.WasEmpty = mag == 0
+		
+		local anim = self:getForegripMode() .. "reload_start"
+		local time = CT + self.ReloadStartTime / self.ReloadSpeed
+		
+		if self.WasEmpty then
+			anim = anim .. "_empty"
+			time = CT + self.ReloadStartTimeEmpty / self.ReloadSpeed
+			
+			if SERVER and self.ReloadFirstShell then
+				CustomizableWeaponry.actionSequence.new(self, self.ReloadFirstShell, nil, function()
+					if self.ShotgunReloadState == 0 then return end	// melee attack interuption
+					
+					self:SetClip1(mag + 1)
+					self.Owner:SetAmmo(ammo - 1, self.Primary.Ammo)
+					
+					if ammo - 1 <= 0 then
+						self.ShotgunReloadState = 2
+					end
+				end)
+			end
+		end
+		
+		self:sendWeaponAnim(anim, self.ReloadSpeed)
+		
+		self.ReloadDelay = time
+		self:SetNextPrimaryFire(time)
+		self:SetNextSecondaryFire(time)
+		self.GlobalDelay = time
+		self.ShotgunReloadState = 1
 	end
 	
 	if SERVER then
@@ -310,9 +310,7 @@ end
 
 // M203 2 - for melee attacks that interupt reloads
 
-local mag, ammo
-
-function SWEP:finishReload()
+function SWEP:finishReloadINS2GL()
 	if self.dt.INS2GLActive then
 		if SERVER then
 			self.Owner:RemoveAmmo(1, "40MM")
@@ -324,7 +322,13 @@ function SWEP:finishReload()
 		
 		return
 	end
+end
 
+local mag, ammo
+
+function SWEP:finishReload()
+	self:finishReloadINS2GL()
+	
 	mag, ammo = self:Clip1(), self.Owner:GetAmmoCount(self.Primary.Ammo)
 
 	local suppressReloadLogic = CustomizableWeaponry.callbacks.processCategory(self, "defaultReloadLogic", mag == 0)
@@ -376,6 +380,10 @@ local CT, keyDown, mag, ammo
 function SWEP:finishReloadShotgun()
 	CT = CurTime()
 	
+	if self.ReloadDelay and CT >= self.ReloadDelay then
+		self:finishReloadINS2GL()
+	end
+		
 	if self.ShotgunReloadState == 1 then
 		keyDown = self.Owner:KeyDown(IN_ATTACK) or self.Owner:KeyDown(IN_ATTACK2)
 		
