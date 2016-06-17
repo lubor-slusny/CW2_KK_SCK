@@ -21,7 +21,7 @@ if CLIENT then
 	SWEP.ShellDelay = 0.75
 	
 	SWEP.BackupSights = {
-		["kk_ins2_scope_mosin"] = {
+		["kk_ins2_scope_k98"] = {
 			Vector(-2.5615, -4, 1.588),
 			Vector(0.2652, 0.0073, 0)
 		},
@@ -32,30 +32,24 @@ if CLIENT then
 		
 		["kk_ins2_ww2_stripper"] = {model = "models/weapons/upgrades/a_kar98k_stripper_clip.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_gl_gp25"] = {model = "models/weapons/upgrades/a_kar98k_gl.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_gl_ggg"] = {model = "models/weapons/upgrades/a_kar98k_gl.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 
-		["kk_ins2_scope_mosin"] = {model = "models/weapons/upgrades/a_optic_kar98k.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_scope_k98"] = {model = "models/weapons/upgrades/a_optic_kar98k.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 	}
 
 	SWEP.AttachmentModelsWM = {
 		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/w_kar98k_bayonet.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_gl_gp25"] = {model = "models/weapons/upgrades/w_enfield_gl.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_gl_ggg"] = {model = "models/weapons/upgrades/w_enfield_gl.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_scope_mosin"] = {model = "models/weapons/upgrades/w_optic_kar98k.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_scope_k98"] = {model = "models/weapons/upgrades/w_optic_kar98k.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 	}
 	
 	SWEP.IronsightPos = Vector(-2.5615, -4, 1.588)
 	SWEP.IronsightAng = Vector(0.2652, 0.0073, 0)
 
-	SWEP.KKINS2ScopeZF4Pos = Vector(-2.8233, -2, 1.2934)
-	SWEP.KKINS2ScopeZF4Ang = Vector(0, 0, 0)
-
-	SWEP.KKINS2ScopeMosinPos = Vector(-2.8003, 0, 0.9761)
-	SWEP.KKINS2ScopeMosinAng = Vector(0, 0, 0)
-
-	SWEP.KKINS2ScopeMosinPos = Vector(-2.5434, -1.5, 0.3398)
-	SWEP.KKINS2ScopeMosinAng = Vector(0, 0, 0)
+	SWEP.KKINS2ScopeK98Pos = Vector(-2.5434, -1.5, 0.3398)
+	SWEP.KKINS2ScopeK98Ang = Vector(0, 0, 0)
 
 	SWEP.M203Pos = Vector(-0.9306, 0, 3.634)
 	SWEP.M203Ang = Vector(1.9036, 0, 0)
@@ -64,8 +58,8 @@ if CLIENT then
 end
 
 SWEP.Attachments = {
-	{header = "Sight", offset = {500, -500}, atts = {"kk_ins2_scope_mosin"}},
-	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_ww2_knife", "kk_ins2_gl_gp25"}},
+	{header = "Sight", offset = {500, -500}, atts = {"kk_ins2_scope_k98"}},
+	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_ww2_knife", "kk_ins2_gl_ggg"}},
 	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
 	{header = "Clip", offset = {200, 0}, atts = {"kk_ins2_ww2_stripper"}},
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_magnum", "am_matchgrade"}}
@@ -147,8 +141,10 @@ SWEP.Animations = {
 	gl_on_safe = "glsetup_down",
 	gl_on_safe_aim = "glsetup_iron_down",
 	
-	gl_turn_on = "glsetup_in",
+	gl_turn_on_full = "glsetup_in",
+	gl_turn_on = "glsetup_in_empty",
 	gl_turn_off = "glsetup_out",
+	gl_turn_off_empty = "glsetup_out_empty",
 }
 
 SWEP.SpeedDec = 40
@@ -220,8 +216,14 @@ SWEP.ShotgunReload = true
 SWEP.ReticleInactivityPostFire = SWEP.FireDelay + 0.2
 SWEP.GlobalDelayOnShoot = SWEP.FireDelay
 
-SWEP.KK_INS2_emptyIdle = true
+SWEP.KK_INS2_EmptyIdle = true
 SWEP.WeaponLength = 38
+
+SWEP.gl_on_time = 7.2
+SWEP.gl_off_time = 5.48
+SWEP.gl_off_shot_time = 2.4
+SWEP.gl_on_ReloadTime = 5.6
+SWEP.gl_on_ReloadHalt = 7.2
 
 SWEP.ReloadTime = 4
 SWEP.ReloadHalt = 4.49

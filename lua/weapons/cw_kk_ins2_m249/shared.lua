@@ -117,7 +117,7 @@ if CLIENT then
 	SWEP.KKINS2CSTMACOGPos = Vector(-2.0071, -2, -0.0976)
 	SWEP.KKINS2CSTMACOGAng = Vector(0, 0, 0)
 
-	SWEP.CustomizationMenuScale = 0.017
+	SWEP.CustomizationMenuScale = 0.014
 end
 
 SWEP.Chamberable = false

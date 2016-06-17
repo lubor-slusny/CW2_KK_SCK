@@ -18,7 +18,7 @@ if CLIENT then
 	SWEP.ShellDelay = 13/30
 	
 	SWEP.AttachmentModelsVM = {
-		["kk_ins2_optic_raul"] = {model = "models/weapons/upgrades/a_modkit_spas12.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
+		{model = "models/weapons/upgrades/a_modkit_spas12.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		
 		["kk_ins2_suppressor_shotgun"] = {model = "models/weapons/upgrades/a_suppressor_12ga.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		

@@ -148,8 +148,8 @@ if CLIENT then
 			nearWallOutTime = CurTime()
 		end
 		
-		if cvAnimated:GetInt() != 1 or cvFreeze:GetInt() == 1 then
-			if self:isReticleActive() and (self:isAiming() or self.dt.BipodDeployed) and nearWallOutTime < CurTime() then
+		if (cvAnimated:GetInt() != 1 or cvFreeze:GetInt() == 1) or (!self:isAiming() and self.dt.BipodDeployed) then
+			if self:isReticleActive() and nearWallOutTime < CurTime() then // 
 				EA = self:getReticleAngles()
 				retPos = EyePos() + EA:Forward() * retDist
 			end

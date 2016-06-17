@@ -109,7 +109,7 @@ SWEP.Attachments = {
 }
 
 SWEP.Chamberable = false
-SWEP.KK_INS2_emptyIdle = true
+SWEP.KK_INS2_EmptyIdle = true
 
 SWEP.Animations = {
 	draw = "base_ready",

@@ -318,11 +318,16 @@ end
 if CLIENT then
 	CustomizableWeaponry_KK.ins2.nodrawMat = CustomizableWeaponry_KK.ins2.nodrawMat or {}
 	-- CustomizableWeaponry_KK.ins2.nodrawMat["models/weapons/optics/4x_reticule"] = true
+	
 	CustomizableWeaponry_KK.ins2.nodrawMat["models/weapons/optics/elcan_reticule"] = true
 	CustomizableWeaponry_KK.ins2.nodrawMat["models/weapons/optics/po4x_reticule"] = true
 	CustomizableWeaponry_KK.ins2.nodrawMat["models/weapons/optics/mosin_crosshair"] = true
 	CustomizableWeaponry_KK.ins2.nodrawMat["models/weapons/optics/mk4_crosshair"] = true
+	
+	CustomizableWeaponry_KK.ins2.nodrawMat["models/weapons/optics/enfield_crosshair"] = true
 	CustomizableWeaponry_KK.ins2.nodrawMat["models/weapons/optics/kar98k_crosshair"] = true
+	CustomizableWeaponry_KK.ins2.nodrawMat["models/weapons/optics/weaver_crosshair"] = true
+	CustomizableWeaponry_KK.ins2.nodrawMat["models/weapons/optics/zf4_crosshair"] = true
 	
 	-- CustomizableWeaponry_KK.ins2.nodrawMat["models/weapons/attachments/cw_kk_ins2_cstm_eotechxps/4x_reticule"] = true
 end

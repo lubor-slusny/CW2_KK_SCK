@@ -12,7 +12,7 @@ if CLIENT then
 		isBipod = self.dt.BipodDeployed
 		cycle = self.CW_VM:GetCycle()
 
-		if self:Clip1() == 0 and self.KK_INS2_emptyIdle then
+		if self:Clip1() == 0 and self.KK_INS2_EmptyIdle then
 			suffix = "_empty"
 		else
 			suffix = ""
@@ -53,7 +53,7 @@ if CLIENT then
 		prefix = self:getForegripMode()
 		suffix = ""
 			
-		if self:Clip1() == 0 and self.KK_INS2_emptyIdle then
+		if self:Clip1() == 0 and self.KK_INS2_EmptyIdle then
 			suffix = "_empty"
 		end
 	
@@ -69,7 +69,7 @@ if CLIENT then
 		prefix = self:getForegripMode()
 		suffix = ""
 		
-		if self:Clip1() == 0 and self.KK_INS2_emptyIdle then
+		if self:Clip1() == 0 and self.KK_INS2_EmptyIdle then
 			suffix = "_empty"
 		end
 		
@@ -86,7 +86,7 @@ if CLIENT then
 		prefix = self:getForegripMode()
 		suffix = ""
 		
-		if self:Clip1() == 0 and self.KK_INS2_emptyIdle then
+		if self:Clip1() == 0 and self.KK_INS2_EmptyIdle then
 			suffix = "_empty"
 		end
 		
@@ -110,7 +110,7 @@ if CLIENT then
 		-- cycle = 0.45
 		cycle = 0
 		
-		if self:Clip1() == 0 and self.KK_INS2_emptyIdle then
+		if self:Clip1() == 0 and self.KK_INS2_EmptyIdle then
 			suffix = "_empty"
 		end
 		
@@ -135,7 +135,7 @@ function SWEP:drawAnimFunc()
 	prefix = self:getForegripMode()
 	
 	if not self._KK_INS2_PickedUp then
-		if !(clip == 0 and self.KK_INS2_emptyIdle) and IsValid(self.Owner) then // wtf owner?
+		if !(clip == 0 and self.KK_INS2_EmptyIdle) and IsValid(self.Owner) then // wtf owner?
 			self:pickupAnimFunc(prefix)
 			return		
 		end
@@ -145,11 +145,11 @@ function SWEP:drawAnimFunc()
 	suffix = ""
 	
 	if self.dt.INS2GLActive then
-		if !self.M203Chamber and self.KK_INS2_emptyIdleGL then
+		if !self.M203Chamber and self.KK_INS2_EmptyIdleGL then
 			suffix = "_empty"
 		end
 	else
-		if clip == 0 and self.KK_INS2_emptyIdle then
+		if clip == 0 and self.KK_INS2_EmptyIdle then
 			suffix = "_empty"
 		end
 	end
@@ -164,7 +164,7 @@ function SWEP:meleeAnimFunc()
 	prefix = self:getForegripMode()
 	suffix = ""
 	
-	if self.KK_INS2_emptyIdle and clip == 0 then
+	if self.KK_INS2_EmptyIdle and clip == 0 then
 		suffix = "_empty"
 	end
 	
@@ -178,7 +178,7 @@ function SWEP:fireAnimFunc()
 	prefix = self:getForegripMode()
 	suffix = ""
 	
-	if clip == 1 and self.KK_INS2_emptyIdle then
+	if clip == 1 and self.KK_INS2_EmptyIdle then
 		suffix = "_last"
 	elseif (clip == 0 and not self.dt.INS2GLActive) or (self.dt.INS2GLActive and not self.M203Chamber) then
 		suffix = "_empty"
@@ -189,6 +189,12 @@ function SWEP:fireAnimFunc()
 	end
 	
 	self:sendWeaponAnim(prefix .. "fire" .. suffix,rate,cyc)
+	
+	if self.KK_INS2_BoltAction and not self.dt.INS2GLActive and clip > 0 then
+		CustomizableWeaponry.actionSequence.new(self, self.KK_INS2_BoltAction, nil, function()
+			self:sendWeaponAnim(prefix .. "bolt" .. suffix,1,0)
+		end)
+	end
 end //*/
 
 -- function SWEP:fireAnimFunc() end
@@ -197,7 +203,7 @@ function SWEP:_holsterAnimFunc()
 	prefix = self:getForegripMode()
 	suffix = ""
 	
-	if self:Clip1() == 0 and self.KK_INS2_emptyIdle then
+	if self:Clip1() == 0 and self.KK_INS2_EmptyIdle then
 		suffix = "_empty"
 	end
 	

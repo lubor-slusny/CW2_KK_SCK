@@ -53,7 +53,7 @@ SWEP.KKINS2Wep = true
 SWEP.KKINS2RCE = false
 SWEP.KKINS2Melee = false
 SWEP.KKINS2Nade = false
-SWEP.KK_INS2_emptyIdle = false
+SWEP.KK_INS2_EmptyIdle = false
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.m67
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.bayonet
@@ -291,7 +291,7 @@ function SWEP:unloadWeapon(force)
 	end
 	
 	if CLIENT then
-		if self.KK_INS2_emptyIdle then
+		if self.KK_INS2_EmptyIdle then
 			self:idleAnimFunc()
 		end
 	end
@@ -321,7 +321,7 @@ function SWEP:PrepareForPickup(drop)
 			self:drawAnimFunc()
 		end
 		
-		if self.KK_INS2_emptyIdle and self:Clip1() == 0 then return end
+		if self.KK_INS2_EmptyIdle and self:Clip1() == 0 then return end
 		
 		if drop then
 			self:setGlobalDelay(self.FirstDeployTime - 0.2)
@@ -348,7 +348,7 @@ function SWEP:PrepareForPickup(drop)
 			prefix = self:getForegripMode()
 			suffix = ""
 			
-			if self:Clip1() == 0 and self.KK_INS2_emptyIdle then
+			if self:Clip1() == 0 and self.KK_INS2_EmptyIdle then
 				suffix = "_empty"
 			end
 			
@@ -367,19 +367,63 @@ if CLIENT then
 end
 
 function SWEP:toggleGLMode(IFTP)
-	if self.dt.INS2GLActive then
-		self.dt.INS2GLActive = false
-		
-		if (SERVER and SP) or (CLIENT and !SP and IFTP) then
-			self:sendWeaponAnim("gl_turn_off",1.5,0)
+	if self._currentGrenadeLauncher.ww2GrenadeLauncher then
+		if self.dt.INS2GLActive then
+			self.dt.INS2GLActive = false
+			
+			if self.M203Chamber then
+				if (SERVER and SP) or (CLIENT and !SP and IFTP) then
+					self:sendWeaponAnim("gl_turn_off",1,0)
+				end
+				self:delayEverything(self.gl_off_time or 7)
+			else
+				if (SERVER and SP) or (CLIENT and !SP and IFTP) then
+					self:sendWeaponAnim("gl_turn_off_empty",1,0)
+				end
+				self:delayEverything(self.gl_off_shot_time or 2)
+			end
+			
+			self:unloadM203()
+		else
+			if self.Owner:GetAmmoCount("40MM") < 1 then 
+				return 
+			end
+			
+			self.dt.INS2GLActive = true
+			
+			if (SERVER and SP) or (CLIENT and !SP and IFTP) then
+				if self:Clip1() > 0 then
+					self:sendWeaponAnim("gl_turn_on_full",1,0)
+				else
+					self:sendWeaponAnim("gl_turn_on",1,0)
+				end
+			end
+			
+			CustomizableWeaponry.actionSequence.new(self, self.gl_on_ReloadTime, nil, function()
+				self.M203Chamber = true
+				if SERVER then
+					self.Owner:RemoveAmmo(1, "40MM")
+					SendUserMessage("CW_KK_INS2_READYM203", self.Owner)
+				end
+			end)
+			
+			self:delayEverything(self.gl_on_time or 7)
 		end
 	else
-		self.dt.INS2GLActive = true
-		
-		if (SERVER and SP) or (CLIENT and !SP and IFTP) then
-			self:sendWeaponAnim("gl_turn_on",1.5,0)
+		if self.dt.INS2GLActive then
+			self.dt.INS2GLActive = false
+			
+			if (SERVER and SP) or (CLIENT and !SP and IFTP) then
+				self:sendWeaponAnim("gl_turn_off",1.5,0)
+			end
+		else
+			self.dt.INS2GLActive = true
+			
+			if (SERVER and SP) or (CLIENT and !SP and IFTP) then
+				self:sendWeaponAnim("gl_turn_on",1.5,0)
+			end
 		end
+		
+		self:delayEverything(0.6)
 	end
-	
-	self:delayEverything(0.6)
 end

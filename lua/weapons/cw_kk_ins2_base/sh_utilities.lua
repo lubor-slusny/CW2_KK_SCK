@@ -147,9 +147,7 @@ function SWEP:hasInstalledStencilSight()
 end
 
 function SWEP:hasInstalledGL()
-	return 
-		self.ActiveAttachments.kk_ins2_gl_gp25 or 
-		self.ActiveAttachments.kk_ins2_gl_m203
+	return self._currentGrenadeLauncher != nil
 end
 
 function SWEP:getForegripMode()
@@ -168,30 +166,14 @@ function SWEP:getForegripMode()
 	return "base_"
 end
 
-local CW2_ATTS = CustomizableWeaponry.registeredAttachmentsSKey
-
-function SWEP:getPrimarySight()
-	for k,v in pairs(self.ActiveAttachments) do
-		if v and CW2_ATTS[k].isSight then
-			return k
-		end
-	end
+function SWEP:getPrimarySight()	
+	return self._currentPrimarySight and self._currentPrimarySight.name
 end
 
 function SWEP:getSecondarySight()
-	for k,v in pairs(self.ActiveAttachments) do
-		if v and CW2_ATTS[k].isSecondarySight then
-			return k
-		end
-	end
+	return self._currentSecondarySight and self._currentSecondarySight.name
 end
 
 function SWEP:getGLAttName()
-	for k,v in pairs(self.ActiveAttachments) do
-		if v and CW2_ATTS[k].isGrenadeLauncher then
-			return CW2_ATTS[k].displayNameShort
-		end
-	end
-	
-	return "No grenade launcher attached."
+	return (self._currentGrenadeLauncher and self._currentGrenadeLauncher.displayNameShort) or "No grenade launcher attached."
 end

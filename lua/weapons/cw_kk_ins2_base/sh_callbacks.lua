@@ -146,6 +146,18 @@ CustomizableWeaponry.callbacks:addNew("postAttachAttachment", "KK_INS2_BASE", fu
 	
 	att = CW2_ATTS[wep.Attachments[catId].atts[attId]]
 	
+	if att.isSight then
+		wep._currentPrimarySight = att
+	end
+	
+	if att.isSecondarySight then
+		wep._currentSecondarySight = att
+	end
+	
+	if att.isGrenadeLauncher then
+		wep._currentGrenadeLauncher = att
+	end
+	
 	if CLIENT then
 		if att.KK_INS2_playIdle then
 			if wep.dt.State == CW_CUSTOMIZE then
@@ -163,6 +175,18 @@ CustomizableWeaponry.callbacks:addNew("postDetachAttachment", "KK_INS2_BASE", fu
 	if !wep.KKINS2Wep then return end
 	
 	att = attTable
+	
+	if att.isSight then
+		wep._currentPrimarySight = nil
+	end
+	
+	if att.isSecondarySight then
+		wep._currentSecondarySight = nil
+	end
+	
+	if att.isGrenadeLauncher then
+		wep._currentGrenadeLauncher = nil
+	end
 	
 	if CLIENT then
 		if att.KK_INS2_playIdle then

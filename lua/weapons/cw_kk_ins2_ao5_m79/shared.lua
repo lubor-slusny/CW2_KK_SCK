@@ -38,7 +38,7 @@ SWEP.Attachments = {
 	{header = "", offset = {500, 0}, atts = {"kk_ins2_gp25_ammo"}},
 }
 
-SWEP.KK_INS2_emptyIdle = true
+SWEP.KK_INS2_EmptyIdle = true
 
 SWEP.Animations = {
 	draw = "base_ready",

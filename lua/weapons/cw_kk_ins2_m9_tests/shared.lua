@@ -109,7 +109,7 @@ SWEP.Primary.DefaultClip	= 15
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "9x19MM"
 
-SWEP.KK_INS2_emptyIdle = true
+SWEP.KK_INS2_EmptyIdle = true
 SWEP.CanRestOnObjects = false
 SWEP.WeaponLength = 16
 

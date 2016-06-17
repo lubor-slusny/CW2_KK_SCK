@@ -72,6 +72,19 @@ if CLIENT then
 	
 	SWEP.CustomizationMenuScale = 0.01
 	SWEP.HUD_MagText = "TUBE: "
+	
+	SWEP.Trivia = {
+		text = "This one is the best.", 
+		x = -500, 
+		y = -500, 
+		textFormatFunc = function(self, wep) 
+			if wep.ActiveAttachments.md_bipod then 
+				return "" 
+			else 
+				return self.text 
+			end 
+		end
+	}
 end
 
 SWEP.Chamberable = false
@@ -87,7 +100,7 @@ if CustomizableWeaponry_KK.HOME then
 	-- table.insert(SWEP.Attachments, {header = "CSGO", offset = {1000, 100}, atts = {"kk_wallhaq"}})
 end
 
-SWEP.KK_INS2_emptyIdle = true
+SWEP.KK_INS2_EmptyIdle = true
 
 SWEP.Animations = {
 	draw = "base_ready",

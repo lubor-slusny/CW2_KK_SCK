@@ -274,7 +274,7 @@ SWEP.gl_on_ReloadHalt = 3.85
 	-- local prefix = self:getForegripMode()
 	-- local suffix = ""
 	
-	-- if clip == 1 and self.KK_INS2_emptyIdle then
+	-- if clip == 1 and self.KK_INS2_EmptyIdle then
 		-- suffix = "_last"
 	-- elseif (clip == 0 and not self.dt.INS2GLActive) or (self.dt.INS2GLActive and not self.M203Chamber) then
 		-- suffix = "_empty"

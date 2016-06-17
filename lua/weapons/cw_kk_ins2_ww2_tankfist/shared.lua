@@ -38,7 +38,7 @@ SWEP.WeaponLength = 35
 SWEP.Attachments = {
 }
 
-SWEP.KK_INS2_emptyIdle = true
+SWEP.KK_INS2_EmptyIdle = true
 
 SWEP.Animations = {
 	draw = "panzerfaust_ready",

@@ -9,7 +9,7 @@ include("sh_soundscript.lua")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "LODSEMONE"
+	SWEP.PrintName = "LODS-EMONE"
 	SWEP.CSMuzzleFlashes = true
 	SWEP.ViewModelMovementScale = 1.15
 	
@@ -26,31 +26,34 @@ if CLIENT then
 		["kk_ins2_ww2_stripper"] = {model = "models/weapons/upgrades/a_enfield_stripper_clip.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/a_enfield_bayonet.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_gl_gp25"] = {model = "models/weapons/upgrades/a_enfield_gl.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_gl_enfield"] = {model = "models/weapons/upgrades/a_enfield_gl.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 
-		["kk_ins2_scope_mosin"] = {model = "models/weapons/upgrades/a_optic_enfield.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_scope_enfield"] = {model = "models/weapons/upgrades/a_optic_enfield.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 	}
 
 	SWEP.AttachmentModelsWM = {
 		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/w_enfield_bayonet.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_gl_gp25"] = {model = "models/weapons/upgrades/w_enfield_gl.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_gl_enfield"] = {model = "models/weapons/upgrades/w_enfield_gl.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_scope_mosin"] = {model = "models/weapons/upgrades/w_optic_enfield.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_scope_enfield"] = {model = "models/weapons/upgrades/w_optic_enfield.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 	}
 	
 	SWEP.IronsightPos = Vector(-2.5678, -3, 1.5173)
 	SWEP.IronsightAng = Vector(-0.1284, 0, 0)
 
-	SWEP.KKINS2ScopeMosinPos = Vector(-2.5738, -1.5, 0.8389)
-	SWEP.KKINS2ScopeMosinAng = Vector(0, 0, 0)
+	SWEP.KKINS2ScopeEnfieldPos = Vector(-2.5738, -1.5, 0.8389)
+	SWEP.KKINS2ScopeEnfieldAng = Vector(0, 0, 0)
+
+	SWEP.M203Pos = Vector(-2.71, -6, 1.8053)
+	SWEP.M203Ang = Vector(-4.5019, 0, 0)
 
 	SWEP.CustomizationMenuScale = 0.018
 end
 
 SWEP.Attachments = {
-	{header = "Sight", offset = {500, -500}, atts = {"kk_ins2_scope_mosin"}},
-	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_ww2_knife", "kk_ins2_gl_gp25"}},
+	{header = "Sight", offset = {500, -500}, atts = {"kk_ins2_scope_enfield"}},
+	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_ww2_knife", "kk_ins2_gl_enfield"}},
 	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
 	{header = "Clip", offset = {200, 0}, atts = {"kk_ins2_ww2_stripper"}},
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_magnum", "am_matchgrade"}}
@@ -137,8 +140,10 @@ SWEP.Animations = {
 	gl_on_safe = "glsetup_down",
 	gl_on_safe_aim = "glsetup_iron_down",
 	
-	gl_turn_on = "glsetup_in",
+	gl_turn_on_full = "glsetup_in",
+	gl_turn_on = "glsetup_in_empty",
 	gl_turn_off = "glsetup_out",
+	gl_turn_off_empty = "glsetup_out_empty",
 }
 
 SWEP.SpeedDec = 40
@@ -210,8 +215,14 @@ SWEP.ShotgunReload = true
 SWEP.ReticleInactivityPostFire = SWEP.FireDelay + 0.2
 SWEP.GlobalDelayOnShoot = SWEP.FireDelay
 
-SWEP.KK_INS2_emptyIdle = true
+SWEP.KK_INS2_EmptyIdle = true
 SWEP.WeaponLength = 38
+
+SWEP.gl_on_time = 7.2
+SWEP.gl_off_time = 5.48
+SWEP.gl_off_shot_time = 2.4
+SWEP.gl_on_ReloadTime = 5.6
+SWEP.gl_on_ReloadHalt = 7.2
 
 SWEP.ReloadTime = 4
 SWEP.ReloadHalt = 4.49
@@ -222,7 +233,7 @@ function SWEP:fireAnimFunc()
 	local clip = self:Clip1()
 	local suffix = ""
 	
-	if clip == 1 and self.KK_INS2_emptyIdle then
+	if clip == 1 and self.KK_INS2_EmptyIdle then
 		suffix = "_last"
 	elseif (clip == 0 and not self.dt.INS2GLActive) or (self.dt.INS2GLActive and not self.M203Chamber) then
 		suffix = "_empty"
@@ -260,5 +271,28 @@ if CLIENT then
 		end
 		
 		self.NoShells = self.Sequence:find("fire_last")
+		
+		local hasInstalledScope = self:getActiveAttachmentInCategory(1) != nil
+		local isGL = self.dt.INS2GLActive
+		
+		// bipod aimpos switch // 3rd iteration kek
+		if hasInstalledScope then
+			local sight = CustomizableWeaponry.sights[self:getActiveAttachmentInCategory(1)]
+			if isGL then
+				self.AimPos = self.M203Pos
+				self.AimAng = self.M203Ang
+			else
+				self.AimPos = self[sight.aimPos[1]]
+				self.AimAng = self[sight.aimPos[2]]
+			end
+		else
+			if isGL then
+				self.AimPos = self.M203Pos
+				self.AimAng = self.M203Ang
+			else
+				self.AimPos = self.IronsightPos
+				self.AimAng = self.IronsightAng
+			end
+		end
 	end
 end
