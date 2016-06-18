@@ -10,35 +10,17 @@ SWEP.magType = "pistolMag"
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "Well-rod"
+	SWEP.PrintName = "Welrod"
 	SWEP.CSMuzzleFlashes = true
 	
 	SWEP.IconLetter = "f"
 	
 	SWEP.MuzzleEffect = "muzzleflash_pistol"
 	SWEP.Shell = "KK_INS2_9x19"
-	SWEP.ShellDelay = 0.95
+	SWEP.ShellDelay = 0.9
 	
-	SWEP.AttachmentModelsVM = {		
-		["kk_ins2_suppressor_pistol"] = {model = "models/weapons/upgrades/a_suppressor_pistol.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), merge = true},
-		
-		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_m9.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_m9.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_flashlight_legacy"] = {model = "models/weapons/upgrades/a_flashlight_m9.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_m6x"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_m6x.mdl", bone = "Weapon", pos = Vector(0, 1.455, -1.25), angle = Angle(0, -90, 0), size = Vector(0.85, 0.85, 0.85)},
-		
-		["kk_ins2_m6x_rail"] = {model = "models/cw2/attachments/lowerpistolrail.mdl", bone = "Weapon", pos = Vector(0, 1.171, -0.594), angle = Angle(0, 90, 0), size = Vector(0.109, 0.109, 0.109), 
-			material = "models/weapons/attachments/cw_kk_ins2_cstm_m6x/rail_bk",
-			active = function(self) return self.ActiveAttachments.kk_ins2_m6x end
-		},
-	}
-
-	SWEP.AttachmentModelsWM = {
-		["kk_ins2_suppressor_pistol"] = {model = "models/weapons/upgrades/w_sil_pistol.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), merge = true},
-		
-		["kk_ins2_lam"] = {model = "models/weapons/upgrades/w_laser_sec.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 180, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/w_laser_sec.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-	}
+	SWEP.AttachmentModelsVM = {}
+	SWEP.AttachmentModelsWM = {}
 	
 	SWEP.IronsightPos = Vector(-2.2947, 0, 0.8344)
 	SWEP.IronsightAng = Vector(-0.0609, 0, 0)
@@ -49,8 +31,6 @@ if CLIENT then
 end
 
 SWEP.Attachments = {
-	-- {header = "Lasers", offset = {500, -400}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_m6x"}},
-	-- {header = "Barrel", offset = {-500, -400}, atts = {"kk_ins2_suppressor_pistol"}},
 	["+reload"] = {header = "Ammo", offset = {500, 150}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
@@ -98,11 +78,13 @@ SWEP.WorldModel		= "models/weapons/w_welrod.mdl"
 SWEP.WMPos = Vector(5.309, 1.623, -1.821)
 SWEP.WMAng = Vector(-3, -5, 180)
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()
+SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2gb
 
-SWEP.Primary.ClipSize		= 15
-SWEP.Primary.DefaultClip	= 15
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
+
+SWEP.Primary.ClipSize		= 9
+SWEP.Primary.DefaultClip	= 9
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "9x19MM"
 

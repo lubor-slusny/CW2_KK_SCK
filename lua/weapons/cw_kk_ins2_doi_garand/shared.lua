@@ -17,10 +17,11 @@ if CLIENT then
 	SWEP.MuzzleEffect = "muzzleflash_m14"
 	SWEP.Shell = "KK_INS2_762x54"
 	SWEP.Shell2 = "KK_INS2_GARAND"
+	SWEP.ShellDelay = 0.06
 	
 	SWEP.AttachmentModelsVM = {
-		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_iron_garand_s.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
-		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_iron_garand_l.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_iron_garand_l.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
+		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_iron_garand_s.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 	
 		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/a_garand_bayonet.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 	}
@@ -167,18 +168,20 @@ if CLIENT then
 			return
 		end
 		
-		// main shell
-		self._shellTable = self._shellTable1
-		att = self.CW_VM:GetAttachment(2)
-		ang = EyeAngles()
-		tweak = self._shellTable.rv
-		if tweak then
-			ang:RotateAroundAxis(ang:Right(), tweak.Right)
-			ang:RotateAroundAxis(ang:Forward(), tweak.Forward)
-			ang:RotateAroundAxis(ang:Up(), tweak.Up)
-		end
-		
-		makeShell(self, att.Pos, ang, att.Ang:Forward() * 200, 0.6, 10)
+		CustomizableWeaponry.actionSequence.new(self, 0.09, nil, function()
+			// main shell
+			self._shellTable = self._shellTable1
+			att = self.CW_VM:GetAttachment(2)
+			ang = EyeAngles()
+			tweak = self._shellTable.rv
+			if tweak then
+				ang:RotateAroundAxis(ang:Right(), tweak.Right)
+				ang:RotateAroundAxis(ang:Forward(), tweak.Forward)
+				ang:RotateAroundAxis(ang:Up(), tweak.Up)
+			end
+			
+			makeShell(self, att.Pos, ang, att.Ang:Forward() * 200, 0.6, 10)
+		end)
 		
 		// clip
 		if self:Clip1() > 0 then return end

@@ -174,6 +174,7 @@ function SWEP:_drawViewModel()
 		self.CW_KK_HANDS:DrawModel()
 	end
 	
+	self:drawVMShells()
 	self:drawAttachments()
 	self:drawInteractionMenu()
 	

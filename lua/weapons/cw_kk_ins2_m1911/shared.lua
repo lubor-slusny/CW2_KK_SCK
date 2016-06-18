@@ -17,6 +17,7 @@ if CLIENT then
 	
 	SWEP.MuzzleEffect = "muzzleflash_pistol"
 	SWEP.Shell = "KK_INS2_45apc"
+	SWEP.ShellDelay = 0.07
 	
 	SWEP.AttachmentModelsVM = {		
 		["kk_ins2_mag_m1911_8"] = {model = "models/weapons/upgrades/a_magazine_1911_8.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},

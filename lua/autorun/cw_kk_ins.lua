@@ -126,6 +126,7 @@ if CLIENT then
 	CreateClientConVar("cw_kk_ins2_draw_vm_in_rt", 0, true, false)
 	CreateClientConVar("cw_kk_ins2_shell_sound", 3, true, false)
 	CreateClientConVar("cw_kk_ins2_shell_time", 10, true, false)
+	CreateClientConVar("cw_kk_ins2_shell_vm", 0, true, false)
 
 	if not CustomizableWeaponry_KK.panels then
 		CustomizableWeaponry_KK.panels = {}
@@ -219,6 +220,12 @@ if CLIENT then
 		hook.Add("PostReloadToolsMenu", "CW_KK_INS2_SHELL_COUNTER_REMOVER", function()
 			timer.Remove("CW_KK_INS2_SHELL_COUNTER")
 		end)
+		
+		// VM shells
+		panel:AddControl("CheckBox", {
+			Label = "Alternative shell rendering function", 
+			Command = "cw_kk_ins2_shell_vm"
+		}):DockMargin(8, 8, 8, 0)
 		
 		// tickbox for always animated reticles
 		panel:AddControl("CheckBox", {

@@ -18,6 +18,7 @@ if CLIENT then
 	
 	SWEP.MuzzleEffect = "muzzleflash_smg"
 	SWEP.Shell = "KK_INS2_9x19"
+	SWEP.ShellDelay = 0.1
 	
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/a_sten_foregrip.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
@@ -118,14 +119,14 @@ SWEP.WorldModel		= "models/weapons/w_sten.mdl"
 SWEP.WMPos = Vector(3, 0.967, -1.3)
 SWEP.WMAng = Vector(-10, 0, 180)
 
-SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.f1
+SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2gb
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.gurkha
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
 
-SWEP.Primary.ClipSize		= 34
-SWEP.Primary.DefaultClip	= 34
+SWEP.Primary.ClipSize		= 32
+SWEP.Primary.DefaultClip	= 32
 SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= "9x19MM"
 

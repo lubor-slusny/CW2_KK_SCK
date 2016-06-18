@@ -69,7 +69,8 @@ if CLIENT then
 	SWEP.ShellAttachmentName = "shell"
 	SWEP.ShellScale = 1
 	SWEP.Shell2 = false
-	
+	SWEP.ShellOffsetMul = 0
+
 	SWEP.WorldMuzzleAttachmentID = 1
 	SWEP.WorldShellEjectionAttachmentID = 2
 	

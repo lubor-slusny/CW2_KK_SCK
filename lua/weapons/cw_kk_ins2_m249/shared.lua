@@ -284,32 +284,36 @@ if CLIENT then
 			return
 		end
 		
-		// main shell
-		self._shellTable = self._shellTable1
-		att = self.CW_VM:GetAttachment(3)
-		ang = EyeAngles()
-		tweak = self._shellTable.rv
-		if tweak then
-			ang:RotateAroundAxis(ang:Right(), tweak.Right)
-			ang:RotateAroundAxis(ang:Forward(), tweak.Forward)
-			ang:RotateAroundAxis(ang:Up(), tweak.Up)
-		end
-		
-		-- CustomizableWeaponry_KK.ins2.makeShell(self, att.Pos, ang, att.Ang:Forward() * 50, 0.6, 10)
-		makeShell(self, att.Pos, ang, att.Ang:Forward() * 50, 0.6, 10)
-		
-		-- // shell link
-		self._shellTable = self._shellTable2
-		att = self.CW_VM:GetAttachment(4)
-		ang = EyeAngles()
-		tweak = self._shellTable.rv
-		if tweak then
-			ang:RotateAroundAxis(ang:Right(), tweak.Right)
-			ang:RotateAroundAxis(ang:Forward(), tweak.Forward)
-			ang:RotateAroundAxis(ang:Up(), tweak.Up)
-		end
-		
-		-- CustomizableWeaponry_KK.ins2.makeShell(self, att.Pos, ang, att.Ang:Forward() * 50, 0.6, 10)
-		makeShell(self, att.Pos, ang, att.Ang:Forward() * 50, 0.6, 10)
+		CustomizableWeaponry.actionSequence.new(self, 0.05, nil, function()
+			// main shell
+			self._shellTable = self._shellTable1
+			att = self.CW_VM:GetAttachment(3)
+			ang = EyeAngles()
+			tweak = self._shellTable.rv
+			if tweak then
+				ang:RotateAroundAxis(ang:Right(), tweak.Right)
+				ang:RotateAroundAxis(ang:Forward(), tweak.Forward)
+				ang:RotateAroundAxis(ang:Up(), tweak.Up)
+			end
+			
+			-- CustomizableWeaponry_KK.ins2.makeShell(self, att.Pos, ang, att.Ang:Forward() * 50, 0.6, 10)
+			makeShell(self, att.Pos, ang, att.Ang:Forward() * 50, 0.6, 10)
+		end)
+			
+		CustomizableWeaponry.actionSequence.new(self, 0.02, nil, function()
+			-- // shell link
+			self._shellTable = self._shellTable2
+			att = self.CW_VM:GetAttachment(4)
+			ang = EyeAngles()
+			tweak = self._shellTable.rv
+			if tweak then
+				ang:RotateAroundAxis(ang:Right(), tweak.Right)
+				ang:RotateAroundAxis(ang:Forward(), tweak.Forward)
+				ang:RotateAroundAxis(ang:Up(), tweak.Up)
+			end
+			
+			-- CustomizableWeaponry_KK.ins2.makeShell(self, att.Pos, ang, att.Ang:Forward() * 50, 0.6, 10)
+			makeShell(self, att.Pos, ang, att.Ang:Forward() * 50, 0.6, 10)
+		end)
 	end
 end

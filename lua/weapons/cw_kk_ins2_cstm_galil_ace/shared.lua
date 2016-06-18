@@ -17,6 +17,7 @@ if CLIENT then
 	
 	SWEP.MuzzleEffect = "muzzleflash_ak74"
 	SWEP.Shell = "KK_INS2_556x45"
+	SWEP.ShellDelay = 0.06
 	
 	local counterExists = file.Exists("models/weapons/stattrack.mdl", "GAME")
 	

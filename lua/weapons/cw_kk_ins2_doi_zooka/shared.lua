@@ -108,7 +108,7 @@ SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= "M6A1 Rocket"
 
 SWEP.FireDelay = 0.3
-SWEP.FireSound = "CW_KK_INS2_WW2_BAZOOKA_FIRE"
+SWEP.FireSound = "CW_KK_INS2_DOI_BAZOOKA_FIRE"
 SWEP.Recoil = 0.5
 
 SWEP.HipSpread = 0.05

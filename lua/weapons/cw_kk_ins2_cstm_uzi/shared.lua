@@ -14,6 +14,7 @@ if CLIENT then
 	
 	SWEP.MuzzleEffect = "muzzleflash_smg"
 	SWEP.Shell = "KK_INS2_9x19"
+	SWEP.ShellDelay = 0.1
 	
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_modkit_04.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},

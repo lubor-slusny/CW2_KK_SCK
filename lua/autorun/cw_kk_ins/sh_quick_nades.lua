@@ -44,6 +44,12 @@ CustomizableWeaponry_KK.ins2.quickGrenades.ww2de = {
 	a_pinpull = "pullbackhigh",
 	a_throw = "throw"
 }
+CustomizableWeaponry_KK.ins2.quickGrenades.ww2gb = {
+	vm = "models/weapons/v_mills.mdl",
+	wm = "models/weapons/w_mk2.mdl",
+	a_pinpull = "pullbackhigh",
+	a_throw = "throw"
+}
 
 local nadeEnt = {
 	[0] = "cw_grenade_thrown",

@@ -17,6 +17,7 @@ if CLIENT then
 	
 	SWEP.MuzzleEffect = "muzzleflash_m14"
 	SWEP.Shell = "KK_INS2_762x54"
+	SWEP.ShellDelay = 0.1
 	
 	SWEP.AttachmentModelsVM = {}
 	SWEP.AttachmentModelsWM = {}
@@ -85,7 +86,7 @@ SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_bren.mdl"
 SWEP.WorldModel		= "models/weapons/w_bren.mdl"
 
-SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2de
+SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2gb
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.ww2de
 
 SWEP.WMPos = Vector(11, 1, -1)

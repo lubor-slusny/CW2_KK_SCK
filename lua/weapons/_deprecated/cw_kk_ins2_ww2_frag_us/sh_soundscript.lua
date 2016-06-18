@@ -1,0 +1,2 @@
+
+SWEP.Sounds = {}

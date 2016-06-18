@@ -2,6 +2,7 @@
 if CLIENT then
 	local cvarSSF = GetConVar("cw_kk_ins2_shell_sound")
 	local cvarSLT = GetConVar("cw_kk_ins2_shell_time")
+	local cvarSVM = GetConVar("cw_kk_ins2_shell_vm")
 
 	local up = Vector(0, 0, -100)
 	local shellMins, shellMaxs = Vector(-0.5, -0.15, -0.5), Vector(0.5, 0.15, 0.5)
@@ -56,7 +57,7 @@ if CLIENT then
 		if cvarSSF:GetInt() == 2 then // function creation spam
 			timer.Simple(soundTime or 0.5, function()
 				if t.s and IsValid(ent) then
-					sound.Play(t.s, ent:GetPos())
+					soundPlay(t.s, ent:GetPos())
 				end
 			end)
 		end
@@ -77,6 +78,23 @@ if CLIENT then
 		hook.Add("Think", ent, shellThink)
 		
 		table.insert(CustomizableWeaponry_KK.ins2.deployedShells, ent)
+		
+		if cvarSVM:GetInt() == 1 and not self.Owner:ShouldDrawLocalPlayer() then
+			ent:SetNoDraw(true)
+			ent._drawAsVM = CurTime() + 0.2
+			
+			table.insert(self._deployedShells, ent)
+			
+			local i = 1
+		
+			for _ = 1, #self._deployedShells do
+				if !IsValid(self._deployedShells[i]) then
+					table.remove(self._deployedShells, i)
+				else
+					i = i + 1
+				end
+			end
+		end
 		
 		return ent // M1 garand
 	end

@@ -16,6 +16,7 @@ if CLIENT then
 	
 	SWEP.MuzzleEffect = "muzzleflash_smg"
 	SWEP.Shell = "KK_INS2_9x19"
+	SWEP.ShellDelay = 0.14
 	
 	SWEP.ACOGAxisAlign = {
 		right = 0,

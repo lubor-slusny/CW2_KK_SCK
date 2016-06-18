@@ -16,7 +16,7 @@ if CLIENT then
 	
 	SWEP.MuzzleEffect = "muzzleflash_m14"
 	SWEP.Shell = "KK_INS2_762x51"
-	SWEP.ShellDelay = 0.26 + 19/30
+	SWEP.ShellDelay = 0.9
 	
 	SWEP.BackupSights = {
 		["kk_ins2_elcan"] = {

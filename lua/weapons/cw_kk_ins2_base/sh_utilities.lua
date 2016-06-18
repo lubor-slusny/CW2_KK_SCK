@@ -177,3 +177,21 @@ end
 function SWEP:getGLAttName()
 	return (self._currentGrenadeLauncher and self._currentGrenadeLauncher.displayNameShort) or "No grenade launcher attached."
 end
+
+if CLIENT then
+	local cvarSVM = GetConVar("cw_kk_ins2_shell_vm")
+	
+	function SWEP:drawVMShells()		
+		if cvarSVM:GetInt() != 1 then return end
+		
+		for _,v in pairs(self._deployedShells) do
+			if IsValid(v) then
+				if v._drawAsVM > CurTime() then
+					v:DrawModel()
+				else
+					v:SetNoDraw(false)
+				end
+			end
+		end
+	end
+end

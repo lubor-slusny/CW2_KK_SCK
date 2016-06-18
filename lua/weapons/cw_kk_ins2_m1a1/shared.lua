@@ -173,7 +173,7 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/v_m1a1.mdl"
+SWEP.ViewModel		= "models/weapons/v_cw_kk_ins2_m1.mdl"
 SWEP.WorldModel		= "models/weapons/w_m1a1.mdl"
 
 SWEP.WMPos = Vector(4.986, 0.921, -1.038)

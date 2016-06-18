@@ -58,7 +58,7 @@ SWEP.Animations = {
 	base_pickup = "base_ready",
 	base_draw = "base_draw",
 	base_fire = {"base_fire","base_fire2"},
-	base_fire_aim = "iron_fire",
+	base_fire_aim = {"iron_fire_1","iron_fire_2"},
 	base_fire_empty = "base_dryfire",
 	base_fire_empty_aim = "iron_dryfire",
 	base_reload = "base_reload_speed",
@@ -93,8 +93,10 @@ SWEP.WorldModel		= "models/weapons/w_webley.mdl"
 SWEP.WMPos = Vector(5.309, 1.623, -1.616)
 SWEP.WMAng = Vector(-3, -5, 180)
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()
+SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2gb
+
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
 
 SWEP.Primary.ClipSize		= 6
 SWEP.Primary.DefaultClip	= 6

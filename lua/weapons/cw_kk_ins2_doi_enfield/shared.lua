@@ -18,7 +18,7 @@ if CLIENT then
 	SWEP.MuzzleEffect = "muzzleflash_m14"
 
 	SWEP.Shell = "KK_INS2_762x54"
-	SWEP.ShellDelay = 0.75
+	SWEP.ShellDelay = 0.7
 		
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_iron_enfield.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
@@ -169,7 +169,7 @@ SWEP.WorldModel		= "models/weapons/w_enfield.mdl"
 SWEP.WMPos = Vector(14, 0.5, -3)
 SWEP.WMAng = Vector(-10, 0, 180)
 
-SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2de
+SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2gb
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.ww2de
 
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
