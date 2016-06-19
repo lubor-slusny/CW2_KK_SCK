@@ -130,10 +130,6 @@ if CLIENT then
 	SWEP.KKINS2CSTMACOGAng = Vector(0, 0, 0)
 end
 
-SWEP.WeaponLength = 22
-
-SWEP.SightBGs = {main = 0, foldsight = 0}
-
 SWEP.Attachments = {
 	{header = "Sight", offset = {500, -500}, atts = {"bg_foldsight", "kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_po4", "kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_microt1", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"}},
 	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_suppressor_sec", "kk_ins2_hoovy"}},
@@ -266,6 +262,12 @@ SWEP.base_ReloadHalt_Empty = 4.3
 
 SWEP.gl_on_ReloadTime = 2.95
 SWEP.gl_on_ReloadHalt = 3.85
+
+SWEP.WeaponLength = 22
+
+SWEP.SightBGs = {main = 0, foldsight = 0}
+
+SWEP.MuzzleVelocity = 880
 
 if CLIENT then
 	function SWEP:updateOtherParts()

@@ -284,3 +284,5 @@ SWEP.SnapToIdlePostReload = false
 
 SWEP.FirstDeployTime = 1.4
 SWEP.WeaponLength = 20
+
+SWEP.MuzzleVelocity = 850

@@ -150,8 +150,8 @@ SWEP.WMAng = Vector(-10, 0, 180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2us
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.doiContentMounted()
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.doiContentMounted()
 
 SWEP.Primary.ClipSize		= 5
 SWEP.Primary.DefaultClip	= 5
@@ -199,6 +199,8 @@ SWEP.ReticleInactivityPostFire = SWEP.FireDelay + 0.2
 SWEP.GlobalDelayOnShoot = SWEP.FireDelay
 
 SWEP.WeaponLength = 38
+
+SWEP.MuzzleVelocity = 854
 
 function SWEP:fireAnimFunc()
 	local clip = self:Clip1()

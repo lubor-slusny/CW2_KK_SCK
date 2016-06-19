@@ -209,6 +209,8 @@ SWEP.ReloadHalt_Empty = 4.3
 
 SWEP.WeaponLength = 20
 
+SWEP.MuzzleVelocity = 788
+
 if CLIENT then
 	function SWEP:updateOtherParts()
 		if self.ActiveAttachments.kk_ins2_anpeq15 then

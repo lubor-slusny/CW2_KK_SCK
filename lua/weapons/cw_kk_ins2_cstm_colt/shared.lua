@@ -101,8 +101,6 @@ if CLIENT then
 	SWEP.CustomizationMenuScale = 0.015
 end
 
-SWEP.WeaponLength = 20
-
 SWEP.Attachments = {
 	{header = "Sight", offset = {400, -500}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_po4", "kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_microt1", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"}},
 	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_suppressor_sec"}},
@@ -208,6 +206,10 @@ SWEP.base_ReloadTime_Empty = 2.25
 SWEP.base_ReloadHalt_Empty = 4.55
 
 SWEP.SnapToIdlePostReload = false
+
+SWEP.WeaponLength = 20
+
+SWEP.MuzzleVelocity = 796
 
 if CLIENT then 
 	function SWEP:updateOtherParts()

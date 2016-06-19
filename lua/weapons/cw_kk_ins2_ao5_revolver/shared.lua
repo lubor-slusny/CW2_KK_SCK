@@ -135,6 +135,8 @@ SWEP.CanRestOnObjects = false
 SWEP.Chamberable = false
 SWEP.WeaponLength = 16
 
+SWEP.MuzzleVelocity = 250
+
 local bgBullets = 1
 local bgShells = 2
 

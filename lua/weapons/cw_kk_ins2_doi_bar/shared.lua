@@ -24,14 +24,10 @@ if CLIENT then
 	SWEP.IronsightAng = Vector(-0.1832, 0.0054, 0)
 end
 
-SWEP.WeaponLength = 28
-
 SWEP.Attachments = {
 	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
 	["+reload"] = {header = "Ammo", offset = {700, 300}, atts = {"am_magnum", "am_matchgrade"}}
 }
-
-SWEP.BipodInstalled = true
 
 SWEP.Animations = {
 	draw = "base_ready",
@@ -89,8 +85,8 @@ SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2us
 SWEP.WMPos = Vector(18.197, 0, -2)
 SWEP.WMAng = Vector(-10, 2.743, 180)
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.doiContentMounted()
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.doiContentMounted()
 
 SWEP.Primary.ClipSize		= 20
 SWEP.Primary.DefaultClip	= 20
@@ -122,3 +118,9 @@ SWEP.ReloadTime = 3.7
 SWEP.ReloadHalt = 5.3
 SWEP.ReloadTime_Empty = 4.58
 SWEP.ReloadHalt_Empty = 6.73
+
+SWEP.WeaponLength = 28
+
+SWEP.BipodInstalled = true
+
+SWEP.MuzzleVelocity = 860

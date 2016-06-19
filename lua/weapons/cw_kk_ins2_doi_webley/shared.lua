@@ -95,8 +95,8 @@ SWEP.WMAng = Vector(-3, -5, 180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2gb
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.doiContentMounted()
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.doiContentMounted()
 
 SWEP.Primary.ClipSize		= 6
 SWEP.Primary.DefaultClip	= 6
@@ -135,6 +135,8 @@ SWEP.ReloadFinishWaitEmpty = 1.74
 SWEP.CanRestOnObjects = false
 SWEP.Chamberable = false
 SWEP.WeaponLength = 16
+
+SWEP.MuzzleVelocity = 190
 
 local bgBullets = 1
 local bgShells = 2

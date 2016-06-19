@@ -108,8 +108,8 @@ SWEP.WMAng = Angle(-28.962, 155.365, 180)
 
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.ww2de
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.doiContentMounted()
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.doiContentMounted()
 
 SWEP.Primary.ClipSize		= -1
 SWEP.Primary.DefaultClip	= 1

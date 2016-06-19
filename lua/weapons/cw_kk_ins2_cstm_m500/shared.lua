@@ -221,6 +221,8 @@ SWEP.InsertShellTime = 0.72
 SWEP.ReloadFinishWait = 0.6
 SWEP.ReloadFinishWaitEmpty = 0.6
 
+SWEP.MuzzleVelocity = 381
+
 -- function SWEP:updateReloadTimes()
 	-- local mode = self:getForegripMode()
 

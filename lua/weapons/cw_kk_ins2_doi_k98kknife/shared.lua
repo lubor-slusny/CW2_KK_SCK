@@ -29,5 +29,5 @@ SWEP.WorldModel		= "models/weapons/w_bayonet_kar98k.mdl"
 SWEP.WMPos = Vector(3.812, 1.544, -2.83)
 SWEP.WMAng = Vector(99.385, -22.739, 18.048)
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.doiContentMounted()
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.doiContentMounted()

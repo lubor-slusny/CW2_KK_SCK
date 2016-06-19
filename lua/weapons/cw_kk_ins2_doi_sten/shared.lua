@@ -34,15 +34,10 @@ if CLIENT then
 	SWEP.CustomizationMenuScale = 0.013
 end
 
-SWEP.WeaponLength = 16
-
 SWEP.Attachments = {
 	{header = "Under", offset = {-500, 0}, atts = {"kk_ins2_vertgrip"}},
 	["+reload"] = {header = "Ammo", offset = {0, 400}, atts = {"am_magnum", "am_matchgrade"}}
 }
-
-SWEP.Chamberable = false
-SWEP.KK_INS2_EmptyIdle = true
 
 SWEP.Animations = {
 	draw = "base_draw",
@@ -122,8 +117,8 @@ SWEP.WMAng = Vector(-10, 0, 180)
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2gb
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.gurkha
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.doiContentMounted()
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.doiContentMounted()
 
 SWEP.Primary.ClipSize		= 32
 SWEP.Primary.DefaultClip	= 32
@@ -152,7 +147,9 @@ SWEP.ReloadTime_Empty = 3.27
 SWEP.ReloadHalt = 3.1
 SWEP.ReloadHalt_Empty = 4.45
 
-if CLIENT then 
-	function SWEP:updateOtherParts()
-	end
-end
+SWEP.WeaponLength = 16
+
+SWEP.Chamberable = false
+SWEP.KK_INS2_EmptyIdle = true
+
+SWEP.MuzzleVelocity = 365

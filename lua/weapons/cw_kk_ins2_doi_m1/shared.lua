@@ -45,10 +45,6 @@ if CLIENT then
 	SWEP.CustomizationMenuScale = 0.016
 end
 
-SWEP.SightBGs = {main = 0, foldsight = 0}
-
-SWEP.WeaponLength = 20
-
 SWEP.Attachments = {
 	{header = "Sight", offset = {400, -500}, atts = {"bg_foldsight"}},
 	{header = "Magazine", offset = {-200, 600}, atts = {"kk_ins2_mag_m1a1_30"}},
@@ -101,8 +97,8 @@ SWEP.WMAng = Vector(-10, 0, 180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2us
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.doiContentMounted()
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.doiContentMounted()
 
 SWEP.Primary.ClipSize		= 15
 SWEP.Primary.DefaultClip	= 15
@@ -134,6 +130,12 @@ SWEP.base_ReloadHalt = 3.05
 SWEP.base_ReloadHalt_Empty = 4.55
 
 SWEP.SnapToIdlePostReload = false
+
+SWEP.SightBGs = {main = 0, foldsight = 0}
+
+SWEP.WeaponLength = 20
+
+SWEP.MuzzleVelocity = 607
 
 if CLIENT then 
 	function SWEP:updateOtherParts()

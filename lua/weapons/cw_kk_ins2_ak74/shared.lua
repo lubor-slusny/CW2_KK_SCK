@@ -196,16 +196,6 @@ SWEP.Animations = {
 	gl_turn_off = "glsetup_out",
 }
 
-SWEP.ReloadTimes = {
-	base_reload = {2.2, 3.15},
-	base_reloadempty = {2.2, 4.35},
-	foregrip_reload = {2.2, 3.15},
-	foregrip_reloadempty = {2.2, 4.35},
-	gl_reload = {2.2, 3.15},
-	gl_reloadempty = {2.2, 4.35},
-	glsetup_reload = {1.75, 2.67}
-}
-
 SWEP.SpeedDec = 30
 
 SWEP.Slot = 3
@@ -262,6 +252,18 @@ SWEP.WeaponLength = 22
 
 SWEP.gl_on_ReloadTime = 1.7
 SWEP.gl_on_ReloadHalt = 2.81
+
+SWEP.ReloadTimes = {
+	base_reload = {2.2, 3.15},
+	base_reloadempty = {2.2, 4.35},
+	foregrip_reload = {2.2, 3.15},
+	foregrip_reloadempty = {2.2, 4.35},
+	gl_reload = {2.2, 3.15},
+	gl_reloadempty = {2.2, 4.35},
+	glsetup_reload = {1.75, 2.67}
+}
+
+SWEP.MuzzleVelocity = 890
 
 if CLIENT then 
 	function SWEP:updateOtherParts()

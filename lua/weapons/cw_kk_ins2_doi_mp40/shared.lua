@@ -51,14 +51,10 @@ if CLIENT then
 
 end
 
-SWEP.WeaponLength = 16 // this things gotta b longer than MP5k
-
 SWEP.Attachments = {
 	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
 	["+reload"] = {header = "Ammo", offset = {0, 500}, atts = {"am_magnum", "am_matchgrade"}}
 }
-
-SWEP.KK_INS2_EmptyIdle = true
 
 SWEP.Animations = {
 	draw = "base_ready",
@@ -84,11 +80,6 @@ SWEP.Animations = {
 	base_safe_aim = "iron_down",
 	base_safe_empty = "empty_down",
 	base_safe_empty_aim = "iron_empty_down",
-}
-
-SWEP.ReloadTimes = {
-	base_reload = {2.2, 2.95},
-	base_reloadempty = {3.2, 4.55}
 }
 
 SWEP.SpeedDec = 15
@@ -117,8 +108,8 @@ SWEP.WMAng = Vector(-10, 0, 180)
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2de
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.ww2de
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.doiContentMounted()
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.doiContentMounted()
 
 SWEP.Primary.ClipSize		= 32
 SWEP.Primary.DefaultClip	= 32
@@ -143,3 +134,14 @@ SWEP.FirstDeployTime = 1.7
 SWEP.DeployTime = 0.8
 
 SWEP.Chamberable = false
+
+SWEP.WeaponLength = 16 // this things gotta b longer than MP5k
+
+SWEP.KK_INS2_EmptyIdle = true
+
+SWEP.ReloadTimes = {
+	base_reload = {2.2, 2.95},
+	base_reloadempty = {3.2, 4.55}
+}
+
+SWEP.MuzzleVelocity = 400

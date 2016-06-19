@@ -2,7 +2,9 @@ if not CustomizableWeaponry then return end
 
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
+AddCSLuaFile("sh_soundscript.lua")
 include("sh_sounds.lua")
+include("sh_soundscript.lua")
 
 SWEP.magType = "smgMag"
 
@@ -88,8 +90,6 @@ if CLIENT then
 	SWEP.CustomizationMenuScale = 0.013
 end
 
-SWEP.WeaponLength = 18
-
 SWEP.Attachments = {
 	{header = "Sight", offset = {300, -700}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_po4", "kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_microt1", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"}},
 	{header = "Barrel", offset = {-300, -700}, atts = {"kk_ins2_suppressor_sec"}},
@@ -117,54 +117,6 @@ SWEP.Animations = {
 	base_sprint = "base_sprint",
 	base_safe = "base_down",
 	base_safe_aim = "iron_down",
-}
-	
-SWEP.Sounds = {
-	base_ready = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-		{time = 12/30, sound = "CW_KK_INS2_UMP45_BOLTLOCK"},
-		{time = 13/30, sound = "CW_KK_INS2_UMP45_BOLTRELEASE"},
-	},
-
-	base_draw = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-	},
-
-	base_holster = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
-	},
-
-	base_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_UMP45_EMPTY"},
-	},
-
-	base_fireselect = {
-		{time = 6/30, sound = "CW_KK_INS2_UMP45_FIRESELECT"},
-	},
-
-	base_reload = {
-		{time = 19/30, sound = "CW_KK_INS2_UMP45_MAGRELEASE"},
-		{time = 24/30, sound = "CW_KK_INS2_UMP45_MAGOUT"},
-		{time = 71/30, sound = "CW_KK_INS2_UMP45_MAGIN"},
-	},
-
-	base_reloadempty = {
-		{time = 12/30, sound = "CW_KK_INS2_UMP45_BOLTBACK"},
-		{time = 18/30, sound = "CW_KK_INS2_UMP45_BOLTLOCK"},
-		{time = 40/30, sound = "CW_KK_INS2_UMP45_MAGRELEASE"},
-		{time = 47/30, sound = "CW_KK_INS2_UMP45_MAGOUT"},
-		{time = 93/30, sound = "CW_KK_INS2_UMP45_MAGIN"},
-		{time = 112/30, sound = "CW_KK_INS2_UMP45_BOLTLOCK"},
-		{time = 113/30, sound = "CW_KK_INS2_UMP45_BOLTRELEASE"},
-	},
-
-	iron_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_UMP45_EMPTY"},
-	},
-
-	iron_fireselect = {
-		{time = 6/30, sound = "CW_KK_INS2_UMP45_FIRESELECT"},
-	},
 }
 
 SWEP.SpeedDec = 15
@@ -219,3 +171,7 @@ SWEP.ReloadTime = 2.4
 SWEP.ReloadTime_Empty = 3.2
 SWEP.ReloadHalt = 3.15
 SWEP.ReloadHalt_Empty = 4.45
+
+SWEP.WeaponLength = 18
+
+SWEP.MuzzleVelocity = 285

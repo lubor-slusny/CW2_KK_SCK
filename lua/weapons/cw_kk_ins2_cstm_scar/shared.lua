@@ -13,7 +13,7 @@ util.PrecacheModel("models/weapons/w_cw_kk_ins2_cstm_scar_tan.mdl")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "SCAR"
+	SWEP.PrintName = "SCAR H"
 	SWEP.CSMuzzleFlashes = true
 	SWEP.ViewModelMovementScale = 1.15
 	
@@ -144,8 +144,6 @@ SWEP.Attachments = {
 	-- ["kk_ins2_cstm_compm4s"] = {"kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_microt1", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"},
 	-- ["kk_ins2_cstm_acog"] = {"kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_microt1", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"},
 -- }
-
-SWEP.KK_INS2_EmptyIdle = true
 
 SWEP.Animations = {
 	draw = "base_ready",
@@ -284,6 +282,10 @@ SWEP.SnapToIdlePostReload = false
 
 SWEP.FirstDeployTime = 1.5
 SWEP.WeaponLength = 28
+
+SWEP.KK_INS2_EmptyIdle = true
+
+SWEP.MuzzleVelocity = 714
 
 if CLIENT then 
 	function SWEP:updateOtherParts()

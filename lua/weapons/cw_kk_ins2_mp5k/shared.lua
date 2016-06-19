@@ -250,6 +250,8 @@ SWEP.ReloadTime_Empty = 3.27
 SWEP.ReloadHalt = 3.1
 SWEP.ReloadHalt_Empty = 4.45
 
+SWEP.MuzzleVelocity = 375
+
 if CLIENT then
 	function SWEP:nametagElementRender()
 		local ent = self.AttachmentModelsVM.kk_textbox.ent

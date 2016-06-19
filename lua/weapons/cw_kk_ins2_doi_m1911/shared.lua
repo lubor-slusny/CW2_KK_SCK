@@ -35,15 +35,10 @@ if CLIENT then
 	SWEP.DisableSprintViewSimulation = true
 end
 
-SWEP.CanRestOnObjects = false
-SWEP.WeaponLength = 16
-
 SWEP.Attachments = {
 	{header = "Magazine", offset = {-500, 150}, atts = {"kk_ins2_mag_m1911_15"}},
 	["+reload"] = {header = "Ammo", offset = {500, 150}, atts = {"am_magnum", "am_matchgrade"}}
 }
-
-SWEP.KK_INS2_EmptyIdle = true
 
 SWEP.Animations = {
 	draw = "base_ready",
@@ -98,8 +93,8 @@ SWEP.WMAng = Vector(-3, -5, 180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2us
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.doiContentMounted()
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.doiContentMounted()
 
 SWEP.Primary.ClipSize		= 7
 SWEP.Primary.DefaultClip	= 7
@@ -128,6 +123,13 @@ SWEP.ReloadHalt = 2.65
 
 SWEP.ReloadTime_Empty = 2
 SWEP.ReloadHalt_Empty = 2.65
+
+SWEP.CanRestOnObjects = false
+SWEP.WeaponLength = 16
+
+SWEP.KK_INS2_EmptyIdle = true
+
+SWEP.MuzzleVelocity = 251
 
 if CLIENT then 
 	function SWEP:updateOtherParts()

@@ -49,7 +49,7 @@ if CLIENT then
 end
 
 function att:attachFunc()
-	self.OverrideAimMouseSens = 0.25
+	self.OverrideAimMouseSens = 0.1
 	self.SimpleTelescopicsFOV = 70
 	self.AimViewModelFOV = 50
 	self.BlurOnAim = true

@@ -212,6 +212,8 @@ SWEP.ReloadTimes = {
 	foregrip_reloadempty = {2.2, 4.35}
 }
 
+SWEP.MuzzleVelocity = 735
+
 if CLIENT then
 	function SWEP:updateOtherParts()
 		if self.ActiveAttachments.kk_ins2_vertgrip then

@@ -30,10 +30,6 @@ if CLIENT then
 	SWEP.CustomizationMenuScale = 0.015
 end
 
-SWEP.Chamberable = false
-SWEP.BipodInstalled = true
-SWEP.WeaponLength = 26
-
 SWEP.Attachments = {
 	["+reload"] = {header = "Ammo", offset = {200, 600}, atts = {"am_magnum", "am_matchgrade"}}
 }
@@ -97,8 +93,8 @@ SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.ww2de
 SWEP.WMPos = Vector(13.486, 0.5, -3)
 SWEP.WMAng = Vector(-5, 0, 180)
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.doiContentMounted()
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.doiContentMounted()
 
 SWEP.Primary.ClipSize		= 75
 SWEP.Primary.DefaultClip	= 75
@@ -131,6 +127,12 @@ SWEP.ReloadTimes = {
 	deployed_reload = {234/32.5, 8.8},
 	deployed_reload_empty = {288/32.5, 10.46},
 }
+
+SWEP.Chamberable = false
+SWEP.BipodInstalled = true
+SWEP.WeaponLength = 26
+
+SWEP.MuzzleVelocity = 765
 
 if CLIENT then
 	function SWEP:updateOtherParts()

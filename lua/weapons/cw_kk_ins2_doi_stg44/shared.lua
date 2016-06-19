@@ -27,8 +27,6 @@ if CLIENT then
 	SWEP.CustomizationMenuScale = 0.02
 end
 
-SWEP.WeaponLength = 22
-
 SWEP.Attachments = {
 	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
 	["+reload"] = {header = "Ammo", offset = {500, 300}, atts = {"am_magnum", "am_matchgrade"}}
@@ -80,8 +78,8 @@ SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.ww2de
 SWEP.WMPos = Vector(11, 1, -1)
 SWEP.WMAng = Vector(-6, 0, 180)
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.doiContentMounted()
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.doiContentMounted()
 
 SWEP.Primary.ClipSize		= 30
 SWEP.Primary.DefaultClip	= 30
@@ -108,3 +106,7 @@ SWEP.ReloadTime = 2.1
 SWEP.ReloadHalt = 2.9
 SWEP.ReloadTime_Empty = 2.1
 SWEP.ReloadHalt_Empty = 4.17
+
+SWEP.WeaponLength = 22
+
+SWEP.MuzzleVelocity = 685

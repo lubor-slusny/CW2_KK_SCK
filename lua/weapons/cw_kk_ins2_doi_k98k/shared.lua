@@ -173,8 +173,8 @@ SWEP.WMAng = Vector(-10, 0, 180)
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2de
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.ww2de
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.doiContentMounted()
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.doiContentMounted()
 
 SWEP.Primary.ClipSize		= 5
 SWEP.Primary.DefaultClip	= 5
@@ -229,6 +229,8 @@ SWEP.ReloadTime = 4
 SWEP.ReloadHalt = 4.49
 SWEP.ReloadTime_Empty = 4
 SWEP.ReloadHalt_Empty = 4.49
+
+SWEP.MuzzleVelocity = 760
 
 function SWEP:fireAnimFunc()
 	local clip = self:Clip1()

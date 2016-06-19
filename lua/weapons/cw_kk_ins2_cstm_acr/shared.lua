@@ -208,3 +208,5 @@ SWEP.ReloadHalt = 3.7
 SWEP.ReloadHalt_Empty = 4.3
 
 SWEP.WeaponLength = 20
+
+SWEP.MuzzleVelocity = 990

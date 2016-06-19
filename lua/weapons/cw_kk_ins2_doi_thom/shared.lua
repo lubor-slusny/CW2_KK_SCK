@@ -55,10 +55,6 @@ if CLIENT then
 
 end
 
-SWEP.SightBGs = {main = 0, foldsight = 0}
-
-SWEP.WeaponLength = 16
-
 SWEP.Attachments = {
 	-- {header = "Sight", offset = {400, -500}, atts = {"bg_foldsight"}},
 	{header = "Under", offset = {-500, 0}, atts = {"kk_ins2_vertgrip"}},
@@ -70,9 +66,6 @@ SWEP.Attachments = {
 -- if CustomizableWeaponry_KK.HOME then
 	-- table.insert(SWEP.Attachments, {header = "Lasers", offset = {125, 0}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}})
 -- end
-
-SWEP.Chamberable = false
-SWEP.KK_INS2_EmptyIdle = true
 
 SWEP.Animations = {
 	draw = "base_ready",
@@ -170,8 +163,8 @@ SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2us
 SWEP.WMPos = Vector(4, 0.395, -2)
 SWEP.WMAng = Vector(-10, 0, 180)
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.doiContentMounted()
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.doiContentMounted()
 
 SWEP.Primary.ClipSize		= 20
 SWEP.Primary.DefaultClip	= 20
@@ -198,6 +191,15 @@ SWEP.ReloadTime = 2
 SWEP.ReloadHalt = 2.92
 SWEP.ReloadTime_Empty = 2
 SWEP.ReloadHalt_Empty = 4.1
+
+SWEP.Chamberable = false
+SWEP.KK_INS2_EmptyIdle = true
+
+SWEP.SightBGs = {main = 0, foldsight = 0}
+
+SWEP.WeaponLength = 16
+
+SWEP.MuzzleVelocity = 285
 
 if CLIENT then 
 	function SWEP:updateOtherParts()

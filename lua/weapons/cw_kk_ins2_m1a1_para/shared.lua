@@ -2,7 +2,9 @@ if not CustomizableWeaponry then return end
 
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
+AddCSLuaFile("sh_soundscript.lua")
 include("sh_sounds.lua")
+include("sh_soundscript.lua")
 
 SWEP.magType = "arMag"
 
@@ -94,8 +96,6 @@ if CLIENT then
 	SWEP.CustomizationMenuScale = 0.016
 end
 
-SWEP.WeaponLength = 20
-
 SWEP.Attachments = {
 	{header = "Sight", offset = {400, -500}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_po4", "kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_microt1", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"}},
 	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_suppressor_ins"}},
@@ -136,108 +136,6 @@ SWEP.Animations = {
 	foregrip_sprint = "foregrip_sprint",
 	foregrip_safe = "foregrip_down",
 	foregrip_safe_aim = "foregrip_iron_down",
-}
-	
-SWEP.Sounds = {
-	base_ready = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-		{time = 10/30, sound = "CW_KK_INS2_M1A1_BOLTBACK"},
-		{time = 23/30, sound = "CW_KK_INS2_M1A1_BOLTRELEASE"},
-	},
-
-	base_draw = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-	},
-
-	base_holster = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
-	},
-
-	base_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_M1A1_EMPTY"},
-	},
-
-	base_reload = {
-		{time = 16/30, sound = "CW_KK_INS2_M1A1_MAGRELEASE"},
-		{time = 24/30, sound = "CW_KK_INS2_M1A1_MAGOUT"},
-		{time = 67/30, sound = "CW_KK_INS2_M1A1_MAGIN"},
-	},
-
-	base_reload_ext = {
-		{time = 16/30, sound = "CW_KK_INS2_M1A1_MAGRELEASE"},
-		{time = 24/30, sound = "CW_KK_INS2_M1A1_MAGOUT"},
-		{time = 67/30, sound = "CW_KK_INS2_M1A1_MAGIN"},
-	},
-
-	base_reloadempty = {
-		{time = 16/30, sound = "CW_KK_INS2_M1A1_MAGRELEASE"},
-		{time = 24/30, sound = "CW_KK_INS2_M1A1_MAGOUT"},
-		{time = 65/30, sound = "CW_KK_INS2_M1A1_MAGIN"},
-		{time = 101/30, sound = "CW_KK_INS2_M1A1_BOLTBACK"},
-		{time = 115/30, sound = "CW_KK_INS2_M1A1_BOLTRELEASE"},
-	},
-
-	base_reloadempty_ext = {
-		{time = 16/30, sound = "CW_KK_INS2_M1A1_MAGRELEASE"},
-		{time = 24/30, sound = "CW_KK_INS2_M1A1_MAGOUT"},
-		{time = 65/30, sound = "CW_KK_INS2_M1A1_MAGIN"},
-		{time = 101/30, sound = "CW_KK_INS2_M1A1_BOLTBACK"},
-		{time = 115/30, sound = "CW_KK_INS2_M1A1_BOLTRELEASE"},
-	},
-
-	iron_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_M1A1_EMPTY"},
-	},
-
-	foregrip_ready = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-		{time = 10/30, sound = "CW_KK_INS2_M1A1_BOLTBACK"},
-		{time = 23/30, sound = "CW_KK_INS2_M1A1_BOLTRELEASE"},
-	},
-
-	foregrip_draw = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-	},
-
-	foregrip_holster = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
-	},
-
-	foregrip_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_M1A1_EMPTY"},
-	},
-
-	foregrip_reload = {
-		{time = 16/30, sound = "CW_KK_INS2_M1A1_MAGRELEASE"},
-		{time = 24/30, sound = "CW_KK_INS2_M1A1_MAGOUT"},
-		{time = 67/30, sound = "CW_KK_INS2_M1A1_MAGIN"},
-	},
-
-	foregrip_reload_ext = {
-		{time = 16/30, sound = "CW_KK_INS2_M1A1_MAGRELEASE"},
-		{time = 24/30, sound = "CW_KK_INS2_M1A1_MAGOUT"},
-		{time = 67/30, sound = "CW_KK_INS2_M1A1_MAGIN"},
-	},
-
-	foregrip_reloadempty = {
-		{time = 16/30, sound = "CW_KK_INS2_M1A1_MAGRELEASE"},
-		{time = 24/30, sound = "CW_KK_INS2_M1A1_MAGOUT"},
-		{time = 65/30, sound = "CW_KK_INS2_M1A1_MAGIN"},
-		{time = 101/30, sound = "CW_KK_INS2_M1A1_BOLTBACK"},
-		{time = 115/30, sound = "CW_KK_INS2_M1A1_BOLTRELEASE"},
-	},
-
-	foregrip_reloadempty_ext = {
-		{time = 16/30, sound = "CW_KK_INS2_M1A1_MAGRELEASE"},
-		{time = 24/30, sound = "CW_KK_INS2_M1A1_MAGOUT"},
-		{time = 65/30, sound = "CW_KK_INS2_M1A1_MAGIN"},
-		{time = 101/30, sound = "CW_KK_INS2_M1A1_BOLTBACK"},
-		{time = 115/30, sound = "CW_KK_INS2_M1A1_BOLTRELEASE"},
-	},
-
-	foregrip_iron_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_M1A1_EMPTY"},
-	},
 }
 
 SWEP.SpeedDec = 40
@@ -297,3 +195,7 @@ SWEP.base_ReloadHalt = 3.05
 SWEP.base_ReloadHalt_Empty = 4.55
 
 SWEP.SnapToIdlePostReload = false
+
+SWEP.WeaponLength = 20
+
+SWEP.MuzzleVelocity = 607

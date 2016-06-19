@@ -294,6 +294,9 @@ SWEP.FirstDeployTime = 2.6
 SWEP.WeaponLength = 28
 -- SWEP.WeaponLength = 24 // SAR
 
+SWEP.MuzzleVelocity = 950 // AR
+-- SWEP.MuzzleVelocity = 900 // sar
+
 if CLIENT then
 	local att
 	local muz = {}

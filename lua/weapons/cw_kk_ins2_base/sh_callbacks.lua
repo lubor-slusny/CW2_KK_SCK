@@ -22,8 +22,6 @@ local customFireFuncs = {
 	["Panzerfaust"] = CustomizableWeaponry_KK.ins2.firePF60,
 }
 
-local cvarSVM = 
-
 CustomizableWeaponry.callbacks:addNew("initialize", "KK_INS2_BASE", function(wep)
 	if CLIENT then
 		// SWEP parent for client side models - for lense cubemap proxy

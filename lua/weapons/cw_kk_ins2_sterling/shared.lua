@@ -2,7 +2,9 @@ if not CustomizableWeaponry then return end
 
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
+AddCSLuaFile("sh_soundscript.lua")
 include("sh_sounds.lua")
+include("sh_soundscript.lua")
 
 SWEP.magType = "smgMag"
 
@@ -98,8 +100,6 @@ if CLIENT then
 	SWEP.CustomizationMenuScale = 0.013
 end
 
-SWEP.WeaponLength = 16
-
 SWEP.Attachments = {
 	{header = "Sight", offset = {300, -600}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_po4", "kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_microt1", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"}},
 	{header = "Barrel", offset = {-300, -600}, atts = {"kk_ins2_suppressor_sterling"}},
@@ -108,9 +108,6 @@ SWEP.Attachments = {
 	["+use"] = {header = "Sight Contract", offset = {300, -100}, atts = {"kk_ins2_sights_cstm"}},
 	["+reload"] = {header = "Ammo", offset = {0, 400}, atts = {"am_magnum", "am_matchgrade"}}
 }
-
-SWEP.Chamberable = false
-SWEP.KK_INS2_EmptyIdle = true
 
 SWEP.Animations = {
 	draw = "base_ready",
@@ -136,51 +133,6 @@ SWEP.Animations = {
 	base_safe_aim = "iron_down",
 	base_safe_empty = "empty_down",
 	base_safe_empty_aim = "iron_empty_down",
-}
-
-SWEP.Sounds = {
-	base_ready = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-		{time = 10/30, sound = "CW_KK_INS2_STERLING_STOCKOPEN1"},
-		{time = 15/30, sound = "CW_KK_INS2_STERLING_STOCKOPEN2"},
-		{time = 49/30, sound = "CW_KK_INS2_STERLING_BOLTBACK"},
-	},
-
-	base_draw = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-	},
-
-	base_holster = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
-	},
-
-	base_crawl = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
-		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
-	},
-
-	base_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_STERLING_EMPTY"},
-	},
-
-	base_reload = {
-		{time = 12/30, sound = "CW_KK_INS2_STERLING_MAGRELEASE"},
-		{time = 14/30, sound = "CW_KK_INS2_STERLING_MAGOUT"},
-		{time = 61/30, sound = "CW_KK_INS2_STERLING_MAGIN"},
-		{time = 66/30, sound = "CW_KK_INS2_STERLING_MAGHIT"},
-	},
-
-	base_reloadempty = {
-		{time = 12/30, sound = "CW_KK_INS2_STERLING_MAGRELEASE"},
-		{time = 14/30, sound = "CW_KK_INS2_STERLING_MAGOUT"},
-		{time = 61/30, sound = "CW_KK_INS2_STERLING_MAGIN"},
-		{time = 66/30, sound = "CW_KK_INS2_STERLING_MAGHIT"},
-		{time = 92/30, sound = "CW_KK_INS2_STERLING_BOLTBACK"},
-	},
-
-	iron_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_STERLING_EMPTY"},
-	},
 }
 
 SWEP.SpeedDec = 15
@@ -238,6 +190,13 @@ SWEP.ReloadTime = 2.43
 SWEP.ReloadTime_Empty = 3.27
 SWEP.ReloadHalt = 3.1
 SWEP.ReloadHalt_Empty = 4.45
+
+SWEP.WeaponLength = 16
+
+SWEP.Chamberable = false
+SWEP.KK_INS2_EmptyIdle = true
+
+SWEP.MuzzleVelocity = 365
 
 if CLIENT then 
 	function SWEP:updateOtherParts()

@@ -39,19 +39,12 @@ if CLIENT then
 	SWEP.CustomizationMenuScale = 0.02
 end
 
-SWEP.SightBGs = {main = 0, foldsight = 0}
-
-SWEP.WeaponLength = 22
-
 SWEP.Attachments = {
 	{header = "Sight", offset = {400, -500}, atts = {"bg_foldsight"}},
 	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_ww2_knife"}},
 	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_magnum", "am_matchgrade"}}
 }
-
-SWEP.Chamberable = false
-SWEP.KK_INS2_EmptyIdle = true
 
 SWEP.Animations = {
 	draw = "base_ready",
@@ -107,8 +100,8 @@ SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2us
 SWEP.WMPos = Vector(14.986, 0.921, -3.038)
 SWEP.WMAng = Vector(-10, 0, 180)
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.doiContentMounted()
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.doiContentMounted()
 
 SWEP.Primary.ClipSize		= 8
 SWEP.Primary.DefaultClip	= 8
@@ -138,6 +131,15 @@ SWEP.ReloadTime = 4
 SWEP.ReloadHalt = 5.13
 SWEP.ReloadTime_Empty = 2.2
 SWEP.ReloadHalt_Empty = 3.33
+
+SWEP.Chamberable = false
+SWEP.KK_INS2_EmptyIdle = true
+
+SWEP.SightBGs = {main = 0, foldsight = 0}
+
+SWEP.WeaponLength = 22
+
+SWEP.MuzzleVelocity = 853
 
 if CLIENT then 
 	function SWEP:updateOtherParts()

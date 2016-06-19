@@ -8,7 +8,7 @@ SWEP.magType = "arMag"
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "AUG"
+	SWEP.PrintName = "STG-77"
 	SWEP.CSMuzzleFlashes = true
 	
 	SWEP.ViewModelMovementScale = 1.15
@@ -142,13 +142,6 @@ SWEP.Animations = {
 	foregrip_safe_aim = "foregrip_iron_down",
 }
 
-SWEP.ReloadTimes = {
-	base_reload = {2.6, 3.5},
-	base_reloadempty = {2.2, 3.9},
-	foregrip_reload = {2.6, 3.5},
-	foregrip_reloadempty = {2.2, 3.9}
-}
-
 SWEP.SpeedDec = 30
 
 SWEP.Slot = 3
@@ -198,6 +191,15 @@ SWEP.DeployTime = 0.5
 
 SWEP.WeaponLength = 20
 SWEP.FirstDeployTime = 1.5
+
+SWEP.ReloadTimes = {
+	base_reload = {2.6, 3.5},
+	base_reloadempty = {2.2, 3.9},
+	foregrip_reload = {2.6, 3.5},
+	foregrip_reloadempty = {2.2, 3.9}
+}
+
+SWEP.MuzzleVelocity = 970
 
 if CLIENT then 
 	function SWEP:updateOtherParts()

@@ -92,8 +92,6 @@ if CLIENT then
 
 end
 
-SWEP.WeaponLength = 16 // this things gotta b longer than MP5k
-
 SWEP.Attachments = {
 	{header = "Sight", offset = {300, -500}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_po4", "kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_microt1", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"}},
 	{header = "Barrel", offset = {-300, -500}, atts = {"kk_ins2_suppressor_ins"}},
@@ -102,8 +100,6 @@ SWEP.Attachments = {
 	["+use"] = {header = "Sight Contract", offset = {300, 0}, atts = {"kk_ins2_sights_cstm"}},
 	["+reload"] = {header = "Ammo", offset = {0, 500}, atts = {"am_magnum", "am_matchgrade"}}
 }
-
-SWEP.KK_INS2_EmptyIdle = true
 
 SWEP.Animations = {
 	draw = "base_ready",
@@ -129,11 +125,6 @@ SWEP.Animations = {
 	base_safe_aim = "iron_down",
 	base_safe_empty = "empty_down",
 	base_safe_empty_aim = "iron_empty_down",
-}
-
-SWEP.ReloadTimes = {
-	base_reload = {2.2, 2.95},
-	base_reloadempty = {3.2, 4.55}
 }
 
 SWEP.SpeedDec = 15
@@ -188,3 +179,14 @@ SWEP.FirstDeployTime = 1.7
 SWEP.DeployTime = 0.8
 
 SWEP.Chamberable = false
+
+SWEP.WeaponLength = 16 // this things gotta b longer than MP5k
+
+SWEP.KK_INS2_EmptyIdle = true
+
+SWEP.ReloadTimes = {
+	base_reload = {2.2, 2.95},
+	base_reloadempty = {3.2, 4.55}
+}
+
+SWEP.MuzzleVelocity = 400

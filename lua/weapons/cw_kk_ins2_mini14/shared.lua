@@ -2,7 +2,9 @@ if not CustomizableWeaponry then return end
 
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
+AddCSLuaFile("sh_soundscript.lua")
 include("sh_sounds.lua")
+include("sh_soundscript.lua")
 
 SWEP.magType = "arMag"
 
@@ -143,96 +145,6 @@ SWEP.Animations = {
 	foregrip_safe_aim = "foregrip_iron_down",
 }
 
-SWEP.Sounds = {
-	base_ready = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-		{time = 10/30, sound = "CW_KK_INS2_MINI14_BOLTBACK"},
-		{time = 23/30, sound = "CW_KK_INS2_MINI14_BOLTRELEASE"},
-	},
-
-	base_draw = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-	},
-
-	base_holster = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
-	},
-
-	base_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_MINI14_EMPTY"},
-	},
-
-	base_fireselect = {
-		{time = 13/30, sound = "CW_KK_INS2_M14_FIRESELECT"},
-	},
-
-	base_reload = {
-		{time = 19/30, sound = "CW_KK_INS2_MINI14_MAGRELEASE"},
-		{time = 23/30, sound = "CW_KK_INS2_MINI14_MAGOUT"},
-		{time = 63/30, sound = "CW_KK_INS2_MINI14_MAGIN"},
-	},
-
-	base_reloadempty = {
-		{time = 16/30, sound = "CW_KK_INS2_MINI14_MAGRELEASE"},
-		{time = 23/30, sound = "CW_KK_INS2_MINI14_MAGOUT"},
-		{time = 63/30, sound = "CW_KK_INS2_MINI14_MAGIN"},
-		{time = 101/30, sound = "CW_KK_INS2_MINI14_BOLTBACK"},
-		{time = 115/30, sound = "CW_KK_INS2_MINI14_BOLTRELEASE"},
-	},
-
-	iron_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_MINI14_EMPTY"},
-	},
-
-	iron_fireselect = {
-		{time = 13/30, sound = "CW_KK_INS2_M14_FIRESELECT"},
-	},
-
-	foregrip_ready = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-		{time = 10/30, sound = "CW_KK_INS2_MINI14_BOLTBACK"},
-		{time = 23/30, sound = "CW_KK_INS2_MINI14_BOLTRELEASE"},
-	},
-
-	foregrip_draw_b = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-	},
-
-	foregrip_holster_b = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
-	},
-
-	foregrip_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_MINI14_EMPTY"},
-	},
-
-	foregrip_fireselect = {
-		{time = 13/30, sound = "CW_KK_INS2_M14_FIRESELECT"},
-	},
-
-	foregrip_reload = {
-		{time = 19/30, sound = "CW_KK_INS2_MINI14_MAGRELEASE"},
-		{time = 23/30, sound = "CW_KK_INS2_MINI14_MAGOUT"},
-		{time = 63/30, sound = "CW_KK_INS2_MINI14_MAGIN"},
-	},
-
-	foregrip_reloadempty = {
-		{time = 16/30, sound = "CW_KK_INS2_MINI14_MAGRELEASE"},
-		{time = 23/30, sound = "CW_KK_INS2_MINI14_MAGOUT"},
-		{time = 63/30, sound = "CW_KK_INS2_MINI14_MAGIN"},
-		{time = 101/30, sound = "CW_KK_INS2_MINI14_BOLTBACK"},
-		{time = 115/30, sound = "CW_KK_INS2_MINI14_BOLTRELEASE"},
-	},
-
-	foregrip_iron_dryfire_b = {
-		{time = 0, sound = "CW_KK_INS2_MINI14_EMPTY"},
-	},
-
-	foregrip_iron_fireselect = {
-		{time = 13/30, sound = "CW_KK_INS2_M14_FIRESELECT"},
-	},
-}
-
 SWEP.SpeedDec = 40
 
 SWEP.Slot = 3
@@ -290,3 +202,5 @@ SWEP.SnapToIdlePostReload = false
 
 SWEP.FirstDeployTime = 1.4
 SWEP.WeaponLength = 20
+
+SWEP.MuzzleVelocity = 990

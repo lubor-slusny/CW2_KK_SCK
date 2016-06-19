@@ -91,7 +91,7 @@ if CLIENT then
 	SWEP.KKINS2PO4Pos = Vector(-2.4367, -8, 0.1056)
 	SWEP.KKINS2PO4Ang = Vector(0, 0, 0)
 
-	SWEP.KKINS2ScopeM40Pos = Vector(-2.4972, -6, -0.2697)
+	SWEP.KKINS2ScopeM40Pos = Vector(-2.4972, -5, -0.2697)
 	SWEP.KKINS2ScopeM40Ang = Vector(0, 0, 0)
 
 	SWEP.KKINS2MagnifierPos = Vector(-2.4834, -6, -0.1578)
@@ -99,8 +99,6 @@ if CLIENT then
 
 	SWEP.CustomizationMenuScale = 0.019
 end
-
-SWEP.WeaponLength = 28
 
 SWEP.Attachments = {
 	{header = "Sight", offset = {400, -500}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_po4", "kk_ins2_scope_m40", "kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_microt1", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"}},
@@ -111,8 +109,6 @@ SWEP.Attachments = {
 	["+use"] = {header = "Sight Contract", offset = {400, -50}, atts = {"kk_ins2_sights_cstm"}},
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_magnum", "am_matchgrade"}}
 }
-
-SWEP.KK_INS2_EmptyIdle = true
 
 SWEP.Animations = {
 	draw = "base_ready",
@@ -248,6 +244,12 @@ SWEP.bipod_ReloadHalt = 3.2
 SWEP.bipod_ReloadHalt_Empty = 4.5
 
 SWEP.SnapToIdlePostReload = false
+
+SWEP.WeaponLength = 28
+
+SWEP.KK_INS2_EmptyIdle = true
+
+SWEP.MuzzleVelocity = 853
 
 if CLIENT then 
 	function SWEP:updateOtherParts()

@@ -237,6 +237,8 @@ SWEP.ReloadTimes = {
 SWEP.FirstDeployTime = 1.8
 SWEP.WeaponLength = 28
 
+SWEP.MuzzleVelocity = 840
+
 if CLIENT then
 	function SWEP:updateOtherParts()
 		local active = self.ActiveAttachments

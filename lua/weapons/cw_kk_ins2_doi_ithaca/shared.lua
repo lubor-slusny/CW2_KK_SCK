@@ -28,14 +28,6 @@ if CLIENT then
 	SWEP.CustomizationMenuScale = 0.015
 end
 
-SWEP.Chamberable = true
-SWEP.SnapToIdlePostReload = false
-SWEP.ShotgunReload = true
-SWEP.ReticleInactivityPostFire = 1
-SWEP.GlobalDelayOnShoot = 0.8
-
-SWEP.WeaponLength = 18
-
 SWEP.Attachments = {
 	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_slugrounds", "am_flechetterounds"}}
@@ -87,8 +79,8 @@ SWEP.WorldModel		= "models/weapons/w_ithaca.mdl"
 SWEP.WMPos = Vector(4.763, 0.935, -2.445)
 SWEP.WMAng = Vector(-10, 0, 180)
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.ww2ContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.doiContentMounted()
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.doiContentMounted()
 
 SWEP.Primary.ClipSize		= 8
 SWEP.Primary.DefaultClip	= 9
@@ -120,6 +112,16 @@ SWEP.ReloadStartTimeEmpty = 2.89
 SWEP.InsertShellTime = 0.72
 SWEP.ReloadFinishWait = 0.6
 SWEP.ReloadFinishWaitEmpty = 0.6
+
+SWEP.Chamberable = true
+SWEP.SnapToIdlePostReload = false
+SWEP.ShotgunReload = true
+SWEP.ReticleInactivityPostFire = 1
+SWEP.GlobalDelayOnShoot = 0.8
+
+SWEP.WeaponLength = 18
+
+SWEP.MuzzleVelocity = 381
 
 -- function SWEP:updateReloadTimes()
 	-- local mode = self:getForegripMode()

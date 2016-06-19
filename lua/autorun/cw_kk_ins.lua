@@ -22,69 +22,68 @@ CustomizableWeaponry_KK.ins2.magnifierDependencies.kk_ins2_cstm_compm4s = true
 
 local SP = game.SinglePlayer()
 
-local baseFiles = {
-	"models/weapons/v_marinebayonet.mdl",
-	"models/weapons/v_mp5kpdw.mdl",
-	"models/weapons/w_flare_projectile.mdl",
-	"models/weapons/w_p2a1.mdl",
-	"models/weapons/shells/40mm.mdl",
-	"models/weapons/shells/556x45_link.phy",
-	"models/weapons/upgrades/a_modkit_mosin.mdl",
-	"models/weapons/upgrades/a_projectile_gp25.phy",
-	"models/weapons/upgrades/a_projectile_gp25.phy",
-	"models/weapons/upgrades/w_standard_ak74.mdl",
-}
+local baseContentOK = true
 
-local baseOk
+for _,f in pairs({
+		"models/weapons/v_marinebayonet.mdl",
+		"models/weapons/v_mp5kpdw.mdl",
+		"models/weapons/w_flare_projectile.mdl",
+		"models/weapons/w_p2a1.mdl",
+		"models/weapons/shells/40mm.mdl",
+		"models/weapons/shells/556x45_link.phy",
+		"models/weapons/upgrades/a_modkit_mosin.mdl",
+		"models/weapons/upgrades/a_projectile_gp25.phy",
+		"models/weapons/upgrades/a_projectile_gp25.phy",
+		"models/weapons/upgrades/w_standard_ak74.mdl",
+	}) do
+	
+	baseContentOK = baseContentOK and file.Exists(f, "GAME")
+end
+
+local doimodContentOK = true
+
+for _,f in pairs({
+		"models/weapons/w_panzerfaust_projectile.mdl",
+		"models/weapons/w_stielhandgranate.phy",
+		"models/weapons/shells/garand_clip.phy",
+		"models/weapons/upgrades/w_thompson_foregrip.mdl",
+	}) do
+	
+	doimodContentOK = doimodContentOK and file.Exists(f, "GAME")
+end
+
+local doigameContentOK = true
+
+for _,f in pairs({
+		"models/weapons/v_etool_brit.mdl",
+		"models/weapons/w_bren.phy",
+		"models/weapons/upgrades/a_bolt_springfield_ext.mdl",
+		"models/weapons/upgrades/a_warhead_bazooka_2.mdl",
+		"models/weapons/upgrades/w_enfield_gl.mdl",
+	}) do
+	
+	doigameContentOK = doigameContentOK and file.Exists(f, "GAME")
+end
 
 CustomizableWeaponry_KK.ins2.baseContentMounted = function()
-	if baseOk == nil then
-		local res = true
-		
-		for _,f in pairs(baseFiles) do
-			res = res and file.Exists(f, "GAME")
-		end
-		
-		baseOk = res
-	end
-	
-	return baseOk
+	return baseContentOK
 end
-
-local WSOk
 
 CustomizableWeaponry_KK.ins2.wsContentMounted = function()
-	if WSOk == nil then
-		WSOk = (CustomizableWeaponry_KK.ins2.baseContentMounted()) and (CustomizableWeaponry_KK.ins2.ws == WS_PACK_REVISION)
-	end
-	
-	return WSOk
+	return baseContentOK and (CustomizableWeaponry_KK.ins2.ws == WS_PACK_REVISION)
 end
 
-local DOIFiles = {
-	"models/weapons/w_panzerfaust_projectile.mdl",
-	"models/weapons/w_stielhandgranate.phy",
-	"models/weapons/shells/garand_clip.phy",
-	"models/weapons/upgrades/w_thompson_foregrip.mdl",
-	-- "models/weapons/upgrades/a_standard_garand.mdl",
-}
-
-local DOIOk
-
 CustomizableWeaponry_KK.ins2.ww2ContentMounted = function()
-	if DOIOk == nil then
-		local res = true
-		
-		for _,f in pairs(DOIFiles) do
-			res = res and file.Exists(f, "GAME")
-		end
-		
-		DOIOk = res
-	end
-	
 	return 
-		CustomizableWeaponry_KK.ins2.baseContentMounted() and
-		DOIOk
+		baseContentOK and
+		doimodContentOK and not
+		doigameContentOK
+end
+
+CustomizableWeaponry_KK.ins2.doiContentMounted = function()
+	return 
+		baseContentOK and
+		doigameContentOK
 end
 
 // for me

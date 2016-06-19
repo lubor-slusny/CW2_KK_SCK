@@ -29,16 +29,9 @@ if CLIENT then
 	SWEP.CustomizationMenuScale = 0.015
 end
 
-SWEP.Chamberable = false
-SWEP.SnapToIdlePostReload = false
-SWEP.ShotgunReload = false
-SWEP.ReticleInactivityPostFire = 0.8
-
 SWEP.Attachments = {
 	{header = "", offset = {500, 0}, atts = {"kk_ins2_gp25_ammo"}},
 }
-
-SWEP.KK_INS2_EmptyIdle = true
 
 SWEP.Animations = {
 	draw = "base_ready",
@@ -116,6 +109,15 @@ SWEP.ReloadTime = 4.6
 SWEP.ReloadTime_Empty = 4.6
 SWEP.ReloadHalt = 5.17
 SWEP.ReloadHalt_Empty = 5.17
+
+SWEP.Chamberable = false
+SWEP.SnapToIdlePostReload = false
+SWEP.ShotgunReload = false
+SWEP.ReticleInactivityPostFire = 0.8
+
+SWEP.KK_INS2_EmptyIdle = true
+
+SWEP.WeaponLength = 24
 
 function SWEP:FireBullet(Damage, CurCone, ClumpSpread, Shots)
 	if Shots == 1 then

@@ -93,8 +93,6 @@ if CLIENT then
 	SWEP.CustomizationMenuScale = 0.015
 end
 
-SWEP.WeaponLength = 22
-
 SWEP.Attachments = {
 	{header = "Sight", offset = {400, -500}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_po4", "kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_microt1", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"}},
 	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_suppressor_sec"}},
@@ -141,13 +139,6 @@ SWEP.Animations = {
 	foregrip_safe_aim = "foregrip_iron_down",
 }
 	
-SWEP.ReloadTimes = {
-	base_reload = {2.3, 3.1},
-	base_reloadempty = {2.3, 4.6},
-	foregrip_reload = {2.3, 3.1},
-	foregrip_reloadempty = {2.3, 4.6}
-}
-
 SWEP.SpeedDec = 40
 
 SWEP.Slot = 3
@@ -199,3 +190,14 @@ SWEP.DeployTime = 0.5
 SWEP.RecoilToSpread = 0.4
 
 SWEP.SnapToIdlePostReload = false
+
+SWEP.ReloadTimes = {
+	base_reload = {2.3, 3.1},
+	base_reloadempty = {2.3, 4.6},
+	foregrip_reload = {2.3, 3.1},
+	foregrip_reloadempty = {2.3, 4.6}
+}
+
+SWEP.WeaponLength = 22
+
+SWEP.MuzzleVelocity = 960

@@ -2,7 +2,9 @@ if not CustomizableWeaponry then return end
 
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
+AddCSLuaFile("sh_soundscript.lua")
 include("sh_sounds.lua")
+include("sh_soundscript.lua")
 
 SWEP.magType = "pistolMag"
 
@@ -50,18 +52,12 @@ if CLIENT then
 	SWEP.DisableSprintViewSimulation = true
 end
 
-SWEP.CanRestOnObjects = false
--- SWEP.WeaponLength = 16 // original
-SWEP.WeaponLength = 14
-
 SWEP.Attachments = {
 	{header = "Lasers", offset = {500, -400}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_m6x"}},
 	{header = "Barrel", offset = {-500, -400}, atts = {"kk_ins2_suppressor_pistol"}},
 	{header = "Magazine", offset = {-500, 150}, atts = {"kk_ins2_mag_makarov_15"}},
 	["+reload"] = {header = "Ammo", offset = {500, 150}, atts = {"am_magnum", "am_matchgrade"}}
 }
-
-SWEP.KK_INS2_EmptyIdle = true
 
 SWEP.Animations = {
 	draw = "base_ready",
@@ -89,69 +85,6 @@ SWEP.Animations = {
 	base_safe_empty = "empty_down",
 	base_safe_aim = "iron_down",
 	base_safe_empty_aim = "empty_iron_down",
-}
-	
-SWEP.Sounds = {
-	base_ready = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_PISTOL_DRAW"},
-		{time = 4/30, sound = "CW_KK_INS2_MAKAROV_SAFETY"},
-		{time = 9/30, sound = "CW_KK_INS2_MAKAROV_BOLTBACK"},
-		{time = 19/30, sound = "CW_KK_INS2_MAKAROV_BOLTRELEASE"},
-	},
-
-	base_draw = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_PISTOL_DRAW"},
-	},
-
-	base_holster = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_PISTOL_HOLSTER"},
-	},
-
-	base_dryfire = {
-		{time = 0/30, sound = "CW_KK_INS2_MAKAROV_EMPTY"},
-	},
-
-	base_reload = {
-		{time = 0/30, sound = "CW_KK_INS2_MAKAROV_MAGRELEASE"},
-		{time = 7/30, sound = "CW_KK_INS2_MAKAROV_MAGOUT"},
-		{time = 35/30, sound = "CW_KK_INS2_MAKAROV_MAGIN"},
-		{time = 58/30, sound = "CW_KK_INS2_MAKAROV_MAGHIT"},
-	},
-
-	base_reload_extmag = {
-		{time = 0/30, sound = "CW_KK_INS2_MAKAROV_MAGRELEASE"},
-		{time = 7/30, sound = "CW_KK_INS2_MAKAROV_MAGOUT"},
-		{time = 35/30, sound = "CW_KK_INS2_MAKAROV_MAGIN"},
-		{time = 58/30, sound = "CW_KK_INS2_MAKAROV_MAGHIT"},
-	},
-
-	base_reloadempty = {
-		{time = 0/30, sound = "CW_KK_INS2_MAKAROV_MAGRELEASE"},
-		{time = 7/30, sound = "CW_KK_INS2_MAKAROV_MAGOUT"},
-		{time = 35/30, sound = "CW_KK_INS2_MAKAROV_MAGIN"},
-		{time = 58/30, sound = "CW_KK_INS2_MAKAROV_MAGHIT"},
-		{time = 71/30, sound = "CW_KK_INS2_MAKAROV_BOLTRELEASE"},
-	},
-
-	base_reloadempty_extmag = {
-		{time = 0/30, sound = "CW_KK_INS2_MAKAROV_MAGRELEASE"},
-		{time = 7/30, sound = "CW_KK_INS2_MAKAROV_MAGOUT"},
-		{time = 35/30, sound = "CW_KK_INS2_MAKAROV_MAGIN"},
-		{time = 58/30, sound = "CW_KK_INS2_MAKAROV_MAGHIT"},
-		{time = 71/30, sound = "CW_KK_INS2_MAKAROV_BOLTRELEASE"},
-	},
-
-	empty_draw = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_PISTOL_DRAW"},
-	},
-
-	empty_holster = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_PISTOL_HOLSTER"},
-	},
-
-	iron_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_MAKAROV_EMPTY"},
-	},
 }
 
 SWEP.SpeedDec = 10
@@ -210,6 +143,14 @@ SWEP.ReloadHalt = 2.65
 
 SWEP.ReloadTime_Empty = 2
 SWEP.ReloadHalt_Empty = 2.65
+
+SWEP.CanRestOnObjects = false
+-- SWEP.WeaponLength = 16 // original
+SWEP.WeaponLength = 14
+
+SWEP.KK_INS2_EmptyIdle = true
+
+SWEP.MuzzleVelocity = 315
 
 if CLIENT then 
 	function SWEP:updateOtherParts()

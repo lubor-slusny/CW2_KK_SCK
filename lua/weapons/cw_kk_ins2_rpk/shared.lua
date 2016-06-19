@@ -158,10 +158,6 @@ if CLIENT then
 	SWEP.CustomizationMenuScale = 0.018
 end
 
-SWEP.BipodInstalled = true
-SWEP.WeaponLength = 26
--- SWEP.WeaponLength = 22 // sopmod
-
 SWEP.Attachments = {
 	{header = "Sight", offset = {400, -450}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_po4", "kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_microt1", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"}},
 	{header = "Barrel", offset = {-100, -450}, atts = {"kk_ins2_pbs1"}},
@@ -281,6 +277,12 @@ SWEP.bipod_ReloadTime = 116/30
 SWEP.bipod_ReloadTime_Empty = 116/30
 SWEP.bipod_ReloadHalt = 4.8
 SWEP.bipod_ReloadHalt_Empty = 6
+
+SWEP.BipodInstalled = true
+SWEP.WeaponLength = 26
+-- SWEP.WeaponLength = 22 // sopmod
+
+SWEP.MuzzleVelocity = 745
 
 if CLIENT then
 	local counterExists = file.Exists("models/weapons/stattrack.mdl", "GAME")

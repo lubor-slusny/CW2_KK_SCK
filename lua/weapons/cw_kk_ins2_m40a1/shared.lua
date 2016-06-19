@@ -249,6 +249,8 @@ SWEP.GlobalDelayOnShoot = SWEP.FireDelay
 
 SWEP.WeaponLength = 38
 
+SWEP.MuzzleVelocity = 777
+
 -- function SWEP:updateReloadTimes()
 	-- local mode = self:getForegripMode()
 

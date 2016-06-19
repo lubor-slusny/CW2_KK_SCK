@@ -107,8 +107,6 @@ if CLIENT then
 	SWEP.CustomizationMenuScale = 0.018
 end
 
-SWEP.WeaponLength = 24
-
 SWEP.SightBGs = {main = 0, foldsight = 0}
 
 SWEP.Attachments = {
@@ -258,6 +256,8 @@ SWEP.base_ReloadHalt_Empty = 4.3
 
 SWEP.gl_on_ReloadTime = 2.6
 SWEP.gl_on_ReloadHalt = 3.17
+
+SWEP.WeaponLength = 24
 
 if CLIENT then 
 	function SWEP:updateOtherParts()

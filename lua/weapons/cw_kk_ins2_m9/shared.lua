@@ -137,3 +137,5 @@ SWEP.ReloadHalt = 2.65
 
 SWEP.ReloadTime_Empty = 2
 SWEP.ReloadHalt_Empty = 2.65
+
+SWEP.MuzzleVelocity = 381

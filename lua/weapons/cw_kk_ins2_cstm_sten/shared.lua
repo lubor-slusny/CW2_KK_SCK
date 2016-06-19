@@ -1,8 +1,8 @@
 if not CustomizableWeaponry then return end
 
 AddCSLuaFile()
-AddCSLuaFile("sh_sounds.lua")
-include("sh_sounds.lua")
+AddCSLuaFile("sh_soundscript.lua")
+include("sh_soundscript.lua")
 
 SWEP.magType = "smgMag"
 
@@ -91,8 +91,6 @@ if CLIENT then
 	SWEP.CustomizationMenuScale = 0.0125
 end
 
-SWEP.WeaponLength = 16
-
 SWEP.Attachments = {
 	{header = "Sight", offset = {300, -600}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_po4", "kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_microt1", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"}},
 	{header = "Barrel", offset = {-300, -600}, atts = {"kk_ins2_suppressor_sterling"}},
@@ -101,9 +99,6 @@ SWEP.Attachments = {
 	["+use"] = {header = "Sight Contract", offset = {300, -100}, atts = {"kk_ins2_sights_cstm"}},
 	["+reload"] = {header = "Ammo", offset = {0, 400}, atts = {"am_magnum", "am_matchgrade"}}
 }
-
-SWEP.Chamberable = false
-SWEP.KK_INS2_EmptyIdle = true
 
 SWEP.Animations = {
 	draw = "base_ready",
@@ -231,3 +226,10 @@ SWEP.ReloadTime = 2.3
 SWEP.ReloadHalt = 3
 SWEP.ReloadTime_Empty = 2.3
 SWEP.ReloadHalt_Empty = 4.1
+
+SWEP.Chamberable = false
+SWEP.KK_INS2_EmptyIdle = true
+
+SWEP.WeaponLength = 16
+
+SWEP.MuzzleVelocity = 365

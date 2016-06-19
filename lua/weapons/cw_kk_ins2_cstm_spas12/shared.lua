@@ -88,13 +88,6 @@ if CLIENT then
 	SWEP.CustomizationMenuScale = 0.015
 end
 
-SWEP.Chamberable = true
-SWEP.SnapToIdlePostReload = false
-SWEP.ShotgunReload = true
-SWEP.ReticleInactivityPostFire = 1
-
-SWEP.WeaponLength = 18
-
 SWEP.Attachments = {
 	{header = "Sight", offset = {400, -550}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_microt1", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_compm4s"}},
 	{header = "Barrel", offset = {-300, -550}, atts = {"kk_ins2_suppressor_shotgun"}},
@@ -375,3 +368,12 @@ SWEP.ReloadStartTimeEmpty = 0.7
 SWEP.InsertShellTime = 0.72
 SWEP.ReloadFinishWait = 0.6
 SWEP.ReloadFinishWaitEmpty = 1.51
+
+SWEP.Chamberable = true
+SWEP.SnapToIdlePostReload = false
+SWEP.ShotgunReload = true
+SWEP.ReticleInactivityPostFire = 1
+
+SWEP.WeaponLength = 18
+
+SWEP.MuzzleVelocity = 381

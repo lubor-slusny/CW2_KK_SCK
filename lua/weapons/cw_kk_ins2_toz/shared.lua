@@ -85,13 +85,6 @@ if CLIENT then
 	SWEP.CustomizationMenuScale = 0.015
 end
 
-SWEP.Chamberable = true
-SWEP.SnapToIdlePostReload = false
-SWEP.ShotgunReload = true
-SWEP.ReticleInactivityPostFire = 1
-
-SWEP.WeaponLength = 18
-
 SWEP.Attachments = {
 	{header = "Sight", offset = {400, -450}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_microt1", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_compm4s"}},
 	{header = "Barrel", offset = {-200, -450}, atts = {"kk_ins2_suppressor_shotgun"}},
@@ -207,6 +200,15 @@ SWEP.ReloadStartTimeEmpty = 2.89
 SWEP.InsertShellTime = 0.72
 SWEP.ReloadFinishWait = 0.6
 SWEP.ReloadFinishWaitEmpty = 0.6
+
+SWEP.Chamberable = true
+SWEP.SnapToIdlePostReload = false
+SWEP.ShotgunReload = true
+SWEP.ReticleInactivityPostFire = 1
+
+SWEP.WeaponLength = 18
+
+SWEP.MuzzleVelocity = 381
 
 -- function SWEP:updateReloadTimes()
 	-- local mode = self:getForegripMode()
