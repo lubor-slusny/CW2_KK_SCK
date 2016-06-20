@@ -1,6 +1,5 @@
 if not CustomizableWeaponry then return end
 
-
 if CLIENT then
 	SWEP.DrawCrosshair = false
 	SWEP.PrintName = "Shovel DE"

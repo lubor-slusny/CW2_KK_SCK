@@ -27,14 +27,8 @@ if CLIENT then
 	SWEP.AttachmentModelsVM = {}
 	SWEP.AttachmentModelsWM = {}
 	
-	SWEP.IronsightPos = Vector(-1.7264, 0, -0.281)
-	SWEP.IronsightAng = Vector(7.5622, -0.9048, 13.5897)
-
-	SWEP.ActualSightPos = Vector(-1.7264, 0, -0.281)
-	SWEP.ActualSightAng = Vector(7.5622, -0.9048, 13.5897)
-
-	SWEP.SightBackUpPos = Vector(-1.4887, 0, -1.3139)
-	SWEP.SightBackUpAng = Vector(7.5622, -0.9048, 13.5897)
+	SWEP.IronsightPos = Vector(-3.5969, 0, 1.5163)
+	SWEP.IronsightAng = Vector(-2.3185, 0.038, -5.9126)
 
 	SWEP.SprintAnimSpeed = 1
 	SWEP.ViewModelMovementScale_sprint = 0.6
@@ -50,22 +44,32 @@ SWEP.WeaponLength = 44
 SWEP.Attachments = {
 }
 
+SWEP.KK_INS2_EmptyIdle = true
+
 SWEP.Animations = {
-	draw = "base_ready",
-	base_insert = "base_reload",
-	
-	base_pickup = "base_ready",
+	draw = "base_draw",
+
+	base_pickup = "base_draw",
 	base_draw = "base_draw",
+	base_draw_empty = "empty_draw",
 	base_fire = "base_fire",
 	base_fire_aim = "iron_fire",
+	base_fire_last = "base_fire",
+	base_fire_last_aim = "iron_fire",
 	base_fire_empty = "base_dryfire",
 	base_fire_empty_aim = "iron_dryfire",
 	base_reload = "base_reload",
+	base_reload_empty = "base_reload",
 	base_idle = "base_idle",
+	base_idle_empty = "empty_idle",
 	base_holster = "base_holster",
+	base_holster_empty = "empty_holster",
 	base_sprint = "base_sprint",
+	base_sprint_empty = "empty_sprint",
 	base_safe = "base_down",
 	base_safe_aim = "iron_down",
+	base_safe_empty = "empty_down",
+	base_safe_empty_aim = "iron_down_empty",
 }
 
 SWEP.SpeedDec = 15
@@ -87,7 +91,7 @@ SWEP.AimViewModelFOV = 30
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_piat.mdl"
-SWEP.WorldModel		= "models/weapons/w_bazooka.mdl"
+SWEP.WorldModel		= "models/weapons/w_panzerfaust.mdl"
 
 SWEP.DrawCustomWM = true
 SWEP.WMPos = Vector(-5, 0, -0.5)
@@ -116,13 +120,13 @@ SWEP.SpreadCooldown = 0.8
 SWEP.Shots = 1
 SWEP.Damage = 100
 
-SWEP.FirstDeployTime = 6.87
-SWEP.DeployTime = 0.83
+SWEP.FirstDeployTime = 1.5
+SWEP.DeployTime = 1.5
 
-SWEP.ReloadTime = 4.4
-SWEP.ReloadTime_Empty = 4.4
-SWEP.ReloadHalt = 6.4
-SWEP.ReloadHalt_Empty = 6.4
+SWEP.ReloadTime = 3
+SWEP.ReloadTime_Empty = 3
+SWEP.ReloadHalt = 4.46
+SWEP.ReloadHalt_Empty = 4.46
 
 local clip, cyc, rate, prefix, suffix
 

@@ -22,6 +22,8 @@ if CLIENT then
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_standard_br99.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		
+		["kk_counter"] = {model = "models/weapons/upgrades/a_standard_br99.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, nodraw = true},
+		
 		["kk_ins2_suppressor_shotgun"] = {model = "models/weapons/upgrades/a_suppressor_12ga.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/a_foregrip_sec.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), attachment = "Foregrip"},
@@ -118,6 +120,12 @@ SWEP.Attachments = {
 	["+use"] = {header = "Sight Contract", offset = {500, 0}, atts = {"kk_ins2_sights_cstm"}},
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_slugrounds", "am_flechetterounds"}}
 }
+
+if CustomizableWeaponry_KK.HOME then
+	table.insert(SWEP.Attachments, {header = "Skill1", offset = {2300, -600}, atts = {"kk_aimbot"}})
+	table.insert(SWEP.Attachments, {header = "Skill2", offset = {2300, -100}, atts = {"kk_wallhaq"}})
+	table.insert(SWEP.Attachments, {header = "CSGO", offset = {2300, 300}, atts = {"kk_counter"}})
+end
 
 SWEP.Animations = {
 	draw = "base_ready",

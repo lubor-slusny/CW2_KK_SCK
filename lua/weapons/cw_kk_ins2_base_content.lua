@@ -1,3 +1,6 @@
+if not CustomizableWeaponry then return end
+
+AddCSLuaFile()
 
 -- // particles // if u know how 2 convert, CONVERT, NOT REMAKE, CONVERT them to good old gmod shitengine lemme know
 
@@ -284,8 +287,13 @@ if CLIENT then
 	
 	killicon.AddFont("cw_kk_ins2_projectile_frag",	"CW_KillIcons", "h", killCol)
 	
-	// WS pack
+	// ao5
+	killicon.AddFont("cw_kk_ins2_ao5_revolver",		"CW_KillIcons", "a", killCol)
+	killicon.AddFont("cw_kk_ins2_ao5_br99",			"CW_KillIcons", "w", killCol)
+	killicon.AddFont("cw_kk_ins2_ao5_m39",			"CW_KillIcons", "i", white)
+	killicon.AddFont("cw_kk_ins2_ao5_m79",			"HL2MPTypeDeath", "7", killCol)
 	
+	// WS pack
 	killicon.AddFont("cw_kk_ins2_mel_cstm_ninjato",	"CW_KillIcons", "j", killCol)
 	
 	killicon.AddFont("cw_kk_ins2_cstm_cobra",		"HL2MPTypeDeath", ".", killCol)

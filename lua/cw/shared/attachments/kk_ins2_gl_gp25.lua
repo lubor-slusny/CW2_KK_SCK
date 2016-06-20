@@ -71,9 +71,13 @@ if CLIENT then
 			end
 		
 			if v.ent and active then
-				if v.merge then				// this was an attempt to unfuck lighting on certain velements
-					-- pos = EyePos()		// css rig now seem to be working fine witout it 
-					-- ang = EyeAngles()	// aimpoint2x was always messed up
+				if v.merge then				
+					// this was an attempt to unfuck lighting on certain velements
+					// css rig now seem to be working fine witout it 
+					// aimpoint2x was always messed up
+					
+					-- pos = EyePos()
+					-- ang = EyeAngles()
 				elseif v._attachment then
 					vma = att.CW_VM:GetAttachment(v._attachment)
 					pos = vma.Pos
