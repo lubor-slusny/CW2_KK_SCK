@@ -15,9 +15,11 @@ if CLIENT then
 	SWEP.IconLetter = "n"
 	
 	SWEP.MuzzleEffect = "muzzleflash_m14"
+	SWEP.NoShells = true
 	SWEP.Shell = "KK_INS2_762x54"
 	SWEP.Shell2 = "KK_INS2_GARAND"
 	SWEP.ShellDelay = 0.06
+	SWEP.ShellEjectVelocity = 150
 	
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_iron_garand_l.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
@@ -154,55 +156,106 @@ if CLIENT then
 		end
 	end
 	
-	local makeShell = CustomizableWeaponry_KK.ins2.makeShell
-	local down = Vector(0,0,-100)
+	-- local makeShell = CustomizableWeaponry_KK.ins2.makeShell
+	-- local down = Vector(0,0,-100)
 	
-	local function clipShellThink(self)
-		if self.drawTime < CurTime() then
-			self:SetNoDraw(false)
-		end
-	end
+	-- local function clipShellThink(self)
+		-- if self.drawTime < CurTime() then
+			-- self:SetNoDraw(false)
+		-- end
+	-- end
 	
-	local att, ang, tweak
+	-- local att, ang, tweak
 	
-	function SWEP:CreateShell(sh) // this func was edited for this specific vmodel only
-		if self.Owner:ShouldDrawLocalPlayer() then
-			return
-		end
+	-- function SWEP:CreateShell(sh) // this func was edited for this specific vmodel only
+		-- if self.Owner:ShouldDrawLocalPlayer() then
+			-- return
+		-- end
 		
-		CustomizableWeaponry.actionSequence.new(self, 0.09, nil, function()
-			// main shell
-			self._shellTable = self._shellTable1
-			att = self.CW_VM:GetAttachment(2)
-			ang = EyeAngles()
-			tweak = self._shellTable.rv
-			if tweak then
-				ang:RotateAroundAxis(ang:Right(), tweak.Right)
-				ang:RotateAroundAxis(ang:Forward(), tweak.Forward)
-				ang:RotateAroundAxis(ang:Up(), tweak.Up)
-			end
+		-- CustomizableWeaponry.actionSequence.new(self, 0.09, nil, function()
+			-- // main shell
+			-- self._shellTable = self._shellTable1
+			-- att = self.CW_VM:GetAttachment(2)
+			-- ang = EyeAngles()
+			-- tweak = self._shellTable.rv
+			-- if tweak then
+				-- ang:RotateAroundAxis(ang:Right(), tweak.Right)
+				-- ang:RotateAroundAxis(ang:Forward(), tweak.Forward)
+				-- ang:RotateAroundAxis(ang:Up(), tweak.Up)
+			-- end
 			
-			makeShell(self, att.Pos, ang, att.Ang:Forward() * 200, 0.6, 10)
-		end)
+			-- makeShell(self, att.Pos, ang, att.Ang:Forward() * 200, 0.6, 10)
+		-- end)
 		
-		// clip
-		if self:Clip1() > 0 then return end
+		-- // clip
+		-- if self:Clip1() > 0 then return end
 		
-		self._shellTable = self._shellTable2
-		ang = EyeAngles()
-		tweak = self._shellTable.rv
+		-- self._shellTable = self._shellTable2
+		-- ang = EyeAngles()
+		-- tweak = self._shellTable.rv
+		-- if tweak then
+			-- ang:RotateAroundAxis(ang:Right(), tweak.Right)
+			-- ang:RotateAroundAxis(ang:Forward(), tweak.Forward)
+			-- ang:RotateAroundAxis(ang:Up(), tweak.Up)
+		-- end
+		
+		-- local ent = makeShell(self, att.Pos, ang, att.Ang:Forward() * 100, 0.6, 10)
+		
+		-- ent:SetNoDraw(true)
+		-- ent.drawTime = CurTime() + 0.4
+		-- ent.clipShellThink = clipShellThink
+		
+		-- hook.Add("Think", ent, ent.clipShellThink)
+	-- end
+end
+
+local makeShell = CustomizableWeaponry_KK.ins2.makeShell
+local vm, att, dir, ang, tweak
+
+local bone = 66
+local dir = Vector(0,0,-100)
+
+function SWEP:shellEvent2(sh)
+	if SERVER then return end
+	
+	sh = sh or self._shellTable2
+	
+	if self.Owner:ShouldDrawLocalPlayer() then
+		vm = self:getMuzzleModel()
+		att = vm:GetAttachment(self.WorldShellEjectionAttachmentID)
+		local ejectVelocity = att.Ang:Forward() * (self.ShellEjectVelocity or 200)
+		
+		ang = att.Ang
+		tweak = self._shellTable.rw
 		if tweak then
 			ang:RotateAroundAxis(ang:Right(), tweak.Right)
 			ang:RotateAroundAxis(ang:Forward(), tweak.Forward)
 			ang:RotateAroundAxis(ang:Up(), tweak.Up)
 		end
 		
-		local ent = makeShell(self, att.Pos, ang, att.Ang:Forward() * 100, 0.6, 10)
+		makeShell(self, att.Pos, ang, ejectVelocity, 0.5, 10, sh)
+	else
+		vm = self.CW_VM
+		local m = vm:GetBoneMatrix(bone)
 		
-		ent:SetNoDraw(true)
-		ent.drawTime = CurTime() + 0.4
-		ent.clipShellThink = clipShellThink
+		local Pos = m:GetTranslation()
+		local Ang = m:GetAngles()
 		
-		hook.Add("Think", ent, ent.clipShellThink)
+		if self.ShellPosOffset then
+			Pos = Pos + (self.ShellPosOffset.x) * Ang:Right()
+			Pos = Pos + (self.ShellPosOffset.y) * Ang:Forward()
+			Pos = Pos + (self.ShellPosOffset.z) * Ang:Up()
+		end
+		
+		ang = EyeAngles()
+		tweak = self._shellTable.rv
+			
+		if tweak then
+			ang:RotateAroundAxis(ang:Right(), tweak.Right)
+			ang:RotateAroundAxis(ang:Forward(), tweak.Forward)
+			ang:RotateAroundAxis(ang:Up(), tweak.Up)
+		end
+		
+		makeShell(self, Pos, ang, dir, 0.6, 10, sh)
 	end
 end

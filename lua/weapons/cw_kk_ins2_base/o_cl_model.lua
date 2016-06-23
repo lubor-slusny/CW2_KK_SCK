@@ -1,7 +1,7 @@
 
 // vm fx tweak
 
-local att, sh, vm
+local att, vm
 
 local muz = {}
 
@@ -160,6 +160,7 @@ function SWEP:drawViewModel()
 end
 
 local cvAmmoHud = GetConVar("cw_customhud_ammo")
+local cvSVM = GetConVar("cw_kk_ins2_shell_vm")
 
 function SWEP:_drawViewModel()
 	self.CW_VM:FrameAdvance(FrameTime())
@@ -173,8 +174,11 @@ function SWEP:_drawViewModel()
 		self.CW_KK_HANDS:AddEffects(EF_BONEMERGE)
 		self.CW_KK_HANDS:DrawModel()
 	end
+			
+	if cvSVM:GetInt() == 1 then
+		self:drawVMShells()
+	end
 	
-	self:drawVMShells()
 	self:drawAttachments()
 	self:drawInteractionMenu()
 	

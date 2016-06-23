@@ -75,8 +75,8 @@ SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_welrod.mdl"
 SWEP.WorldModel		= "models/weapons/w_welrod.mdl"
 
-SWEP.WMPos = Vector(5.309, 1.623, -1.821)
-SWEP.WMAng = Vector(-3, -5, 180)
+SWEP.WMPos = Vector(5, 1.623, -4)
+SWEP.WMAng = Vector(-8, -5, 180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2gb
 

@@ -17,7 +17,8 @@ if CLIENT then
 	SWEP.MuzzleEffect = "muzzleflash_m14"
 
 	SWEP.Shell = "KK_INS2_762x54"
-	SWEP.ShellDelay = 0.75
+	-- SWEP.ShellDelay = 0.75
+	SWEP.NoShells = true
 	
 	SWEP.BackupSights = {
 		["kk_ins2_scope_k98"] = {
@@ -231,6 +232,24 @@ SWEP.ReloadHalt_Empty = 4.49
 
 SWEP.MuzzleVelocity = 760
 
+function SWEP:makeFireEffects()
+	if SP and SERVER then
+		-- god damn prediction disabled in SP
+		SendUserMessage("CW20_EFFECTS")
+		return
+	end
+	
+	if CLIENT then
+		if self.MuzzleEffect then
+			self:CreateMuzzle()
+		end
+		
+		-- if self.Shell then
+			-- self:CreateShell()
+		-- end
+	end
+end
+
 function SWEP:fireAnimFunc()
 	local clip = self:Clip1()
 	local mag = ""
@@ -277,7 +296,7 @@ if CLIENT then
 			self:setBodygroup(1, self:Clip1())
 		end
 		
-		self.NoShells = self.Sequence:find("fire_last")
+		-- self.NoShells = self.Sequence:find("fire_last")
 		
 		local hasInstalledScope = self:getActiveAttachmentInCategory(1) != nil
 		local isGL = self.dt.INS2GLActive

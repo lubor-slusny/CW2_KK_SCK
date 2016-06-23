@@ -78,10 +78,10 @@ if CLIENT then
 		x = -500, 
 		y = -500, 
 		textFormatFunc = function(self, wep) 
-			if wep.ActiveAttachments.md_bipod then 
+			if wep.ActiveAttachments.kk_ins2_cstm_pgo7 and wep.ActiveAttachments.kk_ins2_anpeq15 and wep.ActiveAttachments.kk_counter then 
+				return self.text
+			else
 				return "" 
-			else 
-				return self.text 
 			end 
 		end
 	}

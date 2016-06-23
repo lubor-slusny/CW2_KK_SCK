@@ -26,13 +26,13 @@ if CLIENT then
 	
 	CustomizableWeaponry_KK.ins2.deployedShells = CustomizableWeaponry_KK.ins2.deployedShells or {}
 	
-	function CustomizableWeaponry_KK.ins2:makeShell(pos, ang, velocity, soundTime, removeTime)
+	function CustomizableWeaponry_KK.ins2:makeShell(pos, ang, velocity, soundTime, removeTime, t)
 		velocity = velocity or up
 		velocity.x = velocity.x + math.Rand(-5, 5)
 		velocity.y = velocity.y + math.Rand(-5, 5)
 		velocity.z = velocity.z + math.Rand(-5, 5)
 		
-		local t = self._shellTable or fallbackShell
+		t = t or self._shellTable or fallbackShell
 		
 		local ent = ClientsideModel(t.m, RENDERGROUP_BOTH) 
 		ent:SetPos(pos)
@@ -74,7 +74,7 @@ if CLIENT then
 	
 		-- SafeRemoveEntityDelayed(ent, cvarSLT:GetFloat() or removeTime or 10) // function creation spam
 		
-		ent._ttl = CurTime() + (cvarSLT:GetFloat() or removeTime or 10)
+		ent._ttl = CurTime() + (cvarSLT:GetFloat() or removeTime or 10) // terrible mess
 		hook.Add("Think", ent, shellThink)
 		
 		table.insert(CustomizableWeaponry_KK.ins2.deployedShells, ent)

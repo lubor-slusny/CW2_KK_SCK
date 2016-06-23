@@ -144,8 +144,8 @@ SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_springfield.mdl"
 SWEP.WorldModel		= "models/weapons/w_springfield.mdl"
 
-SWEP.WMPos = Vector(6.136, 0.786, -1.713)
-SWEP.WMAng = Vector(-10, 0, 180)
+SWEP.WMPos = Vector(14, 0, -2)
+SWEP.WMAng = Vector(-10, 2, 180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2us
 

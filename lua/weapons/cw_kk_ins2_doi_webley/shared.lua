@@ -74,7 +74,7 @@ SWEP.SpeedDec = 10
 
 SWEP.Slot = 1
 SWEP.SlotPos = 0
-SWEP.NormalHoldType = "revolver"
+SWEP.NormalHoldType = "pistol"
 SWEP.RunHoldType = "normal"
 SWEP.FireModes = {"semi"}
 SWEP.Base = "cw_kk_ins2_base"
@@ -90,7 +90,7 @@ SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_webley.mdl"
 SWEP.WorldModel		= "models/weapons/w_webley.mdl"
 
-SWEP.WMPos = Vector(5.309, 1.623, -1.616)
+SWEP.WMPos = Vector(5, 1.623, -4)
 SWEP.WMAng = Vector(-3, -5, 180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2gb

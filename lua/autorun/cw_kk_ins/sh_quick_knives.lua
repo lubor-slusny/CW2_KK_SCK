@@ -30,7 +30,7 @@ CustomizableWeaponry_KK.ins2.quickKnives.ninjato = {
 
 CustomizableWeaponry_KK.ins2.quickKnives.ww2de = {
 	vm = "models/weapons/v_k98kbayonet.mdl",
-	a_attack = "hitcenter3"
+	a_attack = "hitcenter1"
 }
 
 function CustomizableWeaponry_KK.ins2:canKnife()

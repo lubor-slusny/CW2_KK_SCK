@@ -6,8 +6,8 @@ AddCSLuaFile("sh_soundscript.lua")
 include("sh_sounds.lua")
 include("sh_soundscript.lua")
 
--- SWEP.magType = "lmgBox"
-SWEP.magType = "NONE"
+SWEP.magType = "lmgBox"
+-- SWEP.magType = "NONE"
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
@@ -89,7 +89,7 @@ SWEP.WorldModel		= "models/weapons/w_mg34.mdl"
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2de
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.ww2de
 
-SWEP.WMPos = Vector(13.486, 0.5, -3)
+SWEP.WMPos = Vector(13.486, 0.5, -4)
 SWEP.WMAng = Vector(-5, 0, 180)
 
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.doiContentMounted()

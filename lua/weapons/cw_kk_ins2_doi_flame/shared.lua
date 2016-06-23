@@ -80,7 +80,7 @@ SWEP.WorldModel		= "models/weapons/w_lufboy.mdl"
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2us
 
-SWEP.WMPos = Vector(4, 0.395, -2)
+SWEP.WMPos = Vector(11, 0.395, -2.5)
 SWEP.WMAng = Vector(-10, 0, 180)
 
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.doiContentMounted()
