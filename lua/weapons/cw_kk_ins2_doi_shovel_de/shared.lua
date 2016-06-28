@@ -7,6 +7,17 @@ if CLIENT then
 	SWEP.AttachmentModelsVM = {}
 end
 
+SWEP.Animations = {
+	draw = "base_draw",
+
+	base_pickup = "base_draw",
+	base_draw = "base_draw",
+	base_fire = {"base_attack_1", "base_attack_2", "base_attack_3"},
+	base_idle = "base_idle",
+	base_holster = "base_holster",
+	base_sprint = "base_sprint",
+}
+
 SWEP.NormalHoldType = "knife"
 SWEP.RunHoldType = "passive"
 SWEP.FireModes = {"auto"}

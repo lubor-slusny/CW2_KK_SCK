@@ -116,7 +116,8 @@ function SWEP:IndividualThink()
 		self.reticleInactivity = UnPredictedCurTime() + 1
 	end
 
-	weapons.GetStored("cw_kk_ins2_base").IndividualThink(self)
+	-- weapons.GetStored("cw_kk_ins2_base").IndividualThink(self)
+	weapons.GetStored("cw_kk_ins2_base_main").IndividualThink(self)
 		
 	if SP and CLIENT then 
 		return

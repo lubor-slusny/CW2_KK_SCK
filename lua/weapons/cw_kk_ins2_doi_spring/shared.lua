@@ -17,7 +17,8 @@ if CLIENT then
 	SWEP.MuzzleEffect = "muzzleflash_m14"
 
 	SWEP.Shell = "KK_INS2_762x54"
-	SWEP.ShellDelay = 0.75
+	SWEP.ShellDelay = 0
+	SWEP.NoShells = true
 	
 	SWEP.BackupSights = {}
 	
@@ -60,10 +61,10 @@ end
 
 SWEP.Attachments = {
 	-- {header = "Sight", offset = {500, -500}, atts = {"kk_ins2_cstm_barska", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_cstm_acog", "kk_ins2_po4", "kk_ins2_scope_mosin", "kk_ins2_scope_m40"}},
-	{header = "Sight", offset = {500, -500}, atts = {"kk_ins2_scope_m73"}},
+	{header = "Sight", offset = {500, -500}, atts = {"kk_ins2_scope_m73"}, exclusions = {["kk_ins2_ww2_stripper"] = true}},
 	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_ww2_knife"}},
 	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
-	{header = "Clip", offset = {200, 0}, atts = {"kk_ins2_ww2_stripper"}},
+	{header = "Clip", offset = {200, 0}, atts = {"kk_ins2_ww2_stripper"}, exclusions = {["kk_ins2_scope_m73"] = true}},
 	-- {header = "Under", offset = {-500, 0}, atts = {"kk_ins2_bipod"}},
 	-- {header = "Lasers", offset = {125, 200}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}},
 	-- {header = "More Sight", offset = {1200, 0}, atts = {"kk_ins2_magnifier"}, dependencies = CustomizableWeaponry_KK.ins2.magnifierDependencies},
@@ -131,7 +132,7 @@ SWEP.SlotPos = 0
 SWEP.NormalHoldType = "ar2"
 SWEP.RunHoldType = "passive"
 SWEP.FireModes = {"bolt"}
-SWEP.Base = "cw_kk_ins2_base"
+SWEP.Base = "cw_kk_ins2_base_pump"
 SWEP.Category = "CW 2.0 KK INS2 DOI"
 
 SWEP.Author			= "Spy"
@@ -157,7 +158,8 @@ SWEP.Primary.DefaultClip	= 5
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= ".30-06"
 
-SWEP.FireDelay = 60/36
+-- SWEP.FireDelay = 60/36
+SWEP.FireDelay = 0.3
 SWEP.FireSound = "CW_KK_INS2_DOI_SPRING_FIRE"
 SWEP.Recoil = 1.6
 
@@ -200,38 +202,39 @@ SWEP.GlobalDelayOnShoot = SWEP.FireDelay
 SWEP.WeaponLength = 38
 
 SWEP.MuzzleVelocity = 854
+SWEP.pumpTime = 1.7
 
-function SWEP:fireAnimFunc()
-	local clip = self:Clip1()
-	local mag = ""
+-- function SWEP:fireAnimFunc()
+	-- local clip = self:Clip1()
+	-- local mag = ""
 	
-	if clip == 0 then
-		mag = "_empty"
-	end
+	-- if clip == 0 then
+		-- mag = "_empty"
+	-- end
 	
-	local prefix = self:getForegripMode()
-	local suffix = ""
+	-- local prefix = self:getForegripMode()
+	-- local suffix = ""
 	
-	if self:isAiming() then
-		suffix = "_aim"
-	end
+	-- if self:isAiming() then
+		-- suffix = "_aim"
+	-- end
 	
-	if clip > 0 then
-		CustomizableWeaponry.actionSequence.new(self, 0.14, nil, function() 
-			local prefix = self:getForegripMode()
-			local suffix = ""
+	-- if clip > 0 then
+		-- CustomizableWeaponry.actionSequence.new(self, 0.14, nil, function() 
+			-- local prefix = self:getForegripMode()
+			-- local suffix = ""
 			
-			if self:isAiming() then
-				suffix = "_aim"
-			end
+			-- if self:isAiming() then
+				-- suffix = "_aim"
+			-- end
 			
-			self:sendWeaponAnim(prefix .. "bolt" .. suffix,1,0)
-		end)
-	end
+			-- self:sendWeaponAnim(prefix .. "bolt" .. suffix,1,0)
+		-- end)
+	-- end
 	
-	self:sendWeaponAnim(prefix .. "fire" .. mag .. suffix,1,0)
+	-- self:sendWeaponAnim(prefix .. "fire" .. mag .. suffix,1,0)
 	
-end //*/
+-- end //*/
 	
 if CLIENT then
 	function SWEP:updateOtherParts()
@@ -241,6 +244,6 @@ if CLIENT then
 			self:setBodygroup(1, self:Clip1())
 		end
 		
-		self.NoShells = self.Sequence:find("fire_last")
+		-- self.NoShells = self.Sequence:find("fire_last")
 	end
 end

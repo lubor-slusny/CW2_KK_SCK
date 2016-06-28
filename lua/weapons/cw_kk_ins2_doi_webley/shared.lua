@@ -29,8 +29,8 @@ if CLIENT then
 		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_mak.mdl", bone = "Weapon", pos = Vector(0, 2.602, -0.06), angle = Angle(0, -90, 0), size = Vector(1, 1, 1)},
 	}
 
-	SWEP.IronsightPos = Vector(-1.8544, 0, 1.1093)
-	SWEP.IronsightAng = Vector(-1.7862, 0.0008, 0)
+	SWEP.IronsightPos = Vector(-2.6772, 0, 0.9777)
+	SWEP.IronsightAng = Vector(0, 0, 6)
 
 	SWEP.CustomizationMenuScale = 0.01
 

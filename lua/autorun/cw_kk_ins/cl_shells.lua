@@ -4,6 +4,7 @@ if CLIENT then
 	local cvarSLT = GetConVar("cw_kk_ins2_shell_time")
 	local cvarSVM = GetConVar("cw_kk_ins2_shell_vm")
 
+	local angleVel = Vector(0, 0, 0)
 	local up = Vector(0, 0, -100)
 	local shellMins, shellMaxs = Vector(-0.5, -0.15, -0.5), Vector(0.5, 0.15, 0.5)
 	local fallbackShell = CustomizableWeaponry.shells:getShell("mainshell")
@@ -54,6 +55,12 @@ if CLIENT then
 		phys:SetMass(10)
 		phys:SetVelocity(self.Owner:GetVelocity() + velocity)
 		
+		angleVel.x = math.random(-500, 500)
+		angleVel.y = math.random(-500, 500)
+		angleVel.z = math.random(-500, 500)
+		
+		phys:AddAngleVelocity(ang:Right() * 100 + angleVel)
+
 		if cvarSSF:GetInt() == 2 then // function creation spam
 			timer.Simple(soundTime or 0.5, function()
 				if t.s and IsValid(ent) then

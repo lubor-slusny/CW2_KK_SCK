@@ -58,10 +58,10 @@ if CLIENT then
 end
 
 SWEP.Attachments = {
-	{header = "Sight", offset = {500, -500}, atts = {"kk_ins2_scope_k98"}},
+	{header = "Sight", offset = {500, -500}, atts = {"kk_ins2_scope_k98"}, exclusions = {["kk_ins2_ww2_stripper"] = true}},
 	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_ww2_knife", "kk_ins2_gl_ggg"}},
 	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
-	{header = "Clip", offset = {200, 0}, atts = {"kk_ins2_ww2_stripper"}},
+	{header = "Clip", offset = {200, 0}, atts = {"kk_ins2_ww2_stripper"}, exclusions = {["kk_ins2_scope_k98"] = true}},
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
@@ -231,24 +231,6 @@ SWEP.ReloadTime_Empty = 4
 SWEP.ReloadHalt_Empty = 4.49
 
 SWEP.MuzzleVelocity = 760
-
-function SWEP:makeFireEffects()
-	if SP and SERVER then
-		-- god damn prediction disabled in SP
-		SendUserMessage("CW20_EFFECTS")
-		return
-	end
-	
-	if CLIENT then
-		if self.MuzzleEffect then
-			self:CreateMuzzle()
-		end
-		
-		-- if self.Shell then
-			-- self:CreateShell()
-		-- end
-	end
-end
 
 function SWEP:fireAnimFunc()
 	local clip = self:Clip1()
