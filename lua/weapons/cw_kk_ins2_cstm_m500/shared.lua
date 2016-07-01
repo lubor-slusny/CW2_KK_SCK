@@ -14,8 +14,9 @@ if CLIENT then
 	
 	SWEP.MuzzleEffect = "muzzleflash_m3"
 
+	SWEP.NoShells = true
 	SWEP.Shell = "KK_INS2_12guage"
-	SWEP.ShellDelay = 0.4
+	-- SWEP.ShellDelay = 0.4
 	
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_standard_m590.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
@@ -164,7 +165,7 @@ SWEP.SlotPos = 0
 SWEP.NormalHoldType = "ar2"
 SWEP.RunHoldType = "passive"
 SWEP.FireModes = {"pump"}
-SWEP.Base = "cw_kk_ins2_base"
+SWEP.Base = "cw_kk_ins2_base_pump"
 SWEP.Category = "CW 2.0 KK INS2 WS"
 
 SWEP.Author			= "Spy"
@@ -188,7 +189,7 @@ SWEP.Primary.DefaultClip	= 6
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "12 Gauge"
 
-SWEP.FireDelay = 0.95
+SWEP.FireDelay = 0.3
 SWEP.FireSound = "CW_KK_INS2_M590_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_M590_FIRE_SUPPRESSED"
 
@@ -208,8 +209,8 @@ SWEP.DeployTime = 0.71
 SWEP.Chamberable = true
 SWEP.SnapToIdlePostReload = false
 SWEP.ShotgunReload = true
-SWEP.ReticleInactivityPostFire = 1
-SWEP.GlobalDelayOnShoot = 0.8
+SWEP.ReticleInactivityPostFire = SWEP.FireDelay + 0.2
+SWEP.GlobalDelayOnShoot = SWEP.FireDelay
 
 SWEP.FirstDeployTime = 2.1
 SWEP.WeaponLength = 16
@@ -249,34 +250,34 @@ SWEP.MuzzleVelocity = 381
 	-- end
 -- end
 
-function SWEP:fireAnimFunc()
-	local clip = self:Clip1()
-	local mag = ""
+-- function SWEP:fireAnimFunc()
+	-- local clip = self:Clip1()
+	-- local mag = ""
 	
-	if clip == 0 then
-		mag = "_empty"
-	end
+	-- if clip == 0 then
+		-- mag = "_empty"
+	-- end
 	
-	local prefix = self:getForegripMode()
-	local suffix = ""
+	-- local prefix = self:getForegripMode()
+	-- local suffix = ""
 	
-	if self:isAiming() then
-		suffix = "_aim"
-	end
+	-- if self:isAiming() then
+		-- suffix = "_aim"
+	-- end
 	
-	if clip > 0 then
-		CustomizableWeaponry.actionSequence.new(self, 0.28, nil, function() 
-			local prefix = self:getForegripMode()
-			local suffix = ""
+	-- if clip > 0 then
+		-- CustomizableWeaponry.actionSequence.new(self, 0.28, nil, function() 
+			-- local prefix = self:getForegripMode()
+			-- local suffix = ""
 			
-			if self:isAiming() then
-				suffix = "_aim"
-			end
+			-- if self:isAiming() then
+				-- suffix = "_aim"
+			-- end
 			
-			self:sendWeaponAnim(prefix .. "bolt" .. suffix,1,0)
-		end)
-	end
+			-- self:sendWeaponAnim(prefix .. "bolt" .. suffix,1,0)
+		-- end)
+	-- end
 	
-	self:sendWeaponAnim(prefix .. "fire" .. mag .. suffix,1,0)
+	-- self:sendWeaponAnim(prefix .. "fire" .. mag .. suffix,1,0)
 	
-end //*/
+-- end //*/

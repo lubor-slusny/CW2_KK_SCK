@@ -245,12 +245,17 @@ function SWEP:setupAttachmentModels()
 			v.active = v.active or false
 			v.nodraw = v.nodraw or false
 			
-			if v.size then
-				v.matrix = Matrix()
+			v.matrix = Matrix()
+			
+			-- v.pos.y = -v.pos.y
+			-- v.matrix:Translate(v.pos)
+			-- v.matrix:Rotate(v.angle)
 				
+			if v.size then
 				v.matrix:Scale(v.size)
-				v.ent:EnableMatrix("RenderMultiply", v.matrix)
 			end
+			
+			v.ent:EnableMatrix("RenderMultiply", v.matrix)
 			
 			if v.bodygroups then
 				for main, sec in pairs(v.bodygroups) do
@@ -329,6 +334,9 @@ function SWEP:drawAttachments()
 				ang:RotateAroundAxis(ang:Right(), v.angle.p)
 				ang:RotateAroundAxis(ang:Forward(), v.angle.r)
 				model:SetAngles(ang)
+				
+				-- model:SetPos(pos)
+				-- model:SetAngles(ang)
 			end
 			
 			if !v.nodraw then

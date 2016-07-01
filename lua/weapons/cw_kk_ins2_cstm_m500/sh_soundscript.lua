@@ -20,8 +20,8 @@ SWEP.Sounds = {
 	},
 
 	base_fire_cock = {
-		// shell @ 2 ""},
 		{time = 1/24, sound = "CW_KK_INS2_M590_PUMPBACK"},
+		{time = 2/24, sound = "", callback = function(wep) wep:shellEvent() end},
 		{time = 5/24, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
 		// pumpedrdy @ 6 ""},
 	},
@@ -37,7 +37,7 @@ SWEP.Sounds = {
 	base_reload_start_empty = {
 		{time = 5/35, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
 		{time = 18/35, sound = "CW_KK_INS2_M590_PUMPBACK"},
-		// shell @ 20 ""},
+		{time = 20/35, sound = "", callback = function(wep) wep:shellEvent() end},
 		{time = 51/35, sound = "CW_KK_INS2_M590_SHELLINSERTSINGLE"},
 		{time = 76/35, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
 		// reloaded @ 78 ""},
@@ -57,8 +57,8 @@ SWEP.Sounds = {
 	},
 
 	iron_fire_cock = {
-		// shell @ 4 ""},
 		{time = 3/35, sound = "CW_KK_INS2_M590_PUMPBACK"},
+		{time = 4/35, sound = "", callback = function(wep) wep:shellEvent() end},
 		{time = 11/35, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
 		// pumpedrdy @ 12 ""},
 	},
@@ -87,8 +87,8 @@ SWEP.Sounds = {
 	},
 
 	foregrip_fire_cock = {
-		// shell @ 2 ""},
 		{time = 1/24, sound = "CW_KK_INS2_M590_PUMPBACK"},
+		{time = 2/24, sound = "", callback = function(wep) wep:shellEvent() end},
 		{time = 5/24, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
 		// pumpedrdy @ 6 ""},
 	},
@@ -104,7 +104,7 @@ SWEP.Sounds = {
 	foregrip_reload_start_empty = {
 		{time = 5/35, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
 		{time = 18/35, sound = "CW_KK_INS2_M590_PUMPBACK"},
-		// shell @ 20 ""},
+		{time = 20/35, sound = "", callback = function(wep) wep:shellEvent() end},
 		{time = 51/35, sound = "CW_KK_INS2_M590_SHELLINSERTSINGLE"},
 		{time = 76/35, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
 		// reloaded @ 78 ""},
@@ -124,8 +124,7 @@ SWEP.Sounds = {
 	},
 
 	foregrip_iron_fire_cock = {
-		// shell @ 3 ""},
-		{time = 3/35, sound = "CW_KK_INS2_M590_PUMPBACK"},
+		{time = 3/35, sound = "CW_KK_INS2_M590_PUMPBACK", callback = function(wep) wep:shellEvent() end},
 		{time = 11/35, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
 		// pumpedrdy @ 12 ""},
 	},

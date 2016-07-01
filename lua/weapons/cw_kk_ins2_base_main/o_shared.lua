@@ -217,6 +217,8 @@ end
 local CT, mag, ammo
 
 function SWEP:beginReload()
+	if self.ActiveAttachments.kk_ins2_ww2_stripper and self:Clip1() > 0 then return end
+	
 	self:updateReloadTimes()
 	
 	CT = CurTime()

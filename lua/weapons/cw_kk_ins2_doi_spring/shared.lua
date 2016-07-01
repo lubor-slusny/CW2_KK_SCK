@@ -26,7 +26,7 @@ if CLIENT then
 		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_iron_springfield.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		
 		["bolt"] = {model = "models/weapons/upgrades/a_bolt_springfield.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
-		-- ["bolt"] = {model = "models/weapons/upgrades/a_bolt_springfield_ext.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
+		["bolt2"] = {model = "models/weapons/upgrades/a_bolt_springfield_ext.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_ww2_stripper"] = {model = "models/weapons/upgrades/a_springfield_stripper_clip.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
@@ -204,38 +204,6 @@ SWEP.WeaponLength = 38
 SWEP.MuzzleVelocity = 854
 SWEP.pumpTime = 1.7
 
--- function SWEP:fireAnimFunc()
-	-- local clip = self:Clip1()
-	-- local mag = ""
-	
-	-- if clip == 0 then
-		-- mag = "_empty"
-	-- end
-	
-	-- local prefix = self:getForegripMode()
-	-- local suffix = ""
-	
-	-- if self:isAiming() then
-		-- suffix = "_aim"
-	-- end
-	
-	-- if clip > 0 then
-		-- CustomizableWeaponry.actionSequence.new(self, 0.14, nil, function() 
-			-- local prefix = self:getForegripMode()
-			-- local suffix = ""
-			
-			-- if self:isAiming() then
-				-- suffix = "_aim"
-			-- end
-			
-			-- self:sendWeaponAnim(prefix .. "bolt" .. suffix,1,0)
-		-- end)
-	-- end
-	
-	-- self:sendWeaponAnim(prefix .. "fire" .. mag .. suffix,1,0)
-	
--- end //*/
-	
 if CLIENT then
 	function SWEP:updateOtherParts()
 		if self.Sequence:find("base_reload_start") or (self.Sequence == self.Animations.base_insert and self.CW_VM:GetCycle() < 0.52) then
