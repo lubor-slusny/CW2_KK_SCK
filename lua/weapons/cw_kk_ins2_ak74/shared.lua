@@ -265,60 +265,13 @@ SWEP.ReloadTimes = {
 
 SWEP.MuzzleVelocity = 890
 
-if CLIENT then 
+if CLIENT then
+	function SWEP:updateStandardParts()
+		self.AttachmentModelsVM.handguardStandard.active = !self.ActiveAttachments.kk_ins2_vertgrip
+		self.AttachmentModelsWM.handguardStandard.active = !self.ActiveAttachments.kk_ins2_vertgrip
+	end
+		
 	function SWEP:updateOtherParts()
-		if self.ActiveAttachments.kk_ins2_vertgrip then
-			self.AttachmentModelsVM.handguardStandard.active = false
-		else
-			self.AttachmentModelsVM.handguardStandard.active = true
-		end
-		
-		-- local hasInstalledScope = self:getActiveAttachmentInCategory(1) != nil
-		-- local isBipod = self.dt.INS2GLActive //self.dt.BipodDeployed
-		
-		-- //bipod aimpos switch
-		-- if self.ActiveAttachments.kk_ins2_magnifier then
-			-- local name = "KKINS2Magnifier"
-			-- if isBipod then
-				-- self[name .. "Pos"] = self[name .. "Pos_gl"]
-				-- self[name .. "Ang"] = self[name .. "Ang_gl"]
-			-- else
-				-- self[name .. "Pos"] = self[name .. "Pos_def"]
-				-- self[name .. "Ang"] = self[name .. "Ang_def"]
-			-- end
-			-- self.AimPos = self[name .. "Pos"]
-			-- self.AimAng = self[name .. "Ang"]
-		-- elseif hasInstalledScope then
-			-- local sight = CustomizableWeaponry.sights[self:getActiveAttachmentInCategory(1)]
-			-- if isBipod then
-				-- self[sight.aimPos[1]] = self[sight.aimPos[1] .. "_gl"]
-				-- self[sight.aimPos[2]] = self[sight.aimPos[2] .. "_gl"]
-			-- else
-				-- self[sight.aimPos[1]] = self[sight.aimPos[1] .. "_def"]
-				-- self[sight.aimPos[2]] = self[sight.aimPos[2] .. "_def"]
-			-- end
-			-- self.AimPos = self[sight.aimPos[1]]
-			-- self.AimAng = self[sight.aimPos[2]]
-		-- else
-			-- if isBipod then
-				-- self.IronsightPos = self.IronsightPos_gl
-				-- self.IronsightAng = self.IronsightAng_gl
-			-- else
-				-- self.IronsightPos = self.IronsightPos_def
-				-- self.IronsightAng = self.IronsightAng_def
-			-- end
-			-- self.AimPos = self.IronsightPos
-			-- self.AimAng = self.IronsightAng
-		-- end
-		
-		-- if isBipod then
-			-- self.AlternativePos = self.AlternativePos_gl
-			-- self.AlternativeAng = self.AlternativeAng_gl
-		-- else
-			-- self.AlternativePos = self.AlternativePos_def
-			-- self.AlternativeAng = self.AlternativeAng_def
-		-- end
-		
 		local hasInstalledScope = self:getActiveAttachmentInCategory(1) != nil
 		local isGL = self.dt.INS2GLActive
 		
@@ -350,6 +303,5 @@ if CLIENT then
 				self.AimAng = self.IronsightAng
 			end
 		end
-		
 	end
 end

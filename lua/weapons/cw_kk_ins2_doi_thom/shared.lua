@@ -19,8 +19,8 @@ if CLIENT then
 	SWEP.ShellDelay = 0.13
 
 	SWEP.AttachmentModelsVM = {
-		-- ["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_iron_thompson_s.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), merge = true, active = false},
-		-- ["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_iron_thompson_l.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), merge = true},
+		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_iron_thompson_s.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), merge = true, active = false},
+		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_iron_thompson_l.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), merge = true},
 		
 		["handguard"] = {model = "models/weapons/upgrades/a_thompson_standard.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), merge = true, active = true},
 		["kk_ins2_mag_thom_20"] = {model = "models/weapons/upgrades/a_thompson_mag_20.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
@@ -56,7 +56,7 @@ if CLIENT then
 end
 
 SWEP.Attachments = {
-	-- {header = "Sight", offset = {400, -500}, atts = {"bg_foldsight"}},
+	{header = "Sight", offset = {400, -500}, atts = {"bg_foldsight"}},
 	{header = "Under", offset = {-500, 0}, atts = {"kk_ins2_vertgrip"}},
 	{header = "Magazine", offset = {-50, 500}, atts = {"kk_ins2_mag_thom_30", "kk_ins2_mag_thom_50"}},
 	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
@@ -202,11 +202,10 @@ SWEP.WeaponLength = 16
 SWEP.MuzzleVelocity = 285
 
 if CLIENT then 
-	function SWEP:updateOtherParts()
-		local active = self.ActiveAttachments
-		local vms = self.AttachmentModelsVM
-		
-		vms.handguard.active = !(active.kk_ins2_vertgrip)
-		vms.kk_ins2_mag_thom_20.active = !(active.kk_ins2_mag_thom_30 or active.kk_ins2_mag_thom_50)
+	function SWEP:updateStandardParts()		
+		self.AttachmentModelsVM.handguard.active = !self.ActiveAttachments.kk_ins2_vertgrip
+		self.AttachmentModelsWM.handguard.active = !self.ActiveAttachments.kk_ins2_vertgrip
+		self.AttachmentModelsVM.kk_ins2_mag_thom_20.active = !(self.ActiveAttachments.kk_ins2_mag_thom_30 or self.ActiveAttachments.kk_ins2_mag_thom_50)
+		self.AttachmentModelsWM.kk_ins2_mag_thom_20.active = !(self.ActiveAttachments.kk_ins2_mag_thom_30 or self.ActiveAttachments.kk_ins2_mag_thom_50)
 	end
 end

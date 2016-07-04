@@ -24,16 +24,6 @@ local customFireFuncs = {
 
 CustomizableWeaponry.callbacks:addNew("initialize", "KK_INS2_BASE", function(wep)
 	if CLIENT then
-		// SWEP parent for client side models - for lense cubemap proxy
-		wep.CW_VM._SWEP = wep
-		if wep.AttachmentModelsVM then
-			for _, v in pairs(wep.AttachmentModelsVM) do
-				if IsValid(v.ent) then
-					v.ent._SWEP = wep
-				end
-			end
-		end
-		
 		-- wep.ReticleInactivityPostFire = wep.ReticleInactivityPostFire or wep.FireDelay
 		
 		// moved shell table getters here so they dont have to be called every createShell time
@@ -122,23 +112,19 @@ local function sharedAttachDetach(wep)
 		end
 		
 		// previously standard parts update called every Think
-		if wep.AttachmentModelsVM then
-			if prim != nil then
-				if wep.AttachmentModelsVM.kk_ins2_optic_iron then
-					wep.AttachmentModelsVM.kk_ins2_optic_iron.active = false
+		for _,t in pairs({"AttachmentModelsVM", "AttachmentModelsWM"}) do
+			if wep[t] then
+				if wep[t].kk_ins2_optic_iron then
+					wep[t].kk_ins2_optic_iron.active = prim == nil
 				end
-				if wep.AttachmentModelsVM.kk_ins2_optic_rail then
-					wep.AttachmentModelsVM.kk_ins2_optic_rail.active = true
-				end
-			else
-				if wep.AttachmentModelsVM.kk_ins2_optic_iron then
-					wep.AttachmentModelsVM.kk_ins2_optic_iron.active = true
-				end
-				if wep.AttachmentModelsVM.kk_ins2_optic_rail then
-					wep.AttachmentModelsVM.kk_ins2_optic_rail.active = false
-				end
+				if wep[t].kk_ins2_optic_rail then
+					wep[t].kk_ins2_optic_rail.active = prim != nil
+				end		
 			end
 		end
+		
+		// moved from think
+		wep:updateStandardParts()
 	end
 end
 
@@ -157,7 +143,7 @@ CustomizableWeaponry.callbacks:addNew("postAttachAttachment", "KK_INS2_BASE", fu
 		wep._currentSecondarySight = att
 	end
 	
-	if att.isGrenadeLauncher then
+	if att.isGrenadeLauncher and att.name != "kk_ins2_gp25_ammo" then
 		wep._currentGrenadeLauncher = att
 	end
 	

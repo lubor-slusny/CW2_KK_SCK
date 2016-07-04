@@ -280,7 +280,7 @@ if CLIENT then
 			
 			local mul = ent._KK_INS2_lenseProxyMul or 0.5
 			
-			if IsValid(ent._SWEP) and ent._SWEP.CW20Weapon and ent._SWEP:isAiming() then
+			if IsValid(ent.wepParent) and ent.wepParent.CW20Weapon and ent.wepParent:isAiming() then
 				mul = math_approach(mul, 1, FrameTime() * 2)
 			else
 				mul = math_approach(mul, 0, FrameTime() * 2)
@@ -334,6 +334,8 @@ if CLIENT then
 	CustomizableWeaponry_KK.ins2.nodrawMat["models/weapons/optics/kar98k_crosshair"] = true
 	CustomizableWeaponry_KK.ins2.nodrawMat["models/weapons/optics/weaver_crosshair"] = true
 	CustomizableWeaponry_KK.ins2.nodrawMat["models/weapons/optics/zf4_crosshair"] = true
+	
+	CustomizableWeaponry_KK.ins2.nodrawMat["models/weapons/l85a2/susat_reticle"] = true
 	
 	-- CustomizableWeaponry_KK.ins2.nodrawMat["models/weapons/attachments/cw_kk_ins2_cstm_eotechxps/4x_reticule"] = true
 end

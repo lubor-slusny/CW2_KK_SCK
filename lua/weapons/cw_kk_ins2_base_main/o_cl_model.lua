@@ -62,7 +62,8 @@ function SWEP:CreateShell(sh)
 					ang:RotateAroundAxis(ang:Up(), tweak.Up)
 				end
 				
-				makeShell(self, att.Pos + dir * self.ShellOffsetMul, ang, dir * 200, 0.6, 10)
+				-- makeShell(self, att.Pos + dir * self.ShellOffsetMul, ang, dir * 200, 0.6, 10)
+				makeShell(self, att.Pos + dir * self.ShellOffsetMul, att.Ang, dir * 200, 0.6, 10)
 			end)
 		else
 			if self.NoShells then return end
@@ -90,7 +91,8 @@ function SWEP:CreateShell(sh)
 				ang:RotateAroundAxis(ang:Up(), tweak.Up)
 			end
 			
-			makeShell(self, att.Pos + dir * self.ShellOffsetMul, ang, dir * 200, 0.6, 10)
+			-- makeShell(self, att.Pos + dir * self.ShellOffsetMul, ang, dir * 200, 0.6, 10)
+			makeShell(self, att.Pos + dir * self.ShellOffsetMul, att.Ang, dir * 200, 0.6, 10)
 		end
 	end
 end

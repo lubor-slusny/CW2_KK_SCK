@@ -299,7 +299,8 @@ if CLIENT then
 			end
 			
 			-- CustomizableWeaponry_KK.ins2.makeShell(self, att.Pos, ang, att.Ang:Forward() * 50, 0.6, 10)
-			makeShell(self, att.Pos, ang, att.Ang:Forward() * 50, 0.6, 10)
+			-- makeShell(self, att.Pos, ang, att.Ang:Forward() * 50, 0.6, 10)
+			makeShell(self, att.Pos, att.Ang, att.Ang:Forward() * 50, 0.6, 10)
 		end)
 			
 		CustomizableWeaponry.actionSequence.new(self, 0.02, nil, function()
@@ -315,7 +316,8 @@ if CLIENT then
 			end
 			
 			-- CustomizableWeaponry_KK.ins2.makeShell(self, att.Pos, ang, att.Ang:Forward() * 50, 0.6, 10)
-			makeShell(self, att.Pos, ang, att.Ang:Forward() * 50, 0.6, 10)
+			-- makeShell(self, att.Pos, ang, att.Ang:Forward() * 50, 0.6, 10)
+			makeShell(self, att.Pos, att.Ang, att.Ang:Forward() * 50, 0.6, 10)
 		end)
 	end
 end

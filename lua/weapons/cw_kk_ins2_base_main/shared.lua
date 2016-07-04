@@ -141,6 +141,7 @@ SWEP.AttachmentExclusions = {
 	["kk_ins2_cstm_barska"] = {"kk_ins2_magnifier"},
 	["kk_ins2_cstm_microt1"] = {"kk_ins2_magnifier"},
 	["kk_ins2_cstm_sureshot"] = {"kk_ins2_magnifier"},
+	["kk_ins2_cstm_susat"] = {"kk_ins2_magnifier"},
 	["kk_ins2_aimpoint"] = {"kk_ins2_sights_cstm"},
 	["kk_ins2_elcan"] = {"kk_ins2_magnifier", "kk_ins2_sights_cstm"},
 	["kk_ins2_eotech"] = {"kk_ins2_magnifier", "kk_ins2_sights_cstm"},
@@ -165,6 +166,7 @@ SWEP.AttachmentDependencies = {
 	["kk_ins2_cstm_microt1"] = {"kk_ins2_sights_cstm"},
 	["kk_ins2_cstm_compm4s"] = {"kk_ins2_sights_cstm"},
 	["kk_ins2_cstm_acog"] = {"kk_ins2_sights_cstm"},
+	["kk_ins2_cstm_susat"] = {"kk_ins2_sights_cstm"},
 }
 
 local SP = game.SinglePlayer()
@@ -207,14 +209,14 @@ function SWEP:IndividualThink()
 			end
 		end
 		
-		// I can afford coz times are based on anims
-		// and anims are based purely on attachments
-		// (FAS2 M60 has stuff based on attachments AND current clip)
+		// 2b removed
+		// I guess
 		self:updateReloadTimes()
 		
 		// and now, cosmetix
 		
-		self:updateStandardParts()
+		self:updateHands()
+		self:updateOtherParts()
 		
 		self:playSwitchBipod()
 		

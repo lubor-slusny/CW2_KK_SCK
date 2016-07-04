@@ -87,17 +87,12 @@ if CLIENT then
 		
 		wep = ply:GetActiveWeapon()
 		if !IsValid(wep) or not wep.CW20Weapon then return end
-			
+		
 		wep:reloadInactivity()
 	end)
 end
 
 if CLIENT then
-	function SWEP:updateStandardParts()
-		self:updateHands()
-		self:updateOtherParts()
-	end
-	
 	local cvRig = GetConVar("cw_kk_ins2_rig")
 	local currentRig
 	
@@ -111,6 +106,10 @@ if CLIENT then
 		end
 		
 		self._KK_INS2_rig = currentRig
+	end
+	
+	function SWEP:updateStandardParts()
+		// whatever u want
 	end
 	
 	function SWEP:updateOtherParts()
@@ -232,14 +231,15 @@ function SWEP:shellEvent(sh)
 		
 		ang = EyeAngles()
 		tweak = self._shellTable.rv
-			
+		
 		if tweak then
 			ang:RotateAroundAxis(ang:Right(), tweak.Right)
 			ang:RotateAroundAxis(ang:Forward(), tweak.Forward)
 			ang:RotateAroundAxis(ang:Up(), tweak.Up)
 		end
 		
-		makeShell(self, att.Pos + dir * self.ShellOffsetMul, ang, dir * (self.ShellEjectVelocity or 200), 0.6, 10, sh)
+		-- makeShell(self, att.Pos + dir * self.ShellOffsetMul, ang, dir * (self.ShellEjectVelocity or 200), 0.6, 10, sh)
+		makeShell(self, att.Pos + dir * self.ShellOffsetMul, att.Ang, dir * (self.ShellEjectVelocity or 200), 0.6, 10, sh)
 	end
 end
 
