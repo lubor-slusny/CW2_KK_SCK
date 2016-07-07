@@ -307,11 +307,11 @@ function SWEP:drawAttachments()
 	end
 	
 	for k, v in pairs(self.AttachmentModelsVM) do
-		if type(v.active) == "function" then
-			active = v.active(self)
-		else
+		-- if type(v.active) == "function" then
+			-- active = v.active(self)
+		-- else
 			active = v.active
-		end
+		-- end
 	
 		if v.ent and active then
 			if v.merge then				// this was an attempt to unfuck lighting on certain velements
@@ -341,6 +341,11 @@ function SWEP:drawAttachments()
 				-- model:SetAngles(ang)
 			end
 			
+			if v.animated then
+				model:FrameAdvance(FrameTime())
+				model:SetupBones()
+			end
+			
 			if !v.nodraw then
 				model:DrawModel()
 			end
@@ -354,9 +359,7 @@ function SWEP:drawAttachments()
 	return true
 end
 
-// NEW WM CODE
-// original ins w_models + attachment welements
-
+// custom world models + welements
 
 local GetBonePosition = debug.getregistry().Entity.GetBonePosition
 local LookupBone = debug.getregistry().Entity.LookupBone
@@ -501,4 +504,24 @@ function SWEP:drawAttachmentsWorld(parent)
 			end
 		end
 	end
+end
+
+// INS2 GL Fov fix
+
+function SWEP:processFOVChanges(deltaTime)
+	if self.dt.State == CW_AIMING then
+		if self.dt.INS2GLActive then
+			self.CurVMFOV = LerpCW20(deltaTime * 10, self.CurVMFOV, 60)
+		else
+			if self.AimPos == self.SightBackUpPos and self.AimAng == self.SightBackUpAng then
+				self.CurVMFOV = LerpCW20(deltaTime * 10, self.CurVMFOV, self.AimViewModelFOV_Orig)
+			else
+				self.CurVMFOV = LerpCW20(deltaTime * 10, self.CurVMFOV, self.AimViewModelFOV)
+			end
+		end
+	else
+		self.CurVMFOV = LerpCW20(deltaTime * 10, self.CurVMFOV, self.ViewModelFOV_Orig)
+	end
+	
+	self.ViewModelFOV = self.CurVMFOV
 end

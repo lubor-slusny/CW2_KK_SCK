@@ -52,7 +52,7 @@ if CLIENT then
 			return
 		end
 		
-		if self:canSeeThroughTelescopics(att.aimPos[1]) then
+		if !self.dt.INS2GLActive and self:canSeeThroughTelescopics(att.aimPos[1]) then
 			alpha = math.Approach(alpha, 0, FrameTime() * 5)
 		else
 			alpha = math.Approach(alpha, 1, FrameTime() * 5)

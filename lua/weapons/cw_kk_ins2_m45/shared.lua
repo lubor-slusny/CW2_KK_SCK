@@ -19,7 +19,7 @@ if CLIENT then
 	SWEP.Shell = "KK_INS2_45apc"
 	SWEP.ShellDelay = 0.06
 	
-	SWEP.AttachmentModelsVM = {		
+	SWEP.AttachmentModelsVM = {
 		["kk_ins2_mag_m45_8"] = {model = "models/weapons/upgrades/a_magazine_m45_8.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		["kk_ins2_mag_m45_15"] = {model = "models/weapons/upgrades/a_magazine_m45_15.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 
@@ -31,7 +31,6 @@ if CLIENT then
 
 		["kk_ins2_m6x_rail"] = {model = "models/cw2/attachments/lowerpistolrail.mdl", bone = "Weapon", pos = Vector(0.006, 0.765, -0.561), angle = Angle(0, 90, 0), size = Vector(0.105, 0.105, 0.105), 
 			material = "models/weapons/attachments/cw_kk_ins2_cstm_m6x/rail_gy",
-			active = function(self) return self.ActiveAttachments.kk_ins2_m6x end
 		},
 		
 		["kk_counter"] = {model = "models/weapons/stattrack_cut.mdl", bone = "Slide", pos = Vector(0.451, 0, 0.028), angle = Angle(0, -90, 0), size = Vector(0.8, 0.8, 0.8)},
@@ -155,9 +154,10 @@ SWEP.KK_INS2_EmptyIdle = true
 SWEP.MuzzleVelocity = 244
 
 if CLIENT then 
-	function SWEP:updateOtherParts()
-		local active = self.ActiveAttachments
-	
-		self.AttachmentModelsVM.kk_ins2_mag_m45_8.active = !active.kk_ins2_mag_m45_15
+	function SWEP:updateStandardParts()
+		self.AttachmentModelsVM.kk_ins2_mag_m45_8.active = !self.ActiveAttachments.kk_ins2_mag_m45_15
+		self.AttachmentModelsWM.kk_ins2_mag_m45_8.active = !self.ActiveAttachments.kk_ins2_mag_m45_15
+		
+		self.AttachmentModelsVM.kk_ins2_m6x_rail.active = self.ActiveAttachments.kk_ins2_m6x
 	end
 end

@@ -213,3 +213,12 @@ if CLIENT then
 	end)
 end
 
+if CLIENT then
+	CustomizableWeaponry.callbacks:addNew("adjustViewmodelPosition", "KK_INS2_BASE", function(wep, TargetPos, TargetAng)
+		if !wep.KKINS2Wep then return end
+		
+		if wep.dt.INS2GLActive and wep:isAiming() then
+			return wep.M203Pos, wep.M203Ang
+		end
+	end)
+end

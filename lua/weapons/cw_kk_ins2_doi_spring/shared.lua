@@ -25,8 +25,8 @@ if CLIENT then
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_iron_springfield.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		
-		["bolt"] = {model = "models/weapons/upgrades/a_bolt_springfield.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
-		["bolt2"] = {model = "models/weapons/upgrades/a_bolt_springfield_ext.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["bolt_scope"] = {model = "models/weapons/upgrades/a_bolt_springfield.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["bolt_iron"] = {model = "models/weapons/upgrades/a_bolt_springfield_ext.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		
 		["kk_ins2_ww2_stripper"] = {model = "models/weapons/upgrades/a_springfield_stripper_clip.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
@@ -205,13 +205,8 @@ SWEP.MuzzleVelocity = 854
 SWEP.pumpTime = 1.7
 
 if CLIENT then
-	function SWEP:updateOtherParts()
-		if self.Sequence:find("base_reload_start") or (self.Sequence == self.Animations.base_insert and self.CW_VM:GetCycle() < 0.52) then
-			// eh
-		else
-			self:setBodygroup(1, self:Clip1())
-		end
-		
-		-- self.NoShells = self.Sequence:find("fire_last")
+	function SWEP:updateStandardParts()
+		self.AttachmentModelsVM.bolt_iron.active = !self.ActiveAttachments.kk_ins2_scope_m73
+		self.AttachmentModelsVM.bolt_scope.active = self.ActiveAttachments.kk_ins2_scope_m73
 	end
 end

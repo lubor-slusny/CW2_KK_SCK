@@ -154,7 +154,7 @@ SWEP.SlotPos = 0
 SWEP.NormalHoldType = "ar2"
 SWEP.RunHoldType = "passive"
 SWEP.FireModes = {"bolt"}
-SWEP.Base = "cw_kk_ins2_base"
+SWEP.Base = "cw_kk_ins2_base_pump"
 SWEP.Category = "CW 2.0 KK INS2 DOI"
 
 SWEP.Author			= "Spy"
@@ -181,7 +181,8 @@ SWEP.Primary.DefaultClip	= 5
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "7.92x57MM"
 
-SWEP.FireDelay = 60/36
+-- SWEP.FireDelay = 60/36
+SWEP.FireDelay = 0.3
 SWEP.FireSound = "CW_KK_INS2_DOI_K98_FIRE"
 SWEP.Recoil = 1.6
 
@@ -231,76 +232,3 @@ SWEP.ReloadTime_Empty = 4
 SWEP.ReloadHalt_Empty = 4.49
 
 SWEP.MuzzleVelocity = 760
-
-function SWEP:fireAnimFunc()
-	local clip = self:Clip1()
-	local mag = ""
-	
-	if !self.dt.INS2GLActive and clip == 1 then
-		mag = "_last"
-	elseif (!self.dt.INS2GLActive and clip == 0) or (self.dt.INS2GLActive and !self.M203Chamber) then
-		mag = "_empty"
-	end
-	
-	local prefix = self:getForegripMode()
-	local suffix = ""
-	
-	if self:isAiming() then
-		suffix = "_aim"
-	end
-	
-	if !self.dt.INS2GLActive and clip > 0 then
-		CustomizableWeaponry.actionSequence.new(self, 0.14, nil, function() 
-			local prefix = self:getForegripMode()
-			local suffix = ""
-			
-			if self:isAiming() then
-				suffix = "_aim"
-			end
-			
-			self:sendWeaponAnim(prefix .. "bolt" .. suffix,1,0)
-		end)
-	end
-	
-	self:sendWeaponAnim(prefix .. "fire" .. mag .. suffix,1,0)
-	
-end //*/
-
-if CLIENT then
-	function SWEP:updateOtherParts()
-		local prefix = self:getForegripMode()
-	
-		if self.Sequence:find("reload_empty_stripper") and self.CW_VM:GetCycle() < 0.9 then
-			self:setBodygroup(1, math.Clamp(self.Owner:GetAmmoCount(self.Primary.Ammo), 0, math.min(self.Primary.ClipSize, self.Primary.ClipSize - self:Clip1())))
-		elseif self.Sequence:find("reload_start") or (self.Sequence == self.Animations[prefix .. "insert"] and self.CW_VM:GetCycle() < 0.62) then
-			// eh
-		else
-			self:setBodygroup(1, self:Clip1())
-		end
-		
-		-- self.NoShells = self.Sequence:find("fire_last")
-		
-		local hasInstalledScope = self:getActiveAttachmentInCategory(1) != nil
-		local isGL = self.dt.INS2GLActive
-		
-		// bipod aimpos switch // 3rd iteration kek
-		if hasInstalledScope then
-			local sight = CustomizableWeaponry.sights[self:getActiveAttachmentInCategory(1)]
-			if isGL then
-				self.AimPos = self.M203Pos
-				self.AimAng = self.M203Ang
-			else
-				self.AimPos = self[sight.aimPos[1]]
-				self.AimAng = self[sight.aimPos[2]]
-			end
-		else
-			if isGL then
-				self.AimPos = self.M203Pos
-				self.AimAng = self.M203Ang
-			else
-				self.AimPos = self.IronsightPos
-				self.AimAng = self.IronsightAng
-			end
-		end
-	end
-end

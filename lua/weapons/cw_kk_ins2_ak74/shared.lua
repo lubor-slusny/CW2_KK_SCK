@@ -270,38 +270,4 @@ if CLIENT then
 		self.AttachmentModelsVM.handguardStandard.active = !self.ActiveAttachments.kk_ins2_vertgrip
 		self.AttachmentModelsWM.handguardStandard.active = !self.ActiveAttachments.kk_ins2_vertgrip
 	end
-		
-	function SWEP:updateOtherParts()
-		local hasInstalledScope = self:getActiveAttachmentInCategory(1) != nil
-		local isGL = self.dt.INS2GLActive
-		
-		// bipod aimpos switch // 3rd iteration kek
-		if self.ActiveAttachments.kk_ins2_magnifier then // tbd
-			local name = "KKINS2Magnifier"
-			if isGL then
-				self.AimPos = self.M203Pos
-				self.AimAng = self.M203Ang
-			else
-				self.AimPos = self[name .. "Pos"]
-				self.AimAng = self[name .. "Ang"]
-			end
-		elseif hasInstalledScope then
-			local sight = CustomizableWeaponry.sights[self:getActiveAttachmentInCategory(1)]
-			if isGL then
-				self.AimPos = self.M203Pos
-				self.AimAng = self.M203Ang
-			else
-				self.AimPos = self[sight.aimPos[1]]
-				self.AimAng = self[sight.aimPos[2]]
-			end
-		else
-			if isGL then
-				self.AimPos = self.M203Pos
-				self.AimAng = self.M203Ang
-			else
-				self.AimPos = self.IronsightPos
-				self.AimAng = self.IronsightAng
-			end
-		end
-	end
 end

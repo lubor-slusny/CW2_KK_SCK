@@ -111,8 +111,3 @@ SWEP.ReloadTime = 0.8
 SWEP.ReloadHalt = 0.9
 SWEP.ReloadTime_Empty = 0.8
 SWEP.ReloadHalt_Empty = 0.9
-
-if CLIENT then 
-	function SWEP:updateOtherParts()
-	end
-end

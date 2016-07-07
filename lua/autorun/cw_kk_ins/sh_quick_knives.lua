@@ -225,7 +225,8 @@ if CLIENT then
 
 		self.CW_KK_HANDS:SetPos(pos)
 		self.CW_KK_HANDS:SetParent(self.CW_KK_KNIFE)
-		self.CW_KK_HANDS:AddEffects(EF_BONEMERGE_FASTCULL)
+		-- self.CW_KK_HANDS:AddEffects(EF_BONEMERGE_FASTCULL)
+		self.CW_KK_HANDS:AddEffects(EF_BONEMERGE)
 		
 		cam.IgnoreZ(true)
 			self.CW_KK_KNIFE:DrawModel()

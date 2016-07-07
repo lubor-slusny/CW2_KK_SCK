@@ -16,8 +16,9 @@ if CLIENT then
 	
 	SWEP.MuzzleEffect = "muzzleflash_m14"
 
+	SWEP.NoShells = true
 	SWEP.Shell = "KK_INS2_762x54"
-	SWEP.ShellDelay = 0.7
+	-- SWEP.ShellDelay = 0.7
 		
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_iron_enfield.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
@@ -152,7 +153,7 @@ SWEP.SlotPos = 0
 SWEP.NormalHoldType = "ar2"
 SWEP.RunHoldType = "passive"
 SWEP.FireModes = {"bolt"}
-SWEP.Base = "cw_kk_ins2_base"
+SWEP.Base = "cw_kk_ins2_base_pump"
 SWEP.Category = "CW 2.0 KK INS2 DOI"
 
 SWEP.Author			= "Spy"
@@ -179,7 +180,8 @@ SWEP.Primary.DefaultClip	= 10
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= ".303 British"
 
-SWEP.FireDelay = 60/36
+-- SWEP.FireDelay = 60/36
+SWEP.FireDelay = 0.3
 SWEP.FireSound = "CW_KK_INS2_DOI_ENFIELD_FIRE"
 SWEP.Recoil = 1.6
 
@@ -229,71 +231,3 @@ SWEP.ReloadTime_Empty = 4
 SWEP.ReloadHalt_Empty = 4.49
 
 SWEP.MuzzleVelocity = 744
-
-function SWEP:fireAnimFunc()
-	local clip = self:Clip1()
-	local suffix = ""
-	
-	if clip == 1 and self.KK_INS2_EmptyIdle then
-		suffix = "_last"
-	elseif (clip == 0 and not self.dt.INS2GLActive) or (self.dt.INS2GLActive and not self.M203Chamber) then
-		suffix = "_empty"
-	end
-	
-	local prefix = self:getForegripMode()
-	
-	if self:isAiming() then
-		suffix = "_aim"
-	end
-	
-	if !self.dt.INS2GLActive and clip > 0 then
-		CustomizableWeaponry.actionSequence.new(self, 0.14, nil, function() 
-			local prefix = self:getForegripMode()
-			local suffix = ""
-			
-			if self:isAiming() then
-				suffix = "_aim"
-			end
-			
-			self:sendWeaponAnim(prefix .. "bolt" .. suffix,1,0)
-		end)
-	end
-	
-	self:sendWeaponAnim(prefix .. "fire" .. suffix,1,0)
-	
-end //*/
-
-if CLIENT then
-	function SWEP:updateOtherParts()
-		if self.Sequence:find("base_reload_start") or (self.Sequence == self.Animations.base_insert and self.CW_VM:GetCycle() < 0.62) then
-			// eh
-		else
-			self:setBodygroup(1, self:Clip1())
-		end
-		
-		self.NoShells = self.Sequence:find("fire_last")
-		
-		local hasInstalledScope = self:getActiveAttachmentInCategory(1) != nil
-		local isGL = self.dt.INS2GLActive
-		
-		// bipod aimpos switch // 3rd iteration kek
-		if hasInstalledScope then
-			local sight = CustomizableWeaponry.sights[self:getActiveAttachmentInCategory(1)]
-			if isGL then
-				self.AimPos = self.M203Pos
-				self.AimAng = self.M203Ang
-			else
-				self.AimPos = self[sight.aimPos[1]]
-				self.AimAng = self[sight.aimPos[2]]
-			end
-		else
-			if isGL then
-				self.AimPos = self.M203Pos
-				self.AimAng = self.M203Ang
-			else
-				self.AimPos = self.IronsightPos
-				self.AimAng = self.IronsightAng
-			end
-		end
-	end
-end

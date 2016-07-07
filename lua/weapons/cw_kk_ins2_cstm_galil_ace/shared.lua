@@ -242,12 +242,12 @@ SWEP.WeaponLength = 26
 SWEP.MuzzleVelocity = 915
 
 if CLIENT then
-	function SWEP:updateOtherParts()
-		local active = self.ActiveAttachments
-		
-		-- self.AttachmentModelsVM.kk_ins2_galil.active = !active.kk_ins2_bipod
-		self.AttachmentModelsVM.kk_ins2_mag_galil_35.active = !active.kk_ins2_mag_galil_75
-		
+	function SWEP:updateStandardParts()
+		self.AttachmentModelsVM.kk_ins2_mag_galil_35.active = !self.ActiveAttachments.kk_ins2_mag_galil_75
+		self.AttachmentModelsWM.kk_ins2_mag_galil_35.active = !self.ActiveAttachments.kk_ins2_mag_galil_75
+	end
+	
+	function SWEP:updateOtherParts()		
 		// WM
 		
 		if self.dt.BipodDeployed then

@@ -287,7 +287,9 @@ SWEP.KK_INS2_EmptyIdle = true
 
 SWEP.MuzzleVelocity = 714
 
-if CLIENT then 
+if CLIENT then
+	local zero = Vector(0, 0, 0)
+	
 	function SWEP:updateOtherParts()
 		if self.dt.BipodDeployed then
 			self.AttachmentModelsWM.kk_ins2_bipod.ent:SetSequence(1)
@@ -295,6 +297,6 @@ if CLIENT then
 			self.AttachmentModelsWM.kk_ins2_bipod.ent:SetSequence(0)
 		end
 		
-		self.AttachmentModelsVM.kk_ins2_vertgrip.ent:ManipulateBoneScale(0, Vector(0, 0, 0))
+		self.AttachmentModelsVM.kk_ins2_vertgrip.ent:ManipulateBoneScale(0, zero)
 	end
 end

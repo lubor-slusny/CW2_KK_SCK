@@ -280,27 +280,6 @@ if CLIENT then
 	end
 		
 	function SWEP:updateOtherParts()
-		local hasInstalledScope = self:getActiveAttachmentInCategory(1) != nil
-		local isGL = self.dt.INS2GLActive
-		
-		if isGL then
-			self.AimPos = self.M203Pos
-			self.AimAng = self.M203Ang
-		else
-			if self.ActiveAttachments.kk_ins2_magnifier then
-				local name = "KKINS2Magnifier"
-				self.AimPos = self[name .. "Pos"]
-				self.AimAng = self[name .. "Ang"]
-			elseif hasInstalledScope then
-				local sight = CustomizableWeaponry.sights[self:getActiveAttachmentInCategory(1)]
-				self.AimPos = self[sight.aimPos[1]]
-				self.AimAng = self[sight.aimPos[2]]
-			else
-				self.AimPos = self.IronsightPos
-				self.AimAng = self.IronsightAng
-			end
-		end
-		
 		local vm = self.CW_VM
 		local cycle = vm:GetCycle()
 		

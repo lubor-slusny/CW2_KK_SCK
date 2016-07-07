@@ -1,4 +1,24 @@
 
+function roundsToClip(wep)
+	if SERVER then 
+		return 
+	end 
+	
+	wep.CW_VM:SetBodygroup(1, math.Clamp(wep:Clip1(),0,5))
+end
+
+function roundsToReserve(wep)
+	if SERVER then 
+		return 
+	end 
+	
+	wep.CW_VM:SetBodygroup(1, math.Clamp(wep.Owner:GetAmmoCount(wep.Primary.Ammo),0,5))
+end
+
+function shell(wep) 
+	wep:shellEvent() 
+end
+
 SWEP.Sounds = {
 	base_ready = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
@@ -22,11 +42,18 @@ SWEP.Sounds = {
 		{time = 22, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
 	},
 
+	base_fire_start = {
+		{time = 0, sound = "", callback = roundsToClip},
+	},
+	
+	base_fire_last = {
+		{time = 0, sound = "", callback = roundsToClip},
+	},
+	
 	base_fire_end = {
-		-- { event AE_CL_CREATE_PARTICLE_BRASS 20 ""},
 		{time = 13/30, sound = "CW_KK_INS2_DOI_SPRING_BOLTRELEASE"},
 		{time = 14/30, sound = "CW_KK_INS2_DOI_SPRING_BOLTBACK"},
-		{time = 20/30, sound = "", callback = function(wep) wep:shellEvent() end},
+		{time = 20/30, sound = "", callback = shell},
 		{time = 22/30, sound = "CW_KK_INS2_DOI_SPRING_BOLTFORWARD"},
 		-- { event AE_WPN_COCK 24 ""},
 		{time = 26/30, sound = "CW_KK_INS2_DOI_SPRING_BOLTLATCH"},
@@ -41,10 +68,11 @@ SWEP.Sounds = {
 	},
 
 	base_reload_empty_clip = {
-		-- { event AE_CL_CREATE_PARTICLE_BRASS 29 ""},
+		{time = 0, sound = "", callback = roundsToReserve},
+		
 		{time = 19/33.4, sound = "CW_KK_INS2_DOI_SPRING_BOLTRELEASE"},
 		{time = 27/33.4, sound = "CW_KK_INS2_DOI_SPRING_BOLTBACK"},
-		{time = 29/33.4, sound = "", callback = function(wep) wep:shellEvent() end},
+		{time = 29/33.4, sound = "", callback = shell},
 		-- { event 46 115 ""},
 		-- { event AE_WPN_RELOAD_OFFSCREEN 40 ""},
 		{time = 37/33.4, sound = "CW_KK_INS2_DOI_SPRING_FETCHMAG"},
@@ -56,6 +84,8 @@ SWEP.Sounds = {
 	},
 
 	base_reload_full_clip = {
+		{time = 0, sound = "", callback = roundsToReserve},
+		
 		{time = 19/33.4, sound = "CW_KK_INS2_DOI_SPRING_BOLTRELEASE"},
 		{time = 27/33.4, sound = "CW_KK_INS2_DOI_SPRING_BOLTBACK"},
 		-- { event 46 115 ""},
@@ -69,20 +99,26 @@ SWEP.Sounds = {
 	},
 
 	base_reload_start = {
+		{time = 0, sound = "", callback = roundsToClip},
+		
 		{time = 19/33.5, sound = "CW_KK_INS2_DOI_SPRING_BOLTRELEASE"},
 		{time = 27/33.5, sound = "CW_KK_INS2_DOI_SPRING_BOLTBACK"},
 	},
 
 	base_reload_start_empty = {
+		{time = 0, sound = "", callback = roundsToClip},
+		
 		-- { event AE_CL_CREATE_PARTICLE_BRASS 29 ""},
 		{time = 19/33.5, sound = "CW_KK_INS2_DOI_SPRING_BOLTRELEASE"},
 		{time = 27/33.5, sound = "CW_KK_INS2_DOI_SPRING_BOLTBACK"},
-		{time = 29/33.5, sound = "", callback = function(wep) wep:shellEvent() end},
+		{time = 29/33.5, sound = "", callback = shell},
 	},
 
 	base_reload_insert = {
 		{time = 14/37.2, sound = "CW_KK_INS2_DOI_SPRING_BULLETIN"},
 		-- { event 46 22 ""},
+		
+		{time = 22/37.2, sound = "", callback = roundsToClip},
 	},
 
 	base_reload_end = {
@@ -94,7 +130,7 @@ SWEP.Sounds = {
 		-- { event AE_CL_CREATE_PARTICLE_BRASS 18 ""},
 		{time = 13/30.5, sound = "CW_KK_INS2_DOI_SPRING_BOLTRELEASE"},
 		{time = 16/30.5, sound = "CW_KK_INS2_DOI_SPRING_BOLTBACK"},
-		{time = 18/30.5, sound = "", callback = function(wep) wep:shellEvent() end},
+		{time = 18/30.5, sound = "", callback = shell},
 		{time = 24/30.5, sound = "CW_KK_INS2_DOI_SPRING_BOLTFORWARD"},
 		-- { event AE_WPN_COCK 26 ""},
 		{time = 27/30.5, sound = "CW_KK_INS2_DOI_SPRING_BOLTLATCH"},

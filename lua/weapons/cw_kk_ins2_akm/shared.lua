@@ -20,6 +20,13 @@ if CLIENT then
 	SWEP.MuzzleEffect = "muzzleflash_ak74"
 	SWEP.Shell = "KK_INS2_762x39"
 	
+	SWEP.BackupSights = {
+		["kk_ins2_elcan"] = {
+			Vector(-2.3069, -2, -1.5364),
+			Vector(-0.4411, 0.0329, 0)
+		},
+	}
+	
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_modkit_06.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		["handguardStandard"] = {model = "models/weapons/upgrades/a_standard_akm.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
@@ -267,104 +274,8 @@ SWEP.ReloadTimes = {
 SWEP.MuzzleVelocity = 715
 
 if CLIENT then 
-	function SWEP:updateOtherParts()
+	function SWEP:updateStandardParts()
 		self.AttachmentModelsVM.handguardStandard.active = !self.ActiveAttachments.kk_ins2_vertgrip
-			
-		-- local hasInstalledScope = self:getActiveAttachmentInCategory(1) != nil
-		-- local isBipod = self.dt.INS2GLActive //self.dt.BipodDeployed
-		
-		-- //bipod aimpos switch
-		-- if self.ActiveAttachments.kk_ins2_magnifier then
-			-- local name = "KKINS2Magnifier"
-			-- if isBipod then
-				-- self[name .. "Pos"] = self[name .. "Pos_gl"]
-				-- self[name .. "Ang"] = self[name .. "Ang_gl"]
-			-- else
-				-- self[name .. "Pos"] = self[name .. "Pos_def"]
-				-- self[name .. "Ang"] = self[name .. "Ang_def"]
-			-- end
-			-- self.AimPos = self[name .. "Pos"]
-			-- self.AimAng = self[name .. "Ang"]
-		-- elseif hasInstalledScope then
-			-- local sight = CustomizableWeaponry.sights[self:getActiveAttachmentInCategory(1)]
-			-- if isBipod then
-				-- self[sight.aimPos[1]] = self[sight.aimPos[1] .. "_gl"]
-				-- self[sight.aimPos[2]] = self[sight.aimPos[2] .. "_gl"]
-			-- else
-				-- self[sight.aimPos[1]] = self[sight.aimPos[1] .. "_def"]
-				-- self[sight.aimPos[2]] = self[sight.aimPos[2] .. "_def"]
-			-- end
-			-- self.AimPos = self[sight.aimPos[1]]
-			-- self.AimAng = self[sight.aimPos[2]]
-		-- else
-			-- if isBipod then
-				-- self.IronsightPos = self.IronsightPos_gl
-				-- self.IronsightAng = self.IronsightAng_gl
-			-- else
-				-- self.IronsightPos = self.IronsightPos_def
-				-- self.IronsightAng = self.IronsightAng_def
-			-- end
-			-- self.AimPos = self.IronsightPos
-			-- self.AimAng = self.IronsightAng
-		-- end
-		
-		-- if self.ActiveAttachments.kk_ins2_gl_gp25 then
-			-- self.AttachmentModelsVM.ins_gl_gp30.active = true
-		-- else
-			-- self.AttachmentModelsVM.ins_gl_gp30.active = false
-		-- end
-				
-		-- if self.dt.INS2GLActive then
-			-- self.AimPos = self.IronsightPos_gl
-			-- self.AimAng = self.IronsightAng_gl
-			-- self.AimPos = Vector(-2.1406, -6, -1.0247)
-			-- self.AimAng = Vector(8.1154, -0.1384, -1)
-		-- else
-			-- if self.ActiveAttachments.kk_ins2_magnifier then
-				-- local name = "KKINS2Magnifier"
-				-- self.AimPos = self[name .. "Pos"]
-				-- self.AimAng = self[name .. "Ang"]
-			-- elseif self:getActiveAttachmentInCategory(1) != nil then
-				-- local sight = CustomizableWeaponry.sights[self:getActiveAttachmentInCategory(1)]
-				-- self.AimPos = self[sight.aimPos[1]]
-				-- self.AimAng = self[sight.aimPos[2]]
-			-- else
-				-- self.AimPos = self.IronsightPos
-				-- self.AimAng = self.IronsightAng
-			-- end
-		-- end
-		
-		local hasInstalledScope = self:getActiveAttachmentInCategory(1) != nil
-		local isGL = self.dt.INS2GLActive
-		
-		// bipod aimpos switch // 3rd iteration kek
-		if self.ActiveAttachments.kk_ins2_magnifier then
-			local name = "KKINS2Magnifier"
-			if isGL then
-				self.AimPos = self.M203Pos
-				self.AimAng = self.M203Ang
-			else
-				self.AimPos = self[name .. "Pos"]
-				self.AimAng = self[name .. "Ang"]
-			end
-		elseif hasInstalledScope then
-			local sight = CustomizableWeaponry.sights[self:getActiveAttachmentInCategory(1)]
-			if isGL then
-				self.AimPos = self.M203Pos
-				self.AimAng = self.M203Ang
-			else
-				self.AimPos = self[sight.aimPos[1]]
-				self.AimAng = self[sight.aimPos[2]]
-			end
-		else
-			if isGL then
-				self.AimPos = self.M203Pos
-				self.AimAng = self.M203Ang
-			else
-				self.AimPos = self.IronsightPos
-				self.AimAng = self.IronsightAng
-			end
-		end
-		
+		self.AttachmentModelsWM.handguardStandard.active = !self.ActiveAttachments.kk_ins2_vertgrip
 	end
 end

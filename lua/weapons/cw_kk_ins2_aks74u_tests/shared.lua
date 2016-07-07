@@ -201,12 +201,9 @@ SWEP.ReloadTimes = {
 }
 
 if CLIENT then
-	function SWEP:updateOtherParts()
-		if self.ActiveAttachments.kk_ins2_vertgrip then
-			self.AttachmentModelsVM.handguardStandard.active = false
-		else
-			self.AttachmentModelsVM.handguardStandard.active = true
-		end
+	function SWEP:updateStandardParts()
+		self.AttachmentModelsVM.handguardStandard.active = !self.ActiveAttachments.kk_ins2_vertgrip
+		self.AttachmentModelsWM.handguardStandard.active = !self.ActiveAttachments.kk_ins2_vertgrip
 	end
 end
 

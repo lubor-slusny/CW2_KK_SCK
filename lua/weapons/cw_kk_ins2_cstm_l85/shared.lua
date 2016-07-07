@@ -97,7 +97,7 @@ if CLIENT then
 	SWEP.KKINS2AimpointPos = Vector(-2.8437, 0, 0.5895)
 	SWEP.KKINS2AimpointAng = Vector(0, 0, 0)
 
-	SWEP.KKINS2ElcanPos = Vector(-2.8445, -1, 0.55)
+	SWEP.KKINS2ElcanPos = Vector(-2.8445, -2, 0.55)
 	SWEP.KKINS2ElcanAng = Vector(0, 0, 0)
 
 	SWEP.KKINS2PO4Pos = Vector(-2.7747, -1, 0.7629)
@@ -244,35 +244,3 @@ SWEP.gl_on_ReloadHalt = 3.85
 SWEP.WeaponLength = 22
 
 SWEP.MuzzleVelocity = 930
-
-if CLIENT then
-	function SWEP:updateOtherParts()
-		local hasInstalledScope = self:getActiveAttachmentInCategory(1) != nil
-		local isGL = self.dt.INS2GLActive
-		
-		if isGL then
-			self.AimPos = self.M203Pos
-			self.AimAng = self.M203Ang
-		else
-			if self.ActiveAttachments.kk_ins2_magnifier then
-				local name = "KKINS2Magnifier"
-				self.AimPos = self[name .. "Pos"]
-				self.AimAng = self[name .. "Ang"]
-			elseif hasInstalledScope then
-				local sight = CustomizableWeaponry.sights[self:getActiveAttachmentInCategory(1)]
-				self.AimPos = self[sight.aimPos[1]]
-				self.AimAng = self[sight.aimPos[2]]
-			else
-				self.AimPos = self.IronsightPos
-				self.AimAng = self.IronsightAng
-			end
-		end
-		
-		local vm = self.CW_VM
-		local cycle = vm:GetCycle()
-		
-		if (self.Sequence == self.Animations.gl_turn_on or self.Sequence == self.Animations.gl_on_draw) and cycle > 0.9 then
-			self:playAnim("gl_on_fire",1,1) 
-		end
-	end
-end
