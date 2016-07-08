@@ -105,7 +105,7 @@ if CLIENT then
 
 	SWEP.KKINS2MagnifierPos = Vector(-2.843, -1, 0.583)
 	SWEP.KKINS2MagnifierAng = Vector(0, 0, 0)
-
+	
 end
 
 SWEP.Attachments = {
@@ -244,3 +244,27 @@ SWEP.gl_on_ReloadHalt = 3.85
 SWEP.WeaponLength = 22
 
 SWEP.MuzzleVelocity = 930
+
+if CLIENT then 
+	local cycle, clip, ammo, setBG
+	
+	function SWEP:updateOtherParts()
+		cycle = self.CW_VM:GetCycle()
+		
+		clip = self:Clip1()
+
+		if self.getFullestMag then
+			ammo = math.max(self:Clip1(), self:getFullestMag(), -1)
+		else
+			ammo = self.Owner:GetAmmoCount(self.Primary.Ammo) + clip
+		end
+		
+		if self.Sequence:find("reload") and cycle > 0.4 and cycle < 1 then
+			setBG = math.Clamp(ammo,0,30)
+		else
+			setBG = math.Clamp(clip,0,30)
+		end
+		
+		self:setBodygroup(1,setBG)
+	end
+end

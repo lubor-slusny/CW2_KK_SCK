@@ -3,8 +3,8 @@ AddCSLuaFile()
 local PANEL, WEAPON
 
 local elementTables = {
-	"AttachmentModelsVM",
-	"AttachmentModelsWM",
+	["AttachmentModelsVM"] = {adjustable = true},
+	["AttachmentModelsWM"] = {adjustable = false},
 }
 
 local function getParentEnt(str)
@@ -30,7 +30,7 @@ local knownElementDataKeys = {
 }
 
 local function collapseAll()
-	for _,t in pairs(elementTables) do
+	for t,tProps in pairs(elementTables) do
 		if WEAPON[t] then
 			for key,data in pairs(WEAPON[t]) do
 				data._kksck_expanded = false
@@ -107,6 +107,17 @@ end
 
 local UNIFORMSCALELOCK = false
 
+local function backupAdjustmentTable(wep, t, key, curData)
+	local orig = weapons.GetStored(wep:GetClass())[t][key].adjustment
+	
+	if orig == curData.adjustment then
+		curData.adjustment = {}
+		for k,v in pairs(orig) do
+			curData.adjustment[k] = v
+		end
+	end
+end
+
 local function updatePanel()
 	if not PANEL then return end
 	
@@ -121,7 +132,7 @@ local function updatePanel()
 	PANEL:AddItem(butt)
 	
 	if IsValid(WEAPON) and WEAPON.CW20Weapon then
-		for _,t in pairs(elementTables) do
+		for t,tProps in pairs(elementTables) do
 			if WEAPON[t] then
 				if not WEAPON._kksck_tabOpen then
 					PANEL:AddControl("Label", {Text = "SWEP." .. t .. ":"})
@@ -213,7 +224,7 @@ local function updatePanel()
 						
 							settActivePanel:Dock(TOP)
 							settActivePanel:SetSize(200,16)
-							settActivePanel:SetBackgroundColor(noBackground)
+							settActivePanel:SetPaintBackground(false)
 							settActivePanel:SizeToContents()
 							
 							local settModelPanel = vgui.Create("DPanel", elementSettingPanel)
@@ -237,13 +248,15 @@ local function updatePanel()
 									local f = self:GetValue()
 									
 									if file.Exists(f, "GAME") then
+										data.model = f
 										data.ent:SetModel(f)
+										updatePanel()
 									end
 								end
 								
 							settModelPanel:Dock(TOP)
 							settModelPanel:DockMargin(0,8,0,0)
-							settModelPanel:SetBackgroundColor(noBackground)
+							settModelPanel:SetPaintBackground(false)
 							settModelPanel:SizeToContents()
 							
 							local settMergePanel = vgui.Create("DPanel", elementSettingPanel)
@@ -297,7 +310,7 @@ local function updatePanel()
 							settMergePanel:Dock(TOP)
 							settMergePanel:SetSize(200,68)
 							settMergePanel:DockMargin(0,12,0,0)
-							settMergePanel:SetBackgroundColor(noBackground)
+							settMergePanel:SetPaintBackground(false)
 							settMergePanel:SizeToContents()
 							
 							if funcList:GetSelectedLine() == 1 then
@@ -322,7 +335,7 @@ local function updatePanel()
 									
 								settBonePanel:Dock(TOP)
 								settBonePanel:DockMargin(0,8,0,0)
-								settBonePanel:SetBackgroundColor(noBackground)
+								settBonePanel:SetPaintBackground(false)
 								settBonePanel:SizeToContents()
 								
 								elementSettingPanelHeight = elementSettingPanelHeight + 32
@@ -350,7 +363,7 @@ local function updatePanel()
 									
 								settAttPanel:Dock(TOP)
 								settAttPanel:DockMargin(0,8,0,0)
-								settAttPanel:SetBackgroundColor(noBackground)
+								settAttPanel:SetPaintBackground(false)
 								settAttPanel:SizeToContents()
 								
 								elementSettingPanelHeight = elementSettingPanelHeight + 32
@@ -361,7 +374,7 @@ local function updatePanel()
 								local slider
 								slider = vgui.Create("DNumSlider", settPosXPanel)
 								slider:Dock(FILL)
-								slider:DockMargin(8,0,0,0)
+								slider:DockMargin(8,0,8,0)
 								slider:SetDecimals(4)
 								slider:SetMinMax(-100, 100)
 								slider:SetValue(data.pos.x)
@@ -382,7 +395,7 @@ local function updatePanel()
 								local slider
 								slider = vgui.Create("DNumSlider", settPosYPanel)
 								slider:Dock(FILL)
-								slider:DockMargin(8,0,0,0)
+								slider:DockMargin(8,0,8,0)
 								slider:SetDecimals(4)
 								slider:SetMinMax(-100, 100)
 								slider:SetValue(data.pos.y)
@@ -402,7 +415,7 @@ local function updatePanel()
 								local slider
 								slider = vgui.Create("DNumSlider", settPosZPanel)
 								slider:Dock(FILL)
-								slider:DockMargin(8,0,0,0)
+								slider:DockMargin(8,0,8,0)
 								slider:SetDecimals(4)
 								slider:SetMinMax(-100, 100)
 								slider:SetValue(data.pos.z)
@@ -422,7 +435,7 @@ local function updatePanel()
 								local slider
 								slider = vgui.Create("DNumSlider", settAngPPanel)
 								slider:Dock(FILL)
-								slider:DockMargin(8,0,0,0)
+								slider:DockMargin(8,0,8,0)
 								slider:SetDecimals(4)
 								slider:SetMinMax(-180, 180)
 								slider:SetValue(data.angle.p)
@@ -443,7 +456,7 @@ local function updatePanel()
 								local slider
 								slider = vgui.Create("DNumSlider", settAngYPanel)
 								slider:Dock(FILL)
-								slider:DockMargin(8,0,0,0)
+								slider:DockMargin(8,0,8,0)
 								slider:SetDecimals(4)
 								slider:SetMinMax(-180, 180)
 								slider:SetValue(data.angle.y)
@@ -463,7 +476,7 @@ local function updatePanel()
 								local slider
 								slider = vgui.Create("DNumSlider", settAngRPanel)
 								slider:Dock(FILL)
-								slider:DockMargin(8,0,0,0)
+								slider:DockMargin(8,0,8,0)
 								slider:SetDecimals(4)
 								slider:SetMinMax(-180, 180)
 								slider:SetValue(data.angle.r)
@@ -483,7 +496,7 @@ local function updatePanel()
 								local sliderXYZ
 								sliderXYZ = vgui.Create("DNumSlider", settSizeXYZPanel)
 								sliderXYZ:Dock(FILL)
-								sliderXYZ:DockMargin(8,0,0,0)
+								sliderXYZ:DockMargin(8,0,8,0)
 								sliderXYZ:SetDecimals(4)
 								sliderXYZ:SetMinMax(0.01, 10)
 								sliderXYZ:SetValue(data.size.x)
@@ -500,7 +513,7 @@ local function updatePanel()
 								local sliderX
 								sliderX = vgui.Create("DNumSlider", settSizeXPanel)
 								sliderX:Dock(FILL)
-								sliderX:DockMargin(8,0,0,0)
+								sliderX:DockMargin(8,0,8,0)
 								sliderX:SetDecimals(4)
 								sliderX:SetMinMax(0.01, 10)
 								sliderX:SetValue(data.size.x)
@@ -524,7 +537,7 @@ local function updatePanel()
 								local sliderY
 								sliderY = vgui.Create("DNumSlider", settSizeYPanel)
 								sliderY:Dock(FILL)
-								sliderY:DockMargin(8,0,0,0)
+								sliderY:DockMargin(8,0,8,0)
 								sliderY:SetDecimals(4)
 								sliderY:SetMinMax(0.01, 10)
 								sliderY:SetValue(data.size.y)
@@ -547,7 +560,7 @@ local function updatePanel()
 								local sliderZ
 								sliderZ = vgui.Create("DNumSlider", settSizeZPanel)
 								sliderZ:Dock(FILL)
-								sliderZ:DockMargin(8,0,0,0)
+								sliderZ:DockMargin(8,0,8,0)
 								sliderZ:SetDecimals(4)
 								sliderZ:SetMinMax(0.01, 10)
 								sliderZ:SetValue(data.size.z)
@@ -582,7 +595,7 @@ local function updatePanel()
 								local slider
 								slider = vgui.Create("DNumSlider", settSkinPanel)
 								slider:Dock(FILL)
-								slider:DockMargin(8,0,0,0)
+								slider:DockMargin(8,0,8,0)
 								slider:SetDecimals(0)
 								slider:SetMinMax(0, data.ent:SkinCount() - 1)
 								slider:SetValue(data.ent:GetSkin())
@@ -635,7 +648,7 @@ local function updatePanel()
 											local slider
 											slider = vgui.Create("DNumSlider", settBodygroupPanel)
 											slider:Dock(FILL)
-											slider:DockMargin(8,0,0,0)
+											slider:DockMargin(8,0,8,0)
 											slider:SetDecimals(0)
 											slider:SetMinMax(0, bgCount)
 											slider:SetValue(data.ent:GetBodygroup(i))
@@ -680,192 +693,205 @@ local function updatePanel()
 							settAnimatedPanel:SetSize(200,16)
 							settAnimatedPanel:Dock(TOP)
 							settAnimatedPanel:DockMargin(8,8,0,0)
-							settAnimatedPanel:SetBackgroundColor(noBackground)
+							settAnimatedPanel:SetPaintBackground(false)
 							settAnimatedPanel:SizeToContents()
 							
-							local settAdjustmentLabelPanel = vgui.Create("DPanel", elementSettingPanel)
-								
-								local label
-								label = vgui.Create("DLabel", settAdjustmentLabelPanel)
-								label:SetText("Sight Adjustment:")
-								label:SetDark(true)
-								label:Dock(LEFT)
-								label:DockMargin(8,0,0,0)
-								label:SizeToContents()
-								
-								local butt
-								butt = vgui.Create("DButton", settAdjustmentLabelPanel)
-								butt:SetTooltip("Adds sight adjustment subtable.")
-								butt:Dock(RIGHT)
-								butt:DockMargin(0,4,8,4)
+							if tProps.adjustable then
+								local settAdjustmentLabelPanel = vgui.Create("DPanel", elementSettingPanel)
+									
+									local label
+									label = vgui.Create("DLabel", settAdjustmentLabelPanel)
+									label:SetText("Sight Adjustment:")
+									label:SetDark(true)
+									label:Dock(LEFT)
+									label:DockMargin(8,0,0,0)
+									label:SizeToContents()
+									
+									local butt
+									butt = vgui.Create("DButton", settAdjustmentLabelPanel)
+									butt:SetTooltip("Adds sight adjustment subtable.")
+									butt:Dock(RIGHT)
+									butt:DockMargin(0,4,8,4)
+									
+									if data.adjustment then
+										butt:SetText("Remove")
+										function butt:DoClick()
+											data.adjustment = nil
+											updatePanel()
+										end
+									else
+										butt:SetText("Add")
+										function butt:DoClick()
+											data.adjustment = {
+												min = 0, 
+												max = 0, 
+												axis = "x", 
+												inverseOffsetCalc = false
+											}
+											updatePanel()
+										end
+									end
+									
+								settAdjustmentLabelPanel:Dock(TOP)
+								settAdjustmentLabelPanel:DockMargin(0,8,0,0)
+								settAdjustmentLabelPanel:SetBackgroundColor(darkBackground)
+								settAdjustmentLabelPanel:SizeToContents()
 								
 								if data.adjustment then
-									butt:SetText("Remove")
-									function butt:DoClick()
-										data.adjustment = nil
-										updatePanel()
-									end
-								else
-									butt:SetText("Add")
-									function butt:DoClick()
-										data.adjustment = {
-											min = 0, 
-											max = 0, 
-											axis = "x", 
-											inverseOffsetCalc = false
-										}
-										updatePanel()
-									end
-								end
+									local settAdjustmentAxisPanel = vgui.Create("DPanel", elementSettingPanel)
 								
-							settAdjustmentLabelPanel:Dock(TOP)
-							settAdjustmentLabelPanel:DockMargin(0,8,0,0)
-							settAdjustmentLabelPanel:SetBackgroundColor(darkBackground)
-							settAdjustmentLabelPanel:SizeToContents()
-							
-							if data.adjustment then
-								local settAdjustmentTopPanel = vgui.Create("DPanel", elementSettingPanel)
-									
-									local settAdjustmentTopMinPanel = vgui.Create("DPanel", settAdjustmentTopPanel)
-									
 										local label
-										label = vgui.Create("DLabel", settAdjustmentTopMinPanel)
-										label:SetText("Min:")
+										label = vgui.Create("DLabel", settAdjustmentAxisPanel)
+										label:SetText("Axis: ")
 										label:SetDark(true)
 										label:Dock(LEFT)
-										label:DockMargin(8,0,2,0)
+										label:DockMargin(8,0,0,0)
 										label:SizeToContents()
 										
-										local wang
-										wang = vgui.Create("DNumberWang", settAdjustmentTopMinPanel)
-										wang:Dock(FILL)
-										wang:DockMargin(2,2,0,2)
-										wang:SetMinMax(-100,100)
-										wang:SetDecimals(4)
-										wang:SetValue(data.adjustment.min)
-										
-										function wang:OnValueChanged(val)
-											data.adjustment.min = val
-										end
-									
-									settAdjustmentTopMinPanel:Dock(LEFT)
-									settAdjustmentTopMinPanel:SetSize(120,24)
-									settAdjustmentTopMinPanel:SetBackgroundColor(Color(255,255,0,255))
-									settAdjustmentTopMinPanel:SizeToContents()
-									
-									local settAdjustmentTopMaxPanel = vgui.Create("DPanel", settAdjustmentTopPanel)
-											
-										local label
-										label = vgui.Create("DLabel", settAdjustmentTopMaxPanel)
-										label:SetText("Max:")
-										label:SetDark(true)
-										label:Dock(LEFT)
-										label:DockMargin(0,0,2,0)
-										label:SizeToContents()
-										
-										local wang
-										wang = vgui.Create("DNumberWang", settAdjustmentTopMaxPanel)
-										wang:Dock(FILL)
-										wang:DockMargin(2,2,8,2)
-										wang:SetMinMax(-100,100)
-										wang:SetDecimals(4)
-										wang:SetValue(data.adjustment.max)
-										
-										function wang:OnValueChanged(val)
-											data.adjustment.max = val
-										end
-									
-									settAdjustmentTopMaxPanel:Dock(RIGHT)
-									settAdjustmentTopMaxPanel:SetSize(120,24)
-									settAdjustmentTopMaxPanel:SetBackgroundColor(Color(255,0,255,255))
-									-- settAdjustmentTopMaxPanel:SetPaintBackground(false)
-									settAdjustmentTopMaxPanel:SizeToContents()
-									
-								settAdjustmentTopPanel:Dock(TOP)
-								settAdjustmentTopPanel:SetBackgroundColor(darkBackground)
-								settAdjustmentTopPanel:SizeToContents()
-								
-								local settAdjustmentBottomPanel = vgui.Create("DPanel", elementSettingPanel)
-								
-									local settAdjustmentBottomAxisPanel = vgui.Create("DPanel", settAdjustmentBottomPanel)
-									
-										-- local label
-										-- label = vgui.Create("DLabel", settAdjustmentBottomAxisPanel)
-										-- label:SetText("Axis:")
-										-- label:SetDark(true)
-										-- label:Dock(LEFT)
-										-- label:DockMargin(8,0,2,0)
-										-- label:SizeToContents()
-										
-										-- local box = vgui.Create("DComboBox", settAdjustmentBottomAxisPanel)
-										-- box:Dock(FILL)
-										-- box:DockMargin(2,2,0,2)
-										-- box:SetValue(data.adjustment.axis)
-										-- box:AddChoice("x")
-										-- box:AddChoice("y")
-										-- box:AddChoice("z")
-										
-										-- function box:OnSelect(i, name) 
-											-- data.adjustment.axis = name
-										-- end
-									
 										local ax = {x = 1, y = 2, z = 3}
 										local xa = {"x", "y", "z"}
 										
+										local unselect = {"X", "Y", "Z"}
+										local selected = {"[X]", "[Y]", "[Z]"}
+										
+										local buttRow = vgui.Create("DListView", settAdjustmentAxisPanel)
+										buttRow:AddColumn("")
+										buttRow:AddColumn("")
+										buttRow:AddColumn("")
+										buttRow:SetHeaderHeight(20)
+										
+										buttRow:Dock(FILL)
+										buttRow:DockMargin(16,2,8,2)
+										buttRow:SizeToContents()
+										buttRow:SetBackgroundColor(Color(0,0,0,255))
+										buttRow:SetPaintBackground(false)
+										buttRow:FixColumnsLayout()
+										
+										function buttRow:SortByColumn(i)
+											backupAdjustmentTable(WEAPON, t, key, data)
+											
+											data.adjustment.axis = xa[i]
+											
+											// PrintTable(self:GetTable())
+											// PrintTable(self.Columns[i]:GetTable())
+											
+											for k,v in pairs(self.Columns) do
+												if k == i then 
+													v:SetName(selected[k])
+												else
+													v:SetName(unselect[k])
+												end
+											end
+										end
+										
+										function buttRow:OnRequestResize(val) end
+										
+										buttRow:SortByColumn(ax[data.adjustment.axis])
+										
+									settAdjustmentAxisPanel:Dock(TOP)
+									settAdjustmentAxisPanel:SetBackgroundColor(darkBackground)
+									settAdjustmentAxisPanel:SizeToContents()
+									
+									local settAdjustmentMinPanel = vgui.Create("DPanel", elementSettingPanel)
+									
 										local slider
-										slider = vgui.Create("DNumSlider", settAdjustmentBottomAxisPanel)
+										slider = vgui.Create("DNumSlider", settAdjustmentMinPanel)
 										slider:Dock(FILL)
-										slider:DockMargin(8,0,0,0)
-										slider:SetDecimals(0)
-										slider:SetMinMax(1,3)
-										slider:SetValue(ax[data.adjustment.axis] or 1)
-										slider:SetText("Axis: " .. (data.adjustment.axis or "x"))
+										slider:DockMargin(8,0,8,0)
+										slider:SetDecimals(4)
+										slider:SetMinMax(-100, 100)
+										slider:SetValue(data.adjustment.min)
+										slider:SetText("Min:")
 										slider:SetDark(true)
 										function slider:OnValueChanged(val)
-											val = xa[math.Round(math.Clamp(val, 1, 3))]
+											backupAdjustmentTable(WEAPON, t, key, data)
 											
-											self:SetText("Axis: " .. val)
-											data.adjustment.axis = val
+											data.adjustment.min = val
 										end
 										
-									settAdjustmentBottomAxisPanel:Dock(LEFT)
-									settAdjustmentBottomAxisPanel:SetSize(120,24)
-									settAdjustmentBottomAxisPanel:SetBackgroundColor(Color(255,0,0,255))
-									settAdjustmentBottomAxisPanel:SizeToContents()
+									settAdjustmentMinPanel:Dock(TOP)
+									settAdjustmentMinPanel:SetBackgroundColor(darkBackground)
+									settAdjustmentMinPanel:SizeToContents()
 									
-									local settAdjustmentBottomInvPanel = vgui.Create("DPanel", settAdjustmentBottomPanel)
+									local settAdjustmentMaxPanel = vgui.Create("DPanel", elementSettingPanel)
 									
-										local cbox
-										cbox = vgui.Create("DCheckBox", settAdjustmentBottomInvPanel)
-										cbox:SetDark(true)
-										-- cbox:Dock(LEFT)
-										cbox:SetPos(0,3)
-										cbox:SetSize(19,19)
-										-- cbox:DockMargin(8,0,0,0)
-										
-										cbox:SetValue(data.adjustment.inverseOffsetCalc)
-										function cbox:OnChange(val)
-											data.adjustment.inverseOffsetCalc = val
+										local slider
+										slider = vgui.Create("DNumSlider", settAdjustmentMaxPanel)
+										slider:Dock(FILL)
+										slider:DockMargin(8,0,8,0)
+										slider:SetDecimals(4)
+										slider:SetMinMax(-100, 100)
+										slider:SetValue(data.adjustment.max)
+										slider:SetText("Max:")
+										slider:SetDark(true)
+										function slider:OnValueChanged(val)
+											backupAdjustmentTable(WEAPON, t, key, data)
+											
+											data.adjustment.max = val
 										end
 										
-										local label
-										label = vgui.Create("DLabel", settAdjustmentBottomInvPanel)
-										label:SetText("Inverse calculation")
-										label:SetDark(true)
-										label:SetPos(23,5)
-										label:DockMargin(8,0,2,0)
-										label:SizeToContents()
-										
-									settAdjustmentBottomInvPanel:Dock(RIGHT)
-									settAdjustmentBottomInvPanel:SetSize(120,24)
-									settAdjustmentBottomInvPanel:SetBackgroundColor(Color(0,255,0,255))
-									settAdjustmentBottomInvPanel:SizeToContents()
+									settAdjustmentMaxPanel:Dock(TOP)
+									settAdjustmentMaxPanel:SetBackgroundColor(darkBackground)
+									settAdjustmentMaxPanel:SizeToContents()
 									
-								settAdjustmentBottomPanel:Dock(TOP)
-								settAdjustmentBottomPanel:SetBackgroundColor(darkBackground)
-								settAdjustmentBottomPanel:SizeToContents()
-								
-								elementSettingPanelHeight = elementSettingPanelHeight + 48
+									local settAdjustmentInvPanel = vgui.Create("DPanel", elementSettingPanel)
+									
+										// inverse
+										// inverseOffsetCalc
+										// index
+									
+										local settAdjustmentInvCtrlPanel = vgui.Create("DPanel", settAdjustmentInvPanel)
+											
+											local cbox
+											cbox = vgui.Create("DCheckBoxLabel", settAdjustmentInvCtrlPanel)
+											cbox:SetText("Invert input")
+											cbox:SetDark(true)
+											cbox:SizeToContents()	
+											
+											cbox:SetValue(data.adjustment.inverse)
+											
+											function cbox:OnChange(val)
+												backupAdjustmentTable(WEAPON, t, key, data)
+											
+												data.adjustment.inverse = val
+											end
+											
+										settAdjustmentInvCtrlPanel:Dock(LEFT)
+										settAdjustmentInvCtrlPanel:DockMargin(8,4,0,0)
+										settAdjustmentInvCtrlPanel:SetSize(120,24)
+										settAdjustmentInvCtrlPanel:SetPaintBackground(false)
+										settAdjustmentInvCtrlPanel:SizeToContents()
+										
+										local settAdjustmentInvPrtPanel = vgui.Create("DPanel", settAdjustmentInvPanel)
+											
+											local cbox
+											cbox = vgui.Create("DCheckBoxLabel", settAdjustmentInvPrtPanel)
+											cbox:SetText("Invert calculation")
+											cbox:SetDark(true)
+											cbox:SizeToContents()	
+											
+											cbox:SetValue(data.adjustment.inverseOffsetCalc)
+											
+											function cbox:OnChange(val)
+												backupAdjustmentTable(WEAPON, t, key, data)
+												
+												data.adjustment.inverseOffsetCalc = val
+											end
+											
+										settAdjustmentInvPrtPanel:Dock(RIGHT)
+										settAdjustmentInvPrtPanel:DockMargin(0,4,8,0)
+										settAdjustmentInvPrtPanel:SetSize(120,24)
+										settAdjustmentInvPrtPanel:SetPaintBackground(false)
+										settAdjustmentInvPrtPanel:SizeToContents()
+										
+									settAdjustmentInvPanel:Dock(TOP)
+									settAdjustmentInvPanel:SetBackgroundColor(darkBackground)
+									settAdjustmentInvPanel:SizeToContents()
+									
+									elementSettingPanelHeight = elementSettingPanelHeight + 32 + 96
+								else
+									elementSettingPanelHeight = elementSettingPanelHeight + 32
+								end
 							end
 							
 							local buttExportPanel = vgui.Create("DPanel", elementSettingPanel)
@@ -877,11 +903,31 @@ local function updatePanel()
 								butt:SetText("Export (copy to clipboard)")
 								function butt:DoClick()
 									
+									local snds = {
+										"http://cdn.frustra.org/sounds/sound_tf2/vo/scout_no02.mp3",
+										"http://cdn.frustra.org/sounds/sound_tf2/vo/pyro_no01.mp3",
+										"http://cdn.frustra.org/sounds/sound_tf2/vo/soldier_no03.mp3",
+										"http://cdn.frustra.org/sounds/sound_tf2/vo/demoman_no01.mp3",
+										"http://cdn.frustra.org/sounds/sound_tf2/vo/heavy_no02.mp3",
+										"http://cdn.frustra.org/sounds/sound_tf2/vo/medic_no02.mp3",
+										"http://cdn.frustra.org/sounds/sound_tf2/vo/engineer_no01.mp3",
+										"http://cdn.frustra.org/sounds/sound_tf2/vo/sniper_no01.mp3",
+										"http://cdn.frustra.org/sounds/sound_tf2/vo/spy_no02.mp3",
+									}
+								
+									sound.PlayURL(table.Random(snds), "", function(station)
+										if IsValid(station) then
+											station:Play()
+										else
+											print("INVALID INTERNET CONNECTION OMGF!")
+										end
+									end)
+									
 								end
 		
 							buttExportPanel:Dock(TOP)
 							buttExportPanel:DockMargin(0,8,0,0)
-							buttExportPanel:SetBackgroundColor(noBackground)
+							buttExportPanel:SetPaintBackground(false)
 							buttExportPanel:SizeToContents()
 							
 							local buttRestorePanel = vgui.Create("DPanel", elementSettingPanel)
@@ -894,6 +940,7 @@ local function updatePanel()
 								function butt:DoClick()
 									local origData = weapons.GetStored(WEAPON:GetClass())[t][key]
 									
+									data.model = origData.model
 									data.pos = origData.pos
 									data.angle = origData.angle
 									data.size = origData.size
@@ -902,6 +949,8 @@ local function updatePanel()
 									data.attachment = origData.attachment
 									data.skin = origData.skin
 									data.bodygroups = origData.bodygroups
+									data.adjustment = origData.adjustment
+									data.material = origData.material
 									
 									reInitializeElement(data)
 									updatePanel()
@@ -909,10 +958,10 @@ local function updatePanel()
 			
 							buttRestorePanel:Dock(TOP)
 							buttRestorePanel:DockMargin(0,8,0,0)
-							buttRestorePanel:SetBackgroundColor(noBackground)
+							buttRestorePanel:SetPaintBackground(false)
 							buttRestorePanel:SizeToContents()
 							
-						elementSettingPanel:SetSize(0, 536 + elementSettingPanelHeight)
+						elementSettingPanel:SetSize(0, 504 + elementSettingPanelHeight)
 						elementSettingPanel:DockPadding(8,8,8,8)
 						elementSettingPanel:DockMargin(0,0,0,0)
 						elementSettingPanel:SizeToContents()
