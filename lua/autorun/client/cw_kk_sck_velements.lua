@@ -18,15 +18,39 @@ local function getParentEnt(str)
 end
 
 local knownElementDataKeys = {
-	"model",
-	"pos",
-	"angle",
-	"size",
-	"merge",
+	["active"] = true,
+	["model"] = true,
+	["models"] = true,
+	["bone"] = true,
+	["_bone"] = true,
+	["pos"] = true,
+	["angle"] = true,
+	["size"] = true,
+	["animated"] = true,
+	["skin"] = true,
+	["bodygroups"] = true,
+	["adjustment"] = true,
 	
-	"stuff",
-	"stuff",
-	"stuff",
+	["attachment"] = true, // INS2 alternative to "bone"
+	["_attachment"] = true, // INS2 alternative to "_bone"
+	["merge"] = true, // INS2 bone merge
+	["material"] = true, // INS2 material override - same as in SCK/CW1
+	["nodraw"] = true, // deprecated part of INS2 stencil sights
+	["retSizeMult"] = true,	// INS2 stencil sight reticle size multiplier
+	
+	["ignoreKKBGO"] = true, // BGO3 crashes my game if combined with CSGO stat attachment proxies
+}
+
+local noExportElementDataKeys = {
+	["ent"] = true,
+	["rel"] = true,
+	["matrix"] = true,
+	["origPos"] = true,
+	["origAng"] = true,
+	
+	["stencilEnt"] = true, // INS2 stencil sight ent
+	["_kksck_curIndex"] = true, // index of element.models sub-table
+	["_kksck_expanded"] = true, // element being shown in editor
 }
 
 local function collapseAll()
@@ -139,6 +163,7 @@ local function updatePanel()
 				end
 				
 				for key,data in pairs(WEAPON[t]) do
+				
 					if data._kksck_expanded or !WEAPON._kksck_tabOpen then
 						local elementNamePanel = vgui.Create("DPanel", PANEL)
 							local icon
@@ -200,8 +225,10 @@ local function updatePanel()
 						elementNamePanel:SetMouseInputEnabled(true)
 						elementNamePanel.DoClick = updateTitle
 					end
+						
+					local curData = data
 					
-					if data._kksck_expanded then
+					if curData._kksck_expanded then
 						local elementSettingPanelHeight = 0
 						
 						local elementSettingPanel = vgui.Create("DPanel", PANEL)
@@ -216,9 +243,9 @@ local function updatePanel()
 								cbox:Dock(FILL)
 								cbox:DockMargin(8,0,0,0)
 								
-								cbox:SetValue(data.active)
+								cbox:SetValue(curData.active)
 								function cbox:OnChange(val)
-									data.active = val
+									curData.active = val
 									updatePanel()
 								end
 						
@@ -227,6 +254,33 @@ local function updatePanel()
 							settActivePanel:SetPaintBackground(false)
 							settActivePanel:SizeToContents()
 							
+							if curData.models then
+							
+								local pickSubElementPanel = vgui.Create("DPanel", elementSettingPanel)
+							
+									local box = vgui.Create("DComboBox", pickSubElementPanel)
+									box:Dock(FILL)
+									box:SetValue(curData.models[curData._kksck_curIndex or 1].model)
+									
+									for k,v in pairs(curData.models) do
+										box:AddChoice(v.model)
+									end
+									
+									function box:OnSelect(i, name) 
+										curData._kksck_curIndex = i
+										updatePanel()
+									end
+									
+								pickSubElementPanel:Dock(TOP)
+								pickSubElementPanel:DockMargin(0,8,0,0)
+								pickSubElementPanel:SetPaintBackground(false)
+								pickSubElementPanel:SizeToContents()
+								
+								elementSettingPanelHeight = elementSettingPanelHeight + 32
+								curData = curData.models[curData._kksck_curIndex or 1]
+								
+							end
+					
 							local settModelPanel = vgui.Create("DPanel", elementSettingPanel)
 								
 								local label
@@ -242,14 +296,14 @@ local function updatePanel()
 								entry:Dock(FILL)
 								entry:DockMargin(8,0,8,0)
 								
-								entry:SetValue(data.ent:GetModel())
+								entry:SetValue(curData.ent:GetModel() or "")
 								
 								function entry:OnChange()
 									local f = self:GetValue()
 									
 									if file.Exists(f, "GAME") then
-										data.model = f
-										data.ent:SetModel(f)
+										curData.model = f
+										curData.ent:SetModel(f)
 										updatePanel()
 									end
 								end
@@ -274,9 +328,9 @@ local function updatePanel()
 								funcList:Dock(FILL)
 								function funcList:SortByColumn() end
 								
-								if data.merge then
+								if curData.merge then
 									funcList:SelectItem(funcList:GetLine(3))
-								elseif data._attachment then
+								elseif curData._attachment then
 									funcList:SelectItem(funcList:GetLine(2))
 								else
 									funcList:SelectItem(funcList:GetLine(1))
@@ -284,26 +338,26 @@ local function updatePanel()
 								
 								function funcList:OnRowSelected(val)
 									if val == 1 then
-										data.merge = false
-										data.attachment = nil
-										data._attachment = nil
-										data.bone = nil
-										data._bone = 0 // fallback so drawAttachFunc doesnt freakout
+										curData.merge = false
+										curData.attachment = nil
+										curData._attachment = nil
+										curData.bone = nil
+										curData._bone = 0 // fallback so drawAttachFunc doesnt freakout
 									elseif val == 2 then
-										data.merge = false
-										data.attachment = nil
-										data._attachment = 1 // lets pray there is at least one compiled to parent model
-										data.bone = nil
-										data._bone = nil
+										curData.merge = false
+										curData.attachment = nil
+										curData._attachment = 1 // lets pray there is at least one compiled to parent model
+										curData.bone = nil
+										curData._bone = nil
 									elseif val == 3 then
-										data.merge = true // E.Z.
-										data.attachment = nil
-										data._attachment = nil
-										data.bone = nil
-										data._bone = nil
+										curData.merge = true // E.Z.
+										curData.attachment = nil
+										curData._attachment = nil
+										curData.bone = nil
+										curData._bone = nil
 									end
 									
-									reInitializeElement(data)
+									reInitializeElement(curData)
 									updatePanel()
 								end
 								
@@ -319,7 +373,7 @@ local function updatePanel()
 							
 									local box = vgui.Create("DComboBox", settBonePanel)
 									box:Dock(FILL)
-									box:SetValue(data.bone or "-select bone-")
+									box:SetValue(curData.bone or "-select bone-")
 									
 									local ent = getParentEnt(t)
 									
@@ -328,8 +382,8 @@ local function updatePanel()
 									end
 									
 									function box:OnSelect(i, name) 
-										data.bone = name
-										reInitializeElement(data)
+										curData.bone = name
+										reInitializeElement(curData)
 										updatePanel()
 									end
 									
@@ -347,7 +401,7 @@ local function updatePanel()
 							
 									local box = vgui.Create("DComboBox", settAttPanel)
 									box:Dock(FILL)
-									box:SetValue(data.attachment or "-select attachment-")
+									box:SetValue(curData.attachment or "-select attachment-")
 									
 									local ent = getParentEnt(t)
 									
@@ -356,8 +410,8 @@ local function updatePanel()
 									end
 									
 									function box:OnSelect(i, name) 
-										data.attachment = name
-										reInitializeElement(data)
+										curData.attachment = name
+										reInitializeElement(curData)
 										updatePanel()
 									end
 									
@@ -377,12 +431,12 @@ local function updatePanel()
 								slider:DockMargin(8,0,8,0)
 								slider:SetDecimals(4)
 								slider:SetMinMax(-100, 100)
-								slider:SetValue(data.pos.x)
+								slider:SetValue(curData.pos.x)
 								slider:SetText("pos.x")
 								slider:SetDark(true)
 								function slider:OnValueChanged(val)
-									data.pos = Vector(data.pos) // garbage gen, but doesnt mess up stored weapon classes
-									data.pos.x = val
+									curData.pos = Vector(curData.pos) // garbage gen, but doesnt mess up stored weapon classes
+									curData.pos.x = val
 								end
 
 							settPosXPanel:Dock(TOP)
@@ -398,12 +452,12 @@ local function updatePanel()
 								slider:DockMargin(8,0,8,0)
 								slider:SetDecimals(4)
 								slider:SetMinMax(-100, 100)
-								slider:SetValue(data.pos.y)
+								slider:SetValue(curData.pos.y)
 								slider:SetText("pos.y")
 								slider:SetDark(true)
 								function slider:OnValueChanged(val)
-									data.pos = Vector(data.pos)
-									data.pos.y = val
+									curData.pos = Vector(curData.pos)
+									curData.pos.y = val
 								end
 
 							settPosYPanel:Dock(TOP)
@@ -418,12 +472,12 @@ local function updatePanel()
 								slider:DockMargin(8,0,8,0)
 								slider:SetDecimals(4)
 								slider:SetMinMax(-100, 100)
-								slider:SetValue(data.pos.z)
+								slider:SetValue(curData.pos.z)
 								slider:SetText("pos.z")
 								slider:SetDark(true)
 								function slider:OnValueChanged(val)
-									data.pos = Vector(data.pos)
-									data.pos.z = val
+									curData.pos = Vector(curData.pos)
+									curData.pos.z = val
 								end
 
 							settPosZPanel:Dock(TOP)
@@ -438,12 +492,12 @@ local function updatePanel()
 								slider:DockMargin(8,0,8,0)
 								slider:SetDecimals(4)
 								slider:SetMinMax(-180, 180)
-								slider:SetValue(data.angle.p)
+								slider:SetValue(curData.angle.p)
 								slider:SetText("angle.p")
 								slider:SetDark(true)
 								function slider:OnValueChanged(val)
-									data.angle = cloneAngle(data.angle)
-									data.angle.p = val
+									curData.angle = cloneAngle(curData.angle)
+									curData.angle.p = val
 								end
 
 							settAngPPanel:Dock(TOP)
@@ -459,12 +513,12 @@ local function updatePanel()
 								slider:DockMargin(8,0,8,0)
 								slider:SetDecimals(4)
 								slider:SetMinMax(-180, 180)
-								slider:SetValue(data.angle.y)
+								slider:SetValue(curData.angle.y)
 								slider:SetText("angle.y")
 								slider:SetDark(true)
 								function slider:OnValueChanged(val)
-									data.angle = cloneAngle(data.angle)
-									data.angle.y = val
+									curData.angle = cloneAngle(curData.angle)
+									curData.angle.y = val
 								end
 
 							settAngYPanel:Dock(TOP)
@@ -479,12 +533,12 @@ local function updatePanel()
 								slider:DockMargin(8,0,8,0)
 								slider:SetDecimals(4)
 								slider:SetMinMax(-180, 180)
-								slider:SetValue(data.angle.r)
+								slider:SetValue(curData.angle.r)
 								slider:SetText("angle.r")
 								slider:SetDark(true)
 								function slider:OnValueChanged(val)
-									data.angle = cloneAngle(data.angle)
-									data.angle.r = val
+									curData.angle = cloneAngle(curData.angle)
+									curData.angle.r = val
 								end
 
 							settAngRPanel:Dock(TOP)
@@ -499,7 +553,7 @@ local function updatePanel()
 								sliderXYZ:DockMargin(8,0,8,0)
 								sliderXYZ:SetDecimals(4)
 								sliderXYZ:SetMinMax(0.01, 10)
-								sliderXYZ:SetValue(data.size.x)
+								sliderXYZ:SetValue(curData.size.x)
 								sliderXYZ:SetText("size.xyz")
 								sliderXYZ:SetDark(true)
 
@@ -516,15 +570,15 @@ local function updatePanel()
 								sliderX:DockMargin(8,0,8,0)
 								sliderX:SetDecimals(4)
 								sliderX:SetMinMax(0.01, 10)
-								sliderX:SetValue(data.size.x)
+								sliderX:SetValue(curData.size.x)
 								sliderX:SetText("size.x")
 								sliderX:SetDark(true)
 								function sliderX:OnValueChanged(val)
 									if UNIFORMSCALELOCK then return end
 									
-									data.size = Vector(data.size)
-									data.size.x = val
-									reInitializeElement(data)
+									curData.size = Vector(curData.size)
+									curData.size.x = val
+									reInitializeElement(curData)
 								end
 
 							settSizeXPanel:Dock(TOP)
@@ -540,15 +594,15 @@ local function updatePanel()
 								sliderY:DockMargin(8,0,8,0)
 								sliderY:SetDecimals(4)
 								sliderY:SetMinMax(0.01, 10)
-								sliderY:SetValue(data.size.y)
+								sliderY:SetValue(curData.size.y)
 								sliderY:SetText("size.y")
 								sliderY:SetDark(true)
 								function sliderY:OnValueChanged(val)
 									if UNIFORMSCALELOCK then return end
 									
-									data.size = Vector(data.size)
-									data.size.y = val
-									reInitializeElement(data)
+									curData.size = Vector(curData.size)
+									curData.size.y = val
+									reInitializeElement(curData)
 								end
 
 							settSizeYPanel:Dock(TOP)
@@ -563,15 +617,15 @@ local function updatePanel()
 								sliderZ:DockMargin(8,0,8,0)
 								sliderZ:SetDecimals(4)
 								sliderZ:SetMinMax(0.01, 10)
-								sliderZ:SetValue(data.size.z)
+								sliderZ:SetValue(curData.size.z)
 								sliderZ:SetText("size.z")
 								sliderZ:SetDark(true)
 								function sliderZ:OnValueChanged(val)
 									if UNIFORMSCALELOCK then return end
 									
-									data.size = Vector(data.size)
-									data.size.z = val
-									reInitializeElement(data)
+									curData.size = Vector(curData.size)
+									curData.size.z = val
+									reInitializeElement(curData)
 								end
 
 							settSizeZPanel:Dock(TOP)
@@ -585,11 +639,11 @@ local function updatePanel()
 									sliderZ:SetValue(val)
 								UNIFORMSCALELOCK = false
 								
-								data.size = Vector(val,val,val)
-								reInitializeElement(data)							
+								curData.size = Vector(val,val,val)
+								reInitializeElement(curData)							
 							end
 							
-							if data.ent:SkinCount() > 1 then 
+							if curData.ent:SkinCount() > 1 then 
 								local settSkinPanel = vgui.Create("DPanel", elementSettingPanel)
 									
 								local slider
@@ -597,13 +651,13 @@ local function updatePanel()
 								slider:Dock(FILL)
 								slider:DockMargin(8,0,8,0)
 								slider:SetDecimals(0)
-								slider:SetMinMax(0, data.ent:SkinCount() - 1)
-								slider:SetValue(data.ent:GetSkin())
+								slider:SetMinMax(0, curData.ent:SkinCount() - 1)
+								slider:SetValue(curData.ent:GetSkin())
 								slider:SetText("Skin")
 								slider:SetDark(true)
 								function slider:OnValueChanged(val)
-									data.skin = val
-									data.ent:SetSkin(val)
+									curData.skin = val
+									curData.ent:SetSkin(val)
 								end
 
 								settSkinPanel:Dock(TOP)
@@ -616,8 +670,8 @@ local function updatePanel()
 							
 							local bgSettings = false
 							
-							for i = 0, data.ent:GetNumBodyGroups() - 1 do
-								bgSettings = bgSettings or (data.ent:GetBodygroupCount(i) - 1 > 0)
+							for i = 0, curData.ent:GetNumBodyGroups() - 1 do
+								bgSettings = bgSettings or (curData.ent:GetBodygroupCount(i) - 1 > 0)
 							end
 							
 							if bgSettings then 
@@ -639,8 +693,8 @@ local function updatePanel()
 								
 								elementSettingPanelHeight = elementSettingPanelHeight + 34
 							
-								for i = 0, data.ent:GetNumBodyGroups() - 1 do
-									local bgCount = data.ent:GetBodygroupCount(i) - 1
+								for i = 0, curData.ent:GetNumBodyGroups() - 1 do
+									local bgCount = curData.ent:GetBodygroupCount(i) - 1
 									if bgCount > 0 then
 										
 										local settBodygroupPanel = vgui.Create("DPanel", elementSettingPanel)
@@ -651,19 +705,19 @@ local function updatePanel()
 											slider:DockMargin(8,0,8,0)
 											slider:SetDecimals(0)
 											slider:SetMinMax(0, bgCount)
-											slider:SetValue(data.ent:GetBodygroup(i))
-											slider:SetText(i .. "# " .. data.ent:GetBodygroupName(i))
+											slider:SetValue(curData.ent:GetBodygroup(i))
+											slider:SetText(i .. "# " .. curData.ent:GetBodygroupName(i))
 											slider:SetDark(true)
 											function slider:OnValueChanged(val)
-												local t = data.bodygroups
-												data.bodygroups = {}
+												local t = curData.bodygroups
+												curData.bodygroups = {}
 												if t then
 													for k,v in pairs(t) do
-														data.bodygroups[k] = v
+														curData.bodygroups[k] = v
 													end
 												end
-												data.bodygroups[i] = val
-												data.ent:SetBodygroup(i, val)
+												curData.bodygroups[i] = val
+												curData.ent:SetBodygroup(i, val)
 											end
 
 										settBodygroupPanel:Dock(TOP)
@@ -685,9 +739,9 @@ local function updatePanel()
 								cbox:Dock(FILL)
 								-- cbox:DockMargin(8,0,0,0)
 								
-								cbox:SetValue(data.animated)
+								cbox:SetValue(curData.animated)
 								function cbox:OnChange(val)
-									data.animated = val
+									curData.animated = val
 								end
 						
 							settAnimatedPanel:SetSize(200,16)
@@ -695,6 +749,39 @@ local function updatePanel()
 							settAnimatedPanel:DockMargin(8,8,0,0)
 							settAnimatedPanel:SetPaintBackground(false)
 							settAnimatedPanel:SizeToContents()
+							
+							if WEAPON.KKINS2Wep then
+								local settMaterialPanel = vgui.Create("DPanel", elementSettingPanel)
+									
+									local label
+									label = vgui.Create("DLabel", settMaterialPanel)
+									label:SetText("Material Override:")
+									label:SetDark(true)
+									label:Dock(LEFT)
+									label:DockMargin(8,0,0,0)
+									label:SizeToContents()
+									
+									local entry
+									entry = vgui.Create("DTextEntry", settMaterialPanel)
+									entry:Dock(FILL)
+									entry:DockMargin(8,0,8,0)
+									
+									entry:SetValue(curData.material or "")
+									
+									function entry:OnChange()
+										local f = self:GetValue()
+										
+										curData.material = f
+										curData.ent:SetMaterial(f)
+									end
+									
+								settMaterialPanel:Dock(TOP)
+								settMaterialPanel:DockMargin(0,8,0,0)
+								settMaterialPanel:SetPaintBackground(false)
+								settMaterialPanel:SizeToContents()
+								
+								elementSettingPanelHeight = elementSettingPanelHeight + 34
+							end
 							
 							if tProps.adjustable then
 								local settAdjustmentLabelPanel = vgui.Create("DPanel", elementSettingPanel)
@@ -894,6 +981,55 @@ local function updatePanel()
 								end
 							end
 							
+							local unknownSettings = {}
+							
+							for k,v in pairs(curData) do
+								if not knownElementDataKeys[k] and not noExportElementDataKeys[k] then
+									unknownSettings[k] = v
+								end
+							end
+							
+							if table.Count(unknownSettings) > 0 then 
+								local settUnknownLabelPanel = vgui.Create("DPanel", elementSettingPanel)
+									
+									local label
+									label = vgui.Create("DLabel", settUnknownLabelPanel)
+									label:SetText("Uknown settings:")
+									label:SetDark(true)
+									label:Dock(FILL)
+									label:DockMargin(8,0,0,0)
+									label:SizeToContents()
+									label:SetMouseInputEnabled(true)
+									
+								settUnknownLabelPanel:Dock(TOP)
+								settUnknownLabelPanel:DockMargin(0,8,0,0)
+								settUnknownLabelPanel:SetBackgroundColor(darkBackground)
+								settUnknownLabelPanel:SizeToContents()
+								
+								elementSettingPanelHeight = elementSettingPanelHeight + 34
+								
+								for k,v in pairs(unknownSettings) do
+								
+									local settUnknownPanel = vgui.Create("DPanel", elementSettingPanel)
+									
+										local label
+										label = vgui.Create("DLabel", settUnknownPanel)
+										label:SetText("[\"" .. k .. "\"] = " .. tostring(v))
+										label:SetDark(true)
+										label:Dock(FILL)
+										label:DockMargin(8,0,0,0)
+										label:SizeToContents()
+										label:SetMouseInputEnabled(true)
+										
+									settUnknownPanel:Dock(TOP)
+									settUnknownPanel:SetBackgroundColor(darkBackground)
+									settUnknownPanel:SizeToContents()
+									
+									elementSettingPanelHeight = elementSettingPanelHeight + 24
+									
+								end
+							end
+							
 							local buttExportPanel = vgui.Create("DPanel", elementSettingPanel)
 								
 								local butt
@@ -923,6 +1059,7 @@ local function updatePanel()
 										end
 									end)
 									
+									SetClipboardText("No!")
 								end
 		
 							buttExportPanel:Dock(TOP)
@@ -1015,7 +1152,7 @@ function KK_SCK_VELEMENTS_Think()
 end
 
 hook.Add("PopulateToolMenu", "KK_SCK_VELEMENTS", function()
-	spawnmenu.AddToolMenuOption("Utilities", "Knife Kitty", "KK_SCK_VELEMENTS", "VElements", "", "", function(panel)
+	spawnmenu.AddToolMenuOption("Utilities", "Knife Kitty", "KK_SCK_VELEMENTS", "VElement Browser", "", "", function(panel)
 		PANEL = panel
 		updatePanel()
 		

@@ -846,4 +846,4 @@ hook.Add("PostReloadToolsMenu", "CW_KK_DEV_MENU_" .. BUILD .. "_REMOVER", functi
 	hook.Remove("Think", "CW_KK_DEV_MENU_" .. BUILD)
 end)
 
-RunConsoleCommand("spawnmenu_reload")
+-- RunConsoleCommand("spawnmenu_reload")

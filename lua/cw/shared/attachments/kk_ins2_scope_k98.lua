@@ -50,7 +50,6 @@ end
 function att:attachFunc()
 	self.OverrideAimMouseSens = 0.1
 	self.SimpleTelescopicsFOV = 70
-	self.AimViewModelFOV = 50
 	self.BlurOnAim = true
 	self.ZoomTextures = att.zoomTextures
 end
@@ -58,7 +57,6 @@ end
 function att:detachFunc()
 	self.OverrideAimMouseSens = nil
 	self.SimpleTelescopicsFOV = nil
-	self.AimViewModelFOV = self.AimViewModelFOV_Orig
 	self.BlurOnAim = false
 end
 

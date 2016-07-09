@@ -6,6 +6,7 @@ AddCSLuaFile("sh_callbacks.lua")
 AddCSLuaFile("sh_utilities.lua")
 AddCSLuaFile("sv_hooks.lua")
 
+AddCSLuaFile("o_cl_calcview.lua")
 AddCSLuaFile("o_cl_hud.lua")
 AddCSLuaFile("o_cl_model.lua")
 AddCSLuaFile("o_sh_attacks.lua")
@@ -24,6 +25,7 @@ include("o_sh_think.lua")
 include("o_shared.lua")
 
 if CLIENT then
+	include("o_cl_calcview.lua")
 	include("o_cl_hud.lua")
 	include("o_cl_model.lua")
 end
