@@ -289,7 +289,7 @@ if CLIENT then
 	end
 end
 
-if not true then return end
+if not CustomizableWeaponry_KK.HOME then return end
 
 if CLIENT then
 	local cvAmmoHud = GetConVar("cw_customhud_ammo")

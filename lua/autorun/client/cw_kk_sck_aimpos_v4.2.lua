@@ -1,6 +1,6 @@
 AddCSLuaFile()
 
-local BUILD = "428"
+local BUILD = "429"
 
 // static
 local IRONSIGHTSATT = {
@@ -192,6 +192,32 @@ local function menuThink()
 	updateLabels()
 end
 
+// slider sensitivity storage (thx to velement editor)
+
+local stored = {}
+
+local function initSliderStorage(id)
+	if not stored[id] then
+		stored[id] = CreateClientConVar("_kk_sck_apb_slsens_" .. id, 1, true, false)
+	end
+end
+
+local function storeSliderZoom(slider)
+	local id = slider._KK_SCK_vec .. slider._KK_SCK_vec_pos
+	
+	initSliderStorage(id)
+	
+	RunConsoleCommand("_kk_sck_apb_slsens_" .. id, slider.Wang:GetZoom())
+end
+
+local function loadSliderZoom(slider)
+	local id = slider._KK_SCK_vec .. slider._KK_SCK_vec_pos
+	
+	initSliderStorage(id)
+	
+	slider.Wang:SetZoom(stored[id]:GetFloat())
+end
+
 // menu element funcs
 
 local function sliderChanged(slider, val)
@@ -210,6 +236,8 @@ local function sliderChanged(slider, val)
 		WEAPON["Aim" .. slider._KK_SCK_vec] = vectorClone(vec)
 		WEAPON["Blend" .. slider._KK_SCK_vec] = vectorClone(vec)
 		WEAPON[SIGHT._KK_SCK_prefix .. slider._KK_SCK_vec] = vectorClone(vec)  // does affect weapon.stored? // nope, does not, we re good
+		
+		storeSliderZoom(slider)
 	end
 end
 
@@ -475,6 +503,8 @@ local function buildPanel(panel)
 	MENU.SLIDERS[id]._KK_SCK_update = sliderUpdate
 	panel:AddItem(MENU.SLIDERS[id])
 
+	loadSliderZoom(MENU.SLIDERS[id])
+	
 	id = "py"
 	MENU.SLIDERS[id] = vgui.Create("DNumSlider", panel)
 	MENU.SLIDERS[id]:DockMargin(8, 0, 8, 0)
@@ -489,6 +519,8 @@ local function buildPanel(panel)
 	MENU.SLIDERS[id]._KK_SCK_update = sliderUpdate
 	panel:AddItem(MENU.SLIDERS[id])
 
+	loadSliderZoom(MENU.SLIDERS[id])
+	
 	id = "pz"
 	MENU.SLIDERS[id] = vgui.Create("DNumSlider", panel)
 	MENU.SLIDERS[id]:DockMargin(8, 0, 8, 0)
@@ -503,6 +535,8 @@ local function buildPanel(panel)
 	MENU.SLIDERS[id]._KK_SCK_update = sliderUpdate
 	panel:AddItem(MENU.SLIDERS[id])
 
+	loadSliderZoom(MENU.SLIDERS[id])
+	
 	id = "ax"
 	MENU.SLIDERS[id] = vgui.Create("DNumSlider", panel)
 	MENU.SLIDERS[id]:DockMargin(8, 0, 8, 0)
@@ -517,6 +551,8 @@ local function buildPanel(panel)
 	MENU.SLIDERS[id]._KK_SCK_update = sliderUpdate
 	panel:AddItem(MENU.SLIDERS[id])
 
+	loadSliderZoom(MENU.SLIDERS[id])
+	
 	id = "ay"
 	MENU.SLIDERS[id] = vgui.Create("DNumSlider", panel)
 	MENU.SLIDERS[id]:DockMargin(8, 0, 8, 0)
@@ -531,6 +567,8 @@ local function buildPanel(panel)
 	MENU.SLIDERS[id]._KK_SCK_update = sliderUpdate
 	panel:AddItem(MENU.SLIDERS[id])
 
+	loadSliderZoom(MENU.SLIDERS[id])
+	
 	id = "az"
 	MENU.SLIDERS[id] = vgui.Create("DNumSlider", panel)
 	MENU.SLIDERS[id]:DockMargin(8, 0, 8, 0)
@@ -544,6 +582,8 @@ local function buildPanel(panel)
 	MENU.SLIDERS[id]._KK_SCK_vec_pos = "z"
 	MENU.SLIDERS[id]._KK_SCK_update = sliderUpdate
 	panel:AddItem(MENU.SLIDERS[id])
+	
+	loadSliderZoom(MENU.SLIDERS[id])
 	
 	MENU.PANELS.sum = vgui.Create("DPanel", panel)
 	
@@ -847,3 +887,5 @@ hook.Add("PostReloadToolsMenu", "CW_KK_DEV_MENU_" .. BUILD .. "_REMOVER", functi
 end)
 
 -- RunConsoleCommand("spawnmenu_reload")
+
+KK_SCK_AIMPOS_ELEMENTS = MENU

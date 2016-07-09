@@ -4,7 +4,7 @@ local PANEL, WEAPON
 
 local elementTables = {
 	["AttachmentModelsVM"] = {adjustable = true},
-	["AttachmentModelsWM"] = {adjustable = false},
+	["AttachmentModelsWM"] = {adjustable = false}, // just so sightadjustment panels dont showup for WElements
 }
 
 local function getParentEnt(str)
@@ -140,6 +140,30 @@ local function backupAdjustmentTable(wep, t, key, curData)
 			curData.adjustment[k] = v
 		end
 	end
+end
+
+local stored = {}
+
+local function initSliderStorage(id)
+	if not stored[id] then
+		stored[id] = CreateClientConVar("_kk_sck_elements_slsens_" .. id, 1, true, false)
+	end
+end
+
+local function storeSliderZoom(slider)
+	local id = slider._kk_sck_id
+	
+	initSliderStorage(id)
+	
+	RunConsoleCommand("_kk_sck_elements_slsens_" .. id, slider.Wang:GetZoom())
+end
+
+local function loadSliderZoom(slider)
+	local id = slider._kk_sck_id
+	
+	initSliderStorage(id)
+	
+	slider.Wang:SetZoom(stored[id]:GetFloat())
 end
 
 local function updatePanel()
@@ -437,8 +461,13 @@ local function updatePanel()
 								function slider:OnValueChanged(val)
 									curData.pos = Vector(curData.pos) // garbage gen, but doesnt mess up stored weapon classes
 									curData.pos.x = val
+									
+									storeSliderZoom(self)
 								end
 
+								slider._kk_sck_id = "settPosX"
+								loadSliderZoom(slider)
+								
 							settPosXPanel:Dock(TOP)
 							settPosXPanel:DockMargin(0,8,0,0)
 							settPosXPanel:SetBackgroundColor(darkBackground)
@@ -458,8 +487,13 @@ local function updatePanel()
 								function slider:OnValueChanged(val)
 									curData.pos = Vector(curData.pos)
 									curData.pos.y = val
+									
+									storeSliderZoom(self)
 								end
 
+								slider._kk_sck_id = "settPosY"
+								loadSliderZoom(slider)
+								
 							settPosYPanel:Dock(TOP)
 							settPosYPanel:SetBackgroundColor(darkBackground)
 							settPosYPanel:SizeToContents()
@@ -478,8 +512,13 @@ local function updatePanel()
 								function slider:OnValueChanged(val)
 									curData.pos = Vector(curData.pos)
 									curData.pos.z = val
+								
+									storeSliderZoom(self)
 								end
 
+								slider._kk_sck_id = "settPosZ"
+								loadSliderZoom(slider)
+								
 							settPosZPanel:Dock(TOP)
 							settPosZPanel:SetBackgroundColor(darkBackground)
 							settPosZPanel:SizeToContents()
@@ -498,8 +537,13 @@ local function updatePanel()
 								function slider:OnValueChanged(val)
 									curData.angle = cloneAngle(curData.angle)
 									curData.angle.p = val
+								
+									storeSliderZoom(self)
 								end
 
+								slider._kk_sck_id = "settAngP"
+								loadSliderZoom(slider)
+								
 							settAngPPanel:Dock(TOP)
 							settAngPPanel:DockMargin(0,8,0,0)
 							settAngPPanel:SetBackgroundColor(darkBackground)
@@ -519,8 +563,13 @@ local function updatePanel()
 								function slider:OnValueChanged(val)
 									curData.angle = cloneAngle(curData.angle)
 									curData.angle.y = val
+								
+									storeSliderZoom(self)
 								end
 
+								slider._kk_sck_id = "settAngY"
+								loadSliderZoom(slider)
+								
 							settAngYPanel:Dock(TOP)
 							settAngYPanel:SetBackgroundColor(darkBackground)
 							settAngYPanel:SizeToContents()
@@ -539,8 +588,13 @@ local function updatePanel()
 								function slider:OnValueChanged(val)
 									curData.angle = cloneAngle(curData.angle)
 									curData.angle.r = val
+								
+									storeSliderZoom(self)
 								end
 
+								slider._kk_sck_id = "settAngR"
+								loadSliderZoom(slider)
+								
 							settAngRPanel:Dock(TOP)
 							settAngRPanel:SetBackgroundColor(darkBackground)
 							settAngRPanel:SizeToContents()
@@ -579,8 +633,13 @@ local function updatePanel()
 									curData.size = Vector(curData.size)
 									curData.size.x = val
 									reInitializeElement(curData)
+								
+									storeSliderZoom(self)
 								end
 
+								sliderX._kk_sck_id = "settSizeX"
+								loadSliderZoom(sliderX)
+								
 							settSizeXPanel:Dock(TOP)
 							settSizeXPanel:DockMargin(0,8,0,0)
 							settSizeXPanel:SetBackgroundColor(darkBackground)
@@ -603,8 +662,13 @@ local function updatePanel()
 									curData.size = Vector(curData.size)
 									curData.size.y = val
 									reInitializeElement(curData)
+								
+									storeSliderZoom(self)
 								end
 
+								sliderY._kk_sck_id = "settSizeY"
+								loadSliderZoom(sliderY)
+								
 							settSizeYPanel:Dock(TOP)
 							settSizeYPanel:SetBackgroundColor(darkBackground)
 							settSizeYPanel:SizeToContents()
@@ -626,8 +690,13 @@ local function updatePanel()
 									curData.size = Vector(curData.size)
 									curData.size.z = val
 									reInitializeElement(curData)
+								
+									storeSliderZoom(self)
 								end
 
+								sliderZ._kk_sck_id = "settSizeZ"
+								loadSliderZoom(sliderZ)
+								
 							settSizeZPanel:Dock(TOP)
 							settSizeZPanel:SetBackgroundColor(darkBackground)
 							settSizeZPanel:SizeToContents()
@@ -640,8 +709,13 @@ local function updatePanel()
 								UNIFORMSCALELOCK = false
 								
 								curData.size = Vector(val,val,val)
-								reInitializeElement(curData)							
+								reInitializeElement(curData)
+								
+								storeSliderZoom(self)
 							end
+
+							sliderXYZ._kk_sck_id = "settSizeXYZ"
+							loadSliderZoom(sliderXYZ)
 							
 							if curData.ent:SkinCount() > 1 then 
 								local settSkinPanel = vgui.Create("DPanel", elementSettingPanel)
@@ -894,7 +968,12 @@ local function updatePanel()
 											backupAdjustmentTable(WEAPON, t, key, data)
 											
 											data.adjustment.min = val
+											
+											storeSliderZoom(self)
 										end
+
+										slider._kk_sck_id = "settAdjustmentMin"
+										loadSliderZoom(slider)
 										
 									settAdjustmentMinPanel:Dock(TOP)
 									settAdjustmentMinPanel:SetBackgroundColor(darkBackground)
@@ -915,7 +994,12 @@ local function updatePanel()
 											backupAdjustmentTable(WEAPON, t, key, data)
 											
 											data.adjustment.max = val
+										
+											storeSliderZoom(self)
 										end
+
+										slider._kk_sck_id = "settAdjustmentMax"
+										loadSliderZoom(slider)
 										
 									settAdjustmentMaxPanel:Dock(TOP)
 									settAdjustmentMaxPanel:SetBackgroundColor(darkBackground)
@@ -1126,7 +1210,7 @@ end
 
 local _LAST_SETUP
 
-function KK_SCK_VELEMENTS_Think()
+local function think()
 	WEAPON = LocalPlayer():GetActiveWeapon()
 	
 	local curSetup
@@ -1156,7 +1240,7 @@ hook.Add("PopulateToolMenu", "KK_SCK_VELEMENTS", function()
 		PANEL = panel
 		updatePanel()
 		
-		hook.Add("Think", "KK_SCK_VELEMENTS_Think", KK_SCK_VELEMENTS_Think)
+		hook.Add("Think", "KK_SCK_VELEMENTS_Think", think)
 	end)
 end)
 
