@@ -1,4 +1,8 @@
 
+function shell(wep) 
+	wep:shellEvent() 
+end
+
 SWEP.Sounds = {
 	base_ready = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
@@ -26,7 +30,7 @@ SWEP.Sounds = {
 		-- { event AE_CL_CREATE_PARTICLE_BRASS 20 ""},
 		{time = 13/30, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
 		{time = 14/30, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
-		{time = 20/30, sound = "", callback = function(wep) wep:shellEvent() end},
+		{time = 20/30, sound = "", callback = shell},
 		{time = 22/30, sound = "CW_KK_INS2_DOI_K98_BOLTFORWARD"},
 		-- { event AE_WPN_COCK 24 ""},
 		{time = 26/30, sound = "CW_KK_INS2_DOI_K98_BOLTLATCH"},
@@ -44,7 +48,7 @@ SWEP.Sounds = {
 		-- { event AE_CL_CREATE_PARTICLE_BRASS 29 ""},
 		{time = 19/33.4, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
 		{time = 27/33.4, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
-		{time = 29/33.4, sound = "", callback = function(wep) wep:shellEvent() end},
+		{time = 29/33.4, sound = "", callback = shell},
 		-- { event 46 88 ""},
 		-- { event AE_WPN_RELOAD_OFFSCREEN 40 ""},
 		{time = 37/33.4, sound = "CW_KK_INS2_DOI_K98_FETCHMAG"},
@@ -77,7 +81,7 @@ SWEP.Sounds = {
 		-- { event AE_CL_CREATE_PARTICLE_BRASS 29 ""},
 		{time = 19/33.5, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
 		{time = 27/33.5, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
-		{time = 29/33.5, sound = "", callback = function(wep) wep:shellEvent() end},
+		{time = 29/33.5, sound = "", callback = shell},
 	},
 
 	base_reload_insert = {
@@ -94,7 +98,7 @@ SWEP.Sounds = {
 		-- { event AE_CL_CREATE_PARTICLE_BRASS 18 ""},
 		{time = 13/30.5, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
 		{time = 16/30.5, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
-		{time = 18/30.5, sound = "", callback = function(wep) wep:shellEvent() end},
+		{time = 18/30.5, sound = "", callback = shell},
 		{time = 24/30.5, sound = "CW_KK_INS2_DOI_K98_BOLTFORWARD"},
 		-- { event AE_WPN_COCK 26 ""},
 		{time = 27/30.5, sound = "CW_KK_INS2_DOI_K98_BOLTLATCH"},
@@ -130,7 +134,7 @@ SWEP.Sounds = {
 		-- { event AE_CL_CREATE_PARTICLE_BRASS 20 ""},
 		{time = 13/30, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
 		{time = 14/30, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
-		{time = 20/30, sound = "", callback = function(wep) wep:shellEvent() end},
+		{time = 20/30, sound = "", callback = shell},
 		{time = 22/30, sound = "CW_KK_INS2_DOI_K98_BOLTFORWARD"},
 		-- { event AE_WPN_COCK 24 ""},
 		{time = 26/30, sound = "CW_KK_INS2_DOI_K98_BOLTLATCH"},
@@ -144,7 +148,7 @@ SWEP.Sounds = {
 		-- { event AE_CL_CREATE_PARTICLE_BRASS 29 ""},
 		{time = 19/33.4, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
 		{time = 27/33.4, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
-		{time = 29/33.4, sound = "", callback = function(wep) wep:shellEvent() end},
+		{time = 29/33.4, sound = "", callback = shell},
 		-- { event 46 88 ""},
 		-- { event AE_WPN_RELOAD_OFFSCREEN 40 ""},
 		{time = 37/33.4, sound = "CW_KK_INS2_DOI_K98_FETCHMAG"},
@@ -164,7 +168,7 @@ SWEP.Sounds = {
 		-- { event AE_CL_CREATE_PARTICLE_BRASS 29 ""},
 		{time = 19/33.5, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
 		{time = 27/33.5, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
-		{time = 29/33.5, sound = "", callback = function(wep) wep:shellEvent() end},
+		{time = 29/33.5, sound = "", callback = shell},
 	},
 
 	gl_reload_insert = {
@@ -182,7 +186,7 @@ SWEP.Sounds = {
 		-- { event AE_CL_CREATE_PARTICLE_BRASS 18 ""},
 		{time = 13/30.5, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
 		{time = 16/30.5, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
-		{time = 18/30.5, sound = "", callback = function(wep) wep:shellEvent() end},
+		{time = 18/30.5, sound = "", callback = shell},
 		{time = 24/30.5, sound = "CW_KK_INS2_DOI_K98_BOLTFORWARD"},
 		-- { event AE_WPN_COCK 26 ""},
 		{time = 27/30.5, sound = "CW_KK_INS2_DOI_K98_BOLTLATCH"},
@@ -209,7 +213,7 @@ SWEP.Sounds = {
 		{time = 19/32.5, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
 		{time = 27/32.5, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
 		-- { event AE_CL_CREATE_PARTICLE_BRASS 29 ""},
-		{time = 29/32.5, sound = "", callback = function(wep) wep:shellEvent() end},
+		{time = 29/32.5, sound = "", callback = shell},
 		{time = 66/32.5, sound = "CW_KK_INS2_DOI_K98_BULLETIN"},
 		{time = 99/32.5, sound = "CW_KK_INS2_DOI_K98_BOLTFORWARD"},
 		{time = 106/32.5, sound = "CW_KK_INS2_DOI_K98_BOLTLATCH"},
@@ -232,7 +236,7 @@ SWEP.Sounds = {
 	glsetup_out_empty = {
 		{time = 18/32.5, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
 		{time = 26/32.5, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
-		{time = 29/32.5, sound = "", callback = function(wep) wep:shellEvent() end},
+		{time = 29/32.5, sound = "", callback = shell},
 		{time = 38/32.5, sound = "CW_KK_INS2_DOI_K98_BOLTFORWARD"},
 		{time = 45/32.5, sound = "CW_KK_INS2_DOI_K98_BOLTLATCH"},
 		-- { event AE_CL_CREATE_PARTICLE_BRASS 29 ""},
@@ -259,7 +263,7 @@ SWEP.Sounds = {
 	glsetup_reload = {
 		{time = 19/32.5, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
 		{time = 27/32.5, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
-		{time = 29/32.5, sound = "", callback = function(wep) wep:shellEvent() end},
+		{time = 29/32.5, sound = "", callback = shell},
 		{time = 66/32.5, sound = "CW_KK_INS2_DOI_K98_BULLETIN"},
 		{time = 99/32.5, sound = "CW_KK_INS2_DOI_K98_BOLTFORWARD"},
 		{time = 106/32.5, sound = "CW_KK_INS2_DOI_K98_BOLTLATCH"},

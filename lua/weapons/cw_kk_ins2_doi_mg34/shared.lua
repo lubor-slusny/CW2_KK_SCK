@@ -148,9 +148,9 @@ if CLIENT then
 		end
 		
 		if self.Sequence:find("reload") and cycle > 0.4 and cycle < 1 then
-			self:setBodygroup(1,math.Clamp(ammo,0,18))
+			self:setBodygroup(1,math.Clamp(ammo,0,50))
 		else
-			self:setBodygroup(1,math.Clamp(clip,0,18))
+			self:setBodygroup(1,math.Clamp(clip,0,50))
 		end
 		
 		if self.dt.BipodDeployed then

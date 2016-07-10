@@ -1,4 +1,8 @@
 
+function shell(wep) 
+	wep:shellEvent() 
+end
+
 SWEP.Sounds = {
 	base_ready = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
@@ -20,10 +24,10 @@ SWEP.Sounds = {
 		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
 	},
 
-	-- base_fire = {
+	base_fire = {
 		-- { event AE_MUZZLEFLASH 0 ""},
-		-- { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
+		{time = 0.06, sound = "", callback = shell},
+	},
 
 	base_dryfire = {
 		{time = 0, sound = "CW_KK_INS2_M4A1_EMPTY"},
@@ -54,40 +58,40 @@ SWEP.Sounds = {
 		{time = 125/30, sound = "CW_KK_INS2_AK74_RATTLE"},
 	},
 
-	-- iron_fire = {
+	iron_fire = {
 		-- { event AE_MUZZLEFLASH 0 ""},
-		-- { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
+		{time = 0.06, sound = "", callback = shell},
+	},
 
-	-- iron_fire_a = {
+	iron_fire_a = {
 		-- { event AE_MUZZLEFLASH 0 ""},
-		-- { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
+		{time = 0.06, sound = "", callback = shell},
+	},
 
-	-- iron_fire_b = {
+	iron_fire_b = {
 		-- { event AE_MUZZLEFLASH 0 ""},
-		-- { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
+		{time = 0.06, sound = "", callback = shell},
+	},
 
-	-- iron_fire_c = {
+	iron_fire_c = {
 		-- { event AE_MUZZLEFLASH 0 ""},
-		-- { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
+		{time = 0.06, sound = "", callback = shell},
+	},
 
-	-- iron_fire_d = {
+	iron_fire_d = {
 		-- { event AE_MUZZLEFLASH 0 ""},
-		-- { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
+		{time = 0.06, sound = "", callback = shell},
+	},
 
-	-- iron_fire_e = {
+	iron_fire_e = {
 		-- { event AE_MUZZLEFLASH 0 ""},
-		-- { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
+		{time = 0.06, sound = "", callback = shell},
+	},
 
-	-- iron_fire_f = {
+	iron_fire_f = {
 		-- { event AE_MUZZLEFLASH 0 ""},
-		-- { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
+		{time = 0.06, sound = "", callback = shell},
+	},
 
 	iron_dryfire = {
 		{time = 0, sound = "CW_KK_INS2_M4A1_EMPTY"},
@@ -117,10 +121,10 @@ SWEP.Sounds = {
 		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
 	},
 
-	-- foregrip_fire = {
+	foregrip_fire = {
 		-- { event AE_MUZZLEFLASH 0 ""},
-		-- { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
+		{time = 0.06, sound = "", callback = shell},
+	},
 
 	foregrip_dryfire = {
 		{time = 0, sound = "CW_KK_INS2_M4A1_EMPTY"},
@@ -130,40 +134,40 @@ SWEP.Sounds = {
 		{time = 11/30, sound = "CW_KK_INS2_M4A1_FIRESELECT"},
 	},
 
-	-- foregrip_iron_fire = {
+	foregrip_iron_fire = {
 		-- { event AE_MUZZLEFLASH 0 ""},
-		-- { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
+		{time = 0.06, sound = "", callback = shell},
+	},
 
-	-- foregrip_iron_fire_a = {
+	foregrip_iron_fire_a = {
 		-- { event AE_MUZZLEFLASH 0 ""},
-		-- { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
+		{time = 0.06, sound = "", callback = shell},
+	},
 
-	-- foregrip_iron_fire_b = {
+	foregrip_iron_fire_b = {
 		-- { event AE_MUZZLEFLASH 0 ""},
-		-- { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
+		{time = 0.06, sound = "", callback = shell},
+	},
 
-	-- foregrip_iron_fire_c = {
+	foregrip_iron_fire_c = {
 		-- { event AE_MUZZLEFLASH 0 ""},
-		-- { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
+		{time = 0.06, sound = "", callback = shell},
+	},
 
-	-- foregrip_iron_fire_d = {
+	foregrip_iron_fire_d = {
 		-- { event AE_MUZZLEFLASH 0 ""},
-		-- { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
+		{time = 0.06, sound = "", callback = shell},
+	},
 
-	-- foregrip_iron_fire_e = {
+	foregrip_iron_fire_e = {
 		-- { event AE_MUZZLEFLASH 0 ""},
-		-- { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
+		{time = 0.06, sound = "", callback = shell},
+	},
 
-	-- foregrip_iron_fire_f = {
+	foregrip_iron_fire_f = {
 		-- { event AE_MUZZLEFLASH 0 ""},
-		-- { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
+		{time = 0.06, sound = "", callback = shell},
+	},
 
 	foregrip_iron_dryfire = {
 		{time = 0, sound = "CW_KK_INS2_M4A1_EMPTY"},
@@ -214,10 +218,10 @@ SWEP.Sounds = {
 		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
 	},
 
-	-- gl_fire = {
+	gl_fire = {
 		-- { event AE_MUZZLEFLASH 0 ""},
-		-- { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
+		{time = 0.06, sound = "", callback = shell},
+	},
 
 	gl_dryfire = {
 		{time = 0, sound = "CW_KK_INS2_M4A1_EMPTY"},
@@ -248,40 +252,40 @@ SWEP.Sounds = {
 		{time = 125/30, sound = "CW_KK_INS2_AK74_RATTLE"},
 	},
 
-	-- gl_iron_fire = {
+	gl_iron_fire = {
 		-- { event AE_MUZZLEFLASH 0 ""},
-		-- { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
+		{time = 0.06, sound = "", callback = shell},
+	},
 
-	-- gl_iron_fire_a = {
+	gl_iron_fire_a = {
 		-- { event AE_MUZZLEFLASH 0 ""},
-		-- { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
+		{time = 0.06, sound = "", callback = shell},
+	},
 
-	-- gl_iron_fire_b = {
+	gl_iron_fire_b = {
 		-- { event AE_MUZZLEFLASH 0 ""},
-		-- { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
+		{time = 0.06, sound = "", callback = shell},
+	},
 
-	-- gl_iron_fire_c = {
+	gl_iron_fire_c = {
 		-- { event AE_MUZZLEFLASH 0 ""},
-		-- { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
+		{time = 0.06, sound = "", callback = shell},
+	},
 
-	-- gl_iron_fire_d = {
+	gl_iron_fire_d = {
 		-- { event AE_MUZZLEFLASH 0 ""},
-		-- { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
+		{time = 0.06, sound = "", callback = shell},
+	},
 
-	-- gl_iron_fire_e = {
+	gl_iron_fire_e = {
 		-- { event AE_MUZZLEFLASH 0 ""},
-		-- { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
+		{time = 0.06, sound = "", callback = shell},
+	},
 
-	-- gl_iron_fire_f = {
+	gl_iron_fire_f = {
 		-- { event AE_MUZZLEFLASH 0 ""},
-		-- { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
+		{time = 0.06, sound = "", callback = shell},
+	},
 
 	gl_iron_dryfire = {
 		{time = 0, sound = "CW_KK_INS2_M4A1_EMPTY"},
@@ -342,18 +346,18 @@ SWEP.Sounds = {
 		{time = 0, sound = "CW_KK_INS2_M203_EMPTY"},
 	},
 
-	-- base_fire_2 = {
+	base_fire_2 = {
 		-- { event AE_MUZZLEFLASH 0 ""},
-		-- { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
+		{time = 0.06, sound = "", callback = shell},
+	},
 
-	-- foregrip_fire_2 = {
+	foregrip_fire_2 = {
 		-- { event AE_MUZZLEFLASH 0 ""},
-		-- { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
+		{time = 0.06, sound = "", callback = shell},
+	},
 
-	-- gl_fire_2 = {
+	gl_fire_2 = {
 		-- { event AE_MUZZLEFLASH 0 ""},
-		-- { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
+		{time = 0.06, sound = "", callback = shell},
+	},
 }

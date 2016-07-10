@@ -250,9 +250,9 @@ local function updatePanel()
 						elementNamePanel.DoClick = updateTitle
 					end
 						
-					local curData = data
+					local curData
 					
-					if curData._kksck_expanded then
+					if data._kksck_expanded then
 						local elementSettingPanelHeight = 0
 						
 						local elementSettingPanel = vgui.Create("DPanel", PANEL)
@@ -267,9 +267,9 @@ local function updatePanel()
 								cbox:Dock(FILL)
 								cbox:DockMargin(8,0,0,0)
 								
-								cbox:SetValue(curData.active)
+								cbox:SetValue(data.active)
 								function cbox:OnChange(val)
-									curData.active = val
+									data.active = val
 									updatePanel()
 								end
 						
@@ -278,20 +278,20 @@ local function updatePanel()
 							settActivePanel:SetPaintBackground(false)
 							settActivePanel:SizeToContents()
 							
-							if curData.models then
-							
+							if data.models then
 								local pickSubElementPanel = vgui.Create("DPanel", elementSettingPanel)
 							
 									local box = vgui.Create("DComboBox", pickSubElementPanel)
 									box:Dock(FILL)
-									box:SetValue(curData.models[curData._kksck_curIndex or 1].model)
+									box:SetValue(data.models[data._kksck_curIndex or 1].model)
 									
-									for k,v in pairs(curData.models) do
+									for k,v in pairs(data.models) do
 										box:AddChoice(v.model)
 									end
 									
-									function box:OnSelect(i, name) 
-										curData._kksck_curIndex = i
+									function box:OnSelect(i, name)
+										print(i)
+										data._kksck_curIndex = i
 										updatePanel()
 									end
 									
@@ -301,8 +301,9 @@ local function updatePanel()
 								pickSubElementPanel:SizeToContents()
 								
 								elementSettingPanelHeight = elementSettingPanelHeight + 32
-								curData = curData.models[curData._kksck_curIndex or 1]
-								
+								curData = data.models[data._kksck_curIndex or 1]
+							else
+								curData = data
 							end
 					
 							local settModelPanel = vgui.Create("DPanel", elementSettingPanel)
@@ -1161,19 +1162,24 @@ local function updatePanel()
 								function butt:DoClick()
 									local origData = weapons.GetStored(WEAPON:GetClass())[t][key]
 									
-									data.model = origData.model
-									data.pos = origData.pos
-									data.angle = origData.angle
-									data.size = origData.size
-									data.merge = origData.merge
-									data.bone = origData.bone
-									data.attachment = origData.attachment
-									data.skin = origData.skin
-									data.bodygroups = origData.bodygroups
 									data.adjustment = origData.adjustment
-									data.material = origData.material
 									
-									reInitializeElement(data)
+									if origData.models then
+										origData = origData.models[data._kksck_curIndex or 1]
+									end
+									
+									curData.model = origData.model
+									curData.pos = origData.pos
+									curData.angle = origData.angle
+									curData.size = origData.size
+									curData.merge = origData.merge
+									curData.bone = origData.bone
+									curData.attachment = origData.attachment
+									curData.skin = origData.skin
+									curData.bodygroups = origData.bodygroups
+									curData.material = origData.material
+									
+									reInitializeElement(curData)
 									updatePanel()
 								end
 			
