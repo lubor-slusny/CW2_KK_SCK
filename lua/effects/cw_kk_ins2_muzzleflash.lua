@@ -24,10 +24,10 @@ function EFFECT:Init(fx)
 		return
 	end
 	
-	local muzzleAtt = attachModel:GetAttachment(ent.WorldMuzzleAttachmentID)
-	local shellAtt = attachModel:GetAttachment(ent.WorldShellEjectionAttachmentID)
+	local muzzleAtt = attachModel:GetAttachment(ent.MuzzleWorldAttachmentID)
+	local shellAtt = attachModel:GetAttachment(ent.ShellWorldAttachmentID)
 	
-	ParticleEffectAttach(particleEffect, PATTACH_POINT_FOLLOW, attachModel, ent.WorldMuzzleAttachmentID)
+	ParticleEffectAttach(particleEffect, PATTACH_POINT_FOLLOW, attachModel, ent.MuzzleWorldAttachmentID)
 
 	if not ent.dt.Suppressed then
 		local dlight = DynamicLight(self:EntIndex())
@@ -70,11 +70,11 @@ function EFFECT:Init(fx)
 		if ent.ShellDelay then
 			timer.Simple(ent.ShellDelay, function()
 				if IsValid(ent) then
-					shellAtt = attachModel:GetAttachment(ent.WorldShellEjectionAttachmentID)
+					shellAtt = attachModel:GetAttachment(ent.ShellWorldAttachmentID)
 					local ejectVelocity = shellAtt.Ang:Forward() * (ent.ShellEjectVelocity or 200)
 					
 					local ang = shellAtt.Ang
-					local tweak = ent.WorldShellAngleTweak
+					local tweak = ent.ShellWorldAngleAlign
 					if tweak then
 						ang:RotateAroundAxis(ang:Right(), tweak.Right)
 						ang:RotateAroundAxis(ang:Forward(), tweak.Forward)
@@ -85,7 +85,7 @@ function EFFECT:Init(fx)
 					
 					if ent.Shell2 then
 						local ang = shellAtt.Ang
-						local tweak = ent.WorldShellAngleTweak2
+						local tweak = ent.ShellWorldAngleAlign2
 						if tweak then
 							ang:RotateAroundAxis(ang:Right(), tweak.Right)
 							ang:RotateAroundAxis(ang:Forward(), tweak.Forward)
@@ -100,7 +100,7 @@ function EFFECT:Init(fx)
 			local ejectVelocity = shellAtt.Ang:Forward() * (ent.ShellEjectVelocity or 200)
 			
 			local ang = shellAtt.Ang
-			local tweak = ent.WorldShellAngleTweak
+			local tweak = ent.ShellWorldAngleAlign
 			if tweak then
 				ang:RotateAroundAxis(ang:Right(), tweak.Right)
 				ang:RotateAroundAxis(ang:Forward(), tweak.Forward)
@@ -113,7 +113,7 @@ function EFFECT:Init(fx)
 				if ent:GetClass() == "cw_kk_ins2_ww2_garand" and ent:Clip1() > 0 then return end
 				
 				local ang = shellAtt.Ang
-				local tweak = ent.WorldShellAngleTweak2
+				local tweak = ent.ShellWorldAngleAlign2
 				if tweak then
 					ang:RotateAroundAxis(ang:Right(), tweak.Right)
 					ang:RotateAroundAxis(ang:Forward(), tweak.Forward)

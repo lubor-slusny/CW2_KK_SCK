@@ -13,15 +13,16 @@ if CLIENT then
 	
 	local function shellPlaySound(shell)
 		if shell._ssp then return end
+		
 		shell._ssp = true
 		
 		soundPlay(shell._ss, shell:GetPos())
 	end
 	
 	local function shellThink(shell)
-		if shell._ttl < CurTime() then
-			SafeRemoveEntity(shell)
-		end
+		if shell._ttl > CurTime() then return end
+		
+		SafeRemoveEntity(shell)
 	end
 	
 	CustomizableWeaponry_KK.ins2.deployedShells = CustomizableWeaponry_KK.ins2.deployedShells or {}

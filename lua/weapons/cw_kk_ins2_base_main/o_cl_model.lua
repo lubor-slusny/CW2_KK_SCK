@@ -12,8 +12,8 @@ function SWEP:getMuzzlePosition()
 		return muz
 	end
 	
-	if self.ViewMuzzleAttachmentID != 0 then
-		return self.CW_VM:GetAttachment(self.ViewMuzzleAttachmentID)
+	if self.MuzzleViewAttachmentID != 0 then
+		return self.CW_VM:GetAttachment(self.MuzzleViewAttachmentID)
 	end
 	
 	muz.Pos = self.Owner:EyePos()

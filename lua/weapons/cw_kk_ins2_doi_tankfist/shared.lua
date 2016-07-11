@@ -29,7 +29,7 @@ if CLIENT then
 	
 	SWEP.CustomizationMenuScale = 0.01
 	SWEP.HUD_MagText = "TUBE: "
-	SWEP.MuzzleAttachmentName = "glmuzzle"
+	SWEP.MuzzleViewAttachmentName = "glmuzzle"
 end
 
 SWEP.Chamberable = false

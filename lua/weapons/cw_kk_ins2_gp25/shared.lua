@@ -12,7 +12,7 @@ if CLIENT then
 	SWEP.IconLetter = "C"
 	
 	SWEP.MuzzleEffect = "muzzleflash_pistol"
-	SWEP.MuzzleAttachmentName = "muzzle_gl"
+	SWEP.MuzzleViewAttachmentName = "muzzle_gl"
 	SWEP.NoShells = true
 	
 	SWEP.AttachmentModelsVM = {

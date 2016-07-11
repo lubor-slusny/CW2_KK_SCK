@@ -26,16 +26,9 @@ if CLIENT then
 		
 		["bg_foldsight"] = {model = "models/weapons/attachments/v_cw_kk_ins2_flipsight.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
-		-- ["cover_dn_ln"] = {model = "models/weapons/upgrades/a_standard_m4a1.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
-		-- ["cover_dn_sh_ft"] = {model = "models/weapons/upgrades/a_standard4_m4a1.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		-- ["cover_rt_ln"] = {model = "models/weapons/upgrades/a_standard3_m4a1.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
-		-- ["cover_rt_sh_bk"] = {model = "models/weapons/upgrades/a_standard5_m4a1.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		-- ["cover_lt_ln"] = {model = "models/weapons/upgrades/a_standard2_m4a1.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
-		-- ["cover_lt_sh_ft"] = {model = "models/weapons/upgrades/a_standard6_m4a1.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		
 		-- ["std_rearsight"] = {model = "models/weapons/glass/standards/a_carryhandle.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		-- ["std_frontsight"] = {model = "models/weapons/glass/standards/a_standard2_m4a1.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
-		["std_frontsight"] = {model = "models/weapons/upgrades/a_standard3_m16a4.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = function(self) return self.AttachmentModelsVM.kk_ins2_optic_iron.active or self.AttachmentModelsVM.bg_foldsight.active end},
+		["std_frontsight"] = {model = "models/weapons/upgrades/a_standard3_m16a4.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		-- ["std_mag"] = {model = "models/weapons/upgrades/a_m4a1_mag.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		["kk_ins2_op_mag_m4_50"] = {model = "models/weapons/upgrades/a_x15.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		-- ["std_railedguard"] = {model = "models/weapons/upgrades/a_railguard_m4.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
@@ -51,9 +44,7 @@ if CLIENT then
 		["std_stock_m4"] = {model = "models/weapons/stock/a_bs_sr25_b.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 	
 		["kk_ins2_hoovy"] = {model = "models/weapons/muzzle/a_mb2_556.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["std_muzzle"] = {model = "models/weapons/muzzle/a_mb3_556.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = function(self)
-			return !self.ActiveAttachments.kk_ins2_hoovy
-		end},
+		["std_muzzle"] = {model = "models/weapons/muzzle/a_mb3_556.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		
 		["kk_ins2_suppressor_sec"] = {model = "models/weapons/upgrades/a_suppressor_sec.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
@@ -305,79 +296,8 @@ SWEP.gl_on_ReloadTime = 2.95
 SWEP.gl_on_ReloadHalt = 3.85
 
 if CLIENT then
-	function SWEP:updateOtherParts()
-		-- self.AttachmentModelsVM.cover_dn.active = self:getActiveAttachmentInCategory(3) == nil
-		-- self.AttachmentModelsVM.cover_rt.active = !self.ActiveAttachments.kk_ins2_gl_m203
-		
-		-- self.AttachmentModelsVM.cover_dn_ln.active = self:getActiveAttachmentInCategory(3) == nil
-		-- self.AttachmentModelsVM.cover_dn_sh_ft.active = self.ActiveAttachments.kk_ins2_vertgrip
-		-- self.AttachmentModelsVM.cover_rt_ln.active = self:getActiveAttachmentInCategory(4) == nil
-		-- self.AttachmentModelsVM.cover_rt_sh_bk.active = !self.AttachmentModelsVM.cover_rt_ln.active
-		-- self.AttachmentModelsVM.cover_lt_sh_ft.active = self.ActiveAttachments.kk_ins2_gl_m203
-		-- self.AttachmentModelsVM.cover_lt_ln.active = !self.AttachmentModelsVM.cover_lt_sh_ft.active
-
-		local hasInstalledScope = self:getActiveAttachmentInCategory(1) != nil
-		local isBipod = self.dt.INS2GLActive //self.dt.BipodDeployed
-		
-		-- //bipod aimpos switch // yea, bipod, ofc
-		-- if self.ActiveAttachments.kk_ins2_magnifier then
-			-- local name = "KKINS2Magnifier"
-			-- if isBipod then
-				-- self[name .. "Pos"] = self[name .. "Pos_gl"]
-				-- self[name .. "Ang"] = self[name .. "Ang_gl"]
-			-- else
-				-- self[name .. "Pos"] = self[name .. "Pos_def"]
-				-- self[name .. "Ang"] = self[name .. "Ang_def"]
-			-- end
-			-- self.AimPos = self[name .. "Pos"]
-			-- self.AimAng = self[name .. "Ang"]
-		-- elseif hasInstalledScope then
-			-- local sight = CustomizableWeaponry.sights[self:getActiveAttachmentInCategory(1)]
-			-- if isBipod then
-				-- self[sight.aimPos[1]] = self[sight.aimPos[1] .. "_gl"]
-				-- self[sight.aimPos[2]] = self[sight.aimPos[2] .. "_gl"]
-			-- else
-				-- self[sight.aimPos[1]] = self[sight.aimPos[1] .. "_def"]
-				-- self[sight.aimPos[2]] = self[sight.aimPos[2] .. "_def"]
-			-- end
-			-- self.AimPos = self[sight.aimPos[1]]
-			-- self.AimAng = self[sight.aimPos[2]]
-		-- else
-			-- if isBipod then
-				-- self.IronsightPos = self.IronsightPos_gl
-				-- self.IronsightAng = self.IronsightAng_gl
-			-- else
-				-- self.IronsightPos = self.IronsightPos_def
-				-- self.IronsightAng = self.IronsightAng_def
-			-- end
-			-- self.AimPos = self.IronsightPos
-			-- self.AimAng = self.IronsightAng
-		-- end
-		
-		if isBipod then
-			self.AimPos = self.M203Pos
-			self.AimAng = self.M203Ang
-		else
-			if self.ActiveAttachments.kk_ins2_magnifier then
-				local name = "KKINS2Magnifier"
-				self.AimPos = self[name .. "Pos"]
-				self.AimAng = self[name .. "Ang"]
-			elseif hasInstalledScope then
-				local sight = CustomizableWeaponry.sights[self:getActiveAttachmentInCategory(1)]
-				self.AimPos = self[sight.aimPos[1]]
-				self.AimAng = self[sight.aimPos[2]]
-			else
-				self.AimPos = self.IronsightPos
-				self.AimAng = self.IronsightAng
-			end
-		end
-		
-		local vm = self.CW_VM
-		local cycle = vm:GetCycle()
-		
-		if (self.Sequence == self.Animations.gl_turn_on or self.Sequence == self.Animations.gl_on_draw) and cycle > 0.9 then
-			self:playAnim("gl_on_fire",1,1) 
-		end
-		
+	function SWEP:updateStandardParts()
+		self.AttachmentModelsVM.std_frontsight.active = self.AttachmentModelsVM.kk_ins2_optic_iron.active or self.AttachmentModelsVM.bg_foldsight.active
+		self.AttachmentModelsVM.std_muzzle.active = !self.ActiveAttachments.kk_ins2_hoovy
 	end
 end

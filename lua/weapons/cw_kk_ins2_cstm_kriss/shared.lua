@@ -17,7 +17,7 @@ if CLIENT then
 	SWEP.MuzzleEffect = "muzzleflash_smg"
 	SWEP.Shell = "KK_INS2_45apc"
 	
-	SWEP.ViewShellAngleTweak = {Forward = 0, Right = 0, Up = 180}
+	SWEP.ShellViewAngleAlign = {Forward = 0, Right = 0, Up = 180}
 	
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_suppressor_sec"] = {model = "models/weapons/upgrades/a_suppressor_sec.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), merge = true},

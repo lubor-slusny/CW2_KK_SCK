@@ -14,11 +14,7 @@ if CLIENT then
 	SWEP.IconLetter = "I"
 	
 	SWEP.AttachmentModelsVM = {
-		["element_name"] = {model = "models/weapons/stattrack.mdl", bone = "SECEXP", pos = Vector(-0.64, -0.969, 0.021), angle = Angle(90, 0, 0), size = Vector(0.5, 0.5, 0.5), 
-		-- active = function(self)
-			-- self.AttachmentModelsVM.element_name.ent._KKCSGONUM = 160224
-			-- return CustomizableWeaponry_KK.HOME
-		-- end}
+		["element_name"] = {model = "models/weapons/stattrack.mdl", bone = "SECEXP", pos = Vector(-0.64, -0.969, 0.021), angle = Angle(90, 0, 0), size = Vector(0.5, 0.5, 0.5)}
 	}
 	
 	SWEP.MoveType = 2
@@ -474,6 +470,9 @@ if CLIENT then
 	SWEP.DrawCustomWM = false
 	
 	function SWEP:updateOtherParts()
+		self.AttachmentModelsVM.element_name.ent._KKCSGONUM = 160224
+		self.AttachmentModelsVM.element_name.active = CustomizableWeaponry_KK.HOME
+		
 		self.WMEnt:SetBodygroup(1,1)
 	end
 	

@@ -16,14 +16,18 @@ if CLIENT then
 	
 	SWEP.IconLetter = "w"
 	
+	SWEP.MuzzleEffect = "muzzleflash_6"
 	SWEP.NoShells = true
 	
 	SWEP.Shell = "KK_INS2_556x45"
-	SWEP.Shell2 = "KK_INS2_556x45_link"
 	SWEP.ShellEjectVelocity = 50
-	SWEP.MuzzleEffect = "muzzleflash_6"
-
-	SWEP.ViewShellAngleTweak2 = {Forward = 0, Right = 0, Up = -90}
+	
+	SWEP.Shell2 = "KK_INS2_556x45_link"
+	SWEP.Shell2Scale = 0.7
+	SWEP.Shell2EjectVelocity = 50
+	SWEP.Shell2ViewAttachmentID = 4
+	SWEP.Shell2ViewAngleAlign = {Forward = 0, Right = 0, Up = -90}
+	SWEP.Shell2WorldAngleAlign = {Forward = 0, Right = 0, Up = -90}
 	
 	SWEP.AttachmentModelsVM = {		
 		["kk_ins2_suppressor_sec"] = {model = "models/weapons/upgrades/a_suppressor_sec.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},

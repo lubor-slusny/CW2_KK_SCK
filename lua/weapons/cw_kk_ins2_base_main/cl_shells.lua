@@ -37,47 +37,37 @@ end
 // terifying destination
 
 local makeShell = CustomizableWeaponry_KK.ins2.makeShell
-local dir, ang, tweak, att, velocity, shellEnt
+local vm, att, pos, ang, velocity, align, shellEnt
 
 function SWEP:CreateShell()
 	if self.Owner:ShouldDrawLocalPlayer() then
 		return
 	end
 	
-	att = self.CW_VM:GetAttachment(self.ViewShellAttachmentID)
+	vm = self.CW_VM
+	att = vm:GetAttachment(self.ShellViewAttachmentID)
 	
 	if att then
 		if self.ShellDelay then
 			CustomizableWeaponry.actionSequence.new(self, self.ShellDelay, nil, function()
 				if self.NoShells then return end
 				
-				att = self.CW_VM:GetAttachment(self.ViewShellAttachmentID)
+				att = vm:GetAttachment(self.ShellViewAttachmentID)
 				
-				if self.InvertShellEjectAngle then
-					dir = -att.Ang:Forward()
-				else
-					dir = att.Ang:Forward()
-				end
-				
-				if self.ShellPosOffset then
-					att.Pos = att.Pos + (self.ShellPosOffset.x) * att.Ang:Right()
-					att.Pos = att.Pos + (self.ShellPosOffset.y) * att.Ang:Forward()
-					att.Pos = att.Pos + (self.ShellPosOffset.z) * att.Ang:Up()
-				end
-		
+				pos = att.Pos
 				ang = att.Ang
-				tweak = self.ViewShellAngleTweak
-				ang:RotateAroundAxis(ang:Right(), tweak.Right)
-				ang:RotateAroundAxis(ang:Forward(), tweak.Forward)
-				ang:RotateAroundAxis(ang:Up(), tweak.Up)
+				velocity = self.Owner:GetVelocity() + ang:Forward() * (self.ShellEjectVelocity or 200)
 				
-				velocity = self.Owner:GetVelocity() + dir * (self.ShellEjectVelocity or 200)
+				align = self.ShellViewAngleAlign
+				ang:RotateAroundAxis(ang:Right(), align.Right)
+				ang:RotateAroundAxis(ang:Forward(), align.Forward)
+				ang:RotateAroundAxis(ang:Up(), align.Up)
 				
 				shellEnt = makeShell(
-					att.Pos + dir * self.ShellOffsetMul, 
-					ang, 
+					pos,
+					ang,
 					velocity,
-					self._shellTable1, 
+					self._shellTable1,
 					self.ShellScale
 				)
 				
@@ -86,33 +76,22 @@ function SWEP:CreateShell()
 		else
 			if self.NoShells then return end
 			
-			att = self.CW_VM:GetAttachment(self.ViewShellAttachmentID)
+			att = vm:GetAttachment(self.ShellViewAttachmentID)
 			
-			if self.InvertShellEjectAngle then
-				dir = -att.Ang:Forward()
-			else
-				dir = att.Ang:Forward()
-			end
-			
-			if self.ShellPosOffset then
-				att.Pos = att.Pos + (self.ShellPosOffset.x) * att.Ang:Right()
-				att.Pos = att.Pos + (self.ShellPosOffset.y) * att.Ang:Forward()
-				att.Pos = att.Pos + (self.ShellPosOffset.z) * att.Ang:Up()
-			end
-			
+			pos = att.Pos
 			ang = att.Ang
-			tweak = self.ViewShellAngleTweak
-			ang:RotateAroundAxis(ang:Right(), tweak.Right)
-			ang:RotateAroundAxis(ang:Forward(), tweak.Forward)
-			ang:RotateAroundAxis(ang:Up(), tweak.Up)
+			velocity = self.Owner:GetVelocity() + ang:Forward() * (self.ShellEjectVelocity or 200)
 			
-			velocity = self.Owner:GetVelocity() + dir * (self.ShellEjectVelocity or 200)
+			align = self.ShellViewAngleAlign
+			ang:RotateAroundAxis(ang:Right(), align.Right)
+			ang:RotateAroundAxis(ang:Forward(), align.Forward)
+			ang:RotateAroundAxis(ang:Up(), align.Up)
 			
 			shellEnt = makeShell(
-				att.Pos + dir * self.ShellOffsetMul, 
-				ang, 
+				pos,
+				ang,
 				velocity,
-				self._shellTable1, 
+				self._shellTable1,
 				self.ShellScale
 			)
 			
@@ -121,56 +100,47 @@ function SWEP:CreateShell()
 	end
 end
 
-local vm, att, dir, ang, tweak
-
 function SWEP:shellEvent()
 	if self.Owner:ShouldDrawLocalPlayer() then
 		vm = self:getMuzzleModel()
-		att = vm:GetAttachment(self.WorldShellEjectionAttachmentID)
-		local ejectVelocity = self.Owner:GetVelocity() + att.Ang:Forward() * (self.ShellEjectVelocity or 200)
 		
+		att = vm:GetAttachment(self.ShellWorldAttachmentID)
+		
+		pos = att.Pos
 		ang = att.Ang
-		tweak = self.WorldShellAngleTweak
+		velocity = self.Owner:GetVelocity() + ang:Forward() * (self.ShellEjectVelocity or 200)
 		
-		ang:RotateAroundAxis(ang:Right(), tweak.Right)
-		ang:RotateAroundAxis(ang:Forward(), tweak.Forward)
-		ang:RotateAroundAxis(ang:Up(), tweak.Up)
+		align = self.ShellWorldAngleAlign
+		ang:RotateAroundAxis(ang:Right(), align.Right)
+		ang:RotateAroundAxis(ang:Forward(), align.Forward)
+		ang:RotateAroundAxis(ang:Up(), align.Up)
 		
 		makeShell(
-			att.Pos, 
-			ang, 
-			ejectVelocity, 
-			self._shellTable1, 
+			pos,
+			ang,
+			velocity,
+			self._shellTable1,
 			self.ShellScale
 		)
 	else
 		vm = self.CW_VM
-		att = vm:GetAttachment(self.ViewShellAttachmentID)
 		
-		if self.InvertShellEjectAngle then
-			dir = -att.Ang:Forward()
-		else
-			dir = att.Ang:Forward()
-		end
+		att = vm:GetAttachment(self.ShellViewAttachmentID)
 		
-		if self.ShellPosOffset then
-			att.Pos = att.Pos + (self.ShellPosOffset.x) * att.Ang:Right()
-			att.Pos = att.Pos + (self.ShellPosOffset.y) * att.Ang:Forward()
-			att.Pos = att.Pos + (self.ShellPosOffset.z) * att.Ang:Up()
-		end
-
+		pos = att.Pos
 		ang = att.Ang
-		tweak = self.ViewShellAngleTweak
+		velocity = self.Owner:GetVelocity() + ang:Forward() * (self.ShellEjectVelocity or 200)
 		
-		ang:RotateAroundAxis(ang:Right(), tweak.Right)
-		ang:RotateAroundAxis(ang:Forward(), tweak.Forward)
-		ang:RotateAroundAxis(ang:Up(), tweak.Up)
+		align = self.ShellViewAngleAlign
+		ang:RotateAroundAxis(ang:Right(), align.Right)
+		ang:RotateAroundAxis(ang:Forward(), align.Forward)
+		ang:RotateAroundAxis(ang:Up(), align.Up)
 		
 		shellEnt = makeShell(
-			att.Pos + dir * self.ShellOffsetMul, 
-			ang, 
-			self.Owner:GetVelocity() + dir * (self.ShellEjectVelocity or 200), 
-			self._shellTable1, 
+			pos,
+			ang,
+			velocity,
+			self._shellTable1,
 			self.ShellScale
 		)
 		
@@ -181,52 +151,45 @@ end
 function SWEP:shellEvent2()
 	if self.Owner:ShouldDrawLocalPlayer() then
 		vm = self:getMuzzleModel()
-		att = vm:GetAttachment(self.WorldShellEjectionAttachmentID)
-		local ejectVelocity = self.Owner:GetVelocity() + att.Ang:Forward() * 50
 		
+		att = vm:GetAttachment(self.ShellWorldAttachmentID)
+		
+		pos = att.Pos
 		ang = att.Ang
-		tweak = self.WorldShellAngleTweak
+		velocity = self.Owner:GetVelocity() + ang:Forward() * (self.Shell2EjectVelocity or 200)
 		
-		ang:RotateAroundAxis(ang:Right(), tweak.Right)
-		ang:RotateAroundAxis(ang:Forward(), tweak.Forward)
-		ang:RotateAroundAxis(ang:Up(), tweak.Up)
+		align = self.Shell2WorldAngleAlign
+		ang:RotateAroundAxis(ang:Right(), align.Right)
+		ang:RotateAroundAxis(ang:Forward(), align.Forward)
+		ang:RotateAroundAxis(ang:Up(), align.Up)
 		
 		makeShell(
-			att.Pos, 
-			ang, 
-			ejectVelocity, 
-			self._shellTable2, 
-			self.ShellScale
+			pos,
+			ang,
+			velocity,
+			self._shellTable2,
+			self.Shell2Scale
 		)
 	else
 		vm = self.CW_VM
-		att = vm:GetAttachment(4)
 		
-		if self.InvertShellEjectAngle then
-			dir = -att.Ang:Forward()
-		else
-			dir = att.Ang:Forward()
-		end
+		att = vm:GetAttachment(self.Shell2ViewAttachmentID)
 		
-		if self.ShellPosOffset then
-			att.Pos = att.Pos + (self.ShellPosOffset.x) * att.Ang:Right()
-			att.Pos = att.Pos + (self.ShellPosOffset.y) * att.Ang:Forward()
-			att.Pos = att.Pos + (self.ShellPosOffset.z) * att.Ang:Up()
-		end
-
+		pos = att.Pos
 		ang = att.Ang
-		tweak = self.ViewShellAngleTweak2
+		velocity = self.Owner:GetVelocity() + ang:Forward() * (self.Shell2EjectVelocity or 200)
 		
-		ang:RotateAroundAxis(ang:Right(), tweak.Right)
-		ang:RotateAroundAxis(ang:Forward(), tweak.Forward)
-		ang:RotateAroundAxis(ang:Up(), tweak.Up)
+		align = self.Shell2ViewAngleAlign
+		ang:RotateAroundAxis(ang:Right(), align.Right)
+		ang:RotateAroundAxis(ang:Forward(), align.Forward)
+		ang:RotateAroundAxis(ang:Up(), align.Up)
 		
 		shellEnt = makeShell(
-			att.Pos + dir * self.ShellOffsetMul, 
-			ang, 
-			self.Owner:GetVelocity() + dir * 50, 
-			self._shellTable2, 
-			self.ShellScale
+			pos,
+			ang,
+			velocity,
+			self._shellTable2,
+			self.Shell2Scale
 		)
 		
 		self:_registerVMShell(shellEnt)

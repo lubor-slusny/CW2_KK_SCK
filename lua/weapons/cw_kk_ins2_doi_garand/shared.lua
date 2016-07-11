@@ -222,7 +222,7 @@ function SWEP:shellEvent2(sh)
 	
 	if self.Owner:ShouldDrawLocalPlayer() then
 		vm = self:getMuzzleModel()
-		att = vm:GetAttachment(self.WorldShellEjectionAttachmentID)
+		att = vm:GetAttachment(self.ShellWorldAttachmentID)
 		local ejectVelocity = att.Ang:Forward() * (self.ShellEjectVelocity or 200)
 		
 		ang = att.Ang

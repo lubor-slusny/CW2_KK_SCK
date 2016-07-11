@@ -69,17 +69,17 @@ SWEP.WeaponLength = 20
 if CLIENT then	
 	SWEP.PosBasedMuz = true
 	
-	SWEP.MuzzleAttachmentName = "muzzle"
-	SWEP.ShellAttachmentName = "shell"
-	SWEP.ShellScale = 1
-	SWEP.Shell2 = false
-	SWEP.ShellOffsetMul = 0
-
-	SWEP.ViewShellAngleTweak = {Forward = 0, Right = 0, Up = 0}
-	SWEP.WorldShellAngleTweak = {Forward = 0, Right = 0, Up = 0}
+	SWEP.MuzzleViewAttachmentName = "muzzle"
+	SWEP.MuzzleWorldAttachmentID = 1
 	
-	SWEP.WorldMuzzleAttachmentID = 1
-	SWEP.WorldShellEjectionAttachmentID = 2
+	SWEP.ShellScale = 1
+	SWEP.ShellOffsetMul = 0
+	SWEP.ShellViewAttachmentName = "shell"
+	SWEP.ShellViewAngleAlign = {Forward = 0, Right = 0, Up = 0}
+	SWEP.ShellWorldAttachmentID = 2
+	SWEP.ShellWorldAngleAlign = {Forward = 0, Right = 0, Up = 0}
+	
+	SWEP.Shell2 = false
 	
 	SWEP.SwayIntensity = 0.7
 	SWEP.AimSwayIntensity = 0.3

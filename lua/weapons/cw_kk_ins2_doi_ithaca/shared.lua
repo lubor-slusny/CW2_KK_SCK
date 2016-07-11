@@ -20,7 +20,7 @@ if CLIENT then
 	SWEP.Shell = "KK_INS2_12guage"
 	-- SWEP.ShellDelay = 13/30
 	
-	SWEP.ViewShellAngleTweak = {Forward = 90, Right = 0, Up = 0}
+	SWEP.ShellViewAngleAlign = {Forward = 90, Right = 0, Up = 0}
 	
 	SWEP.AttachmentModelsVM = {}
 	SWEP.AttachmentModelsWM = {}

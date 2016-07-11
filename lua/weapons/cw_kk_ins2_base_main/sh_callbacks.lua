@@ -45,11 +45,11 @@ CustomizableWeaponry.callbacks:addNew("initialize", "KK_INS2_BASE", function(wep
 		end
 		
 		// reducing lookup calls
-		if wep.MuzzleAttachmentName then
-			wep.ViewMuzzleAttachmentID = wep.CW_VM:LookupAttachment(wep.MuzzleAttachmentName)
+		if wep.MuzzleViewAttachmentName then
+			wep.MuzzleViewAttachmentID = wep.CW_VM:LookupAttachment(wep.MuzzleViewAttachmentName)
 		end
-		if wep.ShellAttachmentName then
-			wep.ViewShellAttachmentID = wep.CW_VM:LookupAttachment(wep.ShellAttachmentName)
+		if wep.ShellViewAttachmentName then
+			wep.ShellViewAttachmentID = wep.CW_VM:LookupAttachment(wep.ShellViewAttachmentName)
 		end
 		
 		// sth sth darqside
@@ -90,7 +90,7 @@ end
 
 local CW2_ATTS = CustomizableWeaponry.registeredAttachmentsSKey
 
-local function sharedAttachDetach(wep)
+local function sharedAttachDetach(wep, att)
 	if CLIENT then
 		local prim, sec = wep:getPrimarySight(), wep:getSecondarySight()
 		
@@ -119,7 +119,10 @@ local function sharedAttachDetach(wep)
 				end
 				if wep[t].kk_ins2_optic_rail then
 					wep[t].kk_ins2_optic_rail.active = prim != nil
-				end		
+				end
+				if wep[t][att.name] and wep[t][att.name .. "_rail"] then
+					wep[t][att.name .. "_rail"].active = wep[t][att.name].active
+				end
 			end
 		end
 		
@@ -157,7 +160,7 @@ CustomizableWeaponry.callbacks:addNew("postAttachAttachment", "KK_INS2_BASE", fu
 		end
 	end
 	
-	sharedAttachDetach(wep)
+	sharedAttachDetach(wep, att)
 end)
 
 CustomizableWeaponry.callbacks:addNew("postDetachAttachment", "KK_INS2_BASE", function(wep,attTable,CWMenuCategory)
@@ -183,7 +186,7 @@ CustomizableWeaponry.callbacks:addNew("postDetachAttachment", "KK_INS2_BASE", fu
 		end
 	end
 	
-	sharedAttachDetach(wep)
+	sharedAttachDetach(wep, att)
 end)
 
 if CLIENT then

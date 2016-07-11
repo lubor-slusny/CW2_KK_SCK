@@ -19,7 +19,7 @@ if CLIENT then
 	SWEP.Shell = "KK_INS2_45apc"
 	SWEP.ShellDelay = 0.06
 	
-	SWEP.ViewShellAngleTweak = {Forward = 0, Right = 0, Up = 180}
+	SWEP.ShellViewAngleAlign = {Forward = 0, Right = 0, Up = 180}
 	
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_mag_m45_8"] = {model = "models/weapons/upgrades/a_magazine_m45_8.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
@@ -159,7 +159,5 @@ if CLIENT then
 	function SWEP:updateStandardParts()
 		self.AttachmentModelsVM.kk_ins2_mag_m45_8.active = !self.ActiveAttachments.kk_ins2_mag_m45_15
 		self.AttachmentModelsWM.kk_ins2_mag_m45_8.active = !self.ActiveAttachments.kk_ins2_mag_m45_15
-		
-		self.AttachmentModelsVM.kk_ins2_m6x_rail.active = self.ActiveAttachments.kk_ins2_m6x
 	end
 end

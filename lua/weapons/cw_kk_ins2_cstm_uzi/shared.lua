@@ -1,9 +1,7 @@
 if not CustomizableWeaponry then return end
 
 AddCSLuaFile()
-AddCSLuaFile("sh_sounds.lua")
 AddCSLuaFile("sh_soundscript.lua")
-include("sh_sounds.lua")
 include("sh_soundscript.lua")
 
 SWEP.magType = "smgMag"
@@ -20,7 +18,7 @@ if CLIENT then
 	SWEP.Shell = "KK_INS2_9x19"
 	SWEP.ShellDelay = 0.1
 	
-	SWEP.ViewShellAngleTweak = {Forward = 0, Right = 0, Up = 180}
+	SWEP.ShellViewAngleAlign = {Forward = 0, Right = 0, Up = 180}
 	
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_modkit_04.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
