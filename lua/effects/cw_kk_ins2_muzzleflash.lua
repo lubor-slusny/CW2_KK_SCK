@@ -1,6 +1,5 @@
 AddCSLuaFile()
 
--- local makeShell = CustomizableWeaponry.shells.make
 local makeShell = CustomizableWeaponry_KK.ins2.makeShell
 
 function EFFECT:Init(fx)
@@ -64,7 +63,7 @@ function EFFECT:Init(fx)
 	end
 	
 	if ent.NoShells then 
-		return 
+		return
 	end
 	
 	if shellAtt and ent.Shell then
@@ -75,28 +74,25 @@ function EFFECT:Init(fx)
 					local ejectVelocity = shellAtt.Ang:Forward() * (ent.ShellEjectVelocity or 200)
 					
 					local ang = shellAtt.Ang
-					local tweak = ent._shellTable.rw
+					local tweak = ent.WorldShellAngleTweak
 					if tweak then
 						ang:RotateAroundAxis(ang:Right(), tweak.Right)
 						ang:RotateAroundAxis(ang:Forward(), tweak.Forward)
 						ang:RotateAroundAxis(ang:Up(), tweak.Up)
 					end
 					
-					makeShell(ent, shellAtt.Pos, ang, ejectVelocity, 0.5, 10)
+					makeShell(shellAtt.Pos, ang, ejectVelocity, ent._shellTable1, ent.ShellScale)
 					
 					if ent.Shell2 then
-						ent._shellTable = ent._shellTable2
-						
 						local ang = shellAtt.Ang
-						local tweak = ent._shellTable.rw
+						local tweak = ent.WorldShellAngleTweak2
 						if tweak then
 							ang:RotateAroundAxis(ang:Right(), tweak.Right)
 							ang:RotateAroundAxis(ang:Forward(), tweak.Forward)
 							ang:RotateAroundAxis(ang:Up(), tweak.Up)
 						end
 						
-						makeShell(ent, shellAtt.Pos, ang, ejectVelocity, 0.5, 10)
-						ent._shellTable = ent._shellTable1
+						makeShell(shellAtt.Pos, ang, ejectVelocity, ent._shellTable2, ent.ShellScale)
 					end
 				end
 			end)
@@ -104,30 +100,27 @@ function EFFECT:Init(fx)
 			local ejectVelocity = shellAtt.Ang:Forward() * (ent.ShellEjectVelocity or 200)
 			
 			local ang = shellAtt.Ang
-			local tweak = ent._shellTable.rw
+			local tweak = ent.WorldShellAngleTweak
 			if tweak then
 				ang:RotateAroundAxis(ang:Right(), tweak.Right)
 				ang:RotateAroundAxis(ang:Forward(), tweak.Forward)
 				ang:RotateAroundAxis(ang:Up(), tweak.Up)
 			end
 			
-			makeShell(ent, shellAtt.Pos, ang, ejectVelocity, 0.5, 10)
+			makeShell(shellAtt.Pos, ang, ejectVelocity, ent._shellTable1, ent.ShellScale)
 			
 			if ent.Shell2 then
 				if ent:GetClass() == "cw_kk_ins2_ww2_garand" and ent:Clip1() > 0 then return end
 				
-				ent._shellTable = ent._shellTable2
-				
 				local ang = shellAtt.Ang
-				local tweak = ent._shellTable.rw
+				local tweak = ent.WorldShellAngleTweak2
 				if tweak then
 					ang:RotateAroundAxis(ang:Right(), tweak.Right)
 					ang:RotateAroundAxis(ang:Forward(), tweak.Forward)
 					ang:RotateAroundAxis(ang:Up(), tweak.Up)
 				end
 				
-				makeShell(ent, shellAtt.Pos, ang, ejectVelocity + VectorRand() * 10, 0.5, 10)
-				ent._shellTable = ent._shellTable1
+				makeShell(shellAtt.Pos, ang, ejectVelocity, ent._shellTable2, ent.ShellScale)
 			end
 		end
 	end

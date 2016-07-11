@@ -75,6 +75,9 @@ if CLIENT then
 	SWEP.Shell2 = false
 	SWEP.ShellOffsetMul = 0
 
+	SWEP.ViewShellAngleTweak = {Forward = 0, Right = 0, Up = 0}
+	SWEP.WorldShellAngleTweak = {Forward = 0, Right = 0, Up = 0}
+	
 	SWEP.WorldMuzzleAttachmentID = 1
 	SWEP.WorldShellEjectionAttachmentID = 2
 	
@@ -105,37 +108,6 @@ if CLIENT then
 	
 	SWEP.IronsightPos = Vector(0, 0, 0)
 	SWEP.IronsightAng = Vector(0, 0, 0)
-
-	// aim positions
-	
-	SWEP.KKINS2AimpointPos = Vector(0, 0, 0)
-	SWEP.KKINS2AimpointAng = Vector(0, 0, 0)
-	
-	SWEP.KKINS2EoTechPos = Vector(0, 0, 0)
-	SWEP.KKINS2EoTechAng = Vector(0, 0, 0)
-	
-	SWEP.KKINS2KobraPos = Vector(0, 0, 0)
-	SWEP.KKINS2KobraAng = Vector(0, 0, 0)
-	
-	SWEP.KKINS2MagnifierPos = Vector(0, 0, 0)
-	SWEP.KKINS2MagnifierAng = Vector(0, 0, 0)
-	
-	SWEP.KKINS2PO4Pos = Vector(0, 0, 0)
-	SWEP.KKINS2PO4Ang = Vector(0, 0, 0)
-	
-	SWEP.KKINS2ScopeM40Pos = Vector(0, 0, 0)
-	SWEP.KKINS2ScopeM40Ang = Vector(0, 0, 0)
-	
-	SWEP.KKINS2ScopeMosinPos = Vector(0, 0, 0)
-	SWEP.KKINS2ScopeMosinAng = Vector(0, 0, 0)
-	
-	SWEP.KKINS2ElcanPos = Vector(0, 0, 0)
-	SWEP.KKINS2ElcanAng = Vector(0, 0, 0)
-	
-	// WW2
-	
-	SWEP.KKINS2ScopeZF4Pos = Vector(0, 0, 0)
-	SWEP.KKINS2ScopeZF4Ang = Vector(0, 0, 0)
 end
 
 SWEP.AttachmentExclusions = {

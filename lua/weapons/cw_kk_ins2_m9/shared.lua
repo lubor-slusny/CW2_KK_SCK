@@ -29,7 +29,7 @@ if CLIENT then
 		
 		["kk_ins2_m6x_rail"] = {model = "models/cw2/attachments/lowerpistolrail.mdl", bone = "Weapon", pos = Vector(0, 1.171, -0.594), angle = Angle(0, 90, 0), size = Vector(0.109, 0.109, 0.109), 
 			material = "models/weapons/attachments/cw_kk_ins2_cstm_m6x/rail_bk",
-			active = function(self) return self.ActiveAttachments.kk_ins2_m6x end
+			-- active = function(self) return self.ActiveAttachments.kk_ins2_m6x end
 		},
 	}
 

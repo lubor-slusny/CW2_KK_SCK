@@ -17,6 +17,8 @@ if CLIENT then
 	SWEP.Shell = "KK_INS2_12guage"
 	SWEP.ShellDelay = 13/30
 	
+	SWEP.ViewShellAngleTweak = {Forward = 90, Right = 0, Up = 0}
+	
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_standard_ksg.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		

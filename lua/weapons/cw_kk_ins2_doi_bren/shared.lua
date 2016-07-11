@@ -18,6 +18,8 @@ if CLIENT then
 	SWEP.Shell = "KK_INS2_762x54"
 	SWEP.ShellDelay = 0.1
 	
+	SWEP.ViewShellAngleTweak = {Forward = 90, Right = 0, Up = 0}
+	
 	SWEP.AttachmentModelsVM = {}
 	SWEP.AttachmentModelsWM = {}
 	

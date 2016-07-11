@@ -1,4 +1,12 @@
 
+function shell(wep) 
+	wep:shellEvent() 
+end
+
+function link(wep) 
+	wep:shellEvent2() 
+end
+
 SWEP.Sounds = {
 	base_ready = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
@@ -18,6 +26,21 @@ SWEP.Sounds = {
 	base_crawl = {
 		{time = 15/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
 		{time = 38/30, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
+	},
+
+	base_fire_1 = {
+		{time = 0.02, sound = "", callback = link},
+		{time = 0.05, sound = "", callback = shell},
+	},
+
+	base_fire_2 = {
+		{time = 0.02, sound = "", callback = link},
+		{time = 0.05, sound = "", callback = shell},
+	},
+
+	base_fire_3 = {
+		{time = 0.02, sound = "", callback = link},
+		{time = 0.05, sound = "", callback = shell},
 	},
 
 	base_dryfire = {
@@ -78,6 +101,26 @@ SWEP.Sounds = {
 		// reload at 186/31.5
 	},
 
+	iron_fire_1 = {
+		{time = 0.02, sound = "", callback = link},
+		{time = 0.05, sound = "", callback = shell},
+	},
+
+	iron_fire_2 = {
+		{time = 0.02, sound = "", callback = link},
+		{time = 0.05, sound = "", callback = shell},
+	},
+
+	iron_fire_3 = {
+		{time = 0.02, sound = "", callback = link},
+		{time = 0.05, sound = "", callback = shell},
+	},
+
+	iron_fire_4 = {
+		{time = 0.02, sound = "", callback = link},
+		{time = 0.05, sound = "", callback = shell},
+	},
+
 	iron_dryfire = {
 		{time = 0, sound = "CW_KK_INS2_M249_EMPTY"},
 	},
@@ -88,6 +131,16 @@ SWEP.Sounds = {
 
 	deployed_out = {
 		{time = 26/38, sound = "CW_KK_INS2_M249_BIPODRETRACT"},
+	},
+
+	deployed_fire_1 = {
+		{time = 0.02, sound = "", callback = link},
+		{time = 0.05, sound = "", callback = shell},
+	},
+
+	deployed_fire_2 = {
+		{time = 0.02, sound = "", callback = link},
+		{time = 0.05, sound = "", callback = shell},
 	},
 
 	deployed_dryfire = {
@@ -150,6 +203,16 @@ SWEP.Sounds = {
 
 	deployed_iron_idle = {
 		{time = 0, sound = "Universal.IronIdle"},
+	},
+
+	deployed_iron_fire_1 = {
+		{time = 0.02, sound = "", callback = link},
+		{time = 0.05, sound = "", callback = shell},
+	},
+
+	deployed_iron_fire_2 = {
+		{time = 0.02, sound = "", callback = link},
+		{time = 0.05, sound = "", callback = shell},
 	},
 
 	deployed_iron_dryfire = {

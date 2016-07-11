@@ -16,14 +16,17 @@ if CLIENT then
 	
 	SWEP.IconLetter = "w"
 	
+	SWEP.NoShells = true
+	
 	SWEP.Shell = "KK_INS2_556x45"
 	SWEP.Shell2 = "KK_INS2_556x45_link"
 	SWEP.ShellEjectVelocity = 50
 	SWEP.MuzzleEffect = "muzzleflash_6"
 
+	SWEP.ViewShellAngleTweak2 = {Forward = 0, Right = 0, Up = -90}
+	
 	SWEP.AttachmentModelsVM = {		
 		["kk_ins2_suppressor_sec"] = {model = "models/weapons/upgrades/a_suppressor_sec.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		-- ["md_saker"] = {model = "models/weapons/upgrades/a_suppressor_12ga.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_counter"] = {model = "models/weapons/stattrack.mdl", bone = "Weapon", pos = Vector(0.026, -7.77, 4.057), angle = Angle(0, 0, 50), size = Vector(0.699, 0.699, 0.699)},
 		["kk_textbox"] = {model = "models/weapons/uid.mdl", bone = "LidCont", pos = Vector(0.441, -5.015, -0.156), angle = Angle(0, -90, 0), size = Vector(1, 1, 1)},
@@ -50,7 +53,7 @@ if CLIENT then
 		["kk_ins2_cstm_eotechxps"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_eotechxps.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
 		-- ["fas2"] = {model = "models/gmod4phun/60rndmag.mdl", bone = "Weapon", pos = Vector(1.47, 1.057, 2.095), angle = Angle(45, 0, 0), size = Vector(0.779, 0.779, 0.779)},
-		["fas2"] = {model = "models/gmod4phun/60rndmag.mdl", bone = "Magazine", pos = Vector(1.294, 1.832, 2.471), angle = Angle(45, 0, 0), size = Vector(0.779, 0.779, 0.779)},
+		-- ["fas2"] = {model = "models/gmod4phun/60rndmag.mdl", bone = "Magazine", pos = Vector(1.294, 1.832, 2.471), angle = Angle(45, 0, 0), size = Vector(0.779, 0.779, 0.779)},
 	}
 	
 	SWEP.AttachmentModelsWM = {
@@ -275,49 +278,5 @@ if CLIENT then
 		-- self.AttachmentModelsVM.fas2.active = true
 		-- self:setBodygroup(1,0)
 		-- self.CW_VM:ManipulateBoneScale(self.CW_VM:LookupBone("Magazine"), Vector(0.01,0.01,0.01))
-	end
-	
-	local makeShell = CustomizableWeaponry_KK.ins2.makeShell
-	
-	local att, ang, tweak
-	
-	function SWEP:CreateShell(sh) // this func was edited for this specific vmodel only
-		if self.Owner:ShouldDrawLocalPlayer() then
-			return
-		end
-		
-		CustomizableWeaponry.actionSequence.new(self, 0.05, nil, function()
-			// main shell
-			self._shellTable = self._shellTable1
-			att = self.CW_VM:GetAttachment(3)
-			ang = EyeAngles()
-			tweak = self._shellTable.rv
-			if tweak then
-				ang:RotateAroundAxis(ang:Right(), tweak.Right)
-				ang:RotateAroundAxis(ang:Forward(), tweak.Forward)
-				ang:RotateAroundAxis(ang:Up(), tweak.Up)
-			end
-			
-			-- CustomizableWeaponry_KK.ins2.makeShell(self, att.Pos, ang, att.Ang:Forward() * 50, 0.6, 10)
-			-- makeShell(self, att.Pos, ang, att.Ang:Forward() * 50, 0.6, 10)
-			makeShell(self, att.Pos, att.Ang, att.Ang:Forward() * 50, 0.6, 10)
-		end)
-			
-		CustomizableWeaponry.actionSequence.new(self, 0.02, nil, function()
-			-- // shell link
-			self._shellTable = self._shellTable2
-			att = self.CW_VM:GetAttachment(4)
-			ang = EyeAngles()
-			tweak = self._shellTable.rv
-			if tweak then
-				ang:RotateAroundAxis(ang:Right(), tweak.Right)
-				ang:RotateAroundAxis(ang:Forward(), tweak.Forward)
-				ang:RotateAroundAxis(ang:Up(), tweak.Up)
-			end
-			
-			-- CustomizableWeaponry_KK.ins2.makeShell(self, att.Pos, ang, att.Ang:Forward() * 50, 0.6, 10)
-			-- makeShell(self, att.Pos, ang, att.Ang:Forward() * 50, 0.6, 10)
-			makeShell(self, att.Pos, att.Ang, att.Ang:Forward() * 50, 0.6, 10)
-		end)
 	end
 end

@@ -232,3 +232,4 @@ SWEP.ReloadTime_Empty = 4
 SWEP.ReloadHalt_Empty = 4.49
 
 SWEP.MuzzleVelocity = 760
+SWEP.pumpTime = 1.7

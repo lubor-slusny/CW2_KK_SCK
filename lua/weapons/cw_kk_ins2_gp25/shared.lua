@@ -19,11 +19,11 @@ if CLIENT then
 		["kk_ins2_gl_gp25"] = {model = "models/weapons/upgrades/a_gl_gp25.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		
 		["40mm_kk_1337"] = {model = "models/weapons/w_at4_projectile.mdl", bone = "GL_Round", pos = Vector(1.75,0,0), angle = Angle(0, 180, 0), size = Vector(0.85, 0.85, 0.85),
-			active = function(self)
-				local correctAmmo = CustomizableWeaponry.grenadeTypes.registered[self.Grenade40MM] and CustomizableWeaponry.grenadeTypes.registered[self.Grenade40MM].name == "40mm_kk_1337"
-				local nadeVisible = (self:Clip1() > 0) or (self.Sequence == self.Animations.gl_on_reload and self.CW_VM:GetCycle() > 0.2)
-				return correctAmmo and nadeVisible
-			end
+			-- active = function(self)
+				-- local correctAmmo = CustomizableWeaponry.grenadeTypes.registered[self.Grenade40MM] and CustomizableWeaponry.grenadeTypes.registered[self.Grenade40MM].name == "40mm_kk_1337"
+				-- local nadeVisible = (self:Clip1() > 0) or (self.Sequence == self.Animations.gl_on_reload and self.CW_VM:GetCycle() > 0.2)
+				-- return correctAmmo and nadeVisible
+			-- end
 		},
 	}
 

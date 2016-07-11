@@ -1,8 +1,7 @@
 
 if CLIENT then
-	local cvarSSF = GetConVar("cw_kk_ins2_shell_sound")
-	local cvarSLT = GetConVar("cw_kk_ins2_shell_time")
-	local cvarSVM = GetConVar("cw_kk_ins2_shell_vm")
+	local cvarSSF = GetConVar("cw_kk_ins2_shell_sound") or {GetInt = function() return 3 end}
+	local cvarSLT = GetConVar("cw_kk_ins2_shell_time") or {GetFloat = function() return 10 end}
 
 	local angleVel = Vector(0, 0, 0)
 	local up = Vector(0, 0, -100)
@@ -12,34 +11,34 @@ if CLIENT then
 	local CurTime = CurTime
 	local soundPlay = sound.Play
 	
-	local function shellPlaySound(self)
-		if self._ssp then return end
-		self._ssp = true
+	local function shellPlaySound(shell)
+		if shell._ssp then return end
+		shell._ssp = true
 		
-		soundPlay(self._ss, self:GetPos())
+		soundPlay(shell._ss, shell:GetPos())
 	end
 	
-	local function shellThink(self)
-		if self._ttl < CurTime() then
-			SafeRemoveEntity(self)
+	local function shellThink(shell)
+		if shell._ttl < CurTime() then
+			SafeRemoveEntity(shell)
 		end
 	end
 	
 	CustomizableWeaponry_KK.ins2.deployedShells = CustomizableWeaponry_KK.ins2.deployedShells or {}
 	
-	function CustomizableWeaponry_KK.ins2:makeShell(pos, ang, velocity, soundTime, removeTime, t)
+	function CustomizableWeaponry_KK.ins2.makeShell(pos, ang, velocity, t, scale)
 		velocity = velocity or up
 		velocity.x = velocity.x + math.Rand(-5, 5)
 		velocity.y = velocity.y + math.Rand(-5, 5)
 		velocity.z = velocity.z + math.Rand(-5, 5)
 		
-		t = t or self._shellTable or fallbackShell
+		t = t or fallbackShell
 		
 		local ent = ClientsideModel(t.m, RENDERGROUP_BOTH) 
 		ent:SetPos(pos)
 		ent:PhysicsInitBox(t.bbmin or shellMins, t.bbmax or shellMaxs)
 		ent:SetAngles(ang)
-		ent:SetModelScale((self.ShellScale or 1), 0)
+		ent:SetModelScale((scale or 1), 0)
 		ent:SetMoveType(MOVETYPE_VPHYSICS) 
 		ent:SetSolid(SOLID_VPHYSICS) 
 		ent:SetCollisionGroup(COLLISION_GROUP_DEBRIS)
@@ -53,7 +52,7 @@ if CLIENT then
 		end
 		
 		phys:SetMass(10)
-		phys:SetVelocity(self.Owner:GetVelocity() + velocity)
+		phys:SetVelocity(velocity)
 		
 		angleVel.x = math.random(-500, 500)
 		angleVel.y = math.random(-500, 500)
@@ -62,7 +61,7 @@ if CLIENT then
 		phys:AddAngleVelocity(ang:Right() * 100 + angleVel)
 
 		if cvarSSF:GetInt() == 2 then // function creation spam
-			timer.Simple(soundTime or 0.5, function()
+			timer.Simple(0.5, function()
 				if t.s and IsValid(ent) then
 					soundPlay(t.s, ent:GetPos())
 				end
@@ -81,28 +80,12 @@ if CLIENT then
 	
 		-- SafeRemoveEntityDelayed(ent, cvarSLT:GetFloat() or removeTime or 10) // function creation spam
 		
-		ent._ttl = CurTime() + (cvarSLT:GetFloat() or removeTime or 10) // terrible mess
+		ent._ttl = CurTime() + (cvarSLT:GetFloat()) // terrible mess
 		hook.Add("Think", ent, shellThink)
 		
 		table.insert(CustomizableWeaponry_KK.ins2.deployedShells, ent)
 		
-		if cvarSVM:GetInt() == 1 and not self.Owner:ShouldDrawLocalPlayer() then
-			ent:SetNoDraw(true)
-			ent._drawAsVM = CurTime() + 0.2
-			
-			table.insert(self._deployedShells, ent)
-			
-			local i = 1
-		
-			for _ = 1, #self._deployedShells do
-				if !IsValid(self._deployedShells[i]) then
-					table.remove(self._deployedShells, i)
-				else
-					i = i + 1
-				end
-			end
-		end
-		
-		return ent // M1 garand
+		return ent
 	end
 end
+

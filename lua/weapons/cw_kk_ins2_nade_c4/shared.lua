@@ -15,10 +15,10 @@ if CLIENT then
 	
 	SWEP.AttachmentModelsVM = {
 		["element_name"] = {model = "models/weapons/stattrack.mdl", bone = "SECEXP", pos = Vector(-0.64, -0.969, 0.021), angle = Angle(90, 0, 0), size = Vector(0.5, 0.5, 0.5), 
-		active = function(self)
-			self.AttachmentModelsVM.element_name.ent._KKCSGONUM = 160224
-			return CustomizableWeaponry_KK.HOME
-		end}
+		-- active = function(self)
+			-- self.AttachmentModelsVM.element_name.ent._KKCSGONUM = 160224
+			-- return CustomizableWeaponry_KK.HOME
+		-- end}
 	}
 	
 	SWEP.MoveType = 2
