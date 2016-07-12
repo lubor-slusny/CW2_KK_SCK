@@ -1,4 +1,12 @@
 
+function shell(wep) 
+	wep:shellEvent() 
+end
+
+function link(wep) 
+	wep:shellEvent2() 
+end
+
 SWEP.Sounds = {
 	base_ready = {
 		{time = 29/30, sound = "CW_KK_INS2_DOI_MG34_BOLTBACK"},
@@ -18,6 +26,16 @@ SWEP.Sounds = {
 	base_crawl = {
 		{time = 15, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
 		{time = 38/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
+	},
+
+	base_fire_1 = {
+		{time = 0, sound = "", callback = link},
+		{time = 0.02, sound = "", callback = shell},
+	},
+
+	base_fire_2 = {
+		{time = 0, sound = "", callback = link},
+		{time = 0.02, sound = "", callback = shell},
 	},
 
 	base_dryfire = {
@@ -76,6 +94,16 @@ SWEP.Sounds = {
 		-- { event 46 224 ""},
 	},
 
+	iron_fire_1 = {
+		{time = 0, sound = "", callback = link},
+		{time = 0.02, sound = "", callback = shell},
+	},
+
+	iron_fire_2 = {
+		{time = 0, sound = "", callback = link},
+		{time = 0.02, sound = "", callback = shell},
+	},
+
 	iron_dryfire = {
 		{time = 0, sound = "CW_KK_INS2_DOI_MG34_EMPTY"},
 	},
@@ -93,6 +121,16 @@ SWEP.Sounds = {
 	deployed_out = {
 		{time = 25/33, sound = "CW_KK_INS2_DOI_MG34_RATTLE"},
 		{time = 39/33, sound = "CW_KK_INS2_DOI_MG34_SHOULDERWEAPON"},
+	},
+
+	deployed_fire_1 = {
+		{time = 0, sound = "", callback = link},
+		{time = 0.02, sound = "", callback = shell},
+	},
+
+	deployed_fire_2 = {
+		{time = 0, sound = "", callback = link},
+		{time = 0.02, sound = "", callback = shell},
 	},
 
 	deployed_dryfire = {
@@ -149,6 +187,16 @@ SWEP.Sounds = {
 		{time = 330/32.5, sound = "CW_KK_INS2_DOI_MG34_SHOULDERWEAPON"},
 		-- { event AE_WPN_RELOAD_OFFSCREEN 150 ""},
 		-- { event 46 224 ""},
+	},
+
+	deployed_iron_fire_1 = {
+		{time = 0, sound = "", callback = link},
+		{time = 0.02, sound = "", callback = shell},
+	},
+
+	deployed_iron_fire_2 = {
+		{time = 0, sound = "", callback = link},
+		{time = 0.02, sound = "", callback = shell},
 	},
 
 	deployed_iron_dryfire = {

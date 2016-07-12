@@ -1,4 +1,12 @@
 
+function shell(wep) 
+	wep:shellEvent() 
+end
+
+function clip(wep) 
+	wep:shellEvent2() 
+end
+
 SWEP.Sounds = {
 	base_ready = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
@@ -20,17 +28,17 @@ SWEP.Sounds = {
 	},
 
 	base_fire_1 = {
-		{time = 0.09, sound = "", callback = function(wep) wep:shellEvent() end},
+		{time = 0.09, sound = "", callback = shell},
 	},
 
 	base_fire_2 = {
-		{time = 0.09, sound = "", callback = function(wep) wep:shellEvent() end},
+		{time = 0.09, sound = "", callback = shell},
 	},
 
 	base_fire_last = {
 		{time = 0, sound = "CW_KK_INS2_WW2_GARAND_PING"},
-		{time = 0.06, sound = "", callback = function(wep) wep:shellEvent() end},
-		{time = 0.45, sound = "", callback = function(wep) wep:shellEvent2() end},
+		{time = 0.06, sound = "", callback = shell},
+		{time = 0.45, sound = "", callback = clip},
 	},
 
 	base_dryfire = {
@@ -63,21 +71,21 @@ SWEP.Sounds = {
 	},
 
 	iron_fire_1 = {
-		{time = 0.09, sound = "", callback = function(wep) wep:shellEvent() end},
+		{time = 0.09, sound = "", callback = shell},
 	},
 
 	iron_fire_2 = {
-		{time = 0.09, sound = "", callback = function(wep) wep:shellEvent() end},
+		{time = 0.09, sound = "", callback = shell},
 	},
 
 	iron_fire_3 = {
-		{time = 0.09, sound = "", callback = function(wep) wep:shellEvent() end},
+		{time = 0.09, sound = "", callback = shell},
 	},
 
 	iron_fire_last = {
 		{time = 0, sound = "CW_KK_INS2_WW2_GARAND_PING"},
-		{time = 0.06, sound = "", callback = function(wep) wep:shellEvent() end},
-		{time = 0.45, sound = "", callback = function(wep) wep:shellEvent2() end},
+		{time = 0.06, sound = "", callback = shell},
+		{time = 0.45, sound = "", callback = clip},
 	},
 
 	iron_dryfire = {

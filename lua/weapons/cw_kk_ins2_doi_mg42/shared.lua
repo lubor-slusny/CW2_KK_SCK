@@ -16,9 +16,19 @@ if CLIENT then
 	SWEP.IconLetter = "w"
 	
 	SWEP.MuzzleEffect = "muzzleflash_6"
+	
+	SWEP.NoShells = true
+	
 	SWEP.Shell = "KK_INS2_762x54"
+	SWEP.ShellEjectVelocity = 50
+	
 	SWEP.Shell2 = "KK_INS2_556x45_link"
-
+	SWEP.Shell2Scale = 0.7
+	SWEP.Shell2EjectVelocity = 50
+	SWEP.Shell2ViewAttachmentID = 2
+	SWEP.Shell2ViewAngleAlign = {Forward = 0, Right = 0, Up = 90}
+	SWEP.Shell2WorldAngleAlign = {Forward = 0, Right = 0, Up = 90}
+	
 	SWEP.AttachmentModelsVM = {}
 	SWEP.AttachmentModelsWM = {}
 	
@@ -156,41 +166,5 @@ if CLIENT then
 		else
 			self:SetSequence(0)
 		end
-	end
-	
-	local makeShell = CustomizableWeaponry_KK.ins2.makeShell
-	
-	local att, ang, tweak
-	
-	function SWEP:CreateShell(sh) // this func was edited for this specific vmodel only
-		if self.Owner:ShouldDrawLocalPlayer() then
-			return
-		end
-		
-		// main shell
-		self._shellTable = self._shellTable1
-		att = self.CW_VM:GetAttachment(3)
-		ang = EyeAngles()
-		tweak = self._shellTable.rv
-		if tweak then
-			ang:RotateAroundAxis(ang:Right(), tweak.Right)
-			ang:RotateAroundAxis(ang:Forward(), tweak.Forward)
-			ang:RotateAroundAxis(ang:Up(), tweak.Up)
-		end
-		
-		makeShell(self, att.Pos, ang, att.Ang:Forward() * 50, 0.6, 10)
-		
-		-- // shell link
-		self._shellTable = self._shellTable2
-		att = self.CW_VM:GetAttachment(2)
-		ang = EyeAngles()
-		tweak = self._shellTable.rv
-		if tweak then
-			ang:RotateAroundAxis(ang:Right(), tweak.Right)
-			ang:RotateAroundAxis(ang:Forward(), tweak.Forward)
-			ang:RotateAroundAxis(ang:Up(), tweak.Up)
-		end
-		
-		makeShell(self, att.Pos, ang, att.Ang:Forward() * 30, 0.6, 10)
 	end
 end

@@ -1,4 +1,12 @@
 
+function shell(wep) 
+	wep:shellEvent() 
+end
+
+function link(wep) 
+	wep:shellEvent2() 
+end
+
 SWEP.Sounds = {
 	base_ready = {
 		{time = 0, sound = "CW_KK_INS2_WW2_BROWNING_FOLEY"},
@@ -18,6 +26,16 @@ SWEP.Sounds = {
 	base_crawl = {
 		{time = 15/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
 		{time = 38/30, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
+	},
+
+	base_fire_1 = {
+		{time = 0, sound = "", callback = link},
+		{time = 0.02, sound = "", callback = shell},
+	},
+
+	base_fire_2 = {
+		{time = 0, sound = "", callback = link},
+		{time = 0.02, sound = "", callback = shell},
 	},
 
 	base_dryfire = {
@@ -53,6 +71,16 @@ SWEP.Sounds = {
 		{time = 294/34.8, sound = "CW_KK_INS2_WW2_BROWNING_SHOULDER"},
 	},
 
+	iron_fire_1 = {
+		{time = 0, sound = "", callback = link},
+		{time = 0.02, sound = "", callback = shell},
+	},
+
+	iron_fire_2 = {
+		{time = 0, sound = "", callback = link},
+		{time = 0.02, sound = "", callback = shell},
+	},
+
 	iron_dryfire = {
 		{time = 0, sound = "CW_KK_INS2_WW2_BROWNING_EMPTY"},
 	},
@@ -70,6 +98,16 @@ SWEP.Sounds = {
 		{time = 15/33, sound = "CW_KK_INS2_WW2_BROWNING_BELTJINGLE"},
 		{time = 22/33, sound = "CW_KK_INS2_WW2_BROWNING_RATTLE"},
 		{time = 39/33, sound = "CW_KK_INS2_WW2_BROWNING_SHOULDER"},
+	},
+
+	deployed_fire_1 = {
+		{time = 0, sound = "", callback = link},
+		{time = 0.02, sound = "", callback = shell},
+	},
+
+	deployed_fire_2 = {
+		{time = 0, sound = "", callback = link},
+		{time = 0.02, sound = "", callback = shell},
 	},
 
 	deployed_dryfire = {
@@ -107,6 +145,16 @@ SWEP.Sounds = {
 
 	deployed_iron_idle = {
 		{time = 0, sound = "Universal_IronIdle"},
+	},
+
+	deployed_iron_fire_1 = {
+		{time = 0, sound = "", callback = link},
+		{time = 0.02, sound = "", callback = shell},
+	},
+
+	deployed_iron_fire_2 = {
+		{time = 0, sound = "", callback = link},
+		{time = 0.02, sound = "", callback = shell},
 	},
 
 	deployed_iron_dryfire = {
