@@ -314,8 +314,8 @@ if CLIENT then
 			return muz
 		end
 		
-		if self.MuzzleViewAttachmentID != 0 then
-			return self.CW_VM:GetAttachment(self.MuzzleViewAttachmentID)
+		if self.MuzzleAttachment != 0 then
+			return self.CW_VM:GetAttachment(self.MuzzleAttachment)
 		end
 		
 		muz.Pos = self.Owner:EyePos()

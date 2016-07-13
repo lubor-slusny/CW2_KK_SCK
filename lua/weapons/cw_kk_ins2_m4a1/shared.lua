@@ -17,8 +17,12 @@ if CLIENT then
 	SWEP.IconLetter = "w"
 	
 	SWEP.MuzzleEffect = "muzzleflash_6"
+	
 	SWEP.Shell = "KK_INS2_556x45"
 	SWEP.ShellDelay = 0.06
+	
+	SWEP.Shell2ViewAngleAlign = {Forward = 0, Right = -90, Up = 0}
+	SWEP.Shell2WorldAngleAlign = {Forward = 0, Right = -90, Up = 0}
 	
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_carryhandle_m4.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},

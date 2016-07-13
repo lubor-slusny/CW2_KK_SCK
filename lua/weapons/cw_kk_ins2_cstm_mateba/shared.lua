@@ -170,7 +170,6 @@ if CLIENT then
 		local shells = math.Clamp(self._lastLoadedAmount - self:Clip1(), 0, 6)
 		
 		for i = 1, shells do
-			self._shellTable = self._shellTable1
 			att = self.CW_VM:GetAttachment(2)
 			ang = EyeAngles()
 			
@@ -178,9 +177,10 @@ if CLIENT then
 			ang:RotateAroundAxis(ang:Forward(), random(-90, 90))
 			ang:RotateAroundAxis(ang:Up(), random(-90, 90))
 			
-			makeShell(self, att.Pos, ang, velocity, 0.6, 10)
+			makeShell(att.Pos, ang, velocity, self._shellTable1, 1)
 		end
 	end
+	
 end
 
 if CLIENT then 

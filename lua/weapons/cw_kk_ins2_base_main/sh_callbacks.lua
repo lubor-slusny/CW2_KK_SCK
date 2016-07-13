@@ -45,8 +45,8 @@ CustomizableWeaponry.callbacks:addNew("initialize", "KK_INS2_BASE", function(wep
 		end
 		
 		// reducing lookup calls
-		if wep.MuzzleViewAttachmentName then
-			wep.MuzzleViewAttachmentID = wep.CW_VM:LookupAttachment(wep.MuzzleViewAttachmentName)
+		if wep.MuzzleAttachmentName then
+			wep.MuzzleAttachment = wep.CW_VM:LookupAttachment(wep.MuzzleAttachmentName)
 		end
 		if wep.ShellViewAttachmentName then
 			wep.ShellViewAttachmentID = wep.CW_VM:LookupAttachment(wep.ShellViewAttachmentName)

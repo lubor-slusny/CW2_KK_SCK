@@ -2,11 +2,6 @@
 if CLIENT then
 	local cvarSSF = GetConVar("cw_kk_ins2_shell_sound") or {GetInt = function() return 3 end}
 	local cvarSLT = GetConVar("cw_kk_ins2_shell_time") or {GetFloat = function() return 10 end}
-
-	local angleVel = Vector(0, 0, 0)
-	local up = Vector(0, 0, -100)
-	local shellMins, shellMaxs = Vector(-0.5, -0.15, -0.5), Vector(0.5, 0.15, 0.5)
-	local fallbackShell = CustomizableWeaponry.shells:getShell("mainshell")
 	
 	local CurTime = CurTime
 	local soundPlay = sound.Play
@@ -24,22 +19,30 @@ if CLIENT then
 		
 		SafeRemoveEntity(shell)
 	end
+
+	local angleVel = Vector(0, 0, 0)
 	
 	CustomizableWeaponry_KK.ins2.deployedShells = CustomizableWeaponry_KK.ins2.deployedShells or {}
 	
 	function CustomizableWeaponry_KK.ins2.makeShell(pos, ang, velocity, t, scale)
-		velocity = velocity or up
+		pos = pos or EyePos()
+		ang = ang or EyeAngles()
+		velocity = velocity or Vector()
+		t = t or CustomizableWeaponry.shells:getShell("mainshell")
+		scale = scale or 1
+		
+		t.bbmin = t.bbmin or Vector(-0.5, -0.15, -0.5)
+		t.bbmax = t.bbmax or Vector(0.5, 0.15, 0.5)
+		
 		velocity.x = velocity.x + math.Rand(-5, 5)
 		velocity.y = velocity.y + math.Rand(-5, 5)
 		velocity.z = velocity.z + math.Rand(-5, 5)
 		
-		t = t or fallbackShell
-		
 		local ent = ClientsideModel(t.m, RENDERGROUP_BOTH) 
 		ent:SetPos(pos)
-		ent:PhysicsInitBox(t.bbmin or shellMins, t.bbmax or shellMaxs)
+		ent:PhysicsInitBox(t.bbmin, t.bbmax)
 		ent:SetAngles(ang)
-		ent:SetModelScale((scale or 1), 0)
+		ent:SetModelScale(scale, 0)
 		ent:SetMoveType(MOVETYPE_VPHYSICS) 
 		ent:SetSolid(SOLID_VPHYSICS) 
 		ent:SetCollisionGroup(COLLISION_GROUP_DEBRIS)
@@ -79,7 +82,7 @@ if CLIENT then
 			phys:SetMaterial(t.s)
 		end
 	
-		-- SafeRemoveEntityDelayed(ent, cvarSLT:GetFloat() or removeTime or 10) // function creation spam
+		-- SafeRemoveEntityDelayed(ent, cvarSLT:GetFloat() or 10) // another timer.Simple + function creation
 		
 		ent._ttl = CurTime() + (cvarSLT:GetFloat()) // terrible mess
 		hook.Add("Think", ent, shellThink)

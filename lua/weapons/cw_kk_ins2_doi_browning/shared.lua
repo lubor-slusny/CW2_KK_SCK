@@ -18,7 +18,7 @@ if CLIENT then
 	SWEP.IconLetter = "b"
 	
 	SWEP.MuzzleEffect = "muzzleflash_ak74"
-	SWEP.MuzzleViewAttachmentName = "muzzle"
+	SWEP.MuzzleAttachmentName = "muzzle"
 	
 	SWEP.NoShells = true
 	

@@ -1,54 +1,56 @@
 AddCSLuaFile()
 
 local makeShell = CustomizableWeaponry_KK.ins2.makeShell
-local vm, att, pos, ang, velocity, align, shellEnt
+
+local wep, ent, att, particleEffect
 
 function EFFECT:Init(fx)
-	local ent = fx:GetEntity()
+	wep = fx:GetEntity()
+	
+	if not IsValid(wep) then
+		return
+	end
+	
+	if not IsValid(wep.Owner) then
+		return
+	end
+	
+	if not wep.Owner:ShouldDrawLocalPlayer() and wep.Owner == LocalPlayer() then
+		return
+	end
+	
+	ent = wep:getMuzzleModel()
 	
 	if not IsValid(ent) then
 		return
 	end
 	
-	if not IsValid(ent.Owner) then
-		return
-	end
+	particleEffect = wep:getFireParticles()
+	att = ent:GetAttachment(wep.WorldMuzzleAttachmentID)
 	
-	if not ent.Owner:ShouldDrawLocalPlayer() and ent.Owner == LocalPlayer() then -- don't create the effect if we're in first person
-		return
-	end
-	
-	local particleEffect = ent:getFireParticles()
-	local attachModel = ent:getMuzzleModel()
-	
-	if not IsValid(attachModel) then
-		return
-	end
-	
-	local muzzleAtt = attachModel:GetAttachment(ent.MuzzleWorldAttachmentID)
-	local shellAtt = attachModel:GetAttachment(ent.ShellWorldAttachmentID)
-	
-	ParticleEffectAttach(particleEffect, PATTACH_POINT_FOLLOW, attachModel, ent.MuzzleWorldAttachmentID)
-
-	if not ent.dt.Suppressed then
-		local dlight = DynamicLight(self:EntIndex())
+	if particleEffect and att then
+		ParticleEffectAttach(particleEffect, PATTACH_POINT_FOLLOW, ent, wep.WorldMuzzleAttachmentID)
 		
-		dlight.r = 255 
-		dlight.g = 218
-		dlight.b = 74
-		dlight.Brightness = 4
-		dlight.Pos = muzzleAtt.Pos
-		dlight.Size = 96
-		dlight.Decay = 128
-		dlight.DieTime = CurTime() + FrameTime()
+		if not wep.dt.Suppressed then
+			local dlight = DynamicLight(self:EntIndex())
+			
+			dlight.r = 255 
+			dlight.g = 218
+			dlight.b = 74
+			dlight.Brightness = 4
+			dlight.Pos = att.Pos
+			dlight.Size = 96
+			dlight.Decay = 128
+			dlight.DieTime = CurTime() + FrameTime()
+		end
 	end
-	
-	if ent.RearEffectw then	// RPGs
-		local att = attachModel:GetAttachment(2)
+
+	if wep.RearEffectw then	// RPGs
+		att = ent:GetAttachment(2)
 		
 		if att then
-			ParticleEffectAttach("muzzleflash_m3", PATTACH_POINT_FOLLOW, attachModel, 2)
-			ParticleEffectAttach("muzzleflash_m3", PATTACH_POINT_FOLLOW, attachModel, 2)
+			ParticleEffectAttach("muzzleflash_m3", PATTACH_POINT_FOLLOW, ent, 2)
+			ParticleEffectAttach("muzzleflash_m3", PATTACH_POINT_FOLLOW, ent, 2)
 			
 			local dlight = DynamicLight(self:EntIndex())
 			
@@ -63,40 +65,62 @@ function EFFECT:Init(fx)
 		end
 	end
 	
-	if ent.NoShells then 
+	if wep.NoShells or wep._shellTable1 == nil then 
 		return
 	end
 	
-	if shellAtt and ent.Shell then
-		if ent.ShellDelay then
-			timer.Simple(ent.ShellDelay, function()
-				if IsValid(ent) then
-					shellAtt = attachModel:GetAttachment(ent.ShellWorldAttachmentID)
-					local ejectVelocity = shellAtt.Ang:Forward() * (ent.ShellEjectVelocity or 200)
+	att = ent:GetAttachment(wep.ShellWorldAttachmentID)
+	
+	if att then
+		local ang, velocity, align
+	
+		if wep.ShellDelay then
+			timer.Simple(wep.ShellDelay, function()
+				if IsValid(wep) then
+					att = ent:GetAttachment(wep.ShellWorldAttachmentID)
 					
-					local ang = shellAtt.Ang
-					local tweak = ent.ShellWorldAngleAlign
-					if tweak then
-						ang:RotateAroundAxis(ang:Right(), tweak.Right)
-						ang:RotateAroundAxis(ang:Forward(), tweak.Forward)
-						ang:RotateAroundAxis(ang:Up(), tweak.Up)
+					ang = att.Ang
+					
+					if IsValid(wep.Owner) then
+						velocity = wep.Owner:GetVelocity() + ang:Forward() * (wep.ShellEjectVelocity or 200)
+					else
+						velocity = wep:GetVelocity() + ang:Forward() * (wep.ShellEjectVelocity or 200)
 					end
 					
-					makeShell(shellAtt.Pos, ang, ejectVelocity, ent._shellTable1, ent.ShellScale)
+					align = wep.ShellWorldAngleAlign
+					ang:RotateAroundAxis(ang:Right(), align.Right)
+					ang:RotateAroundAxis(ang:Forward(), align.Forward)
+					ang:RotateAroundAxis(ang:Up(), align.Up)
+					
+					makeShell(
+						att.Pos,
+						ang, 
+						velocity, 
+						wep._shellTable1, 
+						wep.ShellScale
+					)
 				end
 			end)
 		else
-			local ejectVelocity = shellAtt.Ang:Forward() * (ent.ShellEjectVelocity or 200)
+			att = ent:GetAttachment(wep.ShellWorldAttachmentID)
 			
-			local ang = shellAtt.Ang
-			local tweak = ent.ShellWorldAngleAlign
-			if tweak then
-				ang:RotateAroundAxis(ang:Right(), tweak.Right)
-				ang:RotateAroundAxis(ang:Forward(), tweak.Forward)
-				ang:RotateAroundAxis(ang:Up(), tweak.Up)
-			end
+			ang = att.Ang
 			
-			makeShell(shellAtt.Pos, ang, ejectVelocity, ent._shellTable1, ent.ShellScale)
+			// I guess wep will always have owner during FX init
+			velocity = wep.Owner:GetVelocity() + ang:Forward() * (wep.ShellEjectVelocity or 200)
+			
+			align = wep.ShellWorldAngleAlign
+			ang:RotateAroundAxis(ang:Right(), align.Right)
+			ang:RotateAroundAxis(ang:Forward(), align.Forward)
+			ang:RotateAroundAxis(ang:Up(), align.Up)
+			
+			makeShell(
+				att.Pos,
+				ang, 
+				velocity, 
+				wep._shellTable1, 
+				wep.ShellScale
+			)
 		end
 	end
 end

@@ -69,8 +69,8 @@ SWEP.WeaponLength = 20
 if CLIENT then	
 	SWEP.PosBasedMuz = true
 	
-	SWEP.MuzzleViewAttachmentName = "muzzle"
-	SWEP.MuzzleWorldAttachmentID = 1
+	SWEP.MuzzleAttachmentName = "muzzle"
+	SWEP.WorldMuzzleAttachmentID = 1
 	
 	SWEP.ShellScale = 1
 	SWEP.ShellOffsetMul = 0
