@@ -1,6 +1,6 @@
 
-function shell(wep) 
-	wep:shellEvent() 
+function shell(wep)
+	wep:shellEvent()
 end
 
 function clip(wep) 

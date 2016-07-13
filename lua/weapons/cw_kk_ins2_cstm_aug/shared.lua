@@ -16,7 +16,7 @@ if CLIENT then
 	SWEP.IconLetter = "b"
 	
 	SWEP.MuzzleEffect = "muzzleflash_ak74"
-	SWEP.Shell = "KK_INS2_545x39"
+	SWEP.Shell = "KK_INS2_556x45"
 	
 	SWEP.AttachmentModelsVM = {
 		["handguardStandard"] = {model = "models/weapons/upgrades/a_standard_aug.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},

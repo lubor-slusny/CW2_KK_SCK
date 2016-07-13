@@ -195,3 +195,47 @@ function SWEP:shellEvent2()
 		self:_registerVMShell(shellEnt)
 	end
 end
+
+local m203 = CustomizableWeaponry.shells:getShell("KK_INS2_40mm")
+local down = Vector(0,0,10)
+
+function SWEP:shellEvent203()
+	if self.Owner:ShouldDrawLocalPlayer() then
+		vm = self:getMuzzleModel()
+		
+		att = vm:GetAttachment(self.ShellWorldAttachmentID)
+		
+		pos = att.Pos
+		ang = att.Ang
+		velocity = self.Owner:GetVelocity() + ang:Forward() * (self.Shell2EjectVelocity or 200)
+		
+		align = self.Shell2WorldAngleAlign
+		ang:RotateAroundAxis(ang:Right(), align.Right)
+		ang:RotateAroundAxis(ang:Forward(), align.Forward)
+		ang:RotateAroundAxis(ang:Up(), align.Up)
+		
+		makeShell(
+			pos,
+			ang,
+			velocity,
+			self._shellTable2,
+			self.Shell2Scale
+		)
+	else
+		vm = self.AttachmentModelsVM.kk_ins2_gl_m203.ent
+		
+		att = vm:GetAttachment(2)
+		
+		pos = att.Pos
+		ang = att.Ang
+		ang:RotateAroundAxis(ang:Up(), 168)
+		
+		makeShell(
+			pos,
+			ang,
+			down,
+			m203,
+			1
+		)
+	end
+end

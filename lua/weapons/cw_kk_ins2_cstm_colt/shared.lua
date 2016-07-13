@@ -15,7 +15,7 @@ if CLIENT then
 	SWEP.IconLetter = "i"
 	
 	SWEP.MuzzleEffect = "muzzleflash_m14"
-	SWEP.Shell = "KK_INS2_762x33"
+	SWEP.Shell = "KK_INS2_556x45"
 	SWEP.ShellDelay = 0.06
 	
 	SWEP.AttachmentModelsVM = {

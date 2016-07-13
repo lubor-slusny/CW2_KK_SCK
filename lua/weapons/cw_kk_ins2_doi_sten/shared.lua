@@ -21,6 +21,7 @@ if CLIENT then
 	SWEP.ShellDelay = 0.1
 	
 	SWEP.ShellViewAngleAlign = {Forward = 0, Right = 0, Up = 180}
+	SWEP.ShellWorldAngleAlign = {Forward = 0, Right = 0, Up = 180}
 	
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/a_sten_foregrip.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},

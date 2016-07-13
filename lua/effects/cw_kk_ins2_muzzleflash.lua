@@ -1,6 +1,7 @@
 AddCSLuaFile()
 
 local makeShell = CustomizableWeaponry_KK.ins2.makeShell
+local vm, att, pos, ang, velocity, align, shellEnt
 
 function EFFECT:Init(fx)
 	local ent = fx:GetEntity()
@@ -82,18 +83,6 @@ function EFFECT:Init(fx)
 					end
 					
 					makeShell(shellAtt.Pos, ang, ejectVelocity, ent._shellTable1, ent.ShellScale)
-					
-					if ent.Shell2 then
-						local ang = shellAtt.Ang
-						local tweak = ent.ShellWorldAngleAlign2
-						if tweak then
-							ang:RotateAroundAxis(ang:Right(), tweak.Right)
-							ang:RotateAroundAxis(ang:Forward(), tweak.Forward)
-							ang:RotateAroundAxis(ang:Up(), tweak.Up)
-						end
-						
-						makeShell(shellAtt.Pos, ang, ejectVelocity, ent._shellTable2, ent.ShellScale)
-					end
 				end
 			end)
 		else
@@ -108,20 +97,6 @@ function EFFECT:Init(fx)
 			end
 			
 			makeShell(shellAtt.Pos, ang, ejectVelocity, ent._shellTable1, ent.ShellScale)
-			
-			if ent.Shell2 then
-				if ent:GetClass() == "cw_kk_ins2_ww2_garand" and ent:Clip1() > 0 then return end
-				
-				local ang = shellAtt.Ang
-				local tweak = ent.ShellWorldAngleAlign2
-				if tweak then
-					ang:RotateAroundAxis(ang:Right(), tweak.Right)
-					ang:RotateAroundAxis(ang:Forward(), tweak.Forward)
-					ang:RotateAroundAxis(ang:Up(), tweak.Up)
-				end
-				
-				makeShell(shellAtt.Pos, ang, ejectVelocity, ent._shellTable2, ent.ShellScale)
-			end
 		end
 	end
 end

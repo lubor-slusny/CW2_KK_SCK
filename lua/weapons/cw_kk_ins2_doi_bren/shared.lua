@@ -19,6 +19,7 @@ if CLIENT then
 	SWEP.ShellDelay = 0.1
 	
 	SWEP.ShellViewAngleAlign = {Forward = 90, Right = 0, Up = 0}
+	SWEP.ShellWorldAngleAlign = {Forward = 0, Right = 0, Up = 180}
 	
 	SWEP.AttachmentModelsVM = {}
 	SWEP.AttachmentModelsWM = {}
