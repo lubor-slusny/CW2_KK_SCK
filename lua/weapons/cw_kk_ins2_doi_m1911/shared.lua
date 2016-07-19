@@ -17,7 +17,7 @@ if CLIENT then
 	SWEP.Shell = "KK_INS2_45apc"
 	SWEP.ShellDelay = 0.06
 	
-	SWEP.ShellViewAngleAlign = {Forward = 0, Right = 0, Up = 180}
+	SWEP.ShellViewAngleAlign = {Forward = -90, Right = 0, Up = 0}
 	
 	SWEP.AttachmentModelsVM = {		
 		["kk_ins2_mag_m1911_8"] = {model = "models/weapons/upgrades/a_magazine_1911_8.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
@@ -49,7 +49,7 @@ SWEP.Animations = {
 	base_draw = "base_draw",
 	base_draw_empty = "empty_draw",
 	base_fire = {"base_fire","base_fire2","base_fire3"},
-	base_fire_aim = {"iron_fire_1","iron_fire_2","iron_fire_3"},
+	base_fire_aim = {"iron_fire","iron_fire","iron_fire"},
 	base_fire_last = "base_firelast",
 	base_fire_last_aim = "iron_firelast",
 	base_fire_empty = "base_dryfire",
@@ -74,7 +74,7 @@ SWEP.SpeedDec = 10
 
 SWEP.Slot = 1
 SWEP.SlotPos = 0
-SWEP.NormalHoldType = "revolver"
+SWEP.NormalHoldType = "pistol"
 SWEP.RunHoldType = "normal"
 SWEP.FireModes = {"semi"}
 SWEP.Base = "cw_kk_ins2_base"
@@ -87,7 +87,7 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/v_m1911.mdl"
+SWEP.ViewModel		= "models/weapons/v_cw_kk_ins2_doi_m1911.mdl"
 SWEP.WorldModel		= "models/weapons/w_cw_kk_ins2_m1911.mdl"
 
 SWEP.WMPos = Vector(5.309, 1.623, -1.616)
@@ -117,7 +117,7 @@ SWEP.SpreadCooldown = 0.22
 SWEP.Shots = 1
 SWEP.Damage = 31
 
-SWEP.FirstDeployTime = 1.2
+SWEP.FirstDeployTime = 2.5
 SWEP.DeployTime = 0.46
 
 SWEP.ReloadTime = 2

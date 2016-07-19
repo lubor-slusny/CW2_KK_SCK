@@ -227,7 +227,7 @@ SWEP.SlotPos = 0
 SWEP.NormalHoldType = "ar2"
 SWEP.RunHoldType = "passive"
 SWEP.FireModes = {"auto", "semi"}
-SWEP.Base = "cw_kk_ins2_base"
+SWEP.Base = "cw_kk_ins2_base_deploy"
 SWEP.Category = "CW 2.0 KK INS2 WS"
 
 SWEP.Author			= "Spy"
@@ -266,8 +266,6 @@ SWEP.SpreadCooldown = 0.12
 SWEP.Shots = 1
 SWEP.Damage = 63
 
-SWEP.DeployTime = 0.71
-
 SWEP.base_ReloadTime = 2.7
 SWEP.base_ReloadTime_Empty = 2.7
 SWEP.base_ReloadHalt = 3.4
@@ -280,7 +278,9 @@ SWEP.bipod_ReloadHalt_Empty = 4.5
 
 SWEP.SnapToIdlePostReload = false
 
-SWEP.FirstDeployTime = 1.5
+SWEP.FirstDeployTime = 1.8
+SWEP.DeployTime = 0.71
+
 SWEP.WeaponLength = 28
 
 SWEP.KK_INS2_EmptyIdle = true

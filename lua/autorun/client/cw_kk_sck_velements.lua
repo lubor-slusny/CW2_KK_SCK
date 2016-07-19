@@ -1199,8 +1199,12 @@ local function updatePanel()
 			end
 		end
 	end
-	
+
 	if not (IsValid(WEAPON) and WEAPON._kksck_tabOpen) then
+		if IsValid(WEAPON) and WEAPON.CW20Weapon then
+			PANEL:AddControl("Label", {Text = "Active elementRender function count: " .. table.Count(WEAPON.elementRender)})
+		end
+
 		local i = 0
 
 		for _,ent in pairs(CustomizableWeaponry.cmodels.curModels) do 

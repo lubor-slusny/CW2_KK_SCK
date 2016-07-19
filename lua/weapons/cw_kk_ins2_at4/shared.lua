@@ -108,6 +108,7 @@ SWEP.Chamberable = false
 SWEP.CanCustomize = false
 
 SWEP.FirstDeployTime = 3.4
+SWEP.HolsterTime = 1
 SWEP.WeaponLength = 40
 
 function SWEP:updateReloadTimes() end

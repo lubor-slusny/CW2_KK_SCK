@@ -219,6 +219,7 @@ SWEP.Damage = 39
 
 SWEP.FirstDeployTime = 2.5
 SWEP.DeployTime = 0.83
+SWEP.HolsterTime = 0.63
 
 SWEP.ReloadTimes = {					
 	-- base_reload = {186/31.5, 9.5},		//qc
@@ -268,7 +269,7 @@ if CLIENT then
 			setBG = math.Clamp(clip,0,16)
 		end
 		
-		self:setBodygroup(1,setBG)
+		-- self:setBodygroup(1,setBG)
 		
 		if self.dt.BipodDeployed then
 			self:SetSequence(1)

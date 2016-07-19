@@ -123,7 +123,12 @@ function SWEP:PrimaryAttack()
 	
 	self.ReloadWait = CT + (self.WaitForReloadAfterFiring and self.WaitForReloadAfterFiring or self.FireDelay)
 	
+	self:postPrimaryAttack()
 	CustomizableWeaponry.callbacks.processCategory(self, "postConsumeAmmo")
+	
+	if SP and SERVER then
+		SendUserMessage("CW_PostFire", self.Owner)
+	end
 end
 
 function SWEP:makeFireEffects()

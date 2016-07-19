@@ -226,6 +226,7 @@ SWEP.Damage = 100
 
 SWEP.FirstDeployTime = 4.71
 SWEP.DeployTime = 1.14
+SWEP.HolsterTime = 0.91
 
 SWEP.ReloadTime = 3.77
 SWEP.ReloadTime_Empty = 3.77

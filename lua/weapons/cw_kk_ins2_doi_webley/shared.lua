@@ -8,7 +8,7 @@ include("sh_soundscript.lua")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "Webley"
+	SWEP.PrintName = "Webley Mk4"
 	SWEP.CSMuzzleFlashes = true
 	
 	SWEP.IconLetter = "f"
