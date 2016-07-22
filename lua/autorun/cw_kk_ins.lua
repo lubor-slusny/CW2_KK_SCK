@@ -66,24 +66,26 @@ for _,f in pairs({
 end
 
 CustomizableWeaponry_KK.ins2.baseContentMounted = function()
-	return baseContentOK
+	return !SP or baseContentOK
 end
 
 CustomizableWeaponry_KK.ins2.wsContentMounted = function()
-	return baseContentOK and (CustomizableWeaponry_KK.ins2.ws == WS_PACK_REVISION)
+	return !SP or (baseContentOK and (CustomizableWeaponry_KK.ins2.ws == WS_PACK_REVISION))
 end
 
 CustomizableWeaponry_KK.ins2.ww2ContentMounted = function()
-	return 
-		baseContentOK and
+	return
+		!SP or 
+		(baseContentOK and
 		doimodContentOK and not
-		doigameContentOK
+		doigameContentOK)
 end
 
 CustomizableWeaponry_KK.ins2.doiContentMounted = function()
-	return 
-		baseContentOK and
-		doigameContentOK
+	return
+		!SP or 
+		(baseContentOK and
+		doigameContentOK)
 end
 
 // for me

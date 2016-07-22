@@ -132,6 +132,8 @@ function SWEP:pickupAnimFunc(mode)
 end
 
 function SWEP:drawAnimFunc()
+	print(self:GetClass() .. ":drawAnimFunc()", "@", CurTime())
+	
 	prefix = self:getForegripMode()
 	
 	if not self._KK_INS2_PickedUp then

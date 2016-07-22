@@ -76,44 +76,44 @@ if CLIENT then
 		["kk_ins2_cstm_eotechxps"] = {model = "models/weapons/attachments/w_cw_kk_ins2_cstm_eotechxps.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 	}
 
-	SWEP.IronsightPos_def = Vector(-2.3, -2, 0.13)
-	SWEP.IronsightAng_def = Vector(0.95, 0.05, 0)
+	SWEP.IronsightPos = Vector(-2.3, -2, 0.13)
+	SWEP.IronsightAng = Vector(0.95, 0.05, 0)
 
-	SWEP.KKINS2KobraPos_def = Vector(-2.3107, -2, -0.5233)
-	SWEP.KKINS2KobraAng_def = Vector(0, 0, 0)
+	SWEP.KKINS2KobraPos = Vector(-2.3107, -2, -0.5233)
+	SWEP.KKINS2KobraAng = Vector(0, 0, 0)
 	
-	SWEP.KKINS2EoTechPos_def = Vector(-2.3099, -2, -0.4734)
-	SWEP.KKINS2EoTechAng_def = Vector(0, 0, 0)
+	SWEP.KKINS2EoTechPos = Vector(-2.3099, -2, -0.4734)
+	SWEP.KKINS2EoTechAng = Vector(0, 0, 0)
 
-	SWEP.KKINS2AimpointPos_def = Vector(-2.3021, -2, -0.4478)
-	SWEP.KKINS2AimpointAng_def = Vector(0, 0, 0)
+	SWEP.KKINS2AimpointPos = Vector(-2.3021, -2, -0.4478)
+	SWEP.KKINS2AimpointAng = Vector(0, 0, 0)
 
-	SWEP.KKINS2ElcanPos_def = Vector(-2.3062, -2, -0.5652)
-	SWEP.KKINS2ElcanAng_def = Vector(0, 0, 0)
+	SWEP.KKINS2ElcanPos = Vector(-2.3062, -2, -0.5652)
+	SWEP.KKINS2ElcanAng = Vector(0, 0, 0)
 
-	SWEP.KKINS2PO4Pos_def = Vector(-2.2495, -1, -0.3634)
-	SWEP.KKINS2PO4Ang_def = Vector(0, 0, 0)
+	SWEP.KKINS2PO4Pos = Vector(-2.2495, -1, -0.3634)
+	SWEP.KKINS2PO4Ang = Vector(0, 0, 0)
 
-	SWEP.KKINS2MagnifierPos_def = Vector(-2.307, -2, -0.4629)
-	SWEP.KKINS2MagnifierAng_def = Vector(0, 0, 0)
+	SWEP.KKINS2MagnifierPos = Vector(-2.307, -2, -0.4629)
+	SWEP.KKINS2MagnifierAng = Vector(0, 0, 0)
 
-	SWEP.KKINS2CSTMCMorePos_def = Vector(-2.3021, -2, -0.4478)
-	SWEP.KKINS2CSTMCMoreAng_def = Vector(0, 0, 0)
+	SWEP.KKINS2CSTMCMorePos = Vector(-2.3021, -2, -0.4478)
+	SWEP.KKINS2CSTMCMoreAng = Vector(0, 0, 0)
 
-	SWEP.KKINS2CSTMBarskaPos_def = Vector(-2.3099, -2, -0.4734)
-	SWEP.KKINS2CSTMBarskaAng_def = Vector(0, 0, 0)
+	SWEP.KKINS2CSTMBarskaPos = Vector(-2.3099, -2, -0.4734)
+	SWEP.KKINS2CSTMBarskaAng = Vector(0, 0, 0)
 
-	SWEP.KKINS2CSTMMicroT1Pos_def = Vector(-2.3021, -2, -0.4478)
-	SWEP.KKINS2CSTMMicroT1Ang_def = Vector(0, 0, 0)
+	SWEP.KKINS2CSTMMicroT1Pos = Vector(-2.3021, -2, -0.4478)
+	SWEP.KKINS2CSTMMicroT1Ang = Vector(0, 0, 0)
 
-	SWEP.KKINS2CSTMEoTechXPSPos_def = Vector(-2.3099, -2, -0.4734)
-	SWEP.KKINS2CSTMEoTechXPSAng_def = Vector(0, 0, 0)
+	SWEP.KKINS2CSTMEoTechXPSPos = Vector(-2.3099, -2, -0.4734)
+	SWEP.KKINS2CSTMEoTechXPSAng = Vector(0, 0, 0)
 
-	SWEP.KKINS2CSTMCompM4SPos_def = Vector(-2.3021, -2, -0.4478)
-	SWEP.KKINS2CSTMCompM4SAng_def = Vector(0, 0, 0)
+	SWEP.KKINS2CSTMCompM4SPos = Vector(-2.3021, -2, -0.4478)
+	SWEP.KKINS2CSTMCompM4SAng = Vector(0, 0, 0)
 
-	SWEP.KKINS2CSTMACOGPos_def = Vector(-2.3062, -2, -0.5652)
-	SWEP.KKINS2CSTMACOGAng_def = Vector(0, 0, 0)
+	SWEP.KKINS2CSTMACOGPos = Vector(-2.3062, -2, -0.5652)
+	SWEP.KKINS2CSTMACOGAng = Vector(0, 0, 0)
 
 	// coz why nut
 	SWEP.IronsightPos_sopmod = Vector(-2.3118, -2, 0.4771)
@@ -288,44 +288,6 @@ if CLIENT then
 	local counterExists = file.Exists("models/weapons/stattrack.mdl", "GAME")
 	
 	function SWEP:updateOtherParts()
-		local hasInstalledScope = self:getActiveAttachmentInCategory(1) != nil
-		local isBipod = self.ActiveAttachments.kk_ins2_rpk_sopmod
-		
-		//packg aimpos switch
-		if self.ActiveAttachments.kk_ins2_magnifier then
-			local name = "KKINS2Magnifier"
-			if isBipod then
-				self[name .. "Pos"] = self[name .. "Pos_sopmod"]
-				self[name .. "Ang"] = self[name .. "Ang_sopmod"]
-			else
-				self[name .. "Pos"] = self[name .. "Pos_def"]
-				self[name .. "Ang"] = self[name .. "Ang_def"]
-			end
-			self.AimPos = self[name .. "Pos"]
-			self.AimAng = self[name .. "Ang"]
-		elseif hasInstalledScope then
-			local sight = CustomizableWeaponry.sights[self:getActiveAttachmentInCategory(1)]
-			if isBipod then
-				self[sight.aimPos[1]] = self[sight.aimPos[1] .. "_sopmod"]
-				self[sight.aimPos[2]] = self[sight.aimPos[2] .. "_sopmod"]
-			else
-				self[sight.aimPos[1]] = self[sight.aimPos[1] .. "_def"]
-				self[sight.aimPos[2]] = self[sight.aimPos[2] .. "_def"]
-			end
-			self.AimPos = self[sight.aimPos[1]]
-			self.AimAng = self[sight.aimPos[2]]
-		else
-			if isBipod then
-				self.IronsightPos = self.IronsightPos_sopmod
-				self.IronsightAng = self.IronsightAng_sopmod
-			else
-				self.IronsightPos = self.IronsightPos_def
-				self.IronsightAng = self.IronsightAng_def
-			end
-			self.AimPos = self.IronsightPos
-			self.AimAng = self.IronsightAng
-		end
-		
 		if self.dt.BipodDeployed then
 			self.WMEnt:SetSequence(1)
 			self:SetSequence(1)
@@ -354,4 +316,28 @@ if CLIENT then
 			self.AttachmentModelsVM.kk_counter_mag.active = counterExists
 		end
 	end
+end
+
+
+if CLIENT then
+	local pos, ang
+	
+	CustomizableWeaponry.callbacks:addNew("adjustViewmodelPosition", "KK_INS2_RPK", function(wep, TargetPos, TargetAng)
+		if wep:GetClass() != "cw_kk_ins2_rpk" then return end
+		if !wep.ActiveAttachments.kk_ins2_rpk_sopmod then return end
+		if !wep:isAiming() then return end
+		
+		if wep._currentSecondarySight then
+			pos = wep._currentSecondarySight.aimPos[1]
+			ang = wep._currentSecondarySight.aimPos[2]
+		elseif wep._currentPrimarySight then
+			pos = wep._currentPrimarySight.aimPos[1]
+			ang = wep._currentPrimarySight.aimPos[2]
+		else
+			pos = "IronsightPos"
+			ang = "IronsightAng"
+		end
+		
+		return wep[pos .. "_sopmod"], wep[ang .. "_sopmod"]
+	end)
 end

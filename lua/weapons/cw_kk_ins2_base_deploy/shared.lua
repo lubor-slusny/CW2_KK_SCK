@@ -37,13 +37,8 @@ function SWEP:drawAnimFunc()
 	prefix = self:getForegripMode()
 	
 	if not self._KK_INS2_PickedUp then
-		if !(clip == 0 and self.KK_INS2_EmptyIdle) and IsValid(self.Owner) then // wtf owner?
-			
-			CustomizableWeaponry.actionSequence.new(self, 0, nil, function()
-				self:pickupAnimFunc(prefix)
-				self:setPickedUp(true)
-			end)
-			
+		if !(clip == 0 and self.KK_INS2_EmptyIdle) then
+			self:pickupAnimFunc(prefix)
 			return
 		end
 	end
@@ -65,5 +60,13 @@ function SWEP:drawAnimFunc()
 end
 
 function SWEP:GetDeployTime()
-	return self._KK_INS2_PickedUp and self.DeployTime or self.FirstDeployTime
+	if not self._KK_INS2_PickedUp then
+		CustomizableWeaponry.actionSequence.new(self, self.FirstDeployTime - 0.1, nil, function()
+			self:setPickedUp(true)
+		end)
+		
+		return self.FirstDeployTime
+	end
+	
+	return self.DeployTime
 end

@@ -251,6 +251,8 @@ function SWEP:IndividualThink()
 end
 
 function SWEP:Initialize()
+	print(self:GetClass() .. ":Initialize()", "@", CurTime())
+	
 	self:updateReloadTimes()
 	
 	weapons.GetStored("cw_base").Initialize(self)
