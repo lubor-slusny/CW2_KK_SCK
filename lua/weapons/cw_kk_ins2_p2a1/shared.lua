@@ -158,7 +158,7 @@ if CLIENT then
 			local ang = self.Owner:EyeAngles()
 			ang:RotateAroundAxis(ang:Up(), 180)
 			
-			CustomizableWeaponry_KK.ins2.makeShell(self, pos, ang, down, 0.6, 10)
+			CustomizableWeaponry_KK.ins2.makeShell(pos, ang, down, self._shellTable, 1)
 		end
 	end
 end

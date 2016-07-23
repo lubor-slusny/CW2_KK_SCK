@@ -40,9 +40,9 @@ if CLIENT then
 		
 		local ent = ClientsideModel(t.m, RENDERGROUP_BOTH) 
 		ent:SetPos(pos)
-		ent:PhysicsInitBox(t.bbmin, t.bbmax)
 		ent:SetAngles(ang)
 		ent:SetModelScale(scale, 0)
+		ent:PhysicsInitBox(t.bbmin * scale, t.bbmax * scale)
 		ent:SetMoveType(MOVETYPE_VPHYSICS) 
 		ent:SetSolid(SOLID_VPHYSICS) 
 		ent:SetCollisionGroup(COLLISION_GROUP_DEBRIS)
