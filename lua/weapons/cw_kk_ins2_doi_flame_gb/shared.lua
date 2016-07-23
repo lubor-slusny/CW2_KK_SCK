@@ -11,7 +11,7 @@ SWEP.magType = "NONE"
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "Flame"
+	SWEP.PrintName = "Flame GB"
 	
 	SWEP.IconLetter = "q"
 	

@@ -11,7 +11,7 @@ SWEP.magType = "pistolMag"
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "Bino the elephant"
+	SWEP.PrintName = "Binoculars"
 	SWEP.CSMuzzleFlashes = true
 	
 	SWEP.IconLetter = "f"
@@ -97,10 +97,10 @@ SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.ww2de
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.doiContentMounted()
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.doiContentMounted()
 
-SWEP.Primary.ClipSize		= 8
-SWEP.Primary.DefaultClip	= 8
+SWEP.Primary.ClipSize		= -1
+SWEP.Primary.DefaultClip	= -1
 SWEP.Primary.Automatic		= false
-SWEP.Primary.Ammo			= "9x19MM"
+SWEP.Primary.Ammo			= "none"
 
 SWEP.FireDelay = 0.1
 SWEP.FireSound = "CW_KK_INS2_WW2_LUGER_FIRE"
@@ -123,3 +123,17 @@ SWEP.ReloadHalt = 2.57
 
 SWEP.ReloadTime_Empty = 2.05
 SWEP.ReloadHalt_Empty = 3.7
+
+function SWEP:PrimaryAttack()
+	if self.Owner:KeyDown(IN_USE) then
+		if CustomizableWeaponry.quickGrenade.canThrow(self) then
+			CustomizableWeaponry_KK.ins2.throwGrenade(self)
+			return
+		end
+	end
+	
+end
+
+function SWEP:Reload()
+
+end

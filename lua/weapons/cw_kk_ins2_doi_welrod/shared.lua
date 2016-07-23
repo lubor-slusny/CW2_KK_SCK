@@ -107,7 +107,7 @@ SWEP.MaxSpreadInc = 0.04
 SWEP.SpreadPerShot = 0.01
 SWEP.SpreadCooldown = 0.22
 SWEP.Shots = 1
-SWEP.Damage = 24
+SWEP.Damage = 25
 
 SWEP.FireDelay = 2.2
 SWEP.ReticleInactivityPostFire = SWEP.FireDelay + 0.2
@@ -120,3 +120,5 @@ SWEP.ReloadHalt = 3.17
 
 SWEP.ReloadTime_Empty = 2.27
 SWEP.ReloadHalt_Empty = 4.67
+
+SWEP.MuzzleVelocity = 300

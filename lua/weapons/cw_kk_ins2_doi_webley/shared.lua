@@ -101,7 +101,7 @@ SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.doiContentMounted()
 SWEP.Primary.ClipSize		= 6
 SWEP.Primary.DefaultClip	= 6
 SWEP.Primary.Automatic		= false
-SWEP.Primary.Ammo			= ".38 Special"
+SWEP.Primary.Ammo			= ".380/200"
 
 SWEP.FireDelay = 60/380
 SWEP.FireSound = "CW_KK_INS2_REVOLVER_FIRE"
@@ -115,7 +115,7 @@ SWEP.MaxSpreadInc = 0.06
 SWEP.SpreadPerShot = 0.02
 SWEP.SpreadCooldown = 0.25
 SWEP.Shots = 1
-SWEP.Damage = 30
+SWEP.Damage = 28
 
 SWEP.FirstDeployTime = 2.54
 SWEP.DeployTime = 0.46

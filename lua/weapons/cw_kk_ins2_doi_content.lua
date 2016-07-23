@@ -2,6 +2,7 @@ if not CustomizableWeaponry then return end
 
 AddCSLuaFile()
 
+CustomizableWeaponry:registerAmmo(".380/200", "9x20MMR Rounds", 9, 19.7)
 CustomizableWeaponry:registerAmmo(".303 British", "7.7x56MMR Rounds", 7.7, 56)
 
 // WW2 pack

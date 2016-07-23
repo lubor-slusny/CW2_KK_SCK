@@ -7,7 +7,7 @@ att.FOVModifier = 0
 att.AimViewModelFOV = 40
 att.isSight = true
 
--- att.colorType = CustomizableWeaponry.colorableParts.COLOR_TYPE_SIGHT
+att.colorType = CustomizableWeaponry.colorableParts.COLOR_TYPE_SIGHT
 
 att.statModifiers = {
 	OverallMouseSensMult = -0.05
@@ -19,11 +19,20 @@ if CLIENT then
 		[1] = {t = "Provides a bright reticle to ease aiming.", c = CustomizableWeaponry.textColors.POSITIVE}
 	}
 	
-	att.reticle = "models/weapons/optics/eotech_reticule_holo"
+	att.reticleCol = "cwkk/reticles/eotech_reticule_col"
+	att.reticleTop = "cwkk/reticles/eotech_reticule_top"
+	att._reticleCol = Material(att.reticleCol)
+	att._reticleTop = Material(att.reticleTop)
+	
+	att.reticle = att.reticleCol
 	att._reticleSize = 16
 	
+	-- att.reticle = "models/weapons/optics/eotech_reticule_holo"
+	-- att._reticleSize = 16
+	
 	function att:elementRender()
-		CustomizableWeaponry_KK.ins2.stencilSight(self, att)
+		-- CustomizableWeaponry_KK.ins2.stencilSight(self, att)
+		CustomizableWeaponry_KK.ins2.stencilColorableSight(self, att)
 	end
 	
 end

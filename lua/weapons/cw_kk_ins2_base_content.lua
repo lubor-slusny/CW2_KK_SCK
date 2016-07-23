@@ -21,7 +21,7 @@ AddCSLuaFile()
 -- game.AddParticles("particles/ins_smokegrenade.pcf")
 -- game.AddParticles("particles/jonny_light_rigs.pcf")	
 -- game.AddParticles("!particles/menu.pcf")
-	
+
 // SHARED SOUNDS
 
 	CustomizableWeaponry:addRegularSound("CW_KK_INS2_UNIVERSAL_DRAW", {"weapons/universal/uni_weapon_draw_01.wav", "weapons/universal/uni_weapon_draw_02.wav", "weapons/universal/uni_weapon_draw_03.wav"})
