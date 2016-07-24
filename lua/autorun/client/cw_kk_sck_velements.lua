@@ -1152,7 +1152,7 @@ local function updatePanel()
 									
 									local out, format, posFormated, angFormated, sizeFormated, attachFuncID, attachFuncVal, attachFuncCaps
 									
-									format = "[\"%s\"] = {model = \"%s\", pos = %s, angle = %s, size = %s, %s = %s}"
+									format = "[\"%s\"] = {model = \"%s\", pos = %s, angle = %s, size = %s, %s = %s},"
 									posFormated = string.format("Vector(%0.5f, %0.5f, %0.5f)", data.pos.x, data.pos.y, data.pos.z)
 									angFormated = string.format("Angle(%0.5f, %0.5f, %0.5f)", data.angle.p, data.angle.y, data.angle.r)
 									sizeFormated = string.format("Vector(%0.5f, %0.5f, %0.5f)", data.size.x, data.size.y, data.size.z)

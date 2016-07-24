@@ -252,6 +252,9 @@ if CLIENT then
 	
 	function SWEP:updateOtherParts()
 		cycle = self.CW_VM:GetCycle()
+		if cycle == 1 or cycle == 0 then
+			self._pauseUpdatingBelt = false
+		end
 		
 		clip = self:Clip1()
 
@@ -261,15 +264,12 @@ if CLIENT then
 			ammo = self.Owner:GetAmmoCount(self.Primary.Ammo) + clip
 		end
 		
-		if self.Sequence:find("reload") and cycle > 0.4 and cycle < 1 then
-			self.AttachmentModelsVM.kk_counter_mag.ent._KKCSGONUM = ammo
-			setBG = math.Clamp(ammo,0,16)
-		else
-			self.AttachmentModelsVM.kk_counter_mag.ent._KKCSGONUM = clip
-			setBG = math.Clamp(clip,0,16)
+		self.AttachmentModelsVM.kk_counter_mag.ent._KKCSGONUM = clip
+		setBG = math.Clamp(clip,0,16)
+
+		if not self._pauseUpdatingBelt then
+			self:setBodygroup(1,setBG)
 		end
-		
-		-- self:setBodygroup(1,setBG)
 		
 		if self.dt.BipodDeployed then
 			self:SetSequence(1)

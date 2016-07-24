@@ -2,7 +2,7 @@ AddCSLuaFile()
 
 if not CustomizableWeaponry then return end
 
-local WS_PACK_REVISION = 3
+local WS_PACK_REVISION = 4
 
 if SERVER then
 	-- resource.AddWorkshop("657241323")
@@ -74,11 +74,7 @@ CustomizableWeaponry_KK.ins2.wsContentMounted = function()
 end
 
 CustomizableWeaponry_KK.ins2.ww2ContentMounted = function()
-	return
-		!SP or 
-		(baseContentOK and
-		doimodContentOK and not
-		doigameContentOK)
+	return false
 end
 
 CustomizableWeaponry_KK.ins2.doiContentMounted = function()
@@ -250,7 +246,7 @@ if CLIENT then
 					Color(200, 157, 96),
 					"[KK INS2 SWEPS] ",
 					Color(255, 255, 255),
-					"Hi, it looks like you are using outdated WS content. Make sure you get most recent version from GitHub."
+					"Hi, it looks like you are using outdated WS content. Make sure you download updated version from GitHub."
 				)
 			end
 		end)

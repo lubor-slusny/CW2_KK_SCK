@@ -7,13 +7,9 @@ function link(wep)
 	wep:shellEvent2() 
 end
 
-function bulletsToClip(wep)
-	local clip = wep:Clip1()
-
-	wep:setBodygroup(1,math.Clamp(clip,0,16))
-end
-
 function bulletsToReserve(wep)
+	wep._pauseUpdatingBelt = true
+	
 	local ammo
 	
 	if wep.getFullestMag then
@@ -47,19 +43,16 @@ SWEP.Sounds = {
 	},
 
 	base_fire_1 = {
-		{time = 0, sound = "", callback = bulletsToClip},
 		{time = 0.02, sound = "", callback = link},
 		{time = 0.05, sound = "", callback = shell},
 	},
 
 	base_fire_2 = {
-		{time = 0, sound = "", callback = bulletsToClip},
 		{time = 0.02, sound = "", callback = link},
 		{time = 0.05, sound = "", callback = shell},
 	},
 
 	base_fire_3 = {
-		{time = 0, sound = "", callback = bulletsToClip},
 		{time = 0.02, sound = "", callback = link},
 		{time = 0.05, sound = "", callback = shell},
 	},
@@ -69,7 +62,6 @@ SWEP.Sounds = {
 	},
 
 	base_reload = {
-		{time = 0, sound = "", callback = bulletsToClip},
 		{time = 2/31.5, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
 		{time = 34/31.5, sound = "CW_KK_INS2_M249_COVEROPEN"},
 		{time = 69/31.5, sound = "CW_KK_INS2_M249_MAGOUTFULL"},
@@ -87,7 +79,6 @@ SWEP.Sounds = {
 	},
 
 	base_reload_empty = {
-		{time = 0, sound = "", callback = bulletsToClip},
 		{time = 2/31.5, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
 		{time = 32/31.5, sound = "CW_KK_INS2_M249_BOLTBACK"},
 		{time = 42/31.5, sound = "CW_KK_INS2_M249_BOLTRELEASE"},
@@ -109,7 +100,6 @@ SWEP.Sounds = {
 	},
 
 	base_reload_half = {
-		{time = 0, sound = "", callback = bulletsToClip},
 		{time = 2/31.5, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
 		{time = 13/31.5, sound = "CW_KK_INS2_M249_ARMMOVEMENT2"},
 		{time = 26/31.5, sound = "CW_KK_INS2_M249_COVEROPEN"},
@@ -129,25 +119,21 @@ SWEP.Sounds = {
 	},
 
 	iron_fire_1 = {
-		{time = 0, sound = "", callback = bulletsToClip},
 		{time = 0.02, sound = "", callback = link},
 		{time = 0.05, sound = "", callback = shell},
 	},
 
 	iron_fire_2 = {
-		{time = 0, sound = "", callback = bulletsToClip},
 		{time = 0.02, sound = "", callback = link},
 		{time = 0.05, sound = "", callback = shell},
 	},
 
 	iron_fire_3 = {
-		{time = 0, sound = "", callback = bulletsToClip},
 		{time = 0.02, sound = "", callback = link},
 		{time = 0.05, sound = "", callback = shell},
 	},
 
 	iron_fire_4 = {
-		{time = 0, sound = "", callback = bulletsToClip},
 		{time = 0.02, sound = "", callback = link},
 		{time = 0.05, sound = "", callback = shell},
 	},
@@ -165,13 +151,11 @@ SWEP.Sounds = {
 	},
 
 	deployed_fire_1 = {
-		{time = 0, sound = "", callback = bulletsToClip},
 		{time = 0.02, sound = "", callback = link},
 		{time = 0.05, sound = "", callback = shell},
 	},
 
 	deployed_fire_2 = {
-		{time = 0, sound = "", callback = bulletsToClip},
 		{time = 0.02, sound = "", callback = link},
 		{time = 0.05, sound = "", callback = shell},
 	},
@@ -181,7 +165,6 @@ SWEP.Sounds = {
 	},
 
 	deployed_reload = {
-		{time = 0, sound = "", callback = bulletsToClip},
 		{time = 2/30, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
 		{time = 34/32.5, sound = "CW_KK_INS2_M249_COVEROPEN"},
 		{time = 69/32.5, sound = "CW_KK_INS2_M249_MAGOUTFULL"},
@@ -199,7 +182,6 @@ SWEP.Sounds = {
 	},
 
 	deployed_reload_half = {
-		{time = 0, sound = "", callback = bulletsToClip},
 		{time = 2/32.5, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
 		{time = 13/32.5, sound = "CW_KK_INS2_M249_ARMMOVEMENT2"},
 		{time = 26/32.5, sound = "CW_KK_INS2_M249_COVEROPEN"},
@@ -219,7 +201,6 @@ SWEP.Sounds = {
 	},
 
 	deployed_reload_empty = {
-		{time = 0, sound = "", callback = bulletsToClip},
 		{time = 2/32.5, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
 		{time = 32/32.5, sound = "CW_KK_INS2_M249_BOLTBACK"},
 		{time = 42/32.5, sound = "CW_KK_INS2_M249_BOLTRELEASE"},
@@ -245,13 +226,11 @@ SWEP.Sounds = {
 	},
 
 	deployed_iron_fire_1 = {
-		{time = 0, sound = "", callback = bulletsToClip},
 		{time = 0.02, sound = "", callback = link},
 		{time = 0.05, sound = "", callback = shell},
 	},
 
 	deployed_iron_fire_2 = {
-		{time = 0, sound = "", callback = bulletsToClip},
 		{time = 0.02, sound = "", callback = link},
 		{time = 0.05, sound = "", callback = shell},
 	},
