@@ -13,7 +13,7 @@ local function getParentEnt(str)
 	end
 	
 	if str == "AttachmentModelsWM" then
-		return WEAPON.WMEnt
+		return IsValid(WEAPON.WMEnt) and WEAPON.WMEnt or WEAPON
 	end
 end
 
@@ -36,7 +36,7 @@ local knownElementDataKeys = {
 	["merge"] = true, // INS2 bone merge
 	["material"] = true, // INS2 material override - same as in SCK/CW1
 	["nodraw"] = true, // deprecated part of INS2 stencil sights
-	["retSizeMult"] = true,	// INS2 stencil sight reticle size multiplier
+	["retSizeMult"] = true,	// INS2 stencil sight reticle size multiplier (since all sights come in 3+ sizes)
 	
 	["ignoreKKBGO"] = true, // BGO3 crashes my game if combined with CSGO stat attachment proxies
 }
@@ -49,6 +49,7 @@ local noExportElementDataKeys = {
 	["origAng"] = true,
 	
 	["stencilEnt"] = true, // INS2 stencil sight ent
+	
 	["_kksck_curIndex"] = true, // index of element.models sub-table
 	["_kksck_expanded"] = true, // element being shown in editor
 }
@@ -1124,27 +1125,63 @@ local function updatePanel()
 								butt:SetText("Export (copy to clipboard)")
 								function butt:DoClick()
 									
-									local snds = {
-										"http://cdn.frustra.org/sounds/sound_tf2/vo/scout_no02.mp3",
-										"http://cdn.frustra.org/sounds/sound_tf2/vo/pyro_no01.mp3",
-										"http://cdn.frustra.org/sounds/sound_tf2/vo/soldier_no03.mp3",
-										"http://cdn.frustra.org/sounds/sound_tf2/vo/demoman_no01.mp3",
-										"http://cdn.frustra.org/sounds/sound_tf2/vo/heavy_no02.mp3",
-										"http://cdn.frustra.org/sounds/sound_tf2/vo/medic_no02.mp3",
-										"http://cdn.frustra.org/sounds/sound_tf2/vo/engineer_no01.mp3",
-										"http://cdn.frustra.org/sounds/sound_tf2/vo/sniper_no01.mp3",
-										"http://cdn.frustra.org/sounds/sound_tf2/vo/spy_no02.mp3",
-									}
-								
-									sound.PlayURL(table.Random(snds), "", function(station)
-										if IsValid(station) then
-											station:Play()
-										else
-											print("INVALID INTERNET CONNECTION OMGF!")
-										end
-									end)
+									if data.models then
+										local snds = {
+											"http://cdn.frustra.org/sounds/sound_tf2/vo/scout_no02.mp3",
+											"http://cdn.frustra.org/sounds/sound_tf2/vo/pyro_no01.mp3",
+											"http://cdn.frustra.org/sounds/sound_tf2/vo/soldier_no03.mp3",
+											"http://cdn.frustra.org/sounds/sound_tf2/vo/demoman_no01.mp3",
+											"http://cdn.frustra.org/sounds/sound_tf2/vo/heavy_no02.mp3",
+											"http://cdn.frustra.org/sounds/sound_tf2/vo/medic_no02.mp3",
+											"http://cdn.frustra.org/sounds/sound_tf2/vo/engineer_no01.mp3",
+											"http://cdn.frustra.org/sounds/sound_tf2/vo/sniper_no01.mp3",
+											"http://cdn.frustra.org/sounds/sound_tf2/vo/spy_no02.mp3",
+										}
 									
-									SetClipboardText("No!")
+										sound.PlayURL(table.Random(snds), "", function(station)
+											if IsValid(station) then
+												station:Play()
+											else
+												print("INVALID INTERNET CONNECTION OMGF!")
+											end
+										end)
+										
+										SetClipboardText("No! element.models not yet supported!")
+										return
+									end
+									
+									local out, format, posFormated, angFormated, sizeFormated, attachFuncID, attachFuncVal, attachFuncCaps
+									
+									format = "[\"%s\"] = {model = \"%s\", pos = %s, angle = %s, size = %s, %s = %s}"
+									posFormated = string.format("Vector(%0.5f, %0.5f, %0.5f)", data.pos.x, data.pos.y, data.pos.z)
+									angFormated = string.format("Angle(%0.5f, %0.5f, %0.5f)", data.angle.p, data.angle.y, data.angle.r)
+									sizeFormated = string.format("Vector(%0.5f, %0.5f, %0.5f)", data.size.x, data.size.y, data.size.z)
+									
+									if data.merge then
+										attachFuncID = "merge"
+										attachFuncCaps = ""
+									elseif curData.attachment then
+										attachFuncID = "attachment"
+										attachFuncCaps = "\""
+									else
+										attachFuncID = "bone"
+										attachFuncCaps = "\""
+									end										
+									
+									attachFuncVal = attachFuncCaps .. tostring(data[attachFuncID]) .. attachFuncCaps
+									
+									out = string.format(
+										format,
+										key,
+										data.model,
+										posFormated,
+										angFormated,
+										sizeFormated,
+										attachFuncID,
+										attachFuncVal
+									)
+									
+									SetClipboardText(out)
 								end
 		
 							buttExportPanel:Dock(TOP)

@@ -8,7 +8,7 @@ AddCSLuaFile()
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "GB Frag"
+	SWEP.PrintName = "N.69 Frag. Grenade"
 	SWEP.CSMuzzleFlashes = true
 	
 	SWEP.IconLetter = "O"
@@ -22,7 +22,7 @@ if CLIENT then
 end
 
 SWEP.CanRestOnObjects = false
-SWEP.grenadeEnt = "cw_grenade_thrown"
+SWEP.grenadeEnt = "cw_kk_ins2_projectile_n69"
 
 SWEP.Animations = {
 	draw = "draw",
@@ -100,8 +100,8 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/v_mills.mdl"
-SWEP.WorldModel		= "models/weapons/w_mills.mdl"
+SWEP.ViewModel		= "models/weapons/v_no69.mdl"
+SWEP.WorldModel		= "models/weapons/w_no69.mdl"
 
 SWEP.WMPos = Vector(3.891, 2.295, -1.765)
 SWEP.WMAng = Angle(-28.962, 155.365, 180)

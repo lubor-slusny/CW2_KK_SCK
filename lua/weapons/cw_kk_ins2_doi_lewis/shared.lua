@@ -10,22 +10,22 @@ SWEP.magType = "arMag"
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "BREN"
+	SWEP.PrintName = "Lewis"
 	
 	SWEP.IconLetter = "w"
 	
 	SWEP.MuzzleEffect = "muzzleflash_m14"
 	SWEP.Shell = "KK_INS2_762x54"
-	SWEP.ShellDelay = 0.1
+	SWEP.ShellDelay = 0.13
 	
-	SWEP.ShellViewAngleAlign = {Forward = 90, Right = 0, Up = 0}
-	SWEP.ShellWorldAngleAlign = {Forward = 0, Right = 0, Up = 180}
+	SWEP.ShellViewAngleAlign = {Forward = 0, Right = 0, Up = -22}
+	SWEP.ShellWorldAngleAlign = {Forward = 0, Right = 0, Up = 0}
 	
 	SWEP.AttachmentModelsVM = {}
 	SWEP.AttachmentModelsWM = {}
 	
-	SWEP.IronsightPos = Vector(-1.8695, -3, 2.4583)
-	SWEP.IronsightAng = Vector(-0.053, 0.2577, 0)
+	SWEP.IronsightPos = Vector(-3.1561, -2, 2.1117)
+	SWEP.IronsightAng = Vector(-0.0884, 0.048, 5.1568)
 
 	SWEP.CustomizationMenuScale = 0.02
 end
@@ -40,30 +40,25 @@ SWEP.Animations = {
 	
 	base_pickup = "base_ready",
 	base_draw = "base_draw",
-	base_fire = {"base_fire_1", "base_fire_2", "base_fire_3"},
-	base_fire_aim = {"iron_fire_1", "iron_fire_2"},
+	base_draw_empty = "base_draw_empty",
+	base_fire = {"base_fire_1", "base_fire_2"},
+	base_fire_aim = {"iron_fire_1","iron_fire_2"},
+	base_fire_last = "base_fire_last",
+	base_fire_last_aim = "iron_fire_last",
 	base_fire_empty = "base_dryfire",
 	base_fire_empty_aim = "iron_dryfire",
 	base_reload = "base_reload",
-	base_reload_empty = "base_reload_empty",
+	base_reload_empty = "base_reloadempty",
 	base_idle = "base_idle",
+	base_idle_empty = "empty_idle",
 	base_holster = "base_holster",
-	base_firemode = "base_fireselect",
-	base_firemode_aim = "iron_fireselect",
+	base_holster_empty = "base_holster_empty",
 	base_sprint = "base_sprint",
+	base_sprint_empty = "base_sprint_empty",
 	base_safe = "base_down",
 	base_safe_aim = "iron_down",
-	
-	bipod_in = "deployed_in",
-	bipod_fire = {"deployed_fire_1", "deployed_fire_2"},
-	bipod_fire_aim = {"deployed_iron_fire_1","deployed_iron_fire_2"},
-	bipod_fire_empty = "deployed_dryfire",
-	bipod_fire_empty_aim = "deployed_iron_dryfire",
-	bipod_reload = "deployed_reload",
-	bipod_reload_empty = "deployed_reload_empty",
-	bipod_firemode = "deployed_fireselect",
-	bipod_firemode_aim = "deployed_fireselect",
-	bipod_out = "deployed_out",
+	base_safe_empty = "base_down_empty",
+	base_safe_empty_aim = "iron_down_empty",
 }
 
 SWEP.SpeedDec = 30
@@ -83,8 +78,8 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 75
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/v_bren.mdl"
-SWEP.WorldModel		= "models/weapons/w_bren.mdl"
+SWEP.ViewModel		= "models/weapons/v_lewis.mdl"
+SWEP.WorldModel		= "models/weapons/w_m1919.mdl"
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2gb
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.ww2de
@@ -95,12 +90,12 @@ SWEP.WMAng = Vector(-6, 0, 180)
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.doiContentMounted()
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.doiContentMounted()
 
-SWEP.Primary.ClipSize		= 30
-SWEP.Primary.DefaultClip	= 30
+SWEP.Primary.ClipSize		= 47
+SWEP.Primary.DefaultClip	= 47
 SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= ".303 British"
 
-SWEP.FireDelay = 60/520
+SWEP.FireDelay = 60/600
 SWEP.FireSound = "CW_KK_INS2_DOI_BREN_FIRE"
 SWEP.Recoil = 1.05
 
@@ -117,13 +112,14 @@ SWEP.FirstDeployTime = 3.07
 SWEP.DeployTime = 1.4
 
 SWEP.Chamberable = false
-SWEP.BipodInstalled = true
+SWEP.BipodInstalled = false
+SWEP.KK_INS2_EmptyIdle = true
 
-SWEP.ReloadTime = 4.25
-SWEP.ReloadHalt = 6.06
-SWEP.ReloadTime_Empty = 6.2
-SWEP.ReloadHalt_Empty = 8.12
+SWEP.ReloadTime = 5.2
+SWEP.ReloadHalt = 7.14
+SWEP.ReloadTime_Empty = 5.2
+SWEP.ReloadHalt_Empty = 8.13
 
 SWEP.WeaponLength = 28
 
-SWEP.MuzzleVelocity = 743.7
+SWEP.MuzzleVelocity = 740
