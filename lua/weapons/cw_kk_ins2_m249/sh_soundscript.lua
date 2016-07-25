@@ -15,7 +15,7 @@ function bulletsToReserve(wep)
 	if wep.getFullestMag then
 		ammo = math.max(wep:Clip1(), wep:getFullestMag(), -1)
 	else
-		ammo = wep.Owner:GetAmmoCount(wep.Primary.Ammo) + clip
+		ammo = wep.Owner:GetAmmoCount(wep.Primary.Ammo) + wep:Clip1()
 	end
 	
 	wep:setBodygroup(1,math.Clamp(ammo,0,16))

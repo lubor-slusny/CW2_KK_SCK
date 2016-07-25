@@ -55,7 +55,7 @@ end
 SWEP.Attachments = {
 	{header = "Sight", offset = {500, -500}, atts = {"kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_scope_zf4"}},
 	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_ww2_knife"}},
-	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
+	-- {header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_magnum", "am_matchgrade"}}
 }
 

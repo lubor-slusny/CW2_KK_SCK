@@ -23,7 +23,7 @@ if CLIENT then
 	SWEP.ShellEjectVelocity = 50
 	
 	SWEP.Shell2 = "KK_INS2_556x45_link"
-	SWEP.Shell2Scale = 0.7
+	SWEP.Shell2Scale = 0.9
 	SWEP.Shell2EjectVelocity = 50
 	SWEP.Shell2ViewAttachmentID = 2
 	SWEP.Shell2ViewAngleAlign = {Forward = 0, Right = 0, Up = 90}

@@ -16,7 +16,7 @@ if CLIENT then
 	
 	SWEP.MuzzleEffect = "muzzleflash_m14"
 	SWEP.Shell = "KK_INS2_762x54"
-	SWEP.ShellDelay = 0.13
+	SWEP.ShellDelay = 0.1
 	
 	SWEP.ShellViewAngleAlign = {Forward = 0, Right = 0, Up = -22}
 	SWEP.ShellWorldAngleAlign = {Forward = 0, Right = 0, Up = 0}
@@ -24,8 +24,8 @@ if CLIENT then
 	SWEP.AttachmentModelsVM = {}
 	SWEP.AttachmentModelsWM = {}
 	
-	SWEP.IronsightPos = Vector(-3.1561, -2, 2.1117)
-	SWEP.IronsightAng = Vector(-0.0884, 0.048, 5.1568)
+	SWEP.IronsightPos = Vector(-3.3295, -2, 2.1344)
+	SWEP.IronsightAng = Vector(-0.0648, 0.0265, 0)
 
 	SWEP.CustomizationMenuScale = 0.02
 end
@@ -59,6 +59,23 @@ SWEP.Animations = {
 	base_safe_aim = "iron_down",
 	base_safe_empty = "base_down_empty",
 	base_safe_empty_aim = "iron_down_empty",
+	
+	bipod_in = "deployed_in",
+	bipod_in_empty = "deployed_in",
+	bipod_fire = {"deployed_fire_1", "deployed_fire_2"},
+	bipod_fire_aim = {"deployed_iron_fire_1", "deployed_iron_fire_2"},
+	bipod_fire_last = "deployed_fire_last",
+	bipod_fire_last_aim = "deployed_fire_last",
+	bipod_fire_empty = "deployed_dryfire",
+	bipod_fire_empty_aim = "deployed_iron_dryfire",
+	bipod_reload = "deployed_reload",
+	bipod_reload_empty = "deployed_reload_empty",
+	bipod_firemode = "deployed_fireselect",
+	bipod_firemode_empty = "deployed_fireselect_empty",
+	bipod_firemode_aim = "deployed_iron_fireselect",
+	bipod_firemode_empty_aim = "deployed_iron_fireselect_empty",
+	bipod_out = "deployed_out",
+	bipod_out_empty = "deployed_out",
 }
 
 SWEP.SpeedDec = 30
@@ -96,7 +113,7 @@ SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= ".303 British"
 
 SWEP.FireDelay = 60/600
-SWEP.FireSound = "CW_KK_INS2_DOI_BREN_FIRE"
+SWEP.FireSound = "CW_KK_INS2_DOI_LEWIS_FIRE"
 SWEP.Recoil = 1.05
 
 SWEP.HipSpread = 0.045
@@ -112,7 +129,7 @@ SWEP.FirstDeployTime = 3.07
 SWEP.DeployTime = 1.4
 
 SWEP.Chamberable = false
-SWEP.BipodInstalled = false
+SWEP.BipodInstalled = true
 SWEP.KK_INS2_EmptyIdle = true
 
 SWEP.ReloadTime = 5.2
