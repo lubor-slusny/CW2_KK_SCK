@@ -17,7 +17,8 @@ if CLIENT then
 	SWEP.MuzzleEffect = "muzzleflash_m3"
 
 	SWEP.Shell = "KK_INS2_12guage"
-	SWEP.ShellDelay = 13/30
+	SWEP.ShellDelay = 0
+	SWEP.NoShells = true
 	
 	SWEP.AttachmentModelsVM = {
 		{model = "models/weapons/upgrades/a_modkit_02.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
@@ -148,7 +149,7 @@ SWEP.SlotPos = 0
 SWEP.NormalHoldType = "ar2"
 SWEP.RunHoldType = "passive"
 SWEP.FireModes = {"pump"}
-SWEP.Base = "cw_kk_ins2_base"
+SWEP.Base = "cw_kk_ins2_base_pump"
 SWEP.Category = "CW 2.0 KK INS2"
 
 SWEP.Author			= "Spy"
@@ -175,10 +176,13 @@ SWEP.Primary.DefaultClip	= 7
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "12 Gauge"
 
-SWEP.FireDelay = 0.95
+SWEP.FireDelay = 0.3
 SWEP.FireSound = "CW_KK_INS2_TOZ_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_TOZ_FIRE_SUPPRESSED"
 SWEP.Recoil = 3
+
+SWEP.ReticleInactivityPostFire = SWEP.FireDelay + 0.2
+SWEP.GlobalDelayOnShoot = SWEP.FireDelay
 
 SWEP.HipSpread = 0.05
 SWEP.AimSpread = 0.005
@@ -236,34 +240,34 @@ SWEP.MuzzleVelocity = 381
 	-- end
 -- end
 
-function SWEP:fireAnimFunc()
-	local clip = self:Clip1()
-	local mag = ""
+-- function SWEP:fireAnimFunc()
+	-- local clip = self:Clip1()
+	-- local mag = ""
 	
-	if clip == 0 then
-		mag = "_empty"
-	end
+	-- if clip == 0 then
+		-- mag = "_empty"
+	-- end
 	
-	local prefix = self:getForegripMode()
-	local suffix = ""
+	-- local prefix = self:getForegripMode()
+	-- local suffix = ""
 	
-	if self:isAiming() then
-		suffix = "_aim"
-	end
+	-- if self:isAiming() then
+		-- suffix = "_aim"
+	-- end
 	
-	if clip > 0 then
-		CustomizableWeaponry.actionSequence.new(self, 0.28, nil, function() 
-			local prefix = self:getForegripMode()
-			local suffix = ""
+	-- if clip > 0 then
+		-- CustomizableWeaponry.actionSequence.new(self, 0.28, nil, function() 
+			-- local prefix = self:getForegripMode()
+			-- local suffix = ""
 			
-			if self:isAiming() then
-				suffix = "_aim"
-			end
+			-- if self:isAiming() then
+				-- suffix = "_aim"
+			-- end
 			
-			self:sendWeaponAnim(prefix .. "bolt" .. suffix,1,0)
-		end)
-	end
+			-- self:sendWeaponAnim(prefix .. "bolt" .. suffix,1,0)
+		-- end)
+	-- end
 	
-	self:sendWeaponAnim(prefix .. "fire" .. mag .. suffix,1,0)
+	-- self:sendWeaponAnim(prefix .. "fire" .. mag .. suffix,1,0)
 	
-end //*/
+-- end //*/

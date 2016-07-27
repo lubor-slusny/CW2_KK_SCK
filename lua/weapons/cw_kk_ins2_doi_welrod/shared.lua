@@ -16,8 +16,10 @@ if CLIENT then
 	SWEP.IconLetter = "f"
 	
 	SWEP.MuzzleEffect = "muzzleflash_pistol"
+	
+	SWEP.NoShells = true
 	SWEP.Shell = "KK_INS2_9x19"
-	SWEP.ShellDelay = 0.9
+	-- SWEP.ShellDelay = 0.9
 	
 	SWEP.ShellViewAngleAlign = {Forward = 0, Right = 0, Up = 180}
 	SWEP.ShellWorldAngleAlign = {Forward = 90, Right = 0, Up = 0}
@@ -62,10 +64,10 @@ SWEP.SpeedDec = 10
 
 SWEP.Slot = 1
 SWEP.SlotPos = 0
-SWEP.NormalHoldType = "revolver"
+SWEP.NormalHoldType = "pistol"
 SWEP.RunHoldType = "normal"
 SWEP.FireModes = {"bolt"}
-SWEP.Base = "cw_kk_ins2_base"
+SWEP.Base = "cw_kk_ins2_base_pump"
 SWEP.Category = "CW 2.0 KK INS2 DOI"
 
 SWEP.Author			= "Spy"
@@ -91,7 +93,7 @@ SWEP.Primary.DefaultClip	= 9
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "9x19MM"
 
-SWEP.KK_INS2_BoltAction = 0.1
+-- SWEP.KK_INS2_BoltAction = 0.1
 SWEP.KK_INS2_EmptyIdle = false
 SWEP.CanRestOnObjects = false
 SWEP.WeaponLength = 16
@@ -109,7 +111,8 @@ SWEP.SpreadCooldown = 0.22
 SWEP.Shots = 1
 SWEP.Damage = 25
 
-SWEP.FireDelay = 2.2
+-- SWEP.FireDelay = 2.2
+SWEP.FireDelay = 0.1
 SWEP.ReticleInactivityPostFire = SWEP.FireDelay + 0.2
 SWEP.GlobalDelayOnShoot = SWEP.FireDelay
 SWEP.FirstDeployTime = 1.2
@@ -122,3 +125,5 @@ SWEP.ReloadTime_Empty = 2.27
 SWEP.ReloadHalt_Empty = 4.67
 
 SWEP.MuzzleVelocity = 300
+
+SWEP.pumpTime = 2.2

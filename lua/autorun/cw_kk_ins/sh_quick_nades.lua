@@ -46,7 +46,7 @@ CustomizableWeaponry_KK.ins2.quickGrenades.ww2de = {
 }
 CustomizableWeaponry_KK.ins2.quickGrenades.ww2gb = {
 	vm = "models/weapons/v_mills.mdl",
-	wm = "models/weapons/w_mk2.mdl",
+	wm = "models/weapons/w_mills.mdl",
 	a_pinpull = "pullbackhigh",
 	a_throw = "throw"
 }

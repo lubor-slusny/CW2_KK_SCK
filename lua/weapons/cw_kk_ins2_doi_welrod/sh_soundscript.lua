@@ -1,4 +1,8 @@
 
+function shell(wep) 
+	wep:shellEvent() 
+end
+
 SWEP.Sounds = {
 	base_ready = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_PISTOL_DRAW"},
@@ -26,6 +30,7 @@ SWEP.Sounds = {
 		-- { event AE_WPN_COCK 34 ""},
 		{time = 15/30, sound = "CW_KK_INS2_DOI_WELROD_TWISTOPEN"},
 		{time = 23/30, sound = "CW_KK_INS2_DOI_WELROD_BOLTBACK"},
+		{time = 25/30, sound = "", callback = shell},
 		{time = 32/30, sound = "CW_KK_INS2_DOI_WELROD_BOLTRELEASE"},
 		{time = 37/30, sound = "CW_KK_INS2_DOI_WELROD_TWISTCLOSE"},
 	},
@@ -45,6 +50,7 @@ SWEP.Sounds = {
 		{time = 65/30, sound = "CW_KK_INS2_DOI_WELROD_MAGIN"},
 		{time = 87/30, sound = "CW_KK_INS2_DOI_WELROD_TWISTOPEN"},
 		{time = 95/30, sound = "CW_KK_INS2_DOI_WELROD_BOLTBACK"},
+		{time = 97/30, sound = "", callback = shell}, // nomz
 		{time = 104/30, sound = "CW_KK_INS2_DOI_WELROD_BOLTRELEASE"},
 		{time = 109/30, sound = "CW_KK_INS2_DOI_WELROD_TWISTCLOSE"},
 		-- { event 46 112 ""},
@@ -55,6 +61,7 @@ SWEP.Sounds = {
 		-- { event AE_WPN_COCK 34 ""},
 		{time = 15/30, sound = "CW_KK_INS2_DOI_WELROD_TWISTOPEN"},
 		{time = 23/30, sound = "CW_KK_INS2_DOI_WELROD_BOLTBACK"},
+		{time = 25/30, sound = "", callback = shell},
 		{time = 32/30, sound = "CW_KK_INS2_DOI_WELROD_BOLTRELEASE"},
 		{time = 37/30, sound = "CW_KK_INS2_DOI_WELROD_TWISTCLOSE"},
 	},

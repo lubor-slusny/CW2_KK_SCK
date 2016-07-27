@@ -16,8 +16,9 @@ if CLIENT then
 	
 	SWEP.MuzzleEffect = "muzzleflash_m3"
 
+	SWEP.NoShells = true
 	SWEP.Shell = "KK_INS2_12guage"
-	SWEP.ShellDelay = 13/30
+	-- SWEP.ShellDelay = 13/30
 	
 	SWEP.AttachmentModelsVM = {}
 	SWEP.AttachmentModelsWM = {}
@@ -63,7 +64,7 @@ SWEP.SlotPos = 0
 SWEP.NormalHoldType = "ar2"
 SWEP.RunHoldType = "passive"
 SWEP.FireModes = {"pump"}
-SWEP.Base = "cw_kk_ins2_base"
+SWEP.Base = "cw_kk_ins2_base_pump"
 SWEP.Category = "CW 2.0 KK INS2 DOI"
 
 SWEP.Author			= "Spy"
@@ -87,7 +88,8 @@ SWEP.Primary.DefaultClip	= 9
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "12 Gauge"
 
-SWEP.FireDelay = 0.8
+-- SWEP.FireDelay = 0.8
+SWEP.FireDelay = 0.3
 SWEP.FireSound = "CW_KK_INS2_M590_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_M590_FIRE_SUPPRESSED"
 SWEP.Recoil = 3
@@ -116,67 +118,10 @@ SWEP.ReloadFinishWaitEmpty = 0.6
 SWEP.Chamberable = true
 SWEP.SnapToIdlePostReload = false
 SWEP.ShotgunReload = true
-SWEP.ReticleInactivityPostFire = 1
-SWEP.GlobalDelayOnShoot = 0.8
+SWEP.ReticleInactivityPostFire = SWEP.FireDelay + 0.2
+SWEP.GlobalDelayOnShoot = SWEP.FireDelay
 
 SWEP.WeaponLength = 18
 
 SWEP.MuzzleVelocity = 381
-
--- function SWEP:updateReloadTimes()
-	-- local mode = self:getForegripMode()
-
-	-- if self:Clip1() == 0 then
-		-- self.Animations.reload_start = self.Animations[mode .. "reload_start_empty"]
-		-- self.Animations.insert = nil
-		-- self.ReloadStartTime = 2.2
-	-- else
-		-- self.Animations.reload_start = self.Animations[mode .. "reload_start"]
-		-- self.Animations.insert = self.Animations[mode .. "insert"]
-		-- if self.base_ReloadStartTime then
-			-- self.ReloadStartTime = self[mode .. "ReloadStartTime"] or self.base_ReloadStartTime
-		-- end
-	-- end
-	
-	-- self.Animations.reload_end = self.Animations[mode .. "reload_end"]
-	-- self.Animations.idle = self.Animations[mode .. "reload_end"]
-	
-	-- if self.base_InsertShellTime then
-		-- self.InsertShellTime = self[mode .. "InsertShellTime"] or self.base_InsertShellTime
-	-- end
-	-- if self.base_ReloadFinishWait then
-		-- self.ReloadFinishWait = self[mode .. "ReloadFinishWait"] or self.base_ReloadFinishWait
-	-- end
--- end
-
-function SWEP:fireAnimFunc()
-	local clip = self:Clip1()
-	local mag = ""
-	
-	if clip == 0 then
-		mag = "_empty"
-	end
-	
-	local prefix = self:getForegripMode()
-	local suffix = ""
-	
-	if self:isAiming() then
-		suffix = "_aim"
-	end
-	
-	if clip > 0 then
-		CustomizableWeaponry.actionSequence.new(self, 0.28, nil, function() 
-			local prefix = self:getForegripMode()
-			local suffix = ""
-			
-			if self:isAiming() then
-				suffix = "_aim"
-			end
-			
-			self:sendWeaponAnim(prefix .. "bolt" .. suffix,1,0)
-		end)
-	end
-	
-	self:sendWeaponAnim(prefix .. "fire" .. mag .. suffix,1,0)
-	
-end //*/
+SWEP.pumpTime = 0.5
