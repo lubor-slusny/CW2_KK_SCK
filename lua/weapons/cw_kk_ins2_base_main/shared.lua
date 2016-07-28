@@ -59,7 +59,7 @@ SWEP.KKINS2Melee = false
 SWEP.KKINS2Nade = false
 SWEP.KK_INS2_EmptyIdle = false
 
-SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.m67
+SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.models.m67
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.bayonet
 SWEP.CW_KK_40MM_MDL = "models/weapons/upgrades/a_projectile_m203.mdl"
 

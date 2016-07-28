@@ -320,7 +320,7 @@ SWEP.WorldModel		= "models/weapons/w_ak74.mdl"
 SWEP.WMPos = Vector(5.666, 0.66, -1.055)
 SWEP.WMAng = Angle(-10, 0, 180)
 
-SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.f1
+SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.models.f1
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.gurkha
 
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted()

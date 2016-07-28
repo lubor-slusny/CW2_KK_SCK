@@ -110,7 +110,7 @@ SWEP.WorldModel		= "models/weapons/w_makarov.mdl"
 SWEP.WMPos = Vector(4.84, 1.608, -1.584)
 SWEP.WMAng = Vector(-3, -5, 180)
 
-SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.f1
+SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.models.f1
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.gurkha
 
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted()

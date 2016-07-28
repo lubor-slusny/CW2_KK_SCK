@@ -29,7 +29,7 @@ SWEP.WorldModel		= "models/weapons/w_gurkha.mdl"
 SWEP.WMPos = Vector(3.812, 1.544, -2.83)
 SWEP.WMAng = Vector(99.385, -22.739, 18.048)
 
-SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.f1
+SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.models.f1
 
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted()
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()

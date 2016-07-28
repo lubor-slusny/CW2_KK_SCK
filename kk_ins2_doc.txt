@@ -1,0 +1,73 @@
+﻿Internal:
+	swep attributes:
+		SWEP.KKINS2Wep - cw_kk_ins2_base and derivates id
+		SWEP.KKINS2RCE - C4 and IEDs id for certain hooks
+		SWEP.KKINS2Melee - cw_kk_ins2_mel_base and derivates id, used by concommand callback
+		SWEP.KKINS2Nade - cw_kk_ins2_nade_base and derivates id, used by concommand callback
+		SWEP.CW_KK_HANDS - hands v_model entity
+		SWEP.CW_KK_KNIFE - quicknife v_model entity
+		SWEP._KK_INS2_SV_FL - server side env_projectedtexture from flashlight v2
+		SWEP._KK_INS2_CL_FL - client side ProjectedTexture from flashlight v6
+		SWEP._KK_INS2_rig - CustomizableWeaponry_KK.ins2.hands index of current SWEP.CW_KK_HANDS mdl
+		SWEP._KK_INS2_wasBipod - used by bipod switch animator
+		SWEP._KK_INS2_postReloadBipodSwitch - used by bipod switch animator
+		SWEP._KK_INS2_wasSprint - used by nearwall-holstering animator 
+		SWEP._KK_INS2_wasSafe - used by nearwall-holstering animator
+		SWEP._KK_INS2_PickedUp - used by first deploy anim/delay system
+		SWEP._KK_INS2_customSuffix - used by extended mags to id reload function 
+		SWEP._KK_INS2_LAM_MODE - flashlight/laser/combo status, set in playerbindpress hook, read in elementRenders
+		SWEP._KK_INS2_stencilsDisableLaser - prevent laser elementRender if stencil sight is active(stencils for whatever reason mess up rendering of lasers)
+		SWEP._KK_INS2_magnifierLastPrimary - used by magnifier to check for primary sight change
+		SWEP.knifeTime - same as CW2 original grenadeTime, but for quicknife
+		SWEP._currentPrimarySight - attachment table of most recently attached .isSight attachment
+		SWEP._currentSecondarySight - attachment table of most recently attached .isSecondarySight attachment
+		SWEP._currentGrenadeLauncher - attachment table of most recently attached .isGrenadeLauncher attachment
+			
+	ent attributes:
+		ent._KK_INS2_lenseProxyMul - used by IronsightVectorResult proxy
+		
+User-handled:
+	swep attributes:
+		SWEP.CW_KK_KNIFE_TWEAK - table, used for customizing quicknife v_model, default: CustomizableWeaponry_KK.ins2.quickKnives.bayonet
+		SWEP.CW_GREN_TWEAK - table, used for customizing quickgrenade v_model, default: CustomizableWeaponry_KK.ins2.quickGrenades.models.m67
+		SWEP.CW_KK_40MM_MDL - string, used for setting custom model of 40mm projectile, default: "models/weapons/upgrades/a_projectile_m203.mdl"
+		SWEP.CW_KK_HANDS_MDL - string, model used for initializing SWEP.CW_KK_HANDS entity, default: "models/weapons/v_hands_vip.mdl"
+		SWEP.Shell2 - string, id of second CW2 shell - like M249 belt link
+		SWEP.KK_INS2_EmptyIdle - bool, tells animators that swep uses empty-idle animations - like pistols, openbolt smgs, closedbolts with boltlock, RPG7...
+		SWEP.FirstDeployTime - float, time it takes to unpack/deploy weapon for the first time
+		SWEP.ViewModelMovementScale_sprint - ViewModelMovementScale to be used while sprinting, only used by weapons in slots 0,1,4,5
+		SWEP.ViewModelMovementScale_base - ViewModelMovementScale to be used otherwise
+		SWEP.WeaponLength - int, weapon length in some units (inches? hammer units?), used in near wall holster function 
+		SWEP.SprintAnimSpeed - float, playbackrate for sprint anim, only used by weapons in slots 0,1,4,5
+		SWEP.ReloadFirstShell - float, reload time for reload_start_empty anims that load first round into chamber
+		SWEP.RearEffectw - bool, should firing spawn shotgun muzzleflash on WM attachment 2? used by rocket launchers
+		SWEP.gl_on_time - float, delay before changing rifle mode to grenade launcher mode, WW2 GLs only
+		SWEP.gl_off_time = float, delay before changing loaded grenade launcher mode to rifle mode, WW2 GLs only
+		SWEP.gl_off_shot_time = float, delay before changing shot grenade launcher mode to rifle mode, WW2 GLs only
+		SWEP.gl_on_ReloadTime = float, delay before loading grenade launcher with ammo
+		SWEP.gl_on_ReloadHalt = float, delay before weapon can be used after grenade launcher reload
+		SWEP.ReloadTimes - table, reload times/halts in format ["sequence_name"] = {floatReloadTime, floatReloadHalt}
+		SWEP.KK_INS2_BoltAction - float, if set, it will be delay before [mode}_bolt animation is played after firing
+		SWEP.ReloadStartTimeEmpty - float, duration of reload-start-empty animation for shotguns
+		SWEP.ReloadFinishWaitEmpty = float, duration of reload-end-empty animation for shotguns
+		SWEP.pumpTime = float, action delay during pumping animation in ins2_base_pump
+		
+	blank functions (used if defined):
+		SWEP:KK_INS2_FL_SRC_OVERRIDE() - client side, alternative way to get flashlight source position/angle, might be unsupported by certain FL versions
+		SWEP:updateOtherParts() - client side, called from Think, usually used for aimposition tweaking (RPK Sopmod, older M16)
+		SWEP:updateStandardParts() - client side, post attach/detach callback, usually used for standard parts(handguards, railcovers)
+		
+	additional velement attributes:
+		merge - bool, bonemerge velement to viewmodel instead of using bone matrix, overrides {attachment, bone, pos, angle, size}
+		attachment - string, attach to viewmodel mdl attachment(alternative to attaching to bone)
+		material - string, same as in SCK - used in velement:SetMaterial()
+		nodraw - bool, if true, model position and angles are updated but velement:DrawModel() is not called - used by previously versions stencil sights
+		
+	CW2 attachment attributes:
+		att.KK_INS2_playIdle - play idle animation after attaching/detaching of this attachment
+		att.AimViewModelFOV - overrides SWEP.AimViewModelFOV
+		att.isSecondarySight - magnifier, backup sight, only used by AimPos Builder
+
+Other addons:
+	SWEP.KK_IGNORE_MAGSYS_TWEAK - bool, prevents mag system tweak from being applied
+	

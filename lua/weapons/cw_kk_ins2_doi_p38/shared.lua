@@ -94,7 +94,7 @@ SWEP.WorldModel		= "models/weapons/w_p38.mdl"
 SWEP.WMPos = Vector(4.5, 1, -3.5)
 SWEP.WMAng = Vector(-8, 0, 180)
 
-SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.ww2de
+SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.models.ww2de
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.ww2de
 
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.doiContentMounted()
