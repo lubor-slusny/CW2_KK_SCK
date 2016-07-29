@@ -26,7 +26,7 @@ SWEP.grenadeEnt = "cw_grenade_thrown"
 
 SWEP.Animations = {
 	draw = "base_draw",
-	throw = "throw",
+	throw = "bakethrow",
 	pullpin = "pullbackhigh",
 	
 	base_idle = "idle",
@@ -117,3 +117,4 @@ SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "Frag Grenades"
 
 -- SWEP.swapTime = 0.7
+SWEP.timeToThrow = 1.5

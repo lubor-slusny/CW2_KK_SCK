@@ -59,7 +59,7 @@ CustomizableWeaponry_KK.ins2.quickGrenades.categories = {
 }
 
 if CustomizableWeaponry_KK.HOME then
-	CustomizableWeaponry_KK.ins2.quickGrenades.categories[4] = {text = "BUG", ammo = "9x19MM", class = "npc_grenade_bugbait"}
+	CustomizableWeaponry_KK.ins2.quickGrenades.categories[4] = {text = "BUG", /*ammo = "9x19MM", */class = "npc_grenade_bugbait"}
 end
 
 function CustomizableWeaponry_KK.ins2:getNadeAmmo()
@@ -105,8 +105,8 @@ function CustomizableWeaponry_KK.ins2:canThrow()
 	end
 	
 	// can't throw with no grenades
-	local curSetup = CustomizableWeaponry_KK.ins2.getNadeAmmo(self)
-	if self.Owner:GetAmmoCount(curSetup.ammo) <= 0 then
+	local ammo = CustomizableWeaponry_KK.ins2.getNadeAmmo(self).ammo
+	if ammo and self.Owner:GetAmmoCount(ammo) <= 0 then
 		return false
 	end
 	
@@ -229,7 +229,7 @@ function CustomizableWeaponry_KK.ins2:throwGrenade(IFTP)
 				
 				local suppressAmmoUsage = CustomizableWeaponry.callbacks.processCategory(self, "shouldSuppressAmmoUsage")
 				
-				if not suppressAmmoUsage then
+				if nadeAmmo and not suppressAmmoUsage then
 					self.Owner:RemoveAmmo(1, nadeAmmo)
 				end
 			end)
@@ -300,7 +300,7 @@ end
 // concommand for cycling type
 
 if CLIENT then
-	local function cw_kk_throwfrag(ply)
+	local function cw_kk_cyclefrag()
 		local set = CustomizableWeaponry_KK.ins2.quickGrenades.cvarType:GetInt() + 1
 		
 		if set > #CustomizableWeaponry_KK.ins2.quickGrenades.categories then
@@ -310,6 +310,6 @@ if CLIENT then
 		RunConsoleCommand("_cw_kk_ins2_qnadetype", set)
 	end
 	
-	concommand.Add("cw_kk_ins2_cyclenadetype", cw_kk_throwfrag)
+	concommand.Add("cw_kk_ins2_cyclenadetype", cw_kk_cyclefrag)
 end
 

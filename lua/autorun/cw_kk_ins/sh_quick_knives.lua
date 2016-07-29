@@ -32,6 +32,10 @@ CustomizableWeaponry_KK.ins2.quickKnives.ww2de = {
 	vm = "models/weapons/v_k98kbayonet.mdl",
 	a_attack = "hitcenter1"
 }
+CustomizableWeaponry_KK.ins2.quickKnives.ww2us = {
+	vm = "models/weapons/v_k98kbayonet.mdl",
+	a_attack = "hitcenter1"
+}
 
 function CustomizableWeaponry_KK.ins2:canKnife()
 	// can't throw if we're within a restricted state

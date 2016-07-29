@@ -35,8 +35,8 @@ if CLIENT then
 	SWEP.CustomizePos = Vector(6.488, -1.627, -2.821)
 	SWEP.CustomizeAng = Vector(17.009, 29.971, 16.669)
 	
-	SWEP.IronsightPos = Vector(-2.3517, -2, 1.2473)
-	SWEP.IronsightAng = Vector(0.0334, 0, 0)
+	SWEP.IronsightPos = Vector(-2.3595, -2, 0.952)
+	SWEP.IronsightAng = Vector(-0.0747, 0.0156, 0)
 
 	SWEP.CustomizationMenuScale = 0.015
 end

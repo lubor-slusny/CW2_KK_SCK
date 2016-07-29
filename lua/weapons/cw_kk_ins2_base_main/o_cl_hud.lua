@@ -79,7 +79,7 @@ function SWEP:draw3D2DHUD()
 					
 					local nadeSetup = CustomizableWeaponry_KK.ins2.getNadeAmmo(self)
 					
-					local nadeCount = self.Owner:GetAmmoCount(nadeSetup.ammo)
+					local nadeCount = nadeSetup.ammo and self.Owner:GetAmmoCount(nadeSetup.ammo) or -1
 					
 					if nadeCount > 0 then
 						nadeText = nadeCount .. "x " .. nadeSetup.text .. ", " 
@@ -155,7 +155,7 @@ function SWEP:draw3D2DHUD()
 				
 				local nadeSetup = CustomizableWeaponry_KK.ins2.getNadeAmmo(self)
 					
-				local nadeCount = self.Owner:GetAmmoCount(nadeSetup.ammo)
+				local nadeCount = nadeSetup.ammo and self.Owner:GetAmmoCount(nadeSetup.ammo) or -1
 				
 				if nadeCount > 0 then
 					draw.ShadowText(nadeCount .. "x " .. nadeSetup.text, "CW_HUD40", 90, 140, self.HUDColors.white, self.HUDColors.black, 2, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
@@ -284,7 +284,7 @@ function SWEP:drawCustomHUD()
 			
 			local nadeSetup = CustomizableWeaponry_KK.ins2.getNadeAmmo(self)
 			
-			local nadeCount = self.Owner:GetAmmoCount(nadeSetup.ammo)
+			local nadeCount = nadeSetup.ammo and self.Owner:GetAmmoCount(nadeSetup.ammo) or -1
 			
 			if nadeCount > 0 then
 				nadeText = nadeCount .. "x " .. nadeSetup.text .. ", " 
@@ -347,7 +347,7 @@ function SWEP:drawCustomHUD()
 		
 		local nadeSetup = CustomizableWeaponry_KK.ins2.getNadeAmmo(self)
 		
-		local nadeCount = self.Owner:GetAmmoCount(nadeSetup.ammo)
+		local nadeCount = nadeSetup.ammo and self.Owner:GetAmmoCount(nadeSetup.ammo) or -1
 		
 		// display the amount of frag grenades only if we have some
 		if nadeCount > 0 then

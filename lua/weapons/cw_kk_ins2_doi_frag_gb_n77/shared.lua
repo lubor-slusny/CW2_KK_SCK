@@ -113,3 +113,5 @@ SWEP.Primary.ClipSize		= -1
 SWEP.Primary.DefaultClip	= 1
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "Frag Grenades"
+
+SWEP.timeToThrow = 1.1

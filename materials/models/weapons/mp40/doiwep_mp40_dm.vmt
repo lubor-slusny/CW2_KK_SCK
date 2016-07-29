@@ -1,0 +1,24 @@
+"VertexLitGeneric"
+{
+	"$basetexture"					"models\weapons\mp40\doiwep_mp40_dm"
+	"$bumpmap" 						"models\weapons\mp40\doiwep_mp40_nm"
+	"$phongexponenttexture"         "models\weapons\mp40\doiwep_mp40_exp"
+    "$color"						"[1 1 1]"
+
+	"$phong"                        "1"
+	"$basemapalphaphongmask" 		"1"
+//	"$basemapluminancephongmask" 	"1"
+//	"$phongalbedotint"              "1"
+	"$phongtint"                    "[.67 .9 1]"
+//	"$phongtint"                    "[0.98 0.97 0.86]"
+	"$phongboost"                   "1.25"
+//	"$phongexponent"                "70"
+	"$phongfresnelranges"           "[1 1 1]"
+
+
+	"$envmap"                       "env_cubemap"
+	"$basealphaenvmapmask" 			"1"
+	"$envmapsaturation" 			"0.5"
+//	"$normalmapalphaenvmapmask"		"1"
+	"$envmaptint"                   "[.05 .05 .05]"
+}

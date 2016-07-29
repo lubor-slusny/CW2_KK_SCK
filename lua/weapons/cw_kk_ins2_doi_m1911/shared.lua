@@ -29,8 +29,8 @@ if CLIENT then
 		["kk_ins2_mag_m1911_15"] = {model = "models/weapons/upgrades/w_magazine_1911_15.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 	}
 	
-	SWEP.IronsightPos = Vector(-1.859, 0, 0.3468)
-	SWEP.IronsightAng = Vector(0.3062, -0.0054, 0)
+	SWEP.IronsightPos = Vector(-1.8248, 0, 0.3468)
+	SWEP.IronsightAng = Vector(0.7758, 0.0761, 6.2803)
 
 	SWEP.CustomizationMenuScale = 0.01
 	SWEP.ReloadViewBobEnabled = false
@@ -87,8 +87,8 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/v_cw_kk_ins2_doi_m1911.mdl"
-SWEP.WorldModel		= "models/weapons/w_cw_kk_ins2_m1911.mdl"
+SWEP.ViewModel		= "models/weapons/v_cw_kk_doi_m1911.mdl"
+SWEP.WorldModel		= "models/weapons/w_cw_kk_doi_m1911.mdl"
 
 SWEP.WMPos = Vector(5.309, 1.623, -1.616)
 SWEP.WMAng = Vector(-3, -5, 180)

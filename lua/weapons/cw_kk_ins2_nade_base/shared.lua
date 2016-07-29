@@ -64,8 +64,8 @@ SWEP.DeployTime = 0.5
 SWEP.SpeedDec = 0
 SWEP.WeaponLength = 0
 
-SWEP.timeToThrow = 0.7
-SWEP.swapTime = 0.4
+SWEP.timeToThrow = 0.8
+SWEP.swapTime = 0.7
 SWEP.fuseTime = 3
 
 function SWEP:Initialize()

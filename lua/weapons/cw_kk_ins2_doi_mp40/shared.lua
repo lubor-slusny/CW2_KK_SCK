@@ -21,36 +21,11 @@ if CLIENT then
 	SWEP.ShellViewAngleAlign = {Forward = 0, Right = 0, Up = 180}
 	SWEP.ShellWorldAngleAlign = {Forward = 0, Right = 0, Up = 180}
 	
-	SWEP.AttachmentModelsVM = {
-		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_band.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_band.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-	}
+	SWEP.AttachmentModelsVM = {}
+	SWEP.AttachmentModelsWM = {}
 	
-	SWEP.AttachmentModelsWM = {
-		["kk_ins2_lam"] = {model = "models/weapons/upgrades/w_laser_ins.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/w_laser_ins.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-	}
-	
-	SWEP.IronsightPos = Vector(-2.505, -2, 0.68)
-	SWEP.IronsightAng = Vector(0, 0.05, 0)
-	
-	SWEP.KKINS2EoTechPos = Vector(-2.5102, -2, -0.2916)
-	SWEP.KKINS2EoTechAng = Vector(0, 0, 0)
-
-	SWEP.KKINS2AimpointPos = Vector(-2.505, -2, -0.2748)
-	SWEP.KKINS2AimpointAng = Vector(0, 0, 0)
-
-	SWEP.KKINS2KobraPos = Vector(-2.5103, -2, -0.3096)
-	SWEP.KKINS2KobraAng = Vector(0, 0, 0)
-
-	SWEP.KKINS2PO4Pos = Vector(-2.4542, -3, -0.1948)
-	SWEP.KKINS2PO4Ang = Vector(0, 0, 0)
-
-	SWEP.KKINS2MagnifierPos = Vector(-2.5024, -3, -0.2802)
-	SWEP.KKINS2MagnifierAng = Vector(0, 0, 0)
-
-	SWEP.KKINS2ElcanPos = Vector(-2.5041, -3, -0.5503)
-	SWEP.KKINS2ElcanAng = Vector(0, 0, 0)
+	SWEP.IronsightPos = Vector(-2.5062, -2, 0.5482)
+	SWEP.IronsightAng = Vector(0.2105, 0.0425, 0)
 
 end
 
@@ -102,8 +77,8 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/v_cw_kk_ins2_doi_mp40.mdl"
-SWEP.WorldModel		= "models/weapons/w_mp40.mdl"
+SWEP.ViewModel		= "models/weapons/v_cw_kk_doi_mp40.mdl"
+SWEP.WorldModel		= "models/weapons/w_cw_kk_doi_mp40.mdl"
 
 SWEP.WMPos = Vector(5.176, 0.889, -1.417)
 SWEP.WMAng = Vector(-10, 0, 180)

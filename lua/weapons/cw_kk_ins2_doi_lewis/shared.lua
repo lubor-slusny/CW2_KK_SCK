@@ -140,3 +140,10 @@ SWEP.ReloadHalt_Empty = 8.13
 SWEP.WeaponLength = 28
 
 SWEP.MuzzleVelocity = 740
+
+if CLIENT then
+	function SWEP:updateOtherParts()
+		self:setBodygroup(1, math.Clamp(self:Clip1(), 0, 26))
+	
+	end
+end
