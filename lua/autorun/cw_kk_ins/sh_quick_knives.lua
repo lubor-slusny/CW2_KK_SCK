@@ -7,33 +7,41 @@ CustomizableWeaponry_KK.ins2.quickKnives = CustomizableWeaponry_KK.ins2.quickKni
 
 hook.Add("InitPostEntity", "CW_KK_INS2_MELEE_ICON", function()
 	if SERVER then
-		CustomizableWeaponry_KK.ins2.quickKnives._inflictor = ents.Create("cw_kk_ins2_damage_melee")
+		CustomizableWeaponry_KK.ins2.quickKnives.inflictor = ents.Create("cw_kk_ins2_damage_melee")
 	end
 end)
 
 // lets see if it works
 
-CustomizableWeaponry_KK.ins2.quickKnives.gurkha = {
+CustomizableWeaponry_KK.ins2.quickKnives.models = {}
+
+CustomizableWeaponry_KK.ins2.quickKnives.models.gurkha = {
 	vm = "models/weapons/v_gurkha.mdl",
 	a_attack = "hitcenter3"
 }
 
-CustomizableWeaponry_KK.ins2.quickKnives.bayonet = {
+CustomizableWeaponry_KK.ins2.quickKnives.models.bayonet = {
 	vm = "models/weapons/v_marinebayonet.mdl",
 	a_attack = "hitcenter3"
 }
 
-CustomizableWeaponry_KK.ins2.quickKnives.ninjato = {
+CustomizableWeaponry_KK.ins2.quickKnives.models.ninjato = {
 	vm = "models/weapons/v_cw_kk_ins2_ninjato.mdl",
 	a_attack = "hitcenter1"
 }
 
-CustomizableWeaponry_KK.ins2.quickKnives.ww2de = {
+CustomizableWeaponry_KK.ins2.quickKnives.models.ww2de = {
 	vm = "models/weapons/v_k98kbayonet.mdl",
 	a_attack = "hitcenter1"
 }
-CustomizableWeaponry_KK.ins2.quickKnives.ww2us = {
-	vm = "models/weapons/v_k98kbayonet.mdl",
+
+CustomizableWeaponry_KK.ins2.quickKnives.models.ww2us = {
+	vm = "models/weapons/v_garand_bayonet.mdl",
+	a_attack = "hitcenter1"
+}
+
+CustomizableWeaponry_KK.ins2.quickKnives.models.ww2gb = {
+	vm = "models/weapons/v_garand_bayonet.mdl",
 	a_attack = "hitcenter1"
 }
 
@@ -130,6 +138,9 @@ function CustomizableWeaponry_KK.ins2:meleeKnife()
 				CustomizableWeaponry.actionSequence.new(self, 0.1, nil, function()
 					self.GrenadePos.z = -15
 					self.knifeTime = CurTime() + 1
+					
+					self.CW_KK_HANDS:SetParent(self.CW_KK_KNIFE)
+					
 					self:playAnim(self.CW_KK_KNIFE_TWEAK.a_attack, 0, 0.1, self.CW_KK_KNIFE)
 				end)
 				
@@ -171,7 +182,7 @@ function CustomizableWeaponry_KK.ins2:meleeKnife()
 						
 						d:SetAttacker(self.Owner)
 						-- d:SetInflictor(self)
-						d:SetInflictor(CustomizableWeaponry_KK.ins2.quickKnives._inflictor or self)
+						d:SetInflictor(CustomizableWeaponry_KK.ins2.quickKnives.inflictor or self)
 						
 						d:SetDamage(dmg)
 						
@@ -211,6 +222,12 @@ if CLIENT then
 
 	local pos, ang
 	
+	local EyePos = EyePos
+	local EyeAngles = EyeAngles
+	local CurTime = CurTime
+	local Lerp = Lerp
+	local FrameTime = FrameTime
+	
 	function CustomizableWeaponry_KK.ins2:drawKKKnife()
 		if CurTime() > self.knifeTime then
 			return
@@ -227,11 +244,6 @@ if CLIENT then
 		self.CW_KK_KNIFE:SetAngles(ang)
 		self.CW_KK_KNIFE:FrameAdvance(FrameTime())
 
-		self.CW_KK_HANDS:SetPos(pos)
-		self.CW_KK_HANDS:SetParent(self.CW_KK_KNIFE)
-		-- self.CW_KK_HANDS:AddEffects(EF_BONEMERGE_FASTCULL)
-		self.CW_KK_HANDS:AddEffects(EF_BONEMERGE)
-		
 		cam.IgnoreZ(true)
 			self.CW_KK_KNIFE:DrawModel()
 			self.CW_KK_HANDS:DrawModel()

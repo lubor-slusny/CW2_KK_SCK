@@ -89,7 +89,7 @@ SWEP.WMPos = Vector(6.035, 0.5, -3)
 SWEP.WMAng = Vector(-8, 0, -180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.models.ww2de
-SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.ww2de
+SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.models.ww2de
 
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.doiContentMounted()
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.doiContentMounted()

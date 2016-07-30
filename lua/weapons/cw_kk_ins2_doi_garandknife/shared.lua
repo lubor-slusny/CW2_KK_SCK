@@ -9,6 +9,17 @@ if CLIENT then
 	SWEP.AttachmentModelsVM = {}
 end
 
+SWEP.Animations = {
+	draw = "draw",
+
+	base_pickup = "draw",
+	base_draw = "draw",
+	base_fire = {"hitcenter1","hitcenter2"},
+	base_idle = "idle",
+	base_holster = "holster",
+	base_sprint = "sprint",
+}
+
 SWEP.NormalHoldType = "knife"
 SWEP.RunHoldType = "passive"
 SWEP.FireModes = {"auto"}
@@ -23,7 +34,7 @@ SWEP.Instructions	= ""
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_garand_bayonet.mdl"
-SWEP.WorldModel		= "models/weapons/w_bayonet_kar98k.mdl"
+SWEP.WorldModel		= "models/weapons/w_marinebayonet.mdl"
 
 SWEP.WMPos = Vector(3.812, 1.544, -2.83)
 SWEP.WMAng = Vector(99.385, -22.739, 18.048)

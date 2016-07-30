@@ -50,6 +50,10 @@ function SWEP:createCustomVM(mdl)
 	self.CW_KK_HANDS:SetNoDraw(true)
 	self.CW_KK_HANDS:SetupBones()
 	
+	self.CW_KK_HANDS:SetParent(self.CW_VM)
+	self.CW_KK_HANDS:AddEffects(EF_BONEMERGE)
+	-- self.CW_KK_HANDS:AddEffects(EF_BONEMERGE_FASTCULL)
+	
 	self.CW_GREN = self:createManagedCModel(self.CW_GREN_TWEAK.vm, RENDERGROUP_BOTH)
 	self.CW_GREN:SetNoDraw(true)
 	self.CW_GREN:SetupBones()
@@ -93,11 +97,12 @@ function SWEP:_drawViewModel()
 	self.CW_VM:SetupBones()
 	self.CW_VM:DrawModel()
 	
-	if CurTime() > self.grenadeTime and CurTime() > self.knifeTime then
+	local CT = CurTime()
+	
+	if CT > self.grenadeTime and CT > self.knifeTime then
 		self.CW_KK_HANDS:SetPos(self.CW_VM:GetPos())
 		
 		self.CW_KK_HANDS:SetParent(self.CW_VM)
-		self.CW_KK_HANDS:AddEffects(EF_BONEMERGE)
 		self.CW_KK_HANDS:DrawModel()
 	end
 			
@@ -145,10 +150,6 @@ function SWEP:drawGrenade()
 	self.CW_GREN:SetPos(pos)
 	self.CW_GREN:SetAngles(ang)
 	self.CW_GREN:FrameAdvance(FrameTime())
-	
-	self.CW_KK_HANDS:SetPos(pos)
-	self.CW_KK_HANDS:SetParent(self.CW_GREN)
-	self.CW_KK_HANDS:AddEffects(EF_BONEMERGE_FASTCULL)
 	
 	cam.IgnoreZ(true)
 		self.CW_GREN:DrawModel()

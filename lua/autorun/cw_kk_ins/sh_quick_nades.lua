@@ -54,12 +54,15 @@ CustomizableWeaponry_KK.ins2.quickGrenades.models.ww2gb = {
 
 CustomizableWeaponry_KK.ins2.quickGrenades.categories = {
 	{text = "FRAG", ammo = "Frag Grenades", class = "cw_grenade_thrown"},
+	-- {text = "FRAG", ammo = "Frag Grenades", class = "npc_grenade_frag"},
+	-- {text = "FRAG", ammo = "Frag Grenades", class = "weapon_striderbuster"},
 	{text = "FLASH", ammo = "Flash Grenades", class = "cw_flash_thrown", default = "m84"},
 	{text = "SMOKE", ammo = "Smoke Grenades", class = "cw_smoke_thrown", default = "m18"},
 }
 
 if CustomizableWeaponry_KK.HOME then
-	CustomizableWeaponry_KK.ins2.quickGrenades.categories[4] = {text = "BUG", /*ammo = "9x19MM", */class = "npc_grenade_bugbait"}
+	-- CustomizableWeaponry_KK.ins2.quickGrenades.categories[4] = {text = "BUG", /*ammo = "9x19MM", */class = "npc_grenade_bugbait"}
+	-- CustomizableWeaponry_KK.ins2.quickGrenades.categories[5] = {text = "HL2", /*ammo = "9x19MM", */class = "npc_grenade_frag"}
 end
 
 function CustomizableWeaponry_KK.ins2:getNadeAmmo()
@@ -159,6 +162,9 @@ function CustomizableWeaponry_KK.ins2:throwGrenade(IFTP)
 			CustomizableWeaponry.actionSequence.new(self, 0.45, nil, function()
 				self.GrenadePos.z = -10
 				self.grenadeTime = CurTime() + 1.5
+				
+				self.CW_KK_HANDS:SetParent(self.CW_GREN)
+				
 				self:playAnim(quickNadeTweak.a_pinpull, 1, 0, self.CW_GREN)
 			end)
 			
@@ -169,6 +175,12 @@ function CustomizableWeaponry_KK.ins2:throwGrenade(IFTP)
 			CustomizableWeaponry.actionSequence.new(self, 1, nil, function()
 				self:playAnim(quickNadeTweak.a_throw, 1.1, 0, self.CW_GREN)
 			end)
+			
+			-- CustomizableWeaponry.actionSequence.new(self, 1.25, nil, function()
+				-- if nadeAmmo and self.Owner:GetAmmoCount(nadeAmmo) < 1 then
+					-- RunConsoleCommand("cw_kk_ins2_cyclenadetype")
+				-- end
+			-- end)
 		end
 		
 		if SERVER then
@@ -198,6 +210,7 @@ function CustomizableWeaponry_KK.ins2:throwGrenade(IFTP)
 				end
 				
 				nade:SetOwner(self.Owner)
+				nade:SetModel(quickNadeTweak.wm)
 				
 				
 				
@@ -226,6 +239,9 @@ function CustomizableWeaponry_KK.ins2:throwGrenade(IFTP)
 					nade:SetVelocity(velocity)
 					-- nade:AddAngleVelocity(Vector(math.random(-500, 500), math.random(-500, 500), math.random(-500, 500)))
 				end
+				
+				-- nade:Fire("ExplodeIn", 3)
+				nade:Fire("SetTimer", 3)
 				
 				local suppressAmmoUsage = CustomizableWeaponry.callbacks.processCategory(self, "shouldSuppressAmmoUsage")
 				
@@ -300,10 +316,22 @@ end
 // concommand for cycling type
 
 if CLIENT then
+	local cats = CustomizableWeaponry_KK.ins2.quickGrenades.categories
+	
 	local function cw_kk_cyclefrag()
 		local set = CustomizableWeaponry_KK.ins2.quickGrenades.cvarType:GetInt() + 1
 		
-		if set > #CustomizableWeaponry_KK.ins2.quickGrenades.categories then
+		for _ = 1, #cats do
+			if set > #cats then
+				set = 1
+			end
+			
+			if cats[set].ammo and LocalPlayer():GetAmmoCount(cats[set].ammo) < 1 then
+				set = set + 1
+			end
+		end
+		
+		if set > #cats then
 			set = 1
 		end
 		
@@ -311,5 +339,13 @@ if CLIENT then
 	end
 	
 	concommand.Add("cw_kk_ins2_cyclenadetype", cw_kk_cyclefrag)
+	
+	hook.Add("Think", "CW_KK_INS2_QNADEAMMOWATCH", function()
+		local cur = CustomizableWeaponry_KK.ins2.quickGrenades.cvarType:GetInt()
+		
+		if cats[cur] and cats[cur].ammo and LocalPlayer():GetAmmoCount(cats[cur].ammo) < 1 then
+			RunConsoleCommand("cw_kk_ins2_cyclenadetype")
+		end
+	end)
 end
 

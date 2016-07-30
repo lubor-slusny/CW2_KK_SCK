@@ -8,7 +8,7 @@ AddCSLuaFile()
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "Mk2 Frag"
+	SWEP.PrintName = "Mk2 Frag. Grenade"
 	SWEP.CSMuzzleFlashes = true
 	
 	SWEP.IconLetter = "O"

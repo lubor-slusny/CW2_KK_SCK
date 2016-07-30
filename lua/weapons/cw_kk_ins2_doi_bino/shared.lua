@@ -6,8 +6,6 @@ AddCSLuaFile("sh_soundscript.lua")
 include("sh_sounds.lua")
 include("sh_soundscript.lua")
 
-SWEP.magType = "pistolMag"
-
 if CLIENT then
 	SWEP.DrawCrosshair = false
 	SWEP.PrintName = "Binoculars"
@@ -15,15 +13,11 @@ if CLIENT then
 	
 	SWEP.IconLetter = "f"
 	
-	SWEP.MuzzleEffect = "muzzleflash_pistol"
-	SWEP.Shell = "KK_INS2_9x19"
-	SWEP.ShellDelay = 0.06
-	
 	SWEP.AttachmentModelsVM = {}
 	SWEP.AttachmentModelsWM = {}
 	
-	SWEP.IronsightPos = Vector(-1.7612, 0, 0.9093)
-	SWEP.IronsightAng = Vector(0.3285, 0.0045, 0)
+	SWEP.IronsightPos = Vector(0, 0, 0)
+	SWEP.IronsightAng = Vector(0, 0, 0)
 
 	SWEP.CustomizationMenuScale = 0.01
 	SWEP.ReloadViewBobEnabled = false
@@ -33,9 +27,7 @@ end
 SWEP.CanRestOnObjects = false
 SWEP.WeaponLength = 16
 
-SWEP.Attachments = {
-	["+reload"] = {header = "Ammo", offset = {500, 50}, atts = {"am_magnum", "am_matchgrade"}}
-}
+SWEP.Attachments = {}
 
 SWEP.KK_INS2_EmptyIdle = true
 
@@ -91,7 +83,7 @@ SWEP.WMPos = Vector(4.5, 1, -3.5)
 SWEP.WMAng = Vector(-8, 0, 180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.models.ww2de
-SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.ww2de
+SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.models.ww2de
 
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.doiContentMounted()
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.doiContentMounted()

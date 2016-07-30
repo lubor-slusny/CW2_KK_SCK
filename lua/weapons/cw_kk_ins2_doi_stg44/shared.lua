@@ -73,7 +73,7 @@ SWEP.ViewModel		= "models/weapons/v_stg44.mdl"
 SWEP.WorldModel		= "models/weapons/w_stg44.mdl"
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.models.ww2de
-SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.ww2de
+SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.models.ww2de
 
 SWEP.WMPos = Vector(11, 1, -1)
 SWEP.WMAng = Vector(-6, 0, 180)

@@ -32,6 +32,7 @@ SWEP.AimingEnabled = false
 SWEP.CanCustomize = false
 SWEP.HolsterUnderwater = false
 SWEP.AccuracyEnabled = false
+SWEP.AddSafeMode = false
 
 SWEP.Primary.ClipSize		= -1
 SWEP.Primary.DefaultClip	= -1
@@ -54,17 +55,6 @@ SWEP.DeployTime = 0.6
 
 SWEP.SpeedDec = 0
 SWEP.WeaponLength = 0
-
-SWEP.Animations = {
-	draw = "draw",
-
-	base_pickup = "draw",
-	base_draw = "draw",
-	base_fire = {"hitcenter1","hitcenter2","hitcenter3"},
-	base_idle = "idle",
-	base_holster = "holster",
-	base_sprint = "sprint",
-}
 
 CustomizableWeaponry:addFireSound("CW_KK_INS2_KNIFE", "weapons/knife/knife_slash_01.wav", 1, 70, CHAN_STATIC)
 

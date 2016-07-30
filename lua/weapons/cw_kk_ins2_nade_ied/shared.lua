@@ -148,6 +148,33 @@ SWEP.WeaponLength = 40
 
 SWEP.KKINS2RCE = true
 
+if SERVER then	
+	function SWEP:EquipAmmo(ply)
+		if (ply:HasWeapon(self:GetClass())) then
+			local owned = ply:GetWeapon(self:GetClass())
+			local remove = table.Count(self.PlantedCharges)
+			
+			for k,v in pairs(self.PlantedCharges) do
+				if IsValid(v) then
+					v.Detonator = owned
+					owned.PlantedCharges[v] = v
+				end
+			end
+			
+			if self:Clip1() == -1 then
+				ply:GiveAmmo(1, self.Primary.Ammo)
+			else
+				ply:RemoveAmmo(remove, self.Primary.Ammo)
+			end
+		end
+	end
+	
+	function SWEP:equipFunc()
+		local ply = self.Owner
+		ply:GiveAmmo(2 - ply:GetAmmoCount(self.Primary.Ammo), self.Primary.Ammo)
+	end
+end
+
 function SWEP:ShouldDropOnDie()
 	return true
 end

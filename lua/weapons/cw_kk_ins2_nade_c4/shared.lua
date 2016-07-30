@@ -152,31 +152,31 @@ SWEP.WeaponLength = 40
 
 local SP = game.SinglePlayer()
 
-if SERVER then
-	hook.Add("PlayerCanPickupWeapon", "ZZZZZ_CW_KK_INS2_C4", function(ply, wep)
-		if !wep.KKINS2RCE then return nil end
-		
-		if (ply:HasWeapon(wep:GetClass())) then
-			owned = ply:GetWeapon(wep:GetClass())
+if SERVER then	
+	function SWEP:EquipAmmo(ply)
+		if (ply:HasWeapon(self:GetClass())) then
+			local owned = ply:GetWeapon(self:GetClass())
+			local remove = table.Count(self.PlantedCharges)
 			
-			for k,v in pairs(wep.PlantedCharges) do
+			for k,v in pairs(self.PlantedCharges) do
 				if IsValid(v) then
 					v.Detonator = owned
 					owned.PlantedCharges[v] = v
 				end
 			end
 			
-			if wep:Clip1() == -1 then
-				ply:GiveAmmo(1, wep.Primary.Ammo)
+			if self:Clip1() == -1 then
+				ply:GiveAmmo(1, self.Primary.Ammo)
+			else
+				ply:RemoveAmmo(remove, self.Primary.Ammo)
 			end
-			
-			wep:Remove()
-			return false
-		else
-			ply:GiveAmmo(2 - ply:GetAmmoCount(wep.Primary.Ammo), wep.Primary.Ammo)
-			return true
 		end
-	end)
+	end
+	
+	function SWEP:equipFunc()
+		local ply = self.Owner
+		ply:GiveAmmo(2 - ply:GetAmmoCount(self.Primary.Ammo), self.Primary.Ammo)
+	end
 end
 
 function SWEP:ShouldDropOnDie()
