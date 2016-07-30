@@ -61,7 +61,7 @@ SWEP.Animations = {
 
 SWEP.SpeedDec = 10
 
-SWEP.Slot = 1
+SWEP.Slot = 5
 SWEP.SlotPos = 0
 SWEP.NormalHoldType = "revolver"
 SWEP.RunHoldType = "normal"

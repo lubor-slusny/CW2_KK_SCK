@@ -61,8 +61,8 @@ CustomizableWeaponry_KK.ins2.quickGrenades.categories = {
 }
 
 if CustomizableWeaponry_KK.HOME then
-	-- CustomizableWeaponry_KK.ins2.quickGrenades.categories[4] = {text = "BUG", /*ammo = "9x19MM", */class = "npc_grenade_bugbait"}
-	-- CustomizableWeaponry_KK.ins2.quickGrenades.categories[5] = {text = "HL2", /*ammo = "9x19MM", */class = "npc_grenade_frag"}
+	CustomizableWeaponry_KK.ins2.quickGrenades.categories[4] = {text = "BUG", /*ammo = "9x19MM", */class = "npc_grenade_bugbait"}
+	CustomizableWeaponry_KK.ins2.quickGrenades.categories[5] = {text = "HL2", ammo = "Frag Grenades", class = "npc_grenade_frag"}
 end
 
 function CustomizableWeaponry_KK.ins2:getNadeAmmo()
@@ -342,12 +342,14 @@ if CLIENT then
 	
 	concommand.Add("cw_kk_ins2_cyclenadetype", cw_kk_cyclefrag)
 	
-	hook.Add("Think", "CW_KK_INS2_QNADEAMMOWATCH", function()
+	local function think()
 		local cur = CustomizableWeaponry_KK.ins2.quickGrenades.cvarType:GetInt()
 		
 		if cats[cur] and cats[cur].ammo and LocalPlayer():GetAmmoCount(cats[cur].ammo) < 1 then
 			RunConsoleCommand("cw_kk_ins2_cyclenadetype")
 		end
-	end)
+	end
+	
+	hook.Add("Think", "CW_KK_INS2_QNADEAMMOWATCH", think)
 end
 

@@ -12,6 +12,8 @@ if CLIENT then
 	SWEP.ViewModelMovementScale_base = 0.6
 	SWEP.DisableSprintViewSimulation = true
 	SWEP.HUD_3D2DScale = 0.008
+	
+	SWEP.HUD_3D2DBone = 59
 end
 
 SWEP.CanRestOnObjects = false
@@ -114,7 +116,7 @@ if CLIENT then
 		if self.Owner:ShouldDrawLocalPlayer() then
 			m = self.Owner:GetBoneMatrix(self.Owner:LookupBone("ValveBiped.Bip01_R_Hand"))
 		else
-			m = self.CW_VM:GetBoneMatrix(59)
+			m = self.CW_VM:GetBoneMatrix(self.HUD_3D2DBone)
 		end
 		
 		muz.Pos = m:GetTranslation()

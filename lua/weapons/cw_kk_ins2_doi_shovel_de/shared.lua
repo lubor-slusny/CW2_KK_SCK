@@ -5,6 +5,8 @@ if CLIENT then
 	SWEP.PrintName = "Shovel DE"
 	
 	SWEP.AttachmentModelsVM = {}
+	
+	SWEP.HUD_3D2DBone = 39
 end
 
 SWEP.Animations = {
@@ -29,7 +31,7 @@ SWEP.Contact		= ""
 SWEP.Purpose		= ""
 SWEP.Instructions	= ""
 
-SWEP.ViewModelFOV	= 60
+SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_etool_ger.mdl"
 SWEP.WorldModel		= "models/weapons/w_marinebayonet.mdl"

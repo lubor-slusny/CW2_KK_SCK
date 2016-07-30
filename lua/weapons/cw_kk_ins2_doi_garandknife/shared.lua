@@ -7,6 +7,8 @@ if CLIENT then
 	SWEP.ViewModelMovementScale = 1.15
 	
 	SWEP.AttachmentModelsVM = {}
+	
+	SWEP.HUD_3D2DBone = 57
 end
 
 SWEP.Animations = {

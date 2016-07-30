@@ -22,6 +22,7 @@
 		SWEP._currentPrimarySight - attachment table of most recently attached .isSight attachment
 		SWEP._currentSecondarySight - attachment table of most recently attached .isSecondarySight attachment
 		SWEP._currentGrenadeLauncher - attachment table of most recently attached .isGrenadeLauncher attachment
+		SWEP._pauseUpdatingBelt - used by beltBodygroupToAmmoReseve event during M249 reload
 			
 	ent attributes:
 		ent._KK_INS2_lenseProxyMul - used by IronsightVectorResult proxy
@@ -51,6 +52,9 @@ User-handled:
 		SWEP.ReloadStartTimeEmpty - float, duration of reload-start-empty animation for shotguns
 		SWEP.ReloadFinishWaitEmpty = float, duration of reload-end-empty animation for shotguns
 		SWEP.pumpTime = float, action delay during pumping animation in ins2_base_pump
+		SWEP.ShellViewAngleAlign = table, format: {Forward = 0, Right = 0, Up = 0}, used for tweaking angles of ejected shells in 1st person
+		SWEP.ShellWorldAngleAlign = table, format: {Forward = 0, Right = 0, Up = 0}, used for tweaking angles of ejected shells in 3rd person
+		SWEP.HUD_3D2DBone = int, bone id to attach 3d2d hud to, only works in Melee and Nade base
 		
 	blank functions (used if defined):
 		SWEP:KK_INS2_FL_SRC_OVERRIDE() - client side, alternative way to get flashlight source position/angle, might be unsupported by certain FL versions

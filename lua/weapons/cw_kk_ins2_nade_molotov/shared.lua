@@ -153,10 +153,6 @@ if CLIENT then
 		end
 	end
 	
-	function SWEP:getMuzzlePosition()
-		return self.CW_VM:GetAttachment(2)
-	end
-	
 	local m
 	local muz = {}
 	

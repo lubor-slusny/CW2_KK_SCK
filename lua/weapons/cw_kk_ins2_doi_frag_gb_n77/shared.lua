@@ -19,6 +19,8 @@ if CLIENT then
 	SWEP.MoveType = 2
 	SWEP.ViewModelMovementScale = 0.8
 	SWEP.DisableSprintViewSimulation = true
+	
+	SWEP.HUD_3D2DBone = 58
 end
 
 SWEP.CanRestOnObjects = false

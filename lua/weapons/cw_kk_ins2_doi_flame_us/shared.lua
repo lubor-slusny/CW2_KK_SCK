@@ -61,7 +61,7 @@ SWEP.Animations = {
 
 SWEP.SpeedDec = 15
 
-SWEP.Slot = 2
+SWEP.Slot = 4
 SWEP.SlotPos = 0
 SWEP.NormalHoldType = "ar2"
 SWEP.RunHoldType = "passive"
@@ -74,7 +74,7 @@ SWEP.Contact		= ""
 SWEP.Purpose		= ""
 SWEP.Instructions	= ""
 
-SWEP.ViewModelFOV	= 75
+SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_flame_mk2.mdl"
 SWEP.WorldModel		= "models/weapons/w_m2.mdl"

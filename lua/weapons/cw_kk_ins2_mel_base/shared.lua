@@ -10,6 +10,8 @@ if CLIENT then
 	SWEP.DisableSprintViewSimulation = true
 	
 	SWEP.IconLetter = "j"
+	
+	SWEP.HUD_3D2DBone = 32
 end
 
 SWEP.Attachments = {}
@@ -76,7 +78,7 @@ if CLIENT then
 		if self.Owner:ShouldDrawLocalPlayer() then
 			m = self.Owner:GetBoneMatrix(self.Owner:LookupBone("ValveBiped.Bip01_R_Hand"))
 		else
-			m = self.CW_VM:GetBoneMatrix(32)
+			m = self.CW_VM:GetBoneMatrix(self.HUD_3D2DBone)
 		end
 		
 		muz.Pos = m:GetTranslation()
