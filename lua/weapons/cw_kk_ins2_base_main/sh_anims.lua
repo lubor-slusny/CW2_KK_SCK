@@ -132,12 +132,20 @@ function SWEP:pickupAnimFunc(mode)
 end
 
 function SWEP:drawAnimFunc()
-	print(self:GetClass() .. ":drawAnimFunc()", "@", CurTime())
+	-- print(self:GetClass() .. ":drawAnimFunc()", "@", CurTime())
+	
+	if !IsValid(self.Owner) then 
+		return 
+	end
+	
+	if self.KKINS2Nade and self.Owner:GetAmmoCount(self.Primary.Ammo) < 1 then 
+		return 
+	end
 	
 	prefix = self:getForegripMode()
 	
 	if not self._KK_INS2_PickedUp then
-		if !(clip == 0 and self.KK_INS2_EmptyIdle) and IsValid(self.Owner) then // wtf owner?
+		if !(clip == 0 and self.KK_INS2_EmptyIdle) then
 			self:pickupAnimFunc(prefix)
 			return		
 		end

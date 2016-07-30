@@ -106,12 +106,14 @@ SWEP.WorldModel		= "models/weapons/w_no77.mdl"
 SWEP.WMPos = Vector(3.891, 2.295, -1.765)
 SWEP.WMAng = Angle(-28.962, 155.365, 180)
 
+SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.models.ww2gb
+
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.doiContentMounted()
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.doiContentMounted()
 
 SWEP.Primary.ClipSize		= -1
-SWEP.Primary.DefaultClip	= 1
+SWEP.Primary.DefaultClip	= -1
 SWEP.Primary.Automatic		= false
-SWEP.Primary.Ammo			= "Frag Grenades"
+SWEP.Primary.Ammo			= "Smoke Grenades"
 
 SWEP.timeToThrow = 1.1

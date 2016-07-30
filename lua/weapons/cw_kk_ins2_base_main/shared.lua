@@ -153,12 +153,12 @@ function SWEP:CW_KK_MELEE()
 		if self._KK_INS2_PickedUp == false then return end
 		if self.meleeAttackDelay and self.meleeAttackDelay > CurTime() then return end
 	
-		-- if self.KKINS2Melee then
-			-- if self.CanPrimaryAttack() then
-				-- self:PrimaryAttack()
-				-- return
-			-- end
-		-- end
+		if self.KKINS2Melee then
+			self:PrimaryAttack()
+			
+			self.meleeAttackDelay = CurTime() + self.FireDelay
+			return
+		end
 		
 		if CustomizableWeaponry_KK.ins2.canKnife(self) then
 			CustomizableWeaponry_KK.ins2.meleeKnife(self)
@@ -251,7 +251,7 @@ function SWEP:IndividualThink()
 end
 
 function SWEP:Initialize()
-	print(self:GetClass() .. ":Initialize()", "@", CurTime())
+	-- print(self:GetClass() .. ":Initialize()", "@", CurTime())
 	
 	self:updateReloadTimes()
 	

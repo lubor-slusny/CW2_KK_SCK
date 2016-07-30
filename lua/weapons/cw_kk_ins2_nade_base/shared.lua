@@ -45,7 +45,7 @@ SWEP.WorldModel		= ""
 SWEP.Spawnable			= false
 SWEP.AdminSpawnable		= false
 
-SWEP.Primary.ClipSize		= -1
+SWEP.Primary.ClipSize		= 1
 SWEP.Primary.DefaultClip	= 1
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= ""
@@ -68,8 +68,31 @@ SWEP.timeToThrow = 0.8
 SWEP.swapTime = 0.7
 SWEP.fuseTime = 3
 
+if SERVER then	
+	function SWEP:EquipAmmo(ply)
+		ply:GiveAmmo(1, self.Primary.Ammo)
+	end
+	
+	function SWEP:equipFunc()
+		local ply = self.Owner
+		ply:GiveAmmo(1, self.Primary.Ammo)
+	end
+	
+	function SWEP:OnDrop()
+		if IsValid(self.lastOwner) then
+			if self.lastOwner:GetAmmoCount(self.Primary.Ammo) > 0 then
+				self.lastOwner:RemoveAmmo(1, self.Primary.Ammo)
+				return
+			end
+		end
+		
+		SafeRemoveEntity(self)
+	end
+end
+
 function SWEP:Initialize()
 	weapons.GetStored("cw_base").Initialize(self)
+	self._KK_INS2_PickedUp = true
 end
 
 function SWEP:SetupDataTables()
@@ -112,6 +135,8 @@ end
 local SP = game.SinglePlayer()
 
 function SWEP:IndividualThink()
+	self.lastOwner = self.Owner
+	
 	if self.dt.PinPulled then
 		self.reticleInactivity = UnPredictedCurTime() + 1
 	end
@@ -160,7 +185,7 @@ function SWEP:IndividualThink()
 					self:SetNextPrimaryFire(curTime + 1)
 					
 					timer.Simple(self.swapTime, function()
-						if IsValid(self) then
+						if IsValid(self) and IsValid(self.Owner) then
 							if self.Owner:GetAmmoCount(self.Primary.Ammo) <= 0 then -- we're out of ammo, strip this weapon
 								self.Owner:ConCommand("lastinv")
 							else
@@ -179,6 +204,10 @@ function SWEP:IndividualThink()
 end
 
 function SWEP:PrimaryAttack()
+	if self.Owner:GetAmmoCount(self.Primary.Ammo) < 1 and self:Clip1() < 1 then
+		return
+	end
+
 	if self.dt.PinPulled then
 		return
 	end

@@ -111,7 +111,7 @@ SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()
 SWEP.AdminOnly			= true
 
 SWEP.Primary.ClipSize		= -1
-SWEP.Primary.DefaultClip	= 1
+SWEP.Primary.DefaultClip	= -1
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "PG-7VM Grenade"
 
@@ -126,7 +126,7 @@ PrecacheParticleSystem(SWEP.Effect_Rag)
 if CLIENT then
 	local boneIds = {}
 	
-	function SWEP:RenderTargetFunc()
+	function SWEP:updateOtherParts()
 		local vm = self.CW_VM
 		
 		if not self.elementRender.nade_fx then
@@ -178,6 +178,8 @@ end
 local SP = game.SinglePlayer()
 
 function SWEP:IndividualThink()
+	self.lastOwner = self.Owner
+	
 	-- weapons.GetStored("cw_kk_ins2_base").IndividualThink(self)
 	weapons.GetStored("cw_kk_ins2_base_main").IndividualThink(self)
 

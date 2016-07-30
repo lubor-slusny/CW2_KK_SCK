@@ -81,10 +81,11 @@ SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_bar.mdl"
 SWEP.WorldModel		= "models/weapons/w_bar.mdl"
 
-SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.models.ww2us
-
 SWEP.WMPos = Vector(18.197, 0, -2)
 SWEP.WMAng = Vector(-10, 2.743, 180)
+
+SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.models.ww2us
+SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.models.ww2us
 
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.doiContentMounted()
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.doiContentMounted()

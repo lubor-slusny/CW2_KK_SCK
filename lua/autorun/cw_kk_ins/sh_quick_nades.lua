@@ -4,7 +4,7 @@ local SP = game.SinglePlayer()
 CustomizableWeaponry_KK.ins2.quickGrenades = {}
 
 if CLIENT then
-	CustomizableWeaponry_KK.ins2.quickGrenades.cvarType = CreateClientConVar("_cw_kk_ins2_qnadetype", 0, false, true)
+	CustomizableWeaponry_KK.ins2.quickGrenades.cvarType = CreateClientConVar("_cw_kk_ins2_qnadetype", 1, false, true)
 end
 
 CustomizableWeaponry_KK.ins2.quickGrenades.models = {}
@@ -43,7 +43,7 @@ CustomizableWeaponry_KK.ins2.quickGrenades.models.ww2de = {
 	vm = "models/weapons/v_stielhandgranate.mdl",
 	wm = "models/weapons/w_stielhandgranate.mdl",
 	a_pinpull = "pullbackhigh",
-	a_throw = "throw"
+	a_throw = "bakethrow"
 }
 CustomizableWeaponry_KK.ins2.quickGrenades.models.ww2gb = {
 	vm = "models/weapons/v_mills.mdl",
@@ -318,15 +318,17 @@ end
 if CLIENT then
 	local cats = CustomizableWeaponry_KK.ins2.quickGrenades.categories
 	
-	local function cw_kk_cyclefrag()
+	local function cw_kk_cyclefrag(ply)
+		if !IsValid(ply) then return end
+		
 		local set = CustomizableWeaponry_KK.ins2.quickGrenades.cvarType:GetInt() + 1
 		
-		for _ = 1, #cats do
+		for _ = 1, (#cats - 1) do
 			if set > #cats then
 				set = 1
 			end
 			
-			if cats[set].ammo and LocalPlayer():GetAmmoCount(cats[set].ammo) < 1 then
+			if cats[set].ammo and ply:GetAmmoCount(cats[set].ammo) < 1 then
 				set = set + 1
 			end
 		end
