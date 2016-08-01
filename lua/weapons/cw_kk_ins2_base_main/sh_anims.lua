@@ -102,6 +102,10 @@ if CLIENT then
 	end
 		
 	function SWEP:idleAnimFunc()
+		if self.KKINS2Nade and self.Owner:GetAmmoCount(self.Primary.Ammo) < 1 then 
+			return 
+		end
+		
 		prefix = self:getForegripMode()
 		-- anim = "idle" // only idle anims are for base_ prefix, it used to use draw anim for others anyway
 		anim = "holster"
@@ -210,6 +214,10 @@ end //*/
 -- function SWEP:fireAnimFunc() end
 
 function SWEP:_holsterAnimFunc()
+	-- if self.KKINS2Nade and self.Owner:GetAmmoCount(self.Primary.Ammo) < 1 then 
+		-- return 
+	-- end
+	
 	prefix = self:getForegripMode()
 	suffix = ""
 	

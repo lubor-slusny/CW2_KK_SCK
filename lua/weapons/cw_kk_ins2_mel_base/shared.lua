@@ -39,7 +39,7 @@ SWEP.AddSafeMode = false
 SWEP.Primary.ClipSize		= -1
 SWEP.Primary.DefaultClip	= -1
 SWEP.Primary.Automatic		= true
-SWEP.Primary.Ammo			= "none"
+SWEP.Primary.Ammo			= ""
 
 SWEP.HipSpread = 0.045
 SWEP.AimSpread = 0.045

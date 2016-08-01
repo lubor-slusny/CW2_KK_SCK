@@ -51,18 +51,35 @@ CustomizableWeaponry_KK.ins2.quickGrenades.models.ww2gb = {
 	a_pinpull = "pullbackhigh",
 	a_throw = "throw"
 }
-
-CustomizableWeaponry_KK.ins2.quickGrenades.categories = {
-	{text = "FRAG", ammo = "Frag Grenades", class = "cw_grenade_thrown"},
-	-- {text = "FRAG", ammo = "Frag Grenades", class = "npc_grenade_frag"},
-	-- {text = "FRAG", ammo = "Frag Grenades", class = "weapon_striderbuster"},
-	{text = "FLASH", ammo = "Flash Grenades", class = "cw_flash_thrown", default = "m84"},
-	{text = "SMOKE", ammo = "Smoke Grenades", class = "cw_smoke_thrown", default = "m18"},
+CustomizableWeaponry_KK.ins2.quickGrenades.models.n69 = {
+	vm = "models/weapons/v_no69.mdl",
+	wm = "models/weapons/w_no69.mdl",
+	a_pinpull = "pullbackhigh",
+	a_throw = "throw"
+}
+CustomizableWeaponry_KK.ins2.quickGrenades.models.n77 = {
+	vm = "models/weapons/v_no77.mdl",
+	wm = "models/weapons/w_no77.mdl",
+	a_pinpull = "pullbackhigh",
+	a_throw = "throw"
 }
 
+CustomizableWeaponry_KK.ins2.quickGrenades.categories = {}
+
+local function add(tab)
+	table.insert(CustomizableWeaponry_KK.ins2.quickGrenades.categories, tab)
+end
+
 if CustomizableWeaponry_KK.HOME then
-	CustomizableWeaponry_KK.ins2.quickGrenades.categories[4] = {text = "BUG", /*ammo = "9x19MM", */class = "npc_grenade_bugbait"}
-	CustomizableWeaponry_KK.ins2.quickGrenades.categories[5] = {text = "HL2", ammo = "Frag Grenades", class = "npc_grenade_frag"}
+	-- add({text = "FRAG", ammo = "Frag Grenades", class = "weapon_striderbuster"})
+	-- add({text = "FRAG", ammo = "Frag Grenades", class = "npc_grenade_frag"})
+	add({text = "HL2", ammo = "Frag Grenades", class = "npc_grenade_frag"})
+	add({text = "BUG", /*ammo = "9x19MM", */class = "npc_grenade_bugbait", default = "n77"})
+	add({text = "N69", ammo = "Frag Grenades", class = "cw_kk_ins2_projectile_n69", default = "n69"})
+else
+	add({text = "FRAG", ammo = "Frag Grenades", class = "cw_grenade_thrown"})
+	add({text = "FLASH", ammo = "Flash Grenades", class = "cw_flash_thrown", default = "m84"})
+	add({text = "SMOKE", ammo = "Smoke Grenades", class = "cw_smoke_thrown", default = "m18"})
 end
 
 function CustomizableWeaponry_KK.ins2:getNadeAmmo()

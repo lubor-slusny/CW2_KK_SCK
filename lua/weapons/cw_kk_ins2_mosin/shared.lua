@@ -17,17 +17,20 @@ if CLIENT then
 	SWEP.MuzzleEffect = "muzzleflash_m14"
 
 	SWEP.Shell = "KK_INS2_762x54"
-	SWEP.ShellDelay = 0.14 + 0.4
+	SWEP.NoShells = true
+	-- SWEP.ShellDelay = 0.14 + 0.4
 	
 	SWEP.BackupSights = {
 		["kk_ins2_elcan"] = {
-			Vector(-2.8225, -10, -2.0229),
-			Vector(-0.4337, -0.0201, 0)
-		}
+			Vector(-2.8208, -12, -1.1186),
+			Vector(-0.4986, 0, 0)
+		},
 	}
 	
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_modkit_mosin.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+
+		["cw_menu_muzzle"] = {model = "models/maxofs2d/cube_tool.mdl", bone = "Weapon", pos = Vector(0.048, 15, 1.325), angle = Angle(0, -90, 0), size = Vector(0, 0, 0), active = true},
 
 		["kk_ins2_suppressor_ins"] = {model = "models/weapons/upgrades/a_suppressor_ins.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
@@ -113,18 +116,22 @@ if CLIENT then
 	SWEP.KKINS2MagnifierPos = Vector(-2.815, -12, -0.0969)
 	SWEP.KKINS2MagnifierAng = Vector(0, 0, 0)
 
-	SWEP.CustomizationMenuScale = 0.025
+	SWEP.CustomizationMenuScale = 0.017
 end
 
 SWEP.Attachments = {
 	{header = "Sight", offset = {500, -450}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_po4", "kk_ins2_scope_mosin", "kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_microt1", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"}},
 	{header = "Barrel", offset = {-100, -450}, atts = {"kk_ins2_suppressor_ins"}},
 	{header = "Under", offset = {-400, 0}, atts = {"kk_ins2_bipod"}},
-	{header = "Lasers", offset = {225, 400}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}},
+	{header = "Lasers", offset = {400, 400}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}},
 	{header = "More Sight", offset = {1100, 0}, atts = {"kk_ins2_magnifier"}, dependencies = CustomizableWeaponry_KK.ins2.magnifierDependencies},
 	["+use"] = {header = "Sight Contract", offset = {500, -0}, atts = {"kk_ins2_sights_cstm"}},
-	["+reload"] = {header = "Ammo", offset = {1000, 500}, atts = {"am_magnum", "am_matchgrade"}}
+	["+reload"] = {header = "Ammo", offset = {1100, 500}, atts = {"am_magnum", "am_matchgrade"}}
 }
+
+if CustomizableWeaponry_KK.ins2.wsContentMounted() then
+	table.insert(SWEP.Attachments, 6, {header = "Package", offset = {-200, 500}, atts = {"kk_ins2_mosin_so"}})
+end
 
 SWEP.Animations = {
 	draw = "base_ready",
@@ -174,7 +181,7 @@ SWEP.SlotPos = 0
 SWEP.NormalHoldType = "ar2"
 SWEP.RunHoldType = "passive"
 SWEP.FireModes = {"bolt"}
-SWEP.Base = "cw_kk_ins2_base"
+SWEP.Base = "cw_kk_ins2_base_pump"
 SWEP.Category = "CW 2.0 KK INS2"
 
 SWEP.Author			= "Spy"
@@ -201,7 +208,7 @@ SWEP.Primary.DefaultClip	= 5
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "7.62x54MMR"
 
-SWEP.FireDelay = 60/37
+SWEP.FireDelay = 0.3 // 60/37
 SWEP.FireSound = "CW_KK_INS2_MOSIN_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_MOSIN_FIRE_SUPPRESSED"
 SWEP.Recoil = 1.6
@@ -240,29 +247,34 @@ SWEP.GlobalDelayOnShoot = SWEP.FireDelay
 SWEP.WeaponLength = 38
 
 SWEP.MuzzleVelocity = 865
+SWEP.pumpTime = 1.5
 
--- function SWEP:updateReloadTimes()
-	-- local mode = self:getForegripMode()
+if CLIENT then
+	local att
+	local muz = {}
 
-	-- if SERVER or not self.shotgunReloading then
-		-- self.Animations.reload_start = self.Animations[mode .. "reload_start"]
-		-- self.Animations.insert = self.Animations[mode .. "insert"]
-		-- self.Animations.reload_end = self.Animations[mode .. "reload_end"]
-		-- self.Animations.idle = self.Animations[mode .. "reload_end"]
-	-- end
-	
-	-- if self.base_ReloadStartTime then
-		-- self.ReloadStartTime = self[mode .. "ReloadStartTime"] or self.base_ReloadStartTime
-	-- end
-	-- if self.base_InsertShellTime then
-		-- self.InsertShellTime = self[mode .. "InsertShellTime"] or self.base_InsertShellTime
-	-- end
-	-- if self.base_ReloadFinishWait then
-		-- self.ReloadFinishWait = self[mode .. "ReloadFinishWait"] or self.base_ReloadFinishWait
-	-- end
--- end
+	function SWEP:getMuzzlePosition()
+		if self.Owner:ShouldDrawLocalPlayer() then
+			muz.Pos = self.WMEnt:GetAttachment(1).Pos
+			muz.Ang = EyeAngles()
+			return muz
+		end
+		
+		if self.CustomizeMenuAlpha > 0 then
+			muz.Pos = self.AttachmentModelsVM.cw_menu_muzzle.ent:GetPos()
+			muz.Ang = self.AttachmentModelsVM.cw_menu_muzzle.ent:GetAngles()
+			return muz
+		end
+		
+		if self.MuzzleAttachment != 0 then
+			return self.CW_VM:GetAttachment(self.MuzzleAttachment)
+		end
+		
+		muz.Pos = self.Owner:EyePos()
+		muz.Ang = self.Owner:EyeAngles()
+		return muz
+	end
 
-if CLIENT then 
 	function SWEP:updateOtherParts()
 		local vm = self.CW_VM
 		local cycle = vm:GetCycle()
@@ -326,36 +338,3 @@ if CLIENT then
 		self._KK_INS2_wasBipod = isBipod
 	end
 end
-
-function SWEP:fireAnimFunc()
-	local clip = self:Clip1()
-	local mag = ""
-	
-	if clip == 0 then
-		mag = "_empty"
-	end
-	
-	local prefix = self:getForegripMode()
-	local suffix = ""
-	
-	if self:isAiming() then
-		suffix = "_aim"
-	end
-	
-	if clip > 0 then
-		CustomizableWeaponry.actionSequence.new(self, 0.14, nil, function() 
-			local prefix = self:getForegripMode()
-			local suffix = ""
-			
-			if self:isAiming() then
-				suffix = "_aim"
-			end
-			
-			self:sendWeaponAnim(prefix .. "bolt" .. suffix,1,0)
-		end)
-	end
-	
-	self:sendWeaponAnim(prefix .. "fire" .. mag .. suffix,1,0)
-	
-end //*/
-	

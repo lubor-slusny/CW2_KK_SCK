@@ -91,7 +91,7 @@ SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.doiContentMounted()
 SWEP.Primary.ClipSize		= -1
 SWEP.Primary.DefaultClip	= -1
 SWEP.Primary.Automatic		= false
-SWEP.Primary.Ammo			= "none"
+SWEP.Primary.Ammo			= ""
 
 SWEP.FireDelay = 0.1
 SWEP.FireSound = "CW_KK_INS2_WW2_LUGER_FIRE"

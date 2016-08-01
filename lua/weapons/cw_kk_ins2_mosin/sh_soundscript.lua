@@ -1,4 +1,8 @@
 
+function shell(wep) 
+	wep:shellEvent() 
+end
+
 SWEP.Sounds = {
 	base_draw = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
@@ -26,6 +30,7 @@ SWEP.Sounds = {
 		// shell @ 15 ""},
 		{time = 8/30, sound = "CW_KK_INS2_MOSIN_BOLTRELEASE"},
 		{time = 13/30, sound = "CW_KK_INS2_MOSIN_BOLTBACK"},
+		{time = 15/30, sound = "", callback = shell},
 		{time = 24/30, sound = "CW_KK_INS2_MOSIN_BOLTFORWARD"},
 		{time = 28/30, sound = "CW_KK_INS2_MOSIN_BOLTLATCH"},
 	},
@@ -38,6 +43,7 @@ SWEP.Sounds = {
 		// shell @ 15 "MOSIN EJECT"},
 		{time = 4/30, sound = "CW_KK_INS2_MOSIN_BOLTRELEASE"},
 		{time = 10/30, sound = "CW_KK_INS2_MOSIN_BOLTBACK"},
+		{time = 15/30, sound = "", callback = shell},
 	},
 
 	reload_insert = {
@@ -54,6 +60,7 @@ SWEP.Sounds = {
 		// shell @ 17 ""},
 		{time = 11/28.5, sound = "CW_KK_INS2_MOSIN_BOLTRELEASE"},
 		{time = 15/28.5, sound = "CW_KK_INS2_MOSIN_BOLTBACK"},
+		{time = 17/28.5, sound = "", callback = shell},
 		{time = 25/28.5, sound = "CW_KK_INS2_MOSIN_BOLTFORWARD"},
 		// pumpedrdy @ 27 ""},
 		{time = 29/28.5, sound = "CW_KK_INS2_MOSIN_BOLTLATCH"},
@@ -77,6 +84,7 @@ SWEP.Sounds = {
 		// shell @ 15 ""},
 		{time = 8/30, sound = "CW_KK_INS2_MOSIN_BOLTRELEASE"},
 		{time = 13/30, sound = "CW_KK_INS2_MOSIN_BOLTBACK"},
+		{time = 15/30, sound = "", callback = shell},
 		{time = 24/30, sound = "CW_KK_INS2_MOSIN_BOLTFORWARD"},
 		{time = 28/30, sound = "CW_KK_INS2_MOSIN_BOLTLATCH"},
 	},
@@ -89,6 +97,7 @@ SWEP.Sounds = {
 		// shell @ 15 ""},
 		{time = 4/30, sound = "CW_KK_INS2_MOSIN_BOLTRELEASE"},
 		{time = 10/30, sound = "CW_KK_INS2_MOSIN_BOLTBACK"},
+		{time = 15/30, sound = "", callback = shell},
 	},
 
 	deployed_reload_insert = {
@@ -105,6 +114,7 @@ SWEP.Sounds = {
 		// shell @ 15 ""},
 		{time = 8/34, sound = "CW_KK_INS2_MOSIN_BOLTRELEASE"},
 		{time = 13/34, sound = "CW_KK_INS2_MOSIN_BOLTBACK"},
+		{time = 15/34, sound = "", callback = shell},
 		{time = 24/34, sound = "CW_KK_INS2_MOSIN_BOLTFORWARD"},
 		{time = 28/34, sound = "CW_KK_INS2_MOSIN_BOLTLATCH"},
 	},
