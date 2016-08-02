@@ -1,14 +1,14 @@
 local att = {}
-att.name = "kk_ins2_flashlight6"
-att.displayName = "Light Emitting Module v6"
+att.name = "kk_ins2_flashlight"
+att.displayName = "Light Emitting Module v6.1"
 att.displayNameShort = "LEM6"
 att.colorType = CustomizableWeaponry.colorableParts.COLOR_TYPE_KK_FLASHLIGHT
 
 att.statModifiers = {}
 
 if CLIENT then
-	-- att.displayIcon = surface.GetTextureID("atts/" .. att.name)
-	att.displayIcon = surface.GetTextureID("atts/wipshit")
+	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
+	-- att.displayIcon = surface.GetTextureID("atts/wipshit")
 	att.description = {
 		[1] = {t = "FREAKIN CLIENTSIDE PROJECTED TEXTURES!!!", c = CustomizableWeaponry.textColors.VPOSITIVE},
 	}
@@ -36,16 +36,21 @@ if CLIENT then
 			beamAtt = model:GetAttachment(1)
 		end
 
-		CustomizableWeaponry_KK.ins2.flashlight.v6.elementRender(self, beamAtt, (self._KK_INS2_LAM_MODE % 2) != 0)
+		CustomizableWeaponry_KK.ins2.flashlight.v6.elementRender(self, beamAtt)
+	end
+	
+	// for V6 LEM, true - ON, false - OFF
+	function att:getLEMState()
+		return (self._KK_INS2_LAM_MODE % 2) != 0
 	end
 end
 
 function att:attachFunc()
-	CustomizableWeaponry_KK.ins2.flashlight.v6.attach(self)
+	CustomizableWeaponry_KK.ins2.flashlight.v6.attach(self, att)
 end
 
 function att:detachFunc()
-	CustomizableWeaponry_KK.ins2.flashlight.v6.detach(self)
+	CustomizableWeaponry_KK.ins2.flashlight.v6.detach(self, att)
 end
 
 if CLIENT then
