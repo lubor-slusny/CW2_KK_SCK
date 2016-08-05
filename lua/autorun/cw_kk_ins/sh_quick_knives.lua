@@ -22,7 +22,7 @@ CustomizableWeaponry_KK.ins2.quickKnives.models.gurkha = {
 
 CustomizableWeaponry_KK.ins2.quickKnives.models.bayonet = {
 	vm = "models/weapons/v_marinebayonet.mdl",
-	a_attack = "hitcenter3"
+	a_attack = "hitcenter1"
 }
 
 CustomizableWeaponry_KK.ins2.quickKnives.models.ninjato = {

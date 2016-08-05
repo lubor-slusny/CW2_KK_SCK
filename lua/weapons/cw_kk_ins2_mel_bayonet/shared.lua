@@ -15,7 +15,7 @@ SWEP.Animations = {
 
 	base_pickup = "draw",
 	base_draw = "draw",
-	base_fire = {"hitcenter1","hitcenter2","hitcenter3"},
+	base_fire = {"hitcenter1","hitcenter2"},
 	base_idle = "idle",
 	base_holster = "holster",
 	base_sprint = "sprint",

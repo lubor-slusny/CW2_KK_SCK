@@ -26,6 +26,8 @@ if CLIENT then
 		
 		["kk_ins2_mag_m1a1_15"] = {model = "models/weapons/upgrades/a_magazine_m1a1_15.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		["kk_ins2_mag_m1a1_30"] = {model = "models/weapons/upgrades/a_magazine_m1a1_30.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		
+		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/a_m1a1_bayonet.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 	}
 	
 	SWEP.AttachmentModelsWM = {
@@ -33,19 +35,22 @@ if CLIENT then
 		
 		["kk_ins2_mag_m1a1_15"] = {model = "models/weapons/upgrades/w_magazine_m1a1_15.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		["kk_ins2_mag_m1a1_30"] = {model = "models/weapons/upgrades/w_magazine_m1a1_30.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		
+		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/w_bayonet_m1a1.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 	}
 	
 	SWEP.IronsightPos = Vector(-2.4773, -3, 1.2686)
 	SWEP.IronsightAng = Vector(0, 0.0355, 0)
 
-	SWEP.FoldSightPos = Vector(-2.4766, -3, 1.1585)
-	SWEP.FoldSightAng = Vector(0.2684, 0.0079, 0)
+	SWEP.FoldSightPos = Vector(-2.4838, -3, 1.1628)
+	SWEP.FoldSightAng = Vector(0.2625, 0.0079, 0)
 
 	SWEP.CustomizationMenuScale = 0.016
 end
 
 SWEP.Attachments = {
 	{header = "Sight", offset = {400, -500}, atts = {"bg_foldsight"}},
+	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_ww2_knife"}},
 	{header = "Magazine", offset = {-200, 600}, atts = {"kk_ins2_mag_m1a1_30"}},
 	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_magnum", "am_matchgrade"}}
@@ -69,6 +74,8 @@ SWEP.Animations = {
 	base_sprint = "base_sprint",
 	base_safe = "base_down",
 	base_safe_aim = "iron_down",
+	
+	base_melee = "base_melee",
 }
 
 SWEP.SpeedDec = 40
