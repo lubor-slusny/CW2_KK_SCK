@@ -4,18 +4,15 @@ local SP = game.SinglePlayer()
 // Custom GLs
 
 function SWEP:SetupDataTables()
-	self:DTVar("Int", 0, "State")
-	self:DTVar("Int", 1, "Shots")
-	self:DTVar("Float", 0, "HolsterDelay")
-	self:DTVar("Bool", 0, "Suppressed")
-	self:DTVar("Bool", 1, "Safe")
-	self:DTVar("Bool", 2, "BipodDeployed")
-	self:DTVar("Bool", 3, "INS2GLActive")
-	self:DTVar("Angle", 0, "ViewOffset")
-end
-
-function SWEP:SetINS2GLActive(val)
-	self.dt.INS2GLActive = val
+	self:NetworkVar("Int", 0, "State")
+	self:NetworkVar("Int", 1, "Shots")
+	self:NetworkVar("Int", 2, "INS2LAMMode")
+	self:NetworkVar("Float", 0, "HolsterDelay")
+	self:NetworkVar("Bool", 0, "Suppressed")
+	self:NetworkVar("Bool", 1, "Safe")
+	self:NetworkVar("Bool", 2, "BipodDeployed")
+	self:NetworkVar("Bool", 3, "INS2GLActive")
+	self:NetworkVar("Angle", 0, "ViewOffset")
 end
 
 // LUA VM Recoil only for RT scopes

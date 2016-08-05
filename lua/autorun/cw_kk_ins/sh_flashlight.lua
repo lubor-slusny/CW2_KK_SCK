@@ -19,8 +19,10 @@ if CLIENT then
 end
 
 function CustomizableWeaponry_KK.ins2.flashlight.v6:attach(att)
+	self.dt.INS2LAMMode = 0
+	
 	if CLIENT then
-		self._KK_INS2_LAM_MODE = 0
+		-- self._KK_INS2_LAM_MODE = 0
 		
 		local pt
 		
@@ -114,6 +116,8 @@ if SERVER then
 end
 
 function CustomizableWeaponry_KK.ins2.flashlight.v2:attach()
+	self.dt.INS2LAMMode = 0
+	
 	if SERVER then
 		if !IsValid(self._KK_INS2_SV_FL) then
 			
@@ -175,7 +179,7 @@ function CustomizableWeaponry_KK.ins2.flashlight.v2:attach()
 	end
 	
 	if CLIENT then
-		self._KK_INS2_LAM_MODE = 0
+		-- self._KK_INS2_LAM_MODE = 0
 	end
 end
 
@@ -207,6 +211,50 @@ if CLIENT then
 		if !IsValid(wep) then return end
 		if !wep.CW20Weapon then return end
 		
+		-- local hasFL = false
+		-- local max
+		-- for k,v in pairs(CustomizableWeaponry_KK.ins2.flashlight.atts) do
+			-- if wep.ActiveAttachments[k] then max = v end
+			-- hasFL = hasFL or wep.ActiveAttachments[k]
+		-- end
+		-- if !hasFL then return end
+		
+		-- if wep.Owner:KeyDown(IN_USE) then
+			-- wep._KK_INS2_LAM_MODE = wep._KK_INS2_LAM_MODE - 1
+		-- else
+			-- wep._KK_INS2_LAM_MODE = wep._KK_INS2_LAM_MODE + 1
+		-- end
+		
+		-- if wep._KK_INS2_LAM_MODE > max then
+			-- wep._KK_INS2_LAM_MODE = 0
+		-- elseif wep._KK_INS2_LAM_MODE < 0 then
+			-- wep._KK_INS2_LAM_MODE = max
+		-- end
+		
+		-- wep:EmitSound("CW_KK_INS2_UMP45_FIRESELECT")
+		
+		if wep.Owner:KeyDown(IN_USE) then
+			ply:ConCommand("_cw_kk_cyclelam r")
+		else
+			ply:ConCommand("_cw_kk_cyclelam")
+		end
+		
+		return true
+	end
+
+	hook.Add("PlayerBindPress", "CW_KK_INS2_FLASHLIGHT_BINDPRESS", CustomizableWeaponry_KK.ins2.flashlight.PlayerBindPress)
+end
+
+if SERVER then
+	local wep
+	
+	local function cw_kk_cyclelam(ply, cmd, args, argStr)
+		if !IsValid(ply) then return end
+		
+		wep = ply:GetActiveWeapon()
+		if !IsValid(wep) then return end
+		if !wep.CW20Weapon then return end
+		
 		local hasFL = false
 		local max
 		for k,v in pairs(CustomizableWeaponry_KK.ins2.flashlight.atts) do
@@ -215,24 +263,22 @@ if CLIENT then
 		end
 		if !hasFL then return end
 		
-		if wep.Owner:KeyDown(IN_USE) then
-			wep._KK_INS2_LAM_MODE = wep._KK_INS2_LAM_MODE - 1
+		if #args > 0 then
+			wep.dt.INS2LAMMode = wep.dt.INS2LAMMode - 1
 		else
-			wep._KK_INS2_LAM_MODE = wep._KK_INS2_LAM_MODE + 1
+			wep.dt.INS2LAMMode = wep.dt.INS2LAMMode + 1
 		end
 		
-		if wep._KK_INS2_LAM_MODE > max then
-			wep._KK_INS2_LAM_MODE = 0
-		elseif wep._KK_INS2_LAM_MODE < 0 then
-			wep._KK_INS2_LAM_MODE = max
+		if wep.dt.INS2LAMMode > max then
+			wep.dt.INS2LAMMode = 0
+		elseif wep.dt.INS2LAMMode < 0 then
+			wep.dt.INS2LAMMode = max
 		end
 		
 		wep:EmitSound("CW_KK_INS2_UMP45_FIRESELECT")
-			
-		return true
 	end
 
-	hook.Add("PlayerBindPress", "CW_KK_INS2_FLASHLIGHT_BINDPRESS", CustomizableWeaponry_KK.ins2.flashlight.PlayerBindPress)
+	concommand.Add("_cw_kk_cyclelam", cw_kk_cyclelam)
 end
 
 if SERVER then

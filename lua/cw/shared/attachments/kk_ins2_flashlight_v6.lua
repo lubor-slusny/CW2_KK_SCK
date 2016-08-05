@@ -41,7 +41,7 @@ if CLIENT then
 	
 	// for V6 LEM, true - ON, false - OFF
 	function att:getLEMState()
-		return (self._KK_INS2_LAM_MODE % 2) != 0
+		return (self.dt.INS2LAMMode % 2) != 0
 	end
 end
 

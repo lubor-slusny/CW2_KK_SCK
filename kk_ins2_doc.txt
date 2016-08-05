@@ -6,7 +6,7 @@
 		SWEP.KKINS2Nade - cw_kk_ins2_nade_base and derivates id, used by concommand callback
 		SWEP.CW_KK_HANDS - hands v_model entity
 		SWEP.CW_KK_KNIFE - quicknife v_model entity
-		SWEP._KK_INS2_SV_FL - server side env_projectedtexture from flashlight v2
+		[deprecated]SWEP._KK_INS2_SV_FL - server side env_projectedtexture from flashlight v2
 		SWEP._KK_INS2_CL_FL - client side ProjectedTexture from flashlight v6
 		SWEP._KK_INS2_rig - CustomizableWeaponry_KK.ins2.hands index of current SWEP.CW_KK_HANDS mdl
 		SWEP._KK_INS2_wasBipod - used by bipod switch animator
@@ -15,7 +15,7 @@
 		SWEP._KK_INS2_wasSafe - used by nearwall-holstering animator
 		SWEP._KK_INS2_PickedUp - used by first deploy anim/delay system
 		SWEP._KK_INS2_customSuffix - used by extended mags to id reload function 
-		SWEP._KK_INS2_LAM_MODE - flashlight/laser/combo status, set in playerbindpress hook, read in elementRenders
+		[deprecated]SWEP._KK_INS2_LAM_MODE - flashlight/laser/combo status, set in playerbindpress hook, read in elementRenders
 		SWEP._KK_INS2_stencilsDisableLaser - prevent laser elementRender if stencil sight is active(stencils for whatever reason mess up rendering of lasers)
 		SWEP._KK_INS2_magnifierLastPrimary - used by magnifier to check for primary sight change
 		SWEP.knifeTime - same as CW2 original grenadeTime, but for quicknife

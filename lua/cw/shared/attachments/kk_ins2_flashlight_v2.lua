@@ -23,7 +23,7 @@ if CLIENT then
 		
 		beamAtt = nil
 		
-		if (self._KK_INS2_LAM_MODE % 2) == 0 then return end
+		if (self.dt.INS2LAMMode % 2) == 0 then return end
 		
 		if self.KK_INS2_FL_SRC_OVERRIDE then
 			beamAtt = self:KK_INS2_FL_SRC_OVERRIDE()

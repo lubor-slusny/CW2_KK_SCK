@@ -108,7 +108,7 @@ if CLIENT then
 	function att:elementRender()
 		if not self.ActiveAttachments[att.name] then return end
 		
-		if (self._KK_INS2_LAM_MODE % 2) == 1 then
+		if (self.dt.INS2LAMMode % 2) == 1 then
 			local model, beamAtt
 			
 			if self.AttachmentModelsVM[att.name] then
@@ -124,11 +124,11 @@ if CLIENT then
 		else
 			self.lastLaserPos = nil
 		end
-	end
-	
-	function att:attachFunc()
-		self._KK_INS2_LAM_MODE = 0
-	end
+	end	
+end
+
+function att:attachFunc()
+	self.dt.INS2LAMMode = 0
 end
 
 CustomizableWeaponry:registerAttachment(att)
