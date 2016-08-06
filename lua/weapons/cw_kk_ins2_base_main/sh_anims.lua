@@ -102,10 +102,6 @@ if CLIENT then
 	end
 		
 	function SWEP:idleAnimFunc()
-		if self.KKINS2Nade and self.Owner:GetAmmoCount(self.Primary.Ammo) < 1 then 
-			return 
-		end
-		
 		prefix = self:getForegripMode()
 		-- anim = "idle" // only idle anims are for base_ prefix, it used to use draw anim for others anyway
 		anim = "holster"
@@ -138,14 +134,6 @@ end
 function SWEP:drawAnimFunc()
 	-- print(self:GetClass() .. ":drawAnimFunc()", "@", CurTime())
 	
-	if !IsValid(self.Owner) then 
-		return 
-	end
-	
-	if self.KKINS2Nade and self.Owner:GetAmmoCount(self.Primary.Ammo) < 1 then 
-		return 
-	end
-	
 	prefix = self:getForegripMode()
 	
 	if not self._KK_INS2_PickedUp then
@@ -157,6 +145,7 @@ function SWEP:drawAnimFunc()
 	
 	clip = self:Clip1()
 	suffix = ""
+	rate = self.DrawSpeed
 	
 	if self.dt.INS2GLActive then
 		if !self.M203Chamber and self.KK_INS2_EmptyIdleGL then
@@ -168,7 +157,7 @@ function SWEP:drawAnimFunc()
 		end
 	end
 	
-	self:sendWeaponAnim(prefix .. "draw" .. suffix,self.DrawSpeed,0)
+	self:sendWeaponAnim(prefix .. "draw" .. suffix,rate,0)
 end
 
 function SWEP:meleeAnimFunc()
@@ -214,10 +203,6 @@ end //*/
 -- function SWEP:fireAnimFunc() end
 
 function SWEP:_holsterAnimFunc()
-	-- if self.KKINS2Nade and self.Owner:GetAmmoCount(self.Primary.Ammo) < 1 then 
-		-- return 
-	-- end
-	
 	prefix = self:getForegripMode()
 	suffix = ""
 	

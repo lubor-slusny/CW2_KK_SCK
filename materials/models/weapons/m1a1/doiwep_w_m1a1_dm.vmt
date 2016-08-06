@@ -1,7 +1,7 @@
 "VertexLitGeneric"
 {
 	$basetexture			"models\weapons\m1a1\doiwep_w_m1a1_dm"
-	$bumpmap 				"models\doiweps\m1a1\weapon_w_m1a1_nm"
+	$bumpmap 				"models\weapons\m1a1\doiwep_w_m1a1_nm"
 	$halflambert 	        "0"
     
 	

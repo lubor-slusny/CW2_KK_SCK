@@ -1,5 +1,8 @@
 if not CustomizableWeaponry then return end
+
 AddCSLuaFile()
+AddCSLuaFile("sh_anims.lua")
+include("sh_anims.lua")
 
 SWEP.KKINS2Nade = true
 
@@ -47,8 +50,8 @@ SWEP.WorldModel		= ""
 SWEP.Spawnable			= false
 SWEP.AdminSpawnable		= false
 
-SWEP.Primary.ClipSize		= 1
-SWEP.Primary.DefaultClip	= 1
+SWEP.Primary.ClipSize		= -1
+SWEP.Primary.DefaultClip	= -1
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= ""
 
@@ -98,14 +101,14 @@ function SWEP:Initialize()
 end
 
 function SWEP:SetupDataTables()
-	self:DTVar("Int", 0, "State")
-	self:DTVar("Int", 1, "Shots")
-	self:DTVar("Float", 0, "HolsterDelay")
-	self:DTVar("Bool", 0, "Suppressed")
-	self:DTVar("Bool", 1, "Safe")
-	self:DTVar("Bool", 2, "BipodDeployed")
-	self:DTVar("Bool", 3, "PinPulled") // coz I dont want to copy-pasta whole cw_menu + initfunc 
-	self:DTVar("Angle", 0, "ViewOffset")
+	self:NetworkVar("Int", 0, "State")
+	self:NetworkVar("Int", 1, "Shots")
+	self:NetworkVar("Float", 0, "HolsterDelay")
+	self:NetworkVar("Bool", 0, "Suppressed")
+	self:NetworkVar("Bool", 1, "Safe")
+	self:NetworkVar("Bool", 2, "BipodDeployed")
+	self:NetworkVar("Bool", 3, "PinPulled") // coz I dont want to copy-pasta whole cw_menu + initfunc 
+	self:NetworkVar("Angle", 0, "ViewOffset")
 end
 
 if CLIENT then
@@ -137,8 +140,18 @@ end
 local SP = game.SinglePlayer()
 
 function SWEP:IndividualThink()
+	// for OnDrop func
 	self.lastOwner = self.Owner
 	
+	// for 0-to-1-ammo draw-anim
+	local cur = self.Owner:GetAmmoCount(self.Primary.Ammo)
+	local last = self._lastPrimaryAmmoCount
+	if last and last < cur and cur == 1 then
+		self:drawAnimFunc()
+	end
+	self._lastPrimaryAmmoCount = cur
+	
+	// for some stuff that was most likely removed recently
 	if self.dt.PinPulled then
 		self.reticleInactivity = UnPredictedCurTime() + 1
 	end

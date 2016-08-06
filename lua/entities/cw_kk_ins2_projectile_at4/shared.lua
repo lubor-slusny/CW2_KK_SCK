@@ -56,7 +56,7 @@ function ENT:Initialize()
 end
 
 function ENT:SetupDataTables()
-	self:DTVar("Int", 0, "State")
+	self:NetworkVar("Int", 0, "State")
 end
 
 ENT.States = {

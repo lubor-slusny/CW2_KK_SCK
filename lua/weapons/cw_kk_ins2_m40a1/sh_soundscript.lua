@@ -1,4 +1,8 @@
 
+function shell(wep) 
+	wep:shellEvent() 
+end
+
 SWEP.Sounds = {
 	base_ready = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
@@ -23,9 +27,9 @@ SWEP.Sounds = {
 	},
 
 	base_fire_end = {
-		// shell @ 15 ""},
 		{time = 7/30, sound = "CW_KK_INS2_M40A1_BOLTRELEASE"},
 		{time = 13/30, sound = "CW_KK_INS2_M40A1_BOLTBACK"},
+		{time = 15/30, sound = "", callback = shell},
 		{time = 24/30, sound = "CW_KK_INS2_M40A1_BOLTFORWARD"},
 		// pumpedrdy @ 26 ""},
 		{time = 28/30, sound = "CW_KK_INS2_M40A1_BOLTLATCH"},
@@ -36,9 +40,9 @@ SWEP.Sounds = {
 	},
 
 	base_reload_start = {
-		// shell @ 15 ""},
 		{time = 5/30, sound = "CW_KK_INS2_M40A1_BOLTRELEASE"},
 		{time = 11/30, sound = "CW_KK_INS2_M40A1_BOLTBACK"},
+		{time = 15/30, sound = "", callback = shell},
 	},
 
 	base_reload_insert = {
@@ -57,9 +61,9 @@ SWEP.Sounds = {
 	},
 
 	iron_fire_end = {
-		// shell @ 17 ""},
 		{time = 11/28.5, sound = "CW_KK_INS2_M40A1_BOLTRELEASE"},
 		{time = 15/28.5, sound = "CW_KK_INS2_M40A1_BOLTBACK"},
+		{time = 17/28.5, sound = "", callback = shell},
 		{time = 23/28.5, sound = "CW_KK_INS2_M40A1_BOLTFORWARD"},
 		// pumpedrdy @ 27 ""},
 		{time = 27/28.5, sound = "CW_KK_INS2_M40A1_BOLTLATCH"},
@@ -80,8 +84,8 @@ SWEP.Sounds = {
 	},
 
 	deployed_fire_end = {
-		// shell @ 12 ""},
 		{time = 7/30, sound = "CW_KK_INS2_M40A1_BOLTRELEASE"},
+		{time = 12/30, sound = "", callback = shell},
 		{time = 13/30, sound = "CW_KK_INS2_M40A1_BOLTBACK"},
 		{time = 24/30, sound = "CW_KK_INS2_M40A1_BOLTFORWARD"},
 		// pumpedrdy @ 26 ""},
@@ -93,9 +97,9 @@ SWEP.Sounds = {
 	},
 
 	deployed_reload_start = {
-		// shell @ 15 ""},
 		{time = 5/30, sound = "CW_KK_INS2_M40A1_BOLTRELEASE"},
 		{time = 11/30, sound = "CW_KK_INS2_M40A1_BOLTBACK"},
+		{time = 15/30, sound = "", callback = shell},
 	},
 
 	deployed_reload_insert = {
@@ -109,9 +113,9 @@ SWEP.Sounds = {
 	},
 
 	deployed_iron_fire_end = {
-		// shell @ 15 ""},
 		{time = 7/34, sound = "CW_KK_INS2_M40A1_BOLTRELEASE"},
 		{time = 13/34, sound = "CW_KK_INS2_M40A1_BOLTBACK"},
+		{time = 15/34, sound = "", callback = shell},
 		{time = 24/34, sound = "CW_KK_INS2_M40A1_BOLTFORWARD"},
 		// pumpedrdy @ 26 ""},
 		{time = 28/34, sound = "CW_KK_INS2_M40A1_BOLTLATCH"},

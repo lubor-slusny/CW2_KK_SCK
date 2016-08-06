@@ -15,14 +15,16 @@
 		SWEP._KK_INS2_wasSafe - used by nearwall-holstering animator
 		SWEP._KK_INS2_PickedUp - used by first deploy anim/delay system
 		SWEP._KK_INS2_customSuffix - used by extended mags to id reload function 
-		[deprecated]SWEP._KK_INS2_LAM_MODE - flashlight/laser/combo status, set in playerbindpress hook, read in elementRenders
+		[removed]SWEP._KK_INS2_LAM_MODE - flashlight/laser/combo status, set in playerbindpress hook, read in elementRenders
 		SWEP._KK_INS2_stencilsDisableLaser - prevent laser elementRender if stencil sight is active(stencils for whatever reason mess up rendering of lasers)
 		SWEP._KK_INS2_magnifierLastPrimary - used by magnifier to check for primary sight change
 		SWEP.knifeTime - same as CW2 original grenadeTime, but for quicknife
 		SWEP._currentPrimarySight - attachment table of most recently attached .isSight attachment
 		SWEP._currentSecondarySight - attachment table of most recently attached .isSecondarySight attachment
 		SWEP._currentGrenadeLauncher - attachment table of most recently attached .isGrenadeLauncher attachment
+		SWEP.isShot - used by ins2_base_pump
 		SWEP._pauseUpdatingBelt - used by beltBodygroupToAmmoReseve event during M249 reload
+		SWEP._lastPrimaryAmmoCount - used by slow grenades for extra draw anims
 			
 	ent attributes:
 		ent._KK_INS2_lenseProxyMul - used by IronsightVectorResult proxy

@@ -27,16 +27,16 @@ SWEP.CanRestOnObjects = false
 SWEP.grenadeEnt = "cw_kk_ins2_projectile_n77"
 
 SWEP.Animations = {
-	draw = "draw",
+	draw = "base_draw",
 	throw = "throw",
 	pullpin = "pullbackhigh",
 	
 	base_pickup = "base_draw",
-	base_idle = "idle",
-	base_draw = "draw",
-	base_holster = "holster",
-	base_sprint = "sprint",
-	base_safe = "down",
+	base_idle = "base_idle",
+	base_draw = "base_draw",
+	base_holster = "base_holster",
+	base_sprint = "base_sprint",
+	base_safe = "base_down",
 }
 	
 local sounds = {

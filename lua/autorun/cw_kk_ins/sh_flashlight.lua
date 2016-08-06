@@ -20,61 +20,86 @@ end
 
 function CustomizableWeaponry_KK.ins2.flashlight.v6:attach(att)
 	self.dt.INS2LAMMode = 0
-	
-	if CLIENT then
-		-- self._KK_INS2_LAM_MODE = 0
-		
-		local pt
-		
-		if IsValid(self._KK_INS2_CL_FL) then
-			pt = self._KK_INS2_CL_FL
-		else
-			pt = ProjectedTexture()
-			pt:SetTexture(texture)
-			pt:SetEnableShadows(true)
-			pt:SetFarZ(2048)
-			pt:SetFOV(60)
-		end
-		
-		local wep = self
-		
-		hook.Add("Think", pt, function()
-			// garbage-collect-self
-			if !IsValid(wep) then
-				pt:Remove()
-				return
-			end
-			
-			// SetNearZ - ON/OFF
-			local wepOK = wep.ActiveAttachments[att.name] and att.getLEMState(wep)
-			local ownOK = !IsValid(wep.Owner) or (IsValid(wep.Owner) and wep.Owner:GetActiveWeapon() == wep)
-			
-			if wepOK and ownOK then
-				pt:SetNearZ(1)
-			else
-				pt:SetNearZ(0)
-			end
-			
-			// if dropped or in 3rd person, update pos 
-			if !IsValid(wep.Owner) or wep.Owner:ShouldDrawLocalPlayer() then
-				pt:SetAngles(wep:GetAngles())
-				pt:SetPos(wep:GetPos())
-			end
-			
-			// SetColor - CW2 SightColor setting
-			local col = wep:getSightColor("kk_ins2_flashlight") or white
-			pt:SetColor(col)
-			
-			// if in fps, position will be updated from ElementRender
-			pt:Update()
-		end)
-		
-		self._KK_INS2_CL_FL = pt
-	end
 end
 
 function CustomizableWeaponry_KK.ins2.flashlight.v6:detach()
 end
+
+local CW2_ATTS = CustomizableWeaponry.registeredAttachmentsSKey
+
+local function fallback()
+	return false
+end
+
+local function getFL(wep)
+	for k,_ in pairs(CustomizableWeaponry_KK.ins2.flashlight.atts) do
+		if CW2_ATTS[k] and CW2_ATTS[k].getLEMState and wep.ActiveAttachments[k] then
+			return CW2_ATTS[k]
+		end
+	end
+end
+
+function CustomizableWeaponry_KK.ins2.flashlight.v6.think()
+	if CLIENT then
+		// iterate all CW2 sweps
+		for _,wep in pairs(ents.GetAll()) do
+			if wep.CW20Weapon then
+				local att = getFL(wep)
+				
+				// if swep has attachment ...
+				if att then
+					// ... but no ProjectedTexture, create it
+					if !IsValid(wep._KK_INS2_CL_FL) then
+						print("adding ProjectedTexture", wep)
+						local pt = ProjectedTexture()
+						pt:SetTexture(texture)
+						pt:SetEnableShadows(true)
+						pt:SetFarZ(2048)
+						pt:SetFOV(60)
+						
+						hook.Add("Think", pt, function()
+							// garbage-collect-self
+							if !IsValid(wep) then
+								pt:Remove()
+								return
+							end
+							
+							// im outta variable identifiers here
+							local carrier = getFL(wep) or att 
+							
+							// SetNearZ - ON/OFF
+							local wepOK = wep.ActiveAttachments[carrier.name] and carrier.getLEMState(wep)
+							local ownOK = !IsValid(wep.Owner) or (IsValid(wep.Owner) and wep.Owner:GetActiveWeapon() == wep)
+							
+							if wepOK and ownOK then
+								pt:SetNearZ(1)
+							else
+								pt:SetNearZ(0)
+							end
+							
+							// if dropped or in 3rd person, update pos 
+							if !IsValid(wep.Owner) or wep.Owner:ShouldDrawLocalPlayer() then
+								pt:SetAngles(wep:GetAngles())
+								pt:SetPos(wep:GetPos())
+							end
+							
+							// SetColor - CW2 SightColor setting
+							local col = wep:getSightColor("kk_ins2_flashlight") or white
+							pt:SetColor(col)
+							
+							// if in fps, position will be updated from ElementRender
+							pt:Update()
+						end)
+						
+						wep._KK_INS2_CL_FL = pt
+					end
+				end
+			end
+		end
+	end
+end
+
+hook.Add("Think", "CW_KK_INS2_FLASHLIGHT_V6_initMng", CustomizableWeaponry_KK.ins2.flashlight.v6.think)
 
 // V2 FLASHLIGHT
 
@@ -303,5 +328,5 @@ if SERVER then
 		end
 	end
 	
-	hook.Add("Think", "CW_KK_INS2_FLASHLIGHT", Think)
+	hook.Add("Think", "CW_KK_INS2_FLASHLIGHT_hl2Override", Think)
 end

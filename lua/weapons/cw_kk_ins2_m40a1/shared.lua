@@ -16,7 +16,8 @@ if CLIENT then
 	
 	SWEP.MuzzleEffect = "muzzleflash_m14"
 	SWEP.Shell = "KK_INS2_762x51"
-	SWEP.ShellDelay = 0.9
+	-- SWEP.ShellDelay = 0.9
+	SWEP.NoShells = true
 	
 	SWEP.BackupSights = {
 		["kk_ins2_elcan"] = {
@@ -187,7 +188,7 @@ SWEP.SlotPos = 2
 SWEP.NormalHoldType = "ar2"
 SWEP.RunHoldType = "passive"
 SWEP.FireModes = {"bolt"}
-SWEP.Base = "cw_kk_ins2_base"
+SWEP.Base = "cw_kk_ins2_base_pump"
 SWEP.Category = "CW 2.0 KK INS2"
 
 SWEP.Author			= "Spy"
@@ -211,7 +212,8 @@ SWEP.Primary.DefaultClip	= 5
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "7.62x51MM"
 
-SWEP.FireDelay = 60/33
+-- SWEP.FireDelay = 60/33
+SWEP.FireDelay = 0.3
 SWEP.FireSound = "CW_KK_INS2_M40A1_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_M40A1_FIRE_SUPPRESSED"
 SWEP.Recoil = 1.6
@@ -250,27 +252,7 @@ SWEP.GlobalDelayOnShoot = SWEP.FireDelay
 SWEP.WeaponLength = 38
 
 SWEP.MuzzleVelocity = 777
-
--- function SWEP:updateReloadTimes()
-	-- local mode = self:getForegripMode()
-
-	-- if SERVER or not self.shotgunReloading then
-		-- self.Animations.reload_start = self.Animations[mode .. "reload_start"]
-		-- self.Animations.insert = self.Animations[mode .. "insert"]
-		-- self.Animations.reload_end = self.Animations[mode .. "reload_end"]
-		-- self.Animations.idle = self.Animations[mode .. "reload_end"]
-	-- end
-	
-	-- if self.base_ReloadStartTime then
-		-- self.ReloadStartTime = self[mode .. "ReloadStartTime"] or self.base_ReloadStartTime
-	-- end
-	-- if self.base_InsertShellTime then
-		-- self.InsertShellTime = self[mode .. "InsertShellTime"] or self.base_InsertShellTime
-	-- end
-	-- if self.base_ReloadFinishWait then
-		-- self.ReloadFinishWait = self[mode .. "ReloadFinishWait"] or self.base_ReloadFinishWait
-	-- end
--- end
+SWEP.pumpTime = 1.6
 
 if CLIENT then
 	function SWEP:updateOtherParts() // call me clientSideThink
@@ -326,38 +308,6 @@ if CLIENT then
 		self._KK_INS2_wasBipod = isBipod
 	end
 end
-
-function SWEP:fireAnimFunc()
-	local clip = self:Clip1()
-	local mag = ""
-	
-	if clip == 0 then
-		mag = "_empty"
-	end
-	
-	local prefix = self:getForegripMode()
-	local suffix = ""
-	
-	if self:isAiming() then
-		suffix = "_aim"
-	end
-	
-	if clip > 0 then
-		CustomizableWeaponry.actionSequence.new(self, 0.28, nil, function() 
-			local prefix = self:getForegripMode()
-			local suffix = ""
-			
-			if self:isAiming() then
-				suffix = "_aim"
-			end
-			
-			self:sendWeaponAnim(prefix .. "bolt" .. suffix,1,0)
-		end)
-	end
-	
-	self:sendWeaponAnim(prefix .. "fire" .. mag .. suffix,1,0)
-	
-end //*/
 
 if CLIENT then
 	function SWEP:nametagElementRender()
