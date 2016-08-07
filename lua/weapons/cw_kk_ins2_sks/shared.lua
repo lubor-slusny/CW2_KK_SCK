@@ -262,13 +262,3 @@ SWEP.WeaponLength = 22
 SWEP.KK_INS2_EmptyIdle = true
 
 SWEP.MuzzleVelocity = 735
-
-if CLIENT then 
-	function SWEP:updateOtherParts()
-		if self.dt.BipodDeployed then
-			self.AttachmentModelsWM.kk_ins2_bipod.ent:SetSequence(1)
-		else
-			self.AttachmentModelsWM.kk_ins2_bipod.ent:SetSequence(0)
-		end
-	end
-end

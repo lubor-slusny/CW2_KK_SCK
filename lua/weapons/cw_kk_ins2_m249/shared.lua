@@ -271,12 +271,6 @@ if CLIENT then
 			self:setBodygroup(1,setBG)
 		end
 		
-		if self.dt.BipodDeployed then
-			self:SetSequence(1)
-		else
-			self:SetSequence(0)
-		end
-		
 		self.AttachmentModelsVM.kk_counter_mag.active = counterExists and CustomizableWeaponry_KK.HOME
 		
 		-- self.AttachmentModelsVM.kk_counter_mag.active = false

@@ -82,16 +82,20 @@ if CLIENT then // all clients
 	hook.Add("Think", "CW_KK_INS2_NWWE", function()
 		for _,wep in pairs(ents.GetAll()) do
 			if wep.CW20Weapon then
-				local a = wep.dt.INS2SyncWE1
-				local d = wep.dt.INS2SyncWE0
+				local atts = string.Split(wep.dt.INS2SyncWE1 or "", "|")
+				local dets = string.Split(wep.dt.INS2SyncWE0 or "", "|")
 				
 				if wep.AttachmentModelsWM then
-					if wep.AttachmentModelsWM[a] then
-						wep.AttachmentModelsWM[a].active = true
+					for _,k in pairs(atts) do 
+						if wep.AttachmentModelsWM[k] then
+							wep.AttachmentModelsWM[k].active = true
+						end
 					end
 					
-					if wep.AttachmentModelsWM[d] then
-						wep.AttachmentModelsWM[d].active = false
+					for _,k in pairs(dets) do 
+						if wep.AttachmentModelsWM[k] then
+							wep.AttachmentModelsWM[k].active = false
+						end
 					end
 				end
 			end

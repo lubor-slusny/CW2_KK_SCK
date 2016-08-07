@@ -288,12 +288,6 @@ if CLIENT then
 			self.shotgunReloading = false
 		end
 		
-		if self.dt.BipodDeployed then
-			self.AttachmentModelsWM.kk_ins2_bipod.ent:SetSequence(1)
-		else
-			self.AttachmentModelsWM.kk_ins2_bipod.ent:SetSequence(0)
-		end
-		
 		self.ForegripParent = "LeftHandFix"
 		local hs = vm
 		if self.Sequence:find("deployed") and self.Sequence:find("fire") then

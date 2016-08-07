@@ -288,14 +288,6 @@ if CLIENT then
 	local counterExists = file.Exists("models/weapons/stattrack.mdl", "GAME")
 	
 	function SWEP:updateOtherParts()
-		if self.dt.BipodDeployed then
-			self.WMEnt:SetSequence(1)
-			self:SetSequence(1)
-		else
-			self.WMEnt:SetSequence(0)
-			self:SetSequence(0)
-		end
-
 		if CustomizableWeaponry_KK.HOME then
 			local cycle = self.CW_VM:GetCycle()
 			local clip = self:Clip1()

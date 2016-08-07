@@ -91,9 +91,9 @@ end
 local CW2_ATTS = CustomizableWeaponry.registeredAttachmentsSKey
 
 local function sharedAttachDetach(wep, att)
+	local prim, sec = wep:getPrimarySight(), wep:getSecondarySight()
+	
 	if CLIENT then
-		local prim, sec = wep:getPrimarySight(), wep:getSecondarySight()
-		
 		// magnifier scope		
 		if sec then
 			local a = CW2_ATTS[sec]
@@ -112,7 +112,7 @@ local function sharedAttachDetach(wep, att)
 		end
 		
 		// previously standard parts update called every Think
-		for _,t in pairs({"AttachmentModelsVM", "AttachmentModelsWM"}) do
+		for _,t in pairs({"AttachmentModelsVM", /*"AttachmentModelsWM"*/}) do
 			if wep[t] then
 				if wep[t].kk_ins2_optic_iron then
 					wep[t].kk_ins2_optic_iron.active = prim == nil
@@ -129,6 +129,7 @@ local function sharedAttachDetach(wep, att)
 		// moved from think
 		wep:updateStandardParts()
 	end
+	
 end
 
 local att
@@ -162,7 +163,13 @@ CustomizableWeaponry.callbacks:addNew("postAttachAttachment", "KK_INS2_BASE", fu
 	
 	if SERVER then
 		wep:_KK_INS2_NWAttach(att)
-		wep:_KK_INS2_NWAttachWE(att.name)
+		
+		local networkWElements = att.name
+		if wep.isSight then 
+			networkWElements = networkWElements .. "|" .. "kk_ins2_optic_rail"
+		end
+		
+		wep:_KK_INS2_NWAttachWE(networkWElements)
 	end
 	
 	sharedAttachDetach(wep, att)
