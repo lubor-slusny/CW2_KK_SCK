@@ -25,6 +25,8 @@
 		SWEP.isShot - used by ins2_base_pump
 		SWEP._pauseUpdatingBelt - used by beltBodygroupToAmmoReseve event during M249 reload
 		SWEP._lastPrimaryAmmoCount - used by slow grenades for extra draw anims
+		SWEP._KK_INS2_NWAttach - network active attachment to all clients
+		SWEP._KK_INS2_NWDetach - network detached attachment to all clients
 			
 	ent attributes:
 		ent._KK_INS2_lenseProxyMul - used by IronsightVectorResult proxy

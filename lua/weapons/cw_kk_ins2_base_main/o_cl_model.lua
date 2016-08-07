@@ -389,13 +389,13 @@ end
 
 function SWEP:drawAttachmentsWorld(parent)	
 	if self.AttachmentModelsWM then
-		if self.AttachmentModelsVM then
-			for k,v in pairs(self.AttachmentModelsVM) do
-				if self.AttachmentModelsWM[k] then
-					self.AttachmentModelsWM[k].active = v.active
-				end
-			end
-		end
+		-- if self.AttachmentModelsVM then
+			-- for k,v in pairs(self.AttachmentModelsVM) do
+				-- if self.AttachmentModelsWM[k] then
+					-- self.AttachmentModelsWM[k].active = v.active
+				-- end
+			-- end
+		-- end
 		
 		for k, v in pairs(self.AttachmentModelsWM) do
 			if v.ent and v.active then

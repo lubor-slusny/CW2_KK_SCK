@@ -13,6 +13,11 @@ function SWEP:SetupDataTables()
 	self:NetworkVar("Bool", 2, "BipodDeployed")
 	self:NetworkVar("Bool", 3, "INS2GLActive")
 	self:NetworkVar("Angle", 0, "ViewOffset")
+	
+	self:NetworkVar("Int", 3, "INS2AttachSync")
+	self:NetworkVar("Int", 4, "INS2DetachSync")
+	self:NetworkVar("String", 0, "INS2WESyncKey")
+	self:NetworkVar("Bool", 4, "INS2WESyncVal")
 end
 
 // LUA VM Recoil only for RT scopes

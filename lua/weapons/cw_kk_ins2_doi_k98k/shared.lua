@@ -240,7 +240,7 @@ for k,v in pairs(SWEP.Animations) do
 	if SWEP.animCallbacksRAW[v] then
 		local t = SWEP.animCallbacksRAW[v].time
 		SWEP.animCallbacks[k] = function(wep)
-			print("anim callback:", wep, k, v)
+			-- print("anim callback:", wep, k, v)
 			CustomizableWeaponry.actionSequence.new(wep, t, nil, function()
 				wep:shellEvent()
 			end)
