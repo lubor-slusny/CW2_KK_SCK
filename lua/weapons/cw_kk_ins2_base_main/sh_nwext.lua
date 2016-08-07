@@ -6,11 +6,11 @@ if SERVER then
 		local att, k = CustomizableWeaponry:findAttachment(att.name)
 		
 		if att then
-			if self.dt.INS2DetachSync == k then
-				self.dt.INS2DetachSync = -1
+			if self.dt.INS2SyncAA0 == k then
+				self.dt.INS2SyncAA0 = -1
 			end
 			
-			self.dt.INS2AttachSync = k
+			self.dt.INS2SyncAA1 = k
 		end
 	end
 	
@@ -18,11 +18,11 @@ if SERVER then
 		local att, k = CustomizableWeaponry:findAttachment(att.name)
 		
 		if att then
-			if self.dt.INS2AttachSync == k then
-				self.dt.INS2AttachSync = -1
+			if self.dt.INS2SyncAA1 == k then
+				self.dt.INS2SyncAA1 = -1
 			end
 			
-			self.dt.INS2DetachSync = k
+			self.dt.INS2SyncAA0 = k
 		end
 	end
 end
@@ -35,8 +35,8 @@ if CLIENT then
 	
 	hook.Add("Think", "CW_KK_INS2_NWAA", function()
 		for _,wep in pairs(ents.GetAll()) do
-			if wep.CW20Weapon and wep.Owner != LocalPlayer() then
-				local a = wep.dt.INS2AttachSync
+			if wep.CW20Weapon then
+				local a = wep.dt.INS2SyncAA1
 				if a then
 					local atbl = CW2_ATTS[a]
 					
@@ -45,9 +45,9 @@ if CLIENT then
 					end
 				end
 				
-				local b = wep.dt.INS2DetachSync
-				if b then
-					local btbl = CW2_ATTS[b]
+				local d = wep.dt.INS2SyncAA0
+				if d then
+					local dtbl = CW2_ATTS[d]
 					
 					if btbl then
 						wep.ActiveAttachments[btbl.name] = false
@@ -60,37 +60,39 @@ end
 
 // WElements
 
-if CLIENT then // actor client
-	function SWEP:setWElementActive(k,v)
-		local nwbool
-		
-		if v then nwbool = 1 else nwbool = 0 end
-		
-		RunConsoleCommand("_cw_kk_ins2_nwwe", self:EntIndex(), k, nwbool)
-	end
-end
-
-if SERVER then // broadcast server
-	local function receive(ply, cmd, args, argStr)
-		local wep = ents.GetByIndex(tonumber(args[1]))
-		
-		if IsValid(wep) then
-			wep.dt.INS2WESyncKey = args[2]
-			wep.dt.INS2WESyncVal = tonumber(args[3]) == 1
+if SERVER then
+	function SWEP:_KK_INS2_NWAttachWE(k)
+		if self.dt.INS2SyncWE0 == k then
+			self.dt.INS2SyncWE0 = ""
 		end
+		
+		self.dt.INS2SyncWE1 = k
 	end
 	
-	concommand.Add("_cw_kk_ins2_nwwe", receive)
+	function SWEP:_KK_INS2_NWDetachWE(k)
+		if self.dt.INS2SyncWE1 == k then
+			self.dt.INS2SyncWE1 = ""
+		end
+		
+		self.dt.INS2SyncWE0 = k
+	end
 end
 
 if CLIENT then // all clients
 	hook.Add("Think", "CW_KK_INS2_NWWE", function()
 		for _,wep in pairs(ents.GetAll()) do
-			if wep.CW20Weapon and wep.Owner != LocalPlayer() then
-				local k, v = wep.dt.INS2WESyncKey, wep.dt.INS2WESyncVal
+			if wep.CW20Weapon then
+				local a = wep.dt.INS2SyncWE1
+				local d = wep.dt.INS2SyncWE0
 				
-				if k and wep.AttachmentModelsWM and wep.AttachmentModelsWM[k] then
-					wep.AttachmentModelsWM[k].active = v
+				if wep.AttachmentModelsWM then
+					if wep.AttachmentModelsWM[a] then
+						wep.AttachmentModelsWM[a].active = true
+					end
+					
+					if wep.AttachmentModelsWM[d] then
+						wep.AttachmentModelsWM[d].active = false
+					end
 				end
 			end
 		end

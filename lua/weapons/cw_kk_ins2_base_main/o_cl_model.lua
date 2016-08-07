@@ -313,7 +313,7 @@ function SWEP:DrawWorldModel()
 	
 	if IsValid(self.Owner) then
 		self:DrawShadow(false)
-		self:RemoveEffects(EF_BONEMERGE) // probably needs to be called on server
+		-- self:RemoveEffects(EF_BONEMERGE) // probably needs to be called on server
 		
 		pos, ang = GetBonePosition(self.Owner, LookupBone(self.Owner, "ValveBiped.Bip01_R_Hand"))
 		
@@ -322,22 +322,22 @@ function SWEP:DrawWorldModel()
 		ang:RotateAroundAxis(ang:Right(), self.WMAng.x)
 		ang:RotateAroundAxis(ang:Forward(), self.WMAng.z)
 	
-		self:SetPos(pos)			
-		self:SetAngles(ang)
+		-- self:SetPos(pos)			
+		-- self:SetAngles(ang)
 	end
 	
 	self.WMEnt:SetPos(pos)			// kept for cw_muzzleflash effect 	
 	self.WMEnt:SetAngles(ang)		// even if I keep calling RemoveBoneMerge - get:attachment still returns crotchpos
 	
-	if !self.DrawCustomWM then
-		self:RemoveEffects(EF_BONEMERGE)
-		self:DrawModel()
-		self:drawAttachmentsWorld(self)
-	else
+	-- if !self.DrawCustomWM then
+		-- self:RemoveEffects(EF_BONEMERGE)
+		-- self:DrawModel()
+		-- self:drawAttachmentsWorld(self)
+	-- else
 		self.WMEnt:DrawModel()
 		self.WMEnt:DrawShadow(true)
 		self:drawAttachmentsWorld(self.WMEnt)
-	end
+	-- end
 	
 	self.HUD_3D2DScale = self.HUD_3D2DScale * 1.5
 	self.CustomizationMenuScale = self.CustomizationMenuScale * 1.5

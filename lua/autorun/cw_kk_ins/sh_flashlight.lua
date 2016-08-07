@@ -50,7 +50,7 @@ function CustomizableWeaponry_KK.ins2.flashlight.v6.think()
 				if att then
 					// ... but no ProjectedTexture, create it
 					if !IsValid(wep._KK_INS2_CL_FL) then
-						-- print("adding ProjectedTexture", wep)
+						print("adding ProjectedTexture", wep)
 						local pt = ProjectedTexture()
 						pt:SetTexture(texture)
 						pt:SetEnableShadows(true)
@@ -77,10 +77,14 @@ function CustomizableWeaponry_KK.ins2.flashlight.v6.think()
 								pt:SetNearZ(0)
 							end
 							
-							// if dropped or in 3rd person, update pos 
-							if !IsValid(wep.Owner) or wep.Owner:ShouldDrawLocalPlayer() then
-								pt:SetAngles(wep:GetAngles())
-								pt:SetPos(wep:GetPos())
+							// if dropped or in 3rd person, update pos
+							local nowner = !IsValid(wep.Owner) // dropped
+							local fowner = wep.Owner != LocalPlayer()
+							local lowner = wep.Owner == LocalPlayer() and wep.Owner:ShouldDrawLocalPlayer() // local player owns but in 3rd person
+							
+							if nowner or fowner or lowner then
+								pt:SetAngles(wep.WMEnt:GetAngles())
+								pt:SetPos(wep.WMEnt:GetPos())
 							end
 							
 							// SetColor - CW2 SightColor setting

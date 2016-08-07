@@ -158,12 +158,11 @@ CustomizableWeaponry.callbacks:addNew("postAttachAttachment", "KK_INS2_BASE", fu
 				wep:pickupAnimFunc()
 			end
 		end
-		
-		wep:setWElementActive(att.name, true)
 	end
 	
 	if SERVER then
 		wep:_KK_INS2_NWAttach(att)
+		wep:_KK_INS2_NWAttachWE(att.name)
 	end
 	
 	sharedAttachDetach(wep, att)
@@ -190,12 +189,12 @@ CustomizableWeaponry.callbacks:addNew("postDetachAttachment", "KK_INS2_BASE", fu
 		if att.KK_INS2_playIdle then
 			wep:idleAnimFunc()
 		end
-		
-		wep:setWElementActive(att.name, false)
 	end
 	
 	if SERVER then
 		wep:_KK_INS2_NWDetach(att)
+		wep:_KK_INS2_NWDetachWE(att.name)
+		wep:_KK_INS2_NWDetachWE(att.name .. "rail")
 	end
 	
 	sharedAttachDetach(wep, att)
