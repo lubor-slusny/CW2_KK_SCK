@@ -85,6 +85,7 @@ if CLIENT then
 			local velement = self.AttachmentModelsVM[currentPrimarySight]
 			
 			velement.active = false
+			self:setWElementActive(currentPrimarySight, false)
 			magnifierModel = models[velement.model]
 			scopeEnt:SetModel(magnifierModel)
 			
@@ -144,6 +145,7 @@ function att:attachFunc()
 				
 				if self.AttachmentModelsVM[currentPrimarySight] then
 					self.AttachmentModelsVM[currentPrimarySight].active = false
+					self:setWElementActive(currentPrimarySight, false)
 				end
 			end
 		end
@@ -161,6 +163,7 @@ function att:detachFunc()
 		
 		if currentPrimarySight and self.AttachmentModelsVM and self.AttachmentModelsVM[currentPrimarySight] then
 			self.AttachmentModelsVM[currentPrimarySight].active = true
+			self:setWElementActive(currentPrimarySight, true)
 		end
 	end
 	

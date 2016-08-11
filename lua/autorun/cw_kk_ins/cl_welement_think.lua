@@ -45,4 +45,14 @@ if CLIENT then
 	CustomizableWeaponry_KK.ins2.welementThink._funcs.cw_kk_ins2_doi_zooka = function(wep, welement)
 		welement:SetBodygroup(1, (wep:Clip1() == 1) and 0 or 1)
 	end
+	
+	local att = {}
+	
+	CustomizableWeaponry_KK.ins2.welementThink._funcs.kk_ins2_lam = function(wep, welement)
+		if IsValid(welement) then
+			att.Pos = welement:GetPos()
+			att.Ang = welement:GetAngles()
+			-- CustomizableWeaponry.registeredAttachmentsSKey["kk_ins2_lam"]._elementRender(wep, att)
+		end
+	end
 end

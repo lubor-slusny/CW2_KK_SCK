@@ -77,19 +77,19 @@ if CLIENT then
 			net.WriteBool(v)
 			net.SendToServer()
 		end
-		
-		self.dt.INS2SyncWE0 = k
 	end
 end
 
 local function receive(len, ply)
+	local wep, k, v = net.ReadEntity(), net.ReadString(), net.ReadBool()
+	
 	if SERVER then
-		-- net.Broadcast()
+		net.Start("CW_KK_INS2_NWWE")
+		net.WriteEntity(wep)
+		net.WriteString(k)
+		net.WriteBool(v)
 		net.SendOmit(ply)
 	else
-		local wep, k, v = net.ReadEntity(), net.ReadString(), net.ReadBool()
-	
-		print("CW_KK_INS2_NWWE", wep, k, v)
 		
 		if IsValid(wep) and wep.AttachmentModelsWM and wep.AttachmentModelsWM[k] then
 			wep.AttachmentModelsWM[k].active = v
