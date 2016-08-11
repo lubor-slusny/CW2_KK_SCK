@@ -116,12 +116,15 @@ local function sharedAttachDetach(wep, att)
 			if wep[t] then
 				if wep[t].kk_ins2_optic_iron then
 					wep[t].kk_ins2_optic_iron.active = prim == nil
+					wep:setWElementActive("kk_ins2_optic_iron", prim == nil)
 				end
 				if wep[t].kk_ins2_optic_rail then
 					wep[t].kk_ins2_optic_rail.active = prim != nil
+					wep:setWElementActive("kk_ins2_optic_rail", prim != nil)
 				end
 				if wep[t][att.name] and wep[t][att.name .. "_rail"] then
 					wep[t][att.name .. "_rail"].active = wep[t][att.name].active
+					wep:setWElementActive(att.name .. "_rail", wep[t][att.name].active)
 				end
 			end
 		end
@@ -159,17 +162,12 @@ CustomizableWeaponry.callbacks:addNew("postAttachAttachment", "KK_INS2_BASE", fu
 				wep:pickupAnimFunc()
 			end
 		end
+		
+		wep:setWElementActive(att.name, true)
 	end
 	
 	if SERVER then
 		wep:_KK_INS2_NWAttach(att)
-		
-		local networkWElements = att.name
-		if wep.isSight then 
-			networkWElements = networkWElements .. "|" .. "kk_ins2_optic_rail"
-		end
-		
-		wep:_KK_INS2_NWAttachWE(networkWElements)
 	end
 	
 	sharedAttachDetach(wep, att)
@@ -196,12 +194,12 @@ CustomizableWeaponry.callbacks:addNew("postDetachAttachment", "KK_INS2_BASE", fu
 		if att.KK_INS2_playIdle then
 			wep:idleAnimFunc()
 		end
+		
+		wep:setWElementActive(att.name, false)
 	end
 	
 	if SERVER then
 		wep:_KK_INS2_NWDetach(att)
-		wep:_KK_INS2_NWDetachWE(att.name)
-		wep:_KK_INS2_NWDetachWE(att.name .. "rail")
 	end
 	
 	sharedAttachDetach(wep, att)
