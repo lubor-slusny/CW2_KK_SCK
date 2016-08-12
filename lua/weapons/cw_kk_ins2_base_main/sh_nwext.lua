@@ -14,6 +14,8 @@ if SERVER then
 			end
 		end
 		
+		print("[NWAA BC]", self)
+		PrintTable(out)
 		return out
 	end
 	
@@ -22,8 +24,12 @@ if SERVER then
 		net.WriteEntity(self)
 		net.WriteFloat(CurTime())
 		net.WriteTable(makeTable(self))
-		-- net.Broadcast()
-		net.SendOmit(self.Owner)
+		
+		if IsValid(self.Owner) then
+			net.SendOmit(self.Owner)
+		else
+			net.Broadcast()
+		end
 	end
 	
 	function SWEP:_KK_INS2_NWAttach(att)
