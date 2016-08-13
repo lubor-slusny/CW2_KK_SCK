@@ -55,6 +55,8 @@ SWEP.Primary.DefaultClip	= -1
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= ""
 
+SWEP.HoldToAim				= false
+
 SWEP.HipSpread = 0.045
 SWEP.AimSpread = 0.045
 SWEP.VelocitySensitivity = 0.001
@@ -167,7 +169,7 @@ function SWEP:IndividualThink()
 	
 	if self.dt.PinPulled then
 		if curTime > self.throwTime then
-			if not self.Owner:KeyDown(IN_ATTACK) then
+			if not (self.Owner:KeyDown(IN_ATTACK) or self.Owner:KeyDown(IN_ATTACK2)) then
 				if not self.animPlayed then
 					self.entityTime = CurTime() + 0.15
 					self:sendWeaponAnim("throw")
@@ -187,9 +189,15 @@ function SWEP:IndividualThink()
 						grenade:SetAngles(self.Owner:EyeAngles())
 						grenade:Spawn()
 						grenade:Activate()
-						grenade:Fuse(self.fuseTime)
 						grenade:SetOwner(self.Owner)
 						CustomizableWeaponry.quickGrenade:applyThrowVelocity(self.Owner, grenade, 800, Vector(0, 0, 150))
+						
+						if self.cookTime then
+							grenade:Fuse(math.Clamp((self.cookTime + self.fuseTime) - curTime, 0, self.fuseTime))
+							self.cookTime = nil
+						else
+							grenade:Fuse(self.fuseTime)
+						end
 						
 						if not CustomizableWeaponry.callbacks.processCategory(wep, "shouldSuppressAmmoUsage") then
 							self:TakePrimaryAmmo(1)
@@ -213,6 +221,37 @@ function SWEP:IndividualThink()
 				end
 				
 				self.animPlayed = true
+			else
+				if self.cookTime and (self.cookTime + self.fuseTime) < curTime then
+					self:SetNextPrimaryFire(curTime + 1)
+					
+					local ent = scripted_ents.GetStored(self.grenadeEnt)
+					
+					util.BlastDamage(self, self.Owner, self.Owner:EyePos(), ent.t.ExplodeRadius, ent.t.ExplodeDamage)
+					
+					local ef = EffectData()
+					ef:SetOrigin(self:GetPos())
+					ef:SetMagnitude(1)	
+					util.Effect("Explosion", ef)
+				
+					if not CustomizableWeaponry.callbacks.processCategory(wep, "shouldSuppressAmmoUsage") then
+						self:TakePrimaryAmmo(1)
+						CustomizableWeaponry.callbacks.processCategory(wep, "postConsumeAmmo")
+					end
+					
+					timer.Simple(self.swapTime, function()
+						if IsValid(self) and IsValid(self.Owner) then
+							if self.Owner:GetAmmoCount(self.Primary.Ammo) <= 0 then -- we're out of ammo, strip this weapon
+								self.Owner:ConCommand("lastinv")
+							else
+								self:drawAnimFunc()
+							end
+						end
+					end)
+					
+					self.dt.PinPulled = false
+					self.animPlayed = true
+				end
 			end
 		end
 	end
@@ -240,6 +279,27 @@ function SWEP:PrimaryAttack()
 end
 
 function SWEP:SecondaryAttack()
-	// throw low or cok
-	// cok preferably
+	if self.grenadeEnt != "cw_grenade_thrown" then
+		return
+	end
+	
+	if self.Owner:GetAmmoCount(self.Primary.Ammo) < 1 and self:Clip1() < 1 then
+		return
+	end
+
+	if self.dt.PinPulled then
+		return
+	end
+	
+	for i = 1, 3 do
+		if not self:canFireWeapon(i) then
+			return
+		end
+	end
+	
+	self.dt.PinPulled = true
+	self.animPlayed = false
+	self.throwTime = CurTime() + (self.timeToThrowCook or self.timeToThrow)
+	self.cookTime = self.throwTime
+	self:sendWeaponAnim("pullcook")
 end

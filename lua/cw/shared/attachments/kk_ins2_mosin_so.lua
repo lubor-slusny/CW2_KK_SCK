@@ -42,8 +42,8 @@ function att:detachFunc()
 	self.WorldModel = "models/weapons/w_mosin.mdl"
 end
 
-if CLIENT then
-	CustomizableWeaponry:createStatText(att)
-end
+-- if CLIENT then
+	-- CustomizableWeaponry:createStatText(att)
+-- end
 
 CustomizableWeaponry:registerAttachment(att)

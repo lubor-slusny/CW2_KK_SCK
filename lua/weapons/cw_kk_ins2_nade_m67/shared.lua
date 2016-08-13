@@ -27,6 +27,7 @@ SWEP.Animations = {
 	draw = "draw",
 	throw = "throw",
 	pullpin = "pullbackhigh",
+	pullcook = "pullbackhighbake",
 	
 	base_pickup = "base_draw",
 	base_idle = "idle",
@@ -114,6 +115,7 @@ SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "Frag Grenades"
 
 -- SWEP.swapTime = 0.7
+SWEP.timeToThrowCook = 1.2
 
 if CustomizableWeaponry_KK.HOME then 
 	AddCSLuaFile("_src_go.lua")

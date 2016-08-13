@@ -130,7 +130,7 @@ SWEP.Attachments = {
 }
 
 if CustomizableWeaponry_KK.ins2.wsContentMounted() then
-	table.insert(SWEP.Attachments, 6, {header = "Package", offset = {-200, 500}, atts = {"kk_ins2_mosin_so"}})
+	-- table.insert(SWEP.Attachments, 6, {header = "Package", offset = {-200, 500}, atts = {"kk_ins2_mosin_so"}})
 end
 
 SWEP.Animations = {

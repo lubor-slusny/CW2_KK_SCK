@@ -50,7 +50,7 @@ function CustomizableWeaponry_KK.ins2.flashlight.v6.think()
 				if att then
 					// ... but no ProjectedTexture, create it
 					if !IsValid(wep._KK_INS2_CL_FL) then
-						print("adding ProjectedTexture", wep)
+						-- print("adding ProjectedTexture", wep)
 						local pt = ProjectedTexture()
 						pt:SetTexture(texture)
 						pt:SetEnableShadows(true)

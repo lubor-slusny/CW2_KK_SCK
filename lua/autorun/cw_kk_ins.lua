@@ -241,6 +241,15 @@ if CLIENT then
 	
 	hook.Add("InitPostEntity", "CW_KK_INS2_WS_UPDATE_NOTIFY", function()
 		timer.Simple(5, function()
+			if not CustomizableWeaponry_KK.ins2.baseContentMounted() then
+				chat.AddText(
+					Color(200, 157, 96),
+					"[KK INS2 SWEPS] ",
+					Color(255, 255, 255),
+					"Hi, files required by this pack are missing from your game. SWEPs will not be spawnable until YOU fix the mounting."
+				)
+			end
+			
 			if CustomizableWeaponry_KK.ins2.baseContentMounted() and (CustomizableWeaponry_KK.ins2.ws != nil) and not CustomizableWeaponry_KK.ins2.wsContentMounted() then
 				chat.AddText(
 					Color(200, 157, 96),

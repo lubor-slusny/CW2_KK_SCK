@@ -23,6 +23,7 @@ SWEP.Animations = {
 	draw = "base_draw",
 	throw = "throw",
 	pullpin = "pullbackhigh",
+	pullcook = "pullbackhighbake",
 	
 	base_idle = "base_idle",
 	base_pickup = "base_draw",
@@ -110,3 +111,5 @@ SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "Frag Grenades"
 
 -- SWEP.swapTime = 0.7
+SWEP.timeToThrow = 0.8
+SWEP.timeToThrowCook = 1.3

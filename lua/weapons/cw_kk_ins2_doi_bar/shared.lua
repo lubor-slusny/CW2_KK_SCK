@@ -50,7 +50,7 @@ SWEP.Animations = {
 	base_safe_aim = "iron_down",
 	
 	bipod_in = "deployed_in",
-	bipod_fire = "deployed_fire",
+	bipod_fire = {"deployed_fire_1", "deployed_fire_2"},
 	bipod_fire_aim = {"deployed_iron_fire_1","deployed_iron_fire_2","deployed_iron_fire_3"},
 	bipod_fire_empty = "deployed_dryfire",
 	bipod_fire_empty_aim = "deployed_iron_dryfire",

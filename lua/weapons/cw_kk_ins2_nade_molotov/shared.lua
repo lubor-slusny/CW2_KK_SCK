@@ -167,3 +167,7 @@ if CLIENT then
 		return self.CW_VM:GetAttachment(2)
 	end
 end
+
+function SWEP:SecondaryAttack()
+	// this one detonates on impact
+end

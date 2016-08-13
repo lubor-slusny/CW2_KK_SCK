@@ -80,7 +80,6 @@ end
 
 if CustomizableWeaponry_KK.HOME then
 	-- add({text = "FRAG", ammo = "Frag Grenades", class = "weapon_striderbuster"})
-	-- add({text = "FRAG", ammo = "Frag Grenades", class = "npc_grenade_frag"})
 	add({text = "HL2", ammo = "Frag Grenades", class = "npc_grenade_frag"})
 	add({text = "BUG", /*ammo = "9x19MM", */class = "npc_grenade_bugbait", default = "n77"})
 	add({text = "N69", ammo = "Frag Grenades", class = "cw_kk_ins2_projectile_n69", default = "n69"})
@@ -209,52 +208,36 @@ function CustomizableWeaponry_KK.ins2:throwGrenade(IFTP)
 				net.Broadcast()
 			end)
 
-			// needs cleanup
+			CustomizableWeaponry.actionSequence.new(self, 0.3, nil, function()
+				self.canDropGrenade = true
+			end)
+		
+			CustomizableWeaponry.actionSequence.new(self, 0.9, nil, function()
+				self.liveGrenade = true
+			end)
 		
 			CustomizableWeaponry.actionSequence.new(self, 1.2, nil, function()
-				local pos = self.Owner:GetShootPos()
-				-- local offset = CustomizableWeaponry.quickGrenade.getThrowOffset(self.Owner)
-				local eyeAng = self.Owner:EyeAngles()
-				local forward = eyeAng:Forward()
-				
+				// create and setup
 				local nade = ents.Create(entClass)
 				
 				if not IsValid(nade) then return end
 				
-				nade.Model = quickNadeTweak.wm
+				local pos = self.Owner:GetShootPos()
+				local eyeAng = self.Owner:EyeAngles()
+				local forward = eyeAng:Forward()
 				
-				-- nade:SetPos(pos + offset)
+				nade.Model = quickNadeTweak.wm
 				nade:SetPos(pos)
 				nade:SetAngles(eyeAng)
 				
 				nade:Spawn()
 				nade:Activate()
 				
-				if nade.Fuse then
-					nade:Fuse(3)
-				end
-				
 				nade:SetOwner(self.Owner)
 				nade:SetModel(quickNadeTweak.wm)
 				
-				
-				
-				
-				local overallSideMod = self.Owner:KeyDown(IN_SPEED) and 2 or 1
-
-				-- take the velocity into account
-				local addMod = math.Clamp(self.Owner:GetVelocity():Length() / self.Owner:GetRunSpeed(), 0, 1)
-				
-				local velocity = forward * CustomizableWeaponry.quickGrenade.throwVelocity + CustomizableWeaponry.quickGrenade.addVelocity
-				local velNorm = self.Owner:GetVelocity():GetNormal()
-				velNorm.z = 0
-				
-				-- add velocity based on player velocity normal
-				local velocity = velocity + velNorm * CustomizableWeaponry.quickGrenade.movementAddVelocity * addMod
-				
-				
-				
-				
+				// add velocity
+				local velocity = CustomizableWeaponry.quickGrenade:getThrowVelocity(self.Owner, throwVelocity, addVelocity)
 				local phys = nade:GetPhysicsObject()
 				
 				if IsValid(phys) then
@@ -262,17 +245,26 @@ function CustomizableWeaponry_KK.ins2:throwGrenade(IFTP)
 					phys:AddAngleVelocity(Vector(math.random(-500, 500), math.random(-500, 500), math.random(-500, 500)))
 				else
 					nade:SetVelocity(velocity)
-					-- nade:AddAngleVelocity(Vector(math.random(-500, 500), math.random(-500, 500), math.random(-500, 500)))
 				end
 				
-				-- nade:Fire("ExplodeIn", 3)
-				nade:Fire("SetTimer", 3)
+				// fuse
+				if nade.Fuse then
+					nade:Fuse(3)
+				end
 				
+				nade:Fire("ExplodeIn", 3)
+				nade:Fire("sETtIMER", 3)
+				
+				// consume owners ammo
 				local suppressAmmoUsage = CustomizableWeaponry.callbacks.processCategory(self, "shouldSuppressAmmoUsage")
 				
 				if nadeAmmo and not suppressAmmoUsage then
 					self.Owner:RemoveAmmo(1, nadeAmmo)
 				end
+				
+				// ease on martyrdom
+				self.liveGrenade = false
+				self.canDropGrenade = false
 			end)
 		end
 		

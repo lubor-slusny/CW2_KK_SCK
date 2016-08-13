@@ -22,6 +22,7 @@ SWEP.Animations = {
 	draw = "base_draw",
 	throw = "throw",
 	pullpin = "pullbackhigh",
+	pullcook = "pullbackhighbake",
 	
 	base_idle = "base_idle",
 	base_draw = "base_draw",

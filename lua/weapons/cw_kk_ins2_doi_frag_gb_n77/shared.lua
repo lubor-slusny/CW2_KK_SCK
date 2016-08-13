@@ -119,3 +119,7 @@ SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "Smoke Grenades"
 
 SWEP.timeToThrow = 1.1
+
+function SWEP:SecondaryAttack()
+	// this one detonates on impact
+end
