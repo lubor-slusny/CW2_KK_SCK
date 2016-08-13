@@ -260,6 +260,11 @@ function SWEP:Initialize()
 	weapons.GetStored("cw_base").Initialize(self)
 	
 	self:PrepareForPickup()
+	
+	if CLIENT then
+		self:initNWAA()
+		self:initNWWE()
+	end
 end
 
 function SWEP:unloadWeapon(force)
