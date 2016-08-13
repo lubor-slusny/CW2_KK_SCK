@@ -16,13 +16,13 @@ if CLIENT then
 	
 	SWEP.MuzzleEffect = "muzzleflash_m14"
 	SWEP.Shell = "KK_INS2_762x54"
-	SWEP.ShellDelay = 0.06
+	SWEP.ShellDelay = 0.12
 	
 	SWEP.AttachmentModelsVM = {}
 	SWEP.AttachmentModelsWM = {}
 	
-	SWEP.IronsightPos = Vector(-2.1197, -2, 1.4045)
-	SWEP.IronsightAng = Vector(-0.1832, 0.0054, 0)
+	SWEP.IronsightPos = Vector(-2.1192, -2, 1.4437)
+	SWEP.IronsightAng = Vector(-0.3029, 0, 0)
 end
 
 SWEP.Attachments = {
@@ -123,6 +123,7 @@ SWEP.ReloadHalt_Empty = 6.73
 
 SWEP.WeaponLength = 28
 
+SWEP.Chamberable = false
 SWEP.BipodInstalled = true
 
 SWEP.MuzzleVelocity = 860

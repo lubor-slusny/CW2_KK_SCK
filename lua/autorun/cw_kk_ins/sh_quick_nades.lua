@@ -161,6 +161,10 @@ function CustomizableWeaponry_KK.ins2:throwGrenade(IFTP)
 	IFTP = IFTP or IsFirstTimePredicted()
 	
 	if (not SP and IFTP) or SP then
+		CustomizableWeaponry.actionSequence.new(self, 0.4, nil, function()
+			self.Owner:AnimRestartGesture(GESTURE_SLOT_ATTACK_AND_RELOAD, ACT_GMOD_GESTURE_ITEM_THROW, true)
+		end)
+		
 		if self:filterPrediction() then
 			self:EmitSound("CW_HOLSTER")
 		end

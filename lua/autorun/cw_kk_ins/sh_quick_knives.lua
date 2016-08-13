@@ -70,17 +70,82 @@ function CustomizableWeaponry_KK.ins2:canKnife()
 	return true
 end
 
-local knifeRange = 60
-local knifeTD = {
-	mins = Vector(-6, -6, -6),
-	maxs = Vector(6, 6, 6)
+CustomizableWeaponry_KK.ins2.quickKnives.categories = {}
+
+CustomizableWeaponry_KK.ins2.quickKnives.categories.knife = {
+	td = {mins = Vector(-6, -6, -6), maxs = Vector(6, 6, 6)},
+	range = 60,
+	dmgBase = 30,
+	dmgAddRnd = 10,
+	dmgTime = 0.37,
+	npcForceMult = 2000,
 }
 
-local bayonetRange = 100
-local bayonetTD = {
-	mins = Vector(-5, -5, -5),
-	maxs = Vector(5, 5, 5)
+CustomizableWeaponry_KK.ins2.quickKnives.categories.bayonet = {
+	td = {mins = Vector(-5, -5, -5), maxs = Vector(5, 5, 5)},
+	range = 100,
+	dmgBase = 55,
+	dmgAddRnd = 10,
+	dmgTime = 0,
+	npcForceMult = 1500,
 }
+
+if SERVER then
+	function CustomizableWeaponry_KK.ins2.quickKnives:_createDamage(wep, category)
+		// Ill just count on wep and wep.Owner being Valid here 
+	
+		local setup = category and self.categories[category]
+	
+		if not setup then 
+			print("[CustomizableWeaponry_KK.ins2.quickKnives:_createDamage]: invalid category")
+			return 
+		end
+		
+		local td = setup.td
+		local tr
+	
+		CustomizableWeaponry.actionSequence.new(wep, setup.dmgTime, nil, function()			
+			td.start = wep.Owner:GetShootPos()
+			td.endpos = td.start + wep.Owner:GetAimVector() * setup.range
+			td.filter = wep.Owner
+			
+			tr = util.TraceHull(td)
+		
+			if tr.Hit then
+				wep.Owner:EmitSound("CW_KK_INS2_KNIFE")
+				
+				local ent = tr.Entity
+				
+				if IsValid(ent) then
+					local d = DamageInfo()
+					
+					d:SetAttacker(wep.Owner)
+					-- d:SetInflictor(wep)
+					d:SetInflictor(self.inflictor or wep)
+					
+					d:SetDamage(setup.dmgBase + math.random(setup.dmgAddRnd))
+					
+					-- local dir = wep.Owner:GetAimVector() - td.start
+					-- d:SetDamageForce((tr.HitPos + dir) * 200)
+					d:SetDamageType(DMG_SLASH)
+					d:SetDamagePosition(tr.HitPos)
+					d:SetReportedPosition(td.start)
+					
+					ent:TakeDamageInfo(d)
+
+					if ent:IsNPC() then
+						ent:SetVelocity(wep.Owner:GetForward() * setup.npcForceMult)
+					end
+				end
+				
+				wep.Owner:ViewPunch(Angle(math.Rand(-5, -4), math.Rand(-2, 2), math.Rand(-1, 1)))
+			else
+				wep.Owner:ViewPunch(Angle(math.Rand(-5, -4), math.Rand(-2, 2), math.Rand(-1, 1)))
+			end
+		end)
+		
+	end
+end
 
 function CustomizableWeaponry_KK.ins2:meleeKnife()
 	local CT = CurTime()
@@ -103,23 +168,21 @@ function CustomizableWeaponry_KK.ins2:meleeKnife()
 	end
 	
 	if SP or (!SP and SERVER) or (!SP and CLIENT/* and IsFirstTimePredicted()*/) then
-		local tr, td, range, dmgTime, dmg, npcForceMult
+		local category
 		
-		if self.ActiveAttachments.kk_ins2_ww2_knife then
-			self.Owner:SetAnimation(PLAYER_ATTACK1)
-			
+		self.Owner:AnimRestartGesture(GESTURE_SLOT_ATTACK_AND_RELOAD, ACT_HL2MP_GESTURE_RANGE_ATTACK_MELEE2, true)
+		-- self.Owner:AnimRestartGesture(GESTURE_SLOT_ATTACK_AND_RELOAD, ACT_GMOD_GESTURE_MELEE_SHOVE_1HAND, true)
+		-- self.Owner:AnimRestartGesture(GESTURE_SLOT_ATTACK_AND_RELOAD, ACT_GMOD_GESTURE_MELEE_SHOVE_2HAND, true)
+		
+		if self.ActiveAttachments.kk_ins2_ww2_knife then			
 			if CLIENT then
 				self:meleeAnimFunc()
 			end
 			
 			self:setGlobalDelay(0.7)
 			self:SetNextPrimaryFire(CT + 1)
-		
-			td = bayonetTD
-			range = bayonetRange
-			dmgTime = 0
-			dmg = math.random(10) + 45
-			npcForceMult = 1500
+			
+			category = "bayonet"
 		else
 			self:setGlobalDelay(1.2)
 			self:SetNextPrimaryFire(CT + 1.2)
@@ -157,53 +220,11 @@ function CustomizableWeaponry_KK.ins2:meleeKnife()
 				end)
 			end
 			
-			td = knifeTD
-			range = knifeRange
-			dmgTime = 0.37
-			dmg = math.random(10) + 25
-			npcForceMult = 2000
+			category = "knife"
 		end
-		
+	
 		if SERVER then
-			CustomizableWeaponry.actionSequence.new(self, dmgTime, nil, function()			
-				td.start = self.Owner:GetShootPos()
-				td.endpos = td.start + self.Owner:GetAimVector() * range
-				td.filter = self.Owner
-				
-				tr = util.TraceHull(td)
-			
-				if tr.Hit then
-					self.Owner:EmitSound("CW_KK_INS2_KNIFE")
-					
-					local ent = tr.Entity
-					
-					if IsValid(ent) then
-						local d = DamageInfo()
-						
-						d:SetAttacker(self.Owner)
-						-- d:SetInflictor(self)
-						d:SetInflictor(CustomizableWeaponry_KK.ins2.quickKnives.inflictor or self)
-						
-						d:SetDamage(dmg)
-						
-						-- local dir = self.Owner:GetAimVector() - td.start
-						-- d:SetDamageForce((tr.HitPos + dir) * 200)
-						d:SetDamageType(DMG_SLASH)
-						d:SetDamagePosition(tr.HitPos)
-						d:SetReportedPosition(td.start)
-						
-						ent:TakeDamageInfo(d)
-
-						if ent:IsNPC() then
-							ent:SetVelocity(self.Owner:GetForward() * npcForceMult)
-						end
-					end
-					
-					self.Owner:ViewPunch(Angle(math.Rand(-5, -4), math.Rand(-2, 2), math.Rand(-1, 1)))
-				else
-					self.Owner:ViewPunch(Angle(math.Rand(-5, -4), math.Rand(-2, 2), math.Rand(-1, 1)))
-				end
-			end)
+			CustomizableWeaponry_KK.ins2.quickKnives:_createDamage(self, category)
 		end
 	end
 end
@@ -243,7 +264,9 @@ if CLIENT then
 		self.CW_KK_KNIFE:SetPos(pos)
 		self.CW_KK_KNIFE:SetAngles(ang)
 		self.CW_KK_KNIFE:FrameAdvance(FrameTime())
-
+		
+		self.CW_KK_HANDS:AddEffects(EF_BONEMERGE_FASTCULL)
+		
 		cam.IgnoreZ(true)
 			self.CW_KK_KNIFE:DrawModel()
 			self.CW_KK_HANDS:DrawModel()

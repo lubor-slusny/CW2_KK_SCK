@@ -99,7 +99,7 @@ SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_cw_kk_doi_m1.mdl"
 SWEP.WorldModel		= "models/weapons/w_cw_kk_doi_m1.mdl"
 
-SWEP.WMPos = Vector(4.986, 0.921, -1.038)
+SWEP.WMPos = Vector(5.986, 0.921, -0.038)
 SWEP.WMAng = Vector(-10, 0, 180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.models.ww2us
@@ -146,9 +146,10 @@ SWEP.WeaponLength = 20
 SWEP.MuzzleVelocity = 607
 
 if CLIENT then 
-	function SWEP:updateOtherParts()
-		local active = self.ActiveAttachments
-	
-		self.AttachmentModelsVM.kk_ins2_mag_m1a1_15.active = !active.kk_ins2_mag_m1a1_30
+	function SWEP:updateStandardParts()
+		local v = !self.ActiveAttachments.kk_ins2_mag_m1a1_30
+		
+		self.AttachmentModelsVM.kk_ins2_mag_m1a1_15.active = v
+		self:setWElementActive("kk_ins2_mag_m1a1_15", v)
 	end
 end

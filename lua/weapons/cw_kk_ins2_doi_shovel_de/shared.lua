@@ -20,7 +20,7 @@ SWEP.Animations = {
 	base_sprint = "base_sprint",
 }
 
-SWEP.NormalHoldType = "knife"
+SWEP.NormalHoldType = "melee2"
 SWEP.RunHoldType = "passive"
 SWEP.FireModes = {"auto"}
 SWEP.Base = "cw_kk_ins2_mel_base"
@@ -34,9 +34,9 @@ SWEP.Instructions	= ""
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_etool_ger.mdl"
-SWEP.WorldModel		= "models/weapons/w_marinebayonet.mdl"
+SWEP.WorldModel		= "models/weapons/w_etool_ger.mdl"
 
-SWEP.WMPos = Vector(3.812, 1.544, -2.83)
+SWEP.WMPos = Vector(3.812, 1.544, -4.83)
 SWEP.WMAng = Vector(99.385, -22.739, 18.048)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.models.ww2de

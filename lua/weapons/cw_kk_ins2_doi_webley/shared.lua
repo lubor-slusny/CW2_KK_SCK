@@ -29,8 +29,8 @@ if CLIENT then
 		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_mak.mdl", bone = "Weapon", pos = Vector(0, 2.602, -0.06), angle = Angle(0, -90, 0), size = Vector(1, 1, 1)},
 	}
 
-	SWEP.IronsightPos = Vector(-2.6772, 0, 0.9777)
-	SWEP.IronsightAng = Vector(0, 0, 6)
+	SWEP.IronsightPos = Vector(-1.9003, 0, 0.4979)
+	SWEP.IronsightAng = Vector(0, 0, 6.6626)
 
 	SWEP.CustomizationMenuScale = 0.01
 
@@ -139,8 +139,8 @@ SWEP.WeaponLength = 16
 
 SWEP.MuzzleVelocity = 190
 
-local bgBullets = 1
-local bgShells = 2
+local bgBullets = 2
+local bgShells = 1
 
 function SWEP:IndividualInitialize()
 	self.magType = "NONE"
