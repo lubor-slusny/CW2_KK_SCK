@@ -170,9 +170,16 @@ function CustomizableWeaponry_KK.ins2:meleeKnife()
 	if SP or (!SP and SERVER) or (!SP and CLIENT/* and IsFirstTimePredicted()*/) then
 		local category
 		
-		self.Owner:AnimRestartGesture(GESTURE_SLOT_ATTACK_AND_RELOAD, ACT_HL2MP_GESTURE_RANGE_ATTACK_MELEE2, true)
-		-- self.Owner:AnimRestartGesture(GESTURE_SLOT_ATTACK_AND_RELOAD, ACT_GMOD_GESTURE_MELEE_SHOVE_1HAND, true)
-		-- self.Owner:AnimRestartGesture(GESTURE_SLOT_ATTACK_AND_RELOAD, ACT_GMOD_GESTURE_MELEE_SHOVE_2HAND, true)
+		-- if CLIENT then
+			-- self.Owner:AnimRestartGesture(GESTURE_SLOT_ATTACK_AND_RELOAD, ACT_HL2MP_GESTURE_RANGE_ATTACK_MELEE2, true)
+			-- self.Owner:AnimRestartGesture(GESTURE_SLOT_ATTACK_AND_RELOAD, ACT_GMOD_GESTURE_MELEE_SHOVE_1HAND, true)
+			-- self.Owner:AnimRestartGesture(GESTURE_SLOT_ATTACK_AND_RELOAD, ACT_GMOD_GESTURE_MELEE_SHOVE_2HAND, true)
+		-- end
+		
+		if CLIENT then
+			net.Start("CW_KK_INS2_NWGQK")
+			net.SendToServer()
+		end
 		
 		if self.ActiveAttachments.kk_ins2_ww2_knife then			
 			if CLIENT then
@@ -291,3 +298,25 @@ if SERVER then
 		end
 	end)
 end
+
+// gesture
+
+if SERVER then
+	util.AddNetworkString("CW_KK_INS2_NWGQK")
+end
+
+local function receive(len, ply)	
+	if SERVER then
+		net.Start("CW_KK_INS2_NWGQK")
+		net.WriteEntity(ply)
+		net.Broadcast()
+	else
+		local ply = net.ReadEntity()
+		
+		if IsValid(ply) then
+			ply:AnimRestartGesture(GESTURE_SLOT_ATTACK_AND_RELOAD, ACT_HL2MP_GESTURE_RANGE_ATTACK_MELEE2, true)
+		end
+	end
+end
+	
+net.Receive("CW_KK_INS2_NWGQK", receive)
