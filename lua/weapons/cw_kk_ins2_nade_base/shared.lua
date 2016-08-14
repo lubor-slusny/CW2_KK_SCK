@@ -252,6 +252,7 @@ function SWEP:IndividualThink()
 			else
 				if self.cookTime and (self.cookTime + self.fuseTime) < curTime then
 					self:SetNextPrimaryFire(curTime + 1)
+					self.cookTime = nil
 					
 					self:overCooked()
 					
@@ -260,7 +261,7 @@ function SWEP:IndividualThink()
 						CustomizableWeaponry.callbacks.processCategory(wep, "postConsumeAmmo")
 					end
 					
-					timer.Simple(self.swapTime, function()
+					timer.Simple(0.2, function()
 						if IsValid(self) and IsValid(self.Owner) then
 							if self.Owner:GetAmmoCount(self.Primary.Ammo) <= 0 then -- we're out of ammo, strip this weapon
 								self.Owner:ConCommand("lastinv")

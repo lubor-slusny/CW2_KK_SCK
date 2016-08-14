@@ -20,14 +20,9 @@ if CLIENT then
 	
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_revolver_mag"] = {model = "models/weapons/upgrades/a_speedloader_webley.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		
-		-- ["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_band.mdl", bone = "Weapon", pos = Vector(0, 3.437, 1.531), angle = Angle(0, -90, 0), size = Vector(0.8, 0.8, 0.8)},
-		-- ["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_band.mdl", bone = "Weapon", pos = Vector(0, 3.437, 1.531), angle = Angle(0, -90, 0), size = Vector(0.8, 0.8, 0.8)},
-		-- ["kk_ins2_anpeq15"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_anpeq_band.mdl", bone = "Weapon", pos = Vector(0, 3.437, 1.531), angle = Angle(0, -90, 0), size = Vector(0.8, 0.8, 0.8)},
-		
-		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_mak.mdl", bone = "Weapon", pos = Vector(0, 2.602, -0.06), angle = Angle(0, -90, 0), size = Vector(1, 1, 1)},
-		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_mak.mdl", bone = "Weapon", pos = Vector(0, 2.602, -0.06), angle = Angle(0, -90, 0), size = Vector(1, 1, 1)},
 	}
+
+	SWEP.AttachmentModelsWM = {}
 
 	SWEP.IronsightPos = Vector(-1.9003, 0, 0.4979)
 	SWEP.IronsightAng = Vector(0, 0, 6.6626)
@@ -46,7 +41,7 @@ SWEP.Attachments = {
 }
 
 SWEP.Animations = {
-	draw = "base_ready",
+	draw = {"base_ready", "base_ready_rare"},
 	
 	base_reload_start = "base_reload_start",
 	base_reload_start_empty = "base_reload_start",
@@ -55,9 +50,9 @@ SWEP.Animations = {
 	base_reload_end_empty = "base_reload_end",
 	base_idle = "base_reload_end",	
 	
-	base_pickup = "base_ready",
+	base_pickup = {"base_ready", "base_ready_rare"},
 	base_draw = "base_draw",
-	base_fire = {"base_fire","base_fire2"},
+	base_fire = {"base_fire", "base_fire2", "base_fire3"},
 	base_fire_aim = {"iron_fire_1","iron_fire_2"},
 	base_fire_empty = "base_dryfire",
 	base_fire_empty_aim = "iron_dryfire",
@@ -105,8 +100,7 @@ SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= ".380/200"
 
 SWEP.FireDelay = 60/380
-SWEP.FireSound = "CW_KK_INS2_REVOLVER_FIRE"
-SWEP.FireSoundSuppressed = "CW_KK_INS2_REVOLVER_FIRE_SUPPRESSED"
+SWEP.FireSound = "CW_KK_INS2_DOI_WEBLEY_FIRE"
 SWEP.Recoil = 2.6
 
 SWEP.HipSpread = 0.039
@@ -118,20 +112,21 @@ SWEP.SpreadCooldown = 0.25
 SWEP.Shots = 1
 SWEP.Damage = 28
 
-SWEP.FirstDeployTime = 2.54
-SWEP.DeployTime = 0.46
+SWEP.FirstDeployTime = 1.67
+SWEP.DeployTime = 0.43
+SWEP.HolsterTime = 0.46
 
 SWEP.ReloadTime = 3.6
 SWEP.ReloadHalt = 4.2
 
-SWEP.ReloadTime_Empty = 3.6
-SWEP.ReloadHalt_Empty = 4.2
+SWEP.ReloadTime_Empty = 1.8
+SWEP.ReloadHalt_Empty = 3.5
 
-SWEP.ReloadStartTime = 2.36
-SWEP.ReloadStartTimeEmpty = 2.36
-SWEP.InsertShellTime = 0.98
-SWEP.ReloadFinishWait = 1.74
-SWEP.ReloadFinishWaitEmpty = 1.74
+SWEP.ReloadStartTime = 1.37
+SWEP.ReloadStartTimeEmpty = 1.37
+SWEP.InsertShellTime = 1.02
+SWEP.ReloadFinishWait = 1.42
+SWEP.ReloadFinishWaitEmpty = 1.42
 
 SWEP.CanRestOnObjects = false
 SWEP.Chamberable = false
@@ -269,7 +264,7 @@ function SWEP:beginReload()
 		
 		self:sendWeaponAnim("reload_start")
 		
-		CustomizableWeaponry.actionSequence.new(self, 1.6, nil, function()
+		CustomizableWeaponry.actionSequence.new(self, 24/35, nil, function()
 			if self.ShotgunReloadState == 0 then return end // its also possible that its already 2 because user pressed attack button
 			
 			local amt = self:Clip1()

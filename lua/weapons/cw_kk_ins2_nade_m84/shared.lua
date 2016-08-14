@@ -111,10 +111,10 @@ SWEP.Primary.Ammo			= "Flash Grenades"
 
 SWEP.fuseTime = 2.5
 SWEP.timeToThrow = 0.8
-SWEP.timeToThrow = 0.8
+SWEP.timeToThrowCook = 1.3
 
 function SWEP:overCooked()
-	local hitPos = self.Owner:EyePos() + (self.Owner:EyeAngles():Forward() * 20)
+	local hitPos = self.Owner:EyePos() + (self.Owner:EyeAngles():Forward() * 18)
 	
 	local grenade = ents.Create(self.grenadeEnt)
 	grenade:SetNoDraw(true)

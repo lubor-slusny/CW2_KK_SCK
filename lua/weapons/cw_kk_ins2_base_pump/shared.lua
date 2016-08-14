@@ -178,14 +178,14 @@ function SWEP:IndividualThink()
 			end
 		end
 		
-		// I can afford coz times are based on anims
-		// and anims are based purely on attachments
-		// (FAS2 M60 has stuff based on attachments AND current clip)
+		// 2b removed
+		// I guess
 		self:updateReloadTimes()
 		
 		// and now, cosmetix
 		
-		self:updateStandardParts()
+		self:updateHands()
+		self:updateOtherParts()
 		
 		self:playSwitchBipod()
 		

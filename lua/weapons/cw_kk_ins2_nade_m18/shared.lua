@@ -109,7 +109,7 @@ SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "Smoke Grenades"
 
 SWEP.timeToThrow = 0.8
-SWEP.timeToThrow = 0.8
+SWEP.timeToThrowCook = 1.3
 
 function SWEP:overCooked()
 	local smokeScreen = ents.Create("cw_smokescreen_impact")
