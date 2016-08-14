@@ -110,6 +110,8 @@ SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "Flash Grenades"
 
 SWEP.fuseTime = 2.5
+SWEP.timeToThrow = 0.8
+SWEP.timeToThrow = 0.8
 
 function SWEP:overCooked()
 	local hitPos = self.Owner:EyePos() + (self.Owner:EyeAngles():Forward() * 20)

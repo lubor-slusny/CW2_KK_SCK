@@ -40,16 +40,17 @@ if CLIENT then
 			self.lastLaserPos = nil
 		end
 		
-		if mode > 1 then
-			CustomizableWeaponry_KK.ins2.flashlight.v2.elementRender(self, lightAtt)
-		end
-		
-		-- CustomizableWeaponry_KK.ins2.flashlight.v6.elementRender(self, lightAtt, mode > 1)
+		CustomizableWeaponry_KK.ins2.flashlight.v6.elementRender(self, lightAtt)
+	end
+	
+	// for V6 LEM, true - ON, false - OFF
+	function att:getLEMState()
+		return (self.dt.INS2LAMMode > 1)
 	end
 end
 
 function att:attachFunc()
-	CustomizableWeaponry_KK.ins2.flashlight.v2.attach(self)
+	CustomizableWeaponry_KK.ins2.flashlight.v6.attach(self, att)
 	
 	if CLIENT then
 		if not self.AttachmentModelsVM[att.name] then
@@ -59,7 +60,9 @@ function att:attachFunc()
 	end
 end
 
-function att:detachFunc()	
+function att:detachFunc()
+	CustomizableWeaponry_KK.ins2.flashlight.v6.detach(self, att)
+	
 	if CLIENT then
 		if not self.AttachmentModelsVM[att.name] then
 			self.AttachmentModelsVM["kk_ins2_flashlight"].active = false

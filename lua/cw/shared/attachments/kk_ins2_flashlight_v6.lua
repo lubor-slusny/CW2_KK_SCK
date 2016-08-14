@@ -4,13 +4,15 @@ att.displayName = "Light Emitting Module v6.1"
 att.displayNameShort = "LEM6"
 att.colorType = CustomizableWeaponry.colorableParts.COLOR_TYPE_KK_FLASHLIGHT
 
-att.statModifiers = {}
+att.statModifiers = {
+	OverallMouseSensMult = -0.05
+}
 
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
-	-- att.displayIcon = surface.GetTextureID("atts/wipshit")
 	att.description = {
-		[1] = {t = "FREAKIN CLIENTSIDE PROJECTED TEXTURES!!!", c = CustomizableWeaponry.textColors.VPOSITIVE},
+		[1] = {t = "[impulse 100] toggles on/off.", c = CustomizableWeaponry.textColors.REGULAR},
+		[2] = {t = "100% clientside projected texture.", c = CustomizableWeaponry.textColors.VPOSITIVE},
 	}
 	
 	att.reticle = "cw2/reticles/aim_reticule"

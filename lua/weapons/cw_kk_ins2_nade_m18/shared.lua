@@ -108,6 +108,9 @@ SWEP.Primary.DefaultClip	= -1
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "Smoke Grenades"
 
+SWEP.timeToThrow = 0.8
+SWEP.timeToThrow = 0.8
+
 function SWEP:overCooked()
 	local smokeScreen = ents.Create("cw_smokescreen_impact")
 	smokeScreen:SetPos(self.Owner:EyePos())

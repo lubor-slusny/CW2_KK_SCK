@@ -87,6 +87,10 @@ if CLIENT then
 		
 		CustomizableWeaponry_KK.ins2.welementThink._funcs.cw_kk_ins2_doi_frag_gb = grenade
 		
+		CustomizableWeaponry_KK.ins2.welementThink._funcs.cw_kk_ins2_doi_frag_gb_n69 = grenade
+		
+		CustomizableWeaponry_KK.ins2.welementThink._funcs.cw_kk_ins2_doi_frag_gb_n77 = grenade
+		
 		CustomizableWeaponry_KK.ins2.welementThink._funcs.cw_kk_ins2_doi_frag_us = grenade
 	
 	// rcex detonators
