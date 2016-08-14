@@ -17,7 +17,7 @@ if CLIENT then
 end
 
 SWEP.CanRestOnObjects = false
-SWEP.grenadeEnt = "cw_flash_thrown"
+SWEP.grenadeEnt = "cw_flash_thrown_cook"
 
 SWEP.Animations = {
 	draw = "base_draw",
@@ -110,3 +110,16 @@ SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "Flash Grenades"
 
 SWEP.fuseTime = 2.5
+
+function SWEP:overCooked()
+	local hitPos = self.Owner:EyePos() + (self.Owner:EyeAngles():Forward() * 20)
+	
+	local grenade = ents.Create(self.grenadeEnt)
+	grenade:SetNoDraw(true)
+	grenade:SetPos(hitPos)
+	grenade:Spawn()
+	grenade:Activate()
+	grenade:SetOwner(self.Owner)
+	
+	grenade:Fuse(0)
+end

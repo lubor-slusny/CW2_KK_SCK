@@ -149,22 +149,3 @@ function SWEP:getReloadProgress()
 	
 	return math.Round((CT - self.dt.AT4ReloadEnd + self.ReloadHalt) * 100 / self.ReloadHalt)
 end
-
-if CLIENT then 
-	function SWEP:updateOtherParts()
-		self.WMEnt:SetBodygroup(1, 1 - self:Clip1())
-		self:SetBodygroup(1, 1 - self:Clip1())
-	end
-end
-
--- function SWEP:IndividualThink()
-	-- weapons.GetStored("cw_kk_ins2_base").IndividualThink(self)
-
-	-- if CLIENT then 
-		-- self.WMEnt:SetBodygroup(1, 1 - self:Clip1())
-	-- else
-		-- self:SetBodygroup(1, 1 - self:Clip1())
-	-- end
-	
-	-- self:SetBodygroup(1, 1 - self:Clip1())
--- end

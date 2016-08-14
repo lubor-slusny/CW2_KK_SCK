@@ -107,3 +107,10 @@ SWEP.Primary.ClipSize		= -1
 SWEP.Primary.DefaultClip	= -1
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "Smoke Grenades"
+
+function SWEP:overCooked()
+	local smokeScreen = ents.Create("cw_smokescreen_impact")
+	smokeScreen:SetPos(self.Owner:EyePos())
+	smokeScreen:Spawn()
+	smokeScreen:CreateParticles()
+end

@@ -230,15 +230,9 @@ SWEP.WeaponLength = 28
 SWEP.MuzzleVelocity = 840
 
 if CLIENT then
-	function SWEP:updateOtherParts()
+	function SWEP:updateStandardParts()
 		local active = self.ActiveAttachments
 		
 		self.AttachmentModelsVM.kk_ins2_mag_l1a1_20.active = !active.kk_ins2_mag_fal_30
-	
-		if self.dt.BipodDeployed then
-			self.AttachmentModelsWM.kk_ins2_bipod.ent:SetSequence(1)
-		else
-			self.AttachmentModelsWM.kk_ins2_bipod.ent:SetSequence(0)
-		end
 	end
 end

@@ -469,12 +469,6 @@ function SWEP:idleAnimFunc()
 end
 
 if CLIENT then
-	SWEP.DrawCustomWM = false
-	
-	function SWEP:updateOtherParts()
-		self.WMEnt:SetBodygroup(1,1)
-	end
-	
 	local m
 	local muz = {}
 	

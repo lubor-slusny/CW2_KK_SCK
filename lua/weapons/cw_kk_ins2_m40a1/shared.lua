@@ -267,12 +267,6 @@ if CLIENT then
 		if activity:find("reload_end") then
 			self.shotgunReloading = false
 		end
-		
-		if self.dt.BipodDeployed then
-			self.AttachmentModelsWM.kk_ins2_bipod.ent:SetSequence(1)
-		else
-			self.AttachmentModelsWM.kk_ins2_bipod.ent:SetSequence(0)
-		end
 	end	
 
 	function SWEP:playSwitchBipod()

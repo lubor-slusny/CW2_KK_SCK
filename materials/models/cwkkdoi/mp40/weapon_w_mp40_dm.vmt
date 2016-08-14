@@ -1,0 +1,11 @@
+"VertexLitGeneric"
+{
+	"$basetexture"				"models\cwkkdoi\mp40\weapon_w_mp40_dm"
+	"$bumpmap" 					"models\cwkkdoi\mp40\weapon_w_mp40_nm"
+	
+	"$phong" 					"1"
+	"$phongtint" 				"[.67 .85 1]"
+	"$phongexponent" 			"45"
+	"$phongboost" 				"0.3"
+	"$phongfresnelranges"		"[.5 1 3]"
+}

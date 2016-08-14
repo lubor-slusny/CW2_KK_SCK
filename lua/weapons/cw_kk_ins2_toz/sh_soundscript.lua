@@ -1,4 +1,8 @@
 
+local function shell(wep) 
+	wep:shellEvent() 
+end
+
 SWEP.Sounds = {
 	base_draw = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
@@ -22,14 +26,14 @@ SWEP.Sounds = {
 
 	base_fire_cock_1 = {
 		{time = 1/24, sound = "CW_KK_INS2_TOZ_PUMPBACK"},
-		{time = 2/24, sound = "", callback = function(wep) wep:shellEvent() end},
+		{time = 2/24, sound = "", callback = shell},
 		{time = 5/24, sound = "CW_KK_INS2_TOZ_PUMPFORWARD"},
 		// pumpedrdy @ 6 ""},
 	},
 
 	base_fire_cock_2 = {
 		{time = 1/24, sound = "CW_KK_INS2_TOZ_PUMPBACK"},
-		{time = 2/24, sound = "", callback = function(wep) wep:shellEvent() end},
+		{time = 2/24, sound = "", callback = shell},
 		{time = 5/24, sound = "CW_KK_INS2_TOZ_PUMPFORWARD"},
 		// pumpedrdy @ 6 ""},
 	},
@@ -45,7 +49,7 @@ SWEP.Sounds = {
 	base_reload_start_empty = {
 		{time = 5/35, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
 		{time = 18/35, sound = "CW_KK_INS2_TOZ_PUMPBACK"},
-		{time = 20/35, sound = "", callback = function(wep) wep:shellEvent() end},
+		{time = 20/35, sound = "", callback = shell},
 		{time = 51/35, sound = "CW_KK_INS2_TOZ_SHELLINSERTSINGLE"},
 		{time = 76/35, sound = "CW_KK_INS2_TOZ_PUMPFORWARD"},
 		// reloaded @ 78 ""},
@@ -66,14 +70,14 @@ SWEP.Sounds = {
 
 	iron_fire_cock_1 = {
 		{time = 3/35, sound = "CW_KK_INS2_TOZ_PUMPBACK"},
-		{time = 4/35, sound = "", callback = function(wep) wep:shellEvent() end},
+		{time = 4/35, sound = "", callback = shell},
 		{time = 11/35, sound = "CW_KK_INS2_TOZ_PUMPFORWARD"},
 		// pumpedrdy @ 12 ""},
 	},
 
 	iron_fire_cock_2 = {
 		{time = 3/35, sound = "CW_KK_INS2_TOZ_PUMPBACK"},
-		{time = 4/35, sound = "", callback = function(wep) wep:shellEvent() end},
+		{time = 4/35, sound = "", callback = shell},
 		{time = 11/35, sound = "CW_KK_INS2_TOZ_PUMPFORWARD"},
 		// pumpedrdy @ 12 ""},
 	},
@@ -103,14 +107,14 @@ SWEP.Sounds = {
 
 	foregrip_fire_cock_1 = {
 		{time = 1/24, sound = "CW_KK_INS2_TOZ_PUMPBACK"},
-		{time = 2/24, sound = "", callback = function(wep) wep:shellEvent() end},
+		{time = 2/24, sound = "", callback = shell},
 		{time = 5/24, sound = "CW_KK_INS2_TOZ_PUMPFORWARD"},
 		// pumpedrdy @ 6 ""},
 	},
 
 	foregrip_fire_cock_2 = {
 		{time = 1/24, sound = "CW_KK_INS2_TOZ_PUMPBACK"},
-		{time = 2/24, sound = "", callback = function(wep) wep:shellEvent() end},
+		{time = 2/24, sound = "", callback = shell},
 		{time = 5/24, sound = "CW_KK_INS2_TOZ_PUMPFORWARD"},
 		// pumpedrdy @ 6 ""},
 	},
@@ -126,7 +130,7 @@ SWEP.Sounds = {
 	foregrip_reload_start_empty = {
 		{time = 5/35, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
 		{time = 18/35, sound = "CW_KK_INS2_TOZ_PUMPBACK"},
-		{time = 20/35, sound = "", callback = function(wep) wep:shellEvent() end},
+		{time = 20/35, sound = "", callback = shell},
 		{time = 51/35, sound = "CW_KK_INS2_TOZ_SHELLINSERTSINGLE"},
 		{time = 76/35, sound = "CW_KK_INS2_TOZ_PUMPFORWARD"},
 		// reloaded @ 78 ""},
@@ -146,13 +150,13 @@ SWEP.Sounds = {
 	},
 
 	foregrip_iron_fire_cock_1 = {
-		{time = 3/35, sound = "CW_KK_INS2_TOZ_PUMPBACK", callback = function(wep) wep:shellEvent() end},
+		{time = 3/35, sound = "CW_KK_INS2_TOZ_PUMPBACK", callback = shell},
 		{time = 11/35, sound = "CW_KK_INS2_TOZ_PUMPFORWARD"},
 		// pumpedrdy @ 12 ""},
 	},
 
 	foregrip_iron_fire_cock_2 = {
-		{time = 3/35, sound = "CW_KK_INS2_TOZ_PUMPBACK", callback = function(wep) wep:shellEvent() end},
+		{time = 3/35, sound = "CW_KK_INS2_TOZ_PUMPBACK", callback = shell},
 		{time = 11/35, sound = "CW_KK_INS2_TOZ_PUMPFORWARD"},
 		// pumpedrdy @ 12 ""},
 	},

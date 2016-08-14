@@ -167,14 +167,6 @@ if CLIENT then
 			self:setBodygroup(1,math.Clamp(clip,0,18))
 		end
 		
-		if self.dt.BipodDeployed then
-			self.WMEnt:SetSequence(1)
-			self:SetSequence(1)
-		else
-			self.WMEnt:SetSequence(0)
-			self:SetSequence(0)
-		end
-		
 		-- vm:ManipulateBoneScale(vm:LookupBone("M1919_BIPOD"), Vector())
 	end
 end

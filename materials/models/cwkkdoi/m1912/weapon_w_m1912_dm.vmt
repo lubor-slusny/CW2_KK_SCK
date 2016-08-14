@@ -1,0 +1,16 @@
+"VertexLitGeneric"
+{
+	"$basetexture"			"models\cwkkdoi\m1912\weapon_w_m1912_dm"
+	"$bumpmap"	 		"models\cwkkdoi\m1912\weapon_w_m1912_nm"
+	
+	$phongtint 			"[0.6 0.8 1.0]"
+
+	$phong 				"1"
+	//$PhongAlbedoTint 		"0"	
+	//$BasemapLuminancePhongMask	"1"
+
+	$phongexponent 			"45"
+	$phongboost 			"0.08"
+	$phongfresnelranges		"[.5 1 3]"
+	$halflambert 	                "0"
+}

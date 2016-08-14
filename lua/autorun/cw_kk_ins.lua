@@ -246,7 +246,7 @@ if CLIENT then
 					Color(200, 157, 96),
 					"[KK INS2 SWEPS] ",
 					Color(255, 255, 255),
-					"Hi, files required by this pack are missing from your game. SWEPs will not be spawnable until YOU fix the mounting."
+					"Hi, required files are missing. Make sure you mount INS2 content properly (according to guide on addon`s workshop page)."
 				)
 			end
 			
@@ -255,7 +255,7 @@ if CLIENT then
 					Color(200, 157, 96),
 					"[KK INS2 SWEPS] ",
 					Color(255, 255, 255),
-					"Hi, it looks like you are using outdated WS content. Make sure you download updated version from GitHub."
+					"Hi, you seem to be using outdated WS content. Make sure you download updated version from GitHub."
 				)
 			end
 		end)

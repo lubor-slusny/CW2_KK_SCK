@@ -246,14 +246,4 @@ if CLIENT then
 		self.AttachmentModelsVM.kk_ins2_mag_galil_35.active = !self.ActiveAttachments.kk_ins2_mag_galil_75
 		self.AttachmentModelsWM.kk_ins2_mag_galil_35.active = !self.ActiveAttachments.kk_ins2_mag_galil_75
 	end
-	
-	function SWEP:updateOtherParts()		
-		// WM
-		
-		if self.dt.BipodDeployed then
-			self.AttachmentModelsWM.kk_ins2_bipod.ent:SetSequence(1)
-		else
-			self.AttachmentModelsWM.kk_ins2_bipod.ent:SetSequence(0)
-		end
-	end
 end

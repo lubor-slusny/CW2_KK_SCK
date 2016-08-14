@@ -472,8 +472,6 @@ if CLIENT then
 	function SWEP:updateOtherParts()
 		self.AttachmentModelsVM.element_name.ent._KKCSGONUM = 160224
 		self.AttachmentModelsVM.element_name.active = CustomizableWeaponry_KK.HOME
-		
-		self.WMEnt:SetBodygroup(1,1)
 	end
 	
 	local m

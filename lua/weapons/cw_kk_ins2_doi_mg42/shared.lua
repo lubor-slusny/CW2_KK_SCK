@@ -160,11 +160,5 @@ if CLIENT then
 		else
 			self:setBodygroup(1,math.Clamp(clip,0,18))
 		end
-		
-		if self.dt.BipodDeployed then
-			self:SetSequence(1)
-		else
-			self:SetSequence(0)
-		end
 	end
 end

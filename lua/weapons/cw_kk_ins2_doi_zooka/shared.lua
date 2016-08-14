@@ -150,10 +150,3 @@ function SWEP:fireAnimFunc()
 	
 	self:sendWeaponAnim(prefix .. "fire" .. suffix,rate,cyc)
 end //*/
-
-if CLIENT then 
-	function SWEP:updateOtherParts()
-		self.WMEnt:SetBodygroup(1, 1 - self:Clip1())
-		self:SetBodygroup(1, 1 - self:Clip1())
-	end
-end

@@ -1,4 +1,8 @@
 
+local function shell(wep) 
+	wep:shellEvent() 
+end
+
 SWEP.Sounds = {
 	base_draw = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
@@ -20,15 +24,15 @@ SWEP.Sounds = {
 	},
 
 	base_fire_cock_1 = {
-		// shell @ 2 ""},
 		{time = 1/24, sound = "CW_KK_INS2_M590_PUMPBACK"},
+		{time = 2/24, sound = "", callback = shell},
 		{time = 5/24, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
 		// pumpedrdy @ 6 ""},
 	},
 
 	base_fire_cock_2 = {
-		// shell @ 2 ""},
 		{time = 1/24, sound = "CW_KK_INS2_M590_PUMPBACK"},
+		{time = 2/24, sound = "", callback = shell},
 		{time = 5/24, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
 		// pumpedrdy @ 6 ""},
 	},
@@ -44,7 +48,7 @@ SWEP.Sounds = {
 	base_reload_start_empty = {
 		{time = 5/35, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
 		{time = 18/35, sound = "CW_KK_INS2_M590_PUMPBACK"},
-		// shell @ 20 ""},
+		{time = 20/35, sound = "", callback = shell},
 		{time = 51/35, sound = "CW_KK_INS2_M590_SHELLINSERTSINGLE"},
 		{time = 76/35, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
 		// reloaded @ 78 ""},
@@ -64,15 +68,15 @@ SWEP.Sounds = {
 	},
 
 	iron_fire_cock_1 = {
-		// shell @ 4 ""},
 		{time = 3/35, sound = "CW_KK_INS2_M590_PUMPBACK"},
+		{time = 4/35, sound = "", callback = shell},
 		{time = 11/35, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
 		// pumpedrdy @ 12 ""},
 	},
 
 	iron_fire_cock_2 = {
-		// shell @ 4 ""},
 		{time = 3/35, sound = "CW_KK_INS2_M590_PUMPBACK"},
+		{time = 4/35, sound = "", callback = shell},
 		{time = 11/35, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
 		// pumpedrdy @ 12 ""},
 	},
@@ -101,15 +105,15 @@ SWEP.Sounds = {
 	},
 
 	foregrip_fire_cock_1 = {
-		// shell @ 2 ""},
 		{time = 1/24, sound = "CW_KK_INS2_M590_PUMPBACK"},
+		{time = 2/24, sound = "", callback = shell},
 		{time = 5/24, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
 		// pumpedrdy @ 6 ""},
 	},
 
 	foregrip_fire_cock_2 = {
-		// shell @ 2 ""},
 		{time = 1/24, sound = "CW_KK_INS2_M590_PUMPBACK"},
+		{time = 2/24, sound = "", callback = shell},
 		{time = 5/24, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
 		// pumpedrdy @ 6 ""},
 	},
@@ -125,7 +129,7 @@ SWEP.Sounds = {
 	foregrip_reload_start_empty = {
 		{time = 5/35, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
 		{time = 18/35, sound = "CW_KK_INS2_M590_PUMPBACK"},
-		// shell @ 20 ""},
+		{time = 20/35, sound = "", callback = shell},
 		{time = 51/35, sound = "CW_KK_INS2_M590_SHELLINSERTSINGLE"},
 		{time = 76/35, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
 		// reloaded @ 78 ""},
@@ -145,15 +149,13 @@ SWEP.Sounds = {
 	},
 
 	foregrip_iron_fire_cock_1 = {
-		// shell @ 3 ""},
-		{time = 3/35, sound = "CW_KK_INS2_M590_PUMPBACK"},
+		{time = 3/35, sound = "CW_KK_INS2_M590_PUMPBACK", callback = shell},
 		{time = 11/35, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
 		// pumpedrdy @ 12 ""},
 	},
 
 	foregrip_iron_fire_cock_2 = {
-		// shell @ 3 ""},
-		{time = 3/35, sound = "CW_KK_INS2_M590_PUMPBACK"},
+		{time = 3/35, sound = "CW_KK_INS2_M590_PUMPBACK", callback = shell},
 		{time = 11/35, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
 		// pumpedrdy @ 12 ""},
 	},

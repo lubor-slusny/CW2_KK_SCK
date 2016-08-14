@@ -89,12 +89,46 @@ if SERVER then
 		if IsValid(self.lastOwner) then
 			if self.lastOwner:GetAmmoCount(self.Primary.Ammo) > 0 then
 				self.lastOwner:RemoveAmmo(1, self.Primary.Ammo)
+					
+					if self.dt.PinPulled then
+						local grenade = ents.Create(self.grenadeEnt)
+						grenade.Model = self.WM or self.WorldModel
+						
+						if self:GetClass() == "cw_kk_ins2_nade_anm14" then
+							grenade.BreakOnImpact = false
+						end
+						
+						grenade:SetPos(self:GetPos())
+						grenade:SetAngles(self:GetAngles())
+						grenade:Spawn()
+						grenade:Activate()
+						grenade:SetOwner(self.lastOwner)
+						
+						if self.cookTime then
+							grenade:Fuse(math.Clamp((self.cookTime + self.fuseTime) - CurTime(), 0, self.fuseTime))
+							self.cookTime = nil
+						else
+							grenade:Fuse(self.fuseTime)
+						end
+						
+						local phy = grenade:GetPhysicsObject()
+						if phy then 
+							phy:SetVelocity(self:GetVelocity())
+						end
+						
+						SafeRemoveEntity(self)
+					end
+					
 				return
 			end
 		end
 		
 		SafeRemoveEntity(self)
-	end
+	end	
+end
+
+function SWEP:ShouldDropOnDie()
+	return self.dt.PinPulled
 end
 
 function SWEP:Initialize()
@@ -127,12 +161,6 @@ if CLIENT then
 		muz.Pos = m:GetTranslation()
 		muz.Ang = m:GetAngles()
 		return muz
-	end
-	
-	SWEP.DrawCustomWM = true
-	
-	function SWEP:updateOtherParts()
-		self.WMEnt:SetBodygroup(1,1)
 	end
 end
 
@@ -225,15 +253,8 @@ function SWEP:IndividualThink()
 				if self.cookTime and (self.cookTime + self.fuseTime) < curTime then
 					self:SetNextPrimaryFire(curTime + 1)
 					
-					local ent = scripted_ents.GetStored(self.grenadeEnt)
+					self:overCooked()
 					
-					util.BlastDamage(self, self.Owner, self.Owner:EyePos(), ent.t.ExplodeRadius, ent.t.ExplodeDamage)
-					
-					local ef = EffectData()
-					ef:SetOrigin(self:GetPos())
-					ef:SetMagnitude(1)	
-					util.Effect("Explosion", ef)
-				
 					if not CustomizableWeaponry.callbacks.processCategory(wep, "shouldSuppressAmmoUsage") then
 						self:TakePrimaryAmmo(1)
 						CustomizableWeaponry.callbacks.processCategory(wep, "postConsumeAmmo")
@@ -279,10 +300,6 @@ function SWEP:PrimaryAttack()
 end
 
 function SWEP:SecondaryAttack()
-	if self.grenadeEnt != "cw_grenade_thrown" then
-		return
-	end
-	
 	if self.Owner:GetAmmoCount(self.Primary.Ammo) < 1 and self:Clip1() < 1 then
 		return
 	end
@@ -302,4 +319,15 @@ function SWEP:SecondaryAttack()
 	self.throwTime = CurTime() + (self.timeToThrowCook or self.timeToThrow)
 	self.cookTime = self.throwTime
 	self:sendWeaponAnim("pullcook")
+end
+
+function SWEP:overCooked()
+	local ent = scripted_ents.GetStored(self.grenadeEnt)
+	
+	util.BlastDamage(self, self.Owner, self.Owner:EyePos(), ent.t.ExplodeRadius, ent.t.ExplodeDamage)
+	
+	local ef = EffectData()
+	ef:SetOrigin(self:GetPos())
+	ef:SetMagnitude(1)	
+	util.Effect("Explosion", ef)
 end

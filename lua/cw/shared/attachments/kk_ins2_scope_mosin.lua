@@ -32,11 +32,11 @@ if CLIENT then
 	att._reticleMat = Material(path)
 	
 	function att:drawRenderTarget()
-		local attachmEnt = self.AttachmentModelsVM[att.name].ent // to b tuned
+		local scopeEnt = self.AttachmentModelsVM[att.name].ent // to b tuned
 		if self:isAiming() then 
-			attachmEnt:SetSequence(2)
+			scopeEnt:SetSequence(2)
 		else
-			attachmEnt:SetSequence(1)
+			scopeEnt:SetSequence(1)
 		end
 		
 		CustomizableWeaponry_KK.ins2.renderTargetSight(self, att)

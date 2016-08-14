@@ -323,18 +323,11 @@ if CLIENT then
 		return muz
 	end
 
-	function SWEP:updateOtherParts()
+	function SWEP:updateStandardParts()
 		local active = self.ActiveAttachments
 		
 		self.AttachmentModelsVM.kk_ins2_galil.active = !active.kk_ins2_bipod
 		self.AttachmentModelsVM.kk_ins2_mag_galil_35.active = !active.kk_ins2_mag_galil_75
-		
-		// WM
-		
-		if self.dt.BipodDeployed then
-			self.AttachmentModelsWM.kk_ins2_bipod.ent:SetSequence(1)
-		else
-			self.AttachmentModelsWM.kk_ins2_bipod.ent:SetSequence(0)
-		end
+		self:setWElementActive("kk_ins2_mag_galil_35", !active.kk_ins2_mag_galil_75)
 	end
 end

@@ -62,6 +62,8 @@ if CLIENT then
 	SWEP.AttachmentModelsWM = {
 		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/w_flipup1.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		
+		["bg_foldsight"] = {model = "models/weapons/attachments/w_cw_kk_ins2_flipsight.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		
 		["kk_ins2_suppressor_sec"] = {model = "models/weapons/upgrades/w_sil_sec1.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_bipod"] = {model = "models/weapons/upgrades/w_bipod_m40.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
@@ -281,14 +283,6 @@ if CLIENT then
 		local _3 = self:getActiveAttachmentInCategory(3)
 		self.AttachmentModelsVM.cover_long.active = _3 == nil or _3 == "kk_ins2_bipod"
 		self.AttachmentModelsVM.cover_short.active = self.ActiveAttachments.kk_ins2_vertgrip
-	end
-	
-	function SWEP:updateOtherParts()
-		if isBipod then
-			self.AttachmentModelsWM.kk_ins2_bipod.ent:SetSequence(1)
-		else
-			self.AttachmentModelsWM.kk_ins2_bipod.ent:SetSequence(0)
-		end
 	end
 end
 

@@ -226,3 +226,7 @@ function SWEP:IndividualThink()
 		end
 	end
 end
+
+function SWEP:SecondaryAttack()
+	// this swep should b cook only lol
+end

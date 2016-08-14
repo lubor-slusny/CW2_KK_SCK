@@ -294,12 +294,6 @@ if CLIENT then
 	local zero = Vector(0, 0, 0)
 	
 	function SWEP:updateOtherParts()
-		if self.dt.BipodDeployed then
-			self.AttachmentModelsWM.kk_ins2_bipod.ent:SetSequence(1)
-		else
-			self.AttachmentModelsWM.kk_ins2_bipod.ent:SetSequence(0)
-		end
-		
 		self.AttachmentModelsVM.kk_ins2_vertgrip.ent:ManipulateBoneScale(0, zero)
 	end
 end

@@ -181,7 +181,10 @@ SWEP.FireSound = "CW_KK_INS2_TOZ_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_TOZ_FIRE_SUPPRESSED"
 SWEP.Recoil = 3
 
-SWEP.ReticleInactivityPostFire = SWEP.FireDelay + 0.2
+SWEP.Chamberable = true
+SWEP.SnapToIdlePostReload = false
+SWEP.ShotgunReload = true
+SWEP.ReticleInactivityPostFire = SWEP.FireDelay + 0.3
 SWEP.GlobalDelayOnShoot = SWEP.FireDelay
 
 SWEP.HipSpread = 0.05
@@ -205,69 +208,6 @@ SWEP.InsertShellTime = 0.72
 SWEP.ReloadFinishWait = 0.6
 SWEP.ReloadFinishWaitEmpty = 0.6
 
-SWEP.Chamberable = true
-SWEP.SnapToIdlePostReload = false
-SWEP.ShotgunReload = true
-SWEP.ReticleInactivityPostFire = 1
-
 SWEP.WeaponLength = 18
 
 SWEP.MuzzleVelocity = 381
-
--- function SWEP:updateReloadTimes()
-	-- local mode = self:getForegripMode()
-
-	-- if self:Clip1() == 0 then
-		-- self.Animations.reload_start = self.Animations[mode .. "reload_start_empty"]
-		-- self.Animations.insert = nil
-		-- self.ReloadStartTime = 2.2
-	-- else
-		-- self.Animations.reload_start = self.Animations[mode .. "reload_start"]
-		-- self.Animations.insert = self.Animations[mode .. "insert"]
-		-- if self.base_ReloadStartTime then
-			-- self.ReloadStartTime = self[mode .. "ReloadStartTime"] or self.base_ReloadStartTime
-		-- end
-	-- end
-	
-	-- self.Animations.reload_end = self.Animations[mode .. "reload_end"]
-	-- self.Animations.idle = self.Animations[mode .. "reload_end"]
-	
-	-- if self.base_InsertShellTime then
-		-- self.InsertShellTime = self[mode .. "InsertShellTime"] or self.base_InsertShellTime
-	-- end
-	-- if self.base_ReloadFinishWait then
-		-- self.ReloadFinishWait = self[mode .. "ReloadFinishWait"] or self.base_ReloadFinishWait
-	-- end
--- end
-
--- function SWEP:fireAnimFunc()
-	-- local clip = self:Clip1()
-	-- local mag = ""
-	
-	-- if clip == 0 then
-		-- mag = "_empty"
-	-- end
-	
-	-- local prefix = self:getForegripMode()
-	-- local suffix = ""
-	
-	-- if self:isAiming() then
-		-- suffix = "_aim"
-	-- end
-	
-	-- if clip > 0 then
-		-- CustomizableWeaponry.actionSequence.new(self, 0.28, nil, function() 
-			-- local prefix = self:getForegripMode()
-			-- local suffix = ""
-			
-			-- if self:isAiming() then
-				-- suffix = "_aim"
-			-- end
-			
-			-- self:sendWeaponAnim(prefix .. "bolt" .. suffix,1,0)
-		-- end)
-	-- end
-	
-	-- self:sendWeaponAnim(prefix .. "fire" .. mag .. suffix,1,0)
-	
--- end //*/
