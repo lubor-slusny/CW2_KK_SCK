@@ -78,15 +78,15 @@ local function add(tab)
 	table.insert(CustomizableWeaponry_KK.ins2.quickGrenades.categories, tab)
 end
 
+add({text = "FRAG", ammo = "Frag Grenades", class = "cw_grenade_thrown"})
+add({text = "FLASH", ammo = "Flash Grenades", class = "cw_flash_thrown", default = "m84"})
+add({text = "SMOKE", ammo = "Smoke Grenades", class = "cw_smoke_thrown", default = "m18"})
+	
 if CustomizableWeaponry_KK.HOME then
 	-- add({text = "FRAG", ammo = "Frag Grenades", class = "weapon_striderbuster"})
-	add({text = "HL2", ammo = "Frag Grenades", class = "npc_grenade_frag"})
 	add({text = "BUG", /*ammo = "9x19MM", */class = "npc_grenade_bugbait", default = "n77"})
+	add({text = "HL2", ammo = "Frag Grenades", class = "npc_grenade_frag"})
 	add({text = "N69", ammo = "Frag Grenades", class = "cw_kk_ins2_projectile_n69", default = "n69"})
-else
-	add({text = "FRAG", ammo = "Frag Grenades", class = "cw_grenade_thrown"})
-	add({text = "FLASH", ammo = "Flash Grenades", class = "cw_flash_thrown", default = "m84"})
-	add({text = "SMOKE", ammo = "Smoke Grenades", class = "cw_smoke_thrown", default = "m18"})
 end
 
 function CustomizableWeaponry_KK.ins2:getNadeAmmo()

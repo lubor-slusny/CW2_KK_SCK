@@ -1,7 +1,9 @@
 if not CustomizableWeaponry then return end
 
 AddCSLuaFile()
+AddCSLuaFile("sh_sounds.lua")
 AddCSLuaFile("sh_soundscript.lua")
+include("sh_sounds.lua")
 include("sh_soundscript.lua")
 
 SWEP.magType = "smgMag"
@@ -95,8 +97,7 @@ SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= "9x19MM"
 
 SWEP.FireDelay = 60/550
-SWEP.FireSound = "CW_KK_INS2_MP40_FIRE"
-SWEP.FireSoundSuppressed = "CW_KK_INS2_MP40_FIRE_SUPPRESSED"
+SWEP.FireSound = "CW_KK_INS2_DOI_MP40_FIRE"
 SWEP.Recoil = 0.7
 
 SWEP.HipSpread = 0.035

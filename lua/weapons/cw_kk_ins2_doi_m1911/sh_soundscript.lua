@@ -2,9 +2,9 @@
 SWEP.Sounds = {
 	base_ready = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_PISTOL_DRAW"},
-		{time = 4/30, sound = "CW_KK_INS2_M1911_SAFETY"},
-		{time = 9/30, sound = "CW_KK_INS2_M1911_BOLTBACK"},
-		{time = 19/30, sound = "CW_KK_INS2_M1911_BOLTRELEASE"},
+		{time = 17/30, sound = "CW_KK_INS2_DOI_M1911_SAFETY"},
+		{time = 40/30, sound = "CW_KK_INS2_DOI_M1911_BOLTBACK"},
+		{time = 45/30, sound = "CW_KK_INS2_DOI_M1911_BOLTRELEASE"},
 	},
 
 	base_draw = {
@@ -15,38 +15,67 @@ SWEP.Sounds = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_PISTOL_HOLSTER"},
 	},
 
+	base_crawl = {
+		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
+		{time = 22/35, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
+	},
+
+	-- base_fire = {
+		-- { event AE_MUZZLEFLASH 0 ""},
+		-- { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
+	-- },
+
+	-- base_fire2 = {
+		-- { event AE_MUZZLEFLASH 0 ""},
+		-- { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
+	-- },
+
+	-- base_fire3 = {
+		-- { event AE_MUZZLEFLASH 0 ""},
+		-- { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
+	-- },
+
+	-- base_firelast = {
+		-- { event AE_MUZZLEFLASH 0 ""},
+		-- { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
+	-- },
+
 	base_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_M1911_EMPTY"},
+		{time = 0, sound = "CW_KK_INS2_DOI_M1911_EMPTY"},
 	},
 
 	base_reload = {
-		{time = 0, sound = "CW_KK_INS2_M1911_MAGRELEASE"},
-		{time = 7/30, sound = "CW_KK_INS2_M1911_MAGOUT"},
-		{time = 35/30, sound = "CW_KK_INS2_M1911_MAGIN"},
-		{time = 58/30, sound = "CW_KK_INS2_M1911_MAGHIT"},
-	},
-
-	base_reload_extmag = {
-		{time = 0, sound = "CW_KK_INS2_M1911_MAGRELEASE"},
-		{time = 7/30, sound = "CW_KK_INS2_M1911_MAGOUT"},
-		{time = 35/30, sound = "CW_KK_INS2_M1911_MAGIN"},
-		{time = 58/30, sound = "CW_KK_INS2_M1911_MAGHIT"},
+		{time = 12/31.5, sound = "CW_KK_INS2_DOI_M1911_MAGRELEASE"},
+		{time = 15/31.5, sound = "CW_KK_INS2_DOI_M1911_MAGOUT"},
+		{time = 48/31.5, sound = "CW_KK_INS2_DOI_M1911_MAGIN"},
+		{time = 55/31.5, sound = "CW_KK_INS2_DOI_M1911_MAGHIT"},
+		-- { event 46 56 ""},
 	},
 
 	base_reloadempty = {
-		{time = 0, sound = "CW_KK_INS2_M1911_MAGRELEASE"},
-		{time = 7/30, sound = "CW_KK_INS2_M1911_MAGOUT"},
-		{time = 35/30, sound = "CW_KK_INS2_M1911_MAGIN"},
-		{time = 58/30, sound = "CW_KK_INS2_M1911_MAGHIT"},
-		{time = 71/30, sound = "CW_KK_INS2_M1911_BOLTRELEASE"},
+		{time = 12/31.5, sound = "CW_KK_INS2_DOI_M1911_MAGRELEASE"},
+		{time = 15/31.5, sound = "CW_KK_INS2_DOI_M1911_MAGOUT"},
+		{time = 48/31.5, sound = "CW_KK_INS2_DOI_M1911_MAGIN"},
+		{time = 55/31.5, sound = "CW_KK_INS2_DOI_M1911_MAGHIT"},
+		-- { event 46 56 ""},
+		{time = 77/31.5, sound = "CW_KK_INS2_DOI_M1911_BOLTRELEASE"},
+	},
+
+	base_reload_extmag = {
+		{time = 12/31.5, sound = "CW_KK_INS2_DOI_M1911_MAGRELEASE"},
+		{time = 15/31.5, sound = "CW_KK_INS2_DOI_M1911_MAGOUT"},
+		{time = 48/31.5, sound = "CW_KK_INS2_DOI_M1911_MAGIN"},
+		{time = 55/31.5, sound = "CW_KK_INS2_DOI_M1911_MAGHIT"},
+		-- { event 46 56 ""},
 	},
 
 	base_reloadempty_extmag = {
-		{time = 0, sound = "CW_KK_INS2_M1911_MAGRELEASE"},
-		{time = 7/30, sound = "CW_KK_INS2_M1911_MAGOUT"},
-		{time = 35/30, sound = "CW_KK_INS2_M1911_MAGIN"},
-		{time = 58/30, sound = "CW_KK_INS2_M1911_MAGHIT"},
-		{time = 71/30, sound = "CW_KK_INS2_M1911_BOLTRELEASE"},
+		{time = 12/31.5, sound = "CW_KK_INS2_DOI_M1911_MAGRELEASE"},
+		{time = 15/31.5, sound = "CW_KK_INS2_DOI_M1911_MAGOUT"},
+		{time = 48/31.5, sound = "CW_KK_INS2_DOI_M1911_MAGIN"},
+		{time = 55/31.5, sound = "CW_KK_INS2_DOI_M1911_MAGHIT"},
+		-- { event 46 56 ""},
+		{time = 77/31.5, sound = "CW_KK_INS2_DOI_M1911_BOLTRELEASE"},
 	},
 
 	empty_draw = {
@@ -57,7 +86,32 @@ SWEP.Sounds = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_PISTOL_HOLSTER"},
 	},
 
+	empty_crawl = {
+		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
+		{time = 22/35, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
+	},
+
+	-- iron_fire = {
+		-- { event AE_MUZZLEFLASH 0 ""},
+		-- { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
+	-- },
+
+	-- iron_fire2 = {
+		-- { event AE_MUZZLEFLASH 0 ""},
+		-- { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
+	-- },
+
+	-- iron_fire3 = {
+		-- { event AE_MUZZLEFLASH 0 ""},
+		-- { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
+	-- },
+
+	-- iron_firelast = {
+		-- { event AE_MUZZLEFLASH 0 ""},
+		-- { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
+	-- },
+
 	iron_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_M1911_EMPTY"},
+		{time = 0, sound = "CW_KK_INS2_DOI_M1911_EMPTY"},
 	},
 }
