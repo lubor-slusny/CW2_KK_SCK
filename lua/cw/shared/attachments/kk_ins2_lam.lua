@@ -124,7 +124,11 @@ if CLIENT then
 		else
 			self.lastLaserPos = nil
 		end
-	end	
+	end
+	
+	function att:getLEMState()
+		return false
+	end
 end
 
 function att:attachFunc()
