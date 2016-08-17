@@ -1,10 +1,10 @@
 if not CustomizableWeaponry then return end
 
 AddCSLuaFile()
--- AddCSLuaFile("sh_sounds.lua")
--- AddCSLuaFile("sh_soundscript.lua")
--- include("sh_sounds.lua")
--- include("sh_soundscript.lua")
+AddCSLuaFile("sh_sounds.lua")
+AddCSLuaFile("sh_soundscript.lua")
+include("sh_sounds.lua")
+include("sh_soundscript.lua")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
@@ -26,9 +26,11 @@ SWEP.grenadeEnt = "cw_grenade_thrown"
 
 SWEP.Animations = {
 	draw = "base_draw",
-	throw = "throw",
 	pullpin = "pullbackhigh",
-	pullcook = "pullbackhighbake",
+	throw = "throw",
+	
+	pull_cook = "pullbackhighbake",
+	throw_cook = "bakethrow",
 	
 	base_pickup = "base_draw",
 	base_idle = "base_idle",
@@ -37,53 +39,7 @@ SWEP.Animations = {
 	base_sprint = "base_sprint",
 	base_safe = "base_down",
 }
-	
-local sounds = {
-	{time = 0.2, sound = "CW_PINPULL"}
-}
 
-SWEP.Sounds = {
-	base_draw = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_GRENADE_DRAW"},
-	},
-
-	base_holster = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_GRENADE_HOLSTER"},
-	},
-
-	base_crawl = {
-		{time = 10/29, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
-		{time = 20/29, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
-	},
-
-	pullbackhigh = {
-		{time = 19/30, sound = "CW_KK_INS2_M67_PINPULL"},
-		{time = 20/30, sound = "CW_KK_INS2_M67_ARMDRAW"},
-	},
-
-	pullbackhighbake = {
-		{time = 19/30, sound = "CW_KK_INS2_M67_PINPULL"},
-		{time = 34/30, sound = "CW_KK_INS2_M67_ARMDRAW"},
-	},
-
-	pullbacklow = {
-		{time = 19/30, sound = "CW_KK_INS2_M67_PINPULL"},
-		{time = 20/30, sound = "CW_KK_INS2_M67_ARMDRAW"},
-	},
-
-	throw = {
-		{time = 3/31.5, sound = "CW_KK_INS2_M67_THROW"},
-	},
-
-	bakethrow = {
-		{time = 3/31.5, sound = "CW_KK_INS2_M67_THROW"},
-	},
-
-	lowthrow = {
-		{time = 6/31.5, sound = "CW_KK_INS2_M67_THROW"},
-	},
-}
-	
 SWEP.SpeedDec = 5
 
 SWEP.Slot = 4
@@ -117,5 +73,9 @@ SWEP.Primary.DefaultClip	= -1
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "Frag Grenades"
 
+SWEP.fuseTime = 5
+
 SWEP.timeToThrow = 0.9
+
+SWEP.spoonTime = 23/30
 SWEP.timeToThrowCook = 1.3

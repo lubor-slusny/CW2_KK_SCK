@@ -24,8 +24,9 @@ SWEP.grenadeEnt = "cw_kk_ins2_projectile_molotov"
 
 SWEP.Animations = {
 	draw = "base_draw",
-	throw = "throw",
+	
 	pullpin = "pullback_high",
+	throw = "throw",
 	
 	base_idle = "base_idle",
 	base_draw = "base_draw",
@@ -33,57 +34,7 @@ SWEP.Animations = {
 	base_sprint = "base_sprint",
 	base_safe = "base_down",
 }
-	
-SWEP.Sounds = {
-	base_draw = {
-		-- {time = 0, sound = "CW_KK_INS2_UNIVERSAL_GRENADE_DRAW"},
-		{time = 0, sound = "CW_KK_INS2_MOLOTOV_DRAW"},
-	},
 
-	base_holster = {
-		-- {time = 0, sound = "CW_KK_INS2_UNIVERSAL_GRENADE_HOLSTER"},
-		{time = 0, sound = "CW_KK_INS2_MOLOTOV_HOLSTER"},
-	},
-
-	base_crawl = {
-		{time = 10/25, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
-		{time = 20/25, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
-	},
-
-	pullback_high = {
-		{time = 1/20, sound = "CW_KK_INS2_MOLOTOV_LIGHTEROPEN"},
-		{time = 5/20, sound = "CW_KK_INS2_MOLOTOV_LIGHTERSTRIKE"},
-		{time = 8/20, sound = "CW_KK_INS2_MOLOTOV_IGNITE"},
-		{time = 17/20, sound = "CW_KK_INS2_MOLOTOV_LIGHTERCLOSE"},
-	},
-
-	pullback_highbake = {
-		{time = 1, sound = "CW_KK_INS2_MOLOTOV_LIGHTEROPEN"},
-		{time = 5, sound = "CW_KK_INS2_MOLOTOV_LIGHTERSTRIKE"},
-		{time = 8, sound = "CW_KK_INS2_MOLOTOV_IGNITE"},
-		{time = 17, sound = "CW_KK_INS2_MOLOTOV_LIGHTERCLOSE"},
-	},
-
-	pullback_low = {
-		{time = 1, sound = "CW_KK_INS2_MOLOTOV_LIGHTEROPEN"},
-		{time = 5, sound = "CW_KK_INS2_MOLOTOV_LIGHTERSTRIKE"},
-		{time = 8, sound = "CW_KK_INS2_MOLOTOV_IGNITE"},
-		{time = 17, sound = "CW_KK_INS2_MOLOTOV_LIGHTERCLOSE"},
-	},
-
-	throw = {
-		{time = 0, sound = "CW_KK_INS2_MOLOTOV_THROW"},
-	},
-
-	throw_bake = {
-		{time = 0, sound = "CW_KK_INS2_MOLOTOV_THROW"},
-	},
-
-	throw_low = {
-		{time = 0, sound = "CW_KK_INS2_MOLOTOV_THROW"},
-	}
-}
-	
 SWEP.SpeedDec = 5
 
 SWEP.Slot = 4
@@ -114,9 +65,6 @@ SWEP.Primary.ClipSize		= -1
 SWEP.Primary.DefaultClip	= -1
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "Incediary"
-
--- SWEP.swapTime = 0.7
-SWEP.timeToThrow = 1.2
 
 SWEP.Effect_Lighter = "fire_verysmall_01"
 SWEP.Effect_Rag = "fire_verysmall_01"

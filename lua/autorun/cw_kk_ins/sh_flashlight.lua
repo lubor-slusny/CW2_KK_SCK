@@ -1,6 +1,4 @@
 
-// move getFL to main table, chk more about metas
-
 CustomizableWeaponry_KK.ins2.flashlight = CustomizableWeaponry_KK.ins2.flashlight or {}
 function CustomizableWeaponry_KK.ins2.flashlight:IsValid() return true end
 CustomizableWeaponry_KK.ins2.flashlight.__index = CustomizableWeaponry_KK.ins2.flashlight

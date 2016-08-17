@@ -21,9 +21,12 @@ SWEP.grenadeEnt = "cw_flash_thrown_cook"
 
 SWEP.Animations = {
 	draw = "base_draw",
-	throw = "throw",
+	
 	pullpin = "pullbackhigh",
-	pullcook = "pullbackhighbake",
+	throw = "throw",
+	
+	pull_cook = "pullbackhighbake",
+	throw_cook = "bakethrow",
 	
 	base_idle = "base_idle",
 	base_draw = "base_draw",
@@ -32,52 +35,6 @@ SWEP.Animations = {
 	base_safe = "base_down",
 }
 
-local sounds = {
-	{time = 0.33, sound = "CW_PINPULL"}
-}
-	
-SWEP.Sounds = {
-	base_draw = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_GRENADE_DRAW"},
-	},
-
-	base_holster = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_GRENADE_HOLSTER"},
-	},
-
-	base_crawl = {
-		{time = 10/29, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
-		{time = 20/29, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
-	},
-
-	pullbackhigh = {
-		{time = 19/30, sound = "CW_KK_INS2_M67_PINPULL"},
-		{time = 20/30, sound = "CW_KK_INS2_M67_ARMDRAW"},
-	},
-
-	pullbackhighbake = {
-		{time = 19/30, sound = "CW_KK_INS2_M67_PINPULL"},
-		{time = 34/30, sound = "CW_KK_INS2_M67_ARMDRAW"},
-	},
-
-	pullbacklow = {
-		{time = 19/30, sound = "CW_KK_INS2_M67_PINPULL"},
-		{time = 20/30, sound = "CW_KK_INS2_M67_ARMDRAW"},
-	},
-
-	throw = {
-		{time = 3/31.5, sound = "CW_KK_INS2_M67_THROW"},
-	},
-
-	bakethrow = {
-		{time = 3/31.5, sound = "CW_KK_INS2_M67_THROW"},
-	},
-
-	lowthrow = {
-		{time = 6/31.5, sound = "CW_KK_INS2_M67_THROW"},
-	},
-}
-	
 SWEP.SpeedDec = 5
 
 SWEP.Slot = 4
@@ -109,19 +66,8 @@ SWEP.Primary.DefaultClip	= -1
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "Flash Grenades"
 
-SWEP.fuseTime = 2.5
-SWEP.timeToThrow = 0.8
-SWEP.timeToThrowCook = 1.3
+SWEP.fuseTime = 1.8
 
-function SWEP:overCooked()
-	local hitPos = self.Owner:EyePos() + (self.Owner:EyeAngles():Forward() * 18)
-	
-	local grenade = ents.Create(self.grenadeEnt)
-	grenade:SetNoDraw(true)
-	grenade:SetPos(hitPos)
-	grenade:Spawn()
-	grenade:Activate()
-	grenade:SetOwner(self.Owner)
-	
-	grenade:Fuse(0)
-end
+SWEP.timeToThrow = 0.8
+
+SWEP.timeToThrowCook = 1.3
