@@ -232,7 +232,7 @@ if CLIENT then
 		
 		// tickbox for slow grenade attack swap
 		panel:AddControl("CheckBox", {
-			Label = "Swap slow grenades attacks (INS2-Style)", 
+			Label = "INS2-style slow grenade attacks (primary = cook)", 
 			Command = "cw_kk_ins2_ins_nade_ctrls"
 		}):DockMargin(8, 8, 8, 0)
 		

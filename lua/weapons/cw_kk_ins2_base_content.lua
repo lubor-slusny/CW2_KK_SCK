@@ -338,6 +338,8 @@ if CLIENT then
 	
 	killicon.AddFont("cw_kk_ins2_projectile_m6a1",	"HL2MPTypeDeath", "3", killCol)
 	killicon.AddFont("cw_kk_ins2_projectile_pf60",	"HL2MPTypeDeath", "3", killCol)
+	
+	killicon.AddFont("cw_flash_thrown_cook",		"CW_KillIcons", "Q", killCol)
 end
 
 if CLIENT then
@@ -353,8 +355,7 @@ if CLIENT then
 	
 	language.Add("cw_kk_ins2_thrown_molotov", "Fake Molotov")
 	
-	language.Add("cw_kk_ins2_projectile_m6a1", "M6A1 rocket")
-	language.Add("cw_kk_ins2_projectile_pf60", "Panzerfaust projectile")
+	language.Add("cw_flash_thrown_cook", "Flashbang")
 end
 
 // MAG SYSTEM

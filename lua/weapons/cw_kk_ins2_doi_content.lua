@@ -11,8 +11,10 @@ if CLIENT then
 	local white = Color(255, 255, 255, 150)
 
 	killicon.AddFont("cw_kk_ins2_doi_k98kknife",	"CW_KillIcons", "j", killCol)
+	killicon.AddFont("cw_kk_ins2_doi_garandknife",	"CW_KillIcons", "j", killCol)
 	killicon.AddFont("cw_kk_ins2_doi_shovel_de",	"CW_KillIcons", "j", killCol)
 	killicon.AddFont("cw_kk_ins2_doi_shovel_gb",	"CW_KillIcons", "j", killCol)
+	killicon.AddFont("cw_kk_ins2_doi_shovel_us",	"CW_KillIcons", "j", killCol)
 
 	killicon.AddFont("cw_kk_ins2_doi_luger",		"CW_KillIcons", "a", killCol)
 	killicon.AddFont("cw_kk_ins2_doi_m1911",		"CW_KillIcons", "a", killCol)
@@ -33,6 +35,7 @@ if CLIENT then
 	killicon.AddFont("cw_kk_ins2_doi_garand",		"CW_KillIcons", "i", killCol)
 	killicon.AddFont("cw_kk_ins2_doi_ithaca",		"CW_KillIcons", "k", killCol)
 	killicon.AddFont("cw_kk_ins2_doi_k98k",			"CW_KillIcons", "r", killCol)
+	killicon.AddFont("cw_kk_ins2_doi_lewis",		"CW_KillIcons", "z", killCol)
 	killicon.AddFont("cw_kk_ins2_doi_m1",			"CW_KillIcons", "o", killCol)
 	killicon.AddFont("cw_kk_ins2_doi_mg34",			"CW_KillIcons", "z", killCol)
 	killicon.AddFont("cw_kk_ins2_doi_mg42",			"CW_KillIcons", "z", killCol)
@@ -40,13 +43,29 @@ if CLIENT then
 	killicon.AddFont("cw_kk_ins2_doi_spring",		"CW_KillIcons", "r", killCol)
 	killicon.AddFont("cw_kk_ins2_doi_stg44",		"CW_KillIcons", "w", killCol)
 
-	killicon.AddFont("cw_kk_ins2_doi_flame",		"CW_KillIcons", "e", killCol)
+	killicon.AddFont("cw_kk_ins2_doi_flame_de",		"CW_KillIcons", "e", killCol)
+	killicon.AddFont("cw_kk_ins2_doi_flame_gb",		"CW_KillIcons", "e", killCol)
+	killicon.AddFont("cw_kk_ins2_doi_flame_us",		"CW_KillIcons", "e", killCol)
 	killicon.AddFont("cw_kk_ins2_doi_frag_de",		"CW_KillIcons", "e", killCol)
 	killicon.AddFont("cw_kk_ins2_doi_frag_gb",		"CW_KillIcons", "e", killCol)
+	killicon.AddFont("cw_kk_ins2_doi_frag_gb_n69",	"CW_KillIcons", "e", killCol)
+	killicon.AddFont("cw_kk_ins2_doi_frag_gb_n77",	"CW_KillIcons", "e", killCol)
 	killicon.AddFont("cw_kk_ins2_doi_frag_us",		"CW_KillIcons", "e", killCol)
 	killicon.AddFont("cw_kk_ins2_doi_piat",			"HL2MPTypeDeath", "3", killCol)
 	killicon.AddFont("cw_kk_ins2_doi_tankfist",		"HL2MPTypeDeath", "3", killCol)
 	killicon.AddFont("cw_kk_ins2_doi_zooka",		"HL2MPTypeDeath", "3", killCol)
 	
 	killicon.AddFont("cw_kk_ins2_doi_bino",			"HL2MPTypeDeath", "3", killCol)
+	
+	// but w8, theres more
+	
+	language.Add("cw_kk_ins2_projectile_m6a1", "M6A1 rocket")
+	language.Add("cw_kk_ins2_projectile_pf60", "Panzerfaust projectile")
+	
+	language.Add("cw_kk_ins2_projectile_n69", "No. 69 Frag. Grenade")
+	language.Add("cw_kk_ins2_projectile_n77", "No. 77 Smoke Grenade")
+	
+	killicon.AddFont("cw_kk_ins2_projectile_n69",	"CW_KillIcons", "O", killCol)
+	killicon.AddFont("cw_kk_ins2_projectile_n77",	"CW_KillIcons", "P", killCol)
+	-- killicon.AddFont("cw_kk_ins2_projectile_n77",	"CW_KillIcons", "h", killCol)
 end
