@@ -230,6 +230,12 @@ if CLIENT then
 			Command = "cw_kk_ins2_animate_reticle"
 		}):DockMargin(8, 8, 8, 0)
 		
+		// tickbox for slow grenade attack swap
+		panel:AddControl("CheckBox", {
+			Label = "Swap slow grenades attacks (INS2-Style)", 
+			Command = "cw_kk_ins2_ins_nade_ctrls"
+		}):DockMargin(8, 8, 8, 0)
+		
 		if not CustomizableWeaponry_KK.HOME then return end
 		
 		// cam3d experiments

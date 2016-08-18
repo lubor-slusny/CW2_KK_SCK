@@ -2,8 +2,8 @@
 function CustomizableWeaponry_KK.ins2:fireRPG(IFTP, legit)
 	if IFTP then
 		if SERVER then
-			local pos = self.Owner:GetShootPos()
-			local eyeAng = self.Owner:EyeAngles()
+			local pos = IsValid(self.Owner) and self.Owner:GetShootPos() or self:GetPos()
+			local eyeAng = IsValid(self.Owner) and self.Owner:EyeAngles() or self:GetAngles()
 			
 			local fwdAng = eyeAng
 			fwdAng:RotateAroundAxis(fwdAng:Right(), 1.8)

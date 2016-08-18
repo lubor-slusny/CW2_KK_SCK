@@ -7,7 +7,9 @@ end
 
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
+AddCSLuaFile("sh_soundscript.lua")
 include("sh_sounds.lua")
+include("sh_soundscript.lua")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
@@ -37,7 +39,6 @@ SWEP.Animations = {
 	pull_cook = "pullbackhighbake",
 	throw_cook = "bakethrow",
 	
-	base_pickup = "base_draw",
 	base_idle = "idle",
 	base_draw = "draw",
 	base_holster = "holster",
@@ -78,4 +79,6 @@ SWEP.Primary.Ammo			= "Frag Grenades"
 
 SWEP.fuseTime = 4
 
-SWEP.timeToThrowCook = 1.2
+SWEP.timeToThrow = 0.9
+
+SWEP.timeToThrowCook = 1.3

@@ -1,3 +1,4 @@
+
 CustomizableWeaponry:addReloadSound("CW_KK_INS2_M67_ARMDRAW", "weapons/m67/handling/m67_armdraw.wav")
 CustomizableWeaponry:addReloadSound("CW_KK_INS2_M67_PINPULL", {
 	"weapons/m67/handling/m67_pinpull.wav",

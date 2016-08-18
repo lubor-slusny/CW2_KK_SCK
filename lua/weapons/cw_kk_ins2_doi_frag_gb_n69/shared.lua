@@ -73,6 +73,4 @@ SWEP.Primary.Ammo			= "Frag Grenades"
 
 SWEP.timeToThrow = 1.1
 
-function SWEP:SecondaryAttack()
-	// this one detonates on impact
-end
+SWEP.canCook = false // this one detonates on impact

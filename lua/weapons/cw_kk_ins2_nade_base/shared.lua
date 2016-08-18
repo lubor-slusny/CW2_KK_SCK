@@ -77,14 +77,16 @@ SWEP.WeaponLength = 0
 
 SWEP.fuseTime = 3			// grenade fuse time
 
-SWEP.timeToThrow = 0.8		// length of pinpull animation
+SWEP.timeToThrow = 0.8		// full length of pinpull animation
 SWEP.spawnTime = 0.2		// delay between start of throw animation and creation of grenade ent
-SWEP.swapTime = 0.7			// length of throw animation
+SWEP.swapTime = 0.7			// full length of throw animation
 
 SWEP.spoonTime = 23/30		// delay between start of pinpull_cook animation and start of fuse timer
-SWEP.timeToThrowCook = 0.8	// length of pinpull_cook animation
+SWEP.timeToThrowCook = 0.8	// full length of pinpull_cook animation
 SWEP.spawnTimeCook = 0.2	// delay between start of throw_cook animation and creation of grenade ent
-SWEP.swapTimeCook = 0.7		// length of throw_cook animation
+SWEP.swapTimeCook = 0.7		// full length of throw_cook animation
+
+SWEP.canCook = true
 
 if SERVER then	
 	function SWEP:EquipAmmo(ply)
@@ -104,12 +106,14 @@ if SERVER then
 					if self.dt.PinPulled then
 						local grenade = self:createProjectile()
 						
-						grenade:SetPos(self:GetPos())
-						grenade:SetAngles(self:GetAngles())
-						
-						local phy = grenade and grenade:GetPhysicsObject()
-						if phy then 
-							phy:SetVelocity(self:GetVelocity())
+						if IsValid(grenade) then	
+							grenade:SetPos(self:GetPos())
+							grenade:SetAngles(self:GetAngles())
+							
+							local phy = grenade and grenade:GetPhysicsObject()
+							if phy then 
+								phy:SetVelocity(self:GetVelocity())
+							end
 						end
 						
 						SafeRemoveEntity(self)
@@ -206,7 +210,9 @@ function SWEP:IndividualThink()
 					if SERVER then
 						local grenade = self:createProjectile()
 						
-						self:applyThrowVelocity(grenade)
+						if IsValid(grenade) then
+							self:applyThrowVelocity(grenade)
+						end
 					end
 					
 					if not CustomizableWeaponry.callbacks.processCategory(wep, "shouldSuppressAmmoUsage") then
@@ -214,10 +220,12 @@ function SWEP:IndividualThink()
 						CustomizableWeaponry.callbacks.processCategory(wep, "postConsumeAmmo")
 					end
 					
-					self:SetNextPrimaryFire(curTime + self._curSwapTime + self.DeployTime)
-					self:SetNextSecondaryFire(curTime + self._curSwapTime + self.DeployTime)
+					local animLength = self._curSwapTime - self._curSpawnTime
 					
-					timer.Simple(self._curSwapTime, function()
+					self:SetNextPrimaryFire(curTime + animLength + self.DeployTime)
+					self:SetNextSecondaryFire(curTime + animLength + self.DeployTime)
+					
+					timer.Simple(animLength, function()
 						if IsValid(self) and IsValid(self.Owner) then
 							if self.Owner:GetAmmoCount(self.Primary.Ammo) <= 0 then -- we're out of ammo, strip this weapon
 								self.Owner:ConCommand("lastinv")
@@ -263,9 +271,25 @@ function SWEP:IndividualThink()
 	end
 end
 
+if CLIENT then
+	SWEP._cvarControlls = CreateClientConVar("cw_kk_ins2_ins_nade_ctrls", 0, true, true)
+end
+
+function SWEP:getControlls()
+	local setting 
+	
+	if CLIENT then
+		setting = self._cvarControlls:GetInt() or 0
+	else
+		setting = self.Owner:GetInfoNum("cw_kk_ins2_ins_nade_ctrls", 0)
+	end
+	
+	return (2 - math.Clamp(setting, 0, 1))
+end
+
 local CT
 
-function SWEP:PrimaryAttack()
+function SWEP:_attack(key)
 	if self.Owner:GetAmmoCount(self.Primary.Ammo) < 1 and self:Clip1() < 1 then
 		return
 	end
@@ -285,42 +309,31 @@ function SWEP:PrimaryAttack()
 	
 	CT = CurTime()
 	
-	self:sendWeaponAnim("pullpin")
-	self.throwTime = CT + self.timeToThrow
-	self.cookTime = nil
-	
-	self._curThrowAnim = "throw"
-	self._curSwapTime = self.swapTime
-	self._curSpawnTime = self.spawnTime
+	if self.canCook and key == self:getControlls() then
+		self:sendWeaponAnim("pull_cook")
+		self.throwTime = CT + self.timeToThrowCook
+		self.cookTime = CT + self.spoonTime
+		
+		self._curThrowAnim = "throw_cook"
+		self._curSwapTime = self.swapTimeCook
+		self._curSpawnTime = self.spawnTimeCook
+	else
+		self:sendWeaponAnim("pullpin")
+		self.throwTime = CT + self.timeToThrow
+		self.cookTime = nil
+		
+		self._curThrowAnim = "throw"
+		self._curSwapTime = self.swapTime
+		self._curSpawnTime = self.spawnTime
+	end
+end
+
+function SWEP:PrimaryAttack()
+	self:_attack(1)
 end
 
 function SWEP:SecondaryAttack()
-	if self.Owner:GetAmmoCount(self.Primary.Ammo) < 1 and self:Clip1() < 1 then
-		return
-	end
-
-	if self.dt.PinPulled then
-		return
-	end
-	
-	for i = 1, 3 do
-		if not self:canFireWeapon(i) then
-			return
-		end
-	end
-	
-	self.dt.PinPulled = true
-	self.animPlayed = false
-	
-	CT = CurTime()
-	
-	self:sendWeaponAnim("pull_cook")
-	self.throwTime = CT + self.timeToThrowCook
-	self.cookTime = CT + self.spoonTime
-	
-	self._curThrowAnim = "throw_cook"
-	self._curSwapTime = self.swapTimeCook
-	self._curSpawnTime = self.spawnTimeCook
+	self:_attack(2)
 end
 
 function SWEP:overCook()
@@ -341,10 +354,10 @@ function SWEP:createProjectile()
 	local grenade = ents.Create(self.grenadeEnt)
 	grenade.Model = self.WM or self.WorldModel
 	
-	-- // move to anm14`s shared lua
-	-- if self:GetClass() == "cw_kk_ins2_nade_anm14" then
-		-- grenade.BreakOnImpact = false
-	-- end
+	// move to anm14`s shared lua
+	if self:GetClass() == "cw_kk_ins2_nade_anm14" then
+		grenade.BreakOnImpact = false
+	end
 	
 	grenade:SetPos(self.lastOwner:GetShootPos())
 	grenade:SetAngles(self.lastOwner:EyeAngles())

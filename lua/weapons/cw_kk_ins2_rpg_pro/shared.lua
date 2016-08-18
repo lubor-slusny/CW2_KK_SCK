@@ -115,8 +115,6 @@ SWEP.Primary.DefaultClip	= -1
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "PG-7VM Grenade"
 
-SWEP.timeToThrow = 1.2
-
 SWEP.Effect_Lighter = "fire_verysmall_01"
 SWEP.Effect_Rag = "embers_small_01"
 
@@ -175,58 +173,11 @@ if CLIENT then
 	end
 end
 
-local SP = game.SinglePlayer()
+SWEP.timeToThrow = 1.5
+SWEP.swapTime = 0.5
 
-function SWEP:IndividualThink()
-	self.lastOwner = self.Owner
-	
-	-- weapons.GetStored("cw_kk_ins2_base").IndividualThink(self)
-	weapons.GetStored("cw_kk_ins2_base_main").IndividualThink(self)
+SWEP.canCook = false // this swep should b cook only lol
 
-	if SP and CLIENT then return end
-	
-	local curTime = CurTime()
-	
-	if self.dt.PinPulled then
-		if curTime > self.throwTime then
-			if not self.Owner:KeyDown(IN_ATTACK) then
-				if not self.animPlayed then
-					self.entityTime = CurTime() + 0.15
-					self:sendWeaponAnim("throw")
-					self.Owner:SetAnimation(PLAYER_ATTACK1)
-				end
-				
-				if curTime > self.entityTime then
-					if SERVER then
-						CustomizableWeaponry_KK.ins2.fireRPG(self, IsFirstTimePredicted())
-						
-						if not CustomizableWeaponry.callbacks.processCategory(wep, "shouldSuppressAmmoUsage") then
-							self:TakePrimaryAmmo(1)
-							CustomizableWeaponry.callbacks.processCategory(wep, "postConsumeAmmo")
-						end
-					end
-					
-					self:SetNextPrimaryFire(curTime + 1)
-					
-					timer.Simple(self.swapTime, function()
-						if IsValid(self) then
-							if self.Owner:GetAmmoCount(self.Primary.Ammo) <= 0 then -- we're out of ammo, strip this weapon
-								self.Owner:ConCommand("lastinv")
-							else
-								self:drawAnimFunc()
-							end
-						end
-					end)
-					
-					self.dt.PinPulled = false
-				end
-				
-				self.animPlayed = true
-			end
-		end
-	end
-end
-
-function SWEP:SecondaryAttack()
-	// this swep should b cook only lol
+function SWEP:createProjectile()
+	CustomizableWeaponry_KK.ins2.fireRPG(self, IsFirstTimePredicted())
 end

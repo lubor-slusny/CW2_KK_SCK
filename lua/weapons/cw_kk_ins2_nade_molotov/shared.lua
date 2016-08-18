@@ -3,7 +3,9 @@ if not CustomizableWeaponry_KK.HOME then return end
 
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
+AddCSLuaFile("sh_soundscript.lua")
 include("sh_sounds.lua")
+include("sh_soundscript.lua")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
@@ -116,6 +118,6 @@ if CLIENT then
 	end
 end
 
-function SWEP:SecondaryAttack()
-	// this one detonates on impact
-end
+SWEP.timeToThrow = 1.6
+
+SWEP.canCook = false // this one detonates on impact

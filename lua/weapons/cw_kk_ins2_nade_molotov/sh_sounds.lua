@@ -1,3 +1,4 @@
+
 CustomizableWeaponry:addReloadSound("CW_KK_INS2_MOLOTOV_BURNLOOP", "weapons/molotov/handling/molotov_idle_burn_loop.wav")
 CustomizableWeaponry:addReloadSound("CW_KK_INS2_MOLOTOV_IGNITE", "weapons/molotov/handling/molotov_ignite.wav")
 CustomizableWeaponry:addReloadSound("CW_KK_INS2_MOLOTOV_LIGHTERCLOSE", "weapons/molotov/handling/molotov_lighter_close.wav")

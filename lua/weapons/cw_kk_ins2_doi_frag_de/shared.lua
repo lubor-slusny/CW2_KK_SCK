@@ -78,7 +78,7 @@ SWEP.fuseTime = 5
 
 SWEP.timeToThrow = 1.5
 SWEP.spawnTime = 0.95
-SWEP.swapTime = 1.3
+SWEP.swapTime = 1.4
 
 SWEP.spoonTime = 44/35.2
 SWEP.timeToThrowCook = 1.7

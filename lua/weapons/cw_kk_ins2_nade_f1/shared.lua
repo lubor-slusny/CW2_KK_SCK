@@ -1,6 +1,8 @@
 if not CustomizableWeaponry then return end
 
 AddCSLuaFile()
+AddCSLuaFile("sh_soundscript.lua")
+include("sh_soundscript.lua")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
@@ -29,7 +31,6 @@ SWEP.Animations = {
 	throw_cook = "bakethrow",
 	
 	base_idle = "base_idle",
-	base_pickup = "base_draw",
 	base_draw = "base_draw",
 	base_holster = "base_holster",
 	base_sprint = "base_sprint",
@@ -69,6 +70,6 @@ SWEP.Primary.Ammo			= "Frag Grenades"
 
 SWEP.fuseTime = 4
 
-SWEP.timeToThrow = 0.8
+SWEP.timeToThrow = 0.9
 
 SWEP.timeToThrowCook = 1.3
