@@ -85,8 +85,8 @@ add({text = "SMOKE", ammo = "Smoke Grenades", class = "cw_smoke_thrown", default
 if CustomizableWeaponry_KK.HOME then
 	-- add({text = "FRAG", ammo = "Frag Grenades", class = "weapon_striderbuster"})
 	add({text = "BUG", /*ammo = "9x19MM", */class = "npc_grenade_bugbait", default = "n77"})
-	add({text = "HL2", ammo = "Frag Grenades", class = "npc_grenade_frag"})
-	add({text = "N69", ammo = "Frag Grenades", class = "cw_kk_ins2_projectile_n69", default = "n69"})
+	add({text = "HL2", ammo = "Frag Grenades", class = "npc_grenade_frag", default = "m18"})
+	-- add({text = "N69", ammo = "Frag Grenades", class = "cw_kk_ins2_projectile_n69", default = "n69"})
 end
 
 function CustomizableWeaponry_KK.ins2:getNadeAmmo()

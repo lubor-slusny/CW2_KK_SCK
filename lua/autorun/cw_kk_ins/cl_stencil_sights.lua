@@ -100,8 +100,8 @@ if CLIENT then
 		attachmEnt = self.AttachmentModelsVM[att.name].ent
 		retAtt = attachmEnt:GetAttachment(1)
 		
-		if not retAtt then 
-			error("You are using invalid \"" .. self.AttachmentModelsVM[att.name].model .. "\" model. Check your other addons for conflicting files.")
+		if not retAtt then
+			CustomizableWeaponry_KK.ins2:stencilSightSpamErrors(self, att)
 			return
 		end
 		
@@ -196,7 +196,7 @@ if CLIENT then
 		retAtt = attachmEnt:GetAttachment(1)
 		
 		if not retAtt then 
-			error("You are using invalid \"" .. self.AttachmentModelsVM[att.name].model .. "\" model. Check your other addons for conflicting files.")
+			CustomizableWeaponry_KK.ins2:stencilSightSpamErrors(self, att)
 			return
 		end
 		
@@ -277,5 +277,55 @@ if CLIENT then
 		cam.IgnoreZ(false)
 		
 		render.SetStencilEnable(false)
+	end
+end
+
+if CLIENT then
+	// u wanted it, u got it
+	
+	local nobrain = "657241323"
+	
+	function CustomizableWeaponry_KK.ins2:stencilSightSpamErrors(wep, att)
+		if self._nextError and self._nextError > CurTime() then return end
+		
+		self._nextError = CurTime() + 2
+		
+		local id = wep:GetClass() .. "|" .. att.name
+		local mdl = wep.AttachmentModelsVM[att.name].model
+		
+		if not id or not mdl then return end
+		
+		if not self.stencilSightsErrors then
+			self.stencilSightsErrors = {}
+		end
+
+		if not self.stencilSightsErrors[id] then
+			local target = ""
+			
+			for _,addon in pairs(engine.GetAddons()) do
+				if addon.models == 0 then continue end
+				if !addon.mounted then continue end
+				if addon.wsid == nobrain then continue end
+				
+				local found = file.Find(mdl, addon.title)
+				
+				if table.Count(found) > 0 then
+					target = "[" .. addon.title .. "] http://steamcommunity.com/sharedfiles/filedetails/" .. addon.wsid .. "\n"
+				end
+			end
+			
+			self.stencilSightsErrors[id] = target
+		end
+		
+		local msg
+		
+		if self.stencilSightsErrors[id] != "" then
+			msg = "Invalid model \"" .. mdl .. "\", loaded from:\n	\n	" .. self.stencilSightsErrors[id]
+		else
+			msg = "Invalid model \"" .. mdl .. "\". Browse your LEGACY addons for conflicting file.\n"
+		end
+		
+		print("	\n[CW 2.0 KK INS2 SWEPs] " .. msg)
+		-- error(msg)
 	end
 end
