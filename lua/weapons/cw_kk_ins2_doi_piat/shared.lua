@@ -8,7 +8,7 @@ include("sh_soundscript.lua")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "GB MORTAR GUN"
+	SWEP.PrintName = "PIAT"
 	
 	SWEP.SelectFont = "CW_SelectIcons2"
 	SWEP.IconLetter = "i"
@@ -47,9 +47,9 @@ SWEP.Attachments = {
 SWEP.KK_INS2_EmptyIdle = true
 
 SWEP.Animations = {
-	draw = "base_draw",
+	draw = "base_ready",
 
-	base_pickup = "base_draw",
+	base_pickup = "base_ready",
 	base_draw = "base_draw",
 	base_draw_empty = "empty_draw",
 	base_fire = "base_fire",
@@ -76,7 +76,7 @@ SWEP.SpeedDec = 15
 
 SWEP.Slot = 4
 SWEP.SlotPos = 0
-SWEP.NormalHoldType = "rpg"
+SWEP.NormalHoldType = "ar2"
 SWEP.RunHoldType = "passive"
 SWEP.FireModes = {"single"}
 SWEP.Base = "cw_kk_ins2_base"
@@ -91,11 +91,11 @@ SWEP.AimViewModelFOV = 30
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_piat.mdl"
-SWEP.WorldModel		= "models/weapons/w_panzerfaust.mdl"
+SWEP.WorldModel		= "models/weapons/w_piat.mdl"
 
 SWEP.DrawCustomWM = true
-SWEP.WMPos = Vector(2, 0, -2)
-SWEP.WMAng = Vector(-8, 0, -180)
+SWEP.WMPos = Vector(10, 1, -4.5)
+SWEP.WMAng = Vector(-4, 0, -180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.models.ww2gb
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.models.ww2gb
@@ -109,7 +109,7 @@ SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= "M6A1 Rocket"
 
 SWEP.FireDelay = 0.3
-SWEP.FireSound = "CW_KK_INS2_DOI_BAZOOKA_FIRE"
+SWEP.FireSound = "CW_KK_INS2_DOI_PIAT_FIRE"
 SWEP.Recoil = 0.5
 
 SWEP.HipSpread = 0.05
@@ -123,6 +123,7 @@ SWEP.Damage = 100
 
 SWEP.FirstDeployTime = 1.5
 SWEP.DeployTime = 1.5
+SWEP.HolsterTime = 1.37
 
 SWEP.ReloadTime = 3
 SWEP.ReloadTime_Empty = 3
