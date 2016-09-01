@@ -143,7 +143,7 @@ function SWEP:SetupDataTables()
 	self:NetworkVar("Bool", 0, "Suppressed")
 	self:NetworkVar("Bool", 1, "Safe")
 	self:NetworkVar("Bool", 2, "BipodDeployed")
-	self:NetworkVar("Bool", 3, "PinPulled") // coz I dont want to copy-pasta whole cw_menu + initfunc 
+	self:NetworkVar("Bool", 3, "PinPulled")
 	self:NetworkVar("Angle", 0, "ViewOffset")
 end
 
@@ -350,7 +350,6 @@ function SWEP:overCook()
 end
 
 function SWEP:createProjectile()
-	local curTime = CurTime()
 	local grenade = ents.Create(self.grenadeEnt)
 	grenade.Model = self.WM or self.WorldModel
 	
@@ -367,7 +366,7 @@ function SWEP:createProjectile()
 	grenade:SetOwner(self.lastOwner)
 	
 	if self.cookTime then
-		grenade:Fuse(math.Clamp((self.cookTime + self.fuseTime) - curTime, 0, self.fuseTime))
+		grenade:Fuse(math.Clamp((self.cookTime + self.fuseTime) - CurTime(), 0, self.fuseTime))
 	else
 		grenade:Fuse(self.fuseTime)
 	end
