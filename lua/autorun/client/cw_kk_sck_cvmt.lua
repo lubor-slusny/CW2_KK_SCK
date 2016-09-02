@@ -33,9 +33,19 @@ local function buildPanel(panel)
 	CVMT.SLIDERS["cvmt_pbr"]:SetDark(true)
 	panel:AddItem(CVMT.SLIDERS["cvmt_pbr"])
 
+	CVMT.SLIDERS["cvmt_pbr"].Wang:SetDecimals(4)
+	
 	CVMT.SLIDERS["cvmt_cycle"].OnValueChanged = function(slider, val)
 		CVMT.SLIDERS["cvmt_pbr"]:SetValue(0)
-		RunConsoleCommand("cvmt_setcycle", val)
+		
+		local wep = LocalPlayer():GetActiveWeapon()
+		
+		if IsValid(wep.CW_VM) then
+			wep.CW_VM:SetCycle(val)
+		else
+			RunConsoleCommand("cvmt_setcycle", val)
+		end
+	
 		RunConsoleCommand("cvmt_setplaybackrate", 0)
 	end
 			
