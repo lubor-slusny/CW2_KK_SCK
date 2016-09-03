@@ -26,7 +26,7 @@ if CLIENT then
 end
 
 SWEP.Attachments = {
-	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
+	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_DOI_sling"}},
 	["+reload"] = {header = "Ammo", offset = {700, 300}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
@@ -35,6 +35,7 @@ SWEP.Animations = {
 	
 	base_pickup = "base_ready",
 	base_draw = "base_draw",
+	base_draw_empty = "base_draw_empty",
 	base_fire = {"base_fire_1", "base_fire_2"},
 	base_fire_aim = {"iron_fire_1","iron_fire_2"},
 	base_fire_empty = "base_dryfire",
@@ -42,14 +43,22 @@ SWEP.Animations = {
 	base_reload = "base_reloadfull",
 	base_reload_empty = "base_reloadempty",
 	base_idle = "base_idle",
+	base_idle_empty = "empty_idle",
 	base_holster = "base_holster",
+	base_holster_empty = "base_holster_empty",
 	base_firemode = "base_fireselect",
+	base_firemode_empty = "base_fireselect",
 	base_firemode_aim = "iron_fireselect",
+	base_firemode_empty_aim = "iron_fireselect",
 	base_sprint = "base_sprint",
+	base_sprint_empty = "base_sprint_empty",
 	base_safe = "base_down",
+	base_safe_empty = "base_down_empty",
 	base_safe_aim = "iron_down",
+	base_safe_empty_aim = "iron_down_empty",
 	
 	bipod_in = "deployed_in",
+	bipod_in_empty = "deployed_in_empty",
 	bipod_fire = {"deployed_fire_1", "deployed_fire_2"},
 	bipod_fire_aim = {"deployed_iron_fire_1","deployed_iron_fire_2","deployed_iron_fire_3"},
 	bipod_fire_empty = "deployed_dryfire",
@@ -57,8 +66,11 @@ SWEP.Animations = {
 	bipod_reload = "deployed_reload",
 	bipod_reload_empty = "deployed_reload_empty",
 	bipod_firemode = "deployed_fireselect",
+	bipod_firemode_empty = "deployed_fireselect_empty",
 	bipod_firemode_aim = "deployed_fireselect",
+	bipod_firemode_empty_aim = "deployed_fireselect_empty",
 	bipod_out = "deployed_out",
+	bipod_out_empty = "deployed_out_empty",
 }
 
 SWEP.SpeedDec = 40
@@ -98,7 +110,7 @@ SWEP.Primary.Ammo			= ".30-06"
 SWEP.Secondary.Automatic	= false
 
 SWEP.FireDelay = 60/500
-SWEP.FireSound = "CW_KK_INS2_WW2_BAR_FIRE"
+SWEP.FireSound = "CW_KK_INS2_DOI_BAR_FIRE"
 SWEP.Recoil = 1.6
 
 SWEP.HipSpread = 0.055
@@ -125,5 +137,6 @@ SWEP.WeaponLength = 28
 
 SWEP.Chamberable = false
 SWEP.BipodInstalled = true
+SWEP.KK_INS2_EmptyIdle = true
 
 SWEP.MuzzleVelocity = 860

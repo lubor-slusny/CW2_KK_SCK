@@ -18,8 +18,12 @@ local strCurFilter = ""
 local animButtonsPanel
 
 local function playAnim(txt)
-	if bPlaySounds and WEAPON.Sounds[txt] then
-		WEAPON:setCurSoundTable(WEAPON.Sounds[txt], fCurRate, fCurStartCycle, txt)
+	if bPlaySounds then
+		if WEAPON.Sounds[txt] then
+			WEAPON:setCurSoundTable(WEAPON.Sounds[txt], fCurRate, fCurStartCycle, txt)
+		else
+			WEAPON:removeCurSoundTable()
+		end
 	end
 	
 	RunConsoleCommand("cvmt_playanim", txt, fCurStartCycle, fCurRate)
@@ -45,7 +49,7 @@ local function populateAnimButtonsPanel()
 	for i = 0, vm:GetSequenceCount() - 1 do
 		local txt = vm:GetSequenceName(i)
 		
-		if string.find(txt, strCurFilter) then
+		if string.find(string.lower(txt), string.lower(strCurFilter)) then
 			
 			local animButtonPanel = vgui.Create("DPanel", animButtonsPanel)
 			
@@ -66,6 +70,9 @@ local function populateAnimButtonsPanel()
 					if self:IsHovered() then
 						if input.IsMouseDown(MOUSE_LEFT) then
 							animButtonPanel:SetBackgroundColor(colClick)
+						elseif input.IsMouseDown(MOUSE_RIGHT) then
+							animButtonPanel:SetBackgroundColor(colClick)
+							SetClipboardText(txt)
 						else
 							animButtonPanel:SetBackgroundColor(colHover)
 						end
@@ -89,6 +96,9 @@ local function populateAnimButtonsPanel()
 				if self:IsHovered() then
 					if input.IsMouseDown(MOUSE_LEFT) then
 						self:SetBackgroundColor(colClick)
+					elseif input.IsMouseDown(MOUSE_RIGHT) then
+						animButtonPanel:SetBackgroundColor(colClick)
+						SetClipboardText(txt)
 					else
 						self:SetBackgroundColor(colHover)
 					end
@@ -116,11 +126,61 @@ local function updatePanel()
 	
 	PANEL:ClearControls()
 	
+	// OLD PANEL
+		PANEL:AddControl("Label", {Text = "Spy`s CVMT:"}):DockMargin(0, 0, 0, 0)
+		PANEL:AddControl("CheckBox", {Label = "Enable HUD elements", Command = "cvmt_enabled"}):DockMargin(8, 0, 8, 8)
+		PANEL:AddControl("CheckBox", {Label = "Show anim list", Command = "cvmt_animlist"}):DockMargin(8, 0, 8, 8)
+		PANEL:AddControl("CheckBox", {Label = "Show sequence ids in ^^", Command = "cvmt_animlist_numbers"}):DockMargin(8, 0, 8, 8)
+		
+		local sliderCycle, sliderRate
+		
+		sliderCycle = vgui.Create("DNumSlider", PANEL)
+		sliderCycle:DockMargin(8, 0, 8, 8)
+		sliderCycle:SetDecimals(4)
+		sliderCycle:SetMinMax(0, 1)
+		sliderCycle:SetValue(1)
+		sliderCycle:SetText("Set cycle")
+		sliderCycle:SetDark(true)
+		PANEL:AddItem(sliderCycle)
+		
+		sliderRate = vgui.Create("DNumSlider", PANEL)
+		sliderRate:DockMargin(8, 0, 8, 8)
+		sliderRate:SetDecimals(4)
+		sliderRate:SetMinMax(-5, 5)
+		sliderRate:SetValue(1)
+		sliderRate:SetText("Set playback rate")
+		sliderRate:SetDark(true)
+		PANEL:AddItem(sliderRate)
+		
+		sliderRate.Wang:SetDecimals(4)
+		
+		sliderCycle.OnValueChanged = function(slider, val)
+			sliderRate:SetValue(0)
+			
+			local wep = LocalPlayer():GetActiveWeapon()
+			
+			if IsValid(wep.CW_VM) then
+				wep.CW_VM:SetCycle(val)
+			else
+				RunConsoleCommand("cvmt_setcycle", val)
+			end
+		
+			RunConsoleCommand("cvmt_setplaybackrate", 0)
+		end
+		
+		sliderRate.OnValueChanged = function(slider, val)
+			RunConsoleCommand("cvmt_setplaybackrate", val)
+		end
+	// === =====
+	
 	if !IsValid(WEAPON) or !WEAPON.CW20Weapon then
 		cleanAnimButtonsPanel()
 		return 
 	end
 
+	// OLD PANEL
+	PANEL:AddControl("Label", {Text = "Preview animations:"}):DockMargin(0, 0, 0, 0)
+		
 	local soundSwitchPanel = vgui.Create("DPanel", PANEL)
 
 		local cbox

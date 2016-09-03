@@ -65,6 +65,9 @@ SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.models.m67
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.models.bayonet
 SWEP.CW_KK_40MM_MDL = "models/weapons/upgrades/a_projectile_m203.mdl"
 
+SWEP._KK_INS2_customEmptySuffix = ""
+SWEP._KK_INS2_customReloadSuffix = ""
+
 SWEP.FirstDeployTime = 5
 SWEP.WeaponLength = 20
 

@@ -5,7 +5,7 @@ local mode, customSuffix, fullA, emptyA, fullT, emptyT
 
 function SWEP:updateReloadTimes()
 	mode = self:getForegripMode()
-	customSuffix = self._KK_INS2_customSuffix or ""
+	customSuffix = self._KK_INS2_customReloadSuffix
 
 	if self.ReloadTimes then	// extend, finish
 		//	2do: 
@@ -64,6 +64,14 @@ function SWEP:updateReloadTimes()
 			self.ReloadHalt_Empty = self[mode .. "ReloadHalt_Empty"] or self.base_ReloadHalt_Empty
 		end
 	end
+end
+
+function SWEP:getReloadAnim()
+	
+end
+
+function SWEP:getReloadTimes()
+	
 end
 
 if CLIENT then

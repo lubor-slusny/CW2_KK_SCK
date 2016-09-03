@@ -169,24 +169,54 @@ function CustomizableWeaponry_KK.ins2:fireHL2EP2(IFTP)
 end
 
 function CustomizableWeaponry_KK.ins2:fireHL2EP1(IFTP)
+	if !IsValid(self._EP1Launcher) then
+		self._EP1Launcher = ents.Create("point_combine_ball_launcher")
+	end
+
 	if IFTP then 
 		local pos = self.Owner:GetShootPos()
 		local eyeAng = self.Owner:EyeAngles()
 		local forward = eyeAng:Forward()
 		
-		local nade = ents.Create("prop_combine_ball")
-		nade:SetPos(pos)
+		self._EP1Launcher:SetOwner(self.Owner)
 		
-		nade:Spawn()
-		nade:Activate()
+		self._EP1Launcher:SetPos(pos)
+		self._EP1Launcher:SetAngles(eyeAng)
 		
-		nade:SetSolid(SOLID_VPHYSICS)
-		nade:SetOwner(self.Owner)
+		self._EP1Launcher:SetKeyValue("launchconenoise", "0")
+		self._EP1Launcher:SetKeyValue("ballcount", "1")
+		self._EP1Launcher:SetKeyValue("minspeed", "2000")
+		self._EP1Launcher:SetKeyValue("maxspeed", "2000")
+		self._EP1Launcher:SetKeyValue("ballradius", "10")
+		-- self._EP1Launcher:SetKeyValue("maxballbounces", "4")
+		self._EP1Launcher:SetKeyValue("balltype", "1")
 		
-		local phys = nade:GetPhysicsObject()
+		self._EP1Launcher:Fire("Enable")
+		self._EP1Launcher:Fire("LaunchBall")
+		self._EP1Launcher:Fire("Disable")
 		
-		if IsValid(phys) then
-			phys:SetVelocity(forward * 1000)
-		end
+		-- local nade = ents.Create("prop_combine_ball")
+		-- nade:SetPos(pos)
+		
+		-- nade:Fire("setradius", "10")
+		-- nade:Fire("SetOwnerEntity", self.Owner)
+		-- nade:Fire("SetOriginalOwner", self.Owner)
+		-- nade:Fire("SetAbsVelocity", forward * 10)
+		-- nade:SetOwner(self.Owner)
+		
+		-- nade:Spawn()
+		
+		-- nade:Fire("SetMass", 150)
+		-- nade:Fire("StartLifetime", 4)
+		
+		-- nade:Activate()
+		
+		-- nade:Fire("SetAbsVelocity", forward * 10)
+		
+		-- local phys = nade:GetPhysicsObject()
+		
+		-- if IsValid(phys) then
+			-- phys:SetVelocity(forward * 10)
+		-- end
 	end
 end

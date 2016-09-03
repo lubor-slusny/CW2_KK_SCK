@@ -16,4 +16,5 @@ CustomizableWeaponry:addReloadSound("CW_KK_INS2_WW2_THOMPSON_MAGIN", "weapons/m1
 CustomizableWeaponry:addReloadSound("CW_KK_INS2_WW2_THOMPSON_MAGOUT", "weapons/m1928a1/handling/m1928a1_magout.wav")
 CustomizableWeaponry:addReloadSound("CW_KK_INS2_WW2_THOMPSON_MAGOUTRATTLE", "weapons/m1928a1/handling/m1928a1_magout_rattle.wav")
 CustomizableWeaponry:addReloadSound("CW_KK_INS2_WW2_THOMPSON_MAGRELEASE", "weapons/m1928a1/handling/m1928a1_magrelease.wav")
+CustomizableWeaponry:addReloadSound("CW_KK_INS2_WW2_THOMPSON_MAGTAP", "weapons/m1928a1/handling/m1928a1_magtap.wav")
 CustomizableWeaponry:addReloadSound("CW_KK_INS2_WW2_THOMPSON_RATTLE", "weapons/m1928a1/handling/m1928a1_rattle.wav")

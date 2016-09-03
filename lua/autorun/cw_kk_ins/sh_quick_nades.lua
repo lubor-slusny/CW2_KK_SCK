@@ -83,9 +83,9 @@ add({text = "FLASH", ammo = "Flash Grenades", class = "cw_flash_thrown", default
 add({text = "SMOKE", ammo = "Smoke Grenades", class = "cw_smoke_thrown", default = "m18"})
 	
 if CustomizableWeaponry_KK.HOME then
-	-- add({text = "FRAG", ammo = "Frag Grenades", class = "weapon_striderbuster"})
+	add({text = "STRI", /*ammo = "Frag Grenades", */class = "weapon_striderbuster", default = "n69"})
 	add({text = "BUG", /*ammo = "9x19MM", */class = "npc_grenade_bugbait", default = "n77"})
-	add({text = "HL2", ammo = "Frag Grenades", class = "npc_grenade_frag", default = "m18"})
+	add({text = "HL2", /*ammo = "Frag Grenades", */class = "npc_grenade_frag", default = "m18"})
 	-- add({text = "N69", ammo = "Frag Grenades", class = "cw_kk_ins2_projectile_n69", default = "n69"})
 end
 
@@ -254,6 +254,16 @@ function CustomizableWeaponry_KK.ins2:throwGrenade(IFTP)
 				
 				nade:Fire("ExplodeIn", 3)
 				nade:Fire("sETtIMER", 3)
+				
+				-- for i = 1, 6 do
+					-- timer.Simple(i/2, function()
+						-- if IsValid(nade) then
+							-- nade:Fire("ConstraintBroken", 3)
+						-- end
+					-- end)
+				-- end
+				
+				-- nade:SetKeyValue("dud", "1")
 				
 				// consume owners ammo
 				local suppressAmmoUsage = CustomizableWeaponry.callbacks.processCategory(self, "shouldSuppressAmmoUsage")

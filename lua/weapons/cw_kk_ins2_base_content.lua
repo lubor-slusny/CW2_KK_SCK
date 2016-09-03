@@ -368,7 +368,7 @@ end
 
 -- // KEK
 
--- if CustomizableWeaponry_KK.HOME then
+if CustomizableWeaponry_KK.HOME then
 	-- // RPG
 	-- local gren = {}
 	-- gren.name = "40mm_kk_1337"
@@ -432,16 +432,16 @@ end
 
 	-- CustomizableWeaponry.grenadeTypes:addNew(gren)
 	
-	-- // balls
-	-- local gren = {}
-	-- gren.name = "40mm_kk_13399"
-	-- gren.display = " - BALLSBALLSBALLSBALLS"
+	// balls
+	local gren = {}
+	gren.name = "40mm_kk_13399"
+	gren.display = " - BALLSBALLSBALLSBALLS"
 
-	-- function gren:fireFunc()
-		-- CustomizableWeaponry_KK.ins2.fireHL2EP1(self, IsFirstTimePredicted())
-	-- end
+	function gren:fireFunc()
+		CustomizableWeaponry_KK.ins2.fireHL2EP1(self, IsFirstTimePredicted())
+	end
 
-	-- CustomizableWeaponry.grenadeTypes:addNew(gren)
+	CustomizableWeaponry.grenadeTypes:addNew(gren)
 	
 	-- // add mw2 m203 flare kek
--- end
+end

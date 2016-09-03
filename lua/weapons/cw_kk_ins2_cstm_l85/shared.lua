@@ -144,7 +144,7 @@ SWEP.Animations = {
 	
 	foregrip_pickup = "foregrip_ready",
 	foregrip_draw = "foregrip_draw",
-	foregrip_fire = "foregrip_fire",
+	foregrip_fire = {"foregrip_fire", "foregrip_fire_2"},
 	foregrip_fire_aim = {"foregrip_iron_fire","foregrip_iron_fire_a","foregrip_iron_fire_b","foregrip_iron_fire_c","foregrip_iron_fire_d","foregrip_iron_fire_e","foregrip_iron_fire_f"},
 	foregrip_fire_empty = "foregrip_dryfire",
 	foregrip_fire_empty_aim = "foregrip_iron_dryfire",
@@ -160,7 +160,7 @@ SWEP.Animations = {
 	
 	gl_off_pickup = "gl_ready",
 	gl_off_draw = "gl_draw",
-	gl_off_fire = "gl_fire",
+	gl_off_fire = {"gl_fire", "gl_fire_2"},
 	gl_off_fire_aim = {"gl_iron_fire","gl_iron_fire_a","gl_iron_fire_b","gl_iron_fire_c","gl_iron_fire_d","gl_iron_fire_e","gl_iron_fire_f"},
 	gl_off_fire_empty = "gl_dryfire",
 	gl_off_fire_empty_aim = "gl_iron_dryfire",

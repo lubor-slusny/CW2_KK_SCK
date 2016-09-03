@@ -13,7 +13,7 @@ if CLIENT then
 		cycle = self.CW_VM:GetCycle()
 
 		if self:Clip1() == 0 and self.KK_INS2_EmptyIdle then
-			suffix = "_empty"
+			suffix = "_empty" .. self._KK_INS2_customEmptySuffix
 		else
 			suffix = ""
 		end
@@ -54,7 +54,7 @@ if CLIENT then
 		suffix = ""
 			
 		if self:Clip1() == 0 and self.KK_INS2_EmptyIdle then
-			suffix = "_empty"
+			suffix = "_empty" .. self._KK_INS2_customEmptySuffix
 		end
 	
 		if self.Slot == 2 or self.Slot == 3 then
@@ -70,7 +70,7 @@ if CLIENT then
 		suffix = ""
 		
 		if self:Clip1() == 0 and self.KK_INS2_EmptyIdle then
-			suffix = "_empty"
+			suffix = "_empty" .. self._KK_INS2_customEmptySuffix
 		end
 		
 		if self:isAiming() /*or self.Slot == 1*/ then
@@ -87,7 +87,7 @@ if CLIENT then
 		suffix = ""
 		
 		if self:Clip1() == 0 and self.KK_INS2_EmptyIdle then
-			suffix = "_empty"
+			suffix = "_empty" .. self._KK_INS2_customEmptySuffix
 		end
 		
 		if self:isAiming() then
@@ -111,7 +111,7 @@ if CLIENT then
 		cycle = 0
 		
 		if self:Clip1() == 0 and self.KK_INS2_EmptyIdle then
-			suffix = "_empty"
+			suffix = "_empty" .. self._KK_INS2_customEmptySuffix
 		end
 		
 		-- if self.dt.State == CW_CUSTOMIZE then
@@ -149,11 +149,11 @@ function SWEP:drawAnimFunc()
 	
 	if self.dt.INS2GLActive then
 		if !self.M203Chamber and self.KK_INS2_EmptyIdleGL then
-			suffix = "_empty"
+			suffix = "_empty" .. self._KK_INS2_customEmptySuffix
 		end
 	else
 		if clip == 0 and self.KK_INS2_EmptyIdle then
-			suffix = "_empty"
+			suffix = "_empty" .. self._KK_INS2_customEmptySuffix
 		end
 	end
 	
@@ -168,7 +168,7 @@ function SWEP:meleeAnimFunc()
 	suffix = ""
 	
 	if self.KK_INS2_EmptyIdle and clip == 0 then
-		suffix = "_empty"
+		suffix = "_empty" .. self._KK_INS2_customEmptySuffix
 	end
 	
 	self:sendWeaponAnim(prefix .. "melee" .. suffix,rate,cyc)
@@ -182,9 +182,9 @@ function SWEP:fireAnimFunc()
 	suffix = ""
 	
 	if clip == 1 and self.KK_INS2_EmptyIdle then
-		suffix = "_last"
+		suffix = "_last" .. self._KK_INS2_customEmptySuffix
 	elseif (clip == 0 and not self.dt.INS2GLActive) or (self.dt.INS2GLActive and not self.M203Chamber) then
-		suffix = "_empty"
+		suffix = "_empty" .. self._KK_INS2_customEmptySuffix
 	end
 	
 	if self:isAiming() then
@@ -207,7 +207,7 @@ function SWEP:_holsterAnimFunc()
 	suffix = ""
 	
 	if self:Clip1() == 0 and self.KK_INS2_EmptyIdle then
-		suffix = "_empty"
+		suffix = "_empty" .. self._KK_INS2_customEmptySuffix
 	end
 	
 	self:sendWeaponAnim(prefix .. "holster" .. suffix,self.HolsterSpeed or 1,0)
