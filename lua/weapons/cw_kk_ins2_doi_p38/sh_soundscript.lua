@@ -2,9 +2,9 @@
 SWEP.Sounds = {
 	base_ready = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_PISTOL_DRAW"},
-		{time = 8/30, sound = "CW_KK_INS2_WW2_P38_SAFETY"},
-		{time = 14/30, sound = "CW_KK_INS2_WW2_P38_BOLTBACK"},
-		{time = 20/30, sound = "CW_KK_INS2_WW2_P38_BOLTRELEASE"},
+		{time = 8/30, sound = "CW_KK_INS2_DOI_P38_SAFETY"},
+		{time = 14/30, sound = "CW_KK_INS2_DOI_P38_BOLTBACK"},
+		{time = 20/30, sound = "CW_KK_INS2_DOI_P38_BOLTRELEASE"},
 	},
 
 	base_draw = {
@@ -16,22 +16,22 @@ SWEP.Sounds = {
 	},
 
 	base_dryfire = {
-		{time = 0/30, sound = "CW_KK_INS2_WW2_P38_EMPTY"},
+		{time = 0/30, sound = "CW_KK_INS2_DOI_P38_EMPTY"},
 	},
 
 	base_reload = {
-		{time = 0/30, sound = "CW_KK_INS2_WW2_P38_MAGRELEASE"},
-		{time = 7/30, sound = "CW_KK_INS2_WW2_P38_MAGOUT"},
-		{time = 35/30, sound = "CW_KK_INS2_WW2_P38_MAGIN"},
-		{time = 58/30, sound = "CW_KK_INS2_WW2_P38_MAGHIT"},
+		{time = 0/30, sound = "CW_KK_INS2_DOI_P38_MAGRELEASE"},
+		{time = 7/30, sound = "CW_KK_INS2_DOI_P38_MAGOUT"},
+		{time = 35/30, sound = "CW_KK_INS2_DOI_P38_MAGIN"},
+		{time = 58/30, sound = "CW_KK_INS2_DOI_P38_MAGHIT"},
 	},
 
 	base_reloadempty = {
-		{time = 0/30, sound = "CW_KK_INS2_WW2_P38_MAGRELEASE"},
-		{time = 7/30, sound = "CW_KK_INS2_WW2_P38_MAGOUT"},
-		{time = 35/30, sound = "CW_KK_INS2_WW2_P38_MAGIN"},
-		{time = 58/30, sound = "CW_KK_INS2_WW2_P38_MAGHIT"},
-		{time = 71/30, sound = "CW_KK_INS2_WW2_P38_BOLTRELEASE"},
+		{time = 0/30, sound = "CW_KK_INS2_DOI_P38_MAGRELEASE"},
+		{time = 7/30, sound = "CW_KK_INS2_DOI_P38_MAGOUT"},
+		{time = 35/30, sound = "CW_KK_INS2_DOI_P38_MAGIN"},
+		{time = 58/30, sound = "CW_KK_INS2_DOI_P38_MAGHIT"},
+		{time = 71/30, sound = "CW_KK_INS2_DOI_P38_BOLTRELEASE"},
 	},
 
 	empty_draw = {
@@ -43,6 +43,6 @@ SWEP.Sounds = {
 	},
 
 	iron_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_WW2_P38_EMPTY"},
+		{time = 0, sound = "CW_KK_INS2_DOI_P38_EMPTY"},
 	},
 }

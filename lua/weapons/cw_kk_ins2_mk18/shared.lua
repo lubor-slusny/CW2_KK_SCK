@@ -28,7 +28,7 @@ if CLIENT then
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_standard_mk18.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		
-		["cover_long"] = {model = "models/weapons/upgrades/a_standard2_mk18.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["cover_long"] = {model = "models/weapons/upgrades/a_standard2_mk18.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		["cover_short"] = {model = "models/weapons/upgrades/a_standard3_mk18.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_suppressor_sec"] = {model = "models/weapons/upgrades/a_suppressor_sec2.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
@@ -212,7 +212,7 @@ SWEP.WeaponLength = 20
 SWEP.MuzzleVelocity = 788
 
 if CLIENT then
-	function SWEP:updateOtherParts()
+	function SWEP:updateStandardParts()
 		if self.ActiveAttachments.kk_ins2_anpeq15 then
 			self.AttachmentModelsVM.cover_long.active = false
 			self.AttachmentModelsVM.cover_short.active = false

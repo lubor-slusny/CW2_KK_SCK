@@ -248,29 +248,8 @@ SWEP.MuzzleVelocity = 915
 if CLIENT then
 	local counterExists = file.Exists("models/weapons/stattrack.mdl", "GAME")
 	
-	local cycle, clip, ammo, setBG
-	
 	function SWEP:updateOtherParts()
-		cycle = self.CW_VM:GetCycle()
-		if cycle == 1 or cycle == 0 then
-			self._pauseUpdatingBelt = false
-		end
-		
-		clip = self:Clip1()
-
-		if self.getFullestMag then
-			ammo = math.max(self:Clip1(), self:getFullestMag(), -1)
-		else
-			ammo = self.Owner:GetAmmoCount(self.Primary.Ammo) + clip
-		end
-		
-		self.AttachmentModelsVM.kk_counter_mag.ent._KKCSGONUM = clip
-		setBG = math.Clamp(clip,0,16)
-
-		if not self._pauseUpdatingBelt then
-			self:setBodygroup(1,setBG)
-		end
-		
+		self.AttachmentModelsVM.kk_counter_mag.ent._KKCSGONUM = 160904
 		self.AttachmentModelsVM.kk_counter_mag.active = counterExists and CustomizableWeaponry_KK.HOME
 		
 		-- self.AttachmentModelsVM.kk_counter_mag.active = false

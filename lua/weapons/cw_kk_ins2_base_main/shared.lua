@@ -197,6 +197,7 @@ function SWEP:IndividualThink()
 		// and now, cosmetix
 		
 		self:updateHands()
+		self:updateBelt()
 		self:updateOtherParts()
 		
 		self:playSwitchBipod()

@@ -116,7 +116,7 @@ SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= ".30-06"
 
 SWEP.FireDelay = 0.17
-SWEP.FireSound = "CW_KK_INS2_WW2_GARAND_FIRE"
+SWEP.FireSound = "CW_KK_INS2_DOI_GARAND_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_M14_FIRE_SUPPRESSED"
 SWEP.Recoil = 1.6
 
@@ -148,19 +148,7 @@ SWEP.WeaponLength = 22
 
 SWEP.MuzzleVelocity = 853
 
-if CLIENT then 
-	function SWEP:updateOtherParts()
-		if self.Sequence:find("reload") and self.CW_VM:GetCycle() > 0.3 then
-			if self.getFullestMag then
-				self:setBodygroup(1, self:getFullestMag())
-			else
-				self:setBodygroup(1, math.Clamp(self.Owner:GetAmmoCount(self.Primary.Ammo) + self:Clip1(), 0, 9))
-			end
-		else
-			self:setBodygroup(1, self:Clip1())
-		end
-	end
-	
+if CLIENT then
 	local bone = 66
 	local dir = Vector(0,0,-1)
 

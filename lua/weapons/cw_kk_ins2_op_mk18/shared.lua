@@ -220,7 +220,7 @@ SWEP.ReloadHalt_Empty = 4.3
 SWEP.WeaponLength = 20
 
 if CLIENT then
-	function SWEP:updateOtherParts()
+	function SWEP:updateStandardParts()
 		if self.ActiveAttachments.kk_ins2_anpeq15 then
 			self.AttachmentModelsVM.cover_long.active = false
 			self.AttachmentModelsVM.cover_short.active = false

@@ -200,7 +200,7 @@ SWEP.KK_INS2_EmptyIdle = true
 SWEP.MuzzleVelocity = 365
 
 if CLIENT then 
-	function SWEP:updateOtherParts()
+	function SWEP:updateStandardParts()
 		if self.ActiveAttachments.kk_ins2_suppressor_sterling then
 			self.AttachmentModelsVM.kk_ins2_optic_sterling.active = false
 		else

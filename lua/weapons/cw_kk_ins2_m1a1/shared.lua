@@ -217,7 +217,7 @@ SWEP.WeaponLength = 20
 SWEP.MuzzleVelocity = 607
 
 if CLIENT then 
-	function SWEP:updateOtherParts()
+	function SWEP:updateStandardParts()
 		local active = self.ActiveAttachments
 	
 		self.AttachmentModelsVM.kk_ins2_mag_m1a1_15.active = !active.kk_ins2_mag_m1a1_30

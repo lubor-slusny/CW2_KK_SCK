@@ -12,13 +12,14 @@ local colClick = Color(0,0,255,25)
 local fCurRate = 1
 local fCurStartCycle = 0
 local bPlaySounds = false
+local iSoundFilter = 1
 
 local strCurFilter = ""
 
 local animButtonsPanel
 
 local function playAnim(txt)
-	if bPlaySounds then
+	if bPlaySounds and WEAPON.Sounds then
 		if WEAPON.Sounds[txt] then
 			WEAPON:setCurSoundTable(WEAPON.Sounds[txt], fCurRate, fCurStartCycle, txt)
 		else
@@ -49,7 +50,12 @@ local function populateAnimButtonsPanel()
 	for i = 0, vm:GetSequenceCount() - 1 do
 		local txt = vm:GetSequenceName(i)
 		
-		if string.find(string.lower(txt), string.lower(strCurFilter)) then
+		local hasSound = (WEAPON.Sounds != nil) and (WEAPON.Sounds[txt] != nil)
+		
+		local filterName = string.find(string.lower(txt), string.lower(strCurFilter)) != nil
+		local filterSound = (iSoundFilter == 1) or ((hasSound) == (iSoundFilter == 2))
+		
+		if filterName and filterSound then
 			
 			local animButtonPanel = vgui.Create("DPanel", animButtonsPanel)
 			
@@ -61,6 +67,16 @@ local function populateAnimButtonsPanel()
 				label:DockMargin(8,0,8,0)
 				label:SizeToContents()
 				label:SetMouseInputEnabled(true)
+				
+				if hasSound then
+					local icon
+					icon = vgui.Create("DImage", animButtonPanel)
+					icon:SetImage("icon16/sound.png")
+					icon:SetSize(16,10)
+					icon:Dock(RIGHT)
+					icon:DockMargin(0,0,4,0)
+					-- icon:SetMouseInputEnabled(true)
+				end
 				
 				function label:DoClick()
 					playAnim(txt)
@@ -180,7 +196,7 @@ local function updatePanel()
 
 	// OLD PANEL
 	PANEL:AddControl("Label", {Text = "Preview animations:"}):DockMargin(0, 0, 0, 0)
-		
+	
 	local soundSwitchPanel = vgui.Create("DPanel", PANEL)
 
 		local cbox
@@ -234,7 +250,7 @@ local function updatePanel()
 	
 		local label
 		label = vgui.Create("DLabel", filterBoxPanel)
-		label:SetText("Filter anims:")
+		label:SetText("Filter by name:")
 		label:SetDark(true)
 		label:Dock(LEFT)
 		label:DockMargin(8,0,0,0)
@@ -259,6 +275,31 @@ local function updatePanel()
 	filterBoxPanel:SizeToContents()
 	
 	PANEL:AddItem(filterBoxPanel)
+	
+	local soundFilterPanel = vgui.Create("DPanel", PANEL)
+
+		local slider
+		slider = vgui.Create("DNumSlider", soundFilterPanel)
+		slider:Dock(FILL)
+		slider:DockMargin(8,0,8,0)
+		slider:SetDecimals(0)
+		slider:SetMinMax(1, 3)
+		slider:SetValue(iSoundFilter)
+		slider:SetText("Filter by sound:")
+		slider:SetDark(true)
+		
+		function slider:OnValueChanged(val)
+			iSoundFilter = math.Round(val, self:GetDecimals())
+			
+			populateAnimButtonsPanel()
+		end
+		
+	soundFilterPanel:Dock(TOP)
+	soundFilterPanel:SetSize(200,20)
+	soundFilterPanel:SetPaintBackground(true)
+	soundFilterPanel:SizeToContents()
+	
+	PANEL:AddItem(soundFilterPanel)
 	
 	animButtonsPanel = vgui.Create("DPanel", PANEL)
 	

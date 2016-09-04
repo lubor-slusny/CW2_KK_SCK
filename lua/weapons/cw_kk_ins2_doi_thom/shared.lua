@@ -151,17 +151,6 @@ SWEP.Animations = {
 	foregrip_safe_empty_mm_aim = "foregrip_iron_down_empty_drum",
 }
 
-SWEP.ReloadTimes = {
-	base_reload = {2.1,2.92},
-	base_reloadempty = {2.1,4.1},
-	base_reload_drum = {4.3,5.48},
-	base_reloadempty_drum = {4.6,6.92},
-	foregrip_reload = {2.1,2.92},
-	foregrip_reloadempty = {2.1,4.1},
-	foregrip_reload_drum = {4.3,5.48},
-	foregrip_reloadempty_drum = {4.6,6.92},
-}
-
 SWEP.SpeedDec = 15
 
 SWEP.Slot = 2
@@ -197,7 +186,7 @@ SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= ".45 ACP"
 
 SWEP.FireDelay = 60/700
-SWEP.FireSound = "CW_KK_INS2_WW2_THOMPSON_FIRE"
+SWEP.FireSound = "CW_KK_INS2_DOI_THOMPSON_FIRE"
 SWEP.Recoil = 0.7
 
 SWEP.HipSpread = 0.04
@@ -234,3 +223,14 @@ if CLIENT then
 		self.AttachmentModelsWM.kk_ins2_mag_thom_20.active = !(self.ActiveAttachments.kk_ins2_mag_thom_30 or self.ActiveAttachments.kk_ins2_mag_thom_50)
 	end
 end
+
+SWEP.ReloadTimes = {
+	base_reload = {2.55,3.33},
+	base_reloadempty = {3.88,4.76},
+	base_reload_drum = {4.3,5.48},
+	base_reloadempty_drum = {5.82,6.92},
+	foregrip_reload = {2.55,3.33},
+	foregrip_reloadempty = {3.88,4.76},
+	foregrip_reload_drum = {4.3,5.48},
+	foregrip_reloadempty_drum = {5.82,6.92},
+}

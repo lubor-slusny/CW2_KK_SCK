@@ -2,7 +2,7 @@
 SWEP.Sounds = {
 	base_ready = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-		{time = 24/30, sound = "CW_KK_INS2_WW2_G43_BOLTRELEASE"},
+		{time = 24/30, sound = "CW_KK_INS2_DOI_G43_BOLTRELEASE"},
 		{time = 41/30, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
 	},
 
@@ -20,34 +20,34 @@ SWEP.Sounds = {
 	},
 
 	base_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_WW2_G43_EMPTY"},
+		{time = 0, sound = "CW_KK_INS2_DOI_G43_EMPTY"},
 	},
 
 	base_melee = {
-		{time = 1/30, sound = "CW_KK_INS2_WW2_MELEE"},
+		{time = 1/30, sound = "CW_KK_INS2_DOI_MELEE"},
 	},
 
 	base_reloadfull = {
-		{time = 14/32, sound = "CW_KK_INS2_WW2_G43_MAGRELEASE"},
-		{time = 24/32, sound = "CW_KK_INS2_WW2_G43_MAGOUT"},
-		{time = 30/32, sound = "CW_KK_INS2_WW2_G43_FETCHMAG"},
-		{time = 79/32, sound = "CW_KK_INS2_WW2_G43_MAGIN"},
+		{time = 14/32, sound = "CW_KK_INS2_DOI_G43_MAGRELEASE"},
+		{time = 24/32, sound = "CW_KK_INS2_DOI_G43_MAGOUT"},
+		{time = 30/32, sound = "CW_KK_INS2_DOI_G43_FETCHMAG"},
+		{time = 79/32, sound = "CW_KK_INS2_DOI_G43_MAGIN"},
 		// reload time = 80 ""},
-		{time = 98/32, sound = "CW_KK_INS2_WW2_G43_RATTLE"},
+		{time = 98/32, sound = "CW_KK_INS2_DOI_G43_RATTLE"},
 	},
 
 	base_reloadempty = {
-		{time = 14/31, sound = "CW_KK_INS2_WW2_G43_MAGRELEASE"},
-		{time = 24/31, sound = "CW_KK_INS2_WW2_G43_MAGOUT"},
-		{time = 30/31, sound = "CW_KK_INS2_WW2_G43_FETCHMAG"},
-		{time = 79/31, sound = "CW_KK_INS2_WW2_G43_MAGIN"},
+		{time = 14/31, sound = "CW_KK_INS2_DOI_G43_MAGRELEASE"},
+		{time = 24/31, sound = "CW_KK_INS2_DOI_G43_MAGOUT"},
+		{time = 30/31, sound = "CW_KK_INS2_DOI_G43_FETCHMAG"},
+		{time = 79/31, sound = "CW_KK_INS2_DOI_G43_MAGIN"},
 		// reload time = 80 ""},
-		{time = 108/31, sound = "CW_KK_INS2_WW2_G43_BOLTRELEASE"},
-		{time = 127/31, sound = "CW_KK_INS2_WW2_G43_RATTLE"},
+		{time = 108/31, sound = "CW_KK_INS2_DOI_G43_BOLTRELEASE"},
+		{time = 127/31, sound = "CW_KK_INS2_DOI_G43_RATTLE"},
 	},
 
 	iron_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_WW2_G43_EMPTY"},
+		{time = 0, sound = "CW_KK_INS2_DOI_G43_EMPTY"},
 	},
 
 	base_draw_empty = {
@@ -64,6 +64,6 @@ SWEP.Sounds = {
 	},
 
 	base_melee_empty = {
-		{time = 1/30, sound = "CW_KK_INS2_WW2_MELEE"},
+		{time = 1/30, sound = "CW_KK_INS2_DOI_MELEE"},
 	},
 }

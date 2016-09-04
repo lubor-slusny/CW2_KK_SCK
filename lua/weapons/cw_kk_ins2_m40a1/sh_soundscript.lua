@@ -1,5 +1,5 @@
 
-function shell(wep) 
+local function shell(wep) 
 	wep:shellEvent() 
 end
 

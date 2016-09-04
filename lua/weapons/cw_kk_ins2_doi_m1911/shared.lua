@@ -136,7 +136,7 @@ SWEP.KK_INS2_EmptyIdle = true
 SWEP.MuzzleVelocity = 251
 
 if CLIENT then 
-	function SWEP:updateOtherParts()
+	function SWEP:updateStandardParts()
 		local active = self.ActiveAttachments
 	
 		self.AttachmentModelsVM.kk_ins2_mag_m1911_8.active = !active.kk_ins2_mag_m1911_15

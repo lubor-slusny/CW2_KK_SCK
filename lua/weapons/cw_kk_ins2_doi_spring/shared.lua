@@ -178,18 +178,15 @@ SWEP.DeployTime = 0.73
 
 SWEP.RecoilToSpread = 0.8 
 
-SWEP.BipodDeployTime = 1.15
-SWEP.BipodUndeployTime = 1.15
+SWEP.ReloadStartTime = 1.25
+SWEP.ReloadStartTimeEmpty = 1.25
+SWEP.InsertShellTime = 0.99
+SWEP.ReloadFinishWait = 1.45
+SWEP.ReloadFinishWaitEmpty = 1.45
 
-SWEP.ReloadStartTime = 1.28
-SWEP.ReloadStartTimeEmpty = 1.28
-SWEP.InsertShellTime = 0.8
-SWEP.ReloadFinishWait = 1.49
-SWEP.ReloadFinishWaitEmpty = 1.49
-
-SWEP.ReloadTime = 4
+SWEP.ReloadTime = 3
 SWEP.ReloadHalt = 4.49
-SWEP.ReloadTime_Empty = 4
+SWEP.ReloadTime_Empty = 3
 SWEP.ReloadHalt_Empty = 4.49
 
 SWEP.SnapToIdlePostReload = false
@@ -203,7 +200,7 @@ SWEP.GlobalDelayOnShoot = SWEP.FireDelay
 SWEP.WeaponLength = 38
 
 SWEP.MuzzleVelocity = 854
-SWEP.pumpTime = 1.7
+SWEP.pumpTime = 1.49
 
 if CLIENT then
 	function SWEP:updateStandardParts()

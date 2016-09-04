@@ -94,7 +94,7 @@ SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= ""
 
 SWEP.FireDelay = 0.1
-SWEP.FireSound = "CW_KK_INS2_WW2_LUGER_FIRE"
+SWEP.FireSound = "CW_KK_INS2_DOI_P08_FIRE"
 SWEP.Recoil = 0.77
 
 SWEP.HipSpread = 0.034

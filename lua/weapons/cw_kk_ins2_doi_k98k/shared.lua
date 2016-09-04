@@ -203,11 +203,11 @@ SWEP.RecoilToSpread = 0.8
 SWEP.BipodDeployTime = 1.15
 SWEP.BipodUndeployTime = 1.15
 
-SWEP.ReloadStartTime = 1.28
-SWEP.ReloadStartTimeEmpty = 1.28
+SWEP.ReloadStartTime = 1.21
+SWEP.ReloadStartTimeEmpty = 1.21
 SWEP.InsertShellTime = 0.99
-SWEP.ReloadFinishWait = 1.49
-SWEP.ReloadFinishWaitEmpty = 1.49
+SWEP.ReloadFinishWait = 1.41
+SWEP.ReloadFinishWaitEmpty = 1.41
 
 SWEP.SnapToIdlePostReload = false
 
@@ -220,19 +220,19 @@ SWEP.GlobalDelayOnShoot = SWEP.FireDelay
 SWEP.KK_INS2_EmptyIdle = true
 SWEP.WeaponLength = 38
 
-SWEP.gl_on_time = 7.2
-SWEP.gl_off_time = 5.48
-SWEP.gl_off_shot_time = 2.4
-SWEP.gl_on_ReloadTime = 5.6
-SWEP.gl_on_ReloadHalt = 7.2
+SWEP.gl_on_time = 6.62
+SWEP.gl_off_time = 5
+SWEP.gl_off_shot_time = 2.23
+SWEP.gl_on_ReloadTime = 5.4
+SWEP.gl_on_ReloadHalt = 6.6
 
-SWEP.ReloadTime = 4
-SWEP.ReloadHalt = 4.49
-SWEP.ReloadTime_Empty = 4
-SWEP.ReloadHalt_Empty = 4.49
+SWEP.ReloadTime = 2.7
+SWEP.ReloadHalt = 4.29
+SWEP.ReloadTime_Empty = 2.7
+SWEP.ReloadHalt_Empty = 4.29
 
 SWEP.MuzzleVelocity = 760
-SWEP.pumpTime = 1.7
+SWEP.pumpTime = 1.3
 
 SWEP.animCallbacks = {}
 

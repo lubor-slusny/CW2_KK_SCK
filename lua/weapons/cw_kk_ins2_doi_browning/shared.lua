@@ -111,7 +111,7 @@ SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= ".30-06"
 
 SWEP.FireDelay = 60/500
-SWEP.FireSound = "CW_KK_INS2_WW2_BROWNING_FIRE"
+SWEP.FireSound = "CW_KK_INS2_DOI_BROWNING_FIRE"
 SWEP.Recoil = 1.2
 
 SWEP.HipSpread = 0.043
@@ -144,29 +144,3 @@ SWEP.BipodInstalled = true
 SWEP.WeaponLength = 24
 
 SWEP.MuzzleVelocity = 850
-
-if CLIENT then
-	function SWEP:updateOtherParts()
-		local hasInstalledScope = self:getActiveAttachmentInCategory(1) != nil
-		local isBipod = self.ActiveAttachments.kk_ins2_rpk_sopmod
-		local vm = self.CW_VM
-		local cycle = vm:GetCycle()
-		
-		local clip = self:Clip1()
-		local ammo
-		
-		if self.getFullestMag then
-			ammo = math.max(self:Clip1(), self:getFullestMag(), -1)
-		else
-			ammo = self.Owner:GetAmmoCount(self.Primary.Ammo) + clip
-		end
-		
-		if self.Sequence:find("reload") and cycle > 0.3 and cycle < 1 then
-			self:setBodygroup(1,math.Clamp(ammo,0,18))
-		else
-			self:setBodygroup(1,math.Clamp(clip,0,18))
-		end
-		
-		-- vm:ManipulateBoneScale(vm:LookupBone("M1919_BIPOD"), Vector())
-	end
-end

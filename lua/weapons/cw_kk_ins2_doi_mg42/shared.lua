@@ -109,7 +109,7 @@ SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= "7.92x57MM"
 
 SWEP.FireDelay = 60/1200
-SWEP.FireSound = "CW_KK_INS2_WW2_MG42_FIRE"
+SWEP.FireSound = "CW_KK_INS2_DOI_MG42_FIRE"
 SWEP.Recoil = 1.05
 
 SWEP.HipSpread = 0.045
@@ -140,25 +140,3 @@ SWEP.BipodInstalled = true
 SWEP.WeaponLength = 26
 
 SWEP.MuzzleVelocity = 740
-
-if CLIENT then
-	function SWEP:updateOtherParts()
-		local vm = self.CW_VM
-		local cycle = vm:GetCycle()
-		
-		local clip = self:Clip1()
-		local ammo
-		
-		if self.getFullestMag then
-			ammo = math.max(self:Clip1(), self:getFullestMag(), -1)
-		else
-			ammo = self.Owner:GetAmmoCount(self.Primary.Ammo) + clip
-		end
-		
-		if self.Sequence:find("reload") and cycle > 0.4 and cycle < 1 then
-			self:setBodygroup(1,math.Clamp(ammo,0,18))
-		else
-			self:setBodygroup(1,math.Clamp(clip,0,18))
-		end
-	end
-end

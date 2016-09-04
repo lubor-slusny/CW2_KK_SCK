@@ -123,7 +123,7 @@ SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "7.92x57MM"
 
 SWEP.FireDelay = 0.25
-SWEP.FireSound = "CW_KK_INS2_WW2_G43_FIRE"
+SWEP.FireSound = "CW_KK_INS2_DOI_G43_FIRE"
 SWEP.Recoil = 1.6
 
 SWEP.HipSpread = 0.055

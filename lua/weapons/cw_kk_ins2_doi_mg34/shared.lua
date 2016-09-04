@@ -143,25 +143,3 @@ SWEP.BipodInstalled = true
 SWEP.WeaponLength = 26
 
 SWEP.MuzzleVelocity = 765
-
-if CLIENT then
-	function SWEP:updateOtherParts()
-		local vm = self.CW_VM
-		local cycle = vm:GetCycle()
-		
-		local clip = self:Clip1()
-		local ammo
-		
-		if self.getFullestMag then
-			ammo = math.max(self:Clip1(), self:getFullestMag(), -1)
-		else
-			ammo = self.Owner:GetAmmoCount(self.Primary.Ammo) + clip
-		end
-		
-		if self.Sequence:find("reload") and cycle > 0.4 and cycle < 1 then
-			self:setBodygroup(1,math.Clamp(ammo,0,50))
-		else
-			self:setBodygroup(1,math.Clamp(clip,0,50))
-		end
-	end
-end

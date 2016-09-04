@@ -106,7 +106,7 @@ SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "9x19MM"
 
 SWEP.FireDelay = 0.1
-SWEP.FireSound = "CW_KK_INS2_WW2_P38_FIRE"
+SWEP.FireSound = "CW_KK_INS2_DOI_P38_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_M9_FIRE_SUPPRESSED"
 SWEP.Recoil = 0.77
 

@@ -362,7 +362,7 @@ end
 
 if CustomizableWeaponry.magSystem then
 	CustomizableWeaponry.magSystem:registerMagType("lmgBox", " LMG belt", 2)
-	CustomizableWeaponry.magSystem:registerMagType("revLoader", " Revolver Loader", 6)	
+	CustomizableWeaponry.magSystem:registerMagType("revLoader", " Loader/Stripper clip", 6)	
 	CustomizableWeaponry.magSystem:registerMagType("m1Clip", " M1 Garand Clip", 6)	
 end
 
