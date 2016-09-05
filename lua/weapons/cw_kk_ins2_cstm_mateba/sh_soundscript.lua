@@ -1,4 +1,29 @@
 
+local function shells(self)
+	local vm = self.CW_VM
+	local b = vm:GetBodygroup(self._beltBGID)
+	local s = vm:GetBodygroup(self._shellsBGID)
+	
+	for _ = 1, (s - b) do 
+		self:shellEventRev()
+	end
+end
+
+local function bigone(self)
+	if !CustomizableWeaponry_KK.HOME then return end
+	-- self:shellEventRev2()
+end
+
+local function toclip(...)
+	CustomizableWeaponry_KK.ins2.bulletsToClip(...)
+	CustomizableWeaponry_KK.ins2.shellsToClip(...)
+end
+
+local function toreserve(...)
+	CustomizableWeaponry_KK.ins2.bulletsToReserve(...)
+	CustomizableWeaponry_KK.ins2.shellsToReserve(...)
+end
+
 SWEP.Sounds = {
 	base_ready = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_PISTOL_DRAW"},
@@ -36,9 +61,12 @@ SWEP.Sounds = {
 		{time = 1/33.5, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
 		{time = 24/33.5, sound = "CW_KK_INS2_REVOLVER_OPENCHAMBER"},
 		{time = 51/33.5, sound = "CW_KK_INS2_REVOLVER_DUMPROUNDS"},
+		{time = 58/33.5, sound = "", callback = shells},
+		{time = 65/33.5, sound = "", callback = toclip},
 	},
 
 	base_reload_insert = {
+		{time = 0/34.6, sound = "", callback = toclip},
 		{time = 6/34.6, sound = "CW_KK_INS2_REVOLVER_INSERTSINGLE"},
 		{time = 18/34.6, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
 	},
@@ -52,7 +80,10 @@ SWEP.Sounds = {
 		{time = 1/33.5, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
 		{time = 24/33.5, sound = "CW_KK_INS2_REVOLVER_OPENCHAMBER"},
 		{time = 51/33.5, sound = "CW_KK_INS2_REVOLVER_DUMPROUNDS"},
+		{time = 54/33.5, sound = "", callback = shells},
+		{time = 65/33.5, sound = "", callback = toreserve},
 		{time = 81/33.5, sound = "CW_KK_INS2_REVOLVER_SPEEDLOADERINSERT"},
+		{time = 105/33.5, sound = "", callback = bigone},
 		{time = 113/33.5, sound = "CW_KK_INS2_REVOLVER_CLOSECHAMBER"},
 	},
 

@@ -137,114 +137,15 @@ SWEP.Chamberable = false
 SWEP.WeaponLength = 16
 
 SWEP.MuzzleVelocity = 300
-
-local bgBullets = 1
-local bgShells = 2
+SWEP.ClipDumpTime = 1.6
 
 function SWEP:IndividualInitialize()
 	self.magType = "NONE"
 	self.ShotgunReload = true
 	
 	if CLIENT then 
-		self._lastLoadedAmount = 6
-		self:setBodygroup(bgBullets,self._lastLoadedAmount)
-		self:setBodygroup(bgShells,self._lastLoadedAmount)
-	end
-end
-
-if CLIENT then 
-	local makeShell = CustomizableWeaponry_KK.ins2.makeShell
-	local random = math.random
-	local velocity = Vector(0,0,50)
-	
-	local att, ang
-	
-	function SWEP:createShells()
-		if self.Owner:ShouldDrawLocalPlayer() then
-			return
-		end
-		
-		if self._shellCoolDown and self._shellCoolDown > CurTime() then
-			return
-		end
-		
-		self._shellCoolDown = CurTime() + 3
-		
-		local shells = math.Clamp(self._lastLoadedAmount - self:Clip1(), 0, 6)
-		
-		for i = 1, shells do
-			att = self.CW_VM:GetAttachment(2)
-			ang = EyeAngles()
-			
-			ang:RotateAroundAxis(ang:Right(), random(-90, 90))
-			ang:RotateAroundAxis(ang:Forward(), random(-90, 90))
-			ang:RotateAroundAxis(ang:Up(), random(-90, 90))
-			
-			makeShell(att.Pos, ang, velocity, self._shellTable1, 1)
-		end
-	end
-	
-end
-
-if CLIENT then 
-	function SWEP:updateOtherParts()
-		local vm = self.CW_VM
-		local cyc = vm:GetCycle()
-		
-		local clip = math.Clamp(self:Clip1(),0,6)
-		
-		local ammoType = self:getActiveAttachmentInCategory("+reload")
-			local ammoSwitched = ammoType != self._lastAmmoType
-			local unloadSwitched = self.unloadedMagazine and self.unloadedMagazine != self._lastUnload
-			
-			if ammoSwitched or unloadSwitched then
-				self._lastLoadedAmount = 0
-				self:setBodygroup(bgBullets,self._lastLoadedAmount)
-				self:setBodygroup(bgShells,self._lastLoadedAmount)
-			end
-		self._lastUnload = self.unloadedMagazine
-		self._lastAmmoType = ammoType
-		
-		if self.ShotgunReload then
-			local dumping = self.Sequence == self.Animations.base_reload_start
-			local loading = self.Sequence == self.Animations.base_insert
-		
-			if dumping then
-				self:setBodygroup(bgBullets,clip)
-				if cyc > 0.8 then
-					self:setBodygroup(bgShells,0)
-				end
-				if cyc >= 0.7 then
-					self:createShells()
-				end
-			elseif loading then				
-				self._lastLoadedAmount = clip
-				self:setBodygroup(bgShells,self._lastLoadedAmount)
-			end
-		else
-			local dumping = self.Sequence == self.Animations.base_reload and cyc < 0.41
-			local loading = self.Sequence == self.Animations.base_reload and cyc > 0.41 and cyc != 1
-		
-			if dumping then
-				self:setBodygroup(bgBullets,clip)
-				self:setBodygroup(bgShells,self._lastLoadedAmount)
-				if cyc >= 0.4 then
-					self:createShells()
-				end
-			elseif loading then
-				local reserve
-				
-				if self.getFullestMag then
-					reserve = math.max(self:Clip1(), self:getFullestMag(), -1)
-				else
-					reserve = self.Owner:GetAmmoCount(self.Primary.Ammo) + clip
-				end
-				
-				self._lastLoadedAmount = math.Clamp(reserve,0,6)
-				self:setBodygroup(bgBullets,self._lastLoadedAmount)
-				self:setBodygroup(bgShells,self._lastLoadedAmount)
-			end
-		end
+		self:setBodygroup(1, self:Clip1())
+		self:setBodygroup(2, self:Clip1())
 	end
 end
 
@@ -268,16 +169,6 @@ function SWEP:beginReload()
 		
 		self:sendWeaponAnim("reload_start")
 		
-		CustomizableWeaponry.actionSequence.new(self, 1.6, nil, function()
-			if self.ShotgunReloadState == 0 then return end // its also possible that its already 2 because user pressed attack button
-			
-			local amt = self:Clip1()
-			self.Owner:SetAmmo(self.Owner:GetAmmoCount(self.Primary.Ammo) + amt, self.Primary.Ammo)
-			self:SetClip1(0)
-			
-			self.ShotgunReloadState = 1
-		end)
-		
 		CustomizableWeaponry.callbacks.processCategory(self, "beginReload", mag == 0)
 		
 		self.Owner:SetAnimation(PLAYER_RELOAD)
@@ -287,6 +178,17 @@ function SWEP:beginReload()
 		-- end
 		weapons.GetStored("cw_base").beginReload(self)
 	end
+	
+	CustomizableWeaponry.actionSequence.new(self, self.ClipDumpTime, nil, function()
+		if self.ShotgunReloadState == 0 then return end // its also possible that its already 2 because user pressed attack button
+		
+		local amt = self:Clip1()
+		self.Owner:SetAmmo(self.Owner:GetAmmoCount(self.Primary.Ammo) + amt, self.Primary.Ammo)
+		self:SetClip1(0)
+		
+		self.ShotgunReloadState = 1
+	end)
+	
 end
 
 local keyDown

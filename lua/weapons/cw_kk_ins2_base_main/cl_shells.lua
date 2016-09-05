@@ -328,3 +328,7 @@ function SWEP:shellEventRev2()
 		)
 	end
 end
+
+function SWEP:shellEventWebley()
+	// move here once done :P
+end

@@ -1,4 +1,22 @@
 
+local function prepareShells(self)
+	self._numShells = self.CW_VM:GetBodygroup(self._shellsBGID) - self:Clip1()
+end
+
+local function shells(self)
+	for _ = 1, self._numShells do 
+		self:shellEventWebley()
+	end
+end
+
+local function toclip(...)
+	CustomizableWeaponry_KK.ins2.shellsToClip(...)
+end
+
+local function toreserve(...)
+	CustomizableWeaponry_KK.ins2.shellsToReserve(...)
+end
+
 SWEP.Sounds = {
 	base_ready = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_PISTOL_DRAW"},
@@ -44,12 +62,16 @@ SWEP.Sounds = {
 	},
 
 	base_reload_start = {
+		{time = 0/35, sound = "", callback = prepareShells},
 		{time = 1/35, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
+		{time = 15/35, sound = "", callback = toclip},
 		{time = 19/35, sound = "CW_KK_INS2_DOI_WEBLEY_OPENCHAMBER"},
+		{time = 22/35, sound = "", callback = shells},
 		{time = 24/35, sound = "CW_KK_INS2_DOI_WEBLEY_DUMPROUNDS"},
 	},
 
 	base_reload_insert = {
+		{time = 0/40, sound = "", callback = toclip},
 		{time = 13/40, sound = "CW_KK_INS2_DOI_WEBLEY_INSERTSINGLE"},
 		// { event 46 0 ""},
 		{time = 26/40, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
@@ -61,9 +83,13 @@ SWEP.Sounds = {
 	},
 
 	base_reload_speed = {
+		{time = 0/33, sound = "", callback = prepareShells},
 		{time = 1/33, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
+		{time = 15/33, sound = "", callback = toclip},
 		{time = 19/33, sound = "CW_KK_INS2_DOI_WEBLEY_OPENCHAMBER"},
+		{time = 22/33, sound = "", callback = shells},
 		{time = 24/33, sound = "CW_KK_INS2_DOI_WEBLEY_DUMPROUNDS"},
+		{time = 40/33, sound = "", callback = toreserve},
 		{time = 57/33, sound = "CW_KK_INS2_DOI_WEBLEY_SPEEDLOADERINSERT"},
 		// { event 46 60 ""},
 		{time = 88/33, sound = "CW_KK_INS2_DOI_WEBLEY_CLOSECHAMBER"},
@@ -84,3 +110,54 @@ SWEP.Sounds = {
 		{time = 4/30, sound = "CW_KK_INS2_DOI_WEBLEY_EMPTY"},
 	},
 }
+
+local makeShell = CustomizableWeaponry_KK.ins2.makeShell
+
+local vm, att, m, pos, ang, align, velocity, shellEnt
+
+function SWEP:shellEventWebley()
+	if self.Owner:ShouldDrawLocalPlayer() then
+		vm = self:getMuzzleModel()
+		
+		m = vm:GetBoneMatrix(0)
+		
+		pos = m:GetTranslation()
+		ang = m:GetAngles()
+		
+		align = self.ShellWorldAngleAlign
+		ang:RotateAroundAxis(ang:Forward(), align.Forward)
+		ang:RotateAroundAxis(ang:Right(), align.Right)
+		ang:RotateAroundAxis(ang:Up(), align.Up)
+		
+		makeShell(
+			pos,
+			ang,
+			down,
+			self._shellTable,
+			self.ShellScale
+		)
+	else
+		vm = self.CW_VM
+		
+		att = vm:GetAttachment(2)
+		
+		pos = att.Pos + att.Ang:Forward() * -7
+		ang = att.Ang
+		velocity = self.Owner:GetVelocity() + ang:Forward() * (self.ShellEjectVelocity or 200)
+		
+		align = self.ShellViewAngleAlign
+		ang:RotateAroundAxis(ang:Forward(), align.Forward)
+		ang:RotateAroundAxis(ang:Right(), align.Right)
+		ang:RotateAroundAxis(ang:Up(), align.Up)
+		
+		shellEnt = makeShell(
+			pos,
+			ang,
+			velocity,
+			self._shellTable,
+			self.ShellScale
+		)
+		
+		self:_registerVMShell(shellEnt)
+	end
+end
