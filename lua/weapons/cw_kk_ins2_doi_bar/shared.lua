@@ -26,7 +26,7 @@ if CLIENT then
 end
 
 SWEP.Attachments = {
-	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_DOI_sling"}},
+	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
 	["+reload"] = {header = "Ammo", offset = {700, 300}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
@@ -79,7 +79,7 @@ SWEP.Slot = 3
 SWEP.SlotPos = 0
 SWEP.NormalHoldType = "ar2"
 SWEP.RunHoldType = "passive"
-SWEP.FireModes = {"auto", "semi"}
+SWEP.FireModes = {"barfast", "barslow"}
 SWEP.Base = "cw_kk_ins2_base"
 SWEP.Category = "CW 2.0 KK INS2 DOI"
 
@@ -109,7 +109,9 @@ SWEP.Primary.Ammo			= ".30-06"
 
 SWEP.Secondary.Automatic	= false
 
-SWEP.FireDelay = 60/500
+SWEP.FireDelay = 60/650
+SWEP.FireDelayFast = 60/650
+SWEP.FireDelaySlow = 60/450
 SWEP.FireSound = "CW_KK_INS2_DOI_BAR_FIRE"
 SWEP.Recoil = 1.6
 
@@ -128,10 +130,10 @@ SWEP.BipodUndeployTime = 1.16
 SWEP.FirstDeployTime = 2.53
 SWEP.DeployTime = 1.36
 
-SWEP.ReloadTime = 3.7
-SWEP.ReloadHalt = 5.3
-SWEP.ReloadTime_Empty = 4.58
-SWEP.ReloadHalt_Empty = 6.73
+SWEP.ReloadTime = 3.54
+SWEP.ReloadHalt = 4.42
+SWEP.ReloadTime_Empty = 4.9
+SWEP.ReloadHalt_Empty = 5.79
 
 SWEP.WeaponLength = 28
 
@@ -140,3 +142,7 @@ SWEP.BipodInstalled = true
 SWEP.KK_INS2_EmptyIdle = true
 
 SWEP.MuzzleVelocity = 860
+
+function SWEP:IndividualThink_INS2()
+	self.FireDelay = (self.FireMode == "barslow") and self.FireDelaySlow or self.FireDelayFast
+end

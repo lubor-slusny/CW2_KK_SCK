@@ -214,8 +214,13 @@ end
 local CT, mag, ammo
 
 function SWEP:beginReload()
-	if self.isShot then return end
-	if self.ActiveAttachments.kk_ins2_ww2_stripper and self:Clip1() > 0 then return end
+	if self.isShot then 
+		return 
+	end
+	
+	if !self.dt.INS2GLActive and self.ActiveAttachments.kk_ins2_ww2_stripper and self:Clip1() > 0 then 
+		return 
+	end
 	
 	self:updateReloadTimes()
 	
@@ -320,14 +325,16 @@ function SWEP:finishReloadINS2GL()
 		self.M203Chamber = true
 		self.ReloadDelay = nil
 		
-		return
+		return true
 	end
 end
 
 local mag, ammo
 
 function SWEP:finishReload()
-	self:finishReloadINS2GL()
+	if self:finishReloadINS2GL() then
+		return
+	end
 	
 	mag, ammo = self:Clip1(), self.Owner:GetAmmoCount(self.Primary.Ammo)
 
@@ -381,7 +388,9 @@ function SWEP:finishReloadShotgun()
 	CT = CurTime()
 	
 	if self.ReloadDelay and CT >= self.ReloadDelay then
-		self:finishReloadINS2GL()
+		if self:finishReloadINS2GL() then
+			return
+		end
 	end
 		
 	if self.ShotgunReloadState == 1 then

@@ -194,7 +194,7 @@ local function updatePanel()
 		return 
 	end
 
-	// OLD PANEL
+	// NEW STUFF
 	PANEL:AddControl("Label", {Text = "Preview animations:"}):DockMargin(0, 0, 0, 0)
 	
 	local soundSwitchPanel = vgui.Create("DPanel", PANEL)
@@ -231,7 +231,7 @@ local function updatePanel()
 		slider:SetDecimals(0)
 		slider:SetMinMax(-2, 2)
 		slider:SetValue(fCurRate)
-		slider:SetText("PlaybackRate:")
+		slider:SetText("Preview PbRate:")
 		slider:SetDark(true)
 		
 		function slider:OnValueChanged(val)

@@ -132,6 +132,13 @@ if CLIENT then
 			self._beltBGMax = vm:GetBodygroupCount(id) - 1
 			self.updateBelt = updateBeltBG
 		end
+		
+		id = vm:FindBodygroupByName("shells")
+		
+		if id > -1 then
+			self._shellsBGID = id
+			self._shellsBGMax = vm:GetBodygroupCount(id) - 1
+		end
 	end
 	
 	function SWEP:updateOtherParts()
@@ -204,6 +211,7 @@ function SWEP:getGLAttName()
 end
 
 if CLIENT then
+	// main think
 	function CustomizableWeaponry_KK.ins2:belt()
 		local clip = self:Clip1()
 		
@@ -234,7 +242,9 @@ if CLIENT then
 				ammo = self.Owner:GetAmmoCount(self.Primary.Ammo) + clip
 			end
 			
-			if self._loadingNewBelt != self.Sequence or self.CW_VM:GetCycle() >= 1 then
+			local cycle = self.CW_VM:GetCycle()
+			
+			if self._loadingNewBelt != self.Sequence or cycle >= 1 or (self.Owner:ShouldDrawLocalPlayer() and cycle <= 0) then
 				self._loadingNewBelt = false
 			end
 			
@@ -246,11 +256,29 @@ if CLIENT then
 		self:setBodygroup(self._beltBGID, setBG)
 	end
 	
+	// big guns
 	function CustomizableWeaponry_KK.ins2:bulletsToReserve()
 		self._loadingNewBelt = self.Sequence
 	end
 	
 	function CustomizableWeaponry_KK.ins2:bulletsToClip()
 		self._bulletsToClip = true
+	end
+	
+	// revolvers
+	function CustomizableWeaponry_KK.ins2:shellsToReserve()
+		local ammo
+		
+		if self.getFullestMag then
+			ammo = math.max(self:Clip1(), self:getFullestMag(), -1)
+		else
+			ammo = self.Owner:GetAmmoCount(self.Primary.Ammo) + clip
+		end
+		
+		self:setBodygroup(self._shellsBGID, math.Clamp(ammo, 0, self._shellsBGMax))
+	end
+	
+	function CustomizableWeaponry_KK.ins2:shellsToClip()
+		self:setBodygroup(self._shellsBGID, math.Clamp(self:Clip1(), 0, self._shellsBGMax))
 	end
 end

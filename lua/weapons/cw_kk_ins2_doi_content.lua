@@ -5,7 +5,9 @@ AddCSLuaFile()
 CustomizableWeaponry:registerAmmo(".380/200", "9x20MMR Rounds", 9, 19.7)
 CustomizableWeaponry:registerAmmo(".303 British", "7.7x56MMR Rounds", 7.7, 56)
 
-// WW2 pack
+CustomizableWeaponry.firemodes:registerFiremode("barfast", "FAST-AUTO", true, 0, 5)
+CustomizableWeaponry.firemodes:registerFiremode("barslow", "SLOW-AUTO", true, 0, 4)
+
 if CLIENT then
 	local killCol = Color(255, 80, 0, 150)
 	local white = Color(255, 255, 255, 150)

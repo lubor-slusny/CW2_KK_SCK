@@ -238,3 +238,93 @@ function SWEP:shellEvent203()
 		)
 	end
 end
+
+local m
+
+function SWEP:shellEventRev()
+	if self.Owner:ShouldDrawLocalPlayer() then
+		vm = self:getMuzzleModel()
+		
+		m = vm:GetBoneMatrix(0)
+		
+		pos = m:GetTranslation()
+		ang = m:GetAngles()
+		
+		align = self.ShellWorldAngleAlign
+		ang:RotateAroundAxis(ang:Forward(), align.Forward)
+		ang:RotateAroundAxis(ang:Right(), align.Right)
+		ang:RotateAroundAxis(ang:Up(), align.Up)
+		
+		makeShell(
+			pos,
+			ang,
+			down,
+			self._shellTable,
+			self.ShellScale
+		)
+	else
+		vm = self.CW_VM
+		
+		att = vm:GetAttachment(2)
+		
+		pos = att.Pos
+		ang = att.Ang
+		
+		align = self.ShellViewAngleAlign
+		ang:RotateAroundAxis(ang:Forward(), align.Forward)
+		ang:RotateAroundAxis(ang:Right(), align.Right)
+		ang:RotateAroundAxis(ang:Up(), align.Up)
+		
+		makeShell(
+			pos,
+			ang,
+			down,
+			self._shellTable,
+			self.ShellScale
+		)
+	end
+end
+
+function SWEP:shellEventRev2()
+	if self.Owner:ShouldDrawLocalPlayer() then
+		vm = self:getMuzzleModel()
+		
+		m = vm:GetBoneMatrix(0)
+		
+		pos = m:GetTranslation()
+		ang = m:GetAngles()
+		
+		align = self.ShellWorldAngleAlign
+		ang:RotateAroundAxis(ang:Forward(), align.Forward)
+		ang:RotateAroundAxis(ang:Right(), align.Right)
+		ang:RotateAroundAxis(ang:Up(), align.Up)
+		
+		makeShell(
+			pos,
+			ang,
+			down,
+			self._shellTable2,
+			self.ShellScale
+		)
+	else
+		vm = self.CW_VM
+		
+		att = vm:GetAttachment(2)
+		
+		pos = att.Pos
+		ang = att.Ang
+		
+		align = self.ShellViewAngleAlign
+		ang:RotateAroundAxis(ang:Forward(), align.Forward)
+		ang:RotateAroundAxis(ang:Right(), align.Right)
+		ang:RotateAroundAxis(ang:Up(), align.Up)
+		
+		makeShell(
+			pos,
+			ang,
+			down,
+			self._shellTable2,
+			self.ShellScale
+		)
+	end
+end

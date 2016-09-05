@@ -151,7 +151,7 @@ SWEP.AttachmentDependencies = {
 }
 
 local SP = game.SinglePlayer()
-local shouldDrawCrosshair, cycle, canDoStuff, wasSprint, isSprint, wasSafe, isSafe
+local shouldDrawCrosshair
 
 function SWEP:CW_KK_MELEE()
 	if SERVER then
@@ -171,8 +171,14 @@ function SWEP:CW_KK_MELEE()
 	end
 end
 
+function SWEP:IndividualThink_INS2()
+	// :(
+end
+
 function SWEP:IndividualThink()
 	self:DrawShadow(false)
+
+	self:IndividualThink_INS2()
 	
 	if CLIENT then
 		-- self.NoFreeAim = self:isAiming()
@@ -201,58 +207,7 @@ function SWEP:IndividualThink()
 		self:updateOtherParts()
 		
 		self:playSwitchBipod()
-		
-		cycle = self.CW_VM:GetCycle()
-		
-		canDoStuff = 
-			(self.dt.State != CW_CUSTOMIZE) and 
-			(self.dt.State != CW_ACTION) and 
-			self:isReticleActive() and 
-			not (self.Base == "cw_kk_ins2_nade_base" and self.dt.PinPulled) and
-			not self:isReloading() and
-			not (self.GlobalDelay > CurTime()) and
-			not (self.Sequence:find("ready") and cycle < 1) and
-			not (self.Sequence:find("reload") and cycle < 1) and
-			-- self._KK_INS2_PickedUp and
-			-- not self.ShotgunReload and
-			true
-		
-		wasSprint = self._KK_INS2_wasSprint
-		isSprint = self:isRunning()
-		
-		isSprint = isSprint and canDoStuff
-		
-		if isSprint != wasSprint and wasSprint != nil then
-			if isSprint then
-				self:sprintAnimFunc()
-			elseif canDoStuff then
-				self:idleAnimFunc()
-			end
-		end
-		
-		self._KK_INS2_wasSprint = isSprint
-		
-		if isSprint then return end
-		if self.Base == "cw_kk_ins2_mel_base" then return end
-		
-		wasSafe = self._KK_INS2_wasSafe
-		isSafe = self.dt.Safe or self:isNearWall()
-		
-		isSafe = isSafe and canDoStuff
-		
-		if canDoStuff then
-			if isSafe then
-				self:safetyAnimFunc()
-			elseif isSafe != wasSafe then
-				self:idleAnimFunc()
-			end
-		elseif wasSafe then 
-			if (self.dt.State == CW_CUSTOMIZE) then
-				self:idleAnimFunc()
-			end
-		end
-		
-		self._KK_INS2_wasSafe = isSafe
+		self:playHolsterTransitions()
 	end
 end
 
