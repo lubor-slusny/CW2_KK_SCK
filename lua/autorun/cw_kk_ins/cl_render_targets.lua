@@ -1,5 +1,9 @@
 
 if CLIENT then
+	CustomizableWeaponry_KK.ins2.rtSight = {}
+end
+
+if CLIENT then
 	local old_rt, old_x, old_y, ang, light
 	local iLens = surface.GetTextureID("cw2/gui/lense")
 	local iMatLens = Material("cw2/gui/lense")
@@ -41,46 +45,46 @@ if CLIENT then
 	
 	local complexTelescopics, rtSize, oldStencilChk
 	
-	function CustomizableWeaponry_KK.ins2:renderTargetSight(att)
+	function CustomizableWeaponry_KK.ins2.rtSight:renderTarget(wep, att)
 		if not att then return end
-		if not self.ActiveAttachments[att.name] then return end
+		if not wep.ActiveAttachments[att.name] then return end
 		
-		complexTelescopics = self:canUseComplexTelescopics()
+		complexTelescopics = wep:canUseComplexTelescopics()
 		
 		if not complexTelescopics then
-			self.TSGlass:SetTexture("$basetexture", iMatLens:GetTexture("$basetexture"))
+			wep.TSGlass:SetTexture("$basetexture", iMatLens:GetTexture("$basetexture"))
 			return
 		end
 		
-		if !self.dt.INS2GLActive and self:canSeeThroughTelescopics(att.aimPos[1]) then
+		if !wep.dt.INS2GLActive and wep:canSeeThroughTelescopics(att.aimPos[1]) then
 			alpha = math.Approach(alpha, 0, FrameTime() * 5)
 		else
 			alpha = math.Approach(alpha, 1, FrameTime() * 5)
 		end
 		
-		attachmEnt = self.AttachmentModelsVM[att.name].ent
+		attachmEnt = wep.AttachmentModelsVM[att.name].ent
 		mdlAttRear = attachmEnt:GetAttachment(1)
 		mdlAttFront = attachmEnt:GetAttachment(2)
 		
-		if self.freeAimOn then
-			ang = self.Owner:EyeAngles()
+		if wep.freeAimOn then
+			ang = wep.Owner:EyeAngles()
 		else
 			ang = mdlAttRear.Ang
 			ang:RotateAroundAxis(ang:Forward(), -90)
 		end
 		
-		rtSize = self:getRenderTargetSize()
+		rtSize = wep:getRenderTargetSize()
 		
 		cd.w = rtSize
 		cd.h = rtSize
 		cd.fov = att._rtFov
 		cd.angles = ang
-		cd.origin = self.Owner:GetShootPos()
+		cd.origin = wep.Owner:GetShootPos()
 
 		old_x, old_y = ScrW(), ScrH()
 		old_rt = render.GetRenderTarget()
 		
-		render.SetRenderTarget(self.ScopeRT)
+		render.SetRenderTarget(wep.ScopeRT)
 		render.SetViewPort(0, 0, rtSize, rtSize)
 			if alpha != 1 then 
 				render.RenderView(cd)
@@ -88,18 +92,18 @@ if CLIENT then
 			
 			cam.Start3D(mdlAttRear.Pos, ang)
 				if cvDrawVM:GetInt() == 1 then
-					self.CW_VM:DrawModel()
+					wep.CW_VM:DrawModel()
 				end
 				
-				oldStencilChk = self._KK_INS2_stencilsDisableLaser
+				oldStencilChk = wep._KK_INS2_stencilsDisableLaser
 				
-				self._KK_INS2_stencilsDisableLaser = false
+				wep._KK_INS2_stencilsDisableLaser = false
 					for _,lam in pairs(tblLams) do
-						if self.ActiveAttachments[lam] then
-							CW2ATTS[lam].elementRender(self)
+						if wep.ActiveAttachments[lam] then
+							CW2ATTS[lam].elementRender(wep)
 						end
 					end
-				self._KK_INS2_stencilsDisableLaser = oldStencilChk
+				wep._KK_INS2_stencilsDisableLaser = oldStencilChk
 			cam.End3D()
 			
 			cam.Start2D()
@@ -115,13 +119,13 @@ if CLIENT then
 					end
 				end
 				
-				ang = self.Owner:EyeAngles()
-				ang.p = ang.p + self.BlendAng.x
-				ang.y = ang.y + self.BlendAng.y
-				ang.r = ang.r + self.BlendAng.z
+				ang = wep.Owner:EyeAngles()
+				ang.p = ang.p + wep.BlendAng.x
+				ang.y = ang.y + wep.BlendAng.y
+				ang.r = ang.r + wep.BlendAng.z
 				ang = -ang:Forward()
 				
-				light = render.ComputeLighting(self.Owner:GetShootPos(), ang)
+				light = render.ComputeLighting(wep.Owner:GetShootPos(), ang)
 
 				surface.SetDrawColor(150 * light[1], 150 * light[2], 150 * light[3], 255 * alpha)
 				surface.SetTexture(iLens)
@@ -131,18 +135,18 @@ if CLIENT then
 		render.SetViewPort(0, 0, old_x, old_y)
 		render.SetRenderTarget(old_rt)
 		
-		if self.TSGlass then
-			self.TSGlass:SetTexture("$basetexture", self.ScopeRT)
+		if wep.TSGlass then
+			wep.TSGlass:SetTexture("$basetexture", wep.ScopeRT)
 		end
 	end
 
 	local MP = !game.SinglePlayer()
 	
-	function CustomizableWeaponry_KK.ins2:renderTargetSightStencil(att)
+	function CustomizableWeaponry_KK.ins2.rtSight:stencil(wep, att)
 		if MP then return end
 		if cvFreeze:GetInt() != 1 then return end
 		
-		attachmEnt = self.AttachmentModelsVM[att.name].ent
+		attachmEnt = wep.AttachmentModelsVM[att.name].ent
 		mdlAttRear = attachmEnt:GetAttachment(1)
 		mdlAttFront = attachmEnt:GetAttachment(2)
 		

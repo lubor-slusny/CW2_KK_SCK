@@ -15,13 +15,13 @@ local function bigone(self)
 end
 
 local function toclip(...)
-	CustomizableWeaponry_KK.ins2.bulletsToClip(...)
-	CustomizableWeaponry_KK.ins2.shellsToClip(...)
+	CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToClip(...)
+	CustomizableWeaponry_KK.ins2.bulletBgs.shellsToClip(...)
 end
 
 local function toreserve(...)
-	CustomizableWeaponry_KK.ins2.bulletsToReserve(...)
-	CustomizableWeaponry_KK.ins2.shellsToReserve(...)
+	CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve(...)
+	CustomizableWeaponry_KK.ins2.bulletBgs.shellsToReserve(...)
 end
 
 SWEP.Sounds = {

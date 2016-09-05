@@ -1,81 +1,81 @@
 
 local SP = game.SinglePlayer()
 
-CustomizableWeaponry_KK.ins2.quickGrenades = {}
+CustomizableWeaponry_KK.ins2.quickGrenade = {}
 
 if CLIENT then
-	CustomizableWeaponry_KK.ins2.quickGrenades.cvarType = CreateClientConVar("_cw_kk_ins2_qnadetype", 1, false, true)
+	CustomizableWeaponry_KK.ins2.quickGrenade.cvarType = CreateClientConVar("_cw_kk_ins2_qnadetype", 1, false, true)
 end
 
-CustomizableWeaponry_KK.ins2.quickGrenades.models = {}
+CustomizableWeaponry_KK.ins2.quickGrenade.models = {}
 
-CustomizableWeaponry_KK.ins2.quickGrenades.models.m67 = {
+CustomizableWeaponry_KK.ins2.quickGrenade.models.m67 = {
 	vm = "models/weapons/v_cw_kk_ins2_m67.mdl",
 	wm = "models/weapons/w_cw_kk_ins2_m67.mdl",
 	a_pinpull = "pullbackhigh",
 	a_throw = "throw"
 }
 
-CustomizableWeaponry_KK.ins2.quickGrenades.models.f1 = {
+CustomizableWeaponry_KK.ins2.quickGrenade.models.f1 = {
 	vm = "models/weapons/v_f1.mdl",
 	wm = "models/weapons/w_f1.mdl",
 	a_pinpull = "pullbackhigh",
 	a_throw = "throw"
 }
 
-CustomizableWeaponry_KK.ins2.quickGrenades.models.m18 = {
+CustomizableWeaponry_KK.ins2.quickGrenade.models.m18 = {
 	vm = "models/weapons/v_m18.mdl",
 	wm = "models/weapons/w_m18.mdl",
 	a_pinpull = "pullbackhigh",
 	a_throw = "throw"
 }
 
-CustomizableWeaponry_KK.ins2.quickGrenades.models.m84 = {
+CustomizableWeaponry_KK.ins2.quickGrenade.models.m84 = {
 	vm = "models/weapons/v_m84.mdl",
 	wm = "models/weapons/w_m84.mdl",
 	a_pinpull = "pullbackhigh",
 	a_throw = "throw"
 }
 
-CustomizableWeaponry_KK.ins2.quickGrenades.models.ww2us = {
+CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2us = {
 	vm = "models/weapons/v_mk2.mdl",
 	wm = "models/weapons/w_mk2.mdl",
 	a_pinpull = "pullbackhigh",
 	a_throw = "throw"
 }
 
-CustomizableWeaponry_KK.ins2.quickGrenades.models.ww2de = {
+CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2de = {
 	vm = "models/weapons/v_stielhandgranate.mdl",
 	wm = "models/weapons/w_stielhandgranate.mdl",
 	a_pinpull = "pullbackhigh",
 	a_throw = "bakethrow"
 }
 
-CustomizableWeaponry_KK.ins2.quickGrenades.models.ww2gb = {
+CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2gb = {
 	vm = "models/weapons/v_mills.mdl",
 	wm = "models/weapons/w_mills.mdl",
 	a_pinpull = "pullbackhigh",
 	a_throw = "throw"
 }
 
-CustomizableWeaponry_KK.ins2.quickGrenades.models.n69 = {
+CustomizableWeaponry_KK.ins2.quickGrenade.models.n69 = {
 	vm = "models/weapons/v_no69.mdl",
 	wm = "models/weapons/w_no69.mdl",
 	a_pinpull = "pullbackhigh",
 	a_throw = "throw"
 }
 
-CustomizableWeaponry_KK.ins2.quickGrenades.models.n77 = {
+CustomizableWeaponry_KK.ins2.quickGrenade.models.n77 = {
 	vm = "models/weapons/v_no77.mdl",
 	wm = "models/weapons/w_no77.mdl",
 	a_pinpull = "pullbackhigh",
 	a_throw = "throw"
 }
 
-CustomizableWeaponry_KK.ins2.quickGrenades.categories = {}
+CustomizableWeaponry_KK.ins2.quickGrenade.categories = {}
 
 local function add(tab)
-	table.insert(CustomizableWeaponry_KK.ins2.quickGrenades.categories, tab)
+	table.insert(CustomizableWeaponry_KK.ins2.quickGrenade.categories, tab)
 end
 
 add({text = "FRAG", ammo = "Frag Grenades", class = "cw_grenade_thrown"})
@@ -89,58 +89,58 @@ if CustomizableWeaponry_KK.HOME then
 	-- add({text = "N69", ammo = "Frag Grenades", class = "cw_kk_ins2_projectile_n69", default = "n69"})
 end
 
-function CustomizableWeaponry_KK.ins2:getNadeAmmo()
+function CustomizableWeaponry_KK.ins2.quickGrenade.getAmmo(wep)
 	local nadeType
 	
 	if SERVER then
-		nadeType = self.Owner:GetInfoNum("_cw_kk_ins2_qnadetype", 1)
+		nadeType = wep.Owner:GetInfoNum("_cw_kk_ins2_qnadetype", 1)
 	else
-		nadeType = CustomizableWeaponry_KK.ins2.quickGrenades.cvarType:GetInt() or 1
+		nadeType = CustomizableWeaponry_KK.ins2.quickGrenade.cvarType:GetInt() or 1
 	end
 	
-	nadeType = math.Clamp(nadeType, 1, #CustomizableWeaponry_KK.ins2.quickGrenades.categories)
+	nadeType = math.Clamp(nadeType, 1, #CustomizableWeaponry_KK.ins2.quickGrenade.categories)
 	
-	return CustomizableWeaponry_KK.ins2.quickGrenades.categories[nadeType]
+	return CustomizableWeaponry_KK.ins2.quickGrenade.categories[nadeType]
 end
 
 local td = {}
 
-function CustomizableWeaponry_KK.ins2:canThrow()
+function CustomizableWeaponry_KK.ins2.quickGrenade.canThrow(wep)
 	// it's disabled, can't throw
 	if not CustomizableWeaponry.quickGrenade.enabled then
 		return false
 	end
 	
 	// can't throw if we're within a restricted state
-	if CustomizableWeaponry.quickGrenade.restrictedStates[self.dt.State] then
+	if CustomizableWeaponry.quickGrenade.restrictedStates[wep.dt.State] then
 		return false
 	end
 	
 	-- // can't throw while reloading
-	-- if self.ReloadDelay then
+	-- if wep.ReloadDelay then
 		-- return false
 	-- end
 	
 	// can't throw with an active bipod
-	if self.dt.BipodDeployed then
+	if wep.dt.BipodDeployed then
 		return false
 	end
 	
 	// can't throw while changing weapons
-	if self.HolsterDelay then
+	if wep.HolsterDelay then
 		return false
 	end
 	
 	// can't throw with no grenades
-	local ammo = CustomizableWeaponry_KK.ins2.getNadeAmmo(self).ammo
-	if ammo and self.Owner:GetAmmoCount(ammo) <= 0 then
+	local ammo = CustomizableWeaponry_KK.ins2.quickGrenade.getAmmo(wep).ammo
+	if ammo and wep.Owner:GetAmmoCount(ammo) <= 0 then
 		return false
 	end
 	
 	-- // can't throw the grenade if we're really close to an object
-	-- td.start = self.Owner:GetShootPos()
-	-- td.endpos = td.start + CustomizableWeaponry.quickGrenade:getThrowOffset(self.Owner)
-	-- td.filter = self.Owner
+	-- td.start = wep.Owner:GetShootPos()
+	-- td.endpos = td.start + CustomizableWeaponry.quickGrenade:getThrowOffset(wep.Owner)
+	-- td.filter = wep.Owner
 	
 	-- local tr = util.TraceLine(td)
 	
@@ -153,77 +153,77 @@ function CustomizableWeaponry_KK.ins2:canThrow()
 	return true
 end
 
-function CustomizableWeaponry_KK.ins2:throwGrenade(IFTP)
+function CustomizableWeaponry_KK.ins2.quickGrenade.throw(wep, IFTP)
 	local CT = CurTime()
 	
-	self:setGlobalDelay(1.9)
-	self:SetNextPrimaryFire(CT + 1.9)
+	wep:setGlobalDelay(1.9)
+	wep:SetNextPrimaryFire(CT + 1.9)
 	
 	if SERVER and SP then
-		SendUserMessage("CW_KK_INS2_THROWGRENADE", self.Owner)
+		SendUserMessage("CW_KK_INS2_THROWGRENADE", wep.Owner)
 	end
 	
-	self.dt.State = CW_ACTION
+	wep.dt.State = CW_ACTION
 	
 	IFTP = IFTP or IsFirstTimePredicted()
 	
 	if (not SP and IFTP) or SP then
-		if self:filterPrediction() then
-			self:EmitSound("CW_HOLSTER")
+		if wep:filterPrediction() then
+			wep:EmitSound("CW_HOLSTER")
 		end
 		
-		CustomizableWeaponry.callbacks.processCategory(self, "beginThrowGrenade")
+		CustomizableWeaponry.callbacks.processCategory(wep, "beginThrowGrenade")
 		
-		local curSetup = CustomizableWeaponry_KK.ins2.getNadeAmmo(self)
+		local curSetup = CustomizableWeaponry_KK.ins2.quickGrenade.getAmmo(wep)
 		
-		local quickNadeTweak = curSetup.default and CustomizableWeaponry_KK.ins2.quickGrenades.models[curSetup.default] or self.CW_GREN_TWEAK
+		local quickNadeTweak = curSetup.default and CustomizableWeaponry_KK.ins2.quickGrenade.models[curSetup.default] or wep.CW_GREN_TWEAK
 		local nadeAmmo = curSetup.ammo
 		local entClass = curSetup.class
 		
 		if CLIENT then
-			self.CW_GREN:SetModel(quickNadeTweak.vm)
+			wep.CW_GREN:SetModel(quickNadeTweak.vm)
 		
-			CustomizableWeaponry.actionSequence.new(self, 0.45, nil, function()
-				self.GrenadePos.z = -10
-				self.grenadeTime = CurTime() + 1.5
+			CustomizableWeaponry.actionSequence.new(wep, 0.45, nil, function()
+				wep.GrenadePos.z = -10
+				wep.grenadeTime = CurTime() + 1.5
 				
-				self.CW_KK_HANDS:SetParent(self.CW_GREN)
+				wep.CW_KK_HANDS:SetParent(wep.CW_GREN)
 				
-				self:playAnim(quickNadeTweak.a_pinpull, 1, 0, self.CW_GREN)
+				wep:playAnim(quickNadeTweak.a_pinpull, 1, 0, wep.CW_GREN)
 			end)
 			
-			CustomizableWeaponry.actionSequence.new(self, 0.7, nil, function()
+			CustomizableWeaponry.actionSequence.new(wep, 0.7, nil, function()
 				surface.PlaySound("weapons/pinpull.wav")
 			end)
 			
-			CustomizableWeaponry.actionSequence.new(self, 1, nil, function()
-				self:playAnim(quickNadeTweak.a_throw, 1.1, 0, self.CW_GREN)
+			CustomizableWeaponry.actionSequence.new(wep, 1, nil, function()
+				wep:playAnim(quickNadeTweak.a_throw, 1.1, 0, wep.CW_GREN)
 			end)
 		end
 		
 		if SERVER then
-			CustomizableWeaponry.actionSequence.new(self, 0.4, nil, function()
+			CustomizableWeaponry.actionSequence.new(wep, 0.4, nil, function()
 				net.Start("CW_KK_INS2_NWGQN")
-				net.WriteEntity(self.Owner)
+				net.WriteEntity(wep.Owner)
 				net.Broadcast()
 			end)
 
-			CustomizableWeaponry.actionSequence.new(self, 0.3, nil, function()
-				self.canDropGrenade = true
+			CustomizableWeaponry.actionSequence.new(wep, 0.3, nil, function()
+				wep.canDropGrenade = true
 			end)
 		
-			CustomizableWeaponry.actionSequence.new(self, 0.9, nil, function()
-				self.liveGrenade = true
+			CustomizableWeaponry.actionSequence.new(wep, 0.9, nil, function()
+				wep.liveGrenade = true
 			end)
 		
-			CustomizableWeaponry.actionSequence.new(self, 1.2, nil, function()
+			CustomizableWeaponry.actionSequence.new(wep, 1.2, nil, function()
 				// create and setup
 				local nade = ents.Create(entClass)
 				
 				if not IsValid(nade) then return end
 				
-				local pos = self.Owner:GetShootPos()
-				local eyeAng = self.Owner:EyeAngles()
+				local pos = wep.Owner:GetShootPos()
+				local eyeAng = wep.Owner:EyeAngles()
 				local forward = eyeAng:Forward()
 				
 				nade.Model = quickNadeTweak.wm
@@ -233,11 +233,11 @@ function CustomizableWeaponry_KK.ins2:throwGrenade(IFTP)
 				nade:Spawn()
 				nade:Activate()
 				
-				nade:SetOwner(self.Owner)
+				nade:SetOwner(wep.Owner)
 				nade:SetModel(quickNadeTweak.wm)
 				
 				// add velocity
-				local velocity = CustomizableWeaponry.quickGrenade:getThrowVelocity(self.Owner, throwVelocity, addVelocity)
+				local velocity = CustomizableWeaponry.quickGrenade:getThrowVelocity(wep.Owner, throwVelocity, addVelocity)
 				local phys = nade:GetPhysicsObject()
 				
 				if IsValid(phys) then
@@ -266,22 +266,22 @@ function CustomizableWeaponry_KK.ins2:throwGrenade(IFTP)
 				-- nade:SetKeyValue("dud", "1")
 				
 				// consume owners ammo
-				local suppressAmmoUsage = CustomizableWeaponry.callbacks.processCategory(self, "shouldSuppressAmmoUsage")
+				local suppressAmmoUsage = CustomizableWeaponry.callbacks.processCategory(wep, "shouldSuppressAmmoUsage")
 				
 				if nadeAmmo and not suppressAmmoUsage then
-					self.Owner:RemoveAmmo(1, nadeAmmo)
+					wep.Owner:RemoveAmmo(1, nadeAmmo)
 				end
 				
 				// ease on martyrdom
-				self.liveGrenade = false
-				self.canDropGrenade = false
+				wep.liveGrenade = false
+				wep.canDropGrenade = false
 			end)
 		end
 		
-		CustomizableWeaponry.actionSequence.new(self, 2, nil, function()
+		CustomizableWeaponry.actionSequence.new(wep, 2, nil, function()
 			local delay = CustomizableWeaponry.quickGrenade.postGrenadeWeaponDelay
-			self:SetNextPrimaryFire(CT + delay)
-			self:SetNextSecondaryFire(CT + delay)
+			wep:SetNextPrimaryFire(CT + delay)
+			wep:SetNextSecondaryFire(CT + delay)
 		end)
 	end
 end
@@ -294,7 +294,7 @@ if CLIENT then
 		wep = ply:GetActiveWeapon()
 
 		if IsValid(wep) and wep.CW20Weapon then
-			CustomizableWeaponry_KK.ins2.throwGrenade(wep)
+			CustomizableWeaponry_KK.ins2.quickGrenade.throw(wep)
 		end
 	end)
 end
@@ -322,8 +322,8 @@ if SERVER then
 				return
 			end
 			
-			if CustomizableWeaponry_KK.ins2.canThrow(wep) then
-				CustomizableWeaponry_KK.ins2.throwGrenade(wep, true)
+			if CustomizableWeaponry_KK.ins2.quickGrenade.canThrow(wep) then
+				CustomizableWeaponry_KK.ins2.quickGrenade.throw(wep, true)
 				SendUserMessage("CW_KK_INS2_THROWGRENADE", ply)
 			end
 		else
@@ -345,12 +345,12 @@ end
 // concommand for cycling type
 
 if CLIENT then
-	local cats = CustomizableWeaponry_KK.ins2.quickGrenades.categories
+	local cats = CustomizableWeaponry_KK.ins2.quickGrenade.categories
 	
 	local function cw_kk_cyclefrag(ply)
 		if !IsValid(ply) then return end
 		
-		local set = CustomizableWeaponry_KK.ins2.quickGrenades.cvarType:GetInt() + 1
+		local set = CustomizableWeaponry_KK.ins2.quickGrenade.cvarType:GetInt() + 1
 		
 		for _ = 1, (#cats - 1) do
 			if set > #cats then
@@ -372,7 +372,7 @@ if CLIENT then
 	concommand.Add("cw_kk_ins2_cyclenadetype", cw_kk_cyclefrag)
 	
 	local function think()
-		local cur = CustomizableWeaponry_KK.ins2.quickGrenades.cvarType:GetInt()
+		local cur = CustomizableWeaponry_KK.ins2.quickGrenade.cvarType:GetInt()
 		
 		if cats[cur] and cats[cur].ammo and LocalPlayer():GetAmmoCount(cats[cur].ammo) < 1 then
 			RunConsoleCommand("cw_kk_ins2_cyclenadetype")

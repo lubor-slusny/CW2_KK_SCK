@@ -48,7 +48,7 @@ SWEP.Sounds = {
 		{time = 19/36, sound = "CW_KK_INS2_DOI_ENFIELD_BOLTRELEASE"},
 		// { event AE_WPN_RELOAD_OFFSCREEN 42 ""},
 		{time = 27/36, sound = "CW_KK_INS2_DOI_ENFIELD_BOLTBACK"},
-		{time = 42/36, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletsToReserve},
+		{time = 42/36, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
 		{time = 64/36, sound = "CW_KK_INS2_DOI_ENFIELD_MAGIN"},
 		{time = 85/36, sound = "CW_KK_INS2_DOI_ENFIELD_ROUNDSIN"},
 		// { event 46 90 ""},
@@ -64,7 +64,7 @@ SWEP.Sounds = {
 		{time = 19/36, sound = "CW_KK_INS2_DOI_ENFIELD_BOLTRELEASE"},
 		{time = 27/36, sound = "CW_KK_INS2_DOI_ENFIELD_BOLTBACK"},
 		{time = 29/36, sound = "", callback = shell},
-		{time = 42/36, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletsToReserve},
+		{time = 42/36, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
 		{time = 64/36, sound = "CW_KK_INS2_DOI_ENFIELD_MAGIN"},
 		{time = 85/36, sound = "CW_KK_INS2_DOI_ENFIELD_ROUNDSIN"},
 		// { event 46 90 ""},
@@ -82,7 +82,7 @@ SWEP.Sounds = {
 		-- { event AE_WPN_RELOAD_OFFSCREEN 42 ""},
 		{time = 19/36, sound = "CW_KK_INS2_DOI_ENFIELD_BOLTRELEASE"},
 		{time = 27/36, sound = "CW_KK_INS2_DOI_ENFIELD_BOLTBACK"},
-		{time = 42/36, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletsToReserve},
+		{time = 42/36, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
 		{time = 64/36, sound = "CW_KK_INS2_DOI_ENFIELD_MAGIN"},
 		{time = 85/36, sound = "CW_KK_INS2_DOI_ENFIELD_ROUNDSIN"},
 		-- { event 46 90 ""},
@@ -106,7 +106,7 @@ SWEP.Sounds = {
 
 	base_reload_insert = {
 		{time = 14/40.2, sound = "CW_KK_INS2_DOI_ENFIELD_BULLETIN"},
-		{time = 22/40.2, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletsToClip},
+		{time = 22/40.2, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToClip},
 		-- { event 46 22 ""},
 	},
 

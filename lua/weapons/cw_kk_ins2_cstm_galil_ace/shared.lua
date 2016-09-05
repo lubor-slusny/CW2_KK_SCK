@@ -191,7 +191,7 @@ SWEP.WorldModel		= "models/weapons/w_cw_kk_ins2_galil_ace.mdl"
 SWEP.WMPos = Vector(5.919, 0.964, -2.055)
 SWEP.WMAng = Angle(-10, 0, 180)
 
-SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.models.gurkha
+SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.gurkha
 
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted()
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()

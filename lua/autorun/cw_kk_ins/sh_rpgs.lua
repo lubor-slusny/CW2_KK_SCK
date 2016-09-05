@@ -1,9 +1,11 @@
 
-function CustomizableWeaponry_KK.ins2:fireRPG(IFTP, legit)
+CustomizableWeaponry_KK.ins2.rpgs = {}
+
+function CustomizableWeaponry_KK.ins2.rpgs.fireRPG(wep, IFTP, legit)
 	if IFTP then
 		if SERVER then
-			local pos = IsValid(self.Owner) and self.Owner:GetShootPos() or self:GetPos()
-			local eyeAng = IsValid(self.Owner) and self.Owner:EyeAngles() or self:GetAngles()
+			local pos = IsValid(wep.Owner) and wep.Owner:GetShootPos() or wep:GetPos()
+			local eyeAng = IsValid(wep.Owner) and wep.Owner:EyeAngles() or wep:GetAngles()
 			
 			local fwdAng = eyeAng
 			fwdAng:RotateAroundAxis(fwdAng:Right(), 1.8)
@@ -17,7 +19,7 @@ function CustomizableWeaponry_KK.ins2:fireRPG(IFTP, legit)
 			nade:SetAngles(fwdAng)
 			nade:Spawn()
 			nade:Activate()
-			nade:SetOwner(self.Owner)
+			nade:SetOwner(wep.Owner)
 			
 			if not legit then
 				nade.safetyBypass = true
@@ -35,11 +37,11 @@ function CustomizableWeaponry_KK.ins2:fireRPG(IFTP, legit)
 	end
 end
 
-function CustomizableWeaponry_KK.ins2:fireAT4(IFTP)
+function CustomizableWeaponry_KK.ins2.rpgs.fireAT4(wep, IFTP)
 	if IFTP then
 		if SERVER then
-			local pos = self.Owner:GetShootPos()
-			local eyeAng = self.Owner:EyeAngles()
+			local pos = wep.Owner:GetShootPos()
+			local eyeAng = wep.Owner:EyeAngles()
 			
 			local fwdAng = eyeAng
 			fwdAng:RotateAroundAxis(fwdAng:Right(), 1.8)
@@ -52,7 +54,7 @@ function CustomizableWeaponry_KK.ins2:fireAT4(IFTP)
 			nade:SetAngles(fwdAng)
 			nade:Spawn()
 			nade:Activate()
-			nade:SetOwner(self.Owner)
+			nade:SetOwner(wep.Owner)
 			
 			local phys = nade:GetPhysicsObject()
 			
@@ -63,11 +65,11 @@ function CustomizableWeaponry_KK.ins2:fireAT4(IFTP)
 	end
 end
 
-function CustomizableWeaponry_KK.ins2:fireM6A1(IFTP)
+function CustomizableWeaponry_KK.ins2.rpgs.fireM6A1(wep, IFTP)
 	if IFTP then
 		if SERVER then
-			local pos = self.Owner:GetShootPos()
-			local eyeAng = self.Owner:EyeAngles()
+			local pos = wep.Owner:GetShootPos()
+			local eyeAng = wep.Owner:EyeAngles()
 			
 			local fwdAng = eyeAng
 			fwdAng:RotateAroundAxis(fwdAng:Right(), 1.8)
@@ -80,7 +82,7 @@ function CustomizableWeaponry_KK.ins2:fireM6A1(IFTP)
 			nade:SetAngles(fwdAng)
 			nade:Spawn()
 			nade:Activate()
-			nade:SetOwner(self.Owner)
+			nade:SetOwner(wep.Owner)
 			
 			local phys = nade:GetPhysicsObject()
 			
@@ -91,11 +93,11 @@ function CustomizableWeaponry_KK.ins2:fireM6A1(IFTP)
 	end
 end
 
-function CustomizableWeaponry_KK.ins2:firePF60(IFTP)
+function CustomizableWeaponry_KK.ins2.rpgs.firePF60(wep, IFTP)
 	if IFTP then
 		if SERVER then
-			local pos = self.Owner:GetShootPos()
-			local eyeAng = self.Owner:EyeAngles()
+			local pos = wep.Owner:GetShootPos()
+			local eyeAng = wep.Owner:EyeAngles()
 			
 			local fwdAng = eyeAng
 			fwdAng:RotateAroundAxis(fwdAng:Right(), 1.8)
@@ -108,7 +110,7 @@ function CustomizableWeaponry_KK.ins2:firePF60(IFTP)
 			nade:SetAngles(fwdAng)
 			nade:Spawn()
 			nade:Activate()
-			nade:SetOwner(self.Owner)
+			nade:SetOwner(wep.Owner)
 			
 			local phys = nade:GetPhysicsObject()
 			
@@ -119,10 +121,10 @@ function CustomizableWeaponry_KK.ins2:firePF60(IFTP)
 	end
 end
 
-function CustomizableWeaponry_KK.ins2:fireHL2EP2(IFTP)
+function CustomizableWeaponry_KK.ins2.rpgs.fireHL2EP2(wep, IFTP)
 	if IFTP then 
-		local pos = self.Owner:GetShootPos()
-		local eyeAng = self.Owner:EyeAngles()
+		local pos = wep.Owner:GetShootPos()
+		local eyeAng = wep.Owner:EyeAngles()
 		local forward = eyeAng:Forward()
 		local offset = forward * 30 + eyeAng:Right() * 4 - eyeAng:Up() * 3
 		
@@ -131,7 +133,7 @@ function CustomizableWeaponry_KK.ins2:fireHL2EP2(IFTP)
 		nade:SetAngles(eyeAng)
 		nade:Spawn()
 		nade:Activate()
-		nade:SetOwner(self.Owner)
+		nade:SetOwner(wep.Owner)
 		local phys = nade:GetPhysicsObject()
 		
 		if IsValid(phys) then
@@ -148,7 +150,7 @@ function CustomizableWeaponry_KK.ins2:fireHL2EP2(IFTP)
 		-- nade:Fire("PUNTED_BY_CANNON")
 		-- nade:Fire("physgun_pickup")
 		-- nade:Fire("physgun_punt")
-		-- hook.Run("GravGunPunt", self.Owner, nade)
+		-- hook.Run("GravGunPunt", wep.Owner, nade)
 		-- nade:Fire("ignite")
 		-- nade:Fire("activate")
 		-- nade:Fire("arm")
@@ -159,50 +161,50 @@ function CustomizableWeaponry_KK.ins2:fireHL2EP2(IFTP)
 		-- nade:Fire("explodein", "2")
 		
 		-- nade:Fire("Launch")
-		-- nade:Fire("Launch", self.Owner)
+		-- nade:Fire("Launch", wep.Owner)
 		-- nade:SetKeyValue("m_bLaunched", "true")
-		-- nade:Launch(self.Owner)
+		-- nade:Launch(wep.Owner)
 		-- nade.m_bLaunched = true
-		-- nade:launch(self.Owner)
+		-- nade:launch(wep.Owner)
 		-- nade:Fire("ExplodeIn", "2", 0)
 	end
 end
 
-function CustomizableWeaponry_KK.ins2:fireHL2EP1(IFTP)
-	if !IsValid(self._EP1Launcher) then
-		self._EP1Launcher = ents.Create("point_combine_ball_launcher")
+function CustomizableWeaponry_KK.ins2.rpgs.fireHL2EP1(wep, IFTP)
+	if !IsValid(wep._EP1Launcher) then
+		wep._EP1Launcher = ents.Create("point_combine_ball_launcher")
 	end
 
 	if IFTP then 
-		local pos = self.Owner:GetShootPos()
-		local eyeAng = self.Owner:EyeAngles()
+		local pos = wep.Owner:GetShootPos()
+		local eyeAng = wep.Owner:EyeAngles()
 		local forward = eyeAng:Forward()
 		
-		self._EP1Launcher:SetOwner(self.Owner)
+		wep._EP1Launcher:SetOwner(wep.Owner)
 		
-		self._EP1Launcher:SetPos(pos)
-		self._EP1Launcher:SetAngles(eyeAng)
+		wep._EP1Launcher:SetPos(pos)
+		wep._EP1Launcher:SetAngles(eyeAng)
 		
-		self._EP1Launcher:SetKeyValue("launchconenoise", "0")
-		self._EP1Launcher:SetKeyValue("ballcount", "1")
-		self._EP1Launcher:SetKeyValue("minspeed", "2000")
-		self._EP1Launcher:SetKeyValue("maxspeed", "2000")
-		self._EP1Launcher:SetKeyValue("ballradius", "10")
-		-- self._EP1Launcher:SetKeyValue("maxballbounces", "4")
-		self._EP1Launcher:SetKeyValue("balltype", "1")
+		wep._EP1Launcher:SetKeyValue("launchconenoise", "0")
+		wep._EP1Launcher:SetKeyValue("ballcount", "1")
+		wep._EP1Launcher:SetKeyValue("minspeed", "2000")
+		wep._EP1Launcher:SetKeyValue("maxspeed", "2000")
+		wep._EP1Launcher:SetKeyValue("ballradius", "10")
+		-- wep._EP1Launcher:SetKeyValue("maxballbounces", "4")
+		wep._EP1Launcher:SetKeyValue("balltype", "1")
 		
-		self._EP1Launcher:Fire("Enable")
-		self._EP1Launcher:Fire("LaunchBall")
-		self._EP1Launcher:Fire("Disable")
+		wep._EP1Launcher:Fire("Enable")
+		wep._EP1Launcher:Fire("LaunchBall")
+		wep._EP1Launcher:Fire("Disable")
 		
 		-- local nade = ents.Create("prop_combine_ball")
 		-- nade:SetPos(pos)
 		
 		-- nade:Fire("setradius", "10")
-		-- nade:Fire("SetOwnerEntity", self.Owner)
-		-- nade:Fire("SetOriginalOwner", self.Owner)
+		-- nade:Fire("SetOwnerEntity", wep.Owner)
+		-- nade:Fire("SetOriginalOwner", wep.Owner)
 		-- nade:Fire("SetAbsVelocity", forward * 10)
-		-- nade:SetOwner(self.Owner)
+		-- nade:SetOwner(wep.Owner)
 		
 		-- nade:Spawn()
 		

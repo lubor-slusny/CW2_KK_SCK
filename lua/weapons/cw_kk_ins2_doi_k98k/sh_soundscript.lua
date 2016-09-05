@@ -98,7 +98,7 @@ SWEP.Sounds = {
 		-- { event 46 88 ""},
 		-- { event AE_WPN_RELOAD_OFFSCREEN 40 ""},
 		{time = 37/35, sound = "CW_KK_INS2_DOI_K98_FETCHMAG"},
-		{time = 40/35, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletsToReserve},
+		{time = 40/35, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
 		{time = 64/35, sound = "CW_KK_INS2_DOI_K98_MAGIN"},
 		{time = 80/35, sound = "CW_KK_INS2_DOI_K98_ROUNDSIN"},
 		{time = 111/35, sound = "CW_KK_INS2_DOI_K98_BOLTFORWARDSTRIPPERCLIP"},
@@ -112,7 +112,7 @@ SWEP.Sounds = {
 		-- { event 46 88 ""},
 		-- { event AE_WPN_RELOAD_OFFSCREEN 40 ""},
 		{time = 37/35, sound = "CW_KK_INS2_DOI_K98_FETCHMAG"},
-		{time = 40/35, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletsToReserve},
+		{time = 40/35, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
 		{time = 64/35, sound = "CW_KK_INS2_DOI_K98_MAGIN"},
 		{time = 80/35, sound = "CW_KK_INS2_DOI_K98_ROUNDSIN"},
 		{time = 111/35, sound = "CW_KK_INS2_DOI_K98_BOLTFORWARDSTRIPPERCLIP"},
@@ -134,7 +134,7 @@ SWEP.Sounds = {
 
 	base_reload_insert = {
 		{time = 14/37.2, sound = "CW_KK_INS2_DOI_K98_BULLETIN"},
-		{time = 21/37.2, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletsToClip},
+		{time = 21/37.2, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToClip},
 		-- { event 46 22 ""},
 	},
 
@@ -201,7 +201,7 @@ SWEP.Sounds = {
 		-- { event 46 88 ""},
 		-- { event AE_WPN_RELOAD_OFFSCREEN 40 ""},
 		{time = 37/35, sound = "CW_KK_INS2_DOI_K98_FETCHMAG"},
-		{time = 40/35, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletsToReserve},
+		{time = 40/35, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
 		{time = 64/35, sound = "CW_KK_INS2_DOI_K98_MAGIN"},
 		{time = 80/35, sound = "CW_KK_INS2_DOI_K98_ROUNDSIN"},
 		{time = 111/35, sound = "CW_KK_INS2_DOI_K98_BOLTFORWARDSTRIPPERCLIP"},
@@ -216,7 +216,7 @@ SWEP.Sounds = {
 		-- { event 46 88 ""},
 		-- { event AE_WPN_RELOAD_OFFSCREEN 40 ""},
 		{time = 37/35, sound = "CW_KK_INS2_DOI_K98_FETCHMAG"},
-		{time = 40/35, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletsToReserve},
+		{time = 40/35, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
 		{time = 64/35, sound = "CW_KK_INS2_DOI_K98_MAGIN"},
 		{time = 80/35, sound = "CW_KK_INS2_DOI_K98_ROUNDSIN"},
 		{time = 111/35, sound = "CW_KK_INS2_DOI_K98_BOLTFORWARDSTRIPPERCLIP"},
@@ -239,7 +239,7 @@ SWEP.Sounds = {
 	gl_reload_insert = {
 		-- { event AE_WPN_RELOAD_OFFSCREEN 21 ""},
 		{time = 14/37.2, sound = "CW_KK_INS2_DOI_K98_BULLETIN"},
-		{time = 21/37.2, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletsToClip},
+		{time = 21/37.2, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToClip},
 		-- { event 46 22 ""},
 	},
 

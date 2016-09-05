@@ -82,8 +82,8 @@ SWEP.WorldModel		= "models/weapons/w_binoculars.mdl"
 SWEP.WMPos = Vector(4.5, 1, -3.5)
 SWEP.WMAng = Vector(-8, 0, 180)
 
-SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.models.ww2us
-SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.models.ww2us
+SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2us
+SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.ww2us
 
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.doiContentMounted()
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.doiContentMounted()
@@ -118,7 +118,7 @@ SWEP.ReloadHalt_Empty = 3.7
 function SWEP:PrimaryAttack()
 	if self.Owner:KeyDown(IN_USE) then
 		if CustomizableWeaponry.quickGrenade.canThrow(self) then
-			CustomizableWeaponry_KK.ins2.throwGrenade(self)
+			CustomizableWeaponry_KK.ins2.quickGrenade.throw(self)
 			return
 		end
 	end

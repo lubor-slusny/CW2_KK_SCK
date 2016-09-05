@@ -375,7 +375,7 @@ if CustomizableWeaponry_KK.HOME then
 	-- gren.display = " - 1337 ROFLKEK"
 
 	-- function gren:fireFunc()
-		-- CustomizableWeaponry_KK.ins2.fireRPG(self, IsFirstTimePredicted()) // yay I can doo this two
+		-- CustomizableWeaponry_KK.ins2.rpgs.fireRPG(self, IsFirstTimePredicted()) // yay I can doo this two
 	-- end
 
 	-- CustomizableWeaponry.grenadeTypes:addNew(gren)
@@ -427,7 +427,7 @@ if CustomizableWeaponry_KK.HOME then
 	-- gren.display = " - ANTI-STRIDER"
 
 	-- function gren:fireFunc()
-		-- CustomizableWeaponry_KK.ins2.fireHL2EP2(self, IsFirstTimePredicted())
+		-- CustomizableWeaponry_KK.ins2.rpgs.fireHL2EP2(self, IsFirstTimePredicted())
 	-- end
 
 	-- CustomizableWeaponry.grenadeTypes:addNew(gren)
@@ -438,7 +438,7 @@ if CustomizableWeaponry_KK.HOME then
 	gren.display = " - BALLSBALLSBALLSBALLS"
 
 	function gren:fireFunc()
-		CustomizableWeaponry_KK.ins2.fireHL2EP1(self, IsFirstTimePredicted())
+		CustomizableWeaponry_KK.ins2.rpgs.fireHL2EP1(self, IsFirstTimePredicted())
 	end
 
 	CustomizableWeaponry.grenadeTypes:addNew(gren)

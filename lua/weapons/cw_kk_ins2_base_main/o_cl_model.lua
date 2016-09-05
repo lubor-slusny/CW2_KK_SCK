@@ -158,7 +158,7 @@ function SWEP:drawGrenade()
 end
 
 function SWEP:drawKKKnife()
-	CustomizableWeaponry_KK.ins2.drawKKKnife(self)
+	CustomizableWeaponry_KK.ins2.quickKnife.drawVM(self)
 end
 
 // attachment models

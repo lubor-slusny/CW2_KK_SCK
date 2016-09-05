@@ -44,7 +44,7 @@ SWEP.Sounds = {
 	},
 
 	base_reload_empty_clip = {
-		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletsToReserve},
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
 		
 		{time = 19/33.4, sound = "CW_KK_INS2_DOI_SPRING_BOLTRELEASE"},
 		{time = 27/33.4, sound = "CW_KK_INS2_DOI_SPRING_BOLTBACK"},
@@ -60,7 +60,7 @@ SWEP.Sounds = {
 	},
 
 	base_reload_full_clip = {
-		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletsToReserve},
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
 		
 		{time = 19/33.4, sound = "CW_KK_INS2_DOI_SPRING_BOLTRELEASE"},
 		{time = 27/33.4, sound = "CW_KK_INS2_DOI_SPRING_BOLTBACK"},
@@ -90,7 +90,7 @@ SWEP.Sounds = {
 		{time = 14/37.2, sound = "CW_KK_INS2_DOI_SPRING_BULLETIN"},
 		-- { event 46 22 ""},
 		
-		{time = 22/37.2, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletsToClip},
+		{time = 22/37.2, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToClip},
 	},
 
 	base_reload_end = {

@@ -23,7 +23,7 @@ if CLIENT then
 	att._reticleSize = 8
 	
 	function att:elementRender()
-		CustomizableWeaponry_KK.ins2.stencilSight(self, att)
+		CustomizableWeaponry_KK.ins2.stencilSight:elementRender(self, att)
 	end
 	
 end

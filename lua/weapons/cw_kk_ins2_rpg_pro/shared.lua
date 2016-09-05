@@ -179,5 +179,5 @@ SWEP.swapTime = 0.5
 SWEP.canCook = false // this swep should b cook only lol
 
 function SWEP:createProjectile()
-	CustomizableWeaponry_KK.ins2.fireRPG(self, IsFirstTimePredicted())
+	CustomizableWeaponry_KK.ins2.rpgs.fireRPG(self, IsFirstTimePredicted())
 end

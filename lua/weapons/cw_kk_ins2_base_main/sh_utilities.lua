@@ -117,23 +117,20 @@ if CLIENT then
 	end
 	
 	local function blank() end
-	local function updateBeltBG(self)
-		CustomizableWeaponry_KK.ins2.belt(self)
-	end
 	
 	function SWEP:updateBelt()
 		local vm = self.CW_VM
-		local id = vm:FindBodygroupByName("Belt")
+		local id = vm:FindBodygroupByName("bELt")
 		
 		if id < 0 then
 			self.updateBelt = blank
 		else
 			self._beltBGID = id
 			self._beltBGMax = vm:GetBodygroupCount(id) - 1
-			self.updateBelt = updateBeltBG
+			self.updateBelt = CustomizableWeaponry_KK.ins2.bulletBgs.think
 		end
 		
-		id = vm:FindBodygroupByName("shells")
+		id = vm:FindBodygroupByName("shELls")
 		
 		if id > -1 then
 			self._shellsBGID = id
@@ -208,77 +205,4 @@ end
 
 function SWEP:getGLAttName()
 	return (self._currentGrenadeLauncher and self._currentGrenadeLauncher.displayNameShort) or "No grenade launcher attached."
-end
-
-if CLIENT then
-	// main think
-	function CustomizableWeaponry_KK.ins2:belt()
-		local clip = self:Clip1()
-		
-		local setBG = clip
-		
-		if self._bulletsToClip then
-			self._bulletsToClip = false
-		else
-			local prefix = self:getForegripMode()
-		
-			if self.Sequence == self.Animations[prefix .. "reload_start_empty"] then
-				return
-			end
-			
-			if self.Sequence == self.Animations[prefix .. "reload_start"] then
-				return
-			end
-			
-			if self.Sequence == self.Animations[prefix .. "insert"] then
-				return
-			end
-			
-			local ammo
-			
-			if self.getFullestMag then
-				ammo = math.max(self:Clip1(), self:getFullestMag(), -1)
-			else
-				ammo = self.Owner:GetAmmoCount(self.Primary.Ammo) + clip
-			end
-			
-			local cycle = self.CW_VM:GetCycle()
-			
-			if self._loadingNewBelt != self.Sequence or cycle >= 1 or (self.Owner:ShouldDrawLocalPlayer() and cycle <= 0) then
-				self._loadingNewBelt = false
-			end
-			
-			setBG = self._loadingNewBelt and ammo or clip
-		end
-		
-		setBG = math.Clamp(setBG, 0, self._beltBGMax)
-		
-		self:setBodygroup(self._beltBGID, setBG)
-	end
-	
-	// big guns
-	function CustomizableWeaponry_KK.ins2:bulletsToReserve()
-		self._loadingNewBelt = self.Sequence
-	end
-	
-	function CustomizableWeaponry_KK.ins2:bulletsToClip()
-		self._bulletsToClip = true
-	end
-	
-	// revolvers
-	function CustomizableWeaponry_KK.ins2:shellsToReserve()
-		local ammo
-		
-		if self.getFullestMag then
-			ammo = math.max(self:Clip1(), self:getFullestMag(), -1)
-		else
-			ammo = self.Owner:GetAmmoCount(self.Primary.Ammo) + clip
-		end
-		
-		self:setBodygroup(self._shellsBGID, math.Clamp(ammo, 0, self._shellsBGMax))
-	end
-	
-	function CustomizableWeaponry_KK.ins2:shellsToClip()
-		self:setBodygroup(self._shellsBGID, math.Clamp(self:Clip1(), 0, self._shellsBGMax))
-	end
 end

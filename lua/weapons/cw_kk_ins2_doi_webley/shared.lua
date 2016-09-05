@@ -21,7 +21,6 @@ if CLIENT then
 	
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_revolver_mag"] = {model = "models/weapons/upgrades/a_speedloader_webley.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["eh"] = {model = "models/maxofs2d/cube_tool.mdl", pos = Vector(0, 0.00000, 0.00000), angle = Angle(0.00000, 0.00000, 0.00000), size = Vector(0.03332, 0.03332, 0.03332), attachment = "shell"},
 	}
 
 	SWEP.AttachmentModelsWM = {}
@@ -90,8 +89,8 @@ SWEP.WorldModel		= "models/weapons/w_webley.mdl"
 SWEP.WMPos = Vector(5, 1.623, -4)
 SWEP.WMAng = Vector(-3, -5, 180)
 
-SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.models.ww2gb
-SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.models.ww2gb
+SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2gb
+SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.ww2gb
 
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.doiContentMounted()
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.doiContentMounted()

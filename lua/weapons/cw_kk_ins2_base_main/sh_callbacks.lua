@@ -16,10 +16,10 @@ local copyPasteSx = {
 
 // this might help
 local customFireFuncs = {
-	["PG-7VM Grenade"] = CustomizableWeaponry_KK.ins2.fireRPG,
-	["AT4 Launcher"] = CustomizableWeaponry_KK.ins2.fireAT4,
-	["M6A1 Rocket"] = CustomizableWeaponry_KK.ins2.fireM6A1,
-	["Panzerfaust"] = CustomizableWeaponry_KK.ins2.firePF60,
+	["PG-7VM Grenade"] = CustomizableWeaponry_KK.ins2.rpgs.fireRPG,
+	["AT4 Launcher"] = CustomizableWeaponry_KK.ins2.rpgs.fireAT4,
+	["M6A1 Rocket"] = CustomizableWeaponry_KK.ins2.rpgs.fireM6A1,
+	["Panzerfaust"] = CustomizableWeaponry_KK.ins2.rpgs.firePF60,
 }
 
 CustomizableWeaponry.callbacks:addNew("initialize", "KK_INS2_BASE", function(wep)

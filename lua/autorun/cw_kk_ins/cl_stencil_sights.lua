@@ -1,26 +1,29 @@
 
 if CLIENT then
-	CustomizableWeaponry_KK.ins2.stencilLenses = CustomizableWeaponry_KK.ins2.stencilLenses or {}
-	CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/optics/aimpoint_lense"] = true
-	CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/optics/kobra_lense"] = true
-	CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/optics/eotech_lense"] = true
-	CustomizableWeaponry_KK.ins2.stencilLenses["models/weapons/attachments/cw_kk_ins2_cstm_barska/barska_lense"] = true
+	CustomizableWeaponry_KK.ins2.stencilSight = {}
+end
+	
+if CLIENT then
+	CustomizableWeaponry_KK.ins2.stencilSight.lenses = {}
+	CustomizableWeaponry_KK.ins2.stencilSight.lenses["models/weapons/optics/aimpoint_lense"] = true
+	CustomizableWeaponry_KK.ins2.stencilSight.lenses["models/weapons/optics/kobra_lense"] = true
+	CustomizableWeaponry_KK.ins2.stencilSight.lenses["models/weapons/optics/eotech_lense"] = true
+	CustomizableWeaponry_KK.ins2.stencilSight.lenses["models/weapons/attachments/cw_kk_ins2_cstm_barska/barska_lense"] = true
 end
 
 if CLIENT then
 	local strStencil = "models/weapons/attachments/cw_kk_ins2_shared/stencil"
 	local strNoDraw = "models/weapons/attachments/cw_kk_ins2_shared/nodraw"
 
-	CustomizableWeaponry_KK.ins2.stencilLenses[strStencil] = true
-	CustomizableWeaponry_KK.ins2.stencilLenses[strNoDraw] = false
+	CustomizableWeaponry_KK.ins2.stencilSight.lenses[strStencil] = true
+	CustomizableWeaponry_KK.ins2.stencilSight.lenses[strNoDraw] = false
 	
-	local tblIsLense = CustomizableWeaponry_KK.ins2.stencilLenses
 	local v
 	
-	function CustomizableWeaponry_KK.ins2:drawStencilEnt(att)
-		v = self.AttachmentModelsVM[att.name]
+	function CustomizableWeaponry_KK.ins2.stencilSight:_drawStencilEnt(wep, att)
+		v = wep.AttachmentModelsVM[att.name]
 		if not v.stencilEnt then
-			v.stencilEnt = self:createManagedCModel(v.ent:GetModel(), RENDERGROUP_BOTH)
+			v.stencilEnt = wep:createManagedCModel(v.ent:GetModel(), RENDERGROUP_BOTH)
 			v.stencilEnt:SetNoDraw(true)
 			
 			if v.size then
@@ -38,12 +41,12 @@ if CLIENT then
 			v.stencilEnt:SetupBones()
 			
 			if v.merge then
-				v.stencilEnt:SetParent(self.CW_VM)
+				v.stencilEnt:SetParent(wep.CW_VM)
 				v.stencilEnt:AddEffects(EF_BONEMERGE)
 			end
 			
 			for i,m in pairs(v.stencilEnt:GetMaterials()) do
-				if tblIsLense[m] then
+				if self.lenses[m] then
 					v.stencilEnt:SetSubMaterial(i - 1, strStencil)
 				else
 					v.stencilEnt:SetSubMaterial(i - 1, strNoDraw)
@@ -80,32 +83,32 @@ if CLIENT then
 	local retSize, retDist, retPos, retNorm, retAng
 	local EA, nearWallOutTime
 	
-	function CustomizableWeaponry_KK.ins2:stencilSight(att)
+	function CustomizableWeaponry_KK.ins2.stencilSight:elementRender(wep, att)
 		if not att then return end
-		if not self.ActiveAttachments[att.name] then return end
+		if not wep.ActiveAttachments[att.name] then return end
 		
-		if not self.AttachmentModelsVM then return end
-		if not self.AttachmentModelsVM[att.name] then return end
+		if not wep.AttachmentModelsVM then return end
+		if not wep.AttachmentModelsVM[att.name] then return end
 		
-		self._KK_INS2_stencilsDisableLaser = false // this got little NASTY			
+		wep._KK_INS2_stencilsDisableLaser = false // this got little NASTY			
 			for _,lam in pairs(tblLams) do
-				if self.ActiveAttachments[lam] then
-					CW2ATTS[lam].elementRender(self)
+				if wep.ActiveAttachments[lam] then
+					CW2ATTS[lam].elementRender(wep)
 				end
 			end
-		self._KK_INS2_stencilsDisableLaser = true
+		wep._KK_INS2_stencilsDisableLaser = true
 		
-		if self.ActiveAttachments.kk_ins2_magnifier then return end
+		if wep.ActiveAttachments.kk_ins2_magnifier then return end
 		
-		attachmEnt = self.AttachmentModelsVM[att.name].ent
+		attachmEnt = wep.AttachmentModelsVM[att.name].ent
 		retAtt = attachmEnt:GetAttachment(1)
 		
 		if not retAtt then
-			CustomizableWeaponry_KK.ins2:stencilSightSpamErrors(self, att)
+			self:_SpamErrors(wep, att)
 			return
 		end
 		
-		retSize = att._reticleSize * (self.AttachmentModelsVM[att.name].retSizeMult or 1)
+		retSize = att._reticleSize * (wep.AttachmentModelsVM[att.name].retSizeMult or 1)
 		
 		render.ClearStencil()
 		render.SetStencilEnable(true)
@@ -117,7 +120,7 @@ if CLIENT then
 		render.SetStencilFailOperation(STENCILOPERATION_KEEP)
 		render.SetStencilZFailOperation(STENCILOPERATION_KEEP)
 		
-		CustomizableWeaponry_KK.ins2.drawStencilEnt(self, att)
+		self:_drawStencilEnt(wep, att)
 		
 		render.SetStencilWriteMask(2)
 		render.SetStencilTestMask(2)
@@ -142,15 +145,15 @@ if CLIENT then
 			cam.IgnoreZ(false)
 		end
 		
-		if self:isNearWall() then
+		if wep:isNearWall() then
 			nearWallOutTime = CurTime() + 0.3
 		elseif not nearWallOutTime then 
 			nearWallOutTime = CurTime()
 		end
 		
-		if (cvAnimated:GetInt() != 1 or cvFreeze:GetInt() == 1) or (!self:isAiming() and self.dt.BipodDeployed) then
-			if self:isReticleActive() and nearWallOutTime < CurTime() then // 
-				EA = self:getReticleAngles()
+		if (cvAnimated:GetInt() != 1 or cvFreeze:GetInt() == 1) or (!wep:isAiming() and wep.dt.BipodDeployed) then
+			if wep:isReticleActive() and nearWallOutTime < CurTime() then // 
+				EA = wep:getReticleAngles()
 				retPos = EyePos() + EA:Forward() * retDist
 			end
 		end
@@ -175,32 +178,32 @@ if CLIENT then
 	
 	local rc
 	
-	function CustomizableWeaponry_KK.ins2:stencilColorableSight(att)
+	function CustomizableWeaponry_KK.ins2.stencilSight:elementRenderColorable(wep, att)
 		if not att then return end
-		if not self.ActiveAttachments[att.name] then return end
+		if not wep.ActiveAttachments[att.name] then return end
 		
-		if not self.AttachmentModelsVM then return end
-		if not self.AttachmentModelsVM[att.name] then return end
+		if not wep.AttachmentModelsVM then return end
+		if not wep.AttachmentModelsVM[att.name] then return end
 		
-		self._KK_INS2_stencilsDisableLaser = false // this got little NASTY			
+		wep._KK_INS2_stencilsDisableLaser = false // this got little NASTY			
 			for _,lam in pairs(tblLams) do
-				if self.ActiveAttachments[lam] then
-					CW2ATTS[lam].elementRender(self)
+				if wep.ActiveAttachments[lam] then
+					CW2ATTS[lam].elementRender(wep)
 				end
 			end
-		self._KK_INS2_stencilsDisableLaser = true
+		wep._KK_INS2_stencilsDisableLaser = true
 		
-		if self.ActiveAttachments.kk_ins2_magnifier then return end
+		if wep.ActiveAttachments.kk_ins2_magnifier then return end
 		
-		attachmEnt = self.AttachmentModelsVM[att.name].ent
+		attachmEnt = wep.AttachmentModelsVM[att.name].ent
 		retAtt = attachmEnt:GetAttachment(1)
 		
 		if not retAtt then 
-			CustomizableWeaponry_KK.ins2:stencilSightSpamErrors(self, att)
+			self:_SpamErrors(wep, att)
 			return
 		end
 		
-		retSize = att._reticleSize * (self.AttachmentModelsVM[att.name].retSizeMult or 1)
+		retSize = att._reticleSize * (wep.AttachmentModelsVM[att.name].retSizeMult or 1)
 		
 		render.ClearStencil()
 		render.SetStencilEnable(true)
@@ -212,7 +215,7 @@ if CLIENT then
 		render.SetStencilFailOperation(STENCILOPERATION_KEEP)
 		render.SetStencilZFailOperation(STENCILOPERATION_KEEP)
 		
-		CustomizableWeaponry_KK.ins2.drawStencilEnt(self, att)
+		self:_drawStencilEnt(wep, att)
 		
 		render.SetStencilWriteMask(2)
 		render.SetStencilTestMask(2)
@@ -237,15 +240,15 @@ if CLIENT then
 			cam.IgnoreZ(false)
 		end
 		
-		if self:isNearWall() then
+		if wep:isNearWall() then
 			nearWallOutTime = CurTime() + 0.3
 		elseif not nearWallOutTime then 
 			nearWallOutTime = CurTime()
 		end
 		
-		if (cvAnimated:GetInt() != 1 or cvFreeze:GetInt() == 1) or (!self:isAiming() and self.dt.BipodDeployed) then
-			if self:isReticleActive() and nearWallOutTime < CurTime() then
-				EA = self:getReticleAngles()
+		if (cvAnimated:GetInt() != 1 or cvFreeze:GetInt() == 1) or (!wep:isAiming() and wep.dt.BipodDeployed) then
+			if wep:isReticleActive() and nearWallOutTime < CurTime() then
+				EA = wep:getReticleAngles()
 				retPos = EyePos() + EA:Forward() * retDist
 			end
 		end
@@ -256,7 +259,7 @@ if CLIENT then
 		cam.IgnoreZ(true)
 			render.CullMode(MATERIAL_CULLMODE_CW)
 				
-				rc = self:getSightColor(att.name)
+				rc = wep:getSightColor(att.name)
 				colMainReticle.r = rc.r
 				colMainReticle.g = rc.g
 				colMainReticle.b = rc.b
@@ -281,11 +284,10 @@ if CLIENT then
 end
 
 if CLIENT then
-	// u wanted it, u got it
-	
 	local nobrain = "657241323"
 	
-	function CustomizableWeaponry_KK.ins2:stencilSightSpamErrors(wep, att)
+	// u wanted it, u got it
+	function CustomizableWeaponry_KK.ins2.stencilSight:_SpamErrors(wep, att)
 		if self._nextError and self._nextError > CurTime() then return end
 		
 		self._nextError = CurTime() + 2
@@ -295,11 +297,11 @@ if CLIENT then
 		
 		if not id or not mdl then return end
 		
-		if not self.stencilSightsErrors then
-			self.stencilSightsErrors = {}
+		if not self._errors then
+			self._errors = {}
 		end
 
-		if not self.stencilSightsErrors[id] then
+		if not self._errors[id] then
 			local target = ""
 			
 			for _,addon in pairs(engine.GetAddons()) do
@@ -314,13 +316,13 @@ if CLIENT then
 				end
 			end
 			
-			self.stencilSightsErrors[id] = target
+			self._errors[id] = target
 		end
 		
 		local msg
 		
-		if self.stencilSightsErrors[id] != "" then
-			msg = "Invalid model \"" .. mdl .. "\", loaded from:\n	\n	" .. self.stencilSightsErrors[id]
+		if self._errors[id] != "" then
+			msg = "Invalid model \"" .. mdl .. "\", loaded from:\n	\n	" .. self._errors[id]
 		else
 			msg = "Invalid model \"" .. mdl .. "\". Browse your LEGACY addons for conflicting file.\n"
 		end

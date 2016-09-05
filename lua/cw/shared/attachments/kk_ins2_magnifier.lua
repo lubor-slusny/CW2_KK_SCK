@@ -113,11 +113,11 @@ if CLIENT then
 			scopeEnt:SetSequence("4x_idle")
 		end
 		
-		CustomizableWeaponry_KK.ins2.renderTargetSight(self, att)
+		CustomizableWeaponry_KK.ins2.rtSight:renderTarget(self, att)
 	end
 	
 	function att:elementRender()
-		CustomizableWeaponry_KK.ins2.renderTargetSightStencil(self, att)
+		CustomizableWeaponry_KK.ins2.rtSight:stencil(self, att)
 	end
 end
 

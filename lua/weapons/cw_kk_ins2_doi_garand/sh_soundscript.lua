@@ -54,7 +54,7 @@ SWEP.Sounds = {
 		{time = 32/30, sound = "CW_KK_INS2_DOI_GARAND_BOLTBACK"},
 		{time = 35/30, sound = "CW_KK_INS2_DOI_GARAND_MAGOUT"},
 		{time = 50/30, sound = "CW_KK_INS2_DOI_GARAND_FETCHMAG"},
-		{time = 80/30, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletsToReserve},
+		{time = 80/30, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
 		{time = 100/30, sound = "CW_KK_INS2_DOI_GARAND_MAGIN"},
 		{time = 111/30, sound = "CW_KK_INS2_DOI_GARAND_MAGHIT"},
 		{time = 113/30, sound = "CW_KK_INS2_DOI_GARAND_RATTLE"},
@@ -63,7 +63,7 @@ SWEP.Sounds = {
 
 	base_reloadempty = {
 		{time = 1/30, sound = "CW_KK_INS2_DOI_GARAND_FETCHMAG"},
-		{time = 28/30, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletsToReserve},
+		{time = 28/30, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
 		{time = 45/30, sound = "CW_KK_INS2_DOI_GARAND_MAGIN"},
 		{time = 57/30, sound = "CW_KK_INS2_DOI_GARAND_MAGHIT"},
 		{time = 64/30, sound = "CW_KK_INS2_DOI_GARAND_BOLTRELEASE"},

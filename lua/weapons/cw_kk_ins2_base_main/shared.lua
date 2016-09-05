@@ -61,8 +61,8 @@ SWEP.KKINS2Melee = false
 SWEP.KKINS2Nade = false
 SWEP.KK_INS2_EmptyIdle = false
 
-SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenades.models.m67
-SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnives.models.bayonet
+SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.m67
+SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.bayonet
 SWEP.CW_KK_40MM_MDL = "models/weapons/upgrades/a_projectile_m203.mdl"
 
 SWEP._KK_INS2_customEmptySuffix = ""
@@ -165,8 +165,8 @@ function SWEP:CW_KK_MELEE()
 			return
 		end
 		
-		if CustomizableWeaponry_KK.ins2.canKnife(self) then
-			CustomizableWeaponry_KK.ins2.meleeKnife(self)
+		if CustomizableWeaponry_KK.ins2.quickKnife.canAttack(self) then
+			CustomizableWeaponry_KK.ins2.quickKnife.attack(self)
 		end
 	end
 end
