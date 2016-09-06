@@ -185,25 +185,13 @@ if CLIENT then
 		cusbutt:DockMargin(8, 0, 8, 0)
 		
 		function cusbutt:DoClick()
-			for _,v in pairs(CustomizableWeaponry_KK.ins2.deployedShells) do
-				SafeRemoveEntity(v)
-			end
-			
+			CustomizableWeaponry_KK.ins2.shells:cleanUp()
 			self:updateLabel()
 		end
 		
 		function cusbutt:updateLabel()
-			local i, t = 1, CustomizableWeaponry_KK.ins2.deployedShells
-		
-			for _ = 1, #t do
-				if !IsValid(t[i]) then
-					table.remove(t, i)
-				else
-					i = i + 1
-				end
-			end
-			
-			cusbutt:SetText("Clean up shells [" .. #CustomizableWeaponry_KK.ins2.deployedShells .. "]")
+			local num = CustomizableWeaponry_KK.ins2.shells:getDeployedCount()
+			cusbutt:SetText("Clean up shells [" .. num .. "]")
 		end
 		
 		cusbutt:updateLabel()

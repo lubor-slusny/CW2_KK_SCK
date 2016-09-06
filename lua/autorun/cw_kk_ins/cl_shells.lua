@@ -1,5 +1,8 @@
 
 if CLIENT then
+	CustomizableWeaponry_KK.ins2.shells = CustomizableWeaponry_KK.ins2.shells or {}
+	CustomizableWeaponry_KK.ins2.shells._deployed = CustomizableWeaponry_KK.ins2.shells._deployed or {}
+	
 	local cvarSSF = GetConVar("cw_kk_ins2_shell_sound") or {GetInt = function() return 3 end}
 	local cvarSLT = GetConVar("cw_kk_ins2_shell_time") or {GetFloat = function() return 10 end}
 	
@@ -22,9 +25,7 @@ if CLIENT then
 
 	local angleVel = Vector(0, 0, 0)
 	
-	CustomizableWeaponry_KK.ins2.deployedShells = CustomizableWeaponry_KK.ins2.deployedShells or {}
-	
-	function CustomizableWeaponry_KK.ins2.makeShell(pos, ang, velocity, t, scale)
+	function CustomizableWeaponry_KK.ins2.shells:make(pos, ang, velocity, t, scale)
 		pos = pos or EyePos()
 		ang = ang or EyeAngles()
 		velocity = velocity or Vector()
@@ -87,9 +88,28 @@ if CLIENT then
 		ent._ttl = CurTime() + (cvarSLT:GetFloat()) // terrible mess
 		hook.Add("Think", ent, shellThink)
 		
-		table.insert(CustomizableWeaponry_KK.ins2.deployedShells, ent)
+		table.insert(self._deployed, ent)
 		
 		return ent
 	end
+	
+	function CustomizableWeaponry_KK.ins2.shells:cleanUp()
+		for _,v in pairs(self._deployed) do
+			SafeRemoveEntity(v)
+		end
+	end
+	
+	function CustomizableWeaponry_KK.ins2.shells:getDeployedCount()
+		local i = 1
+	
+		for _ = 1, #self._deployed do
+			if !IsValid(self._deployed[i]) then
+				table.remove(self._deployed, i)
+			else
+				i = i + 1
+			end
+		end
+		
+		return #self._deployed
+	end
 end
-

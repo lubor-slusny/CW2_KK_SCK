@@ -152,7 +152,6 @@ if CLIENT then
 	local bone = 66
 	local dir = Vector(0,0,-1)
 
-	local makeShell = CustomizableWeaponry_KK.ins2.makeShell
 	local vm, att, pos, ang, velocity, align, shellEnt
 
 	function SWEP:shellEvent2()
@@ -170,7 +169,7 @@ if CLIENT then
 			ang:RotateAroundAxis(ang:Forward(), align.Forward)
 			ang:RotateAroundAxis(ang:Up(), align.Up)
 			
-			makeShell(
+			CustomizableWeaponry_KK.ins2.shells:make(
 				pos,
 				ang,
 				velocity,
@@ -191,7 +190,7 @@ if CLIENT then
 			ang:RotateAroundAxis(ang:Forward(), align.Forward)
 			ang:RotateAroundAxis(ang:Up(), align.Up)
 			
-			shellEnt = makeShell(
+			shellEnt = CustomizableWeaponry_KK.ins2.shells:make(
 				pos,
 				ang,
 				velocity,

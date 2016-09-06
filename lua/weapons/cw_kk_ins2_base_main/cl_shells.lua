@@ -36,7 +36,6 @@ end
 
 // terifying destination
 
-local makeShell = CustomizableWeaponry_KK.ins2.makeShell
 local vm, att, pos, ang, velocity, align, shellEnt
 
 function SWEP:CreateShell()
@@ -61,7 +60,7 @@ function SWEP:CreateShell()
 				ang:RotateAroundAxis(ang:Right(), align.Right)
 				ang:RotateAroundAxis(ang:Up(), align.Up)
 				
-				shellEnt = makeShell(
+				shellEnt = CustomizableWeaponry_KK.ins2.shells:make(
 					pos,
 					ang,
 					velocity,
@@ -83,7 +82,7 @@ function SWEP:CreateShell()
 			ang:RotateAroundAxis(ang:Right(), align.Right)
 			ang:RotateAroundAxis(ang:Up(), align.Up)
 			
-			shellEnt = makeShell(
+			shellEnt = CustomizableWeaponry_KK.ins2.shells:make(
 				pos,
 				ang,
 				velocity,
@@ -111,7 +110,7 @@ function SWEP:shellEvent()
 		ang:RotateAroundAxis(ang:Right(), align.Right)
 		ang:RotateAroundAxis(ang:Up(), align.Up)
 		
-		makeShell(
+		CustomizableWeaponry_KK.ins2.shells:make(
 			pos,
 			ang,
 			velocity,
@@ -132,7 +131,7 @@ function SWEP:shellEvent()
 		ang:RotateAroundAxis(ang:Right(), align.Right)
 		ang:RotateAroundAxis(ang:Up(), align.Up)
 		
-		shellEnt = makeShell(
+		shellEnt = CustomizableWeaponry_KK.ins2.shells:make(
 			pos,
 			ang,
 			velocity,
@@ -159,7 +158,7 @@ function SWEP:shellEvent2()
 		ang:RotateAroundAxis(ang:Right(), align.Right)
 		ang:RotateAroundAxis(ang:Up(), align.Up)
 		
-		makeShell(
+		CustomizableWeaponry_KK.ins2.shells:make(
 			pos,
 			ang,
 			velocity,
@@ -180,7 +179,7 @@ function SWEP:shellEvent2()
 		ang:RotateAroundAxis(ang:Right(), align.Right)
 		ang:RotateAroundAxis(ang:Up(), align.Up)
 		
-		shellEnt = makeShell(
+		shellEnt = CustomizableWeaponry_KK.ins2.shells:make(
 			pos,
 			ang,
 			velocity,
@@ -209,7 +208,7 @@ function SWEP:shellEvent203()
 		ang:RotateAroundAxis(ang:Right(), align.Right)
 		ang:RotateAroundAxis(ang:Up(), align.Up)
 		
-		makeShell(
+		CustomizableWeaponry_KK.ins2.shells:make(
 			pos,
 			ang,
 			down,
@@ -229,7 +228,7 @@ function SWEP:shellEvent203()
 		ang:RotateAroundAxis(ang:Right(), align.Right)
 		ang:RotateAroundAxis(ang:Up(), align.Up)
 		
-		makeShell(
+		CustomizableWeaponry_KK.ins2.shells:make(
 			pos,
 			ang,
 			down,
@@ -255,7 +254,7 @@ function SWEP:shellEventRev()
 		ang:RotateAroundAxis(ang:Right(), align.Right)
 		ang:RotateAroundAxis(ang:Up(), align.Up)
 		
-		makeShell(
+		CustomizableWeaponry_KK.ins2.shells:make(
 			pos,
 			ang,
 			down,
@@ -275,7 +274,7 @@ function SWEP:shellEventRev()
 		ang:RotateAroundAxis(ang:Right(), align.Right)
 		ang:RotateAroundAxis(ang:Up(), align.Up)
 		
-		makeShell(
+		CustomizableWeaponry_KK.ins2.shells:make(
 			pos,
 			ang,
 			down,
@@ -299,7 +298,7 @@ function SWEP:shellEventRev2()
 		ang:RotateAroundAxis(ang:Right(), align.Right)
 		ang:RotateAroundAxis(ang:Up(), align.Up)
 		
-		makeShell(
+		CustomizableWeaponry_KK.ins2.shells:make(
 			pos,
 			ang,
 			down,
@@ -319,7 +318,7 @@ function SWEP:shellEventRev2()
 		ang:RotateAroundAxis(ang:Right(), align.Right)
 		ang:RotateAroundAxis(ang:Up(), align.Up)
 		
-		makeShell(
+		CustomizableWeaponry_KK.ins2.shells:make(
 			pos,
 			ang,
 			down,

@@ -1,7 +1,5 @@
 AddCSLuaFile()
 
-local makeShell = CustomizableWeaponry_KK.ins2.makeShell
-
 local wep, ent, att, particleEffect
 
 function EFFECT:Init(fx)
@@ -92,7 +90,7 @@ function EFFECT:Init(fx)
 					ang:RotateAroundAxis(ang:Forward(), align.Forward)
 					ang:RotateAroundAxis(ang:Up(), align.Up)
 					
-					makeShell(
+					CustomizableWeaponry_KK.ins2.shells:make(
 						att.Pos,
 						ang, 
 						velocity, 
@@ -114,7 +112,7 @@ function EFFECT:Init(fx)
 			ang:RotateAroundAxis(ang:Forward(), align.Forward)
 			ang:RotateAroundAxis(ang:Up(), align.Up)
 			
-			makeShell(
+			CustomizableWeaponry_KK.ins2.shells:make(
 				att.Pos,
 				ang, 
 				velocity, 

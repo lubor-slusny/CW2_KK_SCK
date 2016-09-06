@@ -111,8 +111,6 @@ SWEP.Sounds = {
 	},
 }
 
-local makeShell = CustomizableWeaponry_KK.ins2.makeShell
-
 local vm, att, m, pos, ang, align, velocity, shellEnt
 
 function SWEP:shellEventWebley()
@@ -129,7 +127,7 @@ function SWEP:shellEventWebley()
 		ang:RotateAroundAxis(ang:Right(), align.Right)
 		ang:RotateAroundAxis(ang:Up(), align.Up)
 		
-		makeShell(
+		CustomizableWeaponry_KK.ins2.shells:make(
 			pos,
 			ang,
 			down,
@@ -150,7 +148,7 @@ function SWEP:shellEventWebley()
 		ang:RotateAroundAxis(ang:Right(), align.Right)
 		ang:RotateAroundAxis(ang:Up(), align.Up)
 		
-		shellEnt = makeShell(
+		shellEnt = CustomizableWeaponry_KK.ins2.shells:make(
 			pos,
 			ang,
 			velocity,
