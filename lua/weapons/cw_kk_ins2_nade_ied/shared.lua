@@ -19,9 +19,6 @@ if CLIENT then
 	SWEP.HUD_MagText = "PLANTED: "
 end
 
-SWEP.CanRestOnObjects = false
-SWEP.grenadeEnt = "cw_grenade_thrown"
-
 SWEP.Animations = {
 	draw = "draw",
 	throw = "base_throw",
@@ -102,7 +99,14 @@ SWEP.Sounds = {
 		{time = 20/30, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
 	},
 }
+
+SWEP.CanRestOnObjects = false
 	
+-- SWEP.SprintingEnabled = false
+SWEP.AimingEnabled = false
+SWEP.CanCustomize = false
+SWEP.AccuracyEnabled = false
+
 SWEP.SpeedDec = 5
 
 SWEP.Slot = 4
@@ -129,8 +133,8 @@ SWEP.WMAng = Angle(-28.962, 155.365, 180)
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted()
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()
 
-SWEP.Primary.ClipSize		= 256
-SWEP.Primary.DefaultClip	= -1
+SWEP.Primary.ClipSize		= 0
+SWEP.Primary.DefaultClip	= 0
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "IED"
 
@@ -150,9 +154,11 @@ SWEP.KKINS2RCE = true
 
 if SERVER then	
 	function SWEP:EquipAmmo(ply)
-		if (ply:HasWeapon(self:GetClass())) then
-			local owned = ply:GetWeapon(self:GetClass())
-			local remove = table.Count(self.PlantedCharges)
+		local owned = ply:GetWeapon(self:GetClass())
+		local remove = self:Clip1()
+			
+		if IsValid(owned) then
+			remove = table.Count(self.PlantedCharges)
 			
 			for k,v in pairs(self.PlantedCharges) do
 				if IsValid(v) then
@@ -160,19 +166,33 @@ if SERVER then
 					owned.PlantedCharges[v] = v
 				end
 			end
-			
-			if self:Clip1() == -1 then
-				ply:GiveAmmo(1, self.Primary.Ammo)
-			else
-				ply:RemoveAmmo(remove, self.Primary.Ammo)
-			end
+		end
+		
+		if self._fresh then
+			ply:GiveAmmo(1, self.Primary.Ammo)
+		else
+			print("removing ", remove, " ieds")
+			ply:RemoveAmmo(remove, self.Primary.Ammo)
 		end
 	end
 	
 	function SWEP:equipFunc()
 		local ply = self.Owner
-		ply:GiveAmmo(2 - ply:GetAmmoCount(self.Primary.Ammo), self.Primary.Ammo)
+		
+		if self._fresh then
+			self._fresh = false
+			ply:GiveAmmo(1, self.Primary.Ammo)
+		else
+			ply:RemoveAmmo(0, self.Primary.Ammo)
+		end
 	end
+	
+	function SWEP:IndividualInitialize()
+		self._fresh = true
+		self.PlantedCharges = {}
+	end
+	
+	function SWEP:OnDrop() end
 end
 
 function SWEP:ShouldDropOnDie()
@@ -181,25 +201,8 @@ end
 
 local SP = game.SinglePlayer()
 
-function SWEP:IndividualInitialize()
-	if SERVER then
-		self.PlantedCharges = {}
-		
-		local clip = self:Clip1()
-		
-		if clip > 0 and IsValid(self.Owner) then
-			self.Owner:GiveAmmo(self.Primary.Ammo, clip)
-			self:SetClip1(0)
-		end
-	end
-end
-
-local curAmmo
-
 function SWEP:IndividualThink()
 	if SERVER then
-		if !IsValid(self.Owner) then return end
-		
 		self.Owner:ShouldDropWeapon(true)
 		
 		if self.PlantedCharges then
@@ -211,17 +214,20 @@ function SWEP:IndividualThink()
 			
 			self:SetClip1(table.Count(self.PlantedCharges))
 		end
-		
-		curAmmo = self.Owner:GetAmmoCount(self.Primary.Ammo)
-		
-		if curAmmo > (self._lastAmmo or 1) and (self._lastAmmo == 1) then
+			
+		// for 0-to-1-ammo draw-anim
+		local cur = self.Owner:GetAmmoCount(self.Primary.Ammo)
+		local last = self._lastPrimaryAmmoCount
+		if last and last < cur and cur == 1 then
 			self:drawAnimFunc()
+			self:SetNextPrimaryFire(CurTime() + self.DeployTime)
+			self:SetNextSecondaryFire(CurTime() + self.DeployTime)
 		end
-		
-		self._lastAmmo = curAmmo
+		self._lastPrimaryAmmoCount = cur
 	end
 	
-	weapons.GetStored(self.Base).IndividualThink(self)
+	-- weapons.GetStored("cw_kk_ins2_base").IndividualThink(self)
+	weapons.GetStored("cw_kk_ins2_base_main").IndividualThink(self)
 end
 
 function SWEP:throwC4()
@@ -336,28 +342,30 @@ function SWEP:detonateC4()
 end
 
 function SWEP:PrimaryAttack()
-	if self.Owner:KeyDown(IN_USE) then
-		if self.ActiveAttachments.kk_ins2_ww2_knife and CustomizableWeaponry_KK.ins2.quickKnife.canAttack(self) then
-			CustomizableWeaponry_KK.ins2.meleeWW2(self)
-			return 
-		end
-		
+	if not self:canFireWeapon(1) then
+		return
+	end
+	
+	if self.Owner:KeyDown(IN_USE) then		
 		if CustomizableWeaponry_KK.ins2.quickGrenade.canThrow(self) then
 			CustomizableWeaponry_KK.ins2.quickGrenade.throw(self)
 			return
 		end
-		
-		if CustomizableWeaponry_KK.ins2.quickKnife.canAttack(self) then
-			CustomizableWeaponry_KK.ins2.quickKnife.attack(self)
-			return
-		end
+	end
+	
+	if not self:canFireWeapon(2) then
+		return
+	end
+	
+	if not self:canFireWeapon(3) then
+		return
 	end
 	
 	if SP and SERVER then
 		SendUserMessage("CW_KK_INS2_IED_PRIMARY", self.Owner)
 	end
 	
-	if self.Owner:GetAmmoCount(self.Primary.Ammo) > 1 then
+	if self.Owner:GetAmmoCount(self.Primary.Ammo) > 0 then
 		self.reticleInactivity = UnPredictedCurTime() + 2
 		
 		if self:isNearWall() then
@@ -369,7 +377,7 @@ function SWEP:PrimaryAttack()
 		
 		if self:canAnimate() then
 			CustomizableWeaponry.actionSequence.new(self, 1, nil, function()
-				if self.Owner:GetAmmoCount(self.Primary.Ammo) > 1 then
+				if self.Owner:GetAmmoCount(self.Primary.Ammo) > 0 then
 					self:drawAnimFunc()
 				else
 					self:sendWeaponAnim("det_draw", 1, 0)
@@ -393,7 +401,7 @@ function SWEP:SecondaryAttack()
 		SendUserMessage("CW_KK_INS2_IED_SECONDARY", self.Owner)
 	end
 	
-	if self.Owner:GetAmmoCount(self.Primary.Ammo) > 1 then
+	if self.Owner:GetAmmoCount(self.Primary.Ammo) > 0 then
 		if CLIENT then
 			self.reticleInactivity = UnPredictedCurTime() + 2
 		end
@@ -445,27 +453,29 @@ end
 function SWEP:updateReloadTimes() end
 
 function SWEP:getForegripMode()
-	if self.Owner:GetAmmoCount(self.Primary.Ammo) > 1 then 
+	if self.Owner:GetAmmoCount(self.Primary.Ammo) > 0 then 
 		return "base_"
-	else
-		return "det_"
 	end
+	
+	return "det_"
 end
 
 function SWEP:drawAnimFunc()
-	if self.Owner:GetAmmoCount(self.Primary.Ammo) > 1 then
-		self:sendWeaponAnim("base_draw", 1, 0)
-	else
-		self:sendWeaponAnim("det_draw", 1, 0)
-	end
+	local prefix = self:getForegripMode()
+	
+	self:sendWeaponAnim(prefix .. "draw", 1, 0)
 end
 
 function SWEP:idleAnimFunc()
-	if self.Owner:GetAmmoCount(self.Primary.Ammo) > 1 then
-		self:sendWeaponAnim("base_idle", 1, 0)
-	else
-		self:sendWeaponAnim("det_idle", 1, 0)
-	end
+	local prefix = self:getForegripMode()
+	
+	self:sendWeaponAnim(prefix .. "idle", 1, 0)
+end
+
+function SWEP:sprintAnimFunc()
+	local prefix = self:getForegripMode()
+	
+	self:sendWeaponAnim(prefix .. "sprint", 1, 0)
 end
 
 if CLIENT then
@@ -475,12 +485,12 @@ if CLIENT then
 	function SWEP:getMuzzlePosition()
 		if self.Owner:ShouldDrawLocalPlayer() then
 			m = self.Owner:GetBoneMatrix(self.Owner:LookupBone("ValveBiped.Bip01_R_Hand"))
-		else			
-			if self:isReticleActive() then
+		else
+			if string.StartWith(self.Sequence, "det_") then
 				m = self.CW_VM:GetBoneMatrix(57)
 			else
 				m = self.CW_VM:GetBoneMatrix(61)
-			end		
+			end
 		end
 
 		muz.Pos = m:GetTranslation()

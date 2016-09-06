@@ -41,7 +41,7 @@ SWEP.Sounds = {
 	},
 
 	base_melee = {
-		{time = 1/30, sound = "CW_KK_INS2_WW2_MELEE"},
+		{time = 1/30, sound = "CW_KK_INS2_DOI_MELEE"},
 	},
 
 	base_reload_clip = {
@@ -143,7 +143,7 @@ SWEP.Sounds = {
 	},
 
 	base_melee_empty = {
-		{time = 1/30, sound = "CW_KK_INS2_WW2_MELEE"},
+		{time = 1/30, sound = "CW_KK_INS2_DOI_MELEE"},
 	},
 
 	glsetup_in = {

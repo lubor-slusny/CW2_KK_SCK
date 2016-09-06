@@ -44,3 +44,13 @@ SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.f1
 
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted()
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()
+
+SWEP.Sounds = {
+	draw = {
+		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
+	},
+
+	holster = {
+		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
+	}
+}

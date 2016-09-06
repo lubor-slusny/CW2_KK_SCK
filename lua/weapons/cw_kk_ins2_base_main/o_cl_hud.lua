@@ -17,7 +17,7 @@ function SWEP:getReserveAmmoText()
 	local shouldOverride, text, targetColor = CustomizableWeaponry.callbacks.processCategory(self, "overrideReserveAmmoText")
 	
 	if self.KKINS2RCE then
-		return self.Owner:GetAmmoCount(self.Primary.Ammo) - 1, shouldOverride, self.HUDColors.white
+		return self.Owner:GetAmmoCount(self.Primary.Ammo), shouldOverride, self.HUDColors.white
 	end
 	
 	if self.KKINS2Nade then
@@ -116,7 +116,7 @@ function SWEP:draw3D2DHUD()
 				else
 					local magCap = self.Primary.ClipSize
 				
-					if magCap > 0 then
+					if magCap > 0 or self.KKINS2RCE then
 						draw.ShadowText(self:getMagCapacity() .. " / " .. ammoCount, "CW_HUD60", 90, 50, self.HUD_3D2D_MagColor, self.HUDColors.black, 2, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
 					else
 						draw.ShadowText(ammoCount, "CW_HUD60", 90, 50, self.HUD_3D2D_MagColor, self.HUDColors.black, 2, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
@@ -253,6 +253,7 @@ function SWEP:drawCustomHUD()
 	// draw the 2D variant of the custom HUD in case the 3D variant was disabled by the user
 	if GetConVarNumber("cw_customhud_ammo") <= 0 then
 		local baseXAMMO, baseYAMMO = x - 117, y - 150
+		local magCap = self.Primary.ClipSize
 		
 		surface.SetDrawColor(0, 0, 0, 200)
 		surface.SetTexture(gradient)
@@ -307,7 +308,7 @@ function SWEP:drawCustomHUD()
 		local ammoCount, magCount, targetColor = self:getReserveAmmoText()
 		
 		if not targetColor then
-			if ammoCount <= self.Primary.ClipSize then -- make the reserve text red if we only have 1 mag (or less) in reserve left
+			if ammoCount <= magCap then -- make the reserve text red if we only have 1 mag (or less) in reserve left
 				self.HUD_ReserveTextColor = LerpColor(FT * 10, self.HUD_ReserveTextColor, self.HUDColors.deepRed)
 			else
 				self.HUD_ReserveTextColor = LerpColor(FT * 10, self.HUD_ReserveTextColor, White)
@@ -319,7 +320,7 @@ function SWEP:drawCustomHUD()
 		local reloadProgress = self:getReloadProgress()
 		
 		// if we're reloading or are low on ammo, make the text red
-		if reloadProgress or mag <= self.Primary.ClipSize * 0.25 then
+		if reloadProgress or mag <= magCap * 0.25 then
 			self.HUD_MagTextColor = LerpColor(FT * 10, self.HUD_MagTextColor, self.HUDColors.red)
 		else
 			self.HUD_MagTextColor = LerpColor(FT * 10, self.HUD_MagTextColor, White)
@@ -330,9 +331,7 @@ function SWEP:drawCustomHUD()
 			if reloadProgress then
 				draw.ShadowText("RELOADING  " .. reloadProgress .. "%", "CW_HUD32", baseXAMMO + 15, baseYAMMO, self.HUD_MagTextColor, self.HUDColors.black, 1, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
 			else
-				local magCap = self.Primary.ClipSize
-				
-				if magCap > 0 then
+				if magCap > 0 or self.KKINS2RCE then
 					draw.ShadowText(self.HUD_MagText .. self:getMagCapacity(), "CW_HUD32", baseXAMMO + 15, baseYAMMO, self.HUD_MagTextColor, self.HUDColors.black, 1, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
 				else
 					draw.ShadowText("Reserve: " .. ammoCount, "CW_HUD32", baseXAMMO + 15, baseYAMMO, self.HUD_ReserveTextColor, self.HUDColors.black, 1, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
@@ -357,22 +356,20 @@ function SWEP:drawCustomHUD()
 			
 			local textSize = surface.GetTextSize(ammoText)
 			
-			local magCap = self.Primary.ClipSize
-			
-			if magCap > 0 then
+			if magCap > 0 or self.KKINS2RCE then
 				draw.ShadowText(nadeText .. ", ", cwhud20, baseXAMMO - textSize + 15, baseYAMMO + 25, self.HUD_ReserveTextColor, self.HUDColors.black, 1, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
 			else
 				draw.ShadowText(nadeText, cwhud20, baseXAMMO + 15, baseYAMMO + 25, self.HUD_ReserveTextColor, self.HUDColors.black, 1, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
 			end
 		end
-				
-		if self.Primary.ClipSize > 0 then
+		
+		if magCap > 0 or self.KKINS2RCE then
 			draw.ShadowText(ammoText, cwhud24, baseXAMMO + 15, baseYAMMO + 25, self.HUD_ReserveTextColor, self.HUDColors.black, 1, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
 			draw.ShadowText(self.FireModeDisplay, cwhud22, baseXAMMO + 15, baseYAMMO + 45, White, Black, 1, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
 		end
 		
 		// display the firemode section
-		if self.BulletDisplay and self.BulletDisplay > 0 and self.Primary.ClipSize > 0 then
+		if self.BulletDisplay and self.BulletDisplay > 0 and magCap > 0 then
 			surface.SetDrawColor(0, 0, 0, 255)
 			surface.SetTexture(Bullet)
 			

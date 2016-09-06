@@ -43,3 +43,44 @@ SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2de
 
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.doiContentMounted()
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.doiContentMounted()
+
+SWEP.DamageBase = 35
+
+SWEP.FireDelay = 1
+SWEP.ReticleInactivityPostFire = 1
+SWEP.DamageOutputDelay = 0.3
+
+SWEP.AttackSound = "CW_KK_INS2_DOI_MELEE"
+SWEP.HitFleshSound = "CW_KK_INS2_DOI_SHOVEL"
+SWEP.HitWorldSound = "CW_KK_INS2_DOI_SHOVEL"
+
+SWEP.Sounds = {
+	-- base_attack_1 = {
+		-- // { event 1338 8 ""},
+	-- },
+
+	-- base_attack_2 = {
+		-- // { event 1338 13 ""},
+	-- },
+
+	-- base_attack_3 = {
+		-- // { event 1338 14 ""},
+	-- },
+
+	-- abase_ttack_kill = {
+		-- // { event 1338 14 ""},
+	-- },
+
+	base_draw = {
+		{time = 0/31, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
+	},
+
+	base_holster = {
+		{time = 0/33, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
+	},
+
+	base_crawl = {
+		{time = 0/33, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
+		{time = 22/33, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
+	},
+}

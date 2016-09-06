@@ -2,12 +2,25 @@ if not CustomizableWeaponry then return end
 
 AddCSLuaFile()
 
-CustomizableWeaponry:registerAmmo(".380/200", "9x20MMR Rounds", 9, 19.7)
-CustomizableWeaponry:registerAmmo(".303 British", "7.7x56MMR Rounds", 7.7, 56)
+// SOUNDS
+	CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_SHOVEL", {"weapons/entrenchingtool/ent_tool_melee_01.wav", "weapons/entrenchingtool/ent_tool_melee_02.wav", "weapons/entrenchingtool/ent_tool_melee_03.wav", "weapons/entrenchingtool/ent_tool_melee_04.wav", "weapons/entrenchingtool/ent_tool_melee_05.wav", "weapons/entrenchingtool/ent_tool_melee_06.wav"})
 
-CustomizableWeaponry.firemodes:registerFiremode("barfast", "FAST-AUTO", true, 0, 5)
-CustomizableWeaponry.firemodes:registerFiremode("barslow", "SLOW-AUTO", true, 0, 4)
+	CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_MELEE", {"weapons/universal/weapon_melee_01.wav", "weapons/universal/weapon_melee_02.wav", "weapons/universal/weapon_melee_03.wav", "weapons/universal/weapon_melee_04.wav", "weapons/universal/weapon_melee_05.wav", "weapons/universal/weapon_melee_06.wav"})
+	CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_MELEE_HITPLY", {"weapons/universal/weapon_melee_hitflesh_01.wav", "weapons/universal/weapon_melee_hitflesh_02.wav", "weapons/universal/weapon_melee_hitflesh_03.wav", "weapons/universal/weapon_melee_hitflesh_04.wav"})
+	CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_MELEE_HITWORLD", {"weapons/universal/weapon_melee_hitworld_01.wav", "weapons/universal/weapon_melee_hitworld_02.wav"})
+		
+	CustomizableWeaponry:addRegularSound("CW_KK_INS2_DOI_BAYONET_DRAW", {"weapons/universal/bayonet_draw_01.wav", "weapons/universal/bayonet_draw_02.wav", "weapons/universal/bayonet_draw_03.wav"})
+	CustomizableWeaponry:addRegularSound("CW_KK_INS2_DOI_BAYONET_HOLSTER", {"weapons/universal/bayonet_holster_01.wav", "weapons/universal/bayonet_holster_02.wav", "weapons/universal/bayonet_holster_03.wav"})
 
+// AMMO
+	CustomizableWeaponry:registerAmmo(".380/200", "9x20MMR Rounds", 9, 19.7)
+	CustomizableWeaponry:registerAmmo(".303 British", "7.7x56MMR Rounds", 7.7, 56)
+
+// FIREMODES
+	CustomizableWeaponry.firemodes:registerFiremode("barfast", "FAST-AUTO", true, 0, 5)
+	CustomizableWeaponry.firemodes:registerFiremode("barslow", "SLOW-AUTO", true, 0, 4)
+
+// KILLSTUFFS
 if CLIENT then
 	local killCol = Color(255, 80, 0, 150)
 	local white = Color(255, 255, 255, 150)

@@ -45,3 +45,30 @@ SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2us
 
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.doiContentMounted()
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.doiContentMounted()
+
+SWEP.AttackSound = "CW_KK_INS2_DOI_MELEE"
+SWEP.HitFleshSound = "CW_KK_INS2_DOI_MELEE_HITPLY"
+SWEP.HitWorldSound = "CW_KK_INS2_DOI_MELEE_HITWORLD"
+
+SWEP.Sounds = {
+	-- hitcenter1 = {
+		-- // { event 1338 7 ""},
+	-- },
+
+	-- hitcenter2 = {
+		-- // { event 1338 7 ""},
+	-- },
+
+	draw = {
+		{time = 0/34, sound = "CW_KK_INS2_DOI_BAYONET_DRAW"},
+	},
+
+	holster = {
+		{time = 10/32, sound = "CW_KK_INS2_DOI_BAYONET_HOLSTER"},
+	},
+
+	crawl = {
+		{time = 10/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
+		{time = 20/30, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
+	},
+}

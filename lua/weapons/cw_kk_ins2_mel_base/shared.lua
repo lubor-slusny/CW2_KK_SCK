@@ -49,8 +49,12 @@ SWEP.SpreadPerShot = 0.001
 SWEP.SpreadCooldown = 0.001
 SWEP.Recoil = 3
 
+SWEP.DamageBase = 25
+SWEP.DamageRand = 10
+
 SWEP.FireDelay = 0.6
 SWEP.ReticleInactivityPostFire = 0.6
+SWEP.DamageOutputDelay = 0.2
 
 SWEP.FirstDeployTime = 0.6
 SWEP.DeployTime = 0.6
@@ -58,17 +62,9 @@ SWEP.DeployTime = 0.6
 SWEP.SpeedDec = 0
 SWEP.WeaponLength = 0
 
-CustomizableWeaponry:addFireSound("CW_KK_INS2_KNIFE", "weapons/knife/knife_slash_01.wav", 1, 70, CHAN_STATIC)
-
-SWEP.Sounds = {
-	draw = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-	},
-
-	holster = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
-	}
-}
+SWEP.AttackSound = ""
+SWEP.HitFleshSound = "CW_KK_INS2_KNIFE"
+SWEP.HitWorldSound = "CW_KK_INS2_KNIFE"
 
 if CLIENT then
 	local m
@@ -99,6 +95,9 @@ function SWEP:PrimaryAttack()
 	
 	if IsFirstTimePredicted() then
 		self:sendWeaponAnim("base_fire",1,0)
+		
+		self:EmitSound(self.AttackSound)
+		
 		self:SetNextPrimaryFire(CurTime() + self.FireDelay)
 		
 		if CLIENT then 
@@ -107,7 +106,7 @@ function SWEP:PrimaryAttack()
 			end
 		end
 		
-		CustomizableWeaponry.actionSequence.new(self, 0.2, nil, function() 
+		CustomizableWeaponry.actionSequence.new(self, self.DamageOutputDelay, nil, function() 
 			local start = self.Owner:GetShootPos()
 			
 			local tr = util.TraceLine({
@@ -117,7 +116,6 @@ function SWEP:PrimaryAttack()
 			})
 		
 			if tr.Hit then
-				self:EmitSound("CW_KK_INS2_KNIFE")
 				local ent = tr.Entity
 				
 				if IsValid(ent) then
@@ -127,7 +125,7 @@ function SWEP:PrimaryAttack()
 						d:SetAttacker(self.Owner)
 						d:SetInflictor(self)
 						
-						d:SetDamage(math.random(10) + 25)
+						d:SetDamage(math.random(self.DamageRand) + self.DamageBase)
 						
 						local dir = self.Owner:GetAimVector() - start
 						-- d:SetDamageForce((tr.HitPos + dir) * 200)
@@ -144,6 +142,10 @@ function SWEP:PrimaryAttack()
 						-- ed:SetOrigin(tr.HitPos + (dir))
 						-- util.Effect("StunstickImpact", ed)
 					-- end
+					
+					self:EmitSound(self.HitFleshSound)
+				else
+					self:EmitSound(self.HitWorldSound)
 				end
 				
 				self.Owner:ViewPunch(Angle(math.Rand(-5, -4), math.Rand(-2, 2), math.Rand(-1, 1)))

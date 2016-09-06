@@ -44,6 +44,8 @@ AddCSLuaFile()
 	CustomizableWeaponry:addRegularSound("CW_KK_INS2_UNIVERSAL_LEANOUT", { "weapons/universal/uni_lean_out_01.wav", "weapons/universal/uni_lean_out_02.wav", "weapons/universal/uni_lean_out_03.wav", "weapons/universal/uni_lean_out_04.wav"})
 	CustomizableWeaponry:addRegularSound("CW_KK_INS2_UNIVERSAL_WEAPONLOWER", "weapons/universal/uni_weapon_lower_01.wav")
 	
+	CustomizableWeaponry:addFireSound("CW_KK_INS2_KNIFE", "weapons/knife/knife_slash_01.wav", 1, 70, CHAN_STATIC)
+
 	CustomizableWeaponry:addReloadSound("CW_KK_INS2_GL_BEGINRELOAD", {"weapons/universal/uni_gl_beginreload_01.wav", "weapons/universal/uni_gl_beginreload_02.wav", "weapons/universal/uni_gl_beginreload_03.wav"})
 	
 	// M203
@@ -63,10 +65,6 @@ AddCSLuaFile()
 	CustomizableWeaponry:addReloadSound("CW_KK_INS2_GP30_INSERTGRENADECLICK", "weapons/gp30/handling/gp30_insertgrenade_click.wav")
 	CustomizableWeaponry:addReloadSound("CW_KK_INS2_GP30_SELECT", "weapons/gp30/handling/gp30_select.wav")
 
-	// WW2 
-	CustomizableWeaponry:addFireSound("CW_KK_INS2_WW2_MELEE", {"weapons/universal/weapon_melee_01.wav","weapons/universal/weapon_melee_02.wav","weapons/universal/weapon_melee_03.wav","weapons/universal/weapon_melee_04.wav","weapons/universal/weapon_melee_05.wav","weapons/universal/weapon_melee_06.wav"}, 1, 105, CHAN_STATIC)
-	CustomizableWeaponry:addFireSound("CW_KK_INS2_WW2_MELEEHIT", {"weapons/universal/weapon_melee_hitworld_01.wav","weapons/universal/weapon_melee_hitworld_02.wav"}, 1, 105, CHAN_STATIC)
-	
 // SHELLS
 do
 	CustomizableWeaponry:addRegularSound("CW_KK_INS2_SHELL_38", {"weapons/bullets/shells/concrete/38_shell_concrete_01.wav", "weapons/bullets/shells/concrete/38_shell_concrete_02.wav", "weapons/bullets/shells/concrete/38_shell_concrete_03.wav", "weapons/bullets/shells/concrete/38_shell_concrete_04.wav", "weapons/bullets/shells/concrete/38_shell_concrete_05.wav", "weapons/bullets/shells/concrete/38_shell_concrete_06.wav"}, 65)

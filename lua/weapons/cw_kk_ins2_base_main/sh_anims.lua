@@ -102,8 +102,10 @@ if CLIENT then
 	function SWEP:sprintAnimFunc()
 		if self.Slot == 2 or self.Slot == 3 then
 			anim = "safe"
+			rate = 1
 		else
 			anim = "sprint"
+			rate = self.SprintAnimSpeed
 		end
 		
 		prefix = self:getForegripMode()
@@ -113,11 +115,7 @@ if CLIENT then
 			suffix = "_empty" .. self._KK_INS2_customEmptySuffix
 		end
 	
-		if self.Slot == 2 or self.Slot == 3 then
-			self:playAnim(prefix .. anim .. suffix,1,0)
-		else
-			self:playAnim(prefix .. anim .. suffix,self.SprintAnimSpeed,0)
-		end
+		self:playAnim(prefix .. anim .. suffix,rate,0)
 	end
 
 	function SWEP:safetyAnimFunc()
@@ -159,8 +157,14 @@ if CLIENT then
 		
 	function SWEP:idleAnimFunc()
 		prefix = self:getForegripMode()
-		-- anim = "idle" // only idle anims are for base_ prefix, it used to use draw anim for others anyway
-		anim = "holster"
+		
+		if self.KKINS2Melee or self.KKINS2Nade then
+			anim = "idle"
+		else
+			-- anim = "idle" // only idle anims are for base_ prefix, it used to use draw anim for others anyway
+			anim = "holster"
+		end
+		
 		suffix = ""
 		rate = -1
 		-- cycle = 0.45
