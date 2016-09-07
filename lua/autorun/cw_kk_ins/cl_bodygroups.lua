@@ -1,5 +1,5 @@
 
-CustomizableWeaponry_KK.ins2.bulletBgs = {}
+CustomizableWeaponry_KK.ins2.bulletBgs = CustomizableWeaponry_KK.ins2.bulletBgs or {}
 	
 if CLIENT then
 	// main think

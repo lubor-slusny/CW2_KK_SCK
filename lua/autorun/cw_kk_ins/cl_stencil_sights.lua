@@ -1,6 +1,6 @@
 
 if CLIENT then
-	CustomizableWeaponry_KK.ins2.stencilSight = {}
+	CustomizableWeaponry_KK.ins2.stencilSight = CustomizableWeaponry_KK.ins2.stencilSight or {}
 end
 	
 if CLIENT then

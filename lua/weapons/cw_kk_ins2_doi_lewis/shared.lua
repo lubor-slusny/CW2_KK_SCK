@@ -132,10 +132,10 @@ SWEP.Chamberable = false
 SWEP.BipodInstalled = true
 SWEP.KK_INS2_EmptyIdle = true
 
-SWEP.ReloadTime = 5.2
-SWEP.ReloadHalt = 7.14
-SWEP.ReloadTime_Empty = 5.2
-SWEP.ReloadHalt_Empty = 8.13
+SWEP.ReloadTime = 4.95
+SWEP.ReloadHalt = 6.5
+SWEP.ReloadTime_Empty = 4.6
+SWEP.ReloadHalt_Empty = 7.4
 
 SWEP.WeaponLength = 28
 

@@ -1,5 +1,5 @@
 
-CustomizableWeaponry_KK.ins2.rpgs = {}
+CustomizableWeaponry_KK.ins2.rpgs = CustomizableWeaponry_KK.ins2.rpgs or {}
 
 function CustomizableWeaponry_KK.ins2.rpgs.fireRPG(wep, IFTP, legit)
 	if IFTP then
@@ -186,12 +186,12 @@ function CustomizableWeaponry_KK.ins2.rpgs.fireHL2EP1(wep, IFTP)
 		wep._EP1Launcher:SetAngles(eyeAng)
 		
 		wep._EP1Launcher:SetKeyValue("launchconenoise", "0")
-		wep._EP1Launcher:SetKeyValue("ballcount", "1")
+		wep._EP1Launcher:SetKeyValue("ballcount", "1000")
 		wep._EP1Launcher:SetKeyValue("minspeed", "2000")
 		wep._EP1Launcher:SetKeyValue("maxspeed", "2000")
 		wep._EP1Launcher:SetKeyValue("ballradius", "10")
-		-- wep._EP1Launcher:SetKeyValue("maxballbounces", "4")
-		wep._EP1Launcher:SetKeyValue("balltype", "1")
+		wep._EP1Launcher:SetKeyValue("maxballbounces", "4")
+		wep._EP1Launcher:SetKeyValue("balltype", "2")
 		
 		wep._EP1Launcher:Fire("Enable")
 		wep._EP1Launcher:Fire("LaunchBall")

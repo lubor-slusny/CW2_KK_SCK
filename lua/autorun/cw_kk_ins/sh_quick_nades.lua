@@ -1,7 +1,7 @@
 
 local SP = game.SinglePlayer()
 
-CustomizableWeaponry_KK.ins2.quickGrenade = {}
+CustomizableWeaponry_KK.ins2.quickGrenade = CustomizableWeaponry_KK.ins2.quickGrenade or {}
 
 if CLIENT then
 	CustomizableWeaponry_KK.ins2.quickGrenade.cvarType = CreateClientConVar("_cw_kk_ins2_qnadetype", 1, false, true)
@@ -264,6 +264,7 @@ function CustomizableWeaponry_KK.ins2.quickGrenade.throw(wep, IFTP)
 				-- end
 				
 				-- nade:SetKeyValue("dud", "1")
+				nade.m_bLaunched = 1
 				
 				// consume owners ammo
 				local suppressAmmoUsage = CustomizableWeaponry.callbacks.processCategory(wep, "shouldSuppressAmmoUsage")

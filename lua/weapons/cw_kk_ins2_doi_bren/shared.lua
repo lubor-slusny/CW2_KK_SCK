@@ -119,10 +119,10 @@ SWEP.DeployTime = 1.4
 SWEP.Chamberable = false
 SWEP.BipodInstalled = true
 
-SWEP.ReloadTime = 4.25
-SWEP.ReloadHalt = 6.06
-SWEP.ReloadTime_Empty = 6.2
-SWEP.ReloadHalt_Empty = 8.12
+SWEP.ReloadTime = 4
+SWEP.ReloadHalt = 5.8
+SWEP.ReloadTime_Empty = 5.8
+SWEP.ReloadHalt_Empty = 7.76
 
 SWEP.WeaponLength = 28
 
