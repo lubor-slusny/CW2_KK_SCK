@@ -355,7 +355,7 @@ function SWEP:PrimaryAttack()
 		return
 	end
 	
-	if not self:canFireWeapon(3) then
+	if self.InactiveWeaponStates[self.dt.State] then
 		return
 	end
 	

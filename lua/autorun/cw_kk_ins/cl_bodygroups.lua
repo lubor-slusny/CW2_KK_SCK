@@ -2,6 +2,16 @@
 CustomizableWeaponry_KK.ins2.bulletBgs = CustomizableWeaponry_KK.ins2.bulletBgs or {}
 	
 if CLIENT then
+	CustomizableWeaponry_KK.ins2.bulletBgs._getReserve = function(wep)
+		if wep.getFullestMag then
+			return math.max(wep:Clip1(), wep:getFullestMag(), -1)
+		end
+		
+		return wep.Owner:GetAmmoCount(wep.Primary.Ammo) + wep:Clip1()
+	end
+	
+	local _getReserve = CustomizableWeaponry_KK.ins2.bulletBgs._getReserve
+	
 	// main think
 	CustomizableWeaponry_KK.ins2.bulletBgs.think = function(wep)
 		local clip = wep:Clip1()
@@ -25,13 +35,7 @@ if CLIENT then
 				return
 			end
 			
-			local ammo
-			
-			if wep.getFullestMag then
-				ammo = math.max(wep:Clip1(), wep:getFullestMag(), -1)
-			else
-				ammo = wep.Owner:GetAmmoCount(wep.Primary.Ammo) + clip
-			end
+			local ammo = _getReserve(wep)
 			
 			local cycle = wep.CW_VM:GetCycle()
 			
@@ -58,14 +62,7 @@ if CLIENT then
 	
 	// revolvers
 	CustomizableWeaponry_KK.ins2.bulletBgs.shellsToReserve = function(wep)
-		local ammo
-		
-		if wep.getFullestMag then
-			ammo = math.max(wep:Clip1(), wep:getFullestMag(), -1)
-		else
-			ammo = wep.Owner:GetAmmoCount(wep.Primary.Ammo) + clip
-		end
-		
+		local ammo = _getReserve(wep)
 		wep:setBodygroup(wep._shellsBGID, math.Clamp(ammo, 0, wep._shellsBGMax))
 	end
 	
