@@ -1,34 +1,67 @@
-if not CustomizableWeaponry_KK.HOME then return end
-
 AddCSLuaFile()
 
 local PANEL
 local WEAPON
 
-local colHover = Color(0,255,0,25)
-local colIdle = Color(0,0,0,60)
-local colClick = Color(0,0,255,25)
+local wepSetup = {}
+
+local function getWeaponSetup()
+	wepSetup.ok = false
+	wepSetup.vm = nil
+	wepSetup.setSoundTable = nil
+	
+	if WEAPON.CW20Weapon then
+		wepSetup.ok = true
+		wepSetup.vm = WEAPON.CW_VM
+		wepSetup.setSoundTable = function(a, r, c)
+			if WEAPON.Sounds and WEAPON.Sounds[a] then
+				WEAPON:setCurSoundTable(WEAPON.Sounds[a], r, c, a)
+			else
+				WEAPON:removeCurSoundTable()
+			end
+		end
+	elseif WEAPON.IsFAS2Weapon then
+		wepSetup.ok = true
+		wepSetup.vm = WEAPON.Wep
+		wepSetup.setSoundTable = function(a, r, c)
+			if WEAPON.Sounds then
+				WEAPON.CurSoundTable = WEAPON.Sounds[a] and WEAPON.Sounds[a]
+				WEAPON.CurSoundEntry = WEAPON.Sounds[a] and 1
+				WEAPON.SoundSpeed = WEAPON.Sounds[a] and r
+				WEAPON.SoundTime = WEAPON.Sounds[a] and CurTime()
+			end
+		end
+	end
+	
+	return wepSetup
+end
 
 local fCurRate = 1
 local fCurStartCycle = 0
 local bPlaySounds = false
-local iSoundFilter = 1
 
-local strCurFilter = ""
-
-local animButtonsPanel
+local cvarCVMTEnabled
+local initdWeps = {}
 
 local function playAnim(txt)
-	if bPlaySounds and WEAPON.Sounds then
-		if WEAPON.Sounds[txt] then
-			WEAPON:setCurSoundTable(WEAPON.Sounds[txt], fCurRate, fCurStartCycle, txt)
-		else
-			WEAPON:removeCurSoundTable()
+	cvarCVMTEnabled = cvarCVMTEnabled or GetConVar("cvmt_enabled")
+	
+	if cvarCVMTEnabled:GetInt() != 1 then
+		if not initdWeps[WEAPON] then
+			cvarCVMTEnabled:SetInt(1)
 		end
+	end
+	
+	initdWeps[WEAPON] = true
+	
+	if bPlaySounds then
+		getWeaponSetup().setSoundTable(txt, fCurRate, fCurStartCycle)
 	end
 	
 	RunConsoleCommand("cvmt_playanim", txt, fCurStartCycle, fCurRate)
 end
+
+local animButtonsPanel
 
 local function cleanAnimButtonsPanel()
 	if !IsValid(animButtonsPanel) then return end
@@ -38,6 +71,13 @@ local function cleanAnimButtonsPanel()
 	end
 end
 
+local iSoundFilter = 1
+local strCurFilter = ""
+
+local colHover = Color(0,255,0,25)
+local colIdle = Color(0,0,0,60)
+local colClick = Color(0,0,255,25)
+
 local function populateAnimButtonsPanel()
 	if !IsValid(animButtonsPanel) then return end
 	
@@ -45,17 +85,17 @@ local function populateAnimButtonsPanel()
 	
 	local animButtonsPanelHeight = 0
 	
-	local vm = WEAPON.CW_VM
+	local vm = getWeaponSetup().vm
 	
 	for i = 0, vm:GetSequenceCount() - 1 do
 		local txt = vm:GetSequenceName(i)
 		
 		local hasSound = (WEAPON.Sounds != nil) and (WEAPON.Sounds[txt] != nil)
 		
-		local filterName = string.find(string.lower(txt), string.lower(strCurFilter)) != nil
-		local filterSound = (iSoundFilter == 1) or ((hasSound) == (iSoundFilter == 2))
+		local nameOk = string.find(string.lower(txt), string.lower(strCurFilter)) != nil
+		local soundOk = (iSoundFilter == 1) or ((hasSound) == (iSoundFilter == 2))
 		
-		if filterName and filterSound then
+		if nameOk and soundOk then
 			
 			local animButtonPanel = vgui.Create("DPanel", animButtonsPanel)
 			
@@ -137,65 +177,116 @@ local function populateAnimButtonsPanel()
 	-- PANEL:AddItem(animButtonsPanel)
 end
 
+local soundFilterTxt = {"ALL", "W/", "W/O"}
+
 local function updatePanel()
 	if !IsValid(PANEL) then return end
 	
 	PANEL:ClearControls()
 	
-	// OLD PANEL
-		PANEL:AddControl("Label", {Text = "Spy`s CVMT:"}):DockMargin(0, 0, 0, 0)
-		PANEL:AddControl("CheckBox", {Label = "Enable HUD elements", Command = "cvmt_enabled"}):DockMargin(8, 0, 8, 8)
-		PANEL:AddControl("CheckBox", {Label = "Show anim list", Command = "cvmt_animlist"}):DockMargin(8, 0, 8, 8)
-		PANEL:AddControl("CheckBox", {Label = "Show sequence ids in ^^", Command = "cvmt_animlist_numbers"}):DockMargin(8, 0, 8, 8)
+	PANEL:AddControl("Label", {Text = "CVMT Shared:"}):DockMargin(0, 0, 0, 0)
+	
+	local cvmtEnablePanel = vgui.Create("DPanel", PANEL)
+
+		local cbox
+		cbox = vgui.Create("DCheckBoxLabel", cvmtEnablePanel)
+		cbox:SetText("Enable HUD elements")
+		cbox:SetDark(true)
+		cbox:Dock(FILL)
+		cbox:DockMargin(8,0,0,0)
 		
-		local sliderCycle, sliderRate
+		cbox.Label:Dock(LEFT)
+		cbox.Label:DockMargin(24,0,0,0)
 		
-		sliderCycle = vgui.Create("DNumSlider", PANEL)
-		sliderCycle:DockMargin(8, 0, 8, 8)
-		sliderCycle:SetDecimals(4)
-		sliderCycle:SetMinMax(0, 1)
-		sliderCycle:SetValue(1)
-		sliderCycle:SetText("Set cycle")
-		sliderCycle:SetDark(true)
-		PANEL:AddItem(sliderCycle)
+		cbox:SetConVar("cvmt_enabled")
 		
-		sliderRate = vgui.Create("DNumSlider", PANEL)
-		sliderRate:DockMargin(8, 0, 8, 8)
-		sliderRate:SetDecimals(4)
-		sliderRate:SetMinMax(-5, 5)
-		sliderRate:SetValue(1)
-		sliderRate:SetText("Set playback rate")
-		sliderRate:SetDark(true)
-		PANEL:AddItem(sliderRate)
+	cvmtEnablePanel:Dock(TOP)
+	cvmtEnablePanel:SetSize(200,20)
+	cvmtEnablePanel:SetPaintBackground(true)
+	cvmtEnablePanel:SizeToContents()
+	
+	PANEL:AddItem(cvmtEnablePanel)
+	
+	local cvmtAnimsPanel = vgui.Create("DPanel", PANEL)
+
+		local cbox
+		cbox = vgui.Create("DCheckBoxLabel", cvmtAnimsPanel)
+		cbox:SetText("Show anim list")
+		cbox:SetDark(true)
+		cbox:Dock(FILL)
+		cbox:DockMargin(8,0,0,0)
 		
-		sliderRate.Wang:SetDecimals(4)
+		cbox.Label:Dock(LEFT)
+		cbox.Label:DockMargin(24,0,0,0)
 		
-		sliderCycle.OnValueChanged = function(slider, val)
-			sliderRate:SetValue(0)
+		cbox:SetConVar("cvmt_animlist")
+		
+	cvmtAnimsPanel:Dock(TOP)
+	cvmtAnimsPanel:SetSize(200,20)
+	cvmtAnimsPanel:SetPaintBackground(true)
+	cvmtAnimsPanel:SizeToContents()
+	
+	PANEL:AddItem(cvmtAnimsPanel)
+	
+	local cvmtAnimNumsPanel = vgui.Create("DPanel", PANEL)
+
+		local cbox
+		cbox = vgui.Create("DCheckBoxLabel", cvmtAnimNumsPanel)
+		cbox:SetText("Show ids in anim list")
+		cbox:SetDark(true)
+		cbox:Dock(FILL)
+		cbox:DockMargin(8,0,0,0)
+		
+		cbox.Label:Dock(LEFT)
+		cbox.Label:DockMargin(24,0,0,0)
+		
+		cbox:SetConVar("cvmt_animlist_numbers")
+		
+	cvmtAnimNumsPanel:Dock(TOP)
+	cvmtAnimNumsPanel:SetSize(200,20)
+	cvmtAnimNumsPanel:SetPaintBackground(true)
+	cvmtAnimNumsPanel:SizeToContents()
+	
+	PANEL:AddItem(cvmtAnimNumsPanel)
+	
+	local cvmtCyclePanel = vgui.Create("DPanel", PANEL)
+	
+		local slider
+		slider = vgui.Create("DNumSlider", cvmtCyclePanel)
+		slider:Dock(FILL)
+		slider:DockMargin(8,0,8,0)
+		slider:SetDecimals(4)
+		slider:SetMinMax(0, 1)
+		slider:SetValue(1)
+		slider:SetText("Set cycle")
+		slider:SetDark(true)
+		
+		slider.Wang:SetDecimals(slider:GetDecimals())
 			
+		function slider:OnValueChanged(val)
 			local wep = LocalPlayer():GetActiveWeapon()
 			
 			if IsValid(wep.CW_VM) then
 				wep.CW_VM:SetCycle(val)
-			else
-				RunConsoleCommand("cvmt_setcycle", val)
 			end
 		
 			RunConsoleCommand("cvmt_setplaybackrate", 0)
+			RunConsoleCommand("cvmt_setcycle", val)
 		end
 		
-		sliderRate.OnValueChanged = function(slider, val)
-			RunConsoleCommand("cvmt_setplaybackrate", val)
-		end
-	// === =====
+	cvmtCyclePanel:Dock(TOP)
+	cvmtCyclePanel:SetSize(200,20)
+	cvmtCyclePanel:SetPaintBackground(true)
+	cvmtCyclePanel:SizeToContents()
 	
-	if !IsValid(WEAPON) or !WEAPON.CW20Weapon then
+	PANEL:AddItem(cvmtCyclePanel)
+	
+	if !IsValid(WEAPON) or !getWeaponSetup().ok then
 		cleanAnimButtonsPanel()
 		return 
 	end
 
-	// NEW STUFF
-	PANEL:AddControl("Label", {Text = "Preview animations:"}):DockMargin(0, 0, 0, 0)
+	PANEL:AddControl("Label", {Text = "Preview settings:"}):DockMargin(0, 0, 0, 0)
 	
 	local soundSwitchPanel = vgui.Create("DPanel", PANEL)
 
@@ -222,13 +313,46 @@ local function updatePanel()
 	
 	PANEL:AddItem(soundSwitchPanel)
 	
+	local roundSliderPanel = vgui.Create("DPanel", PANEL)
+		
+		local slider
+		slider = vgui.Create("DNumSlider", roundSliderPanel)
+		slider:Dock(FILL)
+		slider:DockMargin(8,0,8,0)
+		slider:SetDecimals(0)
+		slider:SetMinMax(-2, 2)
+		slider:SetValue(fCurRate)
+		slider:SetText("Round PbRate:")
+		slider:SetDark(true)
+		
+		slider.TextArea:SetEditable(false)
+		slider.TextArea:SetValue("")
+		
+		local rateSlider
+		
+		function slider:OnValueChanged(val)
+			rateSlider:SetValue(math.Round(val, self:GetDecimals()))
+			
+			self.TextArea:SetEditable(false)
+			self.TextArea:SetValue("")
+		end
+		
+	roundSliderPanel:Dock(TOP)
+	roundSliderPanel:SetSize(200,20)
+	roundSliderPanel:SetPaintBackground(true)
+	roundSliderPanel:SizeToContents()
+	
+	PANEL:AddItem(roundSliderPanel)
+	
+	local roundSlider = slider
+	
 	local rateSliderPanel = vgui.Create("DPanel", PANEL)
 	
 		local slider
 		slider = vgui.Create("DNumSlider", rateSliderPanel)
 		slider:Dock(FILL)
 		slider:DockMargin(8,0,8,0)
-		slider:SetDecimals(0)
+		slider:SetDecimals(2)
 		slider:SetMinMax(-2, 2)
 		slider:SetValue(fCurRate)
 		slider:SetText("Preview PbRate:")
@@ -239,12 +363,43 @@ local function updatePanel()
 			fCurStartCycle = (fCurRate > 0) and 0 or 1
 		end
 		
+		rateSlider = slider
+		
 	rateSliderPanel:Dock(TOP)
 	rateSliderPanel:SetSize(200,20)
 	rateSliderPanel:SetPaintBackground(true)
 	rateSliderPanel:SizeToContents()
 	
 	PANEL:AddItem(rateSliderPanel)
+
+	local soundFilterPanel = vgui.Create("DPanel", PANEL)
+
+		local slider
+		slider = vgui.Create("DNumSlider", soundFilterPanel)
+		slider:Dock(FILL)
+		slider:DockMargin(8,0,8,0)
+		slider:SetDecimals(0)
+		slider:SetMinMax(1, 3)
+		slider:SetText("Filter by sound:")
+		slider:SetDark(true)
+		
+		function slider:OnValueChanged(val)
+			iSoundFilter = math.Round(val, self:GetDecimals())
+			
+			self.TextArea:SetEditable(false)
+			self.TextArea:SetValue(soundFilterTxt[iSoundFilter])
+			
+			populateAnimButtonsPanel()
+		end
+		
+		slider:SetValue(iSoundFilter)
+		
+	soundFilterPanel:Dock(TOP)
+	soundFilterPanel:SetSize(200,20)
+	soundFilterPanel:SetPaintBackground(true)
+	soundFilterPanel:SizeToContents()
+	
+	PANEL:AddItem(soundFilterPanel)
 	
 	local filterBoxPanel = vgui.Create("DPanel", PANEL)
 	
@@ -276,30 +431,30 @@ local function updatePanel()
 	
 	PANEL:AddItem(filterBoxPanel)
 	
-	local soundFilterPanel = vgui.Create("DPanel", PANEL)
-
-		local slider
-		slider = vgui.Create("DNumSlider", soundFilterPanel)
-		slider:Dock(FILL)
-		slider:DockMargin(8,0,8,0)
-		slider:SetDecimals(0)
-		slider:SetMinMax(1, 3)
-		slider:SetValue(iSoundFilter)
-		slider:SetText("Filter by sound:")
-		slider:SetDark(true)
-		
-		function slider:OnValueChanged(val)
-			iSoundFilter = math.Round(val, self:GetDecimals())
-			
-			populateAnimButtonsPanel()
-		end
-		
-	soundFilterPanel:Dock(TOP)
-	soundFilterPanel:SetSize(200,20)
-	soundFilterPanel:SetPaintBackground(true)
-	soundFilterPanel:SizeToContents()
+	local labelPanel = vgui.Create("DPanel", PANEL)
 	
-	PANEL:AddItem(soundFilterPanel)
+		local label
+		label = vgui.Create("DLabel", labelPanel)
+		label:SetText("Preview animation:")
+		label:SetDark(true)
+		label:Dock(LEFT)
+		label:DockMargin(0,0,0,0)
+		label:SizeToContents()
+		
+		local label
+		label = vgui.Create("DLabel", labelPanel)
+		label:SetText("[LMB - PLAY] [RMB - COPY]")
+		label:SetDark(true)
+		label:Dock(RIGHT)
+		label:DockMargin(0,0,0,0)
+		label:SizeToContents()
+		
+	labelPanel:Dock(TOP)
+	labelPanel:SetSize(200,20)
+	labelPanel:SetPaintBackground(false)
+	labelPanel:SizeToContents()
+	
+	PANEL:AddItem(labelPanel)
 	
 	animButtonsPanel = vgui.Create("DPanel", PANEL)
 	

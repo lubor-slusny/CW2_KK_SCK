@@ -1,3 +1,6 @@
+if not CustomizableWeaponry_KK.HOME then return end
+if CustomizableWeaponry_KK.HOME then return end
+
 AddCSLuaFile()
 
 local CVMT = {

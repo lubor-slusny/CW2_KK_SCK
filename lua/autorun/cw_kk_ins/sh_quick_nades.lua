@@ -83,19 +83,19 @@ add({text = "FLASH", ammo = "Flash Grenades", class = "cw_flash_thrown", default
 add({text = "SMOKE", ammo = "Smoke Grenades", class = "cw_smoke_thrown", default = "m18"})
 	
 if CustomizableWeaponry_KK.HOME then
-	-- CustomizableWeaponry_KK.ins2.quickGrenade.models.roflkek = {
-		-- vm = "models/weapons/v_anm14.mdl",
-		-- wm = "models/props_junk/flare.mdl",
+	CustomizableWeaponry_KK.ins2.quickGrenade.models.roflkek = {
+		vm = "models/weapons/v_anm14.mdl",
+		wm = "models/props_junk/flare.mdl",
 		-- wm = "models/weapons/w_anm14.mdl",
 		-- wm = "models/weapons/w_npcnade.mdl",
-		-- a_pinpull = "pullbackhighbake",
-		-- a_throw = "bakethrow"
-	-- }
+		a_pinpull = "pullbackhighbake",
+		a_throw = "bakethrow"
+	}
 
-	-- add({text = "STRI", /*ammo = "Frag Grenades", */class = "weapon_striderbuster", default = "n69"})
+	add({text = "STRI", /*ammo = "Frag Grenades", */class = "weapon_striderbuster", default = "n69"})
 	add({text = "BUG", /*ammo = "9x19MM", */class = "npc_grenade_bugbait", default = "n77"})
 	add({text = "HL2", /*ammo = "Frag Grenades", */class = "npc_grenade_frag", default = "m18"})
-	-- add({text = "EP1", /*ammo = "Frag Grenades", */class = "prop_physics", default = "roflkek"})
+	add({text = "EP1", /*ammo = "Frag Grenades", */class = "kk_flare", default = "roflkek"})
 	-- add({text = "EP1", /*ammo = "Frag Grenades", */class = "env_flare", default = "roflkek"})
 	-- add({text = "N69", ammo = "Frag Grenades", class = "cw_kk_ins2_projectile_n69", default = "n69"})
 end
@@ -263,6 +263,9 @@ function CustomizableWeaponry_KK.ins2.quickGrenade.throw(wep, IFTP)
 				if IsValid(phys) then
 					phys:SetVelocity(velocity)
 					phys:AddAngleVelocity(Vector(math.random(-500, 500), math.random(-500, 500), math.random(-500, 500)))
+					
+					phys:AddGameslag(FVPHYSICS_PLAYER_HELD)
+					phys:AddGameFlag(FVPHYSICS_WAS_THROWN)
 				else
 					nade:SetVelocity(velocity)
 				end

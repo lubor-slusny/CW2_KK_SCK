@@ -1,14 +1,8 @@
-AddCSLuaFile()
-
 if not CustomizableWeaponry then return end
 
-local WS_PACK_REVISION = 4
+AddCSLuaFile()
 
-if SERVER then
-	-- resource.AddWorkshop("657241323")
-end
-
-// for the best
+local WS_PACK_REVISION = 5
 
 CustomizableWeaponry_KK = CustomizableWeaponry_KK or {}
 CustomizableWeaponry_KK.ins2 = CustomizableWeaponry_KK.ins2 or {}
@@ -17,8 +11,6 @@ CustomizableWeaponry_KK.ins2.magnifierDependencies = CustomizableWeaponry_KK.ins
 CustomizableWeaponry_KK.ins2.magnifierDependencies.kk_ins2_aimpoint = true
 CustomizableWeaponry_KK.ins2.magnifierDependencies.kk_ins2_cstm_eotechxps = true
 CustomizableWeaponry_KK.ins2.magnifierDependencies.kk_ins2_cstm_compm4s = true
-
-// for noobs
 
 local SP = game.SinglePlayer()
 
@@ -66,11 +58,11 @@ for _,f in pairs({
 end
 
 CustomizableWeaponry_KK.ins2.baseContentMounted = function()
-	return !SP or baseContentOK
+	return baseContentOK
 end
 
 CustomizableWeaponry_KK.ins2.wsContentMounted = function()
-	return !SP or (baseContentOK and (CustomizableWeaponry_KK.ins2.ws == WS_PACK_REVISION))
+	return (baseContentOK and (CustomizableWeaponry_KK.ins2.ws == WS_PACK_REVISION))
 end
 
 CustomizableWeaponry_KK.ins2.ww2ContentMounted = function()
@@ -78,13 +70,8 @@ CustomizableWeaponry_KK.ins2.ww2ContentMounted = function()
 end
 
 CustomizableWeaponry_KK.ins2.doiContentMounted = function()
-	return
-		!SP or 
-		(baseContentOK and
-		doigameContentOK)
+	return (baseContentOK and doigameContentOK)
 end
-
-// for me
 
 if CLIENT then
 	CreateClientConVar("cw_kk_freeze_reticles", 0, false, false)
@@ -141,8 +128,8 @@ if CLIENT then
 	
 	CustomizableWeaponry_KK.panels.ins2 = function(panel)
 		panel:AddControl("Label", {Text = "INS2 Pack:"}):DockMargin(0, 0, 8, 0)
-				
-		// hands model slider
+		
+		// rigs
 		panel:AddControl("Slider", {
 			Label = "Rig:",
 			Type = "Integer",
@@ -151,7 +138,7 @@ if CLIENT then
 			Command = "cw_kk_ins2_rig"
 		}):DockMargin(8, 0, 8, 0)
 		
-		// shell sound function slider
+		// shell sound function
 		local ssslider = panel:AddControl("Slider", {
 			Label = "Shell sound function:",
 			Type = "Integer",
@@ -170,7 +157,7 @@ if CLIENT then
 			sslabel:SetText(sslabeltxt[math.Clamp(math.Round(v or 1), 1, #sslabeltxt)] or "meh")
 		end
 		
-		// shell life time slider
+		// shell life time
 		panel:AddControl("Slider", {
 			Label = "Shell life time:",
 			Type = "Float",
@@ -179,7 +166,7 @@ if CLIENT then
 			Command = "cw_kk_ins2_shell_time"
 		}):DockMargin(8, 0, 8, 0)
 
-		// shell cleanup button		
+		// shell cleanup		
 		local cusbutt = panel:AddControl("Button", {Text = "meh"})
 		
 		cusbutt:DockMargin(8, 0, 8, 0)
@@ -212,13 +199,13 @@ if CLIENT then
 			Command = "cw_kk_ins2_shell_vm"
 		}):DockMargin(8, 8, 8, 0)
 		
-		// tickbox for always animated reticles
+		// always animated reticles
 		panel:AddControl("CheckBox", {
 			Label = "Always animate stencil sight reticle", 
 			Command = "cw_kk_ins2_animate_reticle"
 		}):DockMargin(8, 8, 8, 0)
 		
-		// tickbox for slow grenade attack swap
+		// slow grenade attack swap
 		panel:AddControl("CheckBox", {
 			Label = "INS2-style slow grenade attacks (primary = cook)", 
 			Command = "cw_kk_ins2_ins_nade_ctrls"
@@ -242,6 +229,8 @@ if CLIENT then
 					Color(255, 255, 255),
 					"Hi, required files are missing. Make sure you mount INS2 content properly (according to guide on addon`s workshop page)."
 				)
+				
+				return
 			end
 			
 			if CustomizableWeaponry_KK.ins2.baseContentMounted() and (CustomizableWeaponry_KK.ins2.ws != nil) and not CustomizableWeaponry_KK.ins2.wsContentMounted() then
@@ -261,39 +250,40 @@ for k, v in pairs(file.Find("autorun/cw_kk_ins/*", "LUA")) do
 	include("autorun/cw_kk_ins/" .. v)
 end
 
-// for secsky lenses
-
 local math_approach = math.Approach
 
 if CLIENT then
-	matproxy.Add({
-		name = "IronsightVectorResult",
+	CustomizableWeaponry_KK.ins2.matproxy = CustomizableWeaponry_KK.ins2.matproxy or {}
+	
+	CustomizableWeaponry_KK.ins2.matproxy.lense = CustomizableWeaponry_KK.ins2.matproxy.lense or {}
+	
+	CustomizableWeaponry_KK.ins2.matproxy.lense.name = "IronsightVectorResult"
+	
+	function CustomizableWeaponry_KK.ins2.matproxy.lense:init(mat, values)
+		self.mults = {}
 		
-		init = function(self, mat, values)
-			self.ResultTo = values.resultvar
-			self.ResultBase = Vector(values.resultdefault)
-			self.ResultAdd = Vector(values.resultzoomed) - self.ResultBase
-			-- self.Result = Vector()
-		end,
+		self.ResultTo = values.resultvar
+		self.ResultBase = Vector(values.resultdefault)
+		self.ResultAdd = Vector(values.resultzoomed) - self.ResultBase
+	end
+	
+	function CustomizableWeaponry_KK.ins2.matproxy.lense:bind(mat, ent)
+		if !IsValid(ent) then return end
 		
-		bind = function(self, mat, ent)
-			if !IsValid(ent) then return end
-			
-			local mul = ent._KK_INS2_lenseProxyMul or 0.5
-			
-			if IsValid(ent.wepParent) and ent.wepParent.CW20Weapon and ent.wepParent:isAiming() then
-				mul = math_approach(mul, 1, FrameTime() * 2)
-			else
-				mul = math_approach(mul, 0, FrameTime() * 2)
-			end
-			
-			ent._KK_INS2_lenseProxyMul = mul
-			mat:SetVector(self.ResultTo, self.ResultBase + mul * self.ResultAdd)
+		local mul = self.mults[ent] or 0.5
+		
+		if IsValid(ent.wepParent) and ent.wepParent.CW20Weapon and ent.wepParent:isAiming() then
+			mul = math_approach(mul, 1, FrameTime() * 2)
+		else
+			mul = math_approach(mul, 0, FrameTime() * 2)
 		end
-	})
+		
+		mat:SetVector(self.ResultTo, self.ResultBase + mul * self.ResultAdd)
+		self.mults[ent] = mul
+	end
+	
+	matproxy.Add(CustomizableWeaponry_KK.ins2.matproxy.lense)
 end
-
-// for mental sickness
 
 if CLIENT then
 	local cvEp = CreateClientConVar("cw_kk_add_epilepsy", 0, true, false)
@@ -319,8 +309,6 @@ if CLIENT then
 		end
 	end)
 end
-
-// for... stuff
 
 if CLIENT then
 	CustomizableWeaponry_KK.ins2.nodrawMat = CustomizableWeaponry_KK.ins2.nodrawMat or {}

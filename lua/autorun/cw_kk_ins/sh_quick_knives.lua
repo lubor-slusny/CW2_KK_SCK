@@ -56,6 +56,10 @@ function CustomizableWeaponry_KK.ins2.quickKnife.canAttack(wep)
 		-- return false
 	-- end
 	
+	if wep.dt.PinPulled then 
+		return
+	end
+	
 	// can't throw with an active bipod
 	if wep.dt.BipodDeployed then
 		return false
