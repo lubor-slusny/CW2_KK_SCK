@@ -58,6 +58,7 @@ SWEP.DamageOutputDelay = 0.2
 
 SWEP.FirstDeployTime = 0.6
 SWEP.DeployTime = 0.6
+SWEP.HolsterTime = 0.4
 
 SWEP.SpeedDec = 0
 SWEP.WeaponLength = 0

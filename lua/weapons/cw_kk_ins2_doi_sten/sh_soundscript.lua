@@ -1,5 +1,9 @@
 
 SWEP.Sounds = {
+	base_ready = {
+		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
+	},
+
 	base_draw = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
 	},

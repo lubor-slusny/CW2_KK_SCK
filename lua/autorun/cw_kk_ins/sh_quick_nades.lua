@@ -86,17 +86,13 @@ if CustomizableWeaponry_KK.HOME then
 	CustomizableWeaponry_KK.ins2.quickGrenade.models.roflkek = {
 		vm = "models/weapons/v_anm14.mdl",
 		wm = "models/props_junk/flare.mdl",
-		-- wm = "models/weapons/w_anm14.mdl",
-		-- wm = "models/weapons/w_npcnade.mdl",
 		a_pinpull = "pullbackhighbake",
 		a_throw = "bakethrow"
 	}
 
-	add({text = "STRI", /*ammo = "Frag Grenades", */class = "weapon_striderbuster", default = "n69"})
 	add({text = "BUG", /*ammo = "9x19MM", */class = "npc_grenade_bugbait", default = "n77"})
 	add({text = "HL2", /*ammo = "Frag Grenades", */class = "npc_grenade_frag", default = "m18"})
 	add({text = "EP1", /*ammo = "Frag Grenades", */class = "kk_flare", default = "roflkek"})
-	-- add({text = "EP1", /*ammo = "Frag Grenades", */class = "env_flare", default = "roflkek"})
 	-- add({text = "N69", ammo = "Frag Grenades", class = "cw_kk_ins2_projectile_n69", default = "n69"})
 end
 
@@ -243,18 +239,11 @@ function CustomizableWeaponry_KK.ins2.quickGrenade.throw(wep, IFTP)
 				nade:SetPos(pos)
 				nade:SetAngles(eyeAng)
 				nade:SetOwner(wep.Owner)
-				-- nade.Owner = wep.Owner
 				
 				nade:Spawn()
 				nade:Activate()
 				
 				nade:SetModel(quickNadeTweak.wm)
-				
-				-- timer.Simple(5, function()
-					-- if IsValid(nade) then
-						-- nade:Use(wep.Owner, wep, USE_SET, 1)
-					-- end
-				-- end)
 				
 				// add velocity
 				local velocity = CustomizableWeaponry.quickGrenade:getThrowVelocity(wep.Owner, throwVelocity, addVelocity)
@@ -263,9 +252,6 @@ function CustomizableWeaponry_KK.ins2.quickGrenade.throw(wep, IFTP)
 				if IsValid(phys) then
 					phys:SetVelocity(velocity)
 					phys:AddAngleVelocity(Vector(math.random(-500, 500), math.random(-500, 500), math.random(-500, 500)))
-					
-					phys:AddGameslag(FVPHYSICS_PLAYER_HELD)
-					phys:AddGameFlag(FVPHYSICS_WAS_THROWN)
 				else
 					nade:SetVelocity(velocity)
 				end
@@ -276,29 +262,6 @@ function CustomizableWeaponry_KK.ins2.quickGrenade.throw(wep, IFTP)
 				end
 				
 				nade:Fire("sETtIMER", 3)
-				
-				-- local eh = ents.Create("env_flare")
-				
-				-- eh:SetMoveType(MOVETYPE_NONE)
-				-- eh:SetParent(nade, 1)
-				
-				-- eh:SetModel(quickNadeTweak.wm)
-				-- eh:SetPos(Vector(0,0,0))
-				
-				-- eh:SetKeyValue("Duration", "5")
-				
-				-- eh:RemoveEFlags(1)
-				-- eh:RemoveEFlags(2)
-				-- eh:AddEFlags(4)
-				-- eh:RemoveEFlags(8)
-				
-				-- eh:Spawn()
-				-- eh:Activate()
-				-- eh:Fire("Start")
-				
-				-- print("Making:", eh)
-				
-				-- nade:SetSkin(1)
 				
 				// consume owners ammo
 				local suppressAmmoUsage = CustomizableWeaponry.callbacks.processCategory(wep, "shouldSuppressAmmoUsage")

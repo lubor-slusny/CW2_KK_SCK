@@ -41,6 +41,10 @@ SWEP.WMAng = Vector(99.385, -22.739, 18.048)
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.wsContentMounted()
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.wsContentMounted()
 
+SWEP.FirstDeployTime = 0.6
+SWEP.DeployTime = 0.6
+SWEP.HolsterTime = 0.6
+
 SWEP.Sounds = {
 	draw = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},

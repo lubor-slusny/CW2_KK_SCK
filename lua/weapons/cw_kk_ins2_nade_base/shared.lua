@@ -71,6 +71,7 @@ SWEP.SpreadCooldown = 0.001
 SWEP.Recoil = 3
 
 SWEP.DeployTime = 0.6
+SWEP.HolsterTime = 0.5
 
 SWEP.SpeedDec = 0
 SWEP.WeaponLength = 0

@@ -41,6 +41,9 @@ if CLIENT then
 		}
 	}
 	
+	SWEP.ForegripParent = "righthandfix"
+	SWEP.ForegripOverride = true
+	
 	SWEP.IronsightPos = Vector(-0.539, -8, 1.0201)
 	SWEP.IronsightAng = Vector(5.3932, 0.0032, 0)
 
@@ -355,12 +358,6 @@ SWEP.ReloadTime_Empty = 1.7
 SWEP.ReloadHalt_Empty = 2
 
 if CLIENT then
-	function SWEP:updateOtherParts()
-		self.ForegripParent = "righthandfix"
-		self.ForegripOverride = true
-		-- self.ForegripOverride = !(self.dt.Safe or self:isNearWall() or self:isRunning())
-	end
-	
 	function SWEP:_drawViewModel()
 		self.CW_VM:FrameAdvance(FrameTime())
 		self.CW_VM:SetupBones()

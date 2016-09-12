@@ -280,9 +280,9 @@ SWEP.bipod_ReloadHalt_Empty = 4.5
 
 SWEP.SnapToIdlePostReload = false
 
-SWEP.FirstDeployTime = 1.8
-SWEP.DeployTime = 0.71
-SWEP.HolsterTime = 0.56
+SWEP.FirstDeployTime = 1.9
+SWEP.DeployTime = 0.7
+SWEP.HolsterTime = 0.5
 
 SWEP.WeaponLength = 28
 

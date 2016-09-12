@@ -196,6 +196,7 @@ if CLIENT then
 	end
 end
 
+SWEP.HolsterTime = 0.6
 SWEP.timeToThrow = 1.5
 SWEP.swapTime = 0.5
 

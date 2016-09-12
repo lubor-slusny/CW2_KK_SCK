@@ -124,8 +124,9 @@ SWEP.Damage = 60
 SWEP.BipodDeployTime = 2.18
 SWEP.BipodUndeployTime = 1.73
 
-SWEP.FirstDeployTime = 3.13
-SWEP.DeployTime = 0.83
+SWEP.FirstDeployTime = 3.1
+SWEP.DeployTime = 0.9
+SWEP.HolsterTime = 0.6
 
 SWEP.ReloadTimes = {
 	base_reload = {6.2, 8.21},

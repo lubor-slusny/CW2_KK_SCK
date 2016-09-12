@@ -116,8 +116,10 @@ SWEP.Damage = 25
 SWEP.FireDelay = 0.1
 SWEP.ReticleInactivityPostFire = SWEP.FireDelay + 0.2
 SWEP.GlobalDelayOnShoot = SWEP.FireDelay
-SWEP.FirstDeployTime = 1.2
-SWEP.DeployTime = 0.46
+
+SWEP.FirstDeployTime = 2.2
+SWEP.DeployTime = 0.4
+SWEP.HolsterTime = 0.4
 
 SWEP.ReloadTime = 2.27
 SWEP.ReloadHalt = 3.17

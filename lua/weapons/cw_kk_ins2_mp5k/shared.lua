@@ -2,7 +2,9 @@ if not CustomizableWeaponry then return end
 
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
+AddCSLuaFile("sh_soundscript.lua")
 include("sh_sounds.lua")
+include("sh_soundscript.lua")
 
 SWEP.magType = "smgMag"
 
@@ -151,54 +153,6 @@ SWEP.Animations = {
 	base_safe = "base_down",
 	base_safe_aim = "iron_down",
 }
-	
-SWEP.Sounds = {
-	base_ready = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-		{time = 12/30, sound = "CW_KK_INS2_MP5K_BOLTLOCK"},
-		{time = 13/30, sound = "CW_KK_INS2_MP5K_BOLTRELEASE"},
-	},
-
-	base_draw = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-	},
-
-	base_holster = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
-	},
-
-	base_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_MP5K_EMPTY"},
-	},
-
-	base_fireselect = {
-		{time = 6/30, sound = "CW_KK_INS2_MP5K_FIRESELECT"},
-	},
-
-	base_reload = {
-		{time = 19/30, sound = "CW_KK_INS2_MP5K_MAGRELEASE"},
-		{time = 24/30, sound = "CW_KK_INS2_MP5K_MAGOUT"},
-		{time = 70/30, sound = "CW_KK_INS2_MP5K_MAGIN"},
-	},
-
-	base_reloadempty = {
-		{time = 12/30, sound = "CW_KK_INS2_MP5K_BOLTBACK"},
-		{time = 18/30, sound = "CW_KK_INS2_MP5K_BOLTLOCK"},
-		{time = 40/30, sound = "CW_KK_INS2_MP5K_MAGRELEASE"},
-		{time = 47/30, sound = "CW_KK_INS2_MP5K_MAGOUT"},
-		{time = 94/30, sound = "CW_KK_INS2_MP5K_MAGIN"},
-		{time = 113/30, sound = "CW_KK_INS2_MP5K_BOLTLOCK"},
-		{time = 114/30, sound = "CW_KK_INS2_MP5K_BOLTRELEASE"},
-	},
-
-	iron_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_MP5K_EMPTY"},
-	},
-
-	iron_fireselect = {
-		{time = 6/30, sound = "CW_KK_INS2_MP5K_FIRESELECT"},
-	},
-}
 
 SWEP.SpeedDec = 15
 
@@ -246,7 +200,8 @@ SWEP.Shots = 1
 SWEP.Damage = 25
 
 SWEP.FirstDeployTime = 1.2
-SWEP.DeployTime = 0.8
+SWEP.DeployTime = 0.6
+SWEP.HolsterTime = 0.5
 
 SWEP.ReloadTime = 2.43
 SWEP.ReloadTime_Empty = 3.27

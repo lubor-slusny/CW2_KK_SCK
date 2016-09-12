@@ -87,8 +87,12 @@ if CLIENT then
 	}
 	
 	SWEP.ForegripOverridePos = {
+		["none"] = {
+			["L Clavicle"] = {scale = Vector(1, 1, 1), pos = Vector(0, 0, 0), angle = Angle(0, 0, 0)}
+		},
+		
 		["LeftHandFix"] = {
-			["L Clavicle"] = {scale = Vector(1, 1, 1), pos = Vector(-100,0,0), angle = Angle(0, 0, 0)}
+			["L Clavicle"] = {scale = Vector(1, 1, 1), pos = Vector(-100, 0, 0), angle = Angle(0, 0, 0)}
 		},
 	}
 	
@@ -222,8 +226,9 @@ SWEP.SpreadCooldown = 0.12
 SWEP.Shots = 1
 SWEP.Damage = 63
 
-SWEP.FirstDeployTime = 2.9
-SWEP.DeployTime = 0.73
+SWEP.FirstDeployTime = 3
+SWEP.DeployTime = 0.7
+SWEP.HolsterTime = 0.5
 
 SWEP.RecoilToSpread = 0.8 
 
@@ -288,15 +293,8 @@ if CLIENT then
 			self.shotgunReloading = false
 		end
 		
-		self.ForegripParent = "LeftHandFix"
-		local hs = vm
-		if self.Sequence:find("deployed") and self.Sequence:find("fire") then
-			self.ForegripOverride = true
-			-- hs:ManipulateBonePosition(hs:LookupBone("L Clavicle"), Vector(-100,0,0))
-		else
-			self.ForegripOverride = false
-			-- hs:ManipulateBonePosition(hs:LookupBone("L Clavicle"), Vector(0, 0, 0))
-		end
+		self.ForegripOverride = true
+		self.ForegripParent = (self.Sequence:find("deployed") and self.Sequence:find("fire")) and "LeftHandFix" or "none"
 	end
 	
 	function SWEP:playSwitchBipod()

@@ -97,7 +97,8 @@ SWEP.SpreadCooldown = 0.8
 SWEP.Shots = 1
 SWEP.Damage = 100
 
-SWEP.DeployTime = 0.5
+SWEP.DeployTime = 1
+SWEP.HolsterTime = 1
 
 SWEP.ReloadTime = 5.1
 SWEP.ReloadTime_Empty = 5.1
@@ -108,7 +109,6 @@ SWEP.Chamberable = false
 SWEP.CanCustomize = false
 
 SWEP.FirstDeployTime = 3.4
-SWEP.HolsterTime = 1
 SWEP.WeaponLength = 40
 
 function SWEP:updateReloadTimes() end

@@ -54,11 +54,11 @@ SWEP.Sounds = {
 		{time = 31/30, sound = "CW_KK_INS2_FNFAL_BOLTRELEASE"},
 	},
 
-	foregrip_draw_b = {
+	foregrip_draw = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
 	},
 
-	foregrip_holster_b = {
+	foregrip_holster = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
 	},
 

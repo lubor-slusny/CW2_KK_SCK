@@ -187,10 +187,11 @@ SWEP.SpreadCooldown = 0.13
 SWEP.Shots = 1
 SWEP.Damage = 41
 
+SWEP.FirstDeployTime = 1.5
 SWEP.DeployTime = 0.5
+SWEP.HolsterTime = 0.4
 
 SWEP.WeaponLength = 20
-SWEP.FirstDeployTime = 1.5
 
 SWEP.ReloadTimes = {
 	base_reload = {2.6, 3.5},

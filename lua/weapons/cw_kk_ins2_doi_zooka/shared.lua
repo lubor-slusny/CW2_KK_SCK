@@ -121,8 +121,8 @@ SWEP.SpreadCooldown = 0.8
 SWEP.Shots = 1
 SWEP.Damage = 100
 
-SWEP.FirstDeployTime = 6.87
-SWEP.DeployTime = 0.83
+SWEP.FirstDeployTime = 6.9 // so long
+SWEP.DeployTime = 1
 SWEP.HolsterTime = 1
 
 SWEP.ReloadTime = 4.4

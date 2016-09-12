@@ -191,7 +191,8 @@ SWEP.SpreadCooldown = 0.12
 SWEP.Shots = 1
 SWEP.Damage = 40
 
-SWEP.DeployTime = 0.5
+SWEP.DeployTime = 0.7
+SWEP.HolsterTime = 0.5
 
 SWEP.ReloadTime = 2.3
 SWEP.ReloadTime_Empty = 2.3
@@ -200,7 +201,7 @@ SWEP.ReloadHalt_Empty = 4.6
 
 SWEP.SnapToIdlePostReload = false
 
-SWEP.FirstDeployTime = 1.4
+SWEP.FirstDeployTime = 1.5
 SWEP.WeaponLength = 20
 
 SWEP.MuzzleVelocity = 990

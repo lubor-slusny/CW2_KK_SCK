@@ -130,7 +130,8 @@ SWEP.Shots = 1
 SWEP.Damage = 59
 
 SWEP.FirstDeployTime = 2
-SWEP.DeployTime = 0.94
+SWEP.DeployTime = 0.7
+SWEP.HolsterTime = 0.5
 
 SWEP.RecoilToSpread = 0.8 
 

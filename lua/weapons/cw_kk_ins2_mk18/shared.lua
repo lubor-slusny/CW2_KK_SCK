@@ -2,7 +2,9 @@ if not CustomizableWeaponry then return end
 
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
+AddCSLuaFile("sh_soundscript.lua")
 include("sh_sounds.lua")
+include("sh_soundscript.lua")
 
 SWEP.magType = "arMag"
 
@@ -199,8 +201,9 @@ SWEP.SpreadCooldown = 0.13
 SWEP.Shots = 1
 SWEP.Damage = 39
 
-SWEP.FirstDeployTime = 2.2
-SWEP.DeployTime = 0.6
+SWEP.FirstDeployTime = 2.25
+SWEP.DeployTime = 0.7
+SWEP.HolsterTime = 0.5
 
 SWEP.ReloadTime = 2.9
 SWEP.ReloadTime_Empty = 2.9

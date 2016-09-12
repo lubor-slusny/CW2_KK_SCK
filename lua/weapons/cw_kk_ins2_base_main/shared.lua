@@ -49,9 +49,6 @@ SWEP.TSGlass = Material("models/weapons/optics/lense_rt")
 
 SWEP.NoFreeAim = true
 SWEP.LuaViewmodelRecoil = false
-SWEP.BipodDeployTime = 1.15
-SWEP.BipodUndeployTime = 1.15
-SWEP.HolsterTime = 0.4
 
 SWEP.KK_IGNORE_MAGSYS_TWEAK = true
 
@@ -67,6 +64,12 @@ SWEP.CW_KK_40MM_MDL = "models/weapons/upgrades/a_projectile_m203.mdl"
 
 SWEP._KK_INS2_customEmptySuffix = ""
 SWEP._KK_INS2_customReloadSuffix = ""
+
+SWEP.DeployTime = 0.46
+SWEP.HolsterTime = 0.46
+
+SWEP.BipodDeployTime = 1.15
+SWEP.BipodUndeployTime = 1.15
 
 SWEP.FirstDeployTime = 5
 SWEP.WeaponLength = 20
@@ -187,14 +190,6 @@ function SWEP:IndividualThink()
 		self.FadeCrosshairOnAim = !shouldDrawCrosshair
 		
 		if !SP and not IsFirstTimePredicted() then return end
-		
-		if self.Slot != 2 and self.Slot != 3 then
-			if self.Sequence:find("sprint") then
-				self.ViewModelMovementScale = self.ViewModelMovementScale_sprint
-			else
-				self.ViewModelMovementScale = self.ViewModelMovementScale_base
-			end
-		end
 		
 		// 2b removed
 		// I guess

@@ -33,7 +33,6 @@ if CLIENT then
 		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/a_garand_bayonet.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_scope_m73"] = {model = "models/weapons/upgrades/a_optic_springfield.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		-- M73 Weaver
 	}
 
 	SWEP.AttachmentModelsWM = {
@@ -43,12 +42,6 @@ if CLIENT then
 		
 		["kk_ins2_scope_m73"] = {model = "models/weapons/upgrades/w_optic_springfield.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 	}
-	
-	-- SWEP.ForegripOverridePos = {
-		-- ["LeftHandFix"] = {
-			-- ["L Clavicle"] = {scale = Vector(1, 1, 1), pos = Vector(-100,0,0), angle = Angle(0, 0, 0)}
-		-- },
-	-- }
 	
 	SWEP.IronsightPos = Vector(-2.5643, -3, 1.3156)
 	SWEP.IronsightAng = Vector(-0.03, 0.03, 0)
@@ -173,8 +166,9 @@ SWEP.SpreadCooldown = 0.12
 SWEP.Shots = 1
 SWEP.Damage = 61
 
-SWEP.FirstDeployTime = 2.9
-SWEP.DeployTime = 0.73
+SWEP.FirstDeployTime = 2.7
+SWEP.DeployTime = 0.7
+SWEP.HolsterTime = 0.5
 
 SWEP.RecoilToSpread = 0.8 
 

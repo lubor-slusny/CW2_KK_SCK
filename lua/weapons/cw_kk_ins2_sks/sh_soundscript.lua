@@ -10,7 +10,15 @@ SWEP.Sounds = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
 	},
 
+	empty_draw = {
+		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
+	},
+
 	base_holster = {
+		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
+	},
+
+	empty_holster = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
 	},
 
@@ -42,11 +50,19 @@ SWEP.Sounds = {
 		{time = 23/30, sound = "CW_KK_INS2_SKS_BOLTRELEASE"},
 	},
 
-	foregrip_draw_b = {
+	foregrip_draw = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
 	},
 
-	foregrip_holster_b = {
+	foregrip_empty_draw = {
+		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
+	},
+
+	foregrip_holster = {
+		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
+	},
+
+	foregrip_empty_holster = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
 	},
 

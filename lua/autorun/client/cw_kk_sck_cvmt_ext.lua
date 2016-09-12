@@ -72,7 +72,7 @@ local function cleanAnimButtonsPanel()
 end
 
 local iSoundFilter = 1
-local strCurFilter = ""
+local cvarCurFilter = CreateClientConVar("cw_kk_cvmt_filter_name", "", false, false)
 
 local colHover = Color(0,255,0,25)
 local colIdle = Color(0,0,0,60)
@@ -92,7 +92,7 @@ local function populateAnimButtonsPanel()
 		
 		local hasSound = (WEAPON.Sounds != nil) and (WEAPON.Sounds[txt] != nil)
 		
-		local nameOk = string.find(string.lower(txt), string.lower(strCurFilter)) != nil
+		local nameOk = string.find(string.lower(txt), string.lower(cvarCurFilter:GetString())) != nil
 		local soundOk = (iSoundFilter == 1) or ((hasSound) == (iSoundFilter == 2))
 		
 		if nameOk and soundOk then
@@ -178,6 +178,10 @@ local function populateAnimButtonsPanel()
 end
 
 local soundFilterTxt = {"ALL", "W/", "W/O"}
+
+cvars.AddChangeCallback("cw_kk_cvmt_filter_name", function()
+	populateAnimButtonsPanel()
+end)
 
 local function updatePanel()
 	if !IsValid(PANEL) then return end
@@ -414,14 +418,12 @@ local function updatePanel()
 		local entry
 		entry = vgui.Create("DTextEntry", filterBoxPanel)
 		entry:Dock(FILL)
-		entry:DockMargin(8,0,8,0)
+		entry:DockMargin(8,0,0,0)
 		
-		entry:SetValue(strCurFilter)
+		entry:SetConVar("cw_kk_cvmt_filter_name")
 		
 		function entry:OnChange()
-			strCurFilter = self:GetValue()
-			
-			populateAnimButtonsPanel()
+			self:OnEnter()
 		end
 		
 	filterBoxPanel:Dock(TOP)
@@ -476,6 +478,13 @@ local function think()
 	WEAPON = LocalPlayer():GetActiveWeapon()
 	
 	if _LAST_SETUP != WEAPON then
+		if getWeaponSetup().ok then
+			cvarCVMTEnabled = cvarCVMTEnabled or GetConVar("cvmt_enabled")
+			if cvarCVMTEnabled:GetInt() == 1 then
+				initdWeps[WEAPON] = true
+			end
+		end
+		
 		updatePanel()
 	end
 	
@@ -485,17 +494,13 @@ end
 local toolName = "KK_SCK_CVMT_EXT"
 local toolPrintName = "CVMT Panel 2.0"
 
+hook.Add("Think", toolName .. "_Think", think)
+
 hook.Add("PopulateToolMenu", toolName, function()
 	spawnmenu.AddToolMenuOption("Utilities", "Knife Kitty", toolName, toolPrintName, "", "", function(panel)
 		PANEL = panel
-		updatePanel()
-		
-		hook.Add("Think", toolName .. "_Think", think)
+		updatePanel()		
 	end)
-end)
-
-hook.Add("PostReloadToolsMenu", toolName .. "_Remove", function()
-	hook.Remove("Think", toolName .. "_Think")
 end)
 
 RunConsoleCommand("spawnmenu_reload")

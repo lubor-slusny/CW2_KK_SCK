@@ -170,14 +170,6 @@ function SWEP:IndividualThink()
 		
 		if !SP and not IsFirstTimePredicted() then return end
 		
-		if self.Slot != 2 and self.Slot != 3 then
-			if self.Sequence:find("sprint") then
-				self.ViewModelMovementScale = self.ViewModelMovementScale_sprint
-			else
-				self.ViewModelMovementScale = self.ViewModelMovementScale_base
-			end
-		end
-		
 		// 2b removed
 		// I guess
 		self:updateReloadTimes()

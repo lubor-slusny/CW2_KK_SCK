@@ -204,7 +204,8 @@ SWEP.SpreadCooldown = 0.8
 SWEP.Shots = 12
 SWEP.Damage = 11
 
-SWEP.DeployTime = 0.71
+SWEP.DeployTime = 0.7
+SWEP.HolsterTime = 0.5
 
 SWEP.Chamberable = true
 SWEP.SnapToIdlePostReload = false
@@ -212,7 +213,7 @@ SWEP.ShotgunReload = true
 SWEP.ReticleInactivityPostFire = SWEP.FireDelay + 0.2
 SWEP.GlobalDelayOnShoot = SWEP.FireDelay
 
-SWEP.FirstDeployTime = 2.1
+SWEP.FirstDeployTime = 2.2
 SWEP.WeaponLength = 16
 
 SWEP.ReloadFirstShell = 2.25

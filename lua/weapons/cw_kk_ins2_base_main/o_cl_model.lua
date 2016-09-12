@@ -450,3 +450,17 @@ function SWEP:processFOVChanges(deltaTime)
 	
 	self.ViewModelFOV = self.CurVMFOV
 end
+
+function SWEP:scaleMovement(val, mod)
+	local scale = self.ViewModelMovementScale
+	
+	if self.Slot != 2 and self.Slot != 3 then
+		if self.Sequence:find("sprint") then
+			scale = self.ViewModelMovementScale_sprint
+		else
+			scale = self.ViewModelMovementScale_base
+		end
+	end
+	
+	return val * scale * mod
+end

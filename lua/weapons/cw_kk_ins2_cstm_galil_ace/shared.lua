@@ -218,7 +218,8 @@ SWEP.Shots = 1
 SWEP.Damage = 38
 
 SWEP.FirstDeployTime = 2.6
-SWEP.DeployTime = 0.6
+SWEP.DeployTime = 0.7
+SWEP.HolsterTime = 0.5
 
 SWEP.ReloadTimes = {					//qc
 	base_reload = {70/32.2, 3.5},

@@ -74,6 +74,8 @@ SWEP.Primary.DefaultClip	= -1
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "Frag Grenades"
 
+SWEP.HolsterTime = 0.6
+
 SWEP.fuseTime = 5
 
 SWEP.timeToThrow = 1.5

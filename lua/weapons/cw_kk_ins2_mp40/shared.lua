@@ -179,7 +179,8 @@ SWEP.Shots = 1
 SWEP.Damage = 25
 
 SWEP.FirstDeployTime = 1.7
-SWEP.DeployTime = 0.8
+SWEP.DeployTime = 0.6
+SWEP.HolsterTime = 0.5
 
 SWEP.Chamberable = false
 

@@ -44,6 +44,10 @@ SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2gb
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.doiContentMounted()
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.doiContentMounted()
 
+SWEP.FirstDeployTime = 0.8
+SWEP.DeployTime = 0.8
+SWEP.HolsterTime = 0.5
+
 SWEP.DamageBase = 35
 
 SWEP.FireDelay = 1
