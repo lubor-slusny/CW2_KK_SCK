@@ -1,5 +1,4 @@
 
-local SP = game.SinglePlayer()
 local isBipod, wasBipod, cycle, suffix, anim, prefix, rate, clip
 
 if CLIENT then
@@ -115,7 +114,7 @@ if CLIENT then
 			suffix = "_empty" .. self._KK_INS2_customEmptySuffix
 		end
 	
-		self:playAnim(prefix .. anim .. suffix,rate,0)
+		self:playAnim(prefix .. anim .. suffix, rate, 0)
 	end
 
 	function SWEP:safetyAnimFunc()
@@ -131,7 +130,7 @@ if CLIENT then
 			suffix = suffix .. "_aim"
 		end
 		
-		self:playAnim(prefix .. anim .. suffix,1,0)
+		self:playAnim(prefix .. anim .. suffix, 1, 0)
 		-- self.reticleInactivity = UnPredictedCurTime() + 0.5
 	end
 
@@ -148,7 +147,7 @@ if CLIENT then
 			suffix = suffix .. "_aim"
 		end
 		
-		self:playAnim(prefix .. anim .. suffix,1,0)
+		self:playAnim(prefix .. anim .. suffix, 1, 0)
 		
 		if self.Animations[prefix .. anim .. suffix] then
 			self.reticleInactivity = UnPredictedCurTime() + (self.CW_VM:SequenceDuration())
@@ -183,29 +182,25 @@ if CLIENT then
 			-- cycle = 0.5
 		-- end
 		
-		self:playAnim(prefix .. anim .. suffix,rate,cycle)
+		self:playAnim(prefix .. anim .. suffix, rate, cycle)
 	end
 end
 
-function SWEP:pickupAnimFunc(mode)
-	self:sendWeaponAnim((mode or self:getForegripMode()) .. "pickup")
-end
-
 function SWEP:drawAnimFunc()
-	-- print(self:GetClass() .. ":drawAnimFunc()", "@", CurTime())
+	if CLIENT then return end
 	
 	prefix = self:getForegripMode()
+	rate = self.DrawSpeed
 	
 	if not self._KK_INS2_PickedUp then
 		if !(clip == 0 and self.KK_INS2_EmptyIdle) then
-			self:pickupAnimFunc(prefix)
-			return		
+			self:sendWeaponAnimINS2(prefix .. "pickup", rate, 0)
+			return
 		end
 	end
 	
 	clip = self:Clip1()
 	suffix = ""
-	rate = self.DrawSpeed
 	
 	if self.dt.INS2GLActive then
 		if !self.M203Chamber and self.KK_INS2_EmptyIdleGL then
@@ -217,7 +212,7 @@ function SWEP:drawAnimFunc()
 		end
 	end
 	
-	self:sendWeaponAnim(prefix .. "draw" .. suffix,rate,0)
+	self:sendWeaponAnimINS2(prefix .. "draw" .. suffix, rate, 0)
 end
 
 function SWEP:meleeAnimFunc()
@@ -231,7 +226,7 @@ function SWEP:meleeAnimFunc()
 		suffix = "_empty" .. self._KK_INS2_customEmptySuffix
 	end
 	
-	self:sendWeaponAnim(prefix .. "melee" .. suffix,rate,cyc)
+	self:sendWeaponAnim(prefix .. "melee" .. suffix, rate, cyc)
 end //*/
 	
 function SWEP:fireAnimFunc()
@@ -251,18 +246,18 @@ function SWEP:fireAnimFunc()
 		suffix = suffix .. "_aim"
 	end
 	
-	self:sendWeaponAnim(prefix .. "fire" .. suffix,rate,cyc)
+	self:sendWeaponAnim(prefix .. "fire" .. suffix, rate, cyc)
 	
 	if self.KK_INS2_BoltAction and not self.dt.INS2GLActive and clip > 0 then
 		CustomizableWeaponry.actionSequence.new(self, self.KK_INS2_BoltAction, nil, function()
-			self:sendWeaponAnim(prefix .. "bolt" .. suffix,1,0)
+			self:sendWeaponAnim(prefix .. "bolt" .. suffix, 1, 0)
 		end)
 	end
 end //*/
 
--- function SWEP:fireAnimFunc() end
-
-function SWEP:_holsterAnimFunc()
+function SWEP:holsterAnimFunc()
+	if CLIENT then return end
+	
 	prefix = self:getForegripMode()
 	suffix = ""
 	
@@ -270,11 +265,83 @@ function SWEP:_holsterAnimFunc()
 		suffix = "_empty" .. self._KK_INS2_customEmptySuffix
 	end
 	
-	self:sendWeaponAnim(prefix .. "holster" .. suffix,self.HolsterSpeed or 1,0)
-end //*/
+	self:sendWeaponAnimINS2(prefix .. "holster" .. suffix, self.HolsterSpeed, 0)
+end
 
--- if SP then
-	function SWEP:holsterAnimFunc()
-		self:_holsterAnimFunc()
+// angry stuff
+
+if SERVER then
+	util.AddNetworkString("kkins2_animate")
+end
+
+function SWEP:sendWeaponAnimINS2(anim, rate, cycle, clok)
+	if not anim then
+		return
 	end
--- end
+	
+	rate = rate or 1
+	cycle = cycle or 0
+	
+	print(anim, rate, cycle, clok)
+	
+	if SERVER then
+		net.Start("kkins2_animate")
+		net.WriteEntity(self)
+		net.WriteString(anim)
+		net.WriteFloat(rate)
+		net.WriteFloat(cycle)
+		net.Send(self.Owner)
+	end
+	
+	if self.animCallbacks and self.animCallbacks[anim] then
+		self.animCallbacks[anim](self)
+	end
+	
+	local foundAnim = self.Animations[anim]
+	
+	if not foundAnim then
+		return
+	end
+	
+	if type(foundAnim) == "table" then
+		foundAnim = table.Random(foundAnim)
+	end
+	
+	if self.Sounds[foundAnim] then
+		self:setCurSoundTable(self.Sounds[foundAnim], rate, cycle, foundAnim)
+	else
+		self:removeCurSoundTable()
+	end
+	
+	if CLIENT and clok then
+		local ent = self.CW_VM
+		
+		ent:ResetSequence(foundAnim)
+		
+		if cycle > 0 then
+			ent:SetCycle(cycle)
+		else
+			ent:SetCycle(0)
+		end
+		
+		ent:SetPlaybackRate(rate)
+	end
+end
+
+if CLIENT then
+	local LocalPlayer = LocalPlayer
+	
+	local function kkins2_animate()
+		local wep = net.ReadEntity()
+		local anim = net.ReadString()
+		local rate = net.ReadFloat()
+		local cycle = net.ReadFloat()
+		
+		if wep.sendWeaponAnimINS2 then
+			wep:sendWeaponAnimINS2(anim, rate, cycle, true)
+		end
+	end
+	
+	net.Receive("kkins2_animate", kkins2_animate)
+end
+

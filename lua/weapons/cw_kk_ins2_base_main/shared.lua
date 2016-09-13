@@ -245,69 +245,12 @@ end
 
 function SWEP:OnDrop(...)
 	self:PrepareForPickup(true)
-	
-	-- if self.allocatedMags and #self.allocatedMags > 0 then
-		-- for key, roundCount in ipairs(self.allocatedMags) do
-			-- self.Owner:GiveAmmo(roundCount, self.Primary.Ammo, true)
-		-- end
-		
-		-- self.Owner:cwAddMagazine(self.magType, #self.allocatedMags)
-	-- end
 end
 
 local prefix, suffix
 
 function SWEP:PrepareForPickup(drop)
 	self._KK_INS2_PickedUp = false
-	
-	CustomizableWeaponry.actionSequence.new(self, 0.1, nil, function()
-		if !SP and IsFirstTimePredicted() then
-			self:drawAnimFunc()
-		end
-		
-		if self.KK_INS2_EmptyIdle and self:Clip1() == 0 then return end
-		
-		if drop then
-			self:setGlobalDelay(self.FirstDeployTime - 0.2)
-		else
-			self:setGlobalDelay(self.FirstDeployTime - 0.1)
-			-- self:SetClip1(self.Primary.ClipSize)
-		end
-	end)
-	
-	CustomizableWeaponry.actionSequence.new(self, self.FirstDeployTime - 0.5, nil, function()
-		self._KK_INS2_PickedUp = true
-	end)
-	
-	if SERVER then
-		self.dt.INS2GLActive = false
-	
-		if !SP then
-			umsg.Start("CW_KK_INS2_PREPAREFORPICKUP")
-				umsg.Entity(self)
-			umsg.End()
-		end
-	else
-		if !SP then
-			prefix = self:getForegripMode()
-			suffix = ""
-			
-			if self:Clip1() == 0 and self.KK_INS2_EmptyIdle then
-				suffix = "_empty"
-			end
-			
-			self:sendWeaponAnim(prefix .. "holster" .. suffix,1,1)
-		end
-	end
-end
-
-if CLIENT then
-	usermessage.Hook("CW_KK_INS2_PREPAREFORPICKUP", function(um)
-		local wep = um:ReadEntity()
-		if !IsValid(wep) or wep.Base != "cw_kk_ins2_base" then return end
-		
-		wep:PrepareForPickup()
-	end)
 end
 
 function SWEP:toggleGLMode(IFTP)

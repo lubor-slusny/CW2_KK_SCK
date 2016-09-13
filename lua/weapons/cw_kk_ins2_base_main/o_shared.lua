@@ -470,13 +470,21 @@ function SWEP:isNearWall()
 end
 
 function SWEP:GetDeployTime()
-	if self.oneTimeDeploySpeed then
-		local tar = self.DeployTime / (self.DrawSpeed + self.oneTimeDeploySpeed)
-		local out = tar * (self.DrawSpeed)
+	-- if self.oneTimeDeploySpeed then
+		-- local tar = self.DeployTime / (self.DrawSpeed + self.oneTimeDeploySpeed)
+		-- local out = tar * (self.DrawSpeed)
 		
 		-- self.oneTimeDeploySpeed = nil
 		
-		return out
+		-- return out
+	-- end
+	
+	if not self._KK_INS2_PickedUp then
+		CustomizableWeaponry.actionSequence.new(self, self.FirstDeployTime, nil, function()
+			self._KK_INS2_PickedUp = true
+		end)
+		
+		return self.FirstDeployTime
 	end
 	
 	return self.DeployTime
@@ -541,6 +549,9 @@ function SWEP:Holster(wep)
 	self.ShotgunReloadState = 0
 	self.ReloadDelay = nil
 	
+	self:holsterAnimFunc()
+	
+	/*
 	if self:filterPrediction() then
 		if self.holsterSound then -- quick'n'dirty prediction fix
 			-- self:EmitSound("CW_HOLSTER", 70, 100)
@@ -556,7 +567,7 @@ function SWEP:Holster(wep)
 				end
 			end
 		end
-	end
+	end // */
 	
 	self.SwitchWep = wep
 	self.SuppressTime = nil
