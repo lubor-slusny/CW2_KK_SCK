@@ -8,6 +8,7 @@ att.KK_INS2_playIdle = true
 
 att.statModifiers = {
 	DrawSpeedMult = -0.2,
+	HolsterSpeedMult = -0.2,
 	OverallMouseSensMult = -0.2,
 	RecoilMult = -0.1
 }
@@ -18,9 +19,6 @@ if CLIENT then
 		[1] = {t = "Allows the user to fire 40MM rounds.", c = CustomizableWeaponry.textColors.POSITIVE},
 	}
 
-	local v0 = Vector(0.01, 0.01, 0.01)
-	local v1 = Vector(1, 1, 1)
-	
 	local nadeTypes = CustomizableWeaponry.grenadeTypes.registered
 	
 	function att:elementRender()

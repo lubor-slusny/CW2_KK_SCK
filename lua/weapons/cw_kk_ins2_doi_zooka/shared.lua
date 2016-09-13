@@ -54,9 +54,7 @@ SWEP.WeaponLength = 44
 SWEP.Attachments = {
 }
 
-SWEP.Animations = {
-	draw = "base_ready",
-	base_insert = "base_reload",
+SWEP.Animations = {base_insert = "base_reload",
 	
 	base_pickup = "base_ready",
 	base_draw = "base_draw",

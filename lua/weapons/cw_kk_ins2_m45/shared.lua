@@ -67,8 +67,6 @@ if CustomizableWeaponry_KK.HOME then
 end
 
 SWEP.Animations = {
-	draw = "base_ready",
-	
 	base_pickup = "base_ready",
 	base_draw = "base_draw",
 	base_draw_empty = "empty_draw",

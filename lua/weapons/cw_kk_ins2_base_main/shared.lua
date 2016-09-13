@@ -74,6 +74,8 @@ SWEP.BipodUndeployTime = 1.15
 SWEP.FirstDeployTime = 5
 SWEP.WeaponLength = 20
 
+SWEP.HolsterSpeed = 1
+
 if CLIENT then	
 	SWEP.PosBasedMuz = true
 	
@@ -207,7 +209,7 @@ function SWEP:IndividualThink()
 end
 
 function SWEP:Initialize()
-	-- print(self:GetClass() .. ":Initialize()", "@", CurTime())
+	print(tostring(self) .. ":Initialize()")
 	
 	self:updateReloadTimes()
 	

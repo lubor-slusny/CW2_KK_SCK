@@ -33,7 +33,7 @@ if CLIENT then
 end
 
 function SWEP:pickupAnimFunc(mode)
-	//no need
+	self:drawAnimFunc()
 end
 
 function SWEP:drawAnimFunc()
@@ -52,16 +52,16 @@ function SWEP:fireAnimFunc()
 	//no need
 end
 
-function SWEP:_holsterAnimFunc()
+function SWEP:holsterAnimFunc()
 	if self.Owner:GetAmmoCount(self.Primary.Ammo) < 1 then
 		self:sendWeaponAnim("base_draw", -1, 0)
 	else
-		self:sendWeaponAnim("base_holster", self.HolsterSpeed or 1, 0)
+		self:sendWeaponAnim("base_holster", self.HolsterSpeed, 0)
 	end
 end
 
 if SP then
 	function SWEP:holsterAnimFunc()
-		self:_holsterAnimFunc()
+		self:holsterAnimFunc()
 	end
 end

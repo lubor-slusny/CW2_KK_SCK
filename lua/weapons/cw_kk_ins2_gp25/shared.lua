@@ -71,8 +71,6 @@ SWEP.Attachments = {
 }
 
 SWEP.Animations = {
-	draw = "glsetup_draw",
-	
 	base_pickup = "gl_draw",
 	base_draw = "gl_draw",
 	base_fire = "gl_fire",

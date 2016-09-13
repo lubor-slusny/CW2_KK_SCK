@@ -171,7 +171,7 @@ end
 
 // STATS
 do
-	if CLIENT then	
+	if CLIENT then
 		local stat = {}
 		stat.varName = "WeaponLength"
 		stat.display = "WEAPON LENGTH"
@@ -212,6 +212,34 @@ do
 			end
 			
 			return out
+		end
+
+		CustomizableWeaponry.statDisplay:addStat(stat)
+		
+		local stat = {}
+		stat.varName = "HolsterTime"
+		stat.display = "HOLSTER TIME"
+		stat.desc = "Time it takes in seconds to have the weapon be safely stored in inventory after holstering."
+
+		function stat:compare(wep)
+			local orig = wep.HolsterTime_Orig / wep.HolsterSpeed_Orig
+			local cur = wep.HolsterTime / wep.HolsterSpeed
+			
+			if cur < orig then
+				return CustomizableWeaponry.textColors.POSITIVE
+			elseif cur > orig then
+				return CustomizableWeaponry.textColors.NEGATIVE
+			end
+			
+			return CustomizableWeaponry.textColors.REGULAR
+		end
+
+		function stat:textFunc(wep)
+			return math.Round(wep.HolsterTime / wep.HolsterSpeed, 2) .. "s"
+		end
+
+		function stat:origTextFunc(wep)
+			return math.Round(wep.HolsterTime_Orig / wep.HolsterSpeed_Orig, 2) .. "s"
 		end
 
 		CustomizableWeaponry.statDisplay:addStat(stat)

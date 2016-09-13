@@ -41,8 +41,6 @@ SWEP.Attachments = {
 SWEP.KK_INS2_EmptyIdle = true
 
 SWEP.Animations = {
-	draw = "base_ready",
-
 	base_pickup = "base_ready",
 	base_draw = "base_draw",
 	base_draw_empty = "base_draw_empty",

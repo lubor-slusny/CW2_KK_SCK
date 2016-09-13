@@ -18,8 +18,6 @@ SWEP.CanRestOnObjects = false
 SWEP.grenadeEnt = "cw_kk_ins2_projectile_molotov"
 
 SWEP.Animations = {
-	draw = "base_draw",
-	
 	pullpin = "pullbackhigh",
 	throw = "throw",
 	

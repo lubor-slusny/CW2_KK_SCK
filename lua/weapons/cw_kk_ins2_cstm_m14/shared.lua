@@ -102,8 +102,6 @@ SWEP.Attachments = {
 }
 
 SWEP.Animations = {
-	draw = "base_ready",
-	
 	base_pickup = "base_ready",
 	base_draw = "base_draw",
 	base_fire = "base_fire",

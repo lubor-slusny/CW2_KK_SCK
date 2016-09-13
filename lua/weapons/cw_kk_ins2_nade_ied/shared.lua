@@ -20,7 +20,6 @@ if CLIENT then
 end
 
 SWEP.Animations = {
-	draw = "draw",
 	throw = "base_throw",
 	plant = "plant",
 	pullpin = "base_pullback",
@@ -407,7 +406,7 @@ function SWEP:SecondaryAttack()
 		end
 		
 		if self:canAnimate() then
-			self:_holsterAnimFunc()
+			self:holsterAnimFunc()
 			
 			CustomizableWeaponry.actionSequence.new(self, 0.4, nil, function()
 				self:sendWeaponAnim("det_draw", 1, 0)

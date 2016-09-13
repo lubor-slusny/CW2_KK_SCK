@@ -273,8 +273,8 @@ function SWEP:_holsterAnimFunc()
 	self:sendWeaponAnim(prefix .. "holster" .. suffix,self.HolsterSpeed or 1,0)
 end //*/
 
-if SP then
+-- if SP then
 	function SWEP:holsterAnimFunc()
 		self:_holsterAnimFunc()
 	end
-end
+-- end

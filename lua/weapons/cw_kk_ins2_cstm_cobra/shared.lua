@@ -72,8 +72,6 @@ else
 end
 
 SWEP.Animations = {
-	draw = "base_ready",
-	
 	base_reload_start = "base_reload_start",
 	base_reload_start_empty = "base_reload_start",
 	base_insert = "base_reload_insert",

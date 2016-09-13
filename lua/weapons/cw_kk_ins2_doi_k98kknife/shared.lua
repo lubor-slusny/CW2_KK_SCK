@@ -12,8 +12,6 @@ if CLIENT then
 end
 
 SWEP.Animations = {
-	draw = "draw",
-
 	base_pickup = "draw",
 	base_draw = "draw",
 	base_fire = {"hitcenter1","hitcenter2"},

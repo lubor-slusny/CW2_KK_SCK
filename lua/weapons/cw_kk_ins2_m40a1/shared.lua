@@ -141,7 +141,6 @@ if CustomizableWeaponry_KK.HOME then
 end
 
 SWEP.Animations = {
-	draw = "base_ready",
 	reload_start = "",
 	insert = "",
 	reload_end = "",

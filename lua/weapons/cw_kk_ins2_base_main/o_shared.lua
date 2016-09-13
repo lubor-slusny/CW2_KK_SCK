@@ -468,3 +468,96 @@ function SWEP:isNearWall()
 	
 	return false
 end
+
+function SWEP:GetDeployTime()
+	if self.oneTimeDeploySpeed then
+		local tar = self.DeployTime / (self.DrawSpeed + self.oneTimeDeploySpeed)
+		local out = tar * (self.DrawSpeed)
+		
+		-- self.oneTimeDeploySpeed = nil
+		
+		return out
+	end
+	
+	return self.DeployTime
+end
+
+function SWEP:Deploy(...)
+	print(tostring(self) .. ":Deploy()")
+	
+	weapons.GetStored("cw_base").Deploy(self, ...)
+end
+
+function SWEP:Holster(wep)
+	print(tostring(self) .. ":Holster()")
+	
+	-- can't switch if neither the weapon we want to switch to or the wep we're trying to switch to are not valid
+	if not IsValid(wep) and not IsValid(self.SwitchWep) then
+		self.SwitchWep = nil
+		return false
+	end
+	
+	local CT = CurTime()
+	
+	if self.dt.PinPulled then
+		return false
+	end
+	
+	-- can't holster if we have a global delay on the weapon
+	if CT < self.GlobalDelay or CT < self.HolsterWait then
+		return false
+	end
+	
+	if self.dt.HolsterDelay ~= 0 and CT < self.dt.HolsterDelay then
+		return false
+	end
+	
+	-- can't holster if there are sequenced actions
+	if #self._activeSequences > 0 then
+		return false
+	end
+	
+	if self.ReloadDelay then
+		return false
+	end
+	
+	if self.dt.State ~= CW_HOLSTER_START then
+		self.dt.HolsterDelay = CurTime() + (self.HolsterTime / (self.HolsterSpeed * self.HolsterSpeedMult))
+	end
+	
+	self.dt.State = CW_HOLSTER_START
+	
+	-- if holster sequence is over, let us select the desired weapon
+	if self.SwitchWep and self.dt.State == CW_HOLSTER_START and CurTime() > self.dt.HolsterDelay then
+		self.dt.State = CW_IDLE
+		self.dt.HolsterDelay = 0
+		
+		CustomizableWeaponry.callbacks.processCategory(self, "holsterEnd", self.SwitchWep)
+		
+		return true
+	end
+	
+	-- if it isn't, make preparations for it
+	self.ShotgunReloadState = 0
+	self.ReloadDelay = nil
+	
+	if self:filterPrediction() then
+		if self.holsterSound then -- quick'n'dirty prediction fix
+			-- self:EmitSound("CW_HOLSTER", 70, 100)
+			self.holsterSound = false
+			
+			if IsFirstTimePredicted() then
+				if self.holsterAnimFunc then
+					self:holsterAnimFunc()
+				else
+					if self.Animations.holster then
+						self:sendWeaponAnim("holster")
+					end
+				end
+			end
+		end
+	end
+	
+	self.SwitchWep = wep
+	self.SuppressTime = nil
+end

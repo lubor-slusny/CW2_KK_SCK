@@ -10,14 +10,12 @@ if CLIENT then
 end
 
 SWEP.Animations = {
-	draw = "draw",
-
-	base_pickup = "draw",
-	base_draw = "draw",
+	base_pickup = "base_draw",
+	base_draw = "base_draw",
 	base_fire = {"base_attack_1", "base_attack_2", "base_attack_3", "abase_ttack_kill"},
-	base_idle = "idle",
-	base_holster = "holster",
-	base_sprint = "sprint",
+	base_idle = "base_idle",
+	base_holster = "base_holster",
+	base_sprint = "base_sprint",
 }
 
 SWEP.NormalHoldType = "melee2"

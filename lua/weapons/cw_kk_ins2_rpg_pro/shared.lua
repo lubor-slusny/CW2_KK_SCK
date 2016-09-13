@@ -19,9 +19,7 @@ end
 
 SWEP.CanRestOnObjects = false
 
-SWEP.Animations = {
-	draw = "base_draw",
-	throw = "throw",
+SWEP.Animations = {throw = "throw",
 	pullpin = "pullback_high",
 	
 	base_pickup = "base_draw",
