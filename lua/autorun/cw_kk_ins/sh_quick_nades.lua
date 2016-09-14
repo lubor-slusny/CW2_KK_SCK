@@ -302,9 +302,7 @@ end
 if SERVER then
 	local wep
 	
-	local function cw_kk_throwfrag(ply)
-		-- print("Qnade call;", ply)
-		
+	local function cw_kk_throwfrag(ply)		
 		if !IsValid(ply) then return end
 		
 		wep = ply:GetActiveWeapon()

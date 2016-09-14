@@ -1,6 +1,13 @@
 
 local SP = game.SinglePlayer()
 
+//-----------------------------------------------------------------------------
+// fireM203 edited to use
+// - CW_VM for animations
+// - grenade launcher VElement for muzzle flash position
+// - shouldSuppressAmmoUsage callback 
+//-----------------------------------------------------------------------------
+
 function SWEP:fireM203(firstTimePrediction)
 	if SERVER and SP then
 		SendUserMessage("CW20_FIREM203", self.Owner)
@@ -40,9 +47,19 @@ function SWEP:fireM203(firstTimePrediction)
 	end
 end
 
+//-----------------------------------------------------------------------------
+// reloadM203 contents were moved to 
+// SWEP:Reload()
+// SWEP:beginReload()
+// SWEP:finishReload()
+//-----------------------------------------------------------------------------
+
 function SWEP:reloadM203()
-	// moved to SWEP:Reload(), SWEP:beginReload() and SWEP:finishReload()
 end
+
+//-----------------------------------------------------------------------------
+// CW_KK_INS2_READYM203 message notifies client that GL was loaded (hud)
+//-----------------------------------------------------------------------------
 
 if CLIENT then
 	usermessage.Hook("CW_KK_INS2_READYM203", function()
@@ -56,7 +73,9 @@ if CLIENT then
 	end)
 end
 
-// GL unloading upon changing ammo
+//-----------------------------------------------------------------------------
+// unloading greande launcher after grenadeType change
+//-----------------------------------------------------------------------------
 
 function SWEP:unloadM203()
 	local give = 0
@@ -75,6 +94,10 @@ function SWEP:unloadM203()
 	end	
 end
 
+//-----------------------------------------------------------------------------
+// CW_KK_INS2_UNLOADM203 message notifies client that grenade launcher was unloaded (hud)
+//-----------------------------------------------------------------------------
+
 if CLIENT then
 	usermessage.Hook("CW_KK_INS2_UNLOADM203", function()
 		local ply = LocalPlayer()
@@ -86,6 +109,10 @@ if CLIENT then
 		wep:unloadM203()
 	end)
 end
+
+//-----------------------------------------------------------------------------
+// cycle40MMGrenades edited to unload grenade launcher upon grenadeType change
+//-----------------------------------------------------------------------------
 
 if SERVER then
 	function SWEP:cycle40MMGrenades()

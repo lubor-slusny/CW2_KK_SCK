@@ -66,12 +66,8 @@ if CLIENT then
 		mdlAttRear = attachmEnt:GetAttachment(1)
 		mdlAttFront = attachmEnt:GetAttachment(2)
 		
-		if wep.freeAimOn then
-			ang = wep.Owner:EyeAngles()
-		else
-			ang = mdlAttRear.Ang
-			ang:RotateAroundAxis(ang:Forward(), -90)
-		end
+		ang = mdlAttRear.Ang
+		ang:RotateAroundAxis(ang:Forward(), -90)
 		
 		rtSize = wep:getRenderTargetSize()
 		

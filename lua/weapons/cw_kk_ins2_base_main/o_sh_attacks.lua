@@ -1,6 +1,13 @@
 
 local SP = game.SinglePlayer()
 
+//-----------------------------------------------------------------------------
+// PrimaryAttack edited to support
+// - customized M203/grenade launcher
+// - dryfire animations
+// - custom muzzle flash lua effect 
+//-----------------------------------------------------------------------------
+
 local IFTP, CT
 
 function SWEP:PrimaryAttack()
@@ -131,23 +138,9 @@ function SWEP:PrimaryAttack()
 	end
 end
 
-function SWEP:makeFireEffects()
-	if SP and SERVER then
-		-- god damn prediction disabled in SP
-		SendUserMessage("CW20_EFFECTS")
-		return
-	end
-	
-	if CLIENT then
-		if self.MuzzleEffect then
-			self:CreateMuzzle()
-		end
-		
-		if self.Shell then
-			self:CreateShell()
-		end
-	end
-end
+//-----------------------------------------------------------------------------
+// SecondaryAttack edited to support customized grenade launcher
+//-----------------------------------------------------------------------------
 
 local reg = debug.getregistry()
 local GetVelocity = reg.Entity.GetVelocity

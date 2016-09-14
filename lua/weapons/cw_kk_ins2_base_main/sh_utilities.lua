@@ -3,6 +3,16 @@ local SP = game.SinglePlayer()
 
 local mode, customSuffix, fullA, emptyA, fullT, emptyT
 
+//-----------------------------------------------------------------------------
+// updateReloadTimes
+// Server-side called from SWEP:beginReload(). 
+// Client-side called from SWEP:Think()
+// writes to 
+// SWEP.Animations.reload 
+// SWEP.Animations.reload_empty
+// SWEP.Reload(Time|Halt)(|_Empty)
+//-----------------------------------------------------------------------------
+
 function SWEP:updateReloadTimes()
 	mode = self:getForegripMode()
 	customSuffix = self._KK_INS2_customReloadSuffix
@@ -29,7 +39,7 @@ function SWEP:updateReloadTimes()
 		
 		return
 	end
-		
+	
 	// delete below once above is finished	
 	
 	if self.ShotgunReload and !self.dt.INS2GLActive then
@@ -66,13 +76,25 @@ function SWEP:updateReloadTimes()
 	end
 end
 
+//-----------------------------------------------------------------------------
+// tbd
+//-----------------------------------------------------------------------------
+
 function SWEP:getReloadAnim()
 	
 end
 
+//-----------------------------------------------------------------------------
+// tbd
+//-----------------------------------------------------------------------------
+
 function SWEP:getReloadTimes()
 	
 end
+
+//-----------------------------------------------------------------------------
+// reloadInactivity is called from SWEP:beginReload() to prevent sprint anims
+//-----------------------------------------------------------------------------
 
 if CLIENT then
 	function SWEP:reloadInactivity()
@@ -100,6 +122,10 @@ if CLIENT then
 	end)
 end
 
+//-----------------------------------------------------------------------------
+// updateHands checks cw_kk_ins2_rig convar for changes and updates hands model
+//-----------------------------------------------------------------------------
+
 if CLIENT then
 	local cvRig = GetConVar("cw_kk_ins2_rig")
 	local currentRig
@@ -115,7 +141,16 @@ if CLIENT then
 		
 		self._KK_INS2_rig = currentRig
 	end
-	
+end
+
+//-----------------------------------------------------------------------------
+// updateBelt on first call
+// - checks CW_VM for bodygroups called "belt" or "shells"
+// - replaces itself with blank function or belt bodygroup handler
+// shells bodygroup is handled using sound table callbacks
+//-----------------------------------------------------------------------------
+
+if CLIENT then
 	local function blank() end
 	
 	function SWEP:updateBelt()
@@ -137,15 +172,31 @@ if CLIENT then
 			self._shellsBGMax = vm:GetBodygroupCount(id) - 1
 		end
 	end
-	
+end
+
+//-----------------------------------------------------------------------------
+// updateOtherParts is called from SWEP:Think, clientside only
+//-----------------------------------------------------------------------------
+
+if CLIENT then	
 	function SWEP:updateOtherParts()
 		// whatever u want
 	end
-	
+end
+
+//-----------------------------------------------------------------------------
+// updateStandardParts is called from post(attach|detach) callback, clientside
+//-----------------------------------------------------------------------------
+
+if CLIENT then
 	function SWEP:updateStandardParts()
 		// whatever u want
 	end
 end
+
+//-----------------------------------------------------------------------------
+// 
+//-----------------------------------------------------------------------------
 
 function SWEP:hasInstalledRTScope()
 	return 
@@ -161,6 +212,10 @@ function SWEP:hasInstalledRTScope()
 		self.ActiveAttachments.kk_ins2_scope_zf4
 end
 
+//-----------------------------------------------------------------------------
+// 
+//-----------------------------------------------------------------------------
+
 function SWEP:hasInstalledStencilSight()
 	return 
 		self.ActiveAttachments.kk_ins2_aimpoint or
@@ -175,9 +230,17 @@ function SWEP:hasInstalledStencilSight()
 		self.ActiveAttachments.kk_ins2_cstm_compm4s
 end
 
+//-----------------------------------------------------------------------------
+// 
+//-----------------------------------------------------------------------------
+
 function SWEP:hasInstalledGL()
 	return self._currentGrenadeLauncher != nil
 end
+
+//-----------------------------------------------------------------------------
+// 
+//-----------------------------------------------------------------------------
 
 function SWEP:getForegripMode()
 	if self.ActiveAttachments.kk_ins2_vertgrip then 
@@ -195,13 +258,25 @@ function SWEP:getForegripMode()
 	return "base_"
 end
 
+//-----------------------------------------------------------------------------
+// 
+//-----------------------------------------------------------------------------
+
 function SWEP:getPrimarySight()	
 	return self._currentPrimarySight and self._currentPrimarySight.name
 end
 
+//-----------------------------------------------------------------------------
+// 
+//-----------------------------------------------------------------------------
+
 function SWEP:getSecondarySight()
 	return self._currentSecondarySight and self._currentSecondarySight.name
 end
+
+//-----------------------------------------------------------------------------
+// 
+//-----------------------------------------------------------------------------
 
 function SWEP:getGLAttName()
 	return (self._currentGrenadeLauncher and self._currentGrenadeLauncher.displayNameShort) or "No grenade launcher attached."

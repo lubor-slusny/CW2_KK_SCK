@@ -1,5 +1,7 @@
 
-// vm fx tweak
+//-----------------------------------------------------------------------------
+// getMuzzlePosition edited to be usable in third person
+//-----------------------------------------------------------------------------
 
 local att, vm
 
@@ -21,7 +23,10 @@ function SWEP:getMuzzlePosition()
 	return muz
 end
 
-// fix for certain models
+//-----------------------------------------------------------------------------
+// LookupBone("[__INVALIDBONE__]") returns nil 
+// so I store int that I used with GetBoneName
+//-----------------------------------------------------------------------------
 
 function SWEP:buildBoneTable()
 	local vm = self.CW_VM
@@ -39,7 +44,9 @@ function SWEP:buildBoneTable()
 	end
 end
 
-// custom VM override for bonemerged hands
+//-----------------------------------------------------------------------------
+// createCustomVM edited to initialize addditional models
+//-----------------------------------------------------------------------------
 
 function SWEP:createCustomVM(mdl)
 	self.CW_VM = self:createManagedCModel(mdl, RENDERGROUP_BOTH)
@@ -68,6 +75,10 @@ function SWEP:createCustomVM(mdl)
 	self.WMEnt:SetNoDraw(true)
 end
 
+//-----------------------------------------------------------------------------
+// drawViewModel edited to draw quick knife viewmodel
+//-----------------------------------------------------------------------------
+
 local FT
 
 function SWEP:drawViewModel()
@@ -88,6 +99,10 @@ function SWEP:drawViewModel()
 	self:drawGrenade()
 	self:drawKKKnife()
 end
+
+//-----------------------------------------------------------------------------
+// _drawViewModel edited to draw hands-model entity and viewmodel shells
+//-----------------------------------------------------------------------------
 
 local cvAmmoHud = GetConVar("cw_customhud_ammo")
 local cvSVM = GetConVar("cw_kk_ins2_shell_vm")
@@ -122,12 +137,17 @@ function SWEP:_drawViewModel()
 	end
 end
 
-// grenade override
-// custom models + bonemerged hands
+//-----------------------------------------------------------------------------
+// createGrenadeModel contents moved to createCustomVM
+//-----------------------------------------------------------------------------
 
 function SWEP:createGrenadeModel() 
 	// moved somewhere
 end
+
+//-----------------------------------------------------------------------------
+// drawGrenade edited to draw hands-model entity
+//-----------------------------------------------------------------------------
 
 local pos, ang
 
@@ -157,11 +177,21 @@ function SWEP:drawGrenade()
 	cam.IgnoreZ(false)
 end
 
+//-----------------------------------------------------------------------------
+// drawKKKnife contents temporarily stored in global table
+//-----------------------------------------------------------------------------
+
 function SWEP:drawKKKnife()
 	CustomizableWeaponry_KK.ins2.quickKnife.drawVM(self)
 end
 
-// attachment models
+//-----------------------------------------------------------------------------
+// setupAttachmentModels edited to support 
+// - custom attach points
+// - globally pre-set sub-material override
+// - individually set material override
+// - WElement init
+//-----------------------------------------------------------------------------
 
 function SWEP:setupAttachmentModels()
 	if self.AttachmentModelsVM then
@@ -224,6 +254,10 @@ function SWEP:setupAttachmentModels()
 	self:setupAttachmentWModels()
 end
 
+//-----------------------------------------------------------------------------
+// drawAttachments edited to support custom attach points
+//-----------------------------------------------------------------------------
+
 local active, pos, ang, m, vma, model
 
 function SWEP:drawAttachments()
@@ -284,7 +318,11 @@ function SWEP:drawAttachments()
 	return true
 end
 
-// custom world models + welements
+//-----------------------------------------------------------------------------
+// DrawWorldModel edited to support
+// - attachment world models (WElements)
+// - 3rd person 3d2d hud
+//-----------------------------------------------------------------------------
 
 local GetBonePosition = debug.getregistry().Entity.GetBonePosition
 local LookupBone = debug.getregistry().Entity.LookupBone
@@ -355,6 +393,10 @@ function SWEP:DrawWorldModel()
 	self.CustomizationMenuScale = self.CustomizationMenuScale / 1.5
 end
 
+//-----------------------------------------------------------------------------
+// initialize attachment world models (WElements) 
+//-----------------------------------------------------------------------------
+
 function SWEP:setupAttachmentWModels()
 	if self.AttachmentModelsWM then
 		self:SetupBones()
@@ -386,6 +428,10 @@ function SWEP:setupAttachmentWModels()
 		end
 	end
 end
+
+//-----------------------------------------------------------------------------
+// draw attachment world models (WElements) 
+//-----------------------------------------------------------------------------
 
 function SWEP:drawAttachmentsWorld(parent)	
 	if self.AttachmentModelsWM then
@@ -431,7 +477,9 @@ function SWEP:drawAttachmentsWorld(parent)
 	end
 end
 
-// INS2 GL Fov fix
+//-----------------------------------------------------------------------------
+// processFOVChanges edited to take dt.INS2GLActive into account
+//-----------------------------------------------------------------------------
 
 function SWEP:processFOVChanges(deltaTime)
 	if self.dt.State == CW_AIMING then
@@ -450,6 +498,10 @@ function SWEP:processFOVChanges(deltaTime)
 	
 	self.ViewModelFOV = self.CurVMFOV
 end
+
+//-----------------------------------------------------------------------------
+// scaleMovement edited to use sprint state dependent base values 
+//-----------------------------------------------------------------------------
 
 function SWEP:scaleMovement(val, mod)
 	local scale = self.ViewModelMovementScale

@@ -326,7 +326,7 @@ if CLIENT then
 		local active = self.ActiveAttachments
 		
 		self.AttachmentModelsVM.kk_ins2_galil.active = !active.kk_ins2_bipod
-		self.AttachmentModelsVM.kk_ins2_mag_galil_35.active = !active.kk_ins2_mag_galil_75
-		self:setWElementActive("kk_ins2_mag_galil_35", !active.kk_ins2_mag_galil_75)
+		
+		self:setElementActive("kk_ins2_mag_galil_35", !active.kk_ins2_mag_galil_75)
 	end
 end

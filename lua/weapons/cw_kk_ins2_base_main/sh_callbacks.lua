@@ -3,12 +3,12 @@ local SP = game.SinglePlayer()
 
 //yea im layzeeee
 local copyPaste = {
-	["KKINS2CSTMCMore"] = "KKINS2Aimpoint",
-	["KKINS2CSTMBarska"] = "KKINS2EoTech",
-	["KKINS2CSTMMicroT1"] = "KKINS2Aimpoint",
-	["KKINS2CSTMEoTechXPS"] = "KKINS2EoTech",
-	["KKINS2CSTMCompM4S"] = "KKINS2Aimpoint",
-	["KKINS2CSTMACOG"] = "KKINS2Elcan",
+	["KKINS2CSTMCMore"] = "KKINS2Aimpoint", 
+	["KKINS2CSTMBarska"] = "KKINS2EoTech", 
+	["KKINS2CSTMMicroT1"] = "KKINS2Aimpoint", 
+	["KKINS2CSTMEoTechXPS"] = "KKINS2EoTech", 
+	["KKINS2CSTMCompM4S"] = "KKINS2Aimpoint", 
+	["KKINS2CSTMACOG"] = "KKINS2Elcan", 
 }
 local copyPasteSx = {
 	"Pos", "Ang"
@@ -16,10 +16,10 @@ local copyPasteSx = {
 
 // this might help
 local customFireFuncs = {
-	["PG-7VM Grenade"] = CustomizableWeaponry_KK.ins2.rpgs.fireRPG,
-	["AT4 Launcher"] = CustomizableWeaponry_KK.ins2.rpgs.fireAT4,
-	["M6A1 Rocket"] = CustomizableWeaponry_KK.ins2.rpgs.fireM6A1,
-	["Panzerfaust"] = CustomizableWeaponry_KK.ins2.rpgs.firePF60,
+	["PG-7VM Grenade"] = CustomizableWeaponry_KK.ins2.rpgs.fireRPG, 
+	["AT4 Launcher"] = CustomizableWeaponry_KK.ins2.rpgs.fireAT4, 
+	["M6A1 Rocket"] = CustomizableWeaponry_KK.ins2.rpgs.fireM6A1, 
+	["Panzerfaust"] = CustomizableWeaponry_KK.ins2.rpgs.firePF60, 
 }
 
 CustomizableWeaponry.callbacks:addNew("initialize", "KK_INS2_BASE", function(wep)
@@ -36,8 +36,8 @@ CustomizableWeaponry.callbacks:addNew("initialize", "KK_INS2_BASE", function(wep
 		end
 		
 		// fastest way to setup sights from Workshop sight contract
-		for k,v in pairs(copyPaste) do
-			for _,x in pairs(copyPasteSx) do
+		for k, v in pairs(copyPaste) do
+			for _, x in pairs(copyPasteSx) do
 				if not wep[k .. x] then
 					wep[k .. x] = wep[v .. x]
 				end
@@ -94,7 +94,7 @@ local function sharedAttachDetach(wep, att)
 	local prim, sec = wep:getPrimarySight(), wep:getSecondarySight()
 	
 	if CLIENT then
-		// magnifier scope		
+		// magnifier scope
 		if sec then
 			local a = CW2_ATTS[sec]
 			wep.AimPos = wep[a.aimPos[1]]
@@ -111,25 +111,11 @@ local function sharedAttachDetach(wep, att)
 			wep.AimViewModelFOV = wep.AimViewModelFOV_Orig
 		end
 		
-		// previously standard parts update called every Think
-		for _,t in pairs({"AttachmentModelsVM", /*"AttachmentModelsWM"*/}) do
-			if wep[t] then
-				if wep[t].kk_ins2_optic_iron then
-					wep[t].kk_ins2_optic_iron.active = prim == nil
-					wep:setWElementActive("kk_ins2_optic_iron", prim == nil)
-				end
-				if wep[t].kk_ins2_optic_rail then
-					wep[t].kk_ins2_optic_rail.active = prim != nil
-					wep:setWElementActive("kk_ins2_optic_rail", prim != nil)
-				end
-				if wep[t][att.name] and wep[t][att.name .. "_rail"] then
-					wep[t][att.name .. "_rail"].active = wep[t][att.name].active
-					wep:setWElementActive(att.name .. "_rail", wep[t][att.name].active)
-				end
-			end
-		end
+		// shared standard parts
+		wep:setElementActive("kk_ins2_optic_iron", prim == nil)
+		wep:setElementActive("kk_ins2_optic_rail", prim != nil)
 		
-		// moved from think
+		// individual standard parts
 		wep:updateStandardParts()
 	end
 	
@@ -137,7 +123,7 @@ end
 
 local att
 
-CustomizableWeaponry.callbacks:addNew("postAttachAttachment", "KK_INS2_BASE", function(wep,catId,attId)
+CustomizableWeaponry.callbacks:addNew("postAttachAttachment", "KK_INS2_BASE", function(wep, catId, attId)
 	if !wep.KKINS2Wep then return end
 	
 	att = CW2_ATTS[wep.Attachments[catId].atts[attId]]
@@ -159,11 +145,12 @@ CustomizableWeaponry.callbacks:addNew("postAttachAttachment", "KK_INS2_BASE", fu
 			if wep.dt.State == CW_CUSTOMIZE then
 				wep:idleAnimFunc()
 			else
-				wep:pickupAnimFunc()
+				-- wep:pickupAnimFunc()
 			end
 		end
 		
-		wep:setWElementActive(att.name, true)
+		wep:setElementActive(att.name, true)
+		wep:setElementActive(att.name .. "_rail", true)
 	end
 	
 	if SERVER then
@@ -173,7 +160,7 @@ CustomizableWeaponry.callbacks:addNew("postAttachAttachment", "KK_INS2_BASE", fu
 	sharedAttachDetach(wep, att)
 end)
 
-CustomizableWeaponry.callbacks:addNew("postDetachAttachment", "KK_INS2_BASE", function(wep,attTable,CWMenuCategory)
+CustomizableWeaponry.callbacks:addNew("postDetachAttachment", "KK_INS2_BASE", function(wep, attTable, CWMenuCategory)
 	if !wep.KKINS2Wep then return end
 	
 	att = attTable
@@ -195,7 +182,8 @@ CustomizableWeaponry.callbacks:addNew("postDetachAttachment", "KK_INS2_BASE", fu
 			wep:idleAnimFunc()
 		end
 		
-		wep:setWElementActive(att.name, false)
+		wep:setElementActive(att.name, false)
+		wep:setElementActive(att.name .. "_rail", false)
 	end
 	
 	if SERVER then
@@ -204,33 +192,6 @@ CustomizableWeaponry.callbacks:addNew("postDetachAttachment", "KK_INS2_BASE", fu
 	
 	sharedAttachDetach(wep, att)
 end)
-
-if CLIENT then
-	local orig = Color(255, 167, 112, 255)
-	local red = Color(255, 100, 100, 255)
-	local green = Color(100, 255, 100, 255)
-	local blu = Color(255, 255, 100, 255)
-
-	CustomizableWeaponry.callbacks:addNew("finalizePhysicalBullet", "KK_INS2_BASE", function(wep, data)
-		-- if type(wep) == "Weapon" and IsValid(wep) then
-			-- if !wep.KKINS2Wep then return end
-			
-			-- local clip = wep:Clip1()
-			
-			-- print(clip)
-			
-			-- data.isTracer = clip % 3 == 0 or clip < 6
-			
-			-- if clip < 6 then
-				-- data.clr = red
-			-- elseif clip > (wep.Primary.ClipSize / 2) then
-				-- data.clr = green
-			-- else
-				-- data.clr = blu
-			-- end
-		-- end
-	end)
-end
 
 if CLIENT then
 	CustomizableWeaponry.callbacks:addNew("adjustViewmodelPosition", "KK_INS2_BASE", function(wep, TargetPos, TargetAng)

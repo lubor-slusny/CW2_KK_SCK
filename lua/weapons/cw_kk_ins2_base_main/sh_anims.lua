@@ -1,4 +1,5 @@
 
+local SP = game.SinglePlayer()
 local isBipod, wasBipod, cycle, suffix, anim, prefix, rate, clip
 
 if CLIENT then
@@ -186,18 +187,22 @@ if CLIENT then
 	end
 end
 
-function SWEP:drawAnimFunc()
-	if CLIENT then return end
-	
+function SWEP:pickupAnimFunc(mode)
+	self:sendWeaponAnim((mode or self:getForegripMode()) .. "pickup")
+end
+
+function SWEP:drawAnimFunc(ctrl)	
 	prefix = self:getForegripMode()
 	rate = self.DrawSpeed
 	
 	if not self._KK_INS2_PickedUp then
 		if !(clip == 0 and self.KK_INS2_EmptyIdle) then
-			self:sendWeaponAnimINS2(prefix .. "pickup", rate, 0)
+			self:pickupAnimFunc(prefix)
 			return
 		end
 	end
+	
+	-- if not ctrl then return end
 	
 	clip = self:Clip1()
 	suffix = ""
@@ -212,7 +217,7 @@ function SWEP:drawAnimFunc()
 		end
 	end
 	
-	self:sendWeaponAnimINS2(prefix .. "draw" .. suffix, rate, 0)
+	self:sendWeaponAnim(prefix .. "draw" .. suffix, rate, 0)
 end
 
 function SWEP:meleeAnimFunc()
@@ -255,8 +260,8 @@ function SWEP:fireAnimFunc()
 	end
 end //*/
 
-function SWEP:holsterAnimFunc()
-	if CLIENT then return end
+function SWEP:holsterAnimFunc(ctrl)
+	-- if not ctrl then return end
 	
 	prefix = self:getForegripMode()
 	suffix = ""
@@ -265,7 +270,7 @@ function SWEP:holsterAnimFunc()
 		suffix = "_empty" .. self._KK_INS2_customEmptySuffix
 	end
 	
-	self:sendWeaponAnimINS2(prefix .. "holster" .. suffix, self.HolsterSpeed, 0)
+	self:sendWeaponAnim(prefix .. "holster" .. suffix, self.HolsterSpeed, 0)
 end
 
 // angry stuff
@@ -344,4 +349,36 @@ if CLIENT then
 	
 	net.Receive("kkins2_animate", kkins2_animate)
 end
+
+-- // meh stuff
+
+-- if SP then return end
+
+-- local db = {}
+-- local kek
+
+-- if CLIENT then
+	-- fnuk = function(ply, old, new)
+		-- db[old] = db[old] or {}
+		-- db[new] = db[new] or {}
+		
+		-- if IsFirstTimePredicted() then
+			-- if not db[old].holster then
+				-- print("holstering", old)
+				-- kek = old.holsterAnimFunc and old:holsterAnimFunc(true)
+				-- db[old].holster = true
+				-- db[old].draw = false
+			-- end
+			
+			-- if not db[new].draw then
+				-- print("drawing", new)
+				-- kek = new.drawAnimFunc and new:drawAnimFunc(true)
+				-- db[new].holster = false
+				-- db[new].draw = true
+			-- end
+		-- end
+	-- end
+	
+	-- hook.Add("PlayerSwitchWeapon", "CW_KK_INS2_ANIMS", fnuk)
+-- end
 

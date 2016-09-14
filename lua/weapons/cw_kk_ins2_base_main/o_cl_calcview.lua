@@ -1,4 +1,8 @@
 
+//-----------------------------------------------------------------------------
+// AdjustMouseSensitivity edited to take dt.INS2GLActive into account
+//-----------------------------------------------------------------------------
+
 function SWEP:AdjustMouseSensitivity()
 	local sensitivity = 1
 	local mod = math.Clamp(self.OverallMouseSens, 0.1, 1) -- not lower than 10% and not higher than 100% (in case someone uses atts that increase handling)

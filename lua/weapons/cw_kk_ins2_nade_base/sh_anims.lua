@@ -32,10 +32,6 @@ if CLIENT then
 	end
 end
 
-function SWEP:pickupAnimFunc(mode)
-	self:drawAnimFunc()
-end
-
 function SWEP:drawAnimFunc()
 	if self.Owner:GetAmmoCount(self.Primary.Ammo) < 1 then
 		self:sendWeaponAnim("base_draw", -1, 0)
@@ -57,11 +53,5 @@ function SWEP:holsterAnimFunc()
 		self:sendWeaponAnim("base_draw", -1, 0)
 	else
 		self:sendWeaponAnim("base_holster", self.HolsterSpeed, 0)
-	end
-end
-
-if SP then
-	function SWEP:holsterAnimFunc()
-		self:holsterAnimFunc()
 	end
 end

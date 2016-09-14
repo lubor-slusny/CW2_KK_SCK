@@ -1,5 +1,7 @@
 
-// shell VM Render
+//-----------------------------------------------------------------------------
+// _registerVMShell adds passed entity to SWEPa table of active shells
+//-----------------------------------------------------------------------------
 
 local cvarSVM = GetConVar("cw_kk_ins2_shell_vm") or {GetInt = function() return 1 end}
 
@@ -22,6 +24,10 @@ function SWEP:_registerVMShell(ent)
 	end
 end
 
+//-----------------------------------------------------------------------------
+// drawVMShells iterates SWEPs table of active shells and draws them
+//-----------------------------------------------------------------------------
+
 function SWEP:drawVMShells()
 	for _,v in pairs(self._deployedShells) do
 		if IsValid(v) then
@@ -34,7 +40,11 @@ function SWEP:drawVMShells()
 	end
 end
 
-// terifying destination
+//-----------------------------------------------------------------------------
+// CreateShell edited to use 
+// - custom makeShell function
+// - registerVMShell
+//-----------------------------------------------------------------------------
 
 local vm, att, pos, ang, velocity, align, shellEnt
 
@@ -94,6 +104,10 @@ function SWEP:CreateShell()
 		end
 	end
 end
+
+//-----------------------------------------------------------------------------
+// CreateShell versions used as sound table callbacks
+//-----------------------------------------------------------------------------
 
 function SWEP:shellEvent()
 	if self.Owner:ShouldDrawLocalPlayer() then

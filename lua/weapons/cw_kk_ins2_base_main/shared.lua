@@ -47,7 +47,7 @@ SWEP.AdminSpawnable		= false
 
 SWEP.TSGlass = Material("models/weapons/optics/lense_rt")
 
-SWEP.NoFreeAim = true
+-- SWEP.NoFreeAim = true
 SWEP.LuaViewmodelRecoil = false
 
 SWEP.KK_IGNORE_MAGSYS_TWEAK = true
@@ -155,8 +155,16 @@ SWEP.AttachmentDependencies = {
 	["kk_ins2_cstm_susat"] = {"kk_ins2_sights_cstm"},
 }
 
+SWEP.autoCenterExclusions = {
+	[CW_RUNNING] = true,
+	[CW_ACTION] = true,
+	[CW_HOLSTER_START] = true,
+	[CW_HOLSTER_END] = true,
+	[CW_AIMING] = true
+}
+
 local SP = game.SinglePlayer()
-local shouldDrawCrosshair
+local MP = !SP
 
 function SWEP:CW_KK_MELEE()
 	if SERVER then
@@ -180,18 +188,28 @@ function SWEP:IndividualThink_INS2()
 	// :(
 end
 
+local cvarFA = GetConVar("cw_freeaim")
+local cvarFAAC = GetConVar("cw_freeaim_autocenter")
+
+local shouldDrawCrosshair, fa
+
 function SWEP:IndividualThink()
+	self.lastOwner = self.Owner
+
 	self:DrawShadow(false)
 
 	self:IndividualThink_INS2()
 	
 	if CLIENT then
+		fa = cvarFA:GetInt()
+		fa = (fa == 1) and cvarFAAC:SetInt(fa)
 		-- self.NoFreeAim = self:isAiming()
+
 		shouldDrawCrosshair = self.Owner:ShouldDrawLocalPlayer()
 		self.CrosshairEnabled = shouldDrawCrosshair
 		self.FadeCrosshairOnAim = !shouldDrawCrosshair
 		
-		if !SP and not IsFirstTimePredicted() then return end
+		if MP and not IsFirstTimePredicted() then return end
 		
 		// 2b removed
 		// I guess
@@ -208,49 +226,56 @@ function SWEP:IndividualThink()
 	end
 end
 
-function SWEP:Initialize()
-	print(tostring(self) .. ":Initialize()")
-	
-	self:updateReloadTimes()
-	
-	weapons.GetStored("cw_base").Initialize(self)
-	
-	self:PrepareForPickup()
-	
-	if CLIENT then
-		self:initNWAA()
-		self:initNWWE()
-	end
-end
-
-function SWEP:unloadWeapon(force)
-	if !force and self.dt.State != CW_CUSTOMIZE then return end
-	
-	weapons.GetStored("cw_base").unloadWeapon(self)
-	
-	if SERVER then
-		if self.usesMagazines and self:usesMagazines() then
-			weapons.GetStored("cw_base").unloadMagazine(self)
-		end
-	end
-	
-	if CLIENT then
-		if self.KK_INS2_EmptyIdle then
-			self:idleAnimFunc()
-		end
-	end
-end
-
-// majority of First deploy logic
-
 function SWEP:OnDrop(...)
 	self:PrepareForPickup(true)
+	
+	if IsValid(self.lastOwner) then
+		if self.allocatedMags and #self.allocatedMags > 0 then
+			for _, roundCount in ipairs(self.allocatedMags) do
+				self.lastOwner:GiveAmmo(roundCount, self.Primary.Ammo, true)
+			end
+			
+			self.lastOwner:cwAddMagazine(self.magType, #self.allocatedMags)
+		end
+
+		self.allocatedMags = {}
+	end
 end
 
 local prefix, suffix
 
 function SWEP:PrepareForPickup(drop)
 	self._KK_INS2_PickedUp = false
+	
+	CustomizableWeaponry.actionSequence.new(self, 0.1, nil, function()
+		if SP or IsFirstTimePredicted() then
+			self:drawAnimFunc()
+		end
+	end)
+
+	CustomizableWeaponry.actionSequence.new(self, self.FirstDeployTime, nil, function()
+		self._KK_INS2_PickedUp = true
+	end)
+	
+	if SERVER then
+		self.dt.INS2GLActive = false
+	
+		if !SP then
+			umsg.Start("CW_KK_INS2_PREPAREFORPICKUP")
+				umsg.Entity(self)
+			umsg.End()
+		end
+	end
+end
+
+if CLIENT then
+	usermessage.Hook("CW_KK_INS2_PREPAREFORPICKUP", function(um)
+		local wep = um:ReadEntity()
+		
+		if IsValid(wep) and wep.PrepareForPickup then
+			wep:PrepareForPickup()
+		end
+	end)
 end
 
 function SWEP:toggleGLMode(IFTP)
@@ -259,12 +284,12 @@ function SWEP:toggleGLMode(IFTP)
 			self.dt.INS2GLActive = false
 			
 			if self.M203Chamber then
-				if (SERVER and SP) or (CLIENT and !SP and IFTP) then
+				if (SERVER and SP) or (CLIENT and MP and IFTP) then
 					self:sendWeaponAnim("gl_turn_off",1,0)
 				end
 				self:delayEverything(self.gl_off_time or 7)
 			else
-				if (SERVER and SP) or (CLIENT and !SP and IFTP) then
+				if (SERVER and SP) or (CLIENT and MP and IFTP) then
 					self:sendWeaponAnim("gl_turn_off_empty",1,0)
 				end
 				self:delayEverything(self.gl_off_shot_time or 2)
@@ -278,7 +303,7 @@ function SWEP:toggleGLMode(IFTP)
 			
 			self.dt.INS2GLActive = true
 			
-			if (SERVER and SP) or (CLIENT and !SP and IFTP) then
+			if (SERVER and SP) or (CLIENT and MP and IFTP) then
 				if self:Clip1() > 0 then
 					self:sendWeaponAnim("gl_turn_on_full",1,0)
 				else
@@ -300,13 +325,13 @@ function SWEP:toggleGLMode(IFTP)
 		if self.dt.INS2GLActive then
 			self.dt.INS2GLActive = false
 			
-			if (SERVER and SP) or (CLIENT and !SP and IFTP) then
+			if (SERVER and SP) or (CLIENT and MP and IFTP) then
 				self:sendWeaponAnim("gl_turn_off",1.5,0)
 			end
 		else
 			self.dt.INS2GLActive = true
 			
-			if (SERVER and SP) or (CLIENT and !SP and IFTP) then
+			if (SERVER and SP) or (CLIENT and MP and IFTP) then
 				self:sendWeaponAnim("gl_turn_on",1.5,0)
 			end
 		end

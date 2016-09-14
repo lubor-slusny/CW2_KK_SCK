@@ -26,7 +26,6 @@ function ENT:clusterFuckRackit()
 	// KEK
 	local ply = self.Owner
 	local ent = ents.Create("gmod_cameraprop")
-	-- print(ent)
 	if !IsValid(ent) then return end
 	ent:SetKey(0)
 	ent.controlkey = 0

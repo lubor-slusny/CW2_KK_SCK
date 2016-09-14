@@ -1,7 +1,9 @@
 
 local SP = game.SinglePlayer()
 
-// Custom GLs
+//-----------------------------------------------------------------------------
+// SetupDataTables edited to initialize INS2LAMMode and INS2GLActive
+//-----------------------------------------------------------------------------
 
 function SWEP:SetupDataTables()
 	self:NetworkVar("Int", 0, "State")
@@ -15,7 +17,9 @@ function SWEP:SetupDataTables()
 	self:NetworkVar("Angle", 0, "ViewOffset")
 end
 
-// LUA VM Recoil only for RT scopes
+//-----------------------------------------------------------------------------
+// simulateRecoil edited to not to clamp SWEP.FireMove
+//-----------------------------------------------------------------------------
 
 function SWEP:simulateRecoil()
 	if self.dt.State ~= CW_AIMING and not self.freeAimOn then
@@ -54,7 +58,10 @@ function SWEP:simulateRecoil()
 	end
 end
 
-// firemode switch animations and reticle inactivity
+//-----------------------------------------------------------------------------
+// CycleFiremodes edited to
+// - apply different delays depending on animation setup
+//-----------------------------------------------------------------------------
 
 function SWEP:CycleFiremodes()
 	if self.dt.INS2GLActive then return end
@@ -95,6 +102,10 @@ function SWEP:CycleFiremodes()
 	end
 end
 
+//-----------------------------------------------------------------------------
+// SelectFiremode edited to use renamed umsg
+//-----------------------------------------------------------------------------
+
 function SWEP:SelectFiremode(n)
 	if CLIENT then
 		return
@@ -116,6 +127,10 @@ function SWEP:SelectFiremode(n)
 		umsg.String(n)
 	umsg.End()
 end
+
+//-----------------------------------------------------------------------------
+// CW_ReceiveFireMode edited to play firemode animation on client
+//-----------------------------------------------------------------------------
 
 if CLIENT then
 	local ply, mode, wep, lastFM
@@ -150,13 +165,19 @@ if CLIENT then
 	usermessage.Hook("CW_KK_INS2_FIREMODE", CW_ReceiveFireMode)
 end
 
-// custom GL reload
+//-----------------------------------------------------------------------------
+// Reload edited to use customized grenade launcher reload logic
+//-----------------------------------------------------------------------------
 
 local CT, mag
 
 function SWEP:Reload()
 	CT = CurTime()
 	
+	if self.dt.State == CW_HOLSTER_START or self.dt.State == CW_HOLSTER_END then
+		return
+	end
+
 	if self.ReloadDelay or CT < self.ReloadWait or self.dt.State == CW_ACTION or self.ShotgunReloadState != 0 then
 		return
 	end
@@ -209,7 +230,12 @@ function SWEP:Reload()
 	self:beginReload()
 end
 
-// updating reload times
+//-----------------------------------------------------------------------------
+// beginReload edited to 
+// - support stripper clip reload logic
+// - update reload times before using them
+// - use different shotgun reload logic and animations
+//-----------------------------------------------------------------------------
 
 local CT, mag, ammo
 
@@ -313,7 +339,9 @@ function SWEP:beginReload()
 	self.Owner:SetAnimation(PLAYER_RELOAD)
 end
 
-// M203 2 - for melee attacks that interupt reloads
+//-----------------------------------------------------------------------------
+// finishReloadINS2GL loads customized grenade launcher and notifies client
+//-----------------------------------------------------------------------------
 
 function SWEP:finishReloadINS2GL()
 	if self.dt.INS2GLActive then
@@ -328,6 +356,10 @@ function SWEP:finishReloadINS2GL()
 		return true
 	end
 end
+
+//-----------------------------------------------------------------------------
+// finishReload edited to use customized grenade launcher reload logic
+//-----------------------------------------------------------------------------
 
 local mag, ammo
 
@@ -380,7 +412,12 @@ function SWEP:finishReload()
 	self.ReloadDelay = nil
 end
 
-// custom shotgun reload finishing/interupting
+//-----------------------------------------------------------------------------
+// finishReloadShotgun edited to 
+// - support chambering on shotguns
+// - allow loading 1st round during reload_start sequence
+// - disallow reload interuption unless at least one round was loaded
+//-----------------------------------------------------------------------------
 
 local CT, keyDown, mag, ammo
 
@@ -447,7 +484,9 @@ function SWEP:finishReloadShotgun()
 	end
 end
 
-// weapon length
+//-----------------------------------------------------------------------------
+// isNearWall edited to use SWEP.WeaponLength in trace
+//-----------------------------------------------------------------------------
 
 local mins, maxs = Vector(-8, -8, -1), Vector(8, 8, 1)
 
@@ -469,6 +508,10 @@ function SWEP:isNearWall()
 	return false
 end
 
+//-----------------------------------------------------------------------------
+// 
+//-----------------------------------------------------------------------------
+
 function SWEP:GetDeployTime()
 	-- if self.oneTimeDeploySpeed then
 		-- local tar = self.DeployTime / (self.DrawSpeed + self.oneTimeDeploySpeed)
@@ -480,25 +523,29 @@ function SWEP:GetDeployTime()
 	-- end
 	
 	if not self._KK_INS2_PickedUp then
-		CustomizableWeaponry.actionSequence.new(self, self.FirstDeployTime, nil, function()
-			self._KK_INS2_PickedUp = true
-		end)
+		if self.KK_INS2_EmptyIdle and self:Clip1() == 0 then
+			return self.DeployTime
+		end
 		
-		return self.FirstDeployTime
+		return self.FirstDeployTime + 0.2 // woot
 	end
 	
 	return self.DeployTime
 end
 
-function SWEP:Deploy(...)
-	print(tostring(self) .. ":Deploy()")
-	
-	weapons.GetStored("cw_base").Deploy(self, ...)
+//-----------------------------------------------------------------------------
+// 
+//-----------------------------------------------------------------------------
+
+function SWEP:GetHolsterTime()
+	return self.HolsterTime
 end
 
+//-----------------------------------------------------------------------------
+// 
+//-----------------------------------------------------------------------------
+
 function SWEP:Holster(wep)
-	print(tostring(self) .. ":Holster()")
-	
 	-- can't switch if neither the weapon we want to switch to or the wep we're trying to switch to are not valid
 	if not IsValid(wep) and not IsValid(self.SwitchWep) then
 		self.SwitchWep = nil
@@ -530,7 +577,7 @@ function SWEP:Holster(wep)
 	end
 	
 	if self.dt.State ~= CW_HOLSTER_START then
-		self.dt.HolsterDelay = CurTime() + (self.HolsterTime / (self.HolsterSpeed * self.HolsterSpeedMult))
+		self.dt.HolsterDelay = CurTime() + (self:GetHolsterTime() / (self.HolsterSpeed * self.HolsterSpeedMult))
 	end
 	
 	self.dt.State = CW_HOLSTER_START
@@ -549,9 +596,9 @@ function SWEP:Holster(wep)
 	self.ShotgunReloadState = 0
 	self.ReloadDelay = nil
 	
-	self:holsterAnimFunc()
+	-- self:holsterAnimFunc()
 	
-	/*
+	-- /*
 	if self:filterPrediction() then
 		if self.holsterSound then -- quick'n'dirty prediction fix
 			-- self:EmitSound("CW_HOLSTER", 70, 100)
@@ -571,4 +618,50 @@ function SWEP:Holster(wep)
 	
 	self.SwitchWep = wep
 	self.SuppressTime = nil
+end
+
+//-----------------------------------------------------------------------------
+// Initialize edited to initialize custom features
+// - ActiveAttachment and WElement state networking
+// - FirstDeploy animstion logic
+//-----------------------------------------------------------------------------
+
+function SWEP:Initialize()	
+	self:updateReloadTimes()
+	
+	weapons.GetStored("cw_base").Initialize(self)
+	
+	self:PrepareForPickup()
+	
+	if CLIENT then
+		self:initNWAA()
+		self:initNWWE()
+		
+		self:pickupAnimFunc()
+	end
+end
+
+//-----------------------------------------------------------------------------
+// unloadWeapon edited to 
+// - only unload weapon when in CW Menu - for spawn preset plugin
+// - unload magazine if Mag System is enabled
+// - play idle animation in case loaded and empty idle animations differ
+//-----------------------------------------------------------------------------
+
+function SWEP:unloadWeapon(force)
+	if !force and self.dt.State != CW_CUSTOMIZE then return end
+	
+	weapons.GetStored("cw_base").unloadWeapon(self)
+	
+	if SERVER then
+		if self.usesMagazines and self:usesMagazines() then
+			weapons.GetStored("cw_base").unloadMagazine(self)
+		end
+	end
+	
+	if CLIENT then
+		if self.KK_INS2_EmptyIdle then
+			self:idleAnimFunc()
+		end
+	end
 end

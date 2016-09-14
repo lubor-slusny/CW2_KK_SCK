@@ -291,7 +291,6 @@ local function updatePanel()
 									end
 									
 									function box:OnSelect(i, name)
-										-- print(i)
 										data._kksck_curIndex = i
 										updatePanel()
 									end

@@ -1,4 +1,9 @@
 
+//-----------------------------------------------------------------------------
+// Think edited to move code for finishing shotgun reload to
+// SWEP:finishReloadShotgun()
+//-----------------------------------------------------------------------------
+
 local math = math
 
 local SP = game.SinglePlayer()

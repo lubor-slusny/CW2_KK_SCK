@@ -170,7 +170,6 @@ if SERVER then
 		if self._fresh then
 			ply:GiveAmmo(1, self.Primary.Ammo)
 		else
-			print("removing ", remove, " ieds")
 			ply:RemoveAmmo(remove, self.Primary.Ammo)
 		end
 	end

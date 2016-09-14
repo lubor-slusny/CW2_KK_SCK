@@ -84,8 +84,7 @@ if CLIENT then
 		if self._KK_INS2_magnifierLastPrimary != currentPrimarySight then
 			local velement = self.AttachmentModelsVM[currentPrimarySight]
 			
-			velement.active = false
-			self:setWElementActive(currentPrimarySight, false)
+			self:setElementActive(currentPrimarySight, false)
 			magnifierModel = models[velement.model]
 			scopeEnt:SetModel(magnifierModel)
 			
@@ -144,8 +143,7 @@ function att:attachFunc()
 				SafeRemoveEntity(rem)
 				
 				if self.AttachmentModelsVM[currentPrimarySight] then
-					self.AttachmentModelsVM[currentPrimarySight].active = false
-					self:setWElementActive(currentPrimarySight, false)
+					self:setElementActive(currentPrimarySight, false)
 				end
 			end
 		end
@@ -162,8 +160,7 @@ function att:detachFunc()
 		local currentPrimarySight = self:getPrimarySight()
 		
 		if currentPrimarySight and self.AttachmentModelsVM and self.AttachmentModelsVM[currentPrimarySight] then
-			self.AttachmentModelsVM[currentPrimarySight].active = true
-			self:setWElementActive(currentPrimarySight, true)
+			self:setElementActive(currentPrimarySight, true)
 		end
 	end
 	
