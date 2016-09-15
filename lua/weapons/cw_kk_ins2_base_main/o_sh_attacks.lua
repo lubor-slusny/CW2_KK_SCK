@@ -11,6 +11,8 @@ local SP = game.SinglePlayer()
 local IFTP, CT
 
 function SWEP:PrimaryAttack()
+	if self.boltAction_isShot then return end
+	
 	if not self:canFireWeapon(1) then
 		return
 	end
@@ -112,6 +114,7 @@ function SWEP:PrimaryAttack()
 	
 	if not suppressAmmoUsage then
 		self:TakePrimaryAmmo(self.AmmoPerShot)
+		self.boltAction_isShot = true
 	end
 	
 	if self:Clip1() == 0 then

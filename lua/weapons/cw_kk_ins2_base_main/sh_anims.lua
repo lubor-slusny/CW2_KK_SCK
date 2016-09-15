@@ -4,6 +4,10 @@ local isBipod, wasBipod, cycle, suffix, anim, prefix, rate, clip
 
 if CLIENT then
 	function SWEP:playSwitchBipod()
+		if self.KKINS2Melee or self.KKINS2Nade then 
+			return 
+		end
+		
 		if not self.BipodInstalled then 
 			return
 		end
@@ -46,19 +50,21 @@ if CLIENT then
 	local canDoStuff, wasSprint, isSprint, wasSafe, isSafe
 	
 	function SWEP:playHolsterTransitions()
+		if not self._KK_INS2_PickedUp then 
+			return 
+		end
+		
 		cycle = self.CW_VM:GetCycle()
 		
 		canDoStuff = 
-			(self.dt.State != CW_CUSTOMIZE) and 
-			(self.dt.State != CW_ACTION) and 
-			self:isReticleActive() and 
-			not (self.Base == "cw_kk_ins2_nade_base" and self.dt.PinPulled) and
-			not self:isReloading() and
-			not (self.GlobalDelay > CurTime()) and
-			not (self.Sequence:find("ready") and cycle < 1) and
-			not (self.Sequence:find("reload") and cycle < 1) and
-			-- self._KK_INS2_PickedUp and
-			-- not self.ShotgunReload and
+			(self.dt.State != CW_CUSTOMIZE) and 					// no swapping in CW Menu
+			(self.dt.State != CW_ACTION) and 						// no swapping during knife attack/quick grenade throw
+			self:isReticleActive() and 								// no swapping during... eh?
+			not (self.KKINS2Nade and self.dt.PinPulled) and			// no swapping after pin-pull
+			not self:isReloading() and								// no swapping during reload
+			not (self.GlobalDelay > CurTime()) and					// ??
+			not (self.Sequence:find("ready") and cycle < 1) and		// double check if we re not unboxing the weapon atm
+			not (self.Sequence:find("reload") and cycle < 1) and	// double check if reload isnt going on atm
 			true
 		
 		wasSprint = self._KK_INS2_wasSprint
@@ -77,7 +83,7 @@ if CLIENT then
 		self._KK_INS2_wasSprint = isSprint
 		
 		if isSprint then return end
-		if self.Base == "cw_kk_ins2_mel_base" then return end
+		if self.KKINS2Melee then return end
 		
 		wasSafe = self._KK_INS2_wasSafe
 		isSafe = self.dt.Safe or self:isNearWall()
@@ -110,15 +116,27 @@ if CLIENT then
 		
 		prefix = self:getForegripMode()
 		suffix = ""
-			
+		cycle = 0
+		
 		if self:Clip1() == 0 and self.KK_INS2_EmptyIdle then
 			suffix = "_empty" .. self._KK_INS2_customEmptySuffix
 		end
 	
-		self:playAnim(prefix .. anim .. suffix, rate, 0)
+		if self.KKINS2Nade and self.Owner:GetAmmoCount(self.Primary.Ammo) < 1 then 
+			-- self:playAnim("base_draw", -1, 0)
+			anim = "holster"
+			rate = 1
+			cycle = 1
+		end
+		
+		self:playAnim(prefix .. anim .. suffix, rate, cycle)
 	end
 
 	function SWEP:safetyAnimFunc()
+		if self.KKINS2Nade then 
+			return 
+		end
+		
 		anim = "safe"
 		prefix = self:getForegripMode()
 		suffix = ""
@@ -136,6 +154,10 @@ if CLIENT then
 	end
 
 	function SWEP:firemodeAnimFunc()
+		if self.KKINS2Nade then 
+			return 
+		end
+		
 		anim = "firemode"
 		prefix = self:getForegripMode()
 		suffix = ""
@@ -157,18 +179,24 @@ if CLIENT then
 		
 	function SWEP:idleAnimFunc()
 		prefix = self:getForegripMode()
+		suffix = ""
+		anim = "idle"
+		rate = -1
+		-- cycle = 0.45
+		cycle = 0
 		
-		if self.KKINS2Melee or self.KKINS2Nade then
-			anim = "idle"
+		if self.KKINS2Melee then
+			rate = 1
+		elseif self.KKINS2Nade then
+			rate = 1
+			if self.Owner:GetAmmoCount(self.Primary.Ammo) < 1 then
+				anim = "holster"
+				cycle = 1
+			end
 		else
 			-- anim = "idle" // only idle anims are for base_ prefix, it used to use draw anim for others anyway
 			anim = "holster"
 		end
-		
-		suffix = ""
-		rate = -1
-		-- cycle = 0.45
-		cycle = 0
 		
 		if self:Clip1() == 0 and self.KK_INS2_EmptyIdle then
 			suffix = "_empty" .. self._KK_INS2_customEmptySuffix
@@ -188,24 +216,38 @@ if CLIENT then
 end
 
 function SWEP:pickupAnimFunc(mode)
-	self:sendWeaponAnim((mode or self:getForegripMode()) .. "pickup")
-end
-
-function SWEP:drawAnimFunc(ctrl)	
-	prefix = self:getForegripMode()
-	rate = self.DrawSpeed
+	mode = mode or self:getForegripMode()
+	anim = "pickup"
 	
-	if not self._KK_INS2_PickedUp then
-		if !(clip == 0 and self.KK_INS2_EmptyIdle) then
-			self:pickupAnimFunc(prefix)
-			return
-		end
+	if self.KKINS2Melee or self.KKINS2Nade then
+		anim = "draw"
 	end
 	
-	-- if not ctrl then return end
+	if SERVER then
+		self:sendWeaponAnim(mode .. anim, self.DrawSpeed, 0)
+	end
+	
+	if CLIENT then
+		if self.Sequence != self.Animations[mode .. anim] then
+			self:playAnim(mode .. anim, self.DrawSpeed, 0)
+		end
+	end
+end
+
+function SWEP:drawAnimFunc(ctrl)
+	if not self._KK_INS2_PickedUp then
+		return
+	end
+	
+	prefix = self:getForegripMode()
+	suffix = ""
+	anim = "draw"
+	rate = self.DrawSpeed
+	cycle = 0
 	
 	clip = self:Clip1()
-	suffix = ""
+	
+	-- if not ctrl then return end
 	
 	if self.dt.INS2GLActive then
 		if !self.M203Chamber and self.KK_INS2_EmptyIdleGL then
@@ -217,10 +259,19 @@ function SWEP:drawAnimFunc(ctrl)
 		end
 	end
 	
-	self:sendWeaponAnim(prefix .. "draw" .. suffix, rate, 0)
+	if self.KKINS2Nade and self.Owner:GetAmmoCount(self.Primary.Ammo) < 1 then 
+		anim = "holster"
+		cycle = 1
+	end
+	
+	self:sendWeaponAnim(prefix .. anim .. suffix, rate, cycle)
 end
 
 function SWEP:meleeAnimFunc()
+	if self.KKINS2Nade then 
+		return 
+	end
+	
 	clip = self:Clip1()
 	cyc = 0
 	rate = 1
@@ -265,12 +316,17 @@ function SWEP:holsterAnimFunc(ctrl)
 	
 	prefix = self:getForegripMode()
 	suffix = ""
+	cycle = 0
 	
 	if self:Clip1() == 0 and self.KK_INS2_EmptyIdle then
 		suffix = "_empty" .. self._KK_INS2_customEmptySuffix
 	end
 	
-	self:sendWeaponAnim(prefix .. "holster" .. suffix, self.HolsterSpeed, 0)
+	if self.KKINS2Nade and self.Owner:GetAmmoCount(self.Primary.Ammo) < 1 then 
+		cycle = 1
+	end
+	
+	self:sendWeaponAnim(prefix .. "holster" .. suffix, self.HolsterSpeed, cycle)
 end
 
 // angry stuff

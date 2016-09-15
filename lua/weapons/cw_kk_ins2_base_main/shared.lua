@@ -76,6 +76,9 @@ SWEP.WeaponLength = 20
 
 SWEP.HolsterSpeed = 1
 
+SWEP.boltAction_isShot = false
+SWEP.boltAction_pumpTime = 0.6
+
 if CLIENT then	
 	SWEP.PosBasedMuz = true
 	
@@ -166,6 +169,10 @@ SWEP.autoCenterExclusions = {
 local SP = game.SinglePlayer()
 local MP = !SP
 
+//-----------------------------------------------------------------------------
+// CW_KK_MELEE is called by cw_kk_melee concommand
+//-----------------------------------------------------------------------------
+
 function SWEP:CW_KK_MELEE()
 	if SERVER then
 		if self._KK_INS2_PickedUp == false then return end
@@ -184,9 +191,26 @@ function SWEP:CW_KK_MELEE()
 	end
 end
 
+//-----------------------------------------------------------------------------
+// IndividualThink for INS2 based sweps
+// currently used by DOI BAR
+//-----------------------------------------------------------------------------
+
 function SWEP:IndividualThink_INS2()
 	// :(
 end
+
+//-----------------------------------------------------------------------------
+// IndividualThink for custom features
+// - INS2 styled bolt-action weapons
+// - crosshair, free aim settings enforcement
+// - reload time updates
+// - hands model changes
+// - belt bodygroups updates on viewmodels
+// - individual weapon properties updates
+// - animated bipod state transitions
+// - animated sprint, nearwall holster, safety holster transitions
+//-----------------------------------------------------------------------------
 
 local cvarFA = GetConVar("cw_freeaim")
 local cvarFAAC = GetConVar("cw_freeaim_autocenter")
@@ -196,9 +220,11 @@ local shouldDrawCrosshair, fa
 function SWEP:IndividualThink()
 	self.lastOwner = self.Owner
 
-	self:DrawShadow(false)
-
 	self:IndividualThink_INS2()
+	
+	self:DrawShadow(false)
+	
+	self:doBoltAction()
 	
 	if CLIENT then
 		fa = cvarFA:GetInt()
@@ -226,6 +252,43 @@ function SWEP:IndividualThink()
 	end
 end
 
+//-----------------------------------------------------------------------------
+// doBoltAction sets dealays and plays bolt animation on shotguns/rifles
+//-----------------------------------------------------------------------------
+
+function SWEP:doBoltAction()
+	if not self.Animations.base_bolt then // temp chk
+		self.boltAction_isShot = false
+		return
+	end
+	
+	if self:Clip1() > 0 and self:GetNextPrimaryFire() < CurTime() and self.boltAction_isShot and not self.Owner:KeyDown(IN_ATTACK) then
+		local prefix = self:getForegripMode()
+		local suffix = ""
+		
+		if self:isAiming() then
+			suffix = "_aim"
+		end
+		
+		self:sendWeaponAnim(prefix .. "bolt" .. suffix,1,0)
+		
+		self.boltAction_isShot = false
+		
+		self:SetNextPrimaryFire(CurTime() + self.boltAction_pumpTime)
+		self.GlobalDelay = CurTime() + self.boltAction_pumpTime
+	end
+	
+	if self:Clip1() < 1 then
+		self.boltAction_isShot = false
+	end
+end
+
+//-----------------------------------------------------------------------------
+// OnDrop 
+// - prepares first deploy animation to be replayed
+// - onloads allocated magazines if Mag System is installed
+//-----------------------------------------------------------------------------
+
 function SWEP:OnDrop(...)
 	self:PrepareForPickup(true)
 	
@@ -235,21 +298,31 @@ function SWEP:OnDrop(...)
 				self.lastOwner:GiveAmmo(roundCount, self.Primary.Ammo, true)
 			end
 			
-			self.lastOwner:cwAddMagazine(self.magType, #self.allocatedMags)
+			if self.magType then
+				self.lastOwner:cwAddMagazine(self.magType, #self.allocatedMags)
+			end
 		end
 
 		self.allocatedMags = {}
 	end
 end
 
+//-----------------------------------------------------------------------------
+// PrepareForPickup prepares first deploy animation to be played
+//-----------------------------------------------------------------------------
+
 local prefix, suffix
 
 function SWEP:PrepareForPickup(drop)
 	self._KK_INS2_PickedUp = false
 	
-	CustomizableWeaponry.actionSequence.new(self, 0.1, nil, function()
-		if SP or IsFirstTimePredicted() then
-			self:drawAnimFunc()
+	if CLIENT and !drop then
+		self:pickupAnimFunc()
+	end
+	
+	CustomizableWeaponry.actionSequence.new(self, 0, nil, function()
+		if CLIENT and IsFirstTimePredicted() then
+			self:pickupAnimFunc()
 		end
 	end)
 
@@ -259,14 +332,16 @@ function SWEP:PrepareForPickup(drop)
 	
 	if SERVER then
 		self.dt.INS2GLActive = false
-	
-		if !SP then
-			umsg.Start("CW_KK_INS2_PREPAREFORPICKUP")
-				umsg.Entity(self)
-			umsg.End()
-		end
+
+		umsg.Start("CW_KK_INS2_PREPAREFORPICKUP")
+			umsg.Entity(self)
+		umsg.End()
 	end
 end
+
+//-----------------------------------------------------------------------------
+// CW_KK_INS2_PREPAREFORPICKUP message calls PrepareForPickup on client
+//-----------------------------------------------------------------------------
 
 if CLIENT then
 	usermessage.Hook("CW_KK_INS2_PREPAREFORPICKUP", function(um)
@@ -277,6 +352,11 @@ if CLIENT then
 		end
 	end)
 end
+
+//-----------------------------------------------------------------------------
+// toggleGLMode is code from SecondaryAttack that switches INS2GLActive state,
+// edited for customized grenade launcher behavior
+//-----------------------------------------------------------------------------
 
 function SWEP:toggleGLMode(IFTP)
 	if self._currentGrenadeLauncher.ww2GrenadeLauncher then

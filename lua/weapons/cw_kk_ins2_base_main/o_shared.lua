@@ -59,8 +59,7 @@ function SWEP:simulateRecoil()
 end
 
 //-----------------------------------------------------------------------------
-// CycleFiremodes edited to
-// - apply different delays depending on animation setup
+// CycleFiremodes edited to apply different delays depending on animation
 //-----------------------------------------------------------------------------
 
 function SWEP:CycleFiremodes()
@@ -240,7 +239,7 @@ end
 local CT, mag, ammo
 
 function SWEP:beginReload()
-	if self.isShot then 
+	if self.boltAction_isShot then 
 		return 
 	end
 	
@@ -509,7 +508,8 @@ function SWEP:isNearWall()
 end
 
 //-----------------------------------------------------------------------------
-// 
+// GetDeployTime edited to replace global delay calls used in older versions 
+// of PrepareForPickup
 //-----------------------------------------------------------------------------
 
 function SWEP:GetDeployTime()
@@ -521,16 +521,16 @@ function SWEP:GetDeployTime()
 		
 		-- return out
 	-- end
-	
-	if not self._KK_INS2_PickedUp then
-		if self.KK_INS2_EmptyIdle and self:Clip1() == 0 then
-			return self.DeployTime
-		end
-		
-		return self.FirstDeployTime + 0.2 // woot
+
+	if self.KKINS2Melee or self.KKINS2Nade then 
+		return self.DeployTime
 	end
 	
-	return self.DeployTime
+	if self._KK_INS2_PickedUp or (self.KK_INS2_EmptyIdle and self:Clip1() == 0) then
+		return self.DeployTime
+	end
+	
+	return self.FirstDeployTime + 0.2 // woot
 end
 
 //-----------------------------------------------------------------------------
@@ -542,11 +542,13 @@ function SWEP:GetHolsterTime()
 end
 
 //-----------------------------------------------------------------------------
-// 
+// Holster edited to 
+// - check for dt.PinPulled
+// - process custom callback category currently only used by one attachment
+// - remove redundant holster sound (should be played from animation soundtable)
 //-----------------------------------------------------------------------------
 
 function SWEP:Holster(wep)
-	-- can't switch if neither the weapon we want to switch to or the wep we're trying to switch to are not valid
 	if not IsValid(wep) and not IsValid(self.SwitchWep) then
 		self.SwitchWep = nil
 		return false
@@ -558,7 +560,6 @@ function SWEP:Holster(wep)
 		return false
 	end
 	
-	-- can't holster if we have a global delay on the weapon
 	if CT < self.GlobalDelay or CT < self.HolsterWait then
 		return false
 	end
@@ -567,7 +568,6 @@ function SWEP:Holster(wep)
 		return false
 	end
 	
-	-- can't holster if there are sequenced actions
 	if #self._activeSequences > 0 then
 		return false
 	end
@@ -582,7 +582,6 @@ function SWEP:Holster(wep)
 	
 	self.dt.State = CW_HOLSTER_START
 	
-	-- if holster sequence is over, let us select the desired weapon
 	if self.SwitchWep and self.dt.State == CW_HOLSTER_START and CurTime() > self.dt.HolsterDelay then
 		self.dt.State = CW_IDLE
 		self.dt.HolsterDelay = 0
@@ -592,16 +591,11 @@ function SWEP:Holster(wep)
 		return true
 	end
 	
-	-- if it isn't, make preparations for it
 	self.ShotgunReloadState = 0
 	self.ReloadDelay = nil
 	
-	-- self:holsterAnimFunc()
-	
-	-- /*
 	if self:filterPrediction() then
-		if self.holsterSound then -- quick'n'dirty prediction fix
-			-- self:EmitSound("CW_HOLSTER", 70, 100)
+		if self.holsterSound then
 			self.holsterSound = false
 			
 			if IsFirstTimePredicted() then
@@ -614,7 +608,7 @@ function SWEP:Holster(wep)
 				end
 			end
 		end
-	end // */
+	end
 	
 	self.SwitchWep = wep
 	self.SuppressTime = nil
@@ -636,15 +630,13 @@ function SWEP:Initialize()
 	if CLIENT then
 		self:initNWAA()
 		self:initNWWE()
-		
-		self:pickupAnimFunc()
 	end
 end
 
 //-----------------------------------------------------------------------------
 // unloadWeapon edited to 
 // - only unload weapon when in CW Menu - for spawn preset plugin
-// - unload magazine if Mag System is enabled
+// - unload magazine if Mag System is installed
 // - play idle animation in case loaded and empty idle animations differ
 //-----------------------------------------------------------------------------
 

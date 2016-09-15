@@ -145,7 +145,7 @@ CustomizableWeaponry.callbacks:addNew("postAttachAttachment", "KK_INS2_BASE", fu
 			if wep.dt.State == CW_CUSTOMIZE then
 				wep:idleAnimFunc()
 			else
-				-- wep:pickupAnimFunc()
+				wep:pickupAnimFunc()
 			end
 		end
 		

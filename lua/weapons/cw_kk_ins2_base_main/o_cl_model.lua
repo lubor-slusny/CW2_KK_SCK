@@ -53,6 +53,9 @@ function SWEP:createCustomVM(mdl)
 	self.CW_VM:SetNoDraw(true)
 	self.CW_VM:SetupBones()
 	
+	self.CW_VM:SelectWeightedSequence(ACT_VM_HOLSTER)
+	self.CW_VM:SetCycle(1)
+	
 	self.CW_KK_HANDS = self:createManagedCModel(self.CW_KK_HANDS_MDL, RENDERGROUP_BOTH)
 	self.CW_KK_HANDS:SetNoDraw(true)
 	self.CW_KK_HANDS:SetupBones()

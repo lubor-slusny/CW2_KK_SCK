@@ -187,7 +187,7 @@ SWEP.SlotPos = 2
 SWEP.NormalHoldType = "ar2"
 SWEP.RunHoldType = "passive"
 SWEP.FireModes = {"bolt"}
-SWEP.Base = "cw_kk_ins2_base_pump"
+SWEP.Base = "cw_kk_ins2_base"
 SWEP.Category = "CW 2.0 KK INS2"
 
 SWEP.Author			= "Spy"
@@ -252,7 +252,7 @@ SWEP.GlobalDelayOnShoot = SWEP.FireDelay
 SWEP.WeaponLength = 38
 
 SWEP.MuzzleVelocity = 777
-SWEP.pumpTime = 1.6
+SWEP.boltAction_pumpTime = 1.6
 
 if CLIENT then
 	function SWEP:updateOtherParts() // call me clientSideThink

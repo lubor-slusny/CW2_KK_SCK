@@ -65,7 +65,7 @@ SWEP.SlotPos = 0
 SWEP.NormalHoldType = "revolver"
 SWEP.RunHoldType = "normal"
 SWEP.FireModes = {"bolt"}
-SWEP.Base = "cw_kk_ins2_base_pump"
+SWEP.Base = "cw_kk_ins2_base"
 SWEP.Category = "CW 2.0 KK INS2 DOI"
 
 SWEP.Author			= "Spy"
@@ -127,4 +127,4 @@ SWEP.ReloadHalt_Empty = 4.67
 
 SWEP.MuzzleVelocity = 300
 
-SWEP.pumpTime = 2.2
+SWEP.boltAction_pumpTime = 2.2

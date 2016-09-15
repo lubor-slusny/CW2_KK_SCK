@@ -1,8 +1,6 @@
 if not CustomizableWeaponry then return end
 
 AddCSLuaFile()
-AddCSLuaFile("sh_anims.lua")
-include("sh_anims.lua")
 
 SWEP.KKINS2Nade = true
 
@@ -132,11 +130,6 @@ function SWEP:ShouldDropOnDie()
 	return self.dt.PinPulled
 end
 
-function SWEP:Initialize()
-	weapons.GetStored("cw_base").Initialize(self)
-	self._KK_INS2_PickedUp = true
-end
-
 function SWEP:SetupDataTables()
 	self:NetworkVar("Int", 0, "State")
 	self:NetworkVar("Int", 1, "Shots")
@@ -178,7 +171,9 @@ function SWEP:IndividualThink()
 	local cur = self.Owner:GetAmmoCount(self.Primary.Ammo)
 	local last = self._lastPrimaryAmmoCount
 	if last and last < cur and cur == 1 then
-		self:drawAnimFunc()
+		if CLIENT and self.Sequence != self.Animations.base_draw then
+			self:drawAnimFunc()
+		end
 		self:SetNextPrimaryFire(CurTime() + self.DeployTime)
 		self:SetNextSecondaryFire(CurTime() + self.DeployTime)
 	end
@@ -196,10 +191,10 @@ function SWEP:IndividualThink()
 		return
 	end
 
-	local curTime = CurTime()
+	local CT = CurTime()
 	
 	if self.dt.PinPulled then
-		if curTime > self.throwTime then
+		if CT > self.throwTime then
 			if not (self.Owner:KeyDown(IN_ATTACK) or self.Owner:KeyDown(IN_ATTACK2)) then
 				if not self.animPlayed then
 					self.entityTime = CurTime() + self._curSpawnTime
@@ -207,7 +202,7 @@ function SWEP:IndividualThink()
 					self.Owner:SetAnimation(PLAYER_ATTACK1)
 				end
 				
-				if curTime > self.entityTime then
+				if CT > self.entityTime then
 					if SERVER then
 						local grenade = self:createProjectile()
 						
@@ -223,8 +218,8 @@ function SWEP:IndividualThink()
 					
 					local animLength = self._curSwapTime - self._curSpawnTime
 					
-					self:SetNextPrimaryFire(curTime + animLength + self.DeployTime)
-					self:SetNextSecondaryFire(curTime + animLength + self.DeployTime)
+					self:SetNextPrimaryFire(CT + animLength + self.DeployTime)
+					self:SetNextSecondaryFire(CT + animLength + self.DeployTime)
 					
 					timer.Simple(animLength, function()
 						if IsValid(self) and IsValid(self.Owner) then
@@ -241,9 +236,9 @@ function SWEP:IndividualThink()
 				
 				self.animPlayed = true
 			else
-				if self.cookTime and (self.cookTime + self.fuseTime) < curTime then
-					self:SetNextPrimaryFire(curTime + 1)
-					self:SetNextSecondaryFire(curTime + 1)
+				if self.cookTime and (self.cookTime + self.fuseTime) < CT then
+					self:SetNextPrimaryFire(CT + 1)
+					self:SetNextSecondaryFire(CT + 1)
 					
 					if SERVER then
 						self:overCook()

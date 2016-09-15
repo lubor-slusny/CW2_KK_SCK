@@ -153,7 +153,7 @@ SWEP.SlotPos = 0
 SWEP.NormalHoldType = "ar2"
 SWEP.RunHoldType = "passive"
 SWEP.FireModes = {"bolt"}
-SWEP.Base = "cw_kk_ins2_base_pump"
+SWEP.Base = "cw_kk_ins2_base"
 SWEP.Category = "CW 2.0 KK INS2 DOI"
 
 SWEP.Author			= "Spy"
@@ -232,7 +232,7 @@ SWEP.ReloadTime_Empty = 2.7
 SWEP.ReloadHalt_Empty = 4.29
 
 SWEP.MuzzleVelocity = 760
-SWEP.pumpTime = 1.3
+SWEP.boltAction_pumpTime = 1.3
 
 SWEP.animCallbacks = {}
 

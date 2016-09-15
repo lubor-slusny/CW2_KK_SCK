@@ -184,7 +184,7 @@ SWEP.SlotPos = 0
 SWEP.NormalHoldType = "ar2"
 SWEP.RunHoldType = "passive"
 SWEP.FireModes = {"bolt"}
-SWEP.Base = "cw_kk_ins2_base_pump"
+SWEP.Base = "cw_kk_ins2_base"
 SWEP.Category = "CW 2.0 KK INS2"
 
 SWEP.Author			= "Spy"
@@ -251,7 +251,7 @@ SWEP.GlobalDelayOnShoot = SWEP.FireDelay
 SWEP.WeaponLength = 38
 
 SWEP.MuzzleVelocity = 865
-SWEP.pumpTime = 1.5
+SWEP.boltAction_pumpTime = 1.5
 
 if CLIENT then
 	local att

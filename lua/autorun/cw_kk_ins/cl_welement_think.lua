@@ -47,12 +47,10 @@ if CLIENT then
 	function CustomizableWeaponry_KK.ins2.welementThink:add(id, func)
 		if not id then return end
 		
-		if isstring(func) then
-			func = self.templates[func]
-		end
+		func = self.templates[func] or func // if template exists, use it
 		
 		self._funcs = self._funcs or {}
-		self._funcs[id] = func
+		self._funcs[id] = func // if nil is passed, remove existing
 	end
 	
 	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_rpk", "bipod")

@@ -148,7 +148,7 @@ SWEP.SlotPos = 0
 SWEP.NormalHoldType = "ar2"
 SWEP.RunHoldType = "passive"
 SWEP.FireModes = {"pump"}
-SWEP.Base = "cw_kk_ins2_base_pump"
+SWEP.Base = "cw_kk_ins2_base"
 SWEP.Category = "CW 2.0 KK INS2"
 
 SWEP.Author			= "Spy"

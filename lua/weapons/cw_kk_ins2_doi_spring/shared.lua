@@ -124,7 +124,7 @@ SWEP.SlotPos = 0
 SWEP.NormalHoldType = "ar2"
 SWEP.RunHoldType = "passive"
 SWEP.FireModes = {"bolt"}
-SWEP.Base = "cw_kk_ins2_base_pump"
+SWEP.Base = "cw_kk_ins2_base"
 SWEP.Category = "CW 2.0 KK INS2 DOI"
 
 SWEP.Author			= "Spy"
@@ -193,7 +193,7 @@ SWEP.GlobalDelayOnShoot = SWEP.FireDelay
 SWEP.WeaponLength = 38
 
 SWEP.MuzzleVelocity = 854
-SWEP.pumpTime = 1.49
+SWEP.boltAction_pumpTime = 1.49
 
 if CLIENT then
 	function SWEP:updateStandardParts()
