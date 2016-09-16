@@ -4,7 +4,7 @@ local SP = game.SinglePlayer()
 //-----------------------------------------------------------------------------
 // PrimaryAttack edited to support
 // - customized M203/grenade launcher
-// - dryfire animations
+// - dry-fire animations
 // - custom muzzle flash lua effect 
 //-----------------------------------------------------------------------------
 
@@ -142,7 +142,9 @@ function SWEP:PrimaryAttack()
 end
 
 //-----------------------------------------------------------------------------
-// SecondaryAttack edited to support customized grenade launcher
+// SecondaryAttack edited to 
+// - support customized grenade launcher
+// - ignore near-wall holster (like in INS2)
 //-----------------------------------------------------------------------------
 
 local reg = debug.getregistry()
@@ -168,10 +170,6 @@ function SWEP:SecondaryAttack()
 	end
 	
 	if self.InactiveWeaponStates[self.dt.State] or (self.dt.State == CW_AIMING and self.HoldToAim) then
-		return
-	end
-	
-	if self:isNearWall() then
 		return
 	end
 	

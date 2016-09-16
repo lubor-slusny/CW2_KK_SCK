@@ -308,7 +308,7 @@ function SWEP:beginReload()
 			
 			if SERVER and self.ReloadFirstShell then
 				CustomizableWeaponry.actionSequence.new(self, self.ReloadFirstShell, nil, function()
-					if self.ShotgunReloadState == 0 then return end	// melee attack interuption
+					if self.ShotgunReloadState == 0 then return end	// melee attack interruption
 					
 					self:SetClip1(mag + 1)
 					self.Owner:SetAmmo(ammo - 1, self.Primary.Ammo)
@@ -329,17 +329,13 @@ function SWEP:beginReload()
 		self.ShotgunReloadState = 1
 	end
 	
-	if SERVER then
-		SendUserMessage("CW_KK_INS2_RELOADINACTIVITY", self.Owner)
-	end
-	
 	CustomizableWeaponry.callbacks.processCategory(self, "beginReload", mag == 0)
 	
 	self.Owner:SetAnimation(PLAYER_RELOAD)
 end
 
 //-----------------------------------------------------------------------------
-// finishReloadINS2GL loads customized grenade launcher and notifies client
+// finishReloadINS2GL loads customized grenade launcher
 //-----------------------------------------------------------------------------
 
 function SWEP:finishReloadINS2GL()
@@ -415,7 +411,7 @@ end
 // finishReloadShotgun edited to 
 // - support chambering on shotguns
 // - allow loading 1st round during reload_start sequence
-// - disallow reload interuption unless at least one round was loaded
+// - disallow reload interruption unless at least one round was loaded
 //-----------------------------------------------------------------------------
 
 local CT, keyDown, mag, ammo
@@ -617,7 +613,7 @@ end
 //-----------------------------------------------------------------------------
 // Initialize edited to initialize custom features
 // - ActiveAttachment and WElement state networking
-// - FirstDeploy animstion logic
+// - FirstDeploy animation logic
 //-----------------------------------------------------------------------------
 
 function SWEP:Initialize()	

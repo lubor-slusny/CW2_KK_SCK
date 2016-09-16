@@ -401,7 +401,7 @@ function SWEP:SecondaryAttack()
 	
 	if self.Owner:GetAmmoCount(self.Primary.Ammo) > 0 then
 		if CLIENT then
-			self.reticleInactivity = UnPredictedCurTime() + 2
+			self.reticleInactivity = UnPredictedCurTime() + 2.5
 		end
 		
 		if self:canAnimate() then
@@ -425,13 +425,17 @@ function SWEP:SecondaryAttack()
 		end)
 
 		self:SetNextPrimaryFire(CurTime() + 2)
-		self:SetNextSecondaryFire(CurTime() + 2.5)
+		self:SetNextSecondaryFire(CurTime() + 2)
 	else
 		self:detonateLast()
 	end
 end
 
 function SWEP:detonateLast()
+	if CLIENT then
+		self.reticleInactivity = UnPredictedCurTime() + 1.5
+	end
+	
 	if self:canAnimate() then
 		self:sendWeaponAnim("det_boom", 1, 0)
 		

@@ -27,20 +27,18 @@ if CLIENT then
 				self._KK_INS2_postReloadBipodSwitch = true
 			else
 				if isBipod then
-					self:playAnim("bipod_in" .. suffix) 
+					self:sendWeaponAnim("bipod_in" .. suffix) 
 				else 
-					self:playAnim("bipod_out" .. suffix) 
+					self:sendWeaponAnim("bipod_out" .. suffix) 
 				end
 			end
-			self.reticleInactivity = UnPredictedCurTime() + (self.CW_VM:SequenceDuration())
 		end
 		if self._KK_INS2_postReloadBipodSwitch and self.Sequence:find("reload") and cycle > 0.9 then
 			if isBipod then
-				self:playAnim("bipod_in" .. suffix) 
+				self:sendWeaponAnim("bipod_in" .. suffix) 
 			else 
-				self:playAnim("bipod_out" .. suffix) 
+				self:sendWeaponAnim("bipod_out" .. suffix) 
 			end
-			self.reticleInactivity = UnPredictedCurTime() + (self.CW_VM:SequenceDuration())
 			self._KK_INS2_postReloadBipodSwitch = false
 		end
 		
@@ -50,21 +48,13 @@ if CLIENT then
 	local canDoStuff, wasSprint, isSprint, wasSafe, isSafe
 	
 	function SWEP:playHolsterTransitions()
-		if not self._KK_INS2_PickedUp then 
-			return 
-		end
-		
-		cycle = self.CW_VM:GetCycle()
-		
 		canDoStuff = 
+			self:isReticleActive() and								// no swapping during "action" animation
 			(self.dt.State != CW_CUSTOMIZE) and 					// no swapping in CW Menu
-			(self.dt.State != CW_ACTION) and 						// no swapping during knife attack/quick grenade throw
-			self:isReticleActive() and 								// no swapping during... eh?
+			-- (self.dt.State != CW_ACTION) and 						// no swapping during knife attack/quick grenade throw
 			not (self.KKINS2Nade and self.dt.PinPulled) and			// no swapping after pin-pull
-			not self:isReloading() and								// no swapping during reload
 			not (self.GlobalDelay > CurTime()) and					// ??
-			not (self.Sequence:find("ready") and cycle < 1) and		// double check if we re not unboxing the weapon atm
-			not (self.Sequence:find("reload") and cycle < 1) and	// double check if reload isnt going on atm
+			self._KK_INS2_PickedUp and								// no swapping before unboxed (although it should be covered by pickup anim)
 			true
 		
 		wasSprint = self._KK_INS2_wasSprint
@@ -86,7 +76,7 @@ if CLIENT then
 		if self.KKINS2Melee then return end
 		
 		wasSafe = self._KK_INS2_wasSafe
-		isSafe = self.dt.Safe or self:isNearWall()
+		isSafe = self.dt.Safe or self:isNearWall() or (self.dt.State == CW_ACTION)
 		
 		isSafe = isSafe and canDoStuff
 		
@@ -123,13 +113,13 @@ if CLIENT then
 		end
 	
 		if self.KKINS2Nade and self.Owner:GetAmmoCount(self.Primary.Ammo) < 1 then 
-			-- self:playAnim("base_draw", -1, 0)
+			-- self:sendWeaponAnim("base_draw", -1, 0)
 			anim = "holster"
 			rate = 1
 			cycle = 1
 		end
 		
-		self:playAnim(prefix .. anim .. suffix, rate, cycle)
+		self:sendWeaponAnim(prefix .. anim .. suffix, rate, cycle)
 	end
 
 	function SWEP:safetyAnimFunc()
@@ -149,8 +139,7 @@ if CLIENT then
 			suffix = suffix .. "_aim"
 		end
 		
-		self:playAnim(prefix .. anim .. suffix, 1, 0)
-		-- self.reticleInactivity = UnPredictedCurTime() + 0.5
+		self:sendWeaponAnim(prefix .. anim .. suffix, 1, 0)
 	end
 
 	function SWEP:firemodeAnimFunc()
@@ -170,11 +159,7 @@ if CLIENT then
 			suffix = suffix .. "_aim"
 		end
 		
-		self:playAnim(prefix .. anim .. suffix, 1, 0)
-		
-		if self.Animations[prefix .. anim .. suffix] then
-			self.reticleInactivity = UnPredictedCurTime() + (self.CW_VM:SequenceDuration())
-		end
+		self:sendWeaponAnim(prefix .. anim .. suffix, 1, 0)
 	end
 		
 	function SWEP:idleAnimFunc()
@@ -211,7 +196,7 @@ if CLIENT then
 			-- cycle = 0.5
 		-- end
 		
-		self:playAnim(prefix .. anim .. suffix, rate, cycle)
+		self:sendWeaponAnim(prefix .. anim .. suffix, rate, cycle)
 	end
 end
 
@@ -229,7 +214,7 @@ function SWEP:pickupAnimFunc(mode)
 	
 	if CLIENT then
 		if self.Sequence != self.Animations[mode .. anim] then
-			self:playAnim(mode .. anim, self.DrawSpeed, 0)
+			self:sendWeaponAnim(mode .. anim, self.DrawSpeed, 0)
 		end
 	end
 end
@@ -329,84 +314,230 @@ function SWEP:holsterAnimFunc(ctrl)
 	self:sendWeaponAnim(prefix .. "holster" .. suffix, self.HolsterSpeed, cycle)
 end
 
-// angry stuff
-
-if SERVER then
-	util.AddNetworkString("kkins2_animate")
-end
-
-function SWEP:sendWeaponAnimINS2(anim, rate, cycle, clok)
-	if not anim then
-		return
-	end
-	
-	rate = rate or 1
-	cycle = cycle or 0
-	
-	print(anim, rate, cycle, clok)
-	
-	if SERVER then
-		net.Start("kkins2_animate")
-		net.WriteEntity(self)
-		net.WriteString(anim)
-		net.WriteFloat(rate)
-		net.WriteFloat(cycle)
-		net.Send(self.Owner)
-	end
-	
-	if self.animCallbacks and self.animCallbacks[anim] then
-		self.animCallbacks[anim](self)
-	end
-	
-	local foundAnim = self.Animations[anim]
-	
-	if not foundAnim then
-		return
-	end
-	
-	if type(foundAnim) == "table" then
-		foundAnim = table.Random(foundAnim)
-	end
-	
-	if self.Sounds[foundAnim] then
-		self:setCurSoundTable(self.Sounds[foundAnim], rate, cycle, foundAnim)
-	else
-		self:removeCurSoundTable()
-	end
-	
-	if CLIENT and clok then
-		local ent = self.CW_VM
-		
-		ent:ResetSequence(foundAnim)
-		
-		if cycle > 0 then
-			ent:SetCycle(cycle)
-		else
-			ent:SetCycle(0)
-		end
-		
-		ent:SetPlaybackRate(rate)
-	end
-end
-
 if CLIENT then
-	local LocalPlayer = LocalPlayer
-	
-	local function kkins2_animate()
-		local wep = net.ReadEntity()
-		local anim = net.ReadString()
-		local rate = net.ReadFloat()
-		local cycle = net.ReadFloat()
+	SWEP.inactivityAnimsRaw = {
+		["reload"] = 0.1,			// Actually, reloads anims are only played using
+		["reload_empty"] = 0.1,		// these two. For now.
 		
-		if wep.sendWeaponAnimINS2 then
-			wep:sendWeaponAnimINS2(anim, rate, cycle, true)
-		end
-	end
+		// I really should generate this from table of prefixes|anims|suffixes|suffixes|suffixes lol
+		
+		["base_pickup"] = 0.1,
+		-- ["base_draw"] = 0.1,
+		-- ["base_draw_empty"] = 0.1,
+		-- ["base_draw_empty_mm"] = 0.1,
+		["base_bolt"] = 0.1,
+		["base_bolt_aim"] = 0.1,
+		["base_reload"] = 0.1,
+		["base_reload_mm"] = 0.1,
+		["base_reload_empty"] = 0.1,
+		["base_reload_empty_mm"] = 0.1,
+		["base_reload_start"] = 0.1,
+		["base_reload_start_empty"] = 0.1,
+		["base_reload_end"] = 0.1,
+		["base_reload_end_empty"] = 0.1,
+		["base_insert"] = 0.1,
+		-- ["base_holster"] = 0.1,
+		-- ["base_holster_empty"] = 0.1,
+		-- ["base_holster_empty_mm"] = 0.1,
+		["base_firemode"] = 0.1,
+		["base_firemode_aim"] = 0.1,
+		["base_firemode_empty"] = 0.1,
+		["base_firemode_empty_aim"] = 0.1,
+		["base_firemode_empty_mm"] = 0.1,
+		["base_firemode_empty_mm_aim"] = 0.1,
+		
+		["foregrip_pickup"] = 0.1,
+		-- ["foregrip_draw"] = 0.1,
+		-- ["foregrip_draw_empty"] = 0.1,
+		-- ["foregrip_draw_empty_mm"] = 0.1,
+		["foregrip_bolt"] = 0.1,
+		["foregrip_bolt_aim"] = 0.1,
+		["foregrip_reload"] = 0.1,
+		["foregrip_reload_mm"] = 0.1,
+		["foregrip_reload_empty"] = 0.1,
+		["foregrip_reload_empty_mm"] = 0.1,
+		["foregrip_reload_start"] = 0.1,
+		["foregrip_reload_start_empty"] = 0.1,
+		["foregrip_reload_end"] = 0.1,
+		["foregrip_reload_end_empty"] = 0.1,
+		["foregrip_insert"] = 0.1,
+		-- ["foregrip_holster"] = 0.1,
+		-- ["foregrip_holster_empty"] = 0.1,
+		-- ["foregrip_holster_empty_mm"] = 0.1,
+		["foregrip_firemode"] = 0.1,
+		["foregrip_firemode_aim"] = 0.1,
+		["foregrip_firemode_empty"] = 0.1,
+		["foregrip_firemode_empty_aim"] = 0.1,
+		["foregrip_firemode_empty_mm"] = 0.1,
+		["foregrip_firemode_empty_mm_aim"] = 0.1,
+		
+		["bipod_in"] = 0.1,
+		["bipod_in_empty"] = 0.1,
+		["bipod_bolt"] = 0.1,
+		["bipod_bolt_aim"] = 0.1,
+		["bipod_reload"] = 0.1,
+		["bipod_reload_empty"] = 0.1,
+		["bipod_reload_start"] = 0.1,
+		["bipod_reload_start_empty"] = 0.1,
+		["bipod_reload_end"] = 0.1,
+		["bipod_reload_end_empty"] = 0.1,
+		["bipod_insert"] = 0.1,
+		["bipod_firemode"] = 0.1,
+		["bipod_firemode_aim"] = 0.1,
+		["bipod_firemode_empty"] = 0.1,
+		["bipod_firemode_empty_aim"] = 0.1,
+		["bipod_out"] = 0.1,
+		["bipod_out_empty"] = 0.1,
+		
+		["gl_off_pickup"] = 0.1,
+		-- ["gl_off_draw"] = 0.1,
+		["gl_off_bolt"] = 0.1,
+		["gl_off_bolt_aim"] = 0.1,
+		["gl_off_reload"] = 0.1,
+		["gl_off_reload_empty"] = 0.1,
+		["gl_off_reload_start"] = 0.1,
+		["gl_off_reload_start_empty"] = 0.1,
+		["gl_off_reload_end"] = 0.1,
+		["gl_off_reload_end_empty"] = 0.1,
+		["gl_off_insert"] = 0.1,
+		-- ["gl_off_holster"] = 0.1,
+		["gl_off_firemode"] = 0.1,
+		["gl_off_firemode_aim"] = 0.1,
+		
+		-- ["gl_on_draw"] = 0.1,
+		["gl_on_reload"] = 0.1,
+		-- ["gl_on_holster"] = 0.1,
+		
+		["gl_turn_on"] = 0.1,
+		["gl_turn_off"] = 0.1,
+		["gl_turn_on_full"] = 0.1,
+		["gl_turn_off_empty"] = 0.1,
+	}
+
+	local print = chat.AddText
 	
-	net.Receive("kkins2_animate", kkins2_animate)
+	// call me from init callback
+	function SWEP:setupReticleInactivityCallbacks()
+		self.animCallbacks = self.animCallbacks or {}
+		
+		local vm = self.CW_VM
+		
+		for animName,add in pairs(self.inactivityAnimsRaw) do
+			local seqName = self.Animations[animName]
+			
+			if not seqName or !isstring(seqName) then 
+				continue 
+			end
+			
+			local _, seqDur = vm:LookupSequence(seqName)
+			
+			if seqDur <= 0 then
+				continue
+			end
+			
+			local UnPredictedCurTime = UnPredictedCurTime
+			
+			local newFunc = function(wep)
+				print(wep, "		", animName, "		", string.format("%.3f", seqDur))
+				wep.reticleInactivity = UnPredictedCurTime() + seqDur + add
+			end
+			
+			if self.animCallbacks[animName] then
+				local oldFunc = self.animCallbacks[animName]
+				self.animCallbacks[animName] = function(wep)
+					newFunc(wep)
+					oldFunc(wep)
+				end
+			else
+				self.animCallbacks[animName] = newFunc
+			end
+		end
+		
+	end
 end
 
--- // meh stuff
+-- //-----------------------------------------------------------------------------
+-- // server-side sprint state anyone? :P
+-- //-----------------------------------------------------------------------------
+
+-- if SERVER then
+	-- util.AddNetworkString("kkins2_animate")
+-- end
+
+-- function SWEP:sendWeaponAnimINS2(anim, rate, cycle, clok)
+	-- if not anim then
+		-- return
+	-- end
+	
+	-- rate = rate or 1
+	-- cycle = cycle or 0
+	
+	-- print(anim, rate, cycle, clok)
+	
+	-- if SERVER then
+		-- net.Start("kkins2_animate")
+		-- net.WriteEntity(self)
+		-- net.WriteString(anim)
+		-- net.WriteFloat(rate)
+		-- net.WriteFloat(cycle)
+		-- net.Send(self.Owner)
+	-- end
+	
+	-- if self.animCallbacks and self.animCallbacks[anim] then
+		-- self.animCallbacks[anim](self)
+	-- end
+	
+	-- local foundAnim = self.Animations[anim]
+	
+	-- if not foundAnim then
+		-- return
+	-- end
+	
+	-- if type(foundAnim) == "table" then
+		-- foundAnim = table.Random(foundAnim)
+	-- end
+	
+	-- if self.Sounds[foundAnim] then
+		-- self:setCurSoundTable(self.Sounds[foundAnim], rate, cycle, foundAnim)
+	-- else
+		-- self:removeCurSoundTable()
+	-- end
+	
+	-- if CLIENT and clok then
+		-- local ent = self.CW_VM
+		
+		-- ent:ResetSequence(foundAnim)
+		
+		-- if cycle > 0 then
+			-- ent:SetCycle(cycle)
+		-- else
+			-- ent:SetCycle(0)
+		-- end
+		
+		-- ent:SetPlaybackRate(rate)
+	-- end
+-- end
+
+-- if CLIENT then
+	-- local LocalPlayer = LocalPlayer
+	
+	-- local function kkins2_animate()
+		-- local wep = net.ReadEntity()
+		-- local anim = net.ReadString()
+		-- local rate = net.ReadFloat()
+		-- local cycle = net.ReadFloat()
+		
+		-- if wep.sendWeaponAnimINS2 then
+			-- wep:sendWeaponAnimINS2(anim, rate, cycle, true)
+		-- end
+	-- end
+	
+	-- net.Receive("kkins2_animate", kkins2_animate)
+-- end
+
+-- //-----------------------------------------------------------------------------
+-- // no fix for prediction
+-- //-----------------------------------------------------------------------------
 
 -- if SP then return end
 

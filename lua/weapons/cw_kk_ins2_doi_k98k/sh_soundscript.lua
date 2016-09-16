@@ -3,52 +3,6 @@ local function shell(wep)
 	wep:shellEvent() 
 end
 
-SWEP.animCallbacksRAW = { // Aim LayZ to rewrite this
-	base_fire_end = {
-		{time = 20/30, sound = "", callback = shell},
-	},
-
-	base_reload_empty_clip = {
-		{time = 29/33.4, sound = "", callback = shell},
-	},
-
-	base_reload_start_empty = {
-		{time = 29/33.5, sound = "", callback = shell},
-	},
-
-	iron_fire_end = {
-		{time = 18/30.5, sound = "", callback = shell},
-	},
-
-	gl_fire_end = {
-		{time = 20/30, sound = "", callback = shell},
-	},
-
-	gl_reload_empty_stripper = {
-		{time = 29/33.4, sound = "", callback = shell},
-	},
-
-	gl_reload_start_empty = {
-		{time = 29/33.5, sound = "", callback = shell},
-	},
-
-	gl_iron_fire_end = {
-		{time = 18/30.5, sound = "", callback = shell},
-	},
-
-	glsetup_in_empty = {
-		{time = 29/32.5, sound = "", callback = shell},
-	},
-
-	glsetup_out_empty = {
-		{time = 29/32.5, sound = "", callback = shell},
-	},
-
-	glsetup_reload = {
-		{time = 29/32.5, sound = "", callback = shell},
-	},
-}
-
 SWEP.Sounds = {
 	base_ready = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},

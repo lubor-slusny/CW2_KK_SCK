@@ -196,9 +196,7 @@ end
 // currently used by DOI BAR
 //-----------------------------------------------------------------------------
 
-function SWEP:IndividualThink_INS2()
-	// :(
-end
+function SWEP:IndividualThink_INS2() end
 
 //-----------------------------------------------------------------------------
 // IndividualThink for custom features
@@ -209,7 +207,7 @@ end
 // - belt bodygroups updates on viewmodels
 // - individual weapon properties updates
 // - animated bipod state transitions
-// - animated sprint, nearwall holster, safety holster transitions
+// - animated sprint, near-wall holster, safety firemode holster transitions
 //-----------------------------------------------------------------------------
 
 local cvarFA = GetConVar("cw_freeaim")
@@ -253,7 +251,7 @@ function SWEP:IndividualThink()
 end
 
 //-----------------------------------------------------------------------------
-// doBoltAction sets dealays and plays bolt animation on shotguns/rifles
+// doBoltAction sets delays and plays bolt animation on shotguns/rifles
 //-----------------------------------------------------------------------------
 
 function SWEP:doBoltAction()
@@ -286,7 +284,7 @@ end
 //-----------------------------------------------------------------------------
 // OnDrop 
 // - prepares first deploy animation to be replayed
-// - onloads allocated magazines if Mag System is installed
+// - unloads allocated magazines if Mag System is installed
 //-----------------------------------------------------------------------------
 
 function SWEP:OnDrop(...)

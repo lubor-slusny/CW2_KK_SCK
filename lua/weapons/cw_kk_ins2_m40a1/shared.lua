@@ -284,7 +284,6 @@ if CLIENT then
 				else 
 					self:playAnim("bipod_out") 
 				end
-				self.reticleInactivity = UnPredictedCurTime() + (self.CW_VM:SequenceDuration())
 			else
 				self.KKINS_postReloadBipodSwitch = true
 			end
@@ -295,7 +294,6 @@ if CLIENT then
 			else 
 				self:playAnim("bipod_out") 
 			end
-			self.reticleInactivity = UnPredictedCurTime() + (self.CW_VM:SequenceDuration())
 			self.KKINS_postReloadBipodSwitch = false
 		end
 		

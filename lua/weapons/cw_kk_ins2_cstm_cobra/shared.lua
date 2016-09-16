@@ -172,10 +172,6 @@ function SWEP:IndividualInitialize()
 end
 
 function SWEP:beginReload()
-	if SERVER then
-		SendUserMessage("CW_KK_INS2_RELOADINACTIVITY", self.Owner)
-	end
-	
 	if self.ShotgunReload then
 		mag = self:Clip1()
 	

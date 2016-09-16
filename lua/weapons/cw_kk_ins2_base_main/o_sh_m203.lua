@@ -5,7 +5,7 @@ local SP = game.SinglePlayer()
 // fireM203 edited to use
 // - CW_VM for animations
 // - grenade launcher VElement for muzzle flash position
-// - shouldSuppressAmmoUsage callback 
+// - shouldSuppressAmmoUsage callback
 //-----------------------------------------------------------------------------
 
 function SWEP:fireM203(firstTimePrediction)
@@ -48,17 +48,14 @@ function SWEP:fireM203(firstTimePrediction)
 end
 
 //-----------------------------------------------------------------------------
-// reloadM203 contents were moved to 
-// SWEP:Reload()
-// SWEP:beginReload()
-// SWEP:finishReload()
+// reloadM203 contents were moved to SWEP:finishReload()
 //-----------------------------------------------------------------------------
 
 function SWEP:reloadM203()
 end
 
 //-----------------------------------------------------------------------------
-// CW_KK_INS2_READYM203 message notifies client that GL was loaded (hud)
+// CW_KK_INS2_READYM203 message notifies client that GL was loaded (for HUD)
 //-----------------------------------------------------------------------------
 
 if CLIENT then
@@ -74,7 +71,9 @@ if CLIENT then
 end
 
 //-----------------------------------------------------------------------------
-// unloading greande launcher after grenadeType change
+// unloadM203 empties
+// grenade launcher 
+// weapon itself if primary ammo is 40MM
 //-----------------------------------------------------------------------------
 
 function SWEP:unloadM203()
@@ -95,7 +94,7 @@ function SWEP:unloadM203()
 end
 
 //-----------------------------------------------------------------------------
-// CW_KK_INS2_UNLOADM203 message notifies client that grenade launcher was unloaded (hud)
+// CW_KK_INS2_UNLOADM203 message runs SWEP:unloadM203() on client
 //-----------------------------------------------------------------------------
 
 if CLIENT then

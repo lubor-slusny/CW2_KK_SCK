@@ -233,16 +233,3 @@ SWEP.ReloadHalt_Empty = 4.29
 
 SWEP.MuzzleVelocity = 760
 SWEP.boltAction_pumpTime = 1.3
-
-SWEP.animCallbacks = {}
-
-for k,v in pairs(SWEP.Animations) do
-	if SWEP.animCallbacksRAW[v] then
-		local t = SWEP.animCallbacksRAW[v].time
-		SWEP.animCallbacks[k] = function(wep)
-			CustomizableWeaponry.actionSequence.new(wep, t, nil, function()
-				wep:shellEvent()
-			end)
-		end
-	end
-end

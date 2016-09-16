@@ -3,15 +3,12 @@ local SP = game.SinglePlayer()
 
 CustomizableWeaponry_KK.ins2.quickKnife = CustomizableWeaponry_KK.ins2.quickKnife or {}
 
-// funny idea
-
+// only purpose of this entity is to give melee attack knife killicon
 hook.Add("InitPostEntity", "CW_KK_INS2_MELEE_ICON", function()
 	if SERVER then
 		CustomizableWeaponry_KK.ins2.quickKnife._inflictor = ents.Create("cw_kk_ins2_damage_melee")
 	end
 end)
-
-// lets see if it works
 
 CustomizableWeaponry_KK.ins2.quickKnife.models = {}
 
@@ -46,31 +43,22 @@ CustomizableWeaponry_KK.ins2.quickKnife.models.ww2gb = {
 }
 
 function CustomizableWeaponry_KK.ins2.quickKnife.canAttack(wep)
-	// can't throw if we're within a restricted state
 	if CustomizableWeaponry.quickGrenade.restrictedStates[wep.dt.State] then
 		return false
 	end
-	
-	-- // can't throw while reloading
-	-- if wep.ReloadDelay then
-		-- return false
-	-- end
 	
 	if wep.dt.PinPulled then 
 		return
 	end
 	
-	// can't throw with an active bipod
 	if wep.dt.BipodDeployed then
 		return false
 	end
 	
-	// can't throw while changing weapons
 	if wep.HolsterDelay then
 		return false
 	end
 	
-	// everything passes, can throw, woo!
 	return true
 end
 
@@ -156,6 +144,7 @@ end
 function CustomizableWeaponry_KK.ins2.quickKnife.attack(wep)
 	local CT = CurTime()
 	
+	// reset reload delays to interrupt reload (if any)
 	wep.ReloadDelay = nil
 	wep.ReloadWait = CT
 	wep.ShotgunReloadState = 0
@@ -163,16 +152,22 @@ function CustomizableWeaponry_KK.ins2.quickKnife.attack(wep)
 		wep.dt.AT4ReloadEnd = 0
 	end
 	
+	// reset VM anim
 	if CLIENT then
 		wep:idleAnimFunc()
 	end
 	
+	// since we are ignoring base delays, lets add our own
+	// btw why dont I check for this in quickKnife.canAttack?
 	wep.meleeAttackDelay = CT + 0.6
 	
+	// tell client to do stuff since we are triggered using concommand, not PrimaryAttack
+	// prubly should replace this with net.Send
 	if SERVER then
 		SendUserMessage("CW_KK_INS2_QUICKKNIFE", wep.Owner)
 	end
 	
+	// looking back on this check few months later, it doesnt make any sense
 	if SP or (!SP and SERVER) or (!SP and CLIENT/* and IsFirstTimePredicted()*/) then
 		local category
 		
@@ -182,11 +177,13 @@ function CustomizableWeaponry_KK.ins2.quickKnife.attack(wep)
 			-- wep.Owner:AnimRestartGesture(GESTURE_SLOT_ATTACK_AND_RELOAD, ACT_GMOD_GESTURE_MELEE_SHOVE_2HAND, true)
 		-- end
 		
+		// why didnt I just broadcast this from server directly? why am I sending it to server first?
 		if CLIENT then
 			net.Start("CW_KK_INS2_NWGQK")
 			net.SendToServer()
 		end
 		
+		// this will make adding hands (DOI Thompson) fun
 		if wep.ActiveAttachments.kk_ins2_ww2_knife then			
 			if CLIENT then
 				wep:meleeAnimFunc()
@@ -229,6 +226,7 @@ function CustomizableWeaponry_KK.ins2.quickKnife.attack(wep)
 				end)
 				
 				CustomizableWeaponry.actionSequence.new(wep, 1, nil, function()
+					wep.reticleInactivity = 0
 					wep:idleAnimFunc()
 				end)
 			end

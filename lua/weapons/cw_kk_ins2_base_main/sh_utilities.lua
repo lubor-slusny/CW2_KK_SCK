@@ -93,36 +93,6 @@ function SWEP:getReloadTimes()
 end
 
 //-----------------------------------------------------------------------------
-// reloadInactivity is called from SWEP:beginReload() to prevent sprint anims
-//-----------------------------------------------------------------------------
-
-if CLIENT then
-	function SWEP:reloadInactivity()
-		if self.ShotgunReload then
-			self.reticleInactivity = UnPredictedCurTime() + 1 // (self.CW_VM:SequenceDuration()) + 1
-		else
-			if self:Clip1() == 0 then
-				self.reticleInactivity = UnPredictedCurTime() + self.ReloadHalt_Empty
-			else
-				self.reticleInactivity = UnPredictedCurTime() + self.ReloadHalt
-			end
-		end
-	end
-
-	local ply, wep
-	
-	usermessage.Hook("CW_KK_INS2_RELOADINACTIVITY", function()
-		ply = LocalPlayer()
-		if !IsValid(ply) then return end
-		
-		wep = ply:GetActiveWeapon()
-		if !IsValid(wep) or not wep.CW20Weapon then return end
-		
-		wep:reloadInactivity()
-	end)
-end
-
-//-----------------------------------------------------------------------------
 // updateHands checks cw_kk_ins2_rig convar for changes and updates hands model
 //-----------------------------------------------------------------------------
 

@@ -1,6 +1,6 @@
 
 //-----------------------------------------------------------------------------
-// _registerVMShell adds passed entity to SWEPa table of active shells
+// _registerVMShell adds passed entity to SWEPs table of active shells
 //-----------------------------------------------------------------------------
 
 local cvarSVM = GetConVar("cw_kk_ins2_shell_vm") or {GetInt = function() return 1 end}

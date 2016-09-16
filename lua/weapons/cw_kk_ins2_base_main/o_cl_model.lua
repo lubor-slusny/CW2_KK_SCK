@@ -45,7 +45,7 @@ function SWEP:buildBoneTable()
 end
 
 //-----------------------------------------------------------------------------
-// createCustomVM edited to initialize addditional models
+// createCustomVM edited to initialize additional models
 //-----------------------------------------------------------------------------
 
 function SWEP:createCustomVM(mdl)
@@ -144,9 +144,7 @@ end
 // createGrenadeModel contents moved to createCustomVM
 //-----------------------------------------------------------------------------
 
-function SWEP:createGrenadeModel() 
-	// moved somewhere
-end
+function SWEP:createGrenadeModel() end
 
 //-----------------------------------------------------------------------------
 // drawGrenade edited to draw hands-model entity
@@ -324,7 +322,7 @@ end
 //-----------------------------------------------------------------------------
 // DrawWorldModel edited to support
 // - attachment world models (WElements)
-// - 3rd person 3d2d hud
+// - 3rd person 3D2D HUD
 //-----------------------------------------------------------------------------
 
 local GetBonePosition = debug.getregistry().Entity.GetBonePosition

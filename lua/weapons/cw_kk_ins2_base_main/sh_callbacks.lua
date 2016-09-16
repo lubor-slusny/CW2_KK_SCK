@@ -54,6 +54,9 @@ CustomizableWeaponry.callbacks:addNew("initialize", "KK_INS2_BASE", function(wep
 		
 		// sth sth darqside
 		wep._deployedShells = {}
+		
+		// inactivity anims
+		wep:setupReticleInactivityCallbacks() // sh_anims.lua
 	end
 	
 	// Ive never really used ammo crate before so here s quickfix for explosives
@@ -72,21 +75,6 @@ CustomizableWeaponry.callbacks:addNew("initialize", "KK_INS2_BASE", function(wep
 		end
 	end
 end)
-
-if CLIENT then
-	local wep
-	
-	usermessage.Hook("CW_KK_INS2_RETICLEINACTIVITY", function(um)
-		local ply = LocalPlayer()
-		if !IsValid(ply) then return end
-		
-		wep = ply:GetActiveWeapon()
-		if !IsValid(wep) or wep.Base != "cw_kk_ins2_base" then return end
-			
-		-- wep.reticleInactivity = UnPredictedCurTime() + um:ReadFloat()
-		wep.reticleInactivity = UnPredictedCurTime() + (wep.CW_VM:SequenceDuration())
-	end)
-end
 
 local CW2_ATTS = CustomizableWeaponry.registeredAttachmentsSKey
 
