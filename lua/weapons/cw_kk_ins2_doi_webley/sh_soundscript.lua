@@ -9,14 +9,6 @@ local function shells(self)
 	end
 end
 
-local function toclip(...)
-	CustomizableWeaponry_KK.ins2.bulletBgs.shellsToClip(...)
-end
-
-local function toreserve(...)
-	CustomizableWeaponry_KK.ins2.bulletBgs.shellsToReserve(...)
-end
-
 SWEP.Sounds = {
 	base_ready = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_PISTOL_DRAW"},
@@ -64,14 +56,14 @@ SWEP.Sounds = {
 	base_reload_start = {
 		{time = 0/35, sound = "", callback = prepareShells},
 		{time = 1/35, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
-		{time = 15/35, sound = "", callback = toclip},
+		{time = 15/35, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.shellsToClip},
 		{time = 19/35, sound = "CW_KK_INS2_DOI_WEBLEY_OPENCHAMBER"},
 		{time = 22/35, sound = "", callback = shells},
 		{time = 24/35, sound = "CW_KK_INS2_DOI_WEBLEY_DUMPROUNDS"},
 	},
 
 	base_reload_insert = {
-		{time = 0/40, sound = "", callback = toclip},
+		{time = 0/40, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.shellsToClip},
 		{time = 13/40, sound = "CW_KK_INS2_DOI_WEBLEY_INSERTSINGLE"},
 		// { event 46 0 ""},
 		{time = 26/40, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
@@ -85,11 +77,11 @@ SWEP.Sounds = {
 	base_reload_speed = {
 		{time = 0/33, sound = "", callback = prepareShells},
 		{time = 1/33, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
-		{time = 15/33, sound = "", callback = toclip},
+		{time = 15/33, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.shellsToClip},
 		{time = 19/33, sound = "CW_KK_INS2_DOI_WEBLEY_OPENCHAMBER"},
 		{time = 22/33, sound = "", callback = shells},
 		{time = 24/33, sound = "CW_KK_INS2_DOI_WEBLEY_DUMPROUNDS"},
-		{time = 40/33, sound = "", callback = toreserve},
+		{time = 40/33, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.shellsToReserve},
 		{time = 57/33, sound = "CW_KK_INS2_DOI_WEBLEY_SPEEDLOADERINSERT"},
 		// { event 46 60 ""},
 		{time = 88/33, sound = "CW_KK_INS2_DOI_WEBLEY_CLOSECHAMBER"},

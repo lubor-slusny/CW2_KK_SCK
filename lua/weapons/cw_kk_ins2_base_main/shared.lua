@@ -309,9 +309,19 @@ end
 // PrepareForPickup prepares first deploy animation to be played
 //-----------------------------------------------------------------------------
 
+SWEP._KK_INS2_PickedUp = true
+
 local prefix, suffix
 
 function SWEP:PrepareForPickup(drop)
+	if not CustomizableWeaponry_KK.ins2.firstDeployEnabled then
+		if CLIENT then
+			self:drawAnimFunc()
+		end
+		
+		return
+	end
+	
 	self._KK_INS2_PickedUp = false
 	
 	if CLIENT and !drop then

@@ -159,7 +159,7 @@ function SWEP:beginReload()
 		self.GlobalDelay = time
 		self.ShotgunReloadState = 1
 		
-		self:sendWeaponAnim("reload_start")
+		self:sendWeaponAnim(self:getForegripMode() .. "reload_start")
 		
 		CustomizableWeaponry.actionSequence.new(self, 24/35, nil, function()
 			if self.ShotgunReloadState == 0 then return end // its also possible that its already 2 because user pressed attack button

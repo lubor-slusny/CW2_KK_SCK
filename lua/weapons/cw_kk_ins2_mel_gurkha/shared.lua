@@ -22,7 +22,7 @@ SWEP.Animations = {
 SWEP.NormalHoldType = "knife"
 SWEP.RunHoldType = "passive"
 SWEP.FireModes = {"auto"}
-SWEP.Base = "cw_kk_ins2_mel_base"
+SWEP.Base = "cw_kk_ins2_base_melee"
 SWEP.Category = "CW 2.0 KK INS2"
 
 SWEP.Author			= "Spy"

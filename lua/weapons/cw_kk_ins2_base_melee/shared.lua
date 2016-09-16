@@ -66,6 +66,10 @@ SWEP.AttackSound = ""
 SWEP.HitFleshSound = "CW_KK_INS2_KNIFE"
 SWEP.HitWorldSound = "CW_KK_INS2_KNIFE"
 
+//-----------------------------------------------------------------------------
+// getMuzzlePosition edited to use bone matrices
+//-----------------------------------------------------------------------------
+
 if CLIENT then
 	local m
 	local muz = {}
@@ -82,6 +86,10 @@ if CLIENT then
 		return muz
 	end
 end
+
+//-----------------------------------------------------------------------------
+// delayed aim vector trace and tr.ent:TakeDamageInfo
+//-----------------------------------------------------------------------------
 
 function SWEP:PrimaryAttack()
 	if self.Owner:KeyDown(IN_USE) then
@@ -156,8 +164,14 @@ function SWEP:PrimaryAttack()
 	end
 end
 
-function SWEP:SecondaryAttack()
-end
+//-----------------------------------------------------------------------------
+// stab (slower,stronger) attack someday, maybe?
+//-----------------------------------------------------------------------------
 
-function SWEP:Reload()
-end
+function SWEP:SecondaryAttack() end
+
+//-----------------------------------------------------------------------------
+// nothing to reload
+//-----------------------------------------------------------------------------
+
+function SWEP:Reload() end

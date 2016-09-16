@@ -1,5 +1,6 @@
 
 local SP = game.SinglePlayer()
+local MP = !SP
 
 CustomizableWeaponry_KK.ins2.quickGrenade = CustomizableWeaponry_KK.ins2.quickGrenade or {}
 
@@ -303,9 +304,11 @@ if SERVER then
 	local wep
 	
 	local function cw_kk_throwfrag(ply)		
+		if MP then return end
 		if !IsValid(ply) then return end
 		
 		wep = ply:GetActiveWeapon()
+		
 		if !IsValid(wep) then return end
 		if !wep.CW20Weapon then return end
 		

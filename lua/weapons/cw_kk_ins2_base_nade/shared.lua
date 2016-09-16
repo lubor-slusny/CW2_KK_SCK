@@ -87,16 +87,34 @@ SWEP.swapTimeCook = 0.7		// full length of throw_cook animation
 
 SWEP.canCook = true
 
+//-----------------------------------------------------------------------------
+// EquipAmmo replacement for SWEP.Primary.DefaultClip
+//-----------------------------------------------------------------------------
+
 if SERVER then	
 	function SWEP:EquipAmmo(ply)
 		ply:GiveAmmo(1, self.Primary.Ammo)
 	end
-	
+end
+
+//-----------------------------------------------------------------------------
+// Equip replacement for SWEP.Primary.Clip
+//-----------------------------------------------------------------------------
+
+if SERVER then
 	function SWEP:equipFunc()
 		local ply = self.Owner
 		ply:GiveAmmo(1, self.Primary.Ammo)
 	end
+end
+
+//-----------------------------------------------------------------------------
+// OnDrop edited to 
+// - replace dropped SWEP with live grenade if pin was pulled prior to dropped
+// - remove one round from players inventory
+//-----------------------------------------------------------------------------
 	
+if SERVER then
 	function SWEP:OnDrop()
 		if IsValid(self.lastOwner) then
 			if self.lastOwner:GetAmmoCount(self.Primary.Ammo) > 0 then
@@ -126,9 +144,17 @@ if SERVER then
 	end	
 end
 
+//-----------------------------------------------------------------------------
+// this does not work
+//-----------------------------------------------------------------------------
+
 function SWEP:ShouldDropOnDie()
 	return self.dt.PinPulled
 end
+
+//-----------------------------------------------------------------------------
+// SetupDataTables edited to initialize dt.PinPulled
+//-----------------------------------------------------------------------------
 
 function SWEP:SetupDataTables()
 	self:NetworkVar("Int", 0, "State")
@@ -140,6 +166,10 @@ function SWEP:SetupDataTables()
 	self:NetworkVar("Bool", 3, "PinPulled")
 	self:NetworkVar("Angle", 0, "ViewOffset")
 end
+
+//-----------------------------------------------------------------------------
+// getMuzzlePosition edited to use bone matrices
+//-----------------------------------------------------------------------------
 
 if CLIENT then
 	local m
@@ -158,9 +188,22 @@ if CLIENT then
 	end
 end
 
-function SWEP:Reload()
-end
+//-----------------------------------------------------------------------------
+// nothing to reload
+//-----------------------------------------------------------------------------
+
+function SWEP:Reload() end
 	
+//-----------------------------------------------------------------------------
+// IndividualThink edited to
+// - play draw anim after increasing ammo reserve to 1 
+// - use custom timings for entity spawns, fuse timer, animation delays
+// - spawn projectile entity using separate function
+// - apply throw velocity using separate function
+// - use shouldSuppressAmmoUsage callback
+// - overcook grenade using separate function
+//-----------------------------------------------------------------------------
+
 local SP = game.SinglePlayer()
 
 function SWEP:IndividualThink()
@@ -246,7 +289,7 @@ function SWEP:IndividualThink()
 					
 					timer.Simple(0.2, function()
 						if IsValid(self) and IsValid(self.Owner) then
-							if self.Owner:GetAmmoCount(self.Primary.Ammo) <= 0 then -- we're out of ammo, strip this weapon
+							if self.Owner:GetAmmoCount(self.Primary.Ammo) <= 0 then
 								self.Owner:ConCommand("lastinv")
 							else
 								self:drawAnimFunc()
@@ -261,6 +304,10 @@ function SWEP:IndividualThink()
 		end
 	end
 end
+
+//-----------------------------------------------------------------------------
+// getControlls checks for players "Swap Attacks" setting
+//-----------------------------------------------------------------------------
 
 if CLIENT then
 	SWEP._cvarControlls = CreateClientConVar("cw_kk_ins2_ins_nade_ctrls", 0, true, true)
@@ -277,6 +324,10 @@ function SWEP:getControlls()
 	
 	return (2 - math.Clamp(setting, 0, 1))
 end
+
+//-----------------------------------------------------------------------------
+// _attack is code shared by both PrimaryAttack and SecondaryAttack
+//-----------------------------------------------------------------------------
 
 local CT
 
@@ -319,13 +370,25 @@ function SWEP:_attack(key)
 	end
 end
 
+//-----------------------------------------------------------------------------
+// PrimaryAttack contents moved to _attack
+//-----------------------------------------------------------------------------
+
 function SWEP:PrimaryAttack()
 	self:_attack(1)
 end
 
+//-----------------------------------------------------------------------------
+// SecondaryAttack contents moved to _attack
+//-----------------------------------------------------------------------------
+
 function SWEP:SecondaryAttack()
 	self:_attack(2)
 end
+
+//-----------------------------------------------------------------------------
+// overCook is separate function to allow simple overriding by derived SWEPs
+//-----------------------------------------------------------------------------
 
 function SWEP:overCook()
 	local hitPos = self.Owner:EyePos() + (self.Owner:EyeAngles():Forward() * 18)
@@ -339,6 +402,10 @@ function SWEP:overCook()
 	
 	grenade:Fuse(0)
 end
+
+//-----------------------------------------------------------------------------
+// same purpose as overCook
+//-----------------------------------------------------------------------------
 
 function SWEP:createProjectile()
 	local grenade = ents.Create(self.grenadeEnt)
@@ -364,6 +431,10 @@ function SWEP:createProjectile()
 	
 	return grenade
 end
+
+//-----------------------------------------------------------------------------
+// same purpose as overCook
+//-----------------------------------------------------------------------------
 
 local v = Vector(0, 0, 150)
 

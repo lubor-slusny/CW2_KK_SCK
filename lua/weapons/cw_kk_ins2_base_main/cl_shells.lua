@@ -3,7 +3,7 @@
 // _registerVMShell adds passed entity to SWEPs table of active shells
 //-----------------------------------------------------------------------------
 
-local cvarSVM = GetConVar("cw_kk_ins2_shell_vm") or {GetInt = function() return 1 end}
+local cvarSVM = GetConVar("cw_kk_ins2_shell_vm")
 
 function SWEP:_registerVMShell(ent)
 	if cvarSVM:GetInt() == 1 then

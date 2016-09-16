@@ -114,7 +114,7 @@ SWEP.SlotPos = 0
 SWEP.NormalHoldType = "slam"
 SWEP.RunHoldType = "normal"
 SWEP.FireModes = {"single"}
-SWEP.Base = "cw_kk_ins2_nade_base"
+SWEP.Base = "cw_kk_ins2_base_nade"
 SWEP.Category = "CW 2.0 KK INS2"
 
 SWEP.Author			= "Spy"

@@ -1,5 +1,6 @@
 
 local SP = game.SinglePlayer()
+local MP = !SP
 local isBipod, wasBipod, cycle, suffix, anim, prefix, rate, clip
 
 if CLIENT then
@@ -48,6 +49,10 @@ if CLIENT then
 	local canDoStuff, wasSprint, isSprint, wasSafe, isSafe
 	
 	function SWEP:playHolsterTransitions()
+		if not CustomizableWeaponry_KK.ins2.holsterTransitionsEnabled then
+			return
+		end
+		
 		canDoStuff = 
 			self:isReticleActive() and								// no swapping during "action" animation
 			(self.dt.State != CW_CUSTOMIZE) and 					// no swapping in CW Menu
@@ -249,6 +254,10 @@ function SWEP:drawAnimFunc(ctrl)
 		cycle = 1
 	end
 	
+	if MP and SERVER then
+		return
+	end
+	
 	self:sendWeaponAnim(prefix .. anim .. suffix, rate, cycle)
 end
 
@@ -288,12 +297,6 @@ function SWEP:fireAnimFunc()
 	end
 	
 	self:sendWeaponAnim(prefix .. "fire" .. suffix, rate, cyc)
-	
-	if self.KK_INS2_BoltAction and not self.dt.INS2GLActive and clip > 0 then
-		CustomizableWeaponry.actionSequence.new(self, self.KK_INS2_BoltAction, nil, function()
-			self:sendWeaponAnim(prefix .. "bolt" .. suffix, 1, 0)
-		end)
-	end
 end //*/
 
 function SWEP:holsterAnimFunc(ctrl)
@@ -311,6 +314,10 @@ function SWEP:holsterAnimFunc(ctrl)
 		cycle = 1
 	end
 	
+	if MP and SERVER then
+		return
+	end
+	
 	self:sendWeaponAnim(prefix .. "holster" .. suffix, self.HolsterSpeed, cycle)
 end
 
@@ -326,7 +333,7 @@ if CLIENT then
 		-- ["base_draw_empty"] = 0.1,
 		-- ["base_draw_empty_mm"] = 0.1,
 		["base_bolt"] = 0.1,
-		["base_bolt_aim"] = 0.1,
+		["base_bolt_aim"] = -0.2,
 		["base_reload"] = 0.1,
 		["base_reload_mm"] = 0.1,
 		["base_reload_empty"] = 0.1,
@@ -436,10 +443,17 @@ if CLIENT then
 			end
 			
 			local UnPredictedCurTime = UnPredictedCurTime
+			local newFunc
 			
-			local newFunc = function(wep)
-				print(wep, "		", animName, "		", string.format("%.3f", seqDur))
-				wep.reticleInactivity = UnPredictedCurTime() + seqDur + add
+			if CustomizableWeaponry_KK.HOME then
+				newFunc = function(wep)	// i ll debug
+					print(wep, "		", animName, "		", string.format("%.3f", seqDur))
+					wep.reticleInactivity = UnPredictedCurTime() + seqDur + add
+				end
+			else
+				newFunc = function(wep)	// u have phun
+					wep.reticleInactivity = UnPredictedCurTime() + seqDur + add
+				end
 			end
 			
 			if self.animCallbacks[animName] then

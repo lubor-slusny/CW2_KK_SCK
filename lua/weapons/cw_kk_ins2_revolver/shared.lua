@@ -162,7 +162,7 @@ function SWEP:beginReload()
 		self.GlobalDelay = time
 		self.ShotgunReloadState = 1
 		
-		self:sendWeaponAnim("reload_start")
+		self:sendWeaponAnim(self:getForegripMode() .. "reload_start")
 		
 		CustomizableWeaponry.callbacks.processCategory(self, "beginReload", mag == 0)
 		

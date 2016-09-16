@@ -222,7 +222,7 @@ function CustomizableWeaponry_KK.ins2.quickKnife.attack(wep)
 				end)
 				
 				CustomizableWeaponry.actionSequence.new(wep, 0.9, nil, function()
-					wep:playAnim("holster", 1, 0, wep.CW_KK_KNIFE)
+					wep:playAnim("holster", 2, 0, wep.CW_KK_KNIFE)
 				end)
 				
 				CustomizableWeaponry.actionSequence.new(wep, 1, nil, function()

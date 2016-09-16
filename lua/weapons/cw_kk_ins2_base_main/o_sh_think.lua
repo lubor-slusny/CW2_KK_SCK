@@ -1,6 +1,6 @@
 
 //-----------------------------------------------------------------------------
-// Think edited to move code for finishing shotgun reload to
+// Think edited to finish shotgun reload using separate function
 // SWEP:finishReloadShotgun()
 //-----------------------------------------------------------------------------
 

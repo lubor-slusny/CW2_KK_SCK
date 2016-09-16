@@ -2,10 +2,13 @@ if not CustomizableWeaponry then return end
 
 AddCSLuaFile()
 
-local WS_PACK_REVISION = 5
+local WS_PACK_REVISION = 6
 
 CustomizableWeaponry_KK = CustomizableWeaponry_KK or {}
 CustomizableWeaponry_KK.ins2 = CustomizableWeaponry_KK.ins2 or {}
+
+CustomizableWeaponry_KK.ins2.firstDeployEnabled = true
+CustomizableWeaponry_KK.ins2.holsterTransitionsEnabled = true
 
 CustomizableWeaponry_KK.ins2.magnifierDependencies = CustomizableWeaponry_KK.ins2.magnifierDependencies or {}
 CustomizableWeaponry_KK.ins2.magnifierDependencies.kk_ins2_aimpoint = true

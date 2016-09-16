@@ -185,6 +185,10 @@ if CLIENT then
 	CustomizableWeaponry.callbacks:addNew("adjustViewmodelPosition", "KK_INS2_BASE", function(wep, TargetPos, TargetAng)
 		if !wep.KKINS2Wep then return end
 		
+		if wep.dt.State == CW_ACTION then
+			-- return wep.AlternativePos, wep.AlternativeAng
+		end
+		
 		if wep.dt.State == CW_HOLSTER_START or wep.dt.State == CW_HOLSTER_END then
 			return wep.AlternativePos, wep.AlternativeAng
 		end

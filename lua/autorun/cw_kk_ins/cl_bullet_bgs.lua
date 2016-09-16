@@ -1,6 +1,8 @@
 
 CustomizableWeaponry_KK.ins2.bulletBgs = CustomizableWeaponry_KK.ins2.bulletBgs or {}
 	
+local MP = !game.SinglePlayer()
+	
 if CLIENT then
 	CustomizableWeaponry_KK.ins2.bulletBgs._getReserve = function(wep)
 		if wep.getFullestMag then
