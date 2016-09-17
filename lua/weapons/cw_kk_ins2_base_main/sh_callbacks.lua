@@ -56,7 +56,9 @@ CustomizableWeaponry.callbacks:addNew("initialize", "KK_INS2_BASE", function(wep
 		wep._deployedShells = {}
 		
 		// inactivity anims
-		wep:setupReticleInactivityCallbacks() // sh_anims.lua
+		if wep.setupReticleInactivityCallbacks then
+			wep:setupReticleInactivityCallbacks() // sh_anims.lua
+		end
 	end
 	
 	// Ive never really used ammo crate before so here s quickfix for explosives

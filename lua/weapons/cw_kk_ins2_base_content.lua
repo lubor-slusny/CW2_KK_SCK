@@ -170,81 +170,99 @@ end
 	-- CustomizableWeaponry.firemodes:registerFiremode("throw", "THROWABLE", true, 1, 1)
 
 // STATS
-do
-	if CLIENT then
-		local stat = {}
-		stat.varName = "WeaponLength"
-		stat.display = "WEAPON LENGTH"
-		stat.desc = "Minimal distance allowed between weapon and target.\nMoving closer to your target will holster your weapon.\nSuppressors and barrel modifications affect this stat."
-		stat.reverse = true
 
-		function stat:compare(wep)
-			local var1, var2 = wep[self.varName], wep[self.origVarName]
+if CLIENT then
+	local stat = {}
+	stat.varName = "WeaponLength"
+	stat.display = "WEAPON LENGTH"
+	stat.desc = "Minimal distance allowed between weapon and target.\nMoving closer to your target will holster your weapon.\nSuppressors and barrel modifications affect this stat."
+	stat.reverse = true
 
-			if !var1 or !var2 then 
-				return CustomizableWeaponry.textColors.REGULAR 
-			end
-			
-			if var1 < var2 then
-				return CustomizableWeaponry.textColors.POSITIVE
-			elseif var1 > var2 then
-				return CustomizableWeaponry.textColors.NEGATIVE
-			end
+	function stat:compare(wep)
+		local var1, var2 = wep[self.varName], wep[self.origVarName]
+
+		if !var1 or !var2 then 
+			return CustomizableWeaponry.textColors.REGULAR 
 		end
 		
-		local out
-		
-		function stat:textFunc(wep)
-			out = "N/A"
-			
-			if wep.WeaponLength then
-				out = (math.Round(wep.WeaponLength * 0.0254, 2)) .. "M"
-			end
-			
-			return out
+		if var1 < var2 then
+			return CustomizableWeaponry.textColors.POSITIVE
+		elseif var1 > var2 then
+			return CustomizableWeaponry.textColors.NEGATIVE
 		end
-
-		function stat:origTextFunc(wep)
-			out = "N/A"
-			
-			if wep.WeaponLength_Orig then
-				out = (math.Round(wep.WeaponLength_Orig * 0.0254, 2)) .. "M"
-			end
-			
-			return out
-		end
-
-		CustomizableWeaponry.statDisplay:addStat(stat)
-		
-		local stat = {}
-		stat.varName = "HolsterTime"
-		stat.display = "HOLSTER TIME"
-		stat.desc = "Time it takes in seconds to have the weapon be safely stored in inventory after holstering."
-
-		function stat:compare(wep)
-			local orig = wep.HolsterTime_Orig / wep.HolsterSpeed_Orig
-			local cur = wep.HolsterTime / wep.HolsterSpeed
-			
-			if cur < orig then
-				return CustomizableWeaponry.textColors.POSITIVE
-			elseif cur > orig then
-				return CustomizableWeaponry.textColors.NEGATIVE
-			end
-			
-			return CustomizableWeaponry.textColors.REGULAR
-		end
-
-		function stat:textFunc(wep)
-			return math.Round(wep.HolsterTime / wep.HolsterSpeed, 2) .. "s"
-		end
-
-		function stat:origTextFunc(wep)
-			return math.Round(wep.HolsterTime_Orig / wep.HolsterSpeed_Orig, 2) .. "s"
-		end
-
-		CustomizableWeaponry.statDisplay:addStat(stat)
 	end
+	
+	local out
+	
+	function stat:textFunc(wep)
+		out = "N/A"
+		
+		if wep.WeaponLength then
+			out = (math.Round(wep.WeaponLength * 0.0254, 2)) .. "M"
+		end
+		
+		return out
+	end
+
+	function stat:origTextFunc(wep)
+		out = "N/A"
+		
+		if wep.WeaponLength_Orig then
+			out = (math.Round(wep.WeaponLength_Orig * 0.0254, 2)) .. "M"
+		end
+		
+		return out
+	end
+
+	CustomizableWeaponry.statDisplay:addStat(stat)
 end
+
+if CLIENT then	
+	local stat = {}
+	stat.varName = "HolsterTime"
+	stat.display = "HOLSTER TIME"
+	stat.desc = "Time it takes in seconds to have the weapon be safely stored in inventory after holstering."
+
+	function stat:compare(wep)
+		local var1, var2 = wep[self.varName], wep[self.origVarName]
+		local mul1, mul2 = wep.HolsterSpeed, wep.HolsterSpeed_Orig
+		
+		if !var1 or !var2 or !mul1 or !mul2 then 
+			return CustomizableWeaponry.textColors.REGULAR 
+		end
+		
+		if var1 * mul1 > var2 * mul2 then
+			return CustomizableWeaponry.textColors.POSITIVE
+		elseif var1 * mul1 < var2 * mul2 then
+			return CustomizableWeaponry.textColors.NEGATIVE
+		end
+	end
+	
+	local out
+	
+	function stat:textFunc(wep)
+		out = "N/A"
+		
+		if wep.HolsterSpeed then
+			out = math.Round(wep.HolsterTime / wep.HolsterSpeed, 2) .. "s"
+		end
+		
+		return out
+	end
+
+	function stat:origTextFunc(wep)
+		out = "N/A"
+		
+		if wep.HolsterSpeed_Orig then
+			out = math.Round(wep.HolsterTime_Orig / wep.HolsterSpeed_Orig, 2) .. "s"
+		end
+		
+		return out
+	end
+
+	CustomizableWeaponry.statDisplay:addStat(stat)
+end
+	
 // KILLS
 
 if CLIENT then

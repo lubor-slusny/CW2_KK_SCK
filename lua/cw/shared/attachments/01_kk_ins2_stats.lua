@@ -75,6 +75,7 @@
 	)
 
 	// in %s
+	CustomizableWeaponry.originalValue:add("HolsterTime", false, false)
 	CustomizableWeaponry.originalValue:add("HolsterSpeed", true, false)
 	CustomizableWeaponry:registerRecognizedStat(
 		"HolsterSpeedMult", 
