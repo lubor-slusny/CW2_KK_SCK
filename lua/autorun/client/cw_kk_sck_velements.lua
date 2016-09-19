@@ -187,7 +187,7 @@ local function updatePanel()
 					PANEL:AddControl("Label", {Text = "SWEP." .. t .. ":"})
 				end
 				
-				for key,data in pairs(WEAPON[t]) do
+				for key,data in SortedPairs(WEAPON[t]) do
 				
 					if data._kksck_expanded or !WEAPON._kksck_tabOpen then
 						local elementNamePanel = vgui.Create("DPanel", PANEL)
