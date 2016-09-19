@@ -197,7 +197,7 @@ SWEP.boltAction_pumpTime = 1.49
 
 if CLIENT then
 	function SWEP:updateStandardParts()
-		self.AttachmentModelsVM.bolt_iron.active = !self.ActiveAttachments.kk_ins2_scope_m73
-		self.AttachmentModelsVM.bolt_scope.active = self.ActiveAttachments.kk_ins2_scope_m73
+		self:setElementActive("bolt_iron", !self.ActiveAttachments.kk_ins2_scope_m73)
+		self:setElementActive("bolt_scope", self.ActiveAttachments.kk_ins2_scope_m73)
 	end
 end

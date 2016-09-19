@@ -51,8 +51,8 @@ if CLIENT then
 	}
 	
 	SWEP.AttachmentModelsWM = {
-		-- ["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/w_standard_m1a1.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
-		{model = "models/weapons/upgrades/w_modkit_m1a1.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
+		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/w_standard_m1a1.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
+		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/w_modkit_m1a1.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		
 		["kk_ins2_mag_m1a1_15"] = {model = "models/weapons/upgrades/w_magazine_m1a1_15.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		["kk_ins2_mag_m1a1_30"] = {model = "models/weapons/upgrades/w_magazine_m1a1_30.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
@@ -217,8 +217,6 @@ SWEP.MuzzleVelocity = 607
 
 if CLIENT then 
 	function SWEP:updateStandardParts()
-		local active = self.ActiveAttachments
-	
-		self.AttachmentModelsVM.kk_ins2_mag_m1a1_15.active = !active.kk_ins2_mag_m1a1_30
+		self:setElementActive("kk_ins2_mag_m1a1_15", !self.ActiveAttachments.kk_ins2_mag_m1a1_30)
 	end
 end

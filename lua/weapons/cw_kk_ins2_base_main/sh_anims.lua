@@ -445,16 +445,16 @@ if CLIENT then
 			local UnPredictedCurTime = UnPredictedCurTime
 			local newFunc
 			
-			if CustomizableWeaponry_KK.HOME then
-				newFunc = function(wep)	// i ll debug
-					print(wep, "		", animName, "		", string.format("%.3f", seqDur))
-					wep.reticleInactivity = UnPredictedCurTime() + seqDur + add
-				end
-			else
+			-- if CustomizableWeaponry_KK.HOME then
+				-- newFunc = function(wep)	// i ll debug
+					-- print(wep, "		", animName, "		", string.format("%.3f", seqDur))
+					-- wep.reticleInactivity = UnPredictedCurTime() + seqDur + add
+				-- end
+			-- else
 				newFunc = function(wep)	// u have phun
 					wep.reticleInactivity = UnPredictedCurTime() + seqDur + add
 				end
-			end
+			-- end
 			
 			if self.animCallbacks[animName] then
 				local oldFunc = self.animCallbacks[animName]

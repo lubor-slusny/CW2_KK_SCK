@@ -323,10 +323,7 @@ if CLIENT then
 	end
 
 	function SWEP:updateStandardParts()
-		local active = self.ActiveAttachments
-		
-		self.AttachmentModelsVM.kk_ins2_galil.active = !active.kk_ins2_bipod
-		
-		self:setElementActive("kk_ins2_mag_galil_35", !active.kk_ins2_mag_galil_75)
+		self:setElementActive("kk_ins2_galil", !self.ActiveAttachments.kk_ins2_bipod)
+		self:setElementActive("kk_ins2_mag_galil_35", !self.ActiveAttachments.kk_ins2_mag_galil_75)
 	end
 end

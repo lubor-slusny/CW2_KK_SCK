@@ -215,11 +215,9 @@ SWEP.WeaponLength = 16
 SWEP.MuzzleVelocity = 285
 
 if CLIENT then 
-	function SWEP:updateStandardParts()		
-		self.AttachmentModelsVM.handguard.active = !self.ActiveAttachments.kk_ins2_vertgrip
-		self.AttachmentModelsWM.handguard.active = !self.ActiveAttachments.kk_ins2_vertgrip
-		self.AttachmentModelsVM.kk_ins2_mag_thom_20.active = !(self.ActiveAttachments.kk_ins2_mag_thom_30 or self.ActiveAttachments.kk_ins2_mag_thom_50)
-		self.AttachmentModelsWM.kk_ins2_mag_thom_20.active = !(self.ActiveAttachments.kk_ins2_mag_thom_30 or self.ActiveAttachments.kk_ins2_mag_thom_50)
+	function SWEP:updateStandardParts()
+		self:setElementActive("handguard", !self.ActiveAttachments.kk_ins2_vertgrip)
+		self:setElementActive("kk_ins2_mag_thom_20", !(self.ActiveAttachments.kk_ins2_mag_thom_30 or self.ActiveAttachments.kk_ins2_mag_thom_50))
 	end
 end
 

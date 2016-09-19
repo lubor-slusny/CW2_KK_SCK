@@ -54,6 +54,7 @@ if CLIENT then
 	}
 	
 	SWEP.AttachmentModelsWM = {
+		["kk_ins2_optic_sterling"] = {model = "models/weapons/upgrades/w_standard_sterling.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/w_modkit_sterling.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_suppressor_sterling"] = {model = "models/weapons/upgrades/w_sil_sterling.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
@@ -200,10 +201,6 @@ SWEP.MuzzleVelocity = 365
 
 if CLIENT then 
 	function SWEP:updateStandardParts()
-		if self.ActiveAttachments.kk_ins2_suppressor_sterling then
-			self.AttachmentModelsVM.kk_ins2_optic_sterling.active = false
-		else
-			self.AttachmentModelsVM.kk_ins2_optic_sterling.active = true
-		end
+		self:setElementActive("kk_ins2_optic_sterling", !self.ActiveAttachments.kk_ins2_suppressor_sterling)
 	end
 end

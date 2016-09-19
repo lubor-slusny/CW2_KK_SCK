@@ -230,8 +230,6 @@ SWEP.MuzzleVelocity = 840
 
 if CLIENT then
 	function SWEP:updateStandardParts()
-		local active = self.ActiveAttachments
-		
-		self.AttachmentModelsVM.kk_ins2_mag_l1a1_20.active = !active.kk_ins2_mag_fal_30
+		self:setElementActive("kk_ins2_mag_l1a1_20", !self.ActiveAttachments.kk_ins2_mag_fal_30)
 	end
 end

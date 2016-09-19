@@ -147,10 +147,14 @@ local function receive(len, ply)
 	local wep = net.ReadEntity()
 	
 	if IsValid(wep) then
-		if SERVER then		
+		if SERVER then
+			if not wep.ActiveWElements then
+				return
+			end
+			
 			net.Start("CW_KK_INS2_NWWE_full")
 			net.WriteEntity(wep)
-			net.WriteTable(wep.ActiveAttachments)
+			net.WriteTable(wep.ActiveWElements)
 			net.Send(ply)
 		else
 			if wep.AttachmentModelsWM then

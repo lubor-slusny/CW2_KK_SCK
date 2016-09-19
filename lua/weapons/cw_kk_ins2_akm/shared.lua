@@ -274,7 +274,6 @@ SWEP.MuzzleVelocity = 715
 
 if CLIENT then 
 	function SWEP:updateStandardParts()
-		self.AttachmentModelsVM.handguardStandard.active = !self.ActiveAttachments.kk_ins2_vertgrip
-		self.AttachmentModelsWM.handguardStandard.active = !self.ActiveAttachments.kk_ins2_vertgrip
+		self:setElementActive("handguardStandard", !self.ActiveAttachments.kk_ins2_vertgrip)
 	end
 end

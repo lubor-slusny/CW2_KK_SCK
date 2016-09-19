@@ -276,12 +276,12 @@ SWEP.MuzzleVelocity = 880
 
 if CLIENT then
 	function SWEP:updateStandardParts()
-		self.AttachmentModelsVM.cover_dn_ln.active = self:getActiveAttachmentInCategory(3) == nil
-		self.AttachmentModelsVM.cover_dn_sh_ft.active = self.ActiveAttachments.kk_ins2_vertgrip
-		self.AttachmentModelsVM.cover_rt_ln.active = self:getActiveAttachmentInCategory(4) == nil
-		self.AttachmentModelsVM.cover_rt_sh_bk.active = !self.AttachmentModelsVM.cover_rt_ln.active
-		self.AttachmentModelsVM.cover_lt_sh_ft.active = self.ActiveAttachments.kk_ins2_gl_m203
-		self.AttachmentModelsVM.cover_lt_ln.active = !self.AttachmentModelsVM.cover_lt_sh_ft.active
+		self:setElementActive("cover_dn_ln", self:getActiveAttachmentInCategory(3) == nil)
+		self:setElementActive("cover_dn_sh_ft", self.ActiveAttachments.kk_ins2_vertgrip)
+		self:setElementActive("cover_rt_ln", self:getActiveAttachmentInCategory(4) == nil)
+		self:setElementActive("cover_rt_sh_bk", !self.AttachmentModelsVM.cover_rt_ln.active)
+		self:setElementActive("cover_lt_sh_ft", self.ActiveAttachments.kk_ins2_gl_m203)
+		self:setElementActive("cover_lt_ln", !self.AttachmentModelsVM.cover_lt_sh_ft.active)
 	end
 		
 	function SWEP:updateOtherParts()

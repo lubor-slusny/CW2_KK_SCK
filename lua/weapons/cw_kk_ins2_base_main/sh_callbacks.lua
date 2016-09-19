@@ -200,3 +200,128 @@ if CLIENT then
 		end
 	end)
 end
+
+//-----------------------------------------------------------------------------
+// WELEMENTS FOR DROPPED WEAPONS COZ WHY NOT
+//-----------------------------------------------------------------------------
+
+CustomizableWeaponry_KK.ins2.welementDrop = CustomizableWeaponry_KK.ins2.welementDrop or {}
+CustomizableWeaponry_KK.ins2.welementDrop.nwstring = "CW_KK_INS2_wepDrop"
+function CustomizableWeaponry_KK.ins2.welementDrop:IsValid() return true end
+
+if SERVER then
+	util.AddNetworkString(CustomizableWeaponry_KK.ins2.welementDrop.nwstring)
+	
+	function CustomizableWeaponry_KK.ins2.welementDrop:send(wep, drop)
+		net.Start(self.nwstring)
+		net.WriteString(wep:GetClass())
+		net.WriteEntity(drop)
+		net.WriteTable(wep.ActiveWElements or {})
+		net.Broadcast()
+	end
+
+	CustomizableWeaponry.callbacks:addNew("droppedWeapon", "KK_INS2_BASE", function(...)
+		CustomizableWeaponry_KK.ins2.welementDrop:send(...)
+	end)
+end
+
+if CLIENT then
+	function CustomizableWeaponry_KK.ins2.welementDrop:receive(len, ply)
+		local wep, drop, usedWEs = net.ReadString(), net.ReadEntity(), net.ReadTable()
+		
+		self.data[drop] = {
+			wep = wep,
+			usedWEs = usedWEs,
+			timeout = CurTime() + 20
+		}
+	end
+		
+	net.Receive(CustomizableWeaponry_KK.ins2.welementDrop.nwstring, function(...)
+		CustomizableWeaponry_KK.ins2.welementDrop:receive(...)
+	end)
+end
+
+if CLIENT then
+	CustomizableWeaponry_KK.ins2.welementDrop.data = CustomizableWeaponry_KK.ins2.welementDrop.data or {}
+	CustomizableWeaponry_KK.ins2.welementDrop.used = CustomizableWeaponry_KK.ins2.welementDrop.used or {}
+	
+	local function copyTable(tab)
+		if not tab then
+			return
+		end
+		
+		local out = {}
+		
+		for k,v in pairs(tab) do 
+			out[k] = v
+		end
+		
+		return out
+	end
+	
+	function CustomizableWeaponry_KK.ins2.welementDrop:Think()
+		local basebase = weapons.GetStored("cw_base")
+		local base = weapons.GetStored("cw_kk_ins2_base_main")
+		
+		if not basebase or not base then
+			return
+		end
+		
+		for drop,dropData in pairs(self.data) do
+			if !IsValid(drop) then 
+				continue
+			end
+			
+			if dropData.remove or dropData.timeout < CurTime() then
+				self.used[drop] = self.data[drop]
+				self.data[drop] = nil
+				return
+			end
+			
+			local storedWEs = weapons.GetStored(dropData.wep).AttachmentModelsWM
+			
+			if not storedWEs then
+				continue
+			end
+			
+			dropData.remove = true
+			
+			drop.AttachmentModelsWM = {}
+			
+			// copy active-by-default welements 
+			for k,v in pairs(storedWEs) do
+				if v.active then
+					drop.AttachmentModelsWM[k] = copyTable(v)
+				end
+			end
+			
+			// copy welements of used attachments
+			for k,v in pairs(dropData.usedWEs) do
+				if v then
+					drop.AttachmentModelsWM[k] = drop.AttachmentModelsWM[k] or copyTable(storedWEs[k])
+				end
+				
+				if drop.AttachmentModelsWM[k] then
+					if v then
+						drop.AttachmentModelsWM[k].active = v
+					else
+						drop.AttachmentModelsWM[k] = nil // remove active-by-default if they were disabled post spawn
+					end
+				end
+			end
+			
+			drop.createManagedCModel = basebase.createManagedCModel
+			base.setupAttachmentWModels(drop)
+			
+			local drawAtts = base.drawAttachmentsWorld
+			local drawRest = drop.Draw
+			
+			function drop:Draw()
+				drawAtts(self, self)
+				drawRest(self)
+			end
+		end
+	end
+
+	hook.Add("Think", CustomizableWeaponry_KK.ins2.welementDrop, CustomizableWeaponry_KK.ins2.welementDrop.Think)
+end

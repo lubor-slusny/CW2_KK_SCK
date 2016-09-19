@@ -30,7 +30,7 @@ if CLIENT then
 		["bg_foldsight"] = {model = "models/weapons/attachments/v_cw_kk_ins2_flipsight.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
 		["cover_short"] = {model = "models/weapons/upgrades/a_standard2_m16a4.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["cover_long"] = {model = "models/weapons/upgrades/a_standard_m16a4.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["cover_long"] = {model = "models/weapons/upgrades/a_standard_m16a4.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		
 		["kk_ins2_suppressor_sec"] = {model = "models/weapons/upgrades/a_suppressor_sec.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
@@ -280,7 +280,7 @@ SWEP.MuzzleVelocity = 948
 if CLIENT then 
 	function SWEP:updateStandardParts()
 		local _3 = self:getActiveAttachmentInCategory(3)
-		self.AttachmentModelsVM.cover_long.active = _3 == nil or _3 == "kk_ins2_bipod"
-		self.AttachmentModelsVM.cover_short.active = self.ActiveAttachments.kk_ins2_vertgrip
+		self:setElementActive("cover_long", _3 == nil or _3 == "kk_ins2_bipod")
+		self:setElementActive("cover_short", self.ActiveAttachments.kk_ins2_vertgrip)
 	end
 end
