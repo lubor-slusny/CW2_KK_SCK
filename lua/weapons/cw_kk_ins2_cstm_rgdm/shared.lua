@@ -36,6 +36,8 @@ if CLIENT then
 	
 	SWEP.ForegripParent = "none"
 	SWEP.ForegripOverride = true
+	
+	SWEP.HUD_3D2DBone = 54
 end
 
 SWEP.CanRestOnObjects = false

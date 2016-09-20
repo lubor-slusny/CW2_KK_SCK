@@ -20,7 +20,7 @@ if CLIENT then
 	}
 	
 	att.reticle = "models/weapons/optics/aimpoint_reticule_holo"
-	att._reticleSize = 7
+	att._reticleSize = 5
 	
 	function att:elementRender()
 		CustomizableWeaponry_KK.ins2.stencilSight:elementRender(self, att)

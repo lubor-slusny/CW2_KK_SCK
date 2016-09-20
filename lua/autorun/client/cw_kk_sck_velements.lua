@@ -189,7 +189,7 @@ local function updatePanel()
 				
 				local sortMeh = {}
 				for k,v in pairs(WEAPON[t]) do
-					sortMeh[tostring(k)] = k
+					sortMeh[(v.active and "a_" or "b_") .. tostring(k)] = k
 				end
 				
 				for key,data in SortedPairs(sortMeh) do
