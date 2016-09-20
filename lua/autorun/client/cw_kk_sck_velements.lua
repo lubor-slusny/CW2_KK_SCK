@@ -187,7 +187,13 @@ local function updatePanel()
 					PANEL:AddControl("Label", {Text = "SWEP." .. t .. ":"})
 				end
 				
-				for key,data in SortedPairs(WEAPON[t]) do
+				local sortMeh = {}
+				for k,v in pairs(WEAPON[t]) do
+					sortMeh[tostring(k)] = k
+				end
+				
+				for key,data in SortedPairs(sortMeh) do
+					key = sortMeh[key]
 					data = WEAPON[t][key]
 					
 					if data._kksck_expanded or !WEAPON._kksck_tabOpen then
