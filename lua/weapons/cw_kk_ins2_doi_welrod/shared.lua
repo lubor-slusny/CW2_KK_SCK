@@ -42,7 +42,6 @@ SWEP.Attachments = {
 SWEP.Animations = {
 	base_pickup = "base_ready",
 	base_draw = "base_draw",
-	base_draw_empty = "empty_draw",
 	base_fire = {"base_fire_1","base_fire_2","base_fire_3","base_firelast"},
 	base_fire_aim = {"iron_fire","iron_firelast"},
 	base_fire_empty = "base_dryfire",

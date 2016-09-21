@@ -29,32 +29,14 @@ SWEP.WeaponLength = 16
 
 SWEP.Attachments = {}
 
-SWEP.KK_INS2_EmptyIdle = true
-
 SWEP.Animations = {
-	base_pickup = "base_ready",
+	base_pickup = "base_draw",
 	base_draw = "base_draw",
-	base_draw_empty = "empty_draw",
-	base_fire = {"base_fire","base_fire2","base_fire3"},
-	base_fire_aim = {"iron_fire_1","iron_fire_2","iron_fire_3"},
-	base_fire_last = "base_firelast",
-	base_fire_last_aim = "iron_firelast",
-	base_fire_empty = "base_dryfire",
-	base_fire_empty_aim = "iron_dryfire",
-	base_reload = "base_reload",
-	base_reload_mm = "base_reload_extmag",
-	base_reload_empty = "base_reloadempty",
-	base_reload_empty_mm = "base_reloadempty_extmag",
 	base_idle = "base_idle",
-	base_idle_empty = "empty_idle",
 	base_holster = "base_holster",
-	base_holster_empty = "empty_holster",
 	base_sprint = "base_sprint",
-	base_sprint_empty = "empty_sprint",
 	base_safe = "base_down",
-	base_safe_empty = "empty_down",
-	base_safe_aim = "iron_down",
-	base_safe_empty_aim = "empty_iron_down",
+	base_safe_aim = "base_down",
 }
 
 SWEP.SpeedDec = 10
@@ -123,6 +105,4 @@ function SWEP:PrimaryAttack()
 	
 end
 
-function SWEP:Reload()
-
-end
+function SWEP:Reload() end

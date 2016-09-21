@@ -90,7 +90,7 @@ SWEP.Animations = {
 	base_reload_end = "base_reload_end",
 	base_reload_end_empty = "base_reload_end",
 	base_idle = "base_idle",
-	base_idle_empty = "base_idle_empty",
+	base_idle_empty = "empty_idle",
 	base_holster = "base_holster",
 	base_holster_empty = "base_holster_empty",
 	base_sprint = "base_sprint",
@@ -101,20 +101,6 @@ SWEP.Animations = {
 	base_safe_empty_aim = "iron_down_empty",
 	base_melee = "base_melee",
 	base_melee_empty = "base_melee_empty",
-	
-	bipod_in = "deployed_in",
-	bipod_fire = "deployed_fire_start",
-	bipod_fire_aim = "iron_fire_deployed_start",
-	bipod_fire_empty = "deployed_dryfire",
-	bipod_fire_empty_aim = "iron_dryfire_deployed",
-	bipod_bolt = "deployed_fire_end",
-	bipod_bolt_aim = "iron_fire_deployed_end",
-	bipod_reload_start = "deployed_reload_start",
-	bipod_reload_start_empty = "deployed_reload_start",
-	bipod_insert = "deployed_reload_insert",
-	bipod_reload_end = "deployed_reload_end",
-	bipod_reload_end_empty = "deployed_reload_end",
-	bipod_out = "deployed_out",
 }
 
 SWEP.SpeedDec = 40
@@ -190,6 +176,7 @@ SWEP.ShotgunReload = true
 SWEP.ReticleInactivityPostFire = SWEP.FireDelay + 0.2
 SWEP.GlobalDelayOnShoot = SWEP.FireDelay
 
+SWEP.KK_INS2_EmptyIdle = true
 SWEP.WeaponLength = 38
 
 SWEP.MuzzleVelocity = 854

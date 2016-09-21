@@ -90,7 +90,13 @@ function SWEP:unloadM203()
 	if SERVER then
 		self.Owner:GiveAmmo(give, "40MM", true)
 		SendUserMessage("CW_KK_INS2_UNLOADM203", self.Owner)
-	end	
+	end
+	
+	if CLIENT then
+		if self.KK_INS2_EmptyIdleGL then
+			self:idleAnimFunc()
+		end
+	end
 end
 
 //-----------------------------------------------------------------------------

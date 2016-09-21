@@ -46,8 +46,6 @@ SWEP.Animations = {
 	base_reload_empty = "base_reload_empty",
 	base_idle = "base_idle",
 	base_holster = "base_holster",
-	base_firemode = "base_fireselect",
-	base_firemode_aim = "iron_fireselect",
 	base_sprint = "base_sprint",
 	base_safe = "base_down",
 	base_safe_aim = "iron_down",
@@ -59,8 +57,6 @@ SWEP.Animations = {
 	bipod_fire_empty_aim = "deployed_iron_dryfire",
 	bipod_reload = "deployed_reload",
 	bipod_reload_empty = "deployed_reload_empty",
-	bipod_firemode = "deployed_fireselect",
-	bipod_firemode_aim = "deployed_fireselect",
 	bipod_out = "deployed_out",
 }
 

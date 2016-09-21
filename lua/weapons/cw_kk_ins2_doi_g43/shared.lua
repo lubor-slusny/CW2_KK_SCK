@@ -82,9 +82,6 @@ SWEP.Animations = {
 	base_safe_aim = "iron_down",
 	base_safe_empty = "base_down_empty",
 	base_safe_empty_aim = "iron_down_empty",
-	
-	base_melee = "base_melee",
-	base_melee_empty = "base_melee_empty",
 }
 
 SWEP.SpeedDec = 40

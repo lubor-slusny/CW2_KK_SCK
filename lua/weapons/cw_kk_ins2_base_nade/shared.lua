@@ -233,7 +233,8 @@ function SWEP:IndividualThink()
 	
 	if self.dt.PinPulled then
 		if CT > self.throwTime then
-			if not (self.Owner:KeyDown(IN_ATTACK) or self.Owner:KeyDown(IN_ATTACK2)) then
+			-- if not (self.Owner:KeyDown(IN_ATTACK) or self.Owner:KeyDown(IN_ATTACK2)) then
+			if not self.Owner:KeyDown(self._curKeyPress) then
 				if not self.animPlayed then
 					self.entityTime = CurTime() + self._curSpawnTime
 					self:sendWeaponAnim(self._curThrowAnim)
@@ -330,6 +331,7 @@ end
 //-----------------------------------------------------------------------------
 
 local CT
+local keyPress = {IN_ATTACK, IN_ATTACK2}
 
 function SWEP:_attack(key)
 	if self.Owner:GetAmmoCount(self.Primary.Ammo) < 1 and self:Clip1() < 1 then
@@ -348,6 +350,8 @@ function SWEP:_attack(key)
 	
 	self.dt.PinPulled = true
 	self.animPlayed = false
+	
+	self._curKeyPress = keyPress[key]
 	
 	CT = CurTime()
 	

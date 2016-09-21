@@ -875,15 +875,15 @@ local function buildPanel(panel)
 		dpanel:SetTooltip("Copy to clipboard.")
 	end
 	
-	hook.Add("Think", "CW_KK_DEV_MENU_" .. BUILD, menuThink)
+	hook.Add("Think", "KK_SCK_AIMPOS_BUILD_" .. BUILD, menuThink)
 end
 
 hook.Add( "PopulateToolMenu", "KK_SCK_AIMPOS_" .. BUILD, function()
 	spawnmenu.AddToolMenuOption("Utilities", "Knife Kitty", "KK_SCK_AIMPOS_" .. BUILD, "AimPos Builder 4.2", "", "", buildPanel)
 end)
 
-hook.Add("PostReloadToolsMenu", "CW_KK_DEV_MENU_" .. BUILD .. "_REMOVER", function()
-	hook.Remove("Think", "CW_KK_DEV_MENU_" .. BUILD)
+hook.Add("PostReloadToolsMenu", "KK_SCK_AIMPOS_BUILD_" .. BUILD .. "_REMOVER", function()
+	hook.Remove("Think", "KK_SCK_AIMPOS_BUILD_" .. BUILD)
 end)
 
 -- RunConsoleCommand("spawnmenu_reload")

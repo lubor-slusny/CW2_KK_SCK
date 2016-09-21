@@ -15,7 +15,7 @@ if CLIENT then
 end
 
 function att:attachFunc()
-	-- self._KK_INS2_customReloadSuffix = "_mm"
+	self._KK_INS2_customReloadSuffix = "_mm"
 	self:unloadWeapon()
 	self.Primary.ClipSize = 30
 	self.Primary.ClipSize_Orig = 30

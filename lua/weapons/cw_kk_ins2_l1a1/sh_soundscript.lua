@@ -40,6 +40,24 @@ SWEP.Sounds = {
 		{time = 104/30, sound = "CW_KK_INS2_FNFAL_BOLTRELEASE"},
 	},
 
+	base_reload_ext = {
+		{time = 17/30, sound = "CW_KK_INS2_FNFAL_MAGRELEASE"},
+		{time = 20/30, sound = "CW_KK_INS2_FNFAL_MAGOUT"},
+		{time = 29/30, sound = "CW_KK_INS2_FNFAL_MAGOUTRATTLE"},
+		{time = 63/30, sound = "CW_KK_INS2_FNFAL_MAGIN"},
+		{time = 80/30, sound = "CW_KK_INS2_FNFAL_RATTLE"},
+	},
+
+	base_reloadempty_ext = {
+		{time = 17/30, sound = "CW_KK_INS2_FNFAL_MAGRELEASE"},
+		{time = 20/30, sound = "CW_KK_INS2_FNFAL_MAGOUT"},
+		{time = 29/30, sound = "CW_KK_INS2_FNFAL_MAGOUTRATTLE"},
+		{time = 63/30, sound = "CW_KK_INS2_FNFAL_MAGIN"},
+		{time = 80/30, sound = "CW_KK_INS2_FNFAL_RATTLE"},
+		{time = 92/30, sound = "CW_KK_INS2_FNFAL_BOLTBACK"},
+		{time = 104/30, sound = "CW_KK_INS2_FNFAL_BOLTRELEASE"},
+	},
+
 	iron_dryfire = {
 		{time = 0, sound = "CW_KK_INS2_FNFAL_EMPTY"},
 	},
@@ -79,6 +97,24 @@ SWEP.Sounds = {
 	},
 
 	foregrip_reloadempty = {
+		{time = 17/30, sound = "CW_KK_INS2_FNFAL_MAGRELEASE"},
+		{time = 20/30, sound = "CW_KK_INS2_FNFAL_MAGOUT"},
+		{time = 29/30, sound = "CW_KK_INS2_FNFAL_MAGOUTRATTLE"},
+		{time = 63/30, sound = "CW_KK_INS2_FNFAL_MAGIN"},
+		{time = 80/30, sound = "CW_KK_INS2_FNFAL_RATTLE"},
+		{time = 92/30, sound = "CW_KK_INS2_FNFAL_BOLTBACK"},
+		{time = 104/30, sound = "CW_KK_INS2_FNFAL_BOLTRELEASE"},
+	},
+
+	foregrip_reload_ext = {
+		{time = 17/30, sound = "CW_KK_INS2_FNFAL_MAGRELEASE"},
+		{time = 20/30, sound = "CW_KK_INS2_FNFAL_MAGOUT"},
+		{time = 29/30, sound = "CW_KK_INS2_FNFAL_MAGOUTRATTLE"},
+		{time = 63/30, sound = "CW_KK_INS2_FNFAL_MAGIN"},
+		{time = 84/30, sound = "CW_KK_INS2_FNFAL_RATTLE"},
+	},
+
+	foregrip_reloadempty_ext = {
 		{time = 17/30, sound = "CW_KK_INS2_FNFAL_MAGRELEASE"},
 		{time = 20/30, sound = "CW_KK_INS2_FNFAL_MAGOUT"},
 		{time = 29/30, sound = "CW_KK_INS2_FNFAL_MAGOUTRATTLE"},
@@ -130,6 +166,24 @@ SWEP.Sounds = {
 	},
 
 	deployed_reloadempty = {
+		{time = 17/30, sound = "CW_KK_INS2_FNFAL_MAGRELEASE"},
+		{time = 20/30, sound = "CW_KK_INS2_FNFAL_MAGOUT"},
+		{time = 29/30, sound = "CW_KK_INS2_FNFAL_MAGOUTRATTLE"},
+		{time = 63/30, sound = "CW_KK_INS2_FNFAL_MAGIN"},
+		{time = 80/30, sound = "CW_KK_INS2_FNFAL_RATTLE"},
+		{time = 92/30, sound = "CW_KK_INS2_FNFAL_BOLTBACK"},
+		{time = 104/30, sound = "CW_KK_INS2_FNFAL_BOLTRELEASE"},
+	},
+
+	deployed_reload_ext = {
+		{time = 17/30, sound = "CW_KK_INS2_FNFAL_MAGRELEASE"},
+		{time = 20/30, sound = "CW_KK_INS2_FNFAL_MAGOUT"},
+		{time = 29/30, sound = "CW_KK_INS2_FNFAL_MAGOUTRATTLE"},
+		{time = 63/30, sound = "CW_KK_INS2_FNFAL_MAGIN"},
+		{time = 84/30, sound = "CW_KK_INS2_FNFAL_RATTLE"},
+	},
+
+	deployed_reloadempty_ext = {
 		{time = 17/30, sound = "CW_KK_INS2_FNFAL_MAGRELEASE"},
 		{time = 20/30, sound = "CW_KK_INS2_FNFAL_MAGOUT"},
 		{time = 29/30, sound = "CW_KK_INS2_FNFAL_MAGOUTRATTLE"},

@@ -223,8 +223,17 @@ if CLIENT then
 		}):DockMargin(8, 8, 8, 0)
 	end
 	
-	hook.Add("InitPostEntity", "CW_KK_INS2_WS_UPDATE_NOTIFY", function()
-		timer.Simple(5, function()
+	local pos
+	
+	hook.Add("Think", "CW_KK_INS2_WS_UPDATE_NOTIFY", function()
+		if not pos then 
+			pos = LocalPlayer():GetPos()
+			return
+		end
+		
+		if LocalPlayer():GetPos():Distance(pos) > 100 then
+			hook.Remove("Think", "CW_KK_INS2_WS_UPDATE_NOTIFY")
+			
 			if not CustomizableWeaponry_KK.ins2.baseContentMounted() then
 				chat.AddText(
 					Color(200, 157, 96),
@@ -244,7 +253,7 @@ if CLIENT then
 					"Hi, you seem to be using outdated WS content. Make sure you download updated version from GitHub."
 				)
 			end
-		end)
+		end
 	end)
 end
 

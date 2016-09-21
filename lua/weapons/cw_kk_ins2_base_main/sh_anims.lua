@@ -113,10 +113,18 @@ if CLIENT then
 		suffix = ""
 		cycle = 0
 		
-		if self:Clip1() == 0 and self.KK_INS2_EmptyIdle then
-			suffix = "_empty" .. self._KK_INS2_customEmptySuffix
+		clip = self:Clip1()
+		
+		if self.dt.INS2GLActive then
+			if !self.M203Chamber and self.KK_INS2_EmptyIdleGL then
+				suffix = "_empty" .. self._KK_INS2_customEmptySuffix
+			end
+		else
+			if clip == 0 and self.KK_INS2_EmptyIdle then
+				suffix = "_empty" .. self._KK_INS2_customEmptySuffix
+			end
 		end
-	
+		
 		if self.KKINS2Nade and self.Owner:GetAmmoCount(self.Primary.Ammo) < 1 then 
 			-- self:sendWeaponAnim("base_draw", -1, 0)
 			anim = "holster"
@@ -136,8 +144,16 @@ if CLIENT then
 		prefix = self:getForegripMode()
 		suffix = ""
 		
-		if self:Clip1() == 0 and self.KK_INS2_EmptyIdle then
-			suffix = "_empty" .. self._KK_INS2_customEmptySuffix
+		clip = self:Clip1()
+		
+		if self.dt.INS2GLActive then
+			if !self.M203Chamber and self.KK_INS2_EmptyIdleGL then
+				suffix = "_empty" .. self._KK_INS2_customEmptySuffix
+			end
+		else
+			if clip == 0 and self.KK_INS2_EmptyIdle then
+				suffix = "_empty" .. self._KK_INS2_customEmptySuffix
+			end
 		end
 		
 		if self:isAiming() /*or self.Slot == 1*/ then
@@ -156,8 +172,16 @@ if CLIENT then
 		prefix = self:getForegripMode()
 		suffix = ""
 		
-		if self:Clip1() == 0 and self.KK_INS2_EmptyIdle then
-			suffix = "_empty" .. self._KK_INS2_customEmptySuffix
+		clip = self:Clip1()
+		
+		if self.dt.INS2GLActive then
+			if !self.M203Chamber and self.KK_INS2_EmptyIdleGL then
+				suffix = "_empty" .. self._KK_INS2_customEmptySuffix
+			end
+		else
+			if clip == 0 and self.KK_INS2_EmptyIdle then
+				suffix = "_empty" .. self._KK_INS2_customEmptySuffix
+			end
 		end
 		
 		if self:isAiming() then
@@ -188,8 +212,16 @@ if CLIENT then
 			anim = "holster"
 		end
 		
-		if self:Clip1() == 0 and self.KK_INS2_EmptyIdle then
-			suffix = "_empty" .. self._KK_INS2_customEmptySuffix
+		clip = self:Clip1()
+		
+		if self.dt.INS2GLActive then
+			if !self.M203Chamber and self.KK_INS2_EmptyIdleGL then
+				suffix = "_empty" .. self._KK_INS2_customEmptySuffix
+			end
+		else
+			if clip == 0 and self.KK_INS2_EmptyIdle then
+				suffix = "_empty" .. self._KK_INS2_customEmptySuffix
+			end
 		end
 		
 		-- if self.dt.State == CW_CUSTOMIZE then
@@ -266,14 +298,21 @@ function SWEP:meleeAnimFunc()
 		return 
 	end
 	
-	clip = self:Clip1()
 	cyc = 0
 	rate = 1
 	prefix = self:getForegripMode()
 	suffix = ""
+
+	clip = self:Clip1()
 	
-	if self.KK_INS2_EmptyIdle and clip == 0 then
-		suffix = "_empty" .. self._KK_INS2_customEmptySuffix
+	if self.dt.INS2GLActive then
+		if !self.M203Chamber and self.KK_INS2_EmptyIdleGL then
+			suffix = "_empty" .. self._KK_INS2_customEmptySuffix
+		end
+	else
+		if clip == 0 and self.KK_INS2_EmptyIdle then
+			suffix = "_empty" .. self._KK_INS2_customEmptySuffix
+		end
 	end
 	
 	self:sendWeaponAnim(prefix .. "melee" .. suffix, rate, cyc)
@@ -306,8 +345,16 @@ function SWEP:holsterAnimFunc(ctrl)
 	suffix = ""
 	cycle = 0
 	
-	if self:Clip1() == 0 and self.KK_INS2_EmptyIdle then
-		suffix = "_empty" .. self._KK_INS2_customEmptySuffix
+	clip = self:Clip1()
+	
+	if self.dt.INS2GLActive then
+		if !self.M203Chamber and self.KK_INS2_EmptyIdleGL then
+			suffix = "_empty" .. self._KK_INS2_customEmptySuffix
+		end
+	else
+		if clip == 0 and self.KK_INS2_EmptyIdle then
+			suffix = "_empty" .. self._KK_INS2_customEmptySuffix
+		end
 	end
 	
 	if self.KKINS2Nade and self.Owner:GetAmmoCount(self.Primary.Ammo) < 1 then 
@@ -445,16 +492,10 @@ if CLIENT then
 			local UnPredictedCurTime = UnPredictedCurTime
 			local newFunc
 			
-			-- if CustomizableWeaponry_KK.HOME then
-				-- newFunc = function(wep)	// i ll debug
-					-- print(wep, "		", animName, "		", string.format("%.3f", seqDur))
-					-- wep.reticleInactivity = UnPredictedCurTime() + seqDur + add
-				-- end
-			-- else
-				newFunc = function(wep)	// u have phun
-					wep.reticleInactivity = UnPredictedCurTime() + seqDur + add
-				end
-			-- end
+			newFunc = function(wep)	// u have phun
+				-- print(wep, "		", animName, "		", string.format("%.3f", seqDur))
+				wep.reticleInactivity = UnPredictedCurTime() + seqDur + add
+			end
 			
 			if self.animCallbacks[animName] then
 				local oldFunc = self.animCallbacks[animName]

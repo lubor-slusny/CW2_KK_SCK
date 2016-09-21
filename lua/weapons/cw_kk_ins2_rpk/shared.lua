@@ -203,7 +203,7 @@ SWEP.Animations = {
 	bipod_reload = "deployed_reload",
 	bipod_reload_empty = "deployed_reloadempty",
 	bipod_firemode = "deployed_fireselect",
-	bipod_firemode_aim = "deployed_fireselect",
+	bipod_firemode_aim = "deployed_iron_fireselect",
 	bipod_out = "deployed_out",
 }
 
