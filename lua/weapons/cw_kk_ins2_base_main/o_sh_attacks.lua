@@ -13,6 +13,10 @@ local IFTP, CT
 function SWEP:PrimaryAttack()
 	if self.boltAction_isShot then return end
 	
+	if self:IsOwnerCrawling() then
+		return
+	end
+	
 	if not self:canFireWeapon(1) then
 		return
 	end
@@ -152,6 +156,10 @@ local GetVelocity = reg.Entity.GetVelocity
 local Length = reg.Vector.Length
 
 function SWEP:SecondaryAttack()
+	if self:IsOwnerCrawling() then
+		return
+	end
+	
 	if self.ShotgunReloadState != 0 then
 		return
 	end

@@ -46,7 +46,7 @@ if CLIENT then
 		self._KK_INS2_wasBipod = isBipod
 	end
 	
-	local canDoStuff, wasSprint, isSprint, wasSafe, isSafe
+	local canDoStuff, wasSprint, isSprint, wasSafe, isSafe, wasCrawling, isCrawling
 	
 	function SWEP:playHolsterTransitions()
 		if not CustomizableWeaponry_KK.ins2.holsterTransitionsEnabled then
@@ -56,7 +56,6 @@ if CLIENT then
 		canDoStuff = 
 			self:isReticleActive() and								// no swapping during "action" animation
 			(self.dt.State != CW_CUSTOMIZE) and 					// no swapping in CW Menu
-			-- (self.dt.State != CW_ACTION) and 						// no swapping during knife attack/quick grenade throw
 			not (self.KKINS2Nade and self.dt.PinPulled) and			// no swapping after pin-pull
 			not (self.GlobalDelay > CurTime()) and					// ??
 			self._KK_INS2_PickedUp and								// no swapping before unboxed (although it should be covered by pickup anim)
@@ -78,6 +77,30 @@ if CLIENT then
 		self._KK_INS2_wasSprint = isSprint
 		
 		if isSprint then return end
+		
+		if self.Owner.IsProne then
+			local canDoStuff = 
+				self:isReticleActive() and
+				not (self.KKINS2Nade and self.dt.PinPulled) and
+				not (self.GlobalDelay > CurTime()) and
+				self._KK_INS2_PickedUp 
+		
+			wasCrawling = self._KK_INS2_wasCrawling
+			isCrawling = self:IsOwnerCrawling() and canDoStuff
+			
+			if isCrawling != wasCrawling and wasCrawling != nil then
+				if isCrawling then
+					self:proneAnimFunc()
+				elseif canDoStuff then
+					self:idleAnimFunc()
+				end
+			end
+			
+			self._KK_INS2_wasCrawling = isCrawling
+			
+			if isCrawling then return end
+		end
+		
 		if self.KKINS2Melee then return end
 		
 		wasSafe = self._KK_INS2_wasSafe
@@ -212,6 +235,10 @@ if CLIENT then
 			anim = "holster"
 		end
 		
+		if self:IsOwnerCrawling() then
+			anim = "crawl"
+		end
+		
 		clip = self:Clip1()
 		
 		if self.dt.INS2GLActive then
@@ -234,6 +261,28 @@ if CLIENT then
 		-- end
 		
 		self:sendWeaponAnim(prefix .. anim .. suffix, rate, cycle)
+		
+		self:removeCurSoundTable()
+	end
+	
+	function SWEP:proneAnimFunc()
+		prefix = self:getForegripMode()
+		anim = "crawl"
+		suffix = ""
+		
+		clip = self:Clip1()
+		
+		if self.dt.INS2GLActive then
+			if !self.M203Chamber and self.KK_INS2_EmptyIdleGL then
+				suffix = "_empty" .. self._KK_INS2_customEmptySuffix
+			end
+		else
+			if clip == 0 and self.KK_INS2_EmptyIdle then
+				suffix = "_empty" .. self._KK_INS2_customEmptySuffix
+			end
+		end
+		
+		self:sendWeaponAnim(prefix .. anim .. suffix, 1, 0)
 	end
 end
 
@@ -466,6 +515,9 @@ if CLIENT then
 		["gl_turn_off"] = 0.1,
 		["gl_turn_on_full"] = 0.1,
 		["gl_turn_off_empty"] = 0.1,
+		
+		["throw"] = 0.1,
+		["throw_cook"] = 0.1,
 	}
 
 	local print = chat.AddText

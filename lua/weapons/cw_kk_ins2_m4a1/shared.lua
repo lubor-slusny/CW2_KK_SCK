@@ -162,6 +162,7 @@ SWEP.Animations = {
 	base_sprint = "base_sprint",
 	base_safe = "base_down",
 	base_safe_aim = "iron_down",
+	base_crawl = "base_crawl",
 	
 	foregrip_pickup = "foregrip_ready",
 	foregrip_draw = "foregrip_draw",
@@ -178,6 +179,7 @@ SWEP.Animations = {
 	foregrip_sprint = "foregrip_sprint",
 	foregrip_safe = "foregrip_down",
 	foregrip_safe_aim = "foregrip_iron_down",
+	foregrip_crawl = "foregrip_crawl",
 	
 	gl_off_pickup = "gl_ready",
 	gl_off_draw = "gl_draw",
@@ -194,6 +196,7 @@ SWEP.Animations = {
 	gl_off_sprint = "gl_sprint",
 	gl_off_safe = "gl_down",
 	gl_off_safe_aim = "gl_iron_down",
+	gl_off_crawl = "gl_crawl",
 	
 	gl_on_draw = "glsetup_draw",
 	gl_on_fire = "glsetup_fire",
@@ -206,6 +209,7 @@ SWEP.Animations = {
 	gl_on_sprint = "glsetup_sprint",
 	gl_on_safe = "glsetup_down",
 	gl_on_safe_aim = "glsetup_iron_down",
+	gl_on_crawl = "glsetup_crawl",
 	
 	gl_turn_on = "glsetup_in",
 	gl_turn_off = "glsetup_out",

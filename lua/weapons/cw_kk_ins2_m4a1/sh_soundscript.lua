@@ -18,10 +18,10 @@ SWEP.Sounds = {
 		{time = 0/30, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
 	},
 
-	-- base_crawl = {
-		-- {time = 0/30, sound = "CW_KK_INS2_LeftCrawl"},
-		-- {time = 22/30, sound = "CW_KK_INS2_RightCrawl"},
-	-- },
+	base_crawl = {
+		{time = 0/30, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
+		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
+	},
 
 	base_dryfire = {
 		{time = 0/30, sound = "CW_KK_INS2_M4A1_EMPTY"},
@@ -68,10 +68,10 @@ SWEP.Sounds = {
 		{time = 0/30, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
 	},
 
-	-- foregrip_crawl = {
-		-- {time = 0/30, sound = "CW_KK_INS2_LeftCrawl"},
-		-- {time = 22/30, sound = "CW_KK_INS2_RightCrawl"},
-	-- },
+	foregrip_crawl = {
+		{time = 0/30, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
+		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
+	},
 
 	foregrip_dryfire = {
 		{time = 0/30, sound = "CW_KK_INS2_M4A1_EMPTY"},
@@ -118,10 +118,10 @@ SWEP.Sounds = {
 		{time = 0/30, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
 	},
 
-	-- gl_crawl = {
-		-- {time = 0/30, sound = "CW_KK_INS2_LeftCrawl"},
-		-- {time = 22/30, sound = "CW_KK_INS2_RightCrawl"},
-	-- },
+	gl_crawl = {
+		{time = 0/30, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
+		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
+	},
 
 	gl_dryfire = {
 		{time = 0/30, sound = "CW_KK_INS2_M4A1_EMPTY"},
@@ -174,10 +174,10 @@ SWEP.Sounds = {
 		{time = 0/30, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
 	},
 
-	-- glsetup_crawl = {
-		-- {time = 0/30, sound = "CW_KK_INS2_LeftCrawl"},
-		-- {time = 22/30, sound = "CW_KK_INS2_RightCrawl"},
-	-- },
+	glsetup_crawl = {
+		{time = 0/30, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
+		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
+	},
 
 	glsetup_dryfire = {
 		{time = 0/30, sound = "CW_KK_INS2_M203_EMPTY"},

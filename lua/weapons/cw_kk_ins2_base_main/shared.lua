@@ -80,7 +80,7 @@ SWEP.boltAction_isShot = false
 SWEP.boltAction_pumpTime = 0.6
 
 if CLIENT then	
-	SWEP.PosBasedMuz = true
+	SWEP.PosBasedMuz = false
 	
 	SWEP.MuzzleAttachmentName = "muzzle"
 	SWEP.WorldMuzzleAttachmentID = 1
@@ -223,6 +223,10 @@ function SWEP:IndividualThink()
 	self:DrawShadow(false)
 	
 	self:doBoltAction()
+	
+	if SERVER then
+		self:checkProneStatus()
+	end
 	
 	if CLIENT then
 		fa = cvarFA:GetInt()
@@ -426,4 +430,31 @@ function SWEP:toggleGLMode(IFTP)
 		
 		self:delayEverything(0.6)
 	end
+end
+
+//-----------------------------------------------------------------------------
+// Prone Addon mashup
+//-----------------------------------------------------------------------------
+
+if SERVER then
+	local wasProne, isProne
+	local delay = 0.2
+	
+	function SWEP:checkProneStatus()
+		if self.Owner.IsProne then
+			wasProne = self._KK_INS2_wasProne
+			isProne = self:IsOwnerCrawling()
+			
+			self._KK_INS2_wasProne = isProne
+			
+			if wasProne and !isProne then
+				self:SetNextPrimaryFire(CurTime() + delay)
+				self.GlobalDelay = CurTime() + delay
+			end
+		end
+	end
+end
+	
+function SWEP:IsOwnerCrawling()
+	return self.Owner.IsProne and self.Owner:IsProne() and self.Owner:GetVelocity():Length() > 20
 end

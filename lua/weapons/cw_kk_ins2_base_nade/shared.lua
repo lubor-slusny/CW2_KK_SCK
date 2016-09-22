@@ -68,6 +68,7 @@ SWEP.SpreadPerShot = 0.001
 SWEP.SpreadCooldown = 0.001
 SWEP.Recoil = 3
 
+SWEP.FirstDeployTime = 0.6
 SWEP.DeployTime = 0.6
 SWEP.HolsterTime = 0.5
 
@@ -110,7 +111,7 @@ end
 
 //-----------------------------------------------------------------------------
 // OnDrop edited to 
-// - replace dropped SWEP with live grenade if pin was pulled prior to dropped
+// - replace dropped SWEP with live grenade if pin was pulled prior to drop
 // - remove one round from players inventory
 //-----------------------------------------------------------------------------
 	
@@ -262,7 +263,7 @@ function SWEP:IndividualThink()
 					
 					timer.Simple(animLength, function()
 						if IsValid(self) and IsValid(self.Owner) then
-							if self.Owner:GetAmmoCount(self.Primary.Ammo) <= 0 then -- we're out of ammo, strip this weapon
+							if self.Owner:GetAmmoCount(self.Primary.Ammo) <= 0 then
 								self.Owner:ConCommand("lastinv")
 							else
 								self:drawAnimFunc()
@@ -308,19 +309,20 @@ end
 
 //-----------------------------------------------------------------------------
 // getControlls checks for players "Swap Attacks" setting
+// - returns id of cooking key based on settings
 //-----------------------------------------------------------------------------
 
 if CLIENT then
-	SWEP._cvarControlls = CreateClientConVar("cw_kk_ins2_ins_nade_ctrls", 0, true, true)
+	SWEP._cvarControlls = CreateClientConVar("cw_kk_ins2_ins_nade_ctrls", 1, true, true)
 end
 
 function SWEP:getControlls()
 	local setting 
 	
 	if CLIENT then
-		setting = self._cvarControlls:GetInt() or 0
+		setting = self._cvarControlls:GetInt() or 1
 	else
-		setting = self.Owner:GetInfoNum("cw_kk_ins2_ins_nade_ctrls", 0)
+		setting = self.Owner:GetInfoNum("cw_kk_ins2_ins_nade_ctrls", 1)
 	end
 	
 	return (2 - math.Clamp(setting, 0, 1))
@@ -355,7 +357,7 @@ function SWEP:_attack(key)
 	
 	CT = CurTime()
 	
-	if self.canCook and key == self:getControlls() then
+	if self.canCook and key == self:getControlls() then 	// if wep allows it and pressed key is cooking key then cook
 		self:sendWeaponAnim("pull_cook")
 		self.throwTime = CT + self.timeToThrowCook
 		self.cookTime = CT + self.spoonTime
@@ -363,7 +365,7 @@ function SWEP:_attack(key)
 		self._curThrowAnim = "throw_cook"
 		self._curSwapTime = self.swapTimeCook
 		self._curSpawnTime = self.spawnTimeCook
-	else
+	else													// else hold your spoon
 		self:sendWeaponAnim("pullpin")
 		self.throwTime = CT + self.timeToThrow
 		self.cookTime = nil
@@ -391,7 +393,7 @@ function SWEP:SecondaryAttack()
 end
 
 //-----------------------------------------------------------------------------
-// overCook is separate function to allow simple overriding by derived SWEPs
+// overCook is separate function to allow derived SWEPs to override this behavior
 //-----------------------------------------------------------------------------
 
 function SWEP:overCook()
