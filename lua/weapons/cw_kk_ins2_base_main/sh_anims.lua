@@ -86,7 +86,7 @@ if CLIENT then
 				self._KK_INS2_PickedUp 
 		
 			wasCrawling = self._KK_INS2_wasCrawling
-			isCrawling = self:IsOwnerCrawling() and canDoStuff
+			isCrawling = self:IsOwnerCrawling() and canDoStuff // and not (self.dt.State == CW_HOLSTER_START or self.dt.State == CW_HOLSTER_END)
 			
 			if isCrawling != wasCrawling and wasCrawling != nil then
 				if isCrawling then
@@ -269,6 +269,8 @@ if CLIENT then
 		prefix = self:getForegripMode()
 		anim = "crawl"
 		suffix = ""
+		rate = 1
+		cycle = 0
 		
 		clip = self:Clip1()
 		
@@ -282,7 +284,13 @@ if CLIENT then
 			end
 		end
 		
-		self:sendWeaponAnim(prefix .. anim .. suffix, 1, 0)
+		if self.KKINS2Nade and self.Owner:GetAmmoCount(self.Primary.Ammo) < 1 then
+			anim = "holster"
+			rate = 1
+			cycle = 1
+		end
+		
+		self:sendWeaponAnim(prefix .. anim .. suffix, rate, cycle)
 	end
 end
 
@@ -425,9 +433,9 @@ if CLIENT then
 		// I really should generate this from table of prefixes|anims|suffixes|suffixes|suffixes lol
 		
 		["base_pickup"] = 0.1,
-		-- ["base_draw"] = 0.1,
-		-- ["base_draw_empty"] = 0.1,
-		-- ["base_draw_empty_mm"] = 0.1,
+		["base_draw"] = -0.2,
+		["base_draw_empty"] = -0.2,
+		["base_draw_empty_mm"] = -0.2,
 		["base_bolt"] = 0.1,
 		["base_bolt_aim"] = -0.2,
 		["base_reload"] = 0.1,
@@ -450,9 +458,9 @@ if CLIENT then
 		["base_firemode_empty_mm_aim"] = 0.1,
 		
 		["foregrip_pickup"] = 0.1,
-		-- ["foregrip_draw"] = 0.1,
-		-- ["foregrip_draw_empty"] = 0.1,
-		-- ["foregrip_draw_empty_mm"] = 0.1,
+		["foregrip_draw"] = -0.2,
+		["foregrip_draw_empty"] = -0.2,
+		["foregrip_draw_empty_mm"] = -0.2,
 		["foregrip_bolt"] = 0.1,
 		["foregrip_bolt_aim"] = 0.1,
 		["foregrip_reload"] = 0.1,
@@ -493,7 +501,7 @@ if CLIENT then
 		["bipod_out_empty"] = 0.1,
 		
 		["gl_off_pickup"] = 0.1,
-		-- ["gl_off_draw"] = 0.1,
+		["gl_off_draw"] = -0.2,
 		["gl_off_bolt"] = 0.1,
 		["gl_off_bolt_aim"] = 0.1,
 		["gl_off_reload"] = 0.1,
@@ -507,7 +515,7 @@ if CLIENT then
 		["gl_off_firemode"] = 0.1,
 		["gl_off_firemode_aim"] = 0.1,
 		
-		-- ["gl_on_draw"] = 0.1,
+		["gl_on_draw"] = -0.2,
 		["gl_on_reload"] = 0.1,
 		-- ["gl_on_holster"] = 0.1,
 		
@@ -560,6 +568,62 @@ if CLIENT then
 			end
 		end
 		
+	end
+end
+
+if CLIENT then	
+	local crawls = {
+		["base_crawl"] = true,
+		["base_crawl_empty"] = true,
+		["base_crawl_empty_mm"] = true,
+		["foregrip_crawl"] = true,
+		["foregrip_crawl_empty"] = true,
+		["foregrip_crawl_empty_mm"] = true,
+		["gl_off_crawl"] = true,
+		["gl_off_crawl_empty"] = true,
+		["gl_on_crawl"] = true,
+		["gl_on_crawl_empty"] = true,
+	}
+	
+	function SWEP:setupSoundTableLoops()
+		local vm = self.CW_VM
+		
+		for animName,_ in pairs(crawls) do
+			local seqName = self.Animations[animName]
+			
+			if not seqName or !isstring(seqName) then 
+				continue 
+			end
+			
+			local soundTable = self.Sounds[seqName]
+			
+			if not soundTable then
+				continue
+			end
+			
+			local _, seqDur = vm:LookupSequence(seqName)
+			
+			local patch = {
+				kkwashere = true,
+				time = seqDur - 0.1,
+				sound = "",
+				callback = function(wep)
+					wep.CurSoundTable = soundTable
+					wep.CurSoundEntry = 0
+					wep.SoundTime = UnPredictedCurTime()
+					wep.SoundSpeed = 1
+				end
+			}
+			
+			local lastIndex = table.Count(soundTable)
+			local lastEntry = soundTable[lastIndex]
+						
+			if lastEntry.kkwashere then // just to be sure we dont change weapons.GetStored
+				soundTable[lastIndex] = patch
+			else
+				soundTable[lastIndex + 1] = patch
+			end
+		end
 	end
 end
 

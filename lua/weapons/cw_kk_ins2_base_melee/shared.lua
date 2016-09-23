@@ -56,6 +56,7 @@ SWEP.FireDelay = 0.6
 SWEP.ReticleInactivityPostFire = 0.6
 SWEP.DamageOutputDelay = 0.2
 
+SWEP.FirstDeployTime = 0.6
 SWEP.DeployTime = 0.6
 SWEP.HolsterTime = 0.4
 

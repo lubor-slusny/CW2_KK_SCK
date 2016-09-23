@@ -59,6 +59,11 @@ CustomizableWeaponry.callbacks:addNew("initialize", "KK_INS2_BASE", function(wep
 		if wep.setupReticleInactivityCallbacks then
 			wep:setupReticleInactivityCallbacks() // sh_anims.lua
 		end
+		
+		// crawl anims soundtables
+		if wep.setupSoundTableLoops then
+			wep:setupSoundTableLoops() // sh_anims.lua
+		end
 	end
 	
 	// Ive never really used ammo crate before so here s quickfix for explosives
@@ -329,7 +334,7 @@ if CLIENT then
 end
 
 //-----------------------------------------------------------------------------
-// GO PRO
+// GO PRO(ne)
 //-----------------------------------------------------------------------------
 
 CustomizableWeaponry.callbacks:addNew("calculateRecoil", "KK_INS2_BASE", function(wep, mod)
