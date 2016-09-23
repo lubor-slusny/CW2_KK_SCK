@@ -214,7 +214,7 @@ if CLIENT then
 		self:sendWeaponAnim(prefix .. anim .. suffix, 1, 0)
 	end
 		
-	function SWEP:idleAnimFunc()
+	function SWEP:idleAnimFunc()		
 		prefix = self:getForegripMode()
 		suffix = ""
 		anim = "idle"
@@ -231,8 +231,8 @@ if CLIENT then
 				cycle = 1
 			end
 		else
-			-- anim = "idle" // only idle anims are for base_ prefix, it used to use draw anim for others anyway
-			anim = "holster"
+			anim = "idle" // only idle anims are for base_ prefix, it used to use draw anim for others anyway
+			-- anim = "holster"
 		end
 		
 		if self:IsOwnerCrawling() then

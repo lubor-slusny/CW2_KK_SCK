@@ -107,6 +107,8 @@ SWEP.Animations = {
 	-- base_safe_empty_aim = "iron_down_empty",
 	base_safe_empty_mm = "base_down_empty_drum",
 	base_safe_empty_mm_aim = "iron_down_empty_drum",
+	base_crawl = "base_crawl",
+	base_crawl_empty_mm = "base_crawl_empty_drum",
 	
 	foregrip_pickup = "foregrip_ready",
 	foregrip_draw = "foregrip_draw",
@@ -126,8 +128,8 @@ SWEP.Animations = {
 	foregrip_reload_empty = "foregrip_reloadempty",
 	foregrip_reload_mm = "foregrip_reload_drum",
 	foregrip_reload_empty_mm = "foregrip_reloadempty_drum",
-	foregrip_idle = "foregrip_draw",
-	-- foregrip_idle_empty = "foregrip_draw_empty",
+	foregrip_idle = "foregrip_holster",
+	-- foregrip_idle_empty = "foregrip_holster_empty",
 	foregrip_idle_empty_mm = "foregrip_empty_idle_drum",
 	foregrip_holster = "foregrip_holster",
 	-- foregrip_holster_empty = "foregrip_holster_empty",
@@ -147,6 +149,8 @@ SWEP.Animations = {
 	-- foregrip_safe_empty_aim = "foregrip_iron_down_empty",
 	foregrip_safe_empty_mm = "foregrip_down_empty_drum",
 	foregrip_safe_empty_mm_aim = "foregrip_iron_down_empty_drum",
+	foregrip_crawl = "foregrip_crawl",
+	foregrip_crawl_empty_mm = "foregrip_crawl_empty_drum",
 }
 
 SWEP.SpeedDec = 15

@@ -327,3 +327,21 @@ if CLIENT then
 
 	hook.Add("Think", CustomizableWeaponry_KK.ins2.welementDrop, CustomizableWeaponry_KK.ins2.welementDrop.Think)
 end
+
+//-----------------------------------------------------------------------------
+// GO PRO
+//-----------------------------------------------------------------------------
+
+CustomizableWeaponry.callbacks:addNew("calculateRecoil", "KK_INS2_BASE", function(wep, mod)
+	if !wep.KKINS2Wep then return end
+	
+	return wep:IsOwnerProne() and mod * 0.6 or mod
+end)
+
+if CLIENT then
+	CustomizableWeaponry.callbacks:addNew("disableInteractionMenu", "KK_INS2_BASE", function(wep, mod)
+		if !wep.KKINS2Wep then return end
+		
+		return wep:IsOwnerCrawling()
+	end)
+end

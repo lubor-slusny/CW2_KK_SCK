@@ -39,8 +39,8 @@ SWEP.Attachments = {
 SWEP.Animations = {
 	base_pickup = "base_ready",
 	base_draw = "base_draw",
-	base_fire = {"base_fire_1", "base_fire_2"},
-	base_fire_aim = {"iron_fire_1", "iron_fire_2"},
+	base_fire = {"base_fire_1", "base_fire_2", "base_firelast"},
+	base_fire_aim = {"iron_fire_1", "iron_fire_2", "iron_fire_last"},
 	base_fire_empty = "base_dryfire",
 	base_fire_empty_aim = "iron_dryfire",
 	base_bolt = {"base_fire_cock_1", "base_fire_cock_2"},
@@ -49,12 +49,13 @@ SWEP.Animations = {
 	base_reload_start_empty = "base_reload_start_empty",
 	base_insert = "base_reload_insert",
 	base_reload_end = "base_reload_end",
-	base_reload_end_empty = "base_reload_end",
+	base_reload_end_empty = "base_reload_end_empty",
 	base_idle = "base_idle",
 	base_holster = "base_holster",
 	base_sprint = "base_sprint",
 	base_safe = "base_down",
 	base_safe_aim = "iron_down",
+	base_crawl = "base_crawl",
 }
 
 SWEP.SpeedDec = 15

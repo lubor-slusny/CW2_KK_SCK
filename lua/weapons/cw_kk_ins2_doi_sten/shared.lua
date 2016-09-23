@@ -65,6 +65,8 @@ SWEP.Animations = {
 	base_safe_aim = "iron_down",
 	base_safe_empty = "base_down_empty",
 	base_safe_empty_aim = "iron_down_empty",
+	base_crawl = "base_crawl",
+	base_crawl_empty = "base_crawl_empty",
 	
 	foregrip_pickup = "foregrip_draw",
 	foregrip_draw = "foregrip_draw",
@@ -91,6 +93,8 @@ SWEP.Animations = {
 	foregrip_safe_aim = "foregrip_iron_down",
 	foregrip_safe_empty = "foregrip_down_empty",
 	foregrip_safe_empty_aim = "foregrip_iron_down_empty",
+	foregrip_crawl = "foregrip_crawl",
+	foregrip_crawl_empty = "foregrip_crawl_empty",
 }
 
 SWEP.SpeedDec = 15

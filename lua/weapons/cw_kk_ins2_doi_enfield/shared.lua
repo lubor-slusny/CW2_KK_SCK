@@ -97,6 +97,8 @@ SWEP.Animations = {
 	base_safe_empty_aim = "iron_down_empty",
 	base_melee = "base_melee",
 	base_melee_empty = "base_melee_empty",
+	base_crawl = "base_crawl",
+	base_crawl_empty = "base_crawl_empty",
 
 	gl_off_pickup = "base_ready",
 	gl_off_draw = "base_draw",
@@ -128,6 +130,8 @@ SWEP.Animations = {
 	gl_off_safe_empty_aim = "iron_down_empty",
 	gl_off_melee = "base_melee",
 	gl_off_melee_empty = "base_melee_empty",
+	gl_off_crawl = "base_crawl",
+	gl_off_crawl_empty = "base_crawl_empty",
 	
 	gl_on_draw = "glsetup_draw",
 	gl_on_draw_empty = "glsetup_draw_empty",
@@ -136,7 +140,7 @@ SWEP.Animations = {
 	gl_on_fire_empty = "glsetup_dryfire",
 	gl_on_fire_empty_aim = "glsetup_iron_dryfire",
 	gl_on_reload = "glsetup_reload",
-	gl_on_idle = "glsetup_draw",
+	gl_on_idle = "glsetup",
 	gl_on_idle_empty = "glsetup_idle_empty",
 	gl_on_holster = "glsetup_holster",
 	gl_on_holster_empty = "glsetup_holster_empty",
@@ -146,6 +150,8 @@ SWEP.Animations = {
 	gl_on_safe_aim = "glsetup_iron_down",
 	gl_on_safe_empty = "glsetup_down_empty",
 	gl_on_safe_empty_aim = "glsetup_iron_down_empty",
+	gl_on_crawl = "glsetup_crawl",
+	gl_on_crawl_empty = "glsetup_crawl_empty",
 	
 	gl_turn_on_full = "glsetup_in",
 	gl_turn_on = "glsetup_in_empty",

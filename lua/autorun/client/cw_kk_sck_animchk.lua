@@ -79,7 +79,7 @@ local function updatePanel()
 	
 	local deltas = 0
 	for k,v in pairs(unused) do
-		for _,pat in pairs({"delta","layer","menu","blend"}) do
+		for _,pat in pairs({"delta","layer","menu"}) do
 			if string.find(string.lower(v), pat) then
 				unused[k] = nil
 				deltas = deltas + 1

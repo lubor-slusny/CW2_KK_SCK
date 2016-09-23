@@ -154,6 +154,8 @@ SWEP.Animations = {
 	base_safe_aim = "iron_down",
 	base_safe_empty = "empty_down",
 	base_safe_empty_aim = "iron_empty_down",
+	base_crawl = "base_crawl",
+	base_crawl_empty = "empty_crawl",
 	
 	foregrip_pickup = "foregrip_ready",
 	foregrip_draw = "foregrip_draw",
@@ -166,7 +168,7 @@ SWEP.Animations = {
 	foregrip_fire_empty_aim = "foregrip_iron_dryfire_b",
 	foregrip_reload = "foregrip_reload",
 	foregrip_reload_empty = "foregrip_reloadempty",
-	foregrip_idle = "foregrip_draw",
+	foregrip_idle = "foregrip_holster",
 	foregrip_idle_empty = "foregrip_empty_idle",
 	foregrip_holster = "foregrip_holster",
 	foregrip_holster_empty = "foregrip_empty_holster",
@@ -176,6 +178,8 @@ SWEP.Animations = {
 	foregrip_safe_aim = "foregrip_iron_down",
 	foregrip_safe_empty = "foregrip_empty_down",
 	foregrip_safe_empty_aim = "foregrip_empty_iron_down",
+	foregrip_crawl = "foregrip_crawl",
+	foregrip_crawl_empty = "foregrip_empty_crawl",
 	
 	bipod_in = "deployed_in",
 	bipod_in_empty = "deployed_empty_in",

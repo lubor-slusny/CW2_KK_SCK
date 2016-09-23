@@ -29,12 +29,14 @@ SWEP.Animations = {
 	base_draw = "draw",
 	base_holster = "holster",
 	base_sprint = "base_sprint",
+	base_crawl = "crawl",
 	
 	det_boom = "det_detonate",
 	det_draw = "det_draw",
 	det_holster = "det_holster",
 	det_idle = "det_idle",
 	det_sprint = "det_sprint",
+	det_crawl = "det_crawl",
 }
 
 SWEP.Sounds = {

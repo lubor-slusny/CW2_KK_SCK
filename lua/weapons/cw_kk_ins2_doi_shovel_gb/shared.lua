@@ -16,6 +16,7 @@ SWEP.Animations = {
 	base_idle = "base_idle",
 	base_holster = "base_holster",
 	base_sprint = "base_sprint",
+	base_crawl = "base_crawl",
 }
 
 SWEP.NormalHoldType = "melee2"

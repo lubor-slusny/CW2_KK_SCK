@@ -42,6 +42,7 @@ SWEP.Animations = {
 	base_holster = "holster",
 	base_sprint = "sprint",
 	base_safe = "down",
+	base_crawl = "crawl",
 }
 
 SWEP.SpeedDec = 5

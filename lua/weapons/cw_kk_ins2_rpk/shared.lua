@@ -194,6 +194,7 @@ SWEP.Animations = {
 	base_sprint = "base_sprint",
 	base_safe = "base_down",
 	base_safe_aim = "iron_down",
+	base_crawl = "base_crawl",
 	
 	bipod_in = "deployed_in",
 	bipod_fire = "deployed_fire",

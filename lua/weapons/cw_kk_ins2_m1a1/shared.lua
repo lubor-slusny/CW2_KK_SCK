@@ -129,11 +129,12 @@ SWEP.Animations = {
 	base_reload_mm = "base_reload_ext",
 	base_reload_empty = "base_reloadempty",
 	base_reload_empty_mm = "base_reloadempty_ext",
-	base_idle = "base_idle",
+	base_idle = "blend_idle",
 	base_holster = "base_holster",
 	base_sprint = "base_sprint",
 	base_safe = "base_down",
 	base_safe_aim = "iron_down",
+	base_crawl = "base_crawl",
 	
 	foregrip_pickup = "foregrip_ready",
 	foregrip_draw = "foregrip_draw",
@@ -145,11 +146,12 @@ SWEP.Animations = {
 	foregrip_reload_mm = "foregrip_reload_ext",
 	foregrip_reload_empty = "foregrip_reloadempty",
 	foregrip_reload_empty_mm = "foregrip_reloadempty_ext",
-	foregrip_idle = "foregrip_draw",
+	foregrip_idle = "blend_idle_foregrip",
 	foregrip_holster = "foregrip_holster",
 	foregrip_sprint = "foregrip_sprint",
 	foregrip_safe = "foregrip_down",
 	foregrip_safe_aim = "foregrip_iron_down",
+	foregrip_crawl = "foregrip_crawl",
 }
 
 SWEP.SpeedDec = 40

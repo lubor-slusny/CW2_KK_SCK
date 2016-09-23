@@ -387,7 +387,7 @@ function SWEP:toggleGLMode(IFTP)
 				self:delayEverything(self.gl_off_shot_time or 2)
 			end
 			
-			self:unloadM203()
+			self:unloadM203(true)
 		else
 			if self.Owner:GetAmmoCount("40MM") < 1 then 
 				return 
@@ -447,6 +447,10 @@ if SERVER then
 			
 			self._KK_INS2_wasProne = isProne
 			
+			if isProne and self.dt.State == CW_CUSTOMIZE then
+				self.dt.State = CW_IDLE
+			end
+			
 			if wasProne and !isProne then
 				self:SetNextPrimaryFire(CurTime() + delay)
 				self.GlobalDelay = CurTime() + delay
@@ -454,7 +458,11 @@ if SERVER then
 		end
 	end
 end
-	
+
+function SWEP:IsOwnerProne()
+	return self.Owner.IsProne and self.Owner:IsProne()
+end
+
 function SWEP:IsOwnerCrawling()
-	return self.Owner.IsProne and self.Owner:IsProne() and self.Owner:GetVelocity():Length() > 20
+	return self:IsOwnerProne() and self.Owner:GetVelocity():Length() > 20
 end

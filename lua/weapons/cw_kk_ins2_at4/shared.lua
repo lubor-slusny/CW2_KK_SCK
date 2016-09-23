@@ -43,11 +43,12 @@ SWEP.Animations = {
 	base_fire_aim = "base_iron_fire",
 	base_reload_start = "base_toss",
 	base_reload_end = "base_ready",
-	base_idle = "idle",
+	base_idle = "base_idle",
 	base_holster = "base_holster",
 	base_sprint = "base_sprint",
 	base_safe = "base_down",
 	base_safe_aim = "base_iron_down",
+	base_crawl = "base_crawl",
 }
 
 SWEP.SpeedDec = 15

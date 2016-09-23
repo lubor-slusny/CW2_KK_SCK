@@ -8,7 +8,7 @@ local SP = game.SinglePlayer()
 // - shouldSuppressAmmoUsage callback
 //-----------------------------------------------------------------------------
 
-function SWEP:fireM203(firstTimePrediction)
+function SWEP:fireM203(IFTP)
 	if SERVER and SP then
 		SendUserMessage("CW20_FIREM203", self.Owner)
 	end
@@ -16,7 +16,7 @@ function SWEP:fireM203(firstTimePrediction)
 	self:delayEverything(0.6)
 	self:setGlobalDelay(0.6)
 	
-	CustomizableWeaponry.grenadeTypes.selectFireFunc(self, firstTimePrediction)
+	CustomizableWeaponry.grenadeTypes.selectFireFunc(self, IFTP)
 	
 	if self:filterPrediction() then
 		self:MakeRecoil(5)
@@ -76,7 +76,7 @@ end
 // weapon itself if primary ammo is 40MM
 //-----------------------------------------------------------------------------
 
-function SWEP:unloadM203()
+function SWEP:unloadM203(noIdle)
 	local give = 0
 
 	if self.Primary.Ammo == "40MM" then
@@ -89,11 +89,16 @@ function SWEP:unloadM203()
 	
 	if SERVER then
 		self.Owner:GiveAmmo(give, "40MM", true)
-		SendUserMessage("CW_KK_INS2_UNLOADM203", self.Owner)
+		
+		if SP then
+			umsg.Start("CW_KK_INS2_UNLOADM203", self.Owner)
+				umsg.Bool(noIdle)
+			umsg.End()
+		end
 	end
 	
 	if CLIENT then
-		if self.KK_INS2_EmptyIdleGL then
+		if !noIdle and self.KK_INS2_EmptyIdleGL then
 			self:idleAnimFunc()
 		end
 	end
@@ -104,14 +109,14 @@ end
 //-----------------------------------------------------------------------------
 
 if CLIENT then
-	usermessage.Hook("CW_KK_INS2_UNLOADM203", function()
+	usermessage.Hook("CW_KK_INS2_UNLOADM203", function(um)
 		local ply = LocalPlayer()
 		if !IsValid(ply) then return end
 		
 		local wep = ply:GetActiveWeapon()
 		if !IsValid(wep) or not wep.CW20Weapon then return end
-			
-		wep:unloadM203()
+		
+		wep:unloadM203(um:ReadBool())
 	end)
 end
 

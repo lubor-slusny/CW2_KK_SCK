@@ -142,6 +142,7 @@ SWEP.Animations = {
 	base_sprint = "base_sprint",
 	base_safe = "base_down",
 	base_safe_aim = "iron_down",
+	base_crawl = "base_crawl",
 	
 	foregrip_pickup = "foregrip_ready",
 	foregrip_draw = "foregrip_draw",
@@ -153,13 +154,14 @@ SWEP.Animations = {
 	foregrip_reload_empty = "foregrip_reloadempty",
 	foregrip_reload_mm = "foregrip_reload_ext",
 	foregrip_reload_mm_empty = "foregrip_reloadempty_ext",
-	foregrip_idle = "foregrip_draw",
+	foregrip_idle = "foregrip_holster",
 	foregrip_holster = "foregrip_holster",
 	foregrip_firemode = "foregrip_fireselect",
 	foregrip_firemode_aim = "foregrip_iron_fireselect_b",
 	foregrip_sprint = "foregrip_sprint",
 	foregrip_safe = "foregrip_down",
 	foregrip_safe_aim = "foregrip_iron_down",
+	foregrip_crawl = "foregrip_crawl",
 	
 	bipod_in = "deployed_in",
 	bipod_fire = "deployed_fire",

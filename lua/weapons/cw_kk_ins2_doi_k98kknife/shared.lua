@@ -18,6 +18,7 @@ SWEP.Animations = {
 	base_idle = "idle",
 	base_holster = "holster",
 	base_sprint = "sprint",
+	base_crawl = "crawl",
 }
 
 SWEP.NormalHoldType = "knife"

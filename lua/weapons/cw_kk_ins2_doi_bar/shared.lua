@@ -34,7 +34,7 @@ SWEP.Animations = {
 	base_pickup = "base_ready",
 	base_draw = "base_draw",
 	base_draw_empty = "base_draw_empty",
-	base_fire = {"base_fire_1", "base_fire_2"},
+	base_fire = {"base_fire_1", "base_fire_2", "base_fire_3"},
 	base_fire_aim = {"iron_fire_1","iron_fire_2"},
 	base_fire_empty = "base_dryfire",
 	base_fire_empty_aim = "iron_dryfire",
@@ -54,6 +54,8 @@ SWEP.Animations = {
 	base_safe_empty = "base_down_empty",
 	base_safe_aim = "iron_down",
 	base_safe_empty_aim = "iron_down_empty",
+	base_crawl = "base_crawl",
+	base_crawl_empty = "base_crawl_empty",
 	
 	bipod_in = "deployed_in",
 	bipod_in_empty = "deployed_in_empty",
