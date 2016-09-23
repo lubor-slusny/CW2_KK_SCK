@@ -175,4 +175,24 @@ SWEP.Sounds = {
 	deployed_iron_fireselect_empty = {
 		{time = 8/24, sound = "CW_KK_INS2_M14_FIRESELECT"},
 	},
+	
+	base_crawl = {
+		{time = 0/30, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
+		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
+	},
+
+	base_crawl_empty = {
+		{time = 0/30, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
+		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
+	},
+
+	foregrip_crawl = {
+		{time = 0/30, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
+		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
+	},
+
+	foregrip_crawl_empty = {
+		{time = 0/30, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
+		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
+	},
 }

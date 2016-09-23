@@ -62,12 +62,12 @@ SWEP.Sounds = {
 	},
 	
 	base_crawl = {
-		{time = 0/30, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
+		{time = 0/35, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
 		{time = 22/35, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
 	},
 
 	empty_crawl = {
-		{time = 0/30, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
+		{time = 0/35, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
 		{time = 22/35, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
 	},
 }

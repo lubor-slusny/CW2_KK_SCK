@@ -53,7 +53,7 @@ SWEP.Sounds = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
 	},
 
-	base_crawl = {
+	crawl = {
 		{time = 10/29, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
 		{time = 20/29, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
 	},

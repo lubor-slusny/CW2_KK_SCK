@@ -21,6 +21,16 @@ SWEP.Sounds = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
 	},
 
+	base_crawl = {
+		{time = 0/30, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
+		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
+	},
+
+	empty_crawl = {
+		{time = 0/30, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
+		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
+	},
+
 	base_dryfire = {
 		{time = 0, sound = "CW_KK_INS2_DOI_MP40_EMPTY"},
 	},

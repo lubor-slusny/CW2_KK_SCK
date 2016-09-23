@@ -572,7 +572,7 @@ if CLIENT then
 end
 
 if CLIENT then	
-	local crawls = {
+	SWEP.loopAnims = {
 		["base_crawl"] = true,
 		["base_crawl_empty"] = true,
 		["base_crawl_empty_mm"] = true,
@@ -588,7 +588,7 @@ if CLIENT then
 	function SWEP:setupSoundTableLoops()
 		local vm = self.CW_VM
 		
-		for animName,_ in pairs(crawls) do
+		for animName,_ in pairs(self.loopAnims) do
 			local seqName = self.Animations[animName]
 			
 			if not seqName or !isstring(seqName) then 
@@ -605,7 +605,7 @@ if CLIENT then
 			
 			local patch = {
 				kkwashere = true,
-				time = seqDur - 0.1,
+				time = seqDur,
 				sound = "",
 				callback = function(wep)
 					wep.CurSoundTable = soundTable

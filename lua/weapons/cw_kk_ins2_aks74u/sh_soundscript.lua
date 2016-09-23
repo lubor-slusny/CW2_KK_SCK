@@ -97,4 +97,14 @@ SWEP.Sounds = {
 	foregrip_iron_fireselect = {
 		{time = 14/30, sound = "CW_KK_INS2_AKS74U_FIRESELECT"},
 	},
+	
+	base_crawl = {
+		{time = 16/30, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
+		{time = 37/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
+	},
+
+	foregrip_crawl = {
+		{time = 16/30, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
+		{time = 37/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
+	},
 }

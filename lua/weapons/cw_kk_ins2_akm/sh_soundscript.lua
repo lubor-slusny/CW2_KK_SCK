@@ -181,4 +181,25 @@ SWEP.Sounds = {
 	glsetup_iron_dryfire = {
 		{time = 0, sound = "CW_KK_INS2_GP30_EMPTY"},
 	},
+	
+	base_crawl = {
+		{time = 16/30, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
+		{time = 37/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
+	},
+
+	foregrip_crawl = {
+		{time = 16/30, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
+		{time = 37/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
+	},
+
+	gl_crawl = {
+		{time = 16/30, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
+		{time = 37/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
+	},
+
+	glsetup_crawl = {
+		{time = 16/30, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
+		{time = 37/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
+	},
+
 }
