@@ -2,8 +2,9 @@
 SWEP.Sounds = {
 	base_ready = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-		{time = 17/30, sound = "CW_KK_INS2_MK18_BOLTBACK"},
-		{time = 26/30, sound = "CW_KK_INS2_MK18_BOLTRELEASE"},
+		{time = 23/32, sound = "CW_KK_INS2_MK18_BOLTBACK"},
+		{time = 36/32, sound = "CW_KK_INS2_MK18_BOLTRELEASE"},
+		{time = 55/32, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
 	},
 
 	base_draw = {
@@ -19,22 +20,22 @@ SWEP.Sounds = {
 	},
 
 	base_fireselect = {
-		{time = 8/30, sound = "CW_KK_INS2_MK18_FIRESELECT"},
+		{time = 11/30, sound = "CW_KK_INS2_MK18_FIRESELECT"},
 	},
 
 	base_reload = {
-		{time = 16/30, sound = "CW_KK_INS2_MK18_MAGRELEASE"},
+		{time = 13/30, sound = "CW_KK_INS2_MK18_MAGRELEASE"},
 		{time = 17/30, sound = "CW_KK_INS2_MK18_MAGOUT"},
-		{time = 71/30, sound = "CW_KK_INS2_MK18_MAGIN"},
-		{time = 87/30, sound = "CW_KK_INS2_MK18_HIT"},
+		{time = 59/30, sound = "CW_KK_INS2_MK18_MAGIN"},
+		{time = 80/30, sound = "CW_KK_INS2_MK18_HIT"},
 	},
 
 	base_reloadempty = {
-		{time = 16/30, sound = "CW_KK_INS2_MK18_MAGRELEASE"},
+		{time = 13/30, sound = "CW_KK_INS2_MK18_MAGRELEASE"},
 		{time = 17/30, sound = "CW_KK_INS2_MK18_MAGOUT"},
-		{time = 71/30, sound = "CW_KK_INS2_MK18_MAGIN"},
-		{time = 87/30, sound = "CW_KK_INS2_MK18_HIT"},
-		{time = 112/30, sound = "CW_KK_INS2_MK18_BOLTRELEASE"},
+		{time = 62/30, sound = "CW_KK_INS2_MK18_MAGIN"},
+		{time = 85/30, sound = "CW_KK_INS2_MK18_HIT"},
+		{time = 107/30, sound = "CW_KK_INS2_MK18_BOLTRELEASE"},
 	},
 
 	iron_dryfire = {
@@ -47,8 +48,9 @@ SWEP.Sounds = {
 
 	foregrip_ready = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-		{time = 17/30, sound = "CW_KK_INS2_MK18_BOLTBACK"},
-		{time = 26/30, sound = "CW_KK_INS2_MK18_BOLTRELEASE"},
+		{time = 23/32, sound = "CW_KK_INS2_MK18_BOLTBACK"},
+		{time = 36/32, sound = "CW_KK_INS2_MK18_BOLTRELEASE"},
+		{time = 55/32, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
 	},
 
 	foregrip_draw = {
@@ -64,22 +66,22 @@ SWEP.Sounds = {
 	},
 
 	foregrip_fireselect = {
-		{time = 8/30, sound = "CW_KK_INS2_MK18_FIRESELECT"},
+		{time = 11/30, sound = "CW_KK_INS2_MK18_FIRESELECT"},
 	},
 
 	foregrip_reload = {
-		{time = 16/30, sound = "CW_KK_INS2_MK18_MAGRELEASE"},
+		{time = 13/30, sound = "CW_KK_INS2_MK18_MAGRELEASE"},
 		{time = 17/30, sound = "CW_KK_INS2_MK18_MAGOUT"},
-		{time = 71/30, sound = "CW_KK_INS2_MK18_MAGIN"},
-		{time = 87/30, sound = "CW_KK_INS2_MK18_HIT"},
+		{time = 59/30, sound = "CW_KK_INS2_MK18_MAGIN"},
+		{time = 80/30, sound = "CW_KK_INS2_MK18_HIT"},
 	},
 
 	foregrip_reloadempty = {
-		{time = 16/30, sound = "CW_KK_INS2_MK18_MAGRELEASE"},
+		{time = 13/30, sound = "CW_KK_INS2_MK18_MAGRELEASE"},
 		{time = 17/30, sound = "CW_KK_INS2_MK18_MAGOUT"},
-		{time = 71/30, sound = "CW_KK_INS2_MK18_MAGIN"},
-		{time = 87/30, sound = "CW_KK_INS2_MK18_HIT"},
-		{time = 112/30, sound = "CW_KK_INS2_MK18_BOLTRELEASE"},
+		{time = 62/30, sound = "CW_KK_INS2_MK18_MAGIN"},
+		{time = 85/30, sound = "CW_KK_INS2_MK18_HIT"},
+		{time = 107/30, sound = "CW_KK_INS2_MK18_BOLTRELEASE"},
 	},
 
 	foregrip_iron_dryfire = {

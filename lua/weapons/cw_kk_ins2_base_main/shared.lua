@@ -77,7 +77,9 @@ SWEP.WeaponLength = 20
 SWEP.HolsterSpeed = 1
 
 SWEP.boltAction_isShot = false
-SWEP.boltAction_pumpTime = 0.6
+-- SWEP.boltAction_pumpTime = 0.6
+
+SWEP.ReloadTimes = {}
 
 if CLIENT then	
 	SWEP.PosBasedMuz = false
@@ -258,6 +260,8 @@ end
 // doBoltAction sets delays and plays bolt animation on shotguns/rifles
 //-----------------------------------------------------------------------------
 
+local prefix, suffix, anim
+
 function SWEP:doBoltAction()
 	if not self.Animations.base_bolt then // temp chk
 		self.boltAction_isShot = false
@@ -268,16 +272,22 @@ function SWEP:doBoltAction()
 		local prefix = self:getForegripMode()
 		local suffix = ""
 		
+		self.boltAction_isShot = false
+		
 		if self:isAiming() then
 			suffix = "_aim"
 		end
 		
-		self:sendWeaponAnim(prefix .. "bolt" .. suffix,1,0)
+		anim = prefix .. "bolt" .. suffix
 		
-		self.boltAction_isShot = false
+		self:sendWeaponAnim(anim, 1, 0)
 		
-		self:SetNextPrimaryFire(CurTime() + self.boltAction_pumpTime)
-		self.GlobalDelay = CurTime() + self.boltAction_pumpTime
+		local _, time = self:getAnimTimes(anim)
+		
+		time = CurTime() + time
+		
+		self:SetNextPrimaryFire(time)
+		self.GlobalDelay = time
 	end
 	
 	if self:Clip1() < 1 then

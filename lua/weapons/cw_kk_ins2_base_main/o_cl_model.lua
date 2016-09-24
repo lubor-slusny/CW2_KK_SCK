@@ -365,6 +365,10 @@ function SWEP:DrawWorldModel()
 		-- self:SetAngles(ang)
 	end
 	
+	if !IsValid(self.WMEnt) then
+		return
+	end
+	
 	self.WMEnt:SetPos(pos)			// kept for cw_muzzleflash effect 	
 	self.WMEnt:SetAngles(ang)		// even if I keep calling RemoveBoneMerge - get:attachment still returns crotchpos
 	

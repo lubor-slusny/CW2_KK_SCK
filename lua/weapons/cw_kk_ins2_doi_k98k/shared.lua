@@ -227,9 +227,10 @@ SWEP.KK_INS2_EmptyIdleGL = true
 SWEP.WeaponLength = 38
 
 SWEP.MuzzleVelocity = 760
-SWEP.boltAction_pumpTime = 1.3
 
 SWEP.ReloadTimes = {
+	base_fire_end = {1.2, 1.2},
+	iron_fire_end = {1.4, 1.4},
 	base_reload_full_clip = {2.7, 4.29},
 	base_reload_empty_clip = {2.7, 4.29},
 	base_reload_start = {1.21, 1.21},
@@ -237,6 +238,8 @@ SWEP.ReloadTimes = {
 	base_reload_insert = {0.99, 0.99},
 	base_reload_end = {1.41, 1.41},
 
+	gl_fire_end = {1.2, 1.2},
+	gl_iron_fire_end = {1.4, 1.4},
 	gl_reload_empty_stripper = {2.7, 4.29},
 	gl_reload_empty_stripper = {2.7, 4.29},
 	gl_reload_start = {1.21, 1.21},

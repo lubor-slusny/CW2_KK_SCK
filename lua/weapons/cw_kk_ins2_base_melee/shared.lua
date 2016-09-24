@@ -93,6 +93,10 @@ end
 //-----------------------------------------------------------------------------
 
 function SWEP:PrimaryAttack()
+	if self:IsOwnerCrawling() then
+		return
+	end
+	
 	if self.Owner:KeyDown(IN_USE) then
 		if CustomizableWeaponry.quickGrenade.canThrow(self) then
 			CustomizableWeaponry_KK.ins2.quickGrenade.throw(self)

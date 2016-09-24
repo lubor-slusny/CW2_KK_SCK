@@ -278,6 +278,19 @@ SWEP.SightBGs = {main = 0, foldsight = 0}
 
 SWEP.MuzzleVelocity = 880
 
+SWEP.ReloadTimes = {
+	base_reload = {2.9, 3.8},
+	base_reloadempty = {3, 4.5},
+	
+	foregrip_reload = {2.9, 3.8},
+	foregrip_reloadempty = {3, 4.5},
+	
+	gl_reload = {2.9, 3.8},
+	gl_reloadempty = {3, 4.5},
+	
+	glsetup_reload = {2.95, 3.85},
+}
+
 if CLIENT then
 	function SWEP:updateStandardParts()
 		self:setElementActive("cover_dn_ln", self:getActiveAttachmentInCategory(3) == nil)

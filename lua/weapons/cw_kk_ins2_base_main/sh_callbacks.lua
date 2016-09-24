@@ -195,17 +195,18 @@ if CLIENT then
 		// no CustomizePos during crawling
 		// also SprintViewSimulation?
 		if wep.dt.State != CW_ACTION and wep:IsOwnerCrawling() then
-		
-			// 2do: edit to add SprintViewSim to crawling
-			-- if not self.DisableSprintViewSimulation then
-				-- local verticalOffset = EyeAngles().p * 0.4 * runMod
-				-- TargetAng.x = TargetAng.x - math.Clamp(verticalOffset, 0, 10) * self.SprintViewNormals.x
-				-- TargetAng.y = TargetAng.y - verticalOffset * 0.5 * self.SprintViewNormals.y
-				-- TargetAng.z = TargetAng.z - verticalOffset * 0.2 * self.SprintViewNormals.z
-				-- TargetPos.z = TargetPos.z + math.Clamp(verticalOffset * 0.2, -10, 3)
-			-- end
+			-- TargetPos, TargetAng = Vector(wep.AlternativePos), Vector(wep.AlternativeAng)
 			
-			return wep.AlternativePos, wep.AlternativeAng
+			-- // 2do: edit to add SprintViewSim to crawling
+			
+			-- local verticalOffset = EyeAngles().p * 0.4 * 1
+			-- TargetAng.x = TargetAng.x - math.Clamp(verticalOffset, -70, 70) * -1.5
+			-- TargetAng.y = TargetAng.y - verticalOffset * 0.5 * 0
+			-- TargetAng.z = TargetAng.z - verticalOffset * 0.2 * 0
+			-- TargetPos.z = TargetPos.z + math.Clamp(verticalOffset * 0.2, -10, 3)
+		
+			-- return TargetPos, TargetAng
+			-- return wep.AlternativePos, wep.AlternativeAng
 		end
 		
 		// pure holster animation when holstering, no swimpos

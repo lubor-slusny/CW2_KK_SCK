@@ -689,7 +689,7 @@ if CLIENT then
 				continue 
 			end
 			
-			self.reloadProgressAnims[seqName] = (self.ReloadTimes and self.ReloadTimes[seqName]) and self.ReloadTimes[seqName][2] or self.ReloadHalt
+			self.reloadProgressAnims[seqName] = (self.ReloadTimes and self.ReloadTimes[seqName]) and self.ReloadTimes[seqName][2]
 		end
 	end
 end

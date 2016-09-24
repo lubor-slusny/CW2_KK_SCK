@@ -112,7 +112,6 @@ SWEP.Animations = {
 	base_fire_last_aim = "iron_fire",
 	base_fire_empty = "empty_dryfire",
 	base_fire_empty_aim = "empty_dryfire",
-	base_reload = "base_reload",
 	base_reload_empty = "base_reload",
 	base_idle = "base_idle",
 	base_idle_empty = "empty_idle",
@@ -127,7 +126,7 @@ SWEP.Animations = {
 	base_crawl = "base_crawl",
 	base_crawl_empty = "empty_crawl",
 }
-	
+
 SWEP.Sounds = {
 	base_ready = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
@@ -228,10 +227,14 @@ SWEP.FirstDeployTime = 4.7
 SWEP.DeployTime = 1.1
 SWEP.HolsterTime = 0.9
 
-SWEP.ReloadTime = 3.77
-SWEP.ReloadTime_Empty = 3.77
-SWEP.ReloadHalt = 5
-SWEP.ReloadHalt_Empty = 5
+SWEP.ReloadTimes = {
+	base_ready = {4.7, 4.7},
+	base_reload = {3.4, 4.8},
+}
+
+SWEP.reloadProgressAnimsRaw = {
+	base_pickup = true
+}
 
 function SWEP:fireAnimFunc()
 	local clip = self:Clip1()

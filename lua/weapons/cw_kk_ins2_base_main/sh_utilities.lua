@@ -41,10 +41,14 @@ local seqName, seqTable
 
 function SWEP:getAnimTimes(animName)
 	if not animName then
+		local msg = tostring(self) .. ":getAnimTimes() called without parameter."
+		error(msg)
 		return
 	end
 	
 	if not self.ReloadTimes then
+		local msg = tostring(self) .. " Missing main ReloadTimes table."
+		error(msg)
 		return
 	end
 	
@@ -56,10 +60,10 @@ function SWEP:getAnimTimes(animName)
 	
 	seqTable = self.ReloadTimes[seqName]
 	
-	print(animName, seqName, seqTable)
+	-- print(animName, seqName, seqTable)
 	
 	if not seqTable then 
-		local msg = tostring(self) .. " Missing ReloadTimes setup for animation \"" .. animName .. "\""
+		local msg = tostring(self) .. " Missing ReloadTimes setup for animation \"" .. animName .. "\"."
 		error(msg)
 		return
 	end

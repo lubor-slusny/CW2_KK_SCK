@@ -336,6 +336,10 @@ local CT
 local keyPress = {IN_ATTACK, IN_ATTACK2}
 
 function SWEP:_attack(key)
+	if self:IsOwnerCrawling() then
+		return
+	end
+	
 	if self.Owner:GetAmmoCount(self.Primary.Ammo) < 1 and self:Clip1() < 1 then
 		return
 	end

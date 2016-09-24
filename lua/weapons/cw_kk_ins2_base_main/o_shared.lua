@@ -302,7 +302,7 @@ function SWEP:beginReload()
 		
 		reloadTime, reloadHalt, firstShell = self:getAnimTimes(anim)
 		
-		self.ReloadFirstShell = firstShell
+		self.ReloadFirstShell = self.WasEmpty and firstShell
 		
 		reloadTime = reloadTime / self.ReloadSpeed
 		reloadHalt = reloadHalt / self.ReloadSpeed

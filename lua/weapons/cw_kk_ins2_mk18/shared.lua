@@ -214,6 +214,14 @@ SWEP.WeaponLength = 20
 
 SWEP.MuzzleVelocity = 788
 
+SWEP.ReloadTimes = {
+	base_reload = {81/30, 3.8},
+	base_reloadempty = {86/30, 4.5},
+	
+	foregrip_reload = {81/30, 3.8},
+	foregrip_reloadempty = {86/30, 4.5},
+}
+
 if CLIENT then
 	function SWEP:updateStandardParts()
 		if self.ActiveAttachments.kk_ins2_anpeq15 then
