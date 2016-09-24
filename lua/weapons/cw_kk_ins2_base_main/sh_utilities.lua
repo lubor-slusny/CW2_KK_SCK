@@ -1,8 +1,6 @@
 
 local SP = game.SinglePlayer()
 
-local mode, customSuffix, fullA, emptyA, fullT, emptyT
-
 //-----------------------------------------------------------------------------
 // updateReloadTimes
 // Server-side called from SWEP:beginReload(). 
@@ -12,6 +10,8 @@ local mode, customSuffix, fullA, emptyA, fullT, emptyT
 // SWEP.Animations.reload_empty
 // SWEP.Reload(Time|Halt)(|_Empty)
 //-----------------------------------------------------------------------------
+
+local mode, customSuffix, fullA, emptyA, fullT, emptyT
 
 function SWEP:updateReloadTimes()
 	mode = self:getForegripMode()
@@ -80,7 +80,13 @@ end
 // tbd
 //-----------------------------------------------------------------------------
 
+local prefix, suffix
+
 function SWEP:getReloadAnim()
+	prefix = self:getForegripMode()
+	suffix = self._KK_INS2_customReloadSuffix
+	
+	
 	
 end
 

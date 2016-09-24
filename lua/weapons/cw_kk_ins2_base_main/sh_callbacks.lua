@@ -192,16 +192,28 @@ if CLIENT then
 	CustomizableWeaponry.callbacks:addNew("adjustViewmodelPosition", "KK_INS2_BASE", function(wep, TargetPos, TargetAng)
 		if !wep.KKINS2Wep then return end
 		
-		if wep.dt.State == CW_ACTION then
-			-- return wep.AlternativePos, wep.AlternativeAng
-		elseif wep:IsOwnerCrawling() then
+		// no CustomizePos during crawling
+		// also SprintViewSimulation?
+		if wep.dt.State != CW_ACTION and wep:IsOwnerCrawling() then
+		
+			// 2do: edit to add SprintViewSim to crawling
+			-- if not self.DisableSprintViewSimulation then
+				-- local verticalOffset = EyeAngles().p * 0.4 * runMod
+				-- TargetAng.x = TargetAng.x - math.Clamp(verticalOffset, 0, 10) * self.SprintViewNormals.x
+				-- TargetAng.y = TargetAng.y - verticalOffset * 0.5 * self.SprintViewNormals.y
+				-- TargetAng.z = TargetAng.z - verticalOffset * 0.2 * self.SprintViewNormals.z
+				-- TargetPos.z = TargetPos.z + math.Clamp(verticalOffset * 0.2, -10, 3)
+			-- end
+			
 			return wep.AlternativePos, wep.AlternativeAng
 		end
 		
+		// pure holster animation when holstering, no swimpos
 		if wep.dt.State == CW_HOLSTER_START or wep.dt.State == CW_HOLSTER_END then
 			return wep.AlternativePos, wep.AlternativeAng
 		end
 		
+		// grenade launcher have sights so lets use it for all nade types
 		if wep.dt.INS2GLActive and wep:isAiming() then
 			return wep.M203Pos, wep.M203Ang
 		end
@@ -234,12 +246,14 @@ end
 
 if CLIENT then
 	function CustomizableWeaponry_KK.ins2.welementDrop:receive(len, ply)
-		local wep, drop, usedWEs = net.ReadString(), net.ReadEntity(), net.ReadTable()
+		local wep = net.ReadString()
+		local drop = net.ReadEntity()	// gives null entity on DS, what a life
+		local usedWEs = net.ReadTable()
 		
 		self.data[drop] = {
 			wep = wep,
 			usedWEs = usedWEs,
-			timeout = CurTime() + 20
+			timeout = CurTime() + 20 // still doesnt save you from horrors of Dedicated Server
 		}
 	end
 		

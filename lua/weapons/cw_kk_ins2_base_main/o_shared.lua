@@ -653,3 +653,43 @@ function SWEP:unloadWeapon(force)
 		end
 	end
 end
+
+//-----------------------------------------------------------------------------
+// isReloading is only used for suppressing bipod angles during reload
+// - we dont want that happening with INS2 SWEPs
+//-----------------------------------------------------------------------------
+
+function SWEP:isReloading() 
+	return false
+end
+
+-- //-----------------------------------------------------------------------------
+-- // getReloadProgress
+-- //-----------------------------------------------------------------------------
+
+-- function SWEP:getReloadProgress()
+	-- self.IsReloading = (
+		-- self.Sequence == self.Animations.reload or
+		-- self.Sequence == self.Animations.reload_empty or
+		-- self.Sequence == self.Animations.reload_start or
+		-- self.Sequence == self.Animations.reload_end
+	-- )
+	
+	-- // 2do:
+	-- // init - build table of self.reloadProgressAnims 
+	-- // getReloadProgress - isReloading = self.reloadProgressAnims[self.Sequence]
+	
+	-- if self.IsReloading and self.Cycle <= 0.98 then
+		-- if self.ShotgunReload then
+			-- return math.Clamp(math.ceil(self:getAnimSeek() / self.InsertShellTime * 100), 0, 100)
+		-- else
+			-- if self.wasEmpty then
+				-- return math.Clamp(math.ceil(self:getAnimSeek() / self.ReloadHalt_Empty * 100), 0, 100)
+			-- else
+				-- return math.Clamp(math.ceil(self:getAnimSeek() / self.ReloadHalt * 100), 0, 100)
+			-- end
+		-- end
+	-- end
+	
+	-- return nil
+-- end
