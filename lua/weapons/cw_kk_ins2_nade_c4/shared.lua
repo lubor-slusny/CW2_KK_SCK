@@ -451,7 +451,7 @@ function SWEP:detonateLast()
 	self:SetNextSecondaryFire(CurTime() + 1)
 end
 
-function SWEP:updateReloadTimes() end
+-- function SWEP:updateReloadTimes() end
 
 function SWEP:getForegripMode()
 	if self.Owner:GetAmmoCount(self.Primary.Ammo) > 0 then 

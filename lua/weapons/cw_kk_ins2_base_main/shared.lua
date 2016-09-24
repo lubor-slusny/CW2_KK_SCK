@@ -370,22 +370,26 @@ end
 // edited for customized grenade launcher behavior
 //-----------------------------------------------------------------------------
 
+local anim, reloadTime, reloadHalt
+
 function SWEP:toggleGLMode(IFTP)
 	if self._currentGrenadeLauncher.ww2GrenadeLauncher then
 		if self.dt.INS2GLActive then
 			self.dt.INS2GLActive = false
 			
 			if self.M203Chamber then
-				if (SERVER and SP) or (CLIENT and MP and IFTP) then
-					self:sendWeaponAnim("gl_turn_off",1,0)
-				end
-				self:delayEverything(self.gl_off_time or 7)
+				anim = "gl_turn_off"
 			else
-				if (SERVER and SP) or (CLIENT and MP and IFTP) then
-					self:sendWeaponAnim("gl_turn_off_empty",1,0)
-				end
-				self:delayEverything(self.gl_off_shot_time or 2)
+				anim = "gl_turn_off_empty"
 			end
+			
+			if (SERVER and SP) or (CLIENT and MP and IFTP) then
+				self:sendWeaponAnim(anim,1,0)
+			end
+			
+			reloadTime, reloadHalt = self:getAnimTimes(anim)
+			
+			self:delayEverything(reloadHalt)
 			
 			self:unloadM203(true)
 		else
@@ -395,15 +399,19 @@ function SWEP:toggleGLMode(IFTP)
 			
 			self.dt.INS2GLActive = true
 			
-			if (SERVER and SP) or (CLIENT and MP and IFTP) then
-				if self:Clip1() > 0 then
-					self:sendWeaponAnim("gl_turn_on_full",1,0)
-				else
-					self:sendWeaponAnim("gl_turn_on",1,0)
-				end
+			if self:Clip1() > 0 then
+				anim = "gl_turn_on_full"
+			else
+				anim = "gl_turn_on"
 			end
 			
-			CustomizableWeaponry.actionSequence.new(self, self.gl_on_ReloadTime, nil, function()
+			if (SERVER and SP) or (CLIENT and MP and IFTP) then
+				self:sendWeaponAnim(anim,1,0)
+			end
+			
+			reloadTime, reloadHalt = self:getAnimTimes(anim)
+			
+			CustomizableWeaponry.actionSequence.new(self, reloadTime, nil, function()
 				self.M203Chamber = true
 				if SERVER then
 					self.Owner:RemoveAmmo(1, "40MM")
@@ -411,7 +419,7 @@ function SWEP:toggleGLMode(IFTP)
 				end
 			end)
 			
-			self:delayEverything(self.gl_on_time or 7)
+			self:delayEverything(reloadHalt)
 		end
 	else
 		if self.dt.INS2GLActive then

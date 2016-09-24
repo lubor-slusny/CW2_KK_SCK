@@ -2,100 +2,69 @@
 local SP = game.SinglePlayer()
 
 //-----------------------------------------------------------------------------
-// updateReloadTimes
-// Server-side called from SWEP:beginReload(). 
-// Client-side called from SWEP:Think()
-// writes to 
-// SWEP.Animations.reload 
-// SWEP.Animations.reload_empty
-// SWEP.Reload(Time|Halt)(|_Empty)
-//-----------------------------------------------------------------------------
-
-local mode, customSuffix, fullA, emptyA, fullT, emptyT
-
-function SWEP:updateReloadTimes()
-	mode = self:getForegripMode()
-	customSuffix = self._KK_INS2_customReloadSuffix
-
-	if self.ReloadTimes then	// extend, finish
-		//	2do: 
-		//		shotgun reloads
-		//		non-chamberable reloads
-		//		[openbolt(charged/fired) reloads]
-	
-		fullA = self.Animations[mode .. "reload" .. customSuffix]
-		emptyA = self.Animations[mode .. "reload_empty" .. customSuffix]
-		
-		self.Animations.reload = fullA
-		self.Animations.reload_empty = emptyA
-		
-		fullT = self.ReloadTimes[fullA]
-		emptyT = self.ReloadTimes[emptyA]
-		
-		self.ReloadTime = fullT and fullT[1] or emptyT and emptyT[1]
-		self.ReloadHalt = fullT and fullT[2] or emptyT and emptyT[2]
-		self.ReloadTime_Empty = emptyT and emptyT[1] or fullT and fullT[1]
-		self.ReloadHalt_Empty = emptyT and emptyT[2] or fullT and fullT[2]
-		
-		return
-	end
-	
-	// delete below once above is finished	
-	
-	if self.ShotgunReload and !self.dt.INS2GLActive then
-		self.Animations.reload_start = self.Animations[mode .. "reload_start"]
-		self.Animations.insert = self.Animations[mode .. "insert"]
-		self.Animations.reload_end = self.Animations[mode .. "reload_end"]
-		self.Animations.idle = self.Animations[mode .. "reload_end"]
-		
-		if self.base_ReloadStartTime then
-			self.ReloadStartTime = self[mode .. "ReloadStartTime"] or self.base_ReloadStartTime
-		end
-		if self.base_InsertShellTime then
-			self.InsertShellTime = self[mode .. "InsertShellTime"] or self.base_InsertShellTime
-		end
-		if self.base_ReloadFinishWait then
-			self.ReloadFinishWait = self[mode .. "ReloadFinishWait"] or self.base_ReloadFinishWait
-		end
-	else
-		self.Animations.reload = self.Animations[mode .. "reload" .. customSuffix]
-		self.Animations.reload_empty = self.Animations[mode .. "reload_empty" .. customSuffix]
-			
-		if self.base_ReloadTime then
-			self.ReloadTime = self[mode .. "ReloadTime"] or self.base_ReloadTime
-		end
-		if self.base_ReloadHalt then
-			self.ReloadHalt = self[mode .. "ReloadHalt"] or self.base_ReloadHalt
-		end
-		if self.base_ReloadTime_Empty then
-			self.ReloadTime_Empty = self[mode .. "ReloadTime_Empty"] or self.base_ReloadTime_Empty
-		end
-		if self.base_ReloadHalt_Empty then
-			self.ReloadHalt_Empty = self[mode .. "ReloadHalt_Empty"] or self.base_ReloadHalt_Empty
-		end
-	end
-end
-
-//-----------------------------------------------------------------------------
-// tbd
+// updateReloadTimes now only updates vars used by StatDisplay
+// called from 
+// - SWEP:Initialize()
+// - CL SWEP:Think()
 //-----------------------------------------------------------------------------
 
 local prefix, suffix
 
-function SWEP:getReloadAnim()
+function SWEP:updateReloadTimes()
 	prefix = self:getForegripMode()
 	suffix = self._KK_INS2_customReloadSuffix
 	
+	self.ReloadTime, self.ReloadHalt = self:getAnimTimes(prefix .. "reload" .. suffix)
+	self.ReloadTime_Empty, self.ReloadHalt_Empty = self:getAnimTimes(prefix .. "reload_empty" .. suffix)
 	
+	// we ll just check for both mag-fed and internal-mag setups coz
+	// revolvers and ww2 rifles use both, why add extra checks, right?
+	self.ReloadStartTime, self.ReloadStartTime = self:getAnimTimes(prefix .. "reload_start")
+	self.InsertShellTime, self.InsertShellTime = self:getAnimTimes(prefix .. "insert")
 	
+	local _, finishEmpty = self:getAnimTimes(prefix .. "reload_end_empty")
+	local _, startEmpty = self:getAnimTimes(prefix .. "reload_start_empty")
+	
+	if !finishEmpty or !startEmpty then
+		return
+	end
+	
+	// this should make stat display count full shotgun reload time correctly for ins2 sgs
+	self.ReloadFinishWait = finishEmpty + startEmpty - self.ReloadStartTime
 end
 
 //-----------------------------------------------------------------------------
-// tbd
+// getAnimTimes replaced old updateReloadTimes logic
 //-----------------------------------------------------------------------------
 
-function SWEP:getReloadTimes()
+local seqName, seqTable
+
+function SWEP:getAnimTimes(animName)
+	if not animName then
+		return
+	end
 	
+	if not self.ReloadTimes then
+		return
+	end
+	
+	seqName = self.Animations[animName]
+	
+	if not seqName or !isstring(seqName) then 
+		return 
+	end
+	
+	seqTable = self.ReloadTimes[seqName]
+	
+	print(animName, seqName, seqTable)
+	
+	if not seqTable then 
+		local msg = tostring(self) .. " Missing ReloadTimes setup for animation \"" .. animName .. "\""
+		error(msg)
+		return
+	end
+	
+	return seqTable[1], seqTable[2], seqTable[3], seqTable[4]
 end
 
 //-----------------------------------------------------------------------------

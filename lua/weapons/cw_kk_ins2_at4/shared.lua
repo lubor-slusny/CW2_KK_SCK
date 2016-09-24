@@ -110,7 +110,7 @@ SWEP.CanCustomize = false
 SWEP.FirstDeployTime = 3.4
 SWEP.WeaponLength = 40
 
-function SWEP:updateReloadTimes() end
+-- function SWEP:updateReloadTimes() end
 	
 function SWEP:fireAnimFunc()
 	local clip = self:Clip1()

@@ -426,7 +426,7 @@ function SWEP:holsterAnimFunc(ctrl)
 end
 
 if CLIENT then
-	SWEP.inactivityAnimsRaw = {
+	SWEP.reticleInactivityCallbacksRaw = {
 		["reload"] = 0.1,			// Actually, reloads anims are only played using
 		["reload_empty"] = 0.1,		// these two. For now.
 		
@@ -487,7 +487,9 @@ if CLIENT then
 		["bipod_bolt"] = 0.1,
 		["bipod_bolt_aim"] = 0.1,
 		["bipod_reload"] = 0.1,
+		["bipod_reload_mm"] = 0.1,
 		["bipod_reload_empty"] = 0.1,
+		["bipod_reload_empty_mm"] = 0.1,
 		["bipod_reload_start"] = 0.1,
 		["bipod_reload_start_empty"] = 0.1,
 		["bipod_reload_end"] = 0.1,
@@ -517,6 +519,7 @@ if CLIENT then
 		
 		["gl_on_draw"] = -0.2,
 		["gl_on_reload"] = 0.1,
+		["gl_on_reload_empty"] = 0.1,
 		-- ["gl_on_holster"] = 0.1,
 		
 		["gl_turn_on"] = 0.1,
@@ -536,7 +539,7 @@ if CLIENT then
 		
 		local vm = self.CW_VM
 		
-		for animName,add in pairs(self.inactivityAnimsRaw) do
+		for animName,add in pairs(self.reticleInactivityCallbacksRaw) do
 			local seqName = self.Animations[animName]
 			
 			if not seqName or !isstring(seqName) then 
@@ -552,8 +555,8 @@ if CLIENT then
 			local UnPredictedCurTime = UnPredictedCurTime
 			local newFunc
 			
-			newFunc = function(wep)	// u have phun
-				-- print(wep, "		", animName, "		", string.format("%.3f", seqDur))
+			newFunc = function(wep)
+				print(wep, "		", animName, "		", string.format("%.3f", seqDur))
 				wep.reticleInactivity = UnPredictedCurTime() + seqDur + add
 			end
 			
@@ -572,7 +575,7 @@ if CLIENT then
 end
 
 if CLIENT then	
-	SWEP.loopAnims = {
+	SWEP.soundTableLoopsRaw = {
 		["base_crawl"] = true,
 		["base_crawl_empty"] = true,
 		["base_crawl_empty_mm"] = true,
@@ -588,7 +591,7 @@ if CLIENT then
 	function SWEP:setupSoundTableLoops()
 		local vm = self.CW_VM
 		
-		for animName,_ in pairs(self.loopAnims) do
+		for animName,_ in pairs(self.soundTableLoopsRaw) do
 			local seqName = self.Animations[animName]
 			
 			if not seqName or !isstring(seqName) then 
@@ -617,12 +620,76 @@ if CLIENT then
 			
 			local lastIndex = table.Count(soundTable)
 			local lastEntry = soundTable[lastIndex]
-						
+			
 			if lastEntry.kkwashere then // just to be sure we dont change weapons.GetStored
 				soundTable[lastIndex] = patch
 			else
 				soundTable[lastIndex + 1] = patch
 			end
+		end
+	end
+end
+
+if CLIENT then	
+	SWEP.reloadProgressAnimsRaw = {
+		["base_reload"] = true,
+		["base_reload_mm"] = true,
+		["base_reload_empty"] = true,
+		["base_reload_empty_mm"] = true,
+		["base_reload_start"] = true,
+		["base_reload_start_empty"] = true,
+		["base_reload_end"] = true,
+		["base_reload_end_empty"] = true,
+		["base_insert"] = true,
+		
+		["foregrip_reload"] = true,
+		["foregrip_reload_mm"] = true,
+		["foregrip_reload_empty"] = true,
+		["foregrip_reload_empty_mm"] = true,
+		["foregrip_reload_start"] = true,
+		["foregrip_reload_start_empty"] = true,
+		["foregrip_reload_end"] = true,
+		["foregrip_reload_end_empty"] = true,
+		["foregrip_insert"] = true,
+		
+		["bipod_reload"] = true,
+		["bipod_reload_mm"] = true,
+		["bipod_reload_empty"] = true,
+		["bipod_reload_empty_mm"] = true,
+		["bipod_reload_start"] = true,
+		["bipod_reload_start_empty"] = true,
+		["bipod_reload_end"] = true,
+		["bipod_reload_end_empty"] = true,
+		["bipod_insert"] = true,
+		
+		["gl_off_reload"] = true,
+		["gl_off_reload_empty"] = true,
+		["gl_off_reload_start"] = true,
+		["gl_off_reload_start_empty"] = true,
+		["gl_off_reload_end"] = true,
+		["gl_off_reload_end_empty"] = true,
+		["gl_off_insert"] = true,
+		
+		["gl_on_reload"] = true,
+		
+		// test
+		["gl_turn_on"] = true,
+		["gl_turn_off"] = true,
+		["gl_turn_on_full"] = true,
+		["gl_turn_off_empty"] = true,
+	}
+	
+	function SWEP:setupReloadProgressAnims()
+		self.reloadProgressAnims = {}
+		
+		for animName, _ in pairs(self.reloadProgressAnimsRaw) do
+			local seqName = self.Animations[animName]
+			
+			if not seqName or !isstring(seqName) then 
+				continue 
+			end
+			
+			self.reloadProgressAnims[seqName] = (self.ReloadTimes and self.ReloadTimes[seqName]) and self.ReloadTimes[seqName][2] or self.ReloadHalt
 		end
 	end
 end

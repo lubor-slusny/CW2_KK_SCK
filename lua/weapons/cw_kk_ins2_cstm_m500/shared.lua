@@ -217,69 +217,22 @@ SWEP.GlobalDelayOnShoot = SWEP.FireDelay
 SWEP.FirstDeployTime = 2.2
 SWEP.WeaponLength = 16
 
-SWEP.ReloadFirstShell = 2.25
-SWEP.ReloadStartTime = 0.6
-SWEP.ReloadStartTimeEmpty = 2.89
-SWEP.InsertShellTime = 0.72
-SWEP.ReloadFinishWait = 0.6
-SWEP.ReloadFinishWaitEmpty = 0.6
-
 SWEP.MuzzleVelocity = 381
 
--- function SWEP:updateReloadTimes()
-	-- local mode = self:getForegripMode()
+SWEP.ReloadTimes = {
+	base_fire_cock = {0.9, 0.9},
+	iron_fire_cock = {0.7, 0.7},
+	base_reload_start = {0.6, 0.6},
+	base_reload_start_empty = {2.25, 2.89, true},
+	base_reload_insert = {0.72, 0.72},
+	base_reload_end = {0.6, 0.6},
+	base_reload_end_empty = {0.6, 0.6},
 
-	-- if self:Clip1() == 0 then
-		-- self.Animations.reload_start = self.Animations[mode .. "reload_start_empty"]
-		-- self.Animations.insert = nil
-		-- self.ReloadStartTime = 2.2
-	-- else
-		-- self.Animations.reload_start = self.Animations[mode .. "reload_start"]
-		-- self.Animations.insert = self.Animations[mode .. "insert"]
-		-- if self.base_ReloadStartTime then
-			-- self.ReloadStartTime = self[mode .. "ReloadStartTime"] or self.base_ReloadStartTime
-		-- end
-	-- end
-	
-	-- self.Animations.reload_end = self.Animations[mode .. "reload_end"]
-	-- self.Animations.idle = self.Animations[mode .. "reload_end"]
-	
-	-- if self.base_InsertShellTime then
-		-- self.InsertShellTime = self[mode .. "InsertShellTime"] or self.base_InsertShellTime
-	-- end
-	-- if self.base_ReloadFinishWait then
-		-- self.ReloadFinishWait = self[mode .. "ReloadFinishWait"] or self.base_ReloadFinishWait
-	-- end
--- end
-
--- function SWEP:fireAnimFunc()
-	-- local clip = self:Clip1()
-	-- local mag = ""
-	
-	-- if clip == 0 then
-		-- mag = "_empty"
-	-- end
-	
-	-- local prefix = self:getForegripMode()
-	-- local suffix = ""
-	
-	-- if self:isAiming() then
-		-- suffix = "_aim"
-	-- end
-	
-	-- if clip > 0 then
-		-- CustomizableWeaponry.actionSequence.new(self, 0.28, nil, function() 
-			-- local prefix = self:getForegripMode()
-			-- local suffix = ""
-			
-			-- if self:isAiming() then
-				-- suffix = "_aim"
-			-- end
-			
-			-- self:sendWeaponAnim(prefix .. "bolt" .. suffix,1,0)
-		-- end)
-	-- end
-	
-	-- self:sendWeaponAnim(prefix .. "fire" .. mag .. suffix,1,0)
-	
--- end //*/
+	foregrip_fire_cock = {0.9, 0.9},
+	foregrip_iron_fire_cock = {0.7, 0.7},
+	foregrip_reload_start = {0.6, 0.6},
+	foregrip_reload_start_empty = {2.25, 2.89, true},
+	foregrip_reload_insert = {0.72, 0.72},
+	foregrip_reload_end = {0.6, 0.6},
+	foregrip_reload_end_empty = {0.6, 0.6},
+}

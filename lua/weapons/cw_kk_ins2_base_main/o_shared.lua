@@ -236,7 +236,7 @@ end
 // - use different shotgun reload logic and animations
 //-----------------------------------------------------------------------------
 
-local CT, mag, ammo
+local CT, mag, ammo, reloadTime, reloadHalt, anim, animPrefix, animSuffix, firstShell
 
 function SWEP:beginReload()
 	if self.boltAction_isShot then 
@@ -247,37 +247,38 @@ function SWEP:beginReload()
 		return 
 	end
 	
-	self:updateReloadTimes()
+	-- self:updateReloadTimes()
 	
 	CT = CurTime()
 	mag, ammo = self:Clip1(), self.Owner:GetAmmoCount(self.Primary.Ammo)
 
 	self.lastMag = mag
 	
+	animPrefix = self:getForegripMode()
+	animSuffix = self._KK_INS2_customReloadSuffix
+	
 	if self.dt.INS2GLActive or !self.ShotgunReload then
-		local reloadTime = nil
-		local reloadHalt = nil
-		
-		// maybe make some custom getReloadTime function for all this?
 		if self.dt.INS2GLActive then
-			reloadTime = self.gl_on_ReloadTime or 2
-			reloadHalt = self.gl_on_ReloadHalt or 2.6
+			anim = "reload"
 		elseif mag == 0 then
 			if self.Chamberable then
 				self.Primary.ClipSize = self.Primary.ClipSize_Orig
 			end
 			
-			reloadTime = self.ReloadTime_Empty
-			reloadHalt = self.ReloadHalt_Empty
+			anim = "reload_empty"
 		else
-			reloadTime = self.ReloadTime
-			reloadHalt = self.ReloadHalt
-			
 			if self.Chamberable then
 				self.Primary.ClipSize = self.Primary.ClipSize_Orig + 1
 			end
+			
+			anim = "reload"
 		end
-		// ===========================================================
+		
+		anim = animPrefix .. anim .. animSuffix
+		
+		self:sendWeaponAnim(anim, self.ReloadSpeed, 0)
+		
+		reloadTime, reloadHalt = self:getAnimTimes(anim)
 		
 		reloadTime = reloadTime / self.ReloadSpeed
 		reloadHalt = reloadHalt / self.ReloadSpeed
@@ -286,46 +287,43 @@ function SWEP:beginReload()
 		self:SetNextPrimaryFire(CT + reloadHalt)
 		self:SetNextSecondaryFire(CT + reloadHalt)
 		self.GlobalDelay = CT + reloadHalt
-		
-		if self.reloadAnimFunc then
-			self:reloadAnimFunc(mag)
-		else
-			if self.Animations.reload_empty and mag == 0 then
-				self:sendWeaponAnim("reload_empty", self.ReloadSpeed)
-			else
-				self:sendWeaponAnim("reload", self.ReloadSpeed)
-			end
-		end
-	else	
+	else
 		self.WasEmpty = mag == 0
 		
-		local anim = self:getForegripMode() .. "reload_start"
-		local time = CT + self.ReloadStartTime / self.ReloadSpeed
-		
 		if self.WasEmpty then
-			anim = anim .. "_empty"
-			time = CT + self.ReloadStartTimeEmpty / self.ReloadSpeed
-			
-			if SERVER and self.ReloadFirstShell then
-				CustomizableWeaponry.actionSequence.new(self, self.ReloadFirstShell, nil, function()
-					if self.ShotgunReloadState == 0 then return end	// melee attack interruption
-					
-					self:SetClip1(mag + 1)
-					self.Owner:SetAmmo(ammo - 1, self.Primary.Ammo)
-					
-					if ammo - 1 <= 0 then
-						self.ShotgunReloadState = 2
-					end
-				end)
-			end
+			anim = "reload_start_empty"
+		else
+			anim = "reload_start"
 		end
 		
-		self:sendWeaponAnim(anim, self.ReloadSpeed)
+		anim = animPrefix .. anim .. animSuffix
 		
-		self.ReloadDelay = time
-		self:SetNextPrimaryFire(time)
-		self:SetNextSecondaryFire(time)
-		self.GlobalDelay = time
+		self:sendWeaponAnim(anim, self.ReloadSpeed, 0)
+		
+		reloadTime, reloadHalt, firstShell = self:getAnimTimes(anim)
+		
+		self.ReloadFirstShell = firstShell
+		
+		reloadTime = reloadTime / self.ReloadSpeed
+		reloadHalt = reloadHalt / self.ReloadSpeed
+		
+		if SERVER and self.WasEmpty and firstShell then
+			CustomizableWeaponry.actionSequence.new(self, reloadTime, nil, function()
+				if self.ShotgunReloadState == 0 then return end	// melee attack interruption
+				
+				self:SetClip1(mag + 1)
+				self.Owner:SetAmmo(ammo - 1, self.Primary.Ammo)
+				
+				if ammo - 1 <= 0 then
+					self.ShotgunReloadState = 2
+				end
+			end)
+		end
+		
+		self.ReloadDelay = CT + reloadHalt
+		self:SetNextPrimaryFire(CT + reloadHalt)
+		self:SetNextSecondaryFire(CT + reloadHalt)
+		self.GlobalDelay = CT + reloadHalt
 		self.ShotgunReloadState = 1
 	end
 	
@@ -414,7 +412,7 @@ end
 // - disallow reload interruption unless at least one round was loaded
 //-----------------------------------------------------------------------------
 
-local CT, keyDown, mag, ammo
+local CT, keyDown, mag, ammo, anim
 
 function SWEP:finishReloadShotgun()
 	CT = CurTime()
@@ -433,7 +431,9 @@ function SWEP:finishReloadShotgun()
 		end
 		
 		if CT > self.ReloadDelay then
-			self:sendWeaponAnim(self:getForegripMode() .. "insert", self.ReloadSpeed)
+			anim = self:getForegripMode() .. "insert"
+			
+			self:sendWeaponAnim(anim, self.ReloadSpeed, 0)
 			
 			if SERVER and not SP then
 				self.Owner:SetAnimation(PLAYER_RELOAD)
@@ -446,7 +446,9 @@ function SWEP:finishReloadShotgun()
 				self.Owner:SetAmmo(ammo - 1, self.Primary.Ammo)
 			end
 			
-			self.ReloadDelay = CT + self.InsertShellTime / self.ReloadSpeed
+			local _, time = self:getAnimTimes(anim)
+			
+			self.ReloadDelay = CT + time / self.ReloadSpeed
 			
 			local clipSize = self.Primary.ClipSize
 			
@@ -459,17 +461,20 @@ function SWEP:finishReloadShotgun()
 			end
 		end
 	elseif self.ShotgunReloadState == 2 then
-		if CT > self.ReloadDelay then			
-			local anim = self:getForegripMode() .. "reload_end"
-			local time = CT + self.ReloadFinishWait / self.ReloadSpeed
+		if CT > self.ReloadDelay then
+			self.ShotgunReloadState = 0
 			
 			if self.WasEmpty then
-				anim = anim .. "_empty"
-				time = CT + self.ReloadFinishWaitEmpty / self.ReloadSpeed
+				anim = self:getForegripMode() .. "reload_end_empty"
+			else
+				anim = self:getForegripMode() .. "reload_end"
 			end
 			
 			self:sendWeaponAnim(anim, self.ReloadSpeed)
-			self.ShotgunReloadState = 0
+			
+			local _, time = self:getAnimTimes(anim)
+			
+			time = CT + time / self.ReloadSpeed
 			
 			self:SetNextPrimaryFire(time)
 			self:SetNextSecondaryFire(time)
@@ -619,6 +624,10 @@ end
 function SWEP:Initialize()	
 	self:updateReloadTimes()
 	
+	if CLIENT then
+		self:setupReloadProgressAnims()
+	end
+	
 	weapons.GetStored("cw_base").Initialize(self)
 	
 	self:PrepareForPickup()
@@ -663,33 +672,16 @@ function SWEP:isReloading()
 	return false
 end
 
--- //-----------------------------------------------------------------------------
--- // getReloadProgress
--- //-----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
+// getReloadProgress
+//-----------------------------------------------------------------------------
 
--- function SWEP:getReloadProgress()
-	-- self.IsReloading = (
-		-- self.Sequence == self.Animations.reload or
-		-- self.Sequence == self.Animations.reload_empty or
-		-- self.Sequence == self.Animations.reload_start or
-		-- self.Sequence == self.Animations.reload_end
-	-- )
+function SWEP:getReloadProgress()
+	local length = self.reloadProgressAnims[self.Sequence]
 	
-	-- // 2do:
-	-- // init - build table of self.reloadProgressAnims 
-	-- // getReloadProgress - isReloading = self.reloadProgressAnims[self.Sequence]
+	if length and self.Cycle <= 0.98 then
+		return math.Clamp(math.ceil(self:getAnimSeek() / length * 100), 0, 100)
+	end
 	
-	-- if self.IsReloading and self.Cycle <= 0.98 then
-		-- if self.ShotgunReload then
-			-- return math.Clamp(math.ceil(self:getAnimSeek() / self.InsertShellTime * 100), 0, 100)
-		-- else
-			-- if self.wasEmpty then
-				-- return math.Clamp(math.ceil(self:getAnimSeek() / self.ReloadHalt_Empty * 100), 0, 100)
-			-- else
-				-- return math.Clamp(math.ceil(self:getAnimSeek() / self.ReloadHalt * 100), 0, 100)
-			-- end
-		-- end
-	-- end
-	
-	-- return nil
--- end
+	return nil
+end
