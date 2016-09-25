@@ -14,43 +14,43 @@ SWEP.Sounds = {
 	},
 
 	pullbackhigh = {
-		{time = 15/32, sound = "CW_KK_INS2_DOI_FRAGDE_CAPOFF"},
-		{time = 44/32, sound = "CW_KK_INS2_DOI_FRAGDE_ARMDRAW"},
+		{time = 15/32, sound = "CW_KK_INS2_DOI_SMOKDE_CAPOFF"},
+		{time = 44/32, sound = "CW_KK_INS2_DOI_SMOKDE_ARMDRAW"},
 		// { event 3900 52 ""},
 	},
 
 	pullbackhighbake = {
-		{time = 15/35.2, sound = "CW_KK_INS2_DOI_FRAGDE_CAPOFF"},
-		{time = 44/35.2, sound = "CW_KK_INS2_DOI_FRAGDE_ROPEPULL"},
-		{time = 55/35.2, sound = "CW_KK_INS2_DOI_FRAGDE_ARMDRAW"},
+		{time = 15/35.2, sound = "CW_KK_INS2_DOI_SMOKDE_CAPOFF"},
+		{time = 44/35.2, sound = "CW_KK_INS2_DOI_SMOKDE_ROPEPULL"},
+		{time = 55/35.2, sound = "CW_KK_INS2_DOI_SMOKDE_ARMDRAW"},
 		// { event 3900 66 ""},
 	},
 
 	pullbacklow = {
-		{time = 15/32, sound = "CW_KK_INS2_DOI_FRAGDE_CAPOFF"},
-		{time = 39/32, sound = "CW_KK_INS2_DOI_FRAGDE_ARMDRAW"},
+		{time = 15/32, sound = "CW_KK_INS2_DOI_SMOKDE_CAPOFF"},
+		{time = 39/32, sound = "CW_KK_INS2_DOI_SMOKDE_ARMDRAW"},
 		// { event 3900 49 ""},
 	},
 
 	throw = {
-		{time = 14/33.5, sound = "CW_KK_INS2_DOI_FRAGDE_ROPEPULL"},
-		{time = 30/33.5, sound = "CW_KK_INS2_DOI_FRAGDE_THROW"},
+		{time = 14/33.5, sound = "CW_KK_INS2_DOI_SMOKDE_ROPEPULL"},
+		{time = 30/33.5, sound = "CW_KK_INS2_DOI_SMOKDE_THROW"},
 		// { event 3005 31 ""},
 	},
 
 	throwback = {
-		{time = 14/30, sound = "CW_KK_INS2_DOI_FRAGDE_ARMDRAW"},
+		{time = 14/30, sound = "CW_KK_INS2_DOI_SMOKDE_ARMDRAW"},
 		// { event 3900 25 ""},
 	},
 
 	bakethrow = {
-		{time = 6/31.5, sound = "CW_KK_INS2_DOI_FRAGDE_THROW"},
+		{time = 6/31.5, sound = "CW_KK_INS2_DOI_SMOKDE_THROW"},
 		// { event 3013 6 ""},
 	},
 
 	lowthrow = {
-		{time = 10/31.5, sound = "CW_KK_INS2_DOI_FRAGDE_ROPEPULL"},
-		{time = 23/31.5, sound = "CW_KK_INS2_DOI_FRAGDE_THROW"},
+		{time = 10/31.5, sound = "CW_KK_INS2_DOI_SMOKDE_ROPEPULL"},
+		{time = 23/31.5, sound = "CW_KK_INS2_DOI_SMOKDE_THROW"},
 		// { event 3016 24 ""},
 	},
 }

@@ -3,11 +3,11 @@ SWEP.Sounds = {
 	// CW_KK_INS2_DOI_MK2_SPOONEJECT
 	
 	base_draw = {
-		{time = 0/30, sound = "CW_KK_INS2_UNIVERSAL_GRENADE_DRAW"},
+		{time = 0/30, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
 	},
 
 	base_holster = {
-		{time = 0/35, sound = "CW_KK_INS2_UNIVERSAL_GRENADE_HOLSTER"},
+		{time = 0/35, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
 	},
 
 	base_crawl = {
@@ -15,45 +15,33 @@ SWEP.Sounds = {
 		{time = 20/29, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
 	},
 
-	pullbackhigh = {
-		{time = 19/30, sound = "CW_KK_INS2_DOI_MK2_PINPULL"},
-		{time = 20/30, sound = "CW_KK_INS2_DOI_MK2_ARMDRAW"},
+	base_pullback = {
+		{time = 19/33, sound = "CW_KK_INS2_DOI_C4_PRIME"},
+		// { event 3900 29 ""},
+	},
+
+	secondary_pullback = {
+		{time = 19/33, sound = "CW_KK_INS2_DOI_C4_PRIME"},
+		// { event 3900 29 ""},
+	},
+
+	low_pullback = {
+		{time = 19/33, sound = "CW_KK_INS2_DOI_C4_PRIME"},
 		// { event 3900 32 ""},
 	},
 
-	pullbackhighbake = {
-		{time = 19/30, sound = "CW_KK_INS2_DOI_MK2_PINPULL"},
-		// { event AE_WPN_PULL_SPOON 23 ""},
-		{time = 23/30, sound = "CW_KK_INS2_DOI_MK2_SPOONEJECT"},
-		{time = 34/30, sound = "CW_KK_INS2_DOI_MK2_ARMDRAW"},
-		// { event 3900 41 ""},
+	base_throw = {
+		{time = 6/33, sound = "CW_KK_INS2_DOI_C4_THROW"},
+		// { event 3005 7 ""},
 	},
 
-	pullbacklow = {
-		{time = 19/30, sound = "CW_KK_INS2_DOI_MK2_PINPULL"},
-		{time = 20/30, sound = "CW_KK_INS2_DOI_MK2_ARMDRAW"},
-		// { event 3900 32 ""},
+	secondary_throw = {
+		{time = 6/33, sound = "CW_KK_INS2_DOI_C4_THROW"},
+		// { event 3005 7 ""},
 	},
 
-	throw = {
-		{time = 3/31.5, sound = "CW_KK_INS2_DOI_MK2_THROW"},
-		// { event AE_WPN_PULL_SPOON 3 ""},
-		{time = 4/31.5, sound = "CW_KK_INS2_DOI_MK2_SPOONEJECT"},
-		// { event 3005 3 ""},
-	},
-
-	throwback = {
-		{time = 14/30, sound = "CW_KK_INS2_DOI_MK2_ARMDRAW"},
-		// { event 3900 25 ""},
-	},
-
-	bakethrow = {
-		{time = 3/31.5, sound = "CW_KK_INS2_DOI_MK2_THROW"},
-		// { event 3013 3 ""},
-	},
-
-	lowthrow = {
-		{time = 6/31.5, sound = "CW_KK_INS2_DOI_MK2_THROW"},
-		// { event 3016 6 ""},
+	low_throw = {
+		{time = 6/30, sound = "CW_KK_INS2_DOI_C4_THROW"},
+		// { event 3005 7 ""},
 	},
 }

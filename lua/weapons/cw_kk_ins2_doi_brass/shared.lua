@@ -1,5 +1,9 @@
 if not CustomizableWeaponry then return end
 
+AddCSLuaFile()
+AddCSLuaFile("sh_sounds.lua")
+include("sh_sounds.lua")
+
 if CLIENT then
 	SWEP.DrawCrosshair = false
 	SWEP.PrintName = "Brass"
@@ -49,29 +53,32 @@ SWEP.FirstDeployTime = 1.6
 SWEP.DeployTime = 0.8
 SWEP.HolsterTime = 0.6
 
-SWEP.AttackSound = "CW_KK_INS2_DOI_MELEE"
-SWEP.HitFleshSound = "CW_KK_INS2_DOI_MELEE_HITPLY"
-SWEP.HitWorldSound = "CW_KK_INS2_DOI_MELEE_HITWORLD"
+SWEP.ReticleInactivityPostFire = 1
+
+SWEP.AttackSound = "CW_KK_INS2_DOI_BRASS_ATTACK"
+SWEP.HitFleshSound = "CW_KK_INS2_DOI_BRASS_HITPLY"
+SWEP.HitWorldSound = "CW_KK_INS2_DOI_BRASS_HITWORLD"
+
+SWEP.DamageOutputDelay = 4/32
 
 SWEP.Sounds = {
-	-- hitcenter1 = {
-		-- // { event 1338 7 ""},
-	-- },
-
-	-- hitcenter2 = {
-		-- // { event 1338 7 ""},
-	-- },
+	ready = {
+		{time = 0/32, sound = "CW_KK_INS2_DOI_BRASS_READY1"},
+		{time = 7/32, sound = "CW_KK_INS2_DOI_BRASS_READY2"},
+	},
 
 	draw = {
-		{time = 0/34, sound = "CW_KK_INS2_DOI_BAYONET_DRAW"},
+		{time = 0/32, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
 	},
 
 	holster = {
-		{time = 10/32, sound = "CW_KK_INS2_DOI_BAYONET_HOLSTER"},
+		{time = 0/30, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
 	},
 
 	crawl = {
-		{time = 10/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
-		{time = 20/30, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
+		{time = 0/28, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
+		{time = 15/28, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
+		{time = 26/28, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
+		{time = 41/28, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
 	},
 }

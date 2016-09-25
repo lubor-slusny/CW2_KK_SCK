@@ -86,7 +86,8 @@ SWEP.timeToThrowCook = 0.8	// full length of pinpull_cook animation
 SWEP.spawnTimeCook = 0.2	// delay between start of throw_cook animation and creation of grenade ent
 SWEP.swapTimeCook = 0.7		// full length of throw_cook animation
 
-SWEP.canCook = true
+SWEP.canCook = true			// enable cooking
+SWEP.mustCook = false		// cooking only
 
 //-----------------------------------------------------------------------------
 // EquipAmmo replacement for SWEP.Primary.DefaultClip
@@ -361,7 +362,7 @@ function SWEP:_attack(key)
 	
 	CT = CurTime()
 	
-	if self.canCook and key == self:getControlls() then 	// if wep allows it and pressed key is cooking key then cook
+	if self.mustCook or (self.canCook and key == self:getControlls()) then 	// if wep allows it and pressed key is cooking key then cook
 		self:sendWeaponAnim("pull_cook")
 		self.throwTime = CT + self.timeToThrowCook
 		self.cookTime = CT + self.spoonTime

@@ -21,14 +21,18 @@ if CLIENT then
 	SWEP.ShellWorldAngleAlign = {Forward = 90, Right = 0, Up = 0}
 	
 	SWEP.AttachmentModelsVM = {
-		["kk_ins2_c96_barrel"] = {model = "models/weapons/upgrades/a_barrel_c96_short.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), merge = true, active = true},
-		["kk_ins2_c96_barrel_long"] = {model = "models/weapons/upgrades/a_barrel_c96_long.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_c96_barrel_std"] = {model = "models/weapons/upgrades/a_barrel_c96_short.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), merge = true, active = true},
+		["kk_ins2_c96_barrel_lng"] = {model = "models/weapons/upgrades/a_barrel_c96_long.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), merge = true},
 	}
 	
 	SWEP.AttachmentModelsWM = {}
-	
-	SWEP.IronsightPos = Vector(-2.642, 0, 0.6673)
-	SWEP.IronsightAng = Vector(0.9476, 0, 0)
+
+	-- // long B
+	-- SWEP.LongBarrelPos = Vector(-2.6343, -2, 0.8154)
+	-- SWEP.LongBarrelAng = Vector(0.2535, 0.0412, 0)
+
+	SWEP.IronsightPos = Vector(-2.6353, -2, 0.681)
+	SWEP.IronsightAng = Vector(0.9804, 0.0329, 0)
 
 	SWEP.CustomizationMenuScale = 0.01
 	SWEP.ReloadViewBobEnabled = false
@@ -37,7 +41,7 @@ end
 
 SWEP.Attachments = {
 	-- {header = "Lasers", offset = {500, -400}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_m6x"}},
-	-- {header = "Barrel", offset = {-500, -400}, atts = {"kk_ins2_suppressor_pistol"}},
+	-- {header = "Barrel", offset = {-500, -400}, atts = {"kk_ins2_c96_barrel_lng"}},
 	["+reload"] = {header = "Ammo", offset = {500, 50}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
@@ -112,7 +116,7 @@ SWEP.MaxSpreadInc = 0.04
 SWEP.SpreadPerShot = 0.01
 SWEP.SpreadCooldown = 0.22
 SWEP.Shots = 1
-SWEP.Damage = 23
+SWEP.Damage = 24
 
 SWEP.FirstDeployTime = 0.5
 SWEP.DeployTime = 0.4
@@ -130,3 +134,9 @@ SWEP.ReloadTimes = {
 	base_reload_clip = {2.4, 4.37},
 	base_reload_empty_clip = {2.4, 4.37},
 }
+
+if CLIENT then
+	function SWEP:updateStandardParts()
+		self:setElementActive("kk_ins2_c96_barrel_std", !self.ActiveAttachments.kk_ins2_c96_barrel_lng)
+	end
+end

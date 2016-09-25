@@ -78,6 +78,8 @@ SWEP.fuseTime = 10
 SWEP.timeToThrow = 1.1
 SWEP.swapTime = 0.9
 
-SWEP.spoonTime = 0.6
+SWEP.spoonTime = 29/30
 SWEP.timeToThrowCook = 1.1
 SWEP.swapTimeCook = 0.9
+
+SWEP.mustCook = true

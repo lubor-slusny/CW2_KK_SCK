@@ -49,12 +49,8 @@ SWEP.SpreadPerShot = 0.001
 SWEP.SpreadCooldown = 0.001
 SWEP.Recoil = 3
 
-SWEP.DamageBase = 25
-SWEP.DamageRand = 10
-
 SWEP.FireDelay = 0.6
 SWEP.ReticleInactivityPostFire = 0.6
-SWEP.DamageOutputDelay = 0.2
 
 SWEP.FirstDeployTime = 0.6
 SWEP.DeployTime = 0.6
@@ -66,6 +62,11 @@ SWEP.WeaponLength = 0
 SWEP.AttackSound = ""
 SWEP.HitFleshSound = "CW_KK_INS2_KNIFE"
 SWEP.HitWorldSound = "CW_KK_INS2_KNIFE"
+
+SWEP.DamageBase = 25
+SWEP.DamageRand = 10
+SWEP.DamageOutputDelay = 0.2
+SWEP.DamageType = DMG_SLASH
 
 //-----------------------------------------------------------------------------
 // getMuzzlePosition edited to use bone matrices
@@ -142,7 +143,7 @@ function SWEP:PrimaryAttack()
 						
 						local dir = self.Owner:GetAimVector() - start
 						-- d:SetDamageForce((tr.HitPos + dir) * 200)
-						d:SetDamageType(DMG_SLASH)
+						d:SetDamageType(self.DamageType)
 						d:SetDamagePosition(tr.HitPos)
 						d:SetReportedPosition(start)
 						
