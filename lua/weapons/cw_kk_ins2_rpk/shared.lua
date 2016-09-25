@@ -263,26 +263,19 @@ SWEP.HolsterTime = 0.7
 SWEP.BipodDeployTime = 1.5
 SWEP.BipodUndeployTime = 1.9
 
-SWEP.ReloadTime = 0
-SWEP.ReloadTime_Empty = 0
-SWEP.ReloadHalt = 0
-SWEP.ReloadHalt_Empty = 0
-
-SWEP.base_ReloadTime = 3.4
-SWEP.base_ReloadTime_Empty = 3.4
-SWEP.base_ReloadHalt = 4.5
-SWEP.base_ReloadHalt_Empty = 6
-
-SWEP.bipod_ReloadTime = 116/30
-SWEP.bipod_ReloadTime_Empty = 116/30
-SWEP.bipod_ReloadHalt = 4.8
-SWEP.bipod_ReloadHalt_Empty = 6
-
 SWEP.BipodInstalled = true
 SWEP.WeaponLength = 26
 -- SWEP.WeaponLength = 22 // sopmod
 
 SWEP.MuzzleVelocity = 745
+
+SWEP.ReloadTimes = {
+	base_reload = {3.4, 4.5},
+	base_reloadempty = {3.4, 6},
+	
+	deployed_reload = {116/30, 4.8},
+	deployed_reloadempty = {116/30, 6},
+}
 
 if CLIENT then
 	local counterExists = file.Exists("models/weapons/stattrack.mdl", "GAME")

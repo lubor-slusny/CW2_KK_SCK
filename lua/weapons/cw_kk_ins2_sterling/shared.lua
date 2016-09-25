@@ -189,17 +189,17 @@ SWEP.FirstDeployTime = 2.7
 SWEP.DeployTime = 0.7
 SWEP.HolsterTime = 0.7
 
-SWEP.ReloadTime = 2.43
-SWEP.ReloadTime_Empty = 3.27
-SWEP.ReloadHalt = 3.1
-SWEP.ReloadHalt_Empty = 4.45
-
 SWEP.WeaponLength = 16
 
 SWEP.Chamberable = false
 SWEP.KK_INS2_EmptyIdle = true
 
 SWEP.MuzzleVelocity = 365
+
+SWEP.ReloadTimes = {
+	base_reload = {2.43, 3.1},
+	base_reloadempty = {3.27, 4.45},
+}
 
 if CLIENT then 
 	function SWEP:updateStandardParts()

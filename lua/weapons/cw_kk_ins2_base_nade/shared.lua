@@ -451,3 +451,9 @@ local v = Vector(0, 0, 150)
 function SWEP:applyThrowVelocity(grenade)
 	CustomizableWeaponry.quickGrenade:applyThrowVelocity(self.Owner, grenade, 800, v)
 end
+
+//-----------------------------------------------------------------------------
+// nothing to update
+//-----------------------------------------------------------------------------
+
+function SWEP:updateReloadTimes() end

@@ -205,17 +205,23 @@ SWEP.HolsterTime = 0.7
 
 SWEP.RecoilToSpread = 0.8 
 
-SWEP.ReloadSpeed = 1
-SWEP.base_ReloadTime = 2.25
-SWEP.base_ReloadTime_Empty = 2.25
-SWEP.base_ReloadHalt = 3.05
-SWEP.base_ReloadHalt_Empty = 4.55
-
 SWEP.SnapToIdlePostReload = false
 
 SWEP.WeaponLength = 20
 
 SWEP.MuzzleVelocity = 607
+
+SWEP.ReloadTimes = {
+	base_reload	= {2.25, 3.05},
+	base_reloadempty = {2.25, 4.55},
+	base_reload_ext	= {2.25, 3.05},
+	base_reloadempty_ext = {2.25, 4.55},
+	
+	foregrip_reload	= {2.25, 3.05},
+	foregrip_reloadempty = {2.25, 4.55},
+	foregrip_reload_ext	= {2.25, 3.05},
+	foregrip_reloadempty_ext = {2.25, 4.55},
+}
 
 if CLIENT then 
 	function SWEP:updateStandardParts()

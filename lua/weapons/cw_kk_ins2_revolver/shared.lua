@@ -120,24 +120,20 @@ SWEP.FirstDeployTime = 2.5
 SWEP.DeployTime = 0.4
 SWEP.HolsterTime = 0.5
 
-SWEP.ReloadTime = 3.6
-SWEP.ReloadHalt = 4.2
-
-SWEP.ReloadTime_Empty = 3.6
-SWEP.ReloadHalt_Empty = 4.2
-
-SWEP.ReloadStartTime = 2.36
-SWEP.ReloadStartTimeEmpty = 2.36
-SWEP.InsertShellTime = 0.98
-SWEP.ReloadFinishWait = 1.74
-SWEP.ReloadFinishWaitEmpty = 1.74
-
 SWEP.CanRestOnObjects = false
 SWEP.Chamberable = false
 SWEP.WeaponLength = 16
 
 SWEP.MuzzleVelocity = 300
-SWEP.ClipDumpTime = 1.6
+
+SWEP.KKINS2Revolver = true
+
+SWEP.ReloadTimes = {
+	base_reload_start = {1.6, 2.36},
+	base_reload_insert = {0.98, 0.98},
+	base_reload_end = {1.74, 1.74},
+	base_reload_speed = {3.6, 4.2},
+}
 
 function SWEP:IndividualInitialize()
 	self.magType = "NONE"
@@ -146,96 +142,5 @@ function SWEP:IndividualInitialize()
 	if CLIENT then 
 		self:setBodygroup(1, self:Clip1())
 		self:setBodygroup(2, self:Clip1())
-	end
-end
-
-function SWEP:beginReload()
-	if self.ShotgunReload then
-		mag = self:Clip1()
-	
-		local time = CT + self.ReloadStartTime / self.ReloadSpeed
-		
-		self.lastMag = 0
-		self.WasEmpty = mag == 0
-		self.ReloadDelay = time
-		self:SetNextPrimaryFire(time)
-		self:SetNextSecondaryFire(time)
-		self.GlobalDelay = time
-		self.ShotgunReloadState = 1
-		
-		self:sendWeaponAnim(self:getForegripMode() .. "reload_start")
-		
-		CustomizableWeaponry.callbacks.processCategory(self, "beginReload", mag == 0)
-		
-		self.Owner:SetAnimation(PLAYER_RELOAD)
-	else
-		-- if CustomizableWeaponry.magSystem then
-			-- weapons.GetStored("cw_base").unloadWeapon(self)
-		-- end
-		weapons.GetStored("cw_base").beginReload(self)
-	end
-	
-	CustomizableWeaponry.actionSequence.new(self, self.ClipDumpTime, nil, function()
-		if self.ShotgunReloadState == 0 then return end // its also possible that its already 2 because user pressed attack button
-		
-		local amt = self:Clip1()
-		self.Owner:SetAmmo(self.Owner:GetAmmoCount(self.Primary.Ammo) + amt, self.Primary.Ammo)
-		self:SetClip1(0)
-		
-		self.ShotgunReloadState = 1
-	end)
-	
-end
-
-local keyDown
-
-function SWEP:finishReloadShotgun()
-	CT = CurTime()
-	
-	if self.ShotgunReloadState == 1 then
-		keyDown = self.Owner:KeyDown(IN_ATTACK) or self.Owner:KeyDown(IN_ATTACK2)
-		
-		if 0 < self:Clip1() and keyDown then
-			self.ShotgunReloadState = 2
-		end
-		
-		if CT > self.ReloadDelay then
-			self:sendWeaponAnim(self:getForegripMode() .. "insert", self.ReloadSpeed)
-			
-			if SERVER and not SP then
-				self.Owner:SetAnimation(PLAYER_RELOAD)
-			end
-			
-			mag, ammo = self:Clip1(), self.Owner:GetAmmoCount(self.Primary.Ammo)
-			
-			if SERVER then
-				self:SetClip1(mag + 1)
-				self.Owner:SetAmmo(ammo - 1, self.Primary.Ammo)
-			end
-			
-			self.ReloadDelay = CT + self.InsertShellTime / self.ReloadSpeed
-			
-			if mag + 1 >= self.Primary.ClipSize or ammo - 1 <= 0 then
-				self.ShotgunReloadState = 2
-			end
-		end
-	elseif self.ShotgunReloadState == 2 then
-		if CT > self.ReloadDelay then			
-			local anim = self:getForegripMode() .. "reload_end"
-			local time = CT + self.ReloadFinishWait / self.ReloadSpeed
-			
-			if self.WasEmpty then
-				anim = anim .. "_empty"
-				time = CT + self.ReloadFinishWaitEmpty / self.ReloadSpeed
-			end
-			
-			self:sendWeaponAnim(anim, self.ReloadSpeed)
-			self.ShotgunReloadState = 0
-			
-			self:SetNextPrimaryFire(time)
-			self:SetNextSecondaryFire(time)
-			self.ReloadWait = time
-			self.ReloadDelay = nil
-		end
 	end
 end

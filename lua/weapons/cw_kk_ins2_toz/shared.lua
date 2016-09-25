@@ -202,14 +202,30 @@ SWEP.FirstDeployTime = 2.2
 SWEP.DeployTime = 0.7
 SWEP.HolsterTime = 0.5
 
-SWEP.ReloadFirstShell = 2.25
-
-SWEP.ReloadStartTime = 0.6
-SWEP.ReloadStartTimeEmpty = 2.89
-SWEP.InsertShellTime = 0.72
-SWEP.ReloadFinishWait = 0.6
-SWEP.ReloadFinishWaitEmpty = 0.6
-
 SWEP.WeaponLength = 18
 
 SWEP.MuzzleVelocity = 381
+
+SWEP.ReloadTimes = {
+	base_fire_cock_1 = {0.7, 0.7},
+	base_fire_cock_2 = {0.7, 0.7},
+	iron_fire_cock_1 = {0.7, 0.7},
+	iron_fire_cock_2 = {0.7, 0.7},
+	
+	base_reload_start = {0.6, 0.6},
+	base_reload_start_empty = {2.25, 2.89, true},
+	base_reload_insert = {0.72, 0.72},
+	base_reload_end = {0.6, 0.6},
+	base_reload_end_empty = {0.6, 0.6},
+	
+	foregrip_fire_cock_1 = {0.5, 0.5},
+	foregrip_fire_cock_2 = {0.5, 0.5},
+	foregrip_iron_fire_cock_1 = {0.5, 0.5},
+	foregrip_iron_fire_cock_2 = {0.5, 0.5},
+	
+	foregrip_reload_start = {0.6, 0.6},
+	foregrip_reload_start_empty = {2.25, 2.89, true},
+	foregrip_reload_insert = {0.72, 0.72},
+	foregrip_reload_end = {0.6, 0.6},
+	foregrip_reload_end_empty = {0.6, 0.6},
+}

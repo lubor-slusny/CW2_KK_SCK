@@ -136,8 +136,8 @@ function SWEP:fireAnimFunc()
 	suffix = ""
 	
 	if (self:Clip1() == 0) then
-		cyc = 0
 		suffix = "_empty"
+		cyc = 0
 	end
 	
 	if self:isAiming() then

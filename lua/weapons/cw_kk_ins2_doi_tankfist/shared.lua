@@ -47,8 +47,8 @@ SWEP.Animations = {
 	base_pickup = "base_ready",
 	base_draw = "base_draw",
 	base_draw_empty = "base_draw_empty",
-	base_fire_last = "base_fire",
-	base_fire_last_aim = "iron_fire",
+	base_fire = "base_fire",
+	base_fire_aim = "iron_fire",
 	base_fire_empty = "base_dryfire",
 	base_fire_empty_aim = "iron_dryfire",
 	base_idle = "base_idle",
@@ -148,6 +148,8 @@ function SWEP:reloadAnimFunc(lm)
 		
 		self:sendWeaponAnim("at4_reload_end", self.ReloadSpeed, 0)
 	end)
+	
+	return self:getAnimTimes()
 end //*/
 
 function SWEP:getReloadProgress()
@@ -160,4 +162,26 @@ function SWEP:getReloadProgress()
 	end
 	
 	return math.Round((CT - self.dt.AT4ReloadEnd + self.ReloadHalt / self.ReloadSpeed) * 100 / self.ReloadHalt)
+end
+
+SWEP.reticleInactivityCallbacksRaw = {
+	at4_reload_start = 0.1
+}
+
+local cyc, suffix
+
+function SWEP:fireAnimFunc()
+	cyc = 0.3
+	suffix = ""
+
+	if self:Clip1() == 0 then
+		suffix = "_empty"
+		cyc = 0
+	end
+
+	if self:isAiming() then
+		suffix = suffix .. "_aim"
+	end
+
+	self:sendWeaponAnim("base_fire" .. suffix, 1, cyc)
 end

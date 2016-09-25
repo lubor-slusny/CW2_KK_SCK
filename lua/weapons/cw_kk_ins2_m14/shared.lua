@@ -236,6 +236,14 @@ SWEP.HolsterTime = 0.5
 
 SWEP.RecoilToSpread = 0.8 
 
+SWEP.SnapToIdlePostReload = false
+
+SWEP.WeaponLength = 28
+
+SWEP.KK_INS2_EmptyIdle = true
+
+SWEP.MuzzleVelocity = 853
+
 SWEP.ReloadTimes = {
 	base_reload = {2.7, 3.4},
 	base_reloadempty = {2.7, 5},
@@ -246,11 +254,3 @@ SWEP.ReloadTimes = {
 	deployed_reload_half = {2.3, 3.2},
 	deployed_reload_empty = {2.3, 4.5},
 }
-
-SWEP.SnapToIdlePostReload = false
-
-SWEP.WeaponLength = 28
-
-SWEP.KK_INS2_EmptyIdle = true
-
-SWEP.MuzzleVelocity = 853

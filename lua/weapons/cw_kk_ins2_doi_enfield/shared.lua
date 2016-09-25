@@ -208,12 +208,6 @@ SWEP.HolsterTime = 0.5
 
 SWEP.RecoilToSpread = 0.8 
 
-SWEP.ReloadStartTime = 1.12
-SWEP.ReloadStartTimeEmpty = 1.12
-SWEP.InsertShellTime = 0.92
-SWEP.ReloadFinishWait = 1.3
-SWEP.ReloadFinishWaitEmpty = 1.3
-
 SWEP.SnapToIdlePostReload = false
 
 SWEP.Chamberable = false

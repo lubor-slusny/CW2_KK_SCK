@@ -41,7 +41,6 @@ SWEP.Animations = {
 	base_fire_last_aim = "iron_fire",
 	base_fire_empty = "base_dryfire",
 	base_fire_empty_aim = "iron_dryfire",
-	base_reload = "base_reload",
 	base_reload_empty = "base_reload",
 	base_idle = "base_idle",
 	base_idle_empty = "empty_idle",
@@ -106,11 +105,6 @@ SWEP.FirstDeployTime = 1.5
 SWEP.DeployTime = 0.5
 SWEP.HolsterTime = 0.5
 
-SWEP.ReloadTime = 4.6
-SWEP.ReloadTime_Empty = 4.6
-SWEP.ReloadHalt = 5.17
-SWEP.ReloadHalt_Empty = 5.17
-
 SWEP.Chamberable = false
 SWEP.SnapToIdlePostReload = false
 SWEP.ShotgunReload = false
@@ -119,6 +113,10 @@ SWEP.ReticleInactivityPostFire = 0.8
 SWEP.KK_INS2_EmptyIdle = true
 
 SWEP.WeaponLength = 24
+
+SWEP.ReloadTimes = {
+	base_reload = {4.6, 5.17},
+}
 
 function SWEP:FireBullet(Damage, CurCone, ClumpSpread, Shots)
 	if Shots == 1 then

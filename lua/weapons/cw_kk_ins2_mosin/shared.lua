@@ -235,12 +235,6 @@ SWEP.RecoilToSpread = 0.8
 SWEP.BipodDeployTime = 1.15
 SWEP.BipodUndeployTime = 1.15
 
-SWEP.ReloadStartTime = 0.865
-SWEP.ReloadStartTimeEmpty = 0.865
-SWEP.InsertShellTime = 0.8
-SWEP.ReloadFinishWait = 1.05
-SWEP.ReloadFinishWaitEmpty = 1.05
-
 SWEP.SnapToIdlePostReload = false
 
 SWEP.Chamberable = false
@@ -252,7 +246,22 @@ SWEP.GlobalDelayOnShoot = SWEP.FireDelay
 SWEP.WeaponLength = 38
 
 SWEP.MuzzleVelocity = 865
-SWEP.boltAction_pumpTime = 1.5
+
+SWEP.ReloadTimes = {
+	base_fire_end = {1.5, 1.5},
+	iron_fire_end = {1.7, 1.7},
+	
+	reload_start = {0.865, 0.865},
+	reload_insert = {0.8, 0.8},
+	reload_end = {0.9, 0.9},
+	
+	deployed_fire_end = {1.8, 1.8},
+	iron_fire_deployed_end = {1.5, 1.5},
+	
+	deployed_reload_start = {0.8, 0.8},
+	deployed_reload_insert = {0.8, 0.8},
+	deployed_reload_end = {1, 1},
+}
 
 if CLIENT then
 	local att

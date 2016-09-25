@@ -274,19 +274,19 @@ function SWEP:beginReload()
 			anim = "reload"
 		end
 		
-		if self.overrideReloadAnim then
-			anim = self:overrideReloadAnim(animPrefix, animSuffix)
-		else
-			anim = animPrefix .. anim .. animSuffix
-		end
-		
 		if self.reloadAnimFunc then
-			self:reloadAnimFunc(mag)
+			reloadTime, reloadHalt = self:reloadAnimFunc(mag)
 		else
+			if self.overrideReloadAnim then
+				anim = self:overrideReloadAnim(animPrefix, animSuffix)
+			else
+				anim = animPrefix .. anim .. animSuffix
+			end
+			
 			self:sendWeaponAnim(anim, self.ReloadSpeed, 0)
+			
+			reloadTime, reloadHalt = self:getAnimTimes(anim)
 		end
-		
-		reloadTime, reloadHalt = self:getAnimTimes(anim)
 		
 		reloadTime = reloadTime / self.ReloadSpeed
 		reloadHalt = reloadHalt / self.ReloadSpeed
@@ -641,7 +641,7 @@ end
 // - FirstDeploy animation logic
 //-----------------------------------------------------------------------------
 
-function SWEP:Initialize()	
+function SWEP:Initialize()
 	self:updateReloadTimes()
 	
 	if CLIENT then

@@ -139,12 +139,6 @@ SWEP.FirstDeployTime = 1.3
 SWEP.DeployTime = 0.4
 SWEP.HolsterTime = 0.4
 
-SWEP.ReloadTime = 2
-SWEP.ReloadHalt = 2.65
-
-SWEP.ReloadTime_Empty = 2
-SWEP.ReloadHalt_Empty = 2.65
-
 SWEP.CanRestOnObjects = false
 -- SWEP.WeaponLength = 16 // original
 SWEP.WeaponLength = 14
@@ -152,6 +146,13 @@ SWEP.WeaponLength = 14
 SWEP.KK_INS2_EmptyIdle = true
 
 SWEP.MuzzleVelocity = 315
+
+SWEP.ReloadTimes = {
+	base_reload = {2, 2.65},
+	base_reloadempty = {2, 2.65},
+	base_reload_extmag = {2, 2.65},
+	base_reloadempty_extmag = {2, 2.65},
+}
 
 if CLIENT then 
 	function SWEP:updateOtherParts()

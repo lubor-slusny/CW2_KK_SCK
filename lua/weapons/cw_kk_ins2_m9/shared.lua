@@ -134,10 +134,9 @@ SWEP.FirstDeployTime = 1.3
 SWEP.DeployTime = 0.4
 SWEP.HolsterTime = 0.4
 
-SWEP.ReloadTime = 2
-SWEP.ReloadHalt = 2.65
-
-SWEP.ReloadTime_Empty = 2
-SWEP.ReloadHalt_Empty = 2.65
-
 SWEP.MuzzleVelocity = 381
+
+SWEP.ReloadTimes = {
+	base_reload = {2, 2.65},
+	base_reloadempty = {2, 2.65},
+}

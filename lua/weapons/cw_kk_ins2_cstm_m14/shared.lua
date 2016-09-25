@@ -188,13 +188,16 @@ SWEP.HolsterTime = 0.5
 
 SWEP.RecoilToSpread = 0.8 
 
-SWEP.ReloadTime = 2.3
-SWEP.ReloadTime_Empty = 2.3
-SWEP.ReloadHalt = 3.1
-SWEP.ReloadHalt_Empty = 4.6
-
 SWEP.SnapToIdlePostReload = false
 
 SWEP.WeaponLength = 28
 
 SWEP.MuzzleVelocity = 850
+
+SWEP.ReloadTimes = {
+	base_reload = {2.3, 3.1},
+	base_reloadempty = {2.3, 4.6},
+	
+	foregrip_reload = {2.3, 3.1},
+	foregrip_reloadempty = {2.3, 4.6},
+}

@@ -136,16 +136,13 @@ SWEP.reloadProgressAnimsRaw = {
 	base_pickup = true
 }
 
-local clip, cyc, rate, prefix, suffix
+local cyc, suffix
 
 function SWEP:fireAnimFunc()
-	clip = self:Clip1()
 	cyc = 0.25
-	rate = 1
-	prefix = "base_"
 	suffix = ""
 	
-	if (clip == 0) then
+	if (self:Clip1() == 0) then
 		cyc = 0
 		suffix = "_empty"
 	end
@@ -154,5 +151,5 @@ function SWEP:fireAnimFunc()
 		suffix = suffix .. "_aim"
 	end
 	
-	self:sendWeaponAnim(prefix .. "fire" .. suffix,rate,cyc)
+	self:sendWeaponAnim("base_fire" .. suffix, 1, cyc)
 end //*/

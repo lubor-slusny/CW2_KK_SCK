@@ -253,20 +253,20 @@ SWEP.HolsterTime = 0.5
 SWEP.FirstDeployTime = 2.1
 SWEP.WeaponLength = 22
 
-SWEP.gl_on_ReloadTime = 1.7
-SWEP.gl_on_ReloadHalt = 2.81
+SWEP.MuzzleVelocity = 890
 
 SWEP.ReloadTimes = {
 	base_reload = {2.2, 3.15},
 	base_reloadempty = {2.2, 4.35},
+	
 	foregrip_reload = {2.2, 3.15},
 	foregrip_reloadempty = {2.2, 4.35},
+	
 	gl_reload = {2.2, 3.15},
 	gl_reloadempty = {2.2, 4.35},
+	
 	glsetup_reload = {1.75, 2.67}
 }
-
-SWEP.MuzzleVelocity = 890
 
 if CLIENT then
 	function SWEP:updateStandardParts()

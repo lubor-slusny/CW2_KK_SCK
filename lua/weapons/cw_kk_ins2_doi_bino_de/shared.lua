@@ -101,3 +101,5 @@ function SWEP:PrimaryAttack()
 end
 
 function SWEP:Reload() end
+
+function SWEP:updateReloadTimes() end

@@ -264,14 +264,6 @@ SWEP.FirstDeployTime = 2.25
 SWEP.DeployTime = 0.7
 SWEP.HolsterTime = 0.5
 
-SWEP.base_ReloadTime = 2.9
-SWEP.base_ReloadTime_Empty = 2.9
-SWEP.base_ReloadHalt = 3.7
-SWEP.base_ReloadHalt_Empty = 4.3
-
-SWEP.gl_on_ReloadTime = 2.95
-SWEP.gl_on_ReloadHalt = 3.85
-
 SWEP.WeaponLength = 22
 
 SWEP.SightBGs = {main = 0, foldsight = 0}

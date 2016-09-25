@@ -237,27 +237,14 @@ SWEP.HolsterTime = 0.5
 SWEP.BipodDeployTime = 1.72
 SWEP.BipodUndeployTime = 1.95
 
--- SWEP.ReloadTimes = {					// mess
-	-- base_reload = {2.2, 3.54},
-	-- base_reloadempty = {2.2, 5},
-	
-	-- base_reload_drum = {2.2, 5.55},
-	-- base_reloadempty_drum = {2.2, 7.55},
-	
-	-- foregrip_reload = {2.2, 3.54},
-	-- foregrip_reloadempty = {2.2, 5},
-	
-	-- foregrip_reload_drum = {2.2, 5.5},
-	-- foregrip_reloadempty_drum = {2.2, 7.55},
-	
-	-- deployed_reload = {2.2, 3.8},
-	-- deployed_reload_empty = {2.2, 5.4},
-	
-	-- deployed_reload_drum = {2.2, 5.5},
-	-- deployed_reload_empty_drum = {2.2, 7.55}
--- }
-	
-SWEP.ReloadTimes = {					//qc
+SWEP.FirstDeployTime = 2.6
+SWEP.WeaponLength = 28
+-- SWEP.WeaponLength = 24 // SAR
+
+SWEP.MuzzleVelocity = 950 // AR
+-- SWEP.MuzzleVelocity = 900 // sar
+
+SWEP.ReloadTimes = {
 	base_reload = {70/32.2, 3.5},
 	base_reloadempty = {70/32.2, 5},
 	base_reload_drum = {116/31.8, 5.5},
@@ -273,30 +260,6 @@ SWEP.ReloadTimes = {					//qc
 	deployed_reload_drum = {116/31.8, 5.5},
 	deployed_reload_empty_drum = {116/31.8, 7.55},
 }
-	
--- SWEP.ReloadTimes = {					//qc + mess
-	-- base_reload = {00000/32.2, 3.5},
-	-- base_reloadempty = {00000/32.2, 5},
-	-- base_reload_drum = {00000/31.8, 5.5},
-	-- base_reloadempty_drum = {00000/31.8, 7.55},
-	
-	-- foregrip_reload = {00000/32.2, 3.5},
-	-- foregrip_reloadempty = {00000/32.2, 5},
-	-- foregrip_reload_drum = {00000/31.8, 5.5},
-	-- foregrip_reloadempty_drum = {00000/31.8, 7.55},
-	
-	-- deployed_reload = {00000/30, 3.8},
-	-- deployed_reload_empty = {00000/30, 5.4},
-	-- deployed_reload_drum = {00000/31.8, 5.5},
-	-- deployed_reload_empty_drum = {00000/31.8, 7.55},
--- }
-
-SWEP.FirstDeployTime = 2.6
-SWEP.WeaponLength = 28
--- SWEP.WeaponLength = 24 // SAR
-
-SWEP.MuzzleVelocity = 950 // AR
--- SWEP.MuzzleVelocity = 900 // sar
 
 if CLIENT then
 	local att

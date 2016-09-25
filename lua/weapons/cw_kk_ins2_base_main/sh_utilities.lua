@@ -192,7 +192,7 @@ function SWEP:hasInstalledGL()
 end
 
 //-----------------------------------------------------------------------------
-// 
+// getForegripMode returns active anim prefix
 //-----------------------------------------------------------------------------
 
 function SWEP:getForegripMode()

@@ -236,10 +236,15 @@ SWEP.ReloadTimes = {
 	deployed_reload_empty = {8.85, 10.52},
 }
 
+SWEP.reticleInactivityCallbacksRaw = {
+	["base_reload_close"] = 0.1,
+	["bipod_reload_close"] = 0.1,
+}
+
 function SWEP:overrideReloadAnim(prefix, suffix)
 	local clip = self:Clip1()
 	
-	if clip > 16 then
+	if clip > 15 then
 		return prefix .. "reload" .. suffix
 	elseif clip > 0 then
 		return prefix .. "reload_close" .. suffix
@@ -247,11 +252,6 @@ function SWEP:overrideReloadAnim(prefix, suffix)
 	
 	return prefix .. "reload_empty" .. suffix
 end
-
-SWEP.reticleInactivityCallbacksRaw = {
-	["base_reload_close"] = 0.1,
-	["bipod_reload_close"] = 0.1,
-}
 
 if CLIENT then
 	local counterExists = file.Exists("models/weapons/stattrack.mdl", "GAME")

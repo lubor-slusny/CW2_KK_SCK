@@ -222,26 +222,27 @@ SWEP.HolsterTime = 0.5
 SWEP.BipodDeployTime = 1.15
 SWEP.BipodUndeployTime = 1.15
 
-SWEP.ReloadTimes = {
-	base_reload = {2.3, 3.4},
-	base_reloadempty = {2.3, 4.3},
-	foregrip_reload = {2.3, 3.4},
-	foregrip_reloadempty = {2.3, 4.3},
-	deployed_reload = {2.2, 3.27},
-	deployed_reloadempty = {2.2, 4},
-	
-	base_reload_ext = {2.3, 3.4},
-	base_reloadempty_ext = {2.3, 4.3},
-	foregrip_reload_ext = {2.3, 3.4},
-	foregrip_reloadempty_ext = {2.3, 4.3},
-	deployed_reload_ext = {2.2, 3.27},
-	deployed_reloadempty_ext = {2.2, 4},
-}
-
 SWEP.FirstDeployTime = 1.8
 SWEP.WeaponLength = 28
 
 SWEP.MuzzleVelocity = 840
+
+SWEP.ReloadTimes = {
+	base_reload = {2.3, 3.4},
+	base_reloadempty = {2.3, 4.3},
+	base_reload_ext = {2.3, 3.4},
+	base_reloadempty_ext = {2.3, 4.3},
+	
+	foregrip_reload = {2.3, 3.4},
+	foregrip_reloadempty = {2.3, 4.3},
+	foregrip_reload_ext = {2.3, 3.4},
+	foregrip_reloadempty_ext = {2.3, 4.3},
+	
+	deployed_reload = {2.2, 3.27},
+	deployed_reloadempty = {2.2, 4},
+	deployed_reload_ext = {2.2, 3.27},
+	deployed_reloadempty_ext = {2.2, 4},
+}
 
 if CLIENT then
 	function SWEP:updateStandardParts()

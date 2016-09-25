@@ -205,11 +205,6 @@ SWEP.FirstDeployTime = 2.25
 SWEP.DeployTime = 0.7
 SWEP.HolsterTime = 0.5
 
-SWEP.ReloadTime = 2.9
-SWEP.ReloadTime_Empty = 2.9
-SWEP.ReloadHalt = 3.7
-SWEP.ReloadHalt_Empty = 4.3
-
 SWEP.WeaponLength = 20
 
 SWEP.MuzzleVelocity = 788

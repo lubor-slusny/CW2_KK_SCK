@@ -209,6 +209,7 @@ SWEP.WeaponLength = 16
 SWEP.ReloadTimes = {
 	base_reload = {2.2, 3.15},
 	base_reloadempty = {2.2, 4.35},
+	
 	foregrip_reload = {2.2, 3.15},
 	foregrip_reloadempty = {2.2, 4.35}
 }

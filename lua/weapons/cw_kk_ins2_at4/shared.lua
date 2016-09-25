@@ -37,12 +37,13 @@ SWEP.Attachments = {
 }
 
 SWEP.Animations = {
+	at4_reload_start = "base_toss",
+	at4_reload_end = "base_ready",
+	
 	base_pickup = "base_ready",
 	base_draw = "base_draw",
 	base_fire = "base_fire",
 	base_fire_aim = "base_iron_fire",
-	base_reload_start = "base_toss",
-	base_reload_end = "base_ready",
 	base_idle = "base_idle",
 	base_holster = "base_holster",
 	base_sprint = "base_sprint",
@@ -99,47 +100,17 @@ SWEP.Damage = 100
 SWEP.DeployTime = 1
 SWEP.HolsterTime = 1
 
-SWEP.ReloadTime = 5.1
-SWEP.ReloadTime_Empty = 5.1
-SWEP.ReloadHalt = 5.2
-SWEP.ReloadHalt_Empty = 5.2
-
 SWEP.Chamberable = false
 SWEP.CanCustomize = false
 
 SWEP.FirstDeployTime = 3.4
 SWEP.WeaponLength = 40
 
--- function SWEP:updateReloadTimes() end
-	
-function SWEP:fireAnimFunc()
-	local clip = self:Clip1()
-	local cyc = 0.2
-	local rate = 1
-	local prefix = "base_"
-	local suffix = ""
-	
-	if clip == 0 then
-		suffix = "_empty"
-	end
-	
-	if self:isAiming() then
-		suffix = suffix .. "_aim"
-	end
-	
-	self:sendWeaponAnim(prefix .. "fire" .. suffix,rate,cyc)
-end //*/
+// terrible hax FTW
 
-function SWEP:reloadAnimFunc(lm)
-	self.dt.AT4ReloadEnd = CurTime() + self.ReloadHalt
-	
-	self:sendWeaponAnim("base_reload_start",self.ReloadSpeed,0)
-
-	CustomizableWeaponry.actionSequence.new(self, 1.8, nil, function()
-		if not self.ReloadDelay then return end
-		self:sendWeaponAnim("base_reload_end",self.ReloadSpeed,0)
-	end)
-end //*/
+SWEP.ReloadSpeed = 1
+SWEP.ReloadTime = 3.5
+SWEP.ReloadHalt = 5.1
 
 function SWEP:SetupDataTables()
 	self:NetworkVar("Int", 0, "State")
@@ -152,10 +123,54 @@ function SWEP:SetupDataTables()
 	self:NetworkVar("Angle", 0, "ViewOffset")
 end
 
+function SWEP:getAnimTimes()
+	return self.ReloadTime, self.ReloadHalt
+end
+
+function SWEP:reloadAnimFunc(lm)
+	self.dt.AT4ReloadEnd = CurTime() + self.ReloadHalt / self.ReloadSpeed
+	
+	self:sendWeaponAnim("at4_reload_start", self.ReloadSpeed, 0)
+
+	CustomizableWeaponry.actionSequence.new(self, 1.8 / self.ReloadSpeed, nil, function() 
+		if not self.ReloadDelay then return end
+		
+		self:sendWeaponAnim("at4_reload_end", self.ReloadSpeed, 0)
+	end)
+	
+	return self:getAnimTimes()
+end //*/
+
 function SWEP:getReloadProgress()
 	local CT = CurTime()
 	
 	if self.dt.AT4ReloadEnd < CT then return end
 	
-	return math.Round((CT - self.dt.AT4ReloadEnd + self.ReloadHalt) * 100 / self.ReloadHalt)
+	if CLIENT then
+		self.reticleInactivity = self.dt.AT4ReloadEnd
+	end
+	
+	return math.Round((CT - self.dt.AT4ReloadEnd + self.ReloadHalt / self.ReloadSpeed) * 100 / self.ReloadHalt)
+end
+
+SWEP.reticleInactivityCallbacksRaw = {
+	at4_reload_start = 0.1
+}
+
+local cyc, suffix
+
+function SWEP:fireAnimFunc()
+	cyc = 0.3
+	suffix = ""
+
+	if self:Clip1() == 0 then
+		suffix = "_empty"
+		cyc = 0
+	end
+
+	if self:isAiming() then
+		suffix = suffix .. "_aim"
+	end
+
+	self:sendWeaponAnim("base_fire" .. suffix, 1, cyc)
 end

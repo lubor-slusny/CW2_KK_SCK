@@ -113,10 +113,9 @@ SWEP.FirstDeployTime = 1.5
 SWEP.DeployTime = 0.5
 SWEP.HolsterTime = 0.5
 
-SWEP.ReloadTime = 3.15
-SWEP.ReloadTime_Empty = 3.15
-SWEP.ReloadHalt = 5.17
-SWEP.ReloadHalt_Empty = 5.17
+SWEP.ReloadTimes = {
+	base_reload = {3.15, 5.17}
+}
 
 function SWEP:FireBullet()
 	if SERVER then

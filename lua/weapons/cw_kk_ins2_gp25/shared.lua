@@ -350,10 +350,10 @@ SWEP.Damage = 33
 SWEP.FirstDeployTime = 0.5
 SWEP.DeployTime = 0.6
 
-SWEP.ReloadTime = 1.7
-SWEP.ReloadHalt = 2
-SWEP.ReloadTime_Empty = 1.7
-SWEP.ReloadHalt_Empty = 2
+SWEP.ReloadTimes = {
+	gl_reload = {1.7, 2},
+	gl_reloadempty = {1.7, 2},
+}
 
 if CLIENT then
 	function SWEP:_drawViewModel()
@@ -417,6 +417,8 @@ function SWEP:reloadAnimFunc(lm)
 	CustomizableWeaponry.actionSequence.new(self, 1.8, nil, function() 
 		self:sendWeaponAnim("gl_off_holster",-1,0)
 	end)
+	
+	return 1.7, 2
 end //*/
 
 function SWEP:SetupDataTables()

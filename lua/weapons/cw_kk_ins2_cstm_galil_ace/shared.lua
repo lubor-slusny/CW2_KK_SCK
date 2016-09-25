@@ -221,6 +221,10 @@ SWEP.FirstDeployTime = 2.6
 SWEP.DeployTime = 0.7
 SWEP.HolsterTime = 0.5
 
+SWEP.WeaponLength = 26
+
+SWEP.MuzzleVelocity = 915
+
 SWEP.ReloadTimes = {					//qc
 	base_reload = {70/32.2, 3.5},
 	base_reloadempty = {70/32.2, 5},
@@ -237,10 +241,6 @@ SWEP.ReloadTimes = {					//qc
 	deployed_reload_drum = {116/31.8, 5.5},
 	deployed_reload_empty_drum = {116/31.8, 7.55},
 }
-
-SWEP.WeaponLength = 26
-
-SWEP.MuzzleVelocity = 915
 
 if CLIENT then
 	function SWEP:updateStandardParts()

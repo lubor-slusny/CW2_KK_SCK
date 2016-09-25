@@ -194,14 +194,17 @@ SWEP.Damage = 40
 SWEP.DeployTime = 0.7
 SWEP.HolsterTime = 0.5
 
-SWEP.ReloadTime = 2.3
-SWEP.ReloadTime_Empty = 2.3
-SWEP.ReloadHalt = 3.1
-SWEP.ReloadHalt_Empty = 4.6
-
 SWEP.SnapToIdlePostReload = false
 
 SWEP.FirstDeployTime = 1.5
 SWEP.WeaponLength = 20
 
 SWEP.MuzzleVelocity = 990
+
+SWEP.ReloadTimes = {
+	base_reload = {2.3, 3.1},
+	base_reloadempty = {2.3, 4.6},
+	
+	foregrip_reload = {2.3, 3.1},
+	foregrip_reloadempty = {2.3, 4.6},
+}

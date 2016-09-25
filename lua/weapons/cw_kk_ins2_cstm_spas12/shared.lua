@@ -99,11 +99,6 @@ SWEP.Attachments = {
 }
 
 SWEP.Animations = {
-	reload_start = "",
-	insert = "",
-	reload_end = "",
-	idle = "",	
-	
 	base_pickup = "base_ready",
 	base_draw = "base_draw",
 	base_fire = {"base_fire","base_fire_2"},
@@ -191,14 +186,6 @@ SWEP.FirstDeployTime = 2.2
 SWEP.DeployTime = 0.7
 SWEP.HolsterTime = 0.6
 
-SWEP.ReloadSpeed = 1
-
-SWEP.ReloadStartTime = 0.7
-SWEP.ReloadStartTimeEmpty = 0.7
-SWEP.InsertShellTime = 0.72
-SWEP.ReloadFinishWait = 0.6
-SWEP.ReloadFinishWaitEmpty = 1.51
-
 SWEP.Chamberable = true
 SWEP.SnapToIdlePostReload = false
 SWEP.ShotgunReload = true
@@ -207,3 +194,17 @@ SWEP.ReticleInactivityPostFire = 1
 SWEP.WeaponLength = 18
 
 SWEP.MuzzleVelocity = 381
+
+SWEP.ReloadTimes = {
+	base_reload_start = {0.7, 0.7},
+	base_reload_start_empty = {0.7, 0.7},
+	base_reload_insert = {0.72, 0.72},
+	base_reload_end = {0.6, 0.6},
+	base_reload_end_empty = {1.51, 1.51},
+	
+	foregrip_reload_start = {0.7, 0.7},
+	foregrip_reload_start_empty = {0.7, 0.7},
+	foregrip_reload_insert = {0.72, 0.72},
+	foregrip_reload_end = {0.6, 0.6},
+	foregrip_reload_end_empty = {1.51, 1.51},
+}

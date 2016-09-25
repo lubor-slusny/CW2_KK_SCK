@@ -187,11 +187,6 @@ SWEP.FirstDeployTime = 2.9
 SWEP.DeployTime = 0.8
 SWEP.HolsterTime = 0.6
 
-SWEP.ReloadTime = 2.55
-SWEP.ReloadHalt = 3.62
-SWEP.ReloadTime_Empty = 4.3
-SWEP.ReloadHalt_Empty = 5.68
-	
 SWEP.Chamberable = false
 
 SWEP.WeaponLength = 16
@@ -199,3 +194,8 @@ SWEP.WeaponLength = 16
 SWEP.KK_INS2_EmptyIdle = true
 
 SWEP.MuzzleVelocity = 400
+
+SWEP.ReloadTimes = {
+	base_reload = {2.55, 3.62},
+	base_reloadempty = {4.3, 5.68},
+}

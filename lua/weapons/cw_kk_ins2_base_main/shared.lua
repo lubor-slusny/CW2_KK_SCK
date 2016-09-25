@@ -78,13 +78,6 @@ SWEP.WeaponLength = 20
 SWEP.HolsterSpeed = 1
 
 SWEP.boltAction_isShot = false
--- SWEP.boltAction_pumpTime = 0.6
-
-SWEP.ReloadTimes = {
-	base_reload = {1, 1},
-	base_reloadempty = {1, 1},
-	base_reload_empty = {1, 1},
-}
 
 if CLIENT then	
 	SWEP.PosBasedMuz = false

@@ -195,6 +195,7 @@ SWEP.SnapToIdlePostReload = false
 SWEP.ReloadTimes = {
 	base_reload = {2.3, 3.1},
 	base_reloadempty = {2.3, 4.6},
+	
 	foregrip_reload = {2.3, 3.1},
 	foregrip_reloadempty = {2.3, 4.6}
 }
