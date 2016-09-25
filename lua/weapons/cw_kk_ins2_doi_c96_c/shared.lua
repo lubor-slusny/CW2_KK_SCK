@@ -1,9 +1,7 @@
 if not CustomizableWeaponry then return end
 
 AddCSLuaFile()
-AddCSLuaFile("sh_sounds.lua")
 AddCSLuaFile("sh_soundscript.lua")
-include("sh_sounds.lua")
 include("sh_soundscript.lua")
 
 SWEP.magType = "pistolMag"
@@ -114,8 +112,7 @@ SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= "9x19MM"
 
 SWEP.FireDelay = 60/1000
-SWEP.FireSound = "CW_KK_INS2_DOI_PPK_FIRE"
-SWEP.FireSoundSuppressed = "CW_KK_INS2_M9_FIRE_SUPPRESSED"
+SWEP.FireSound = "CW_KK_INS2_DOI_C96_FIRE"
 SWEP.Recoil = 0.77
 
 SWEP.HipSpread = 0.034

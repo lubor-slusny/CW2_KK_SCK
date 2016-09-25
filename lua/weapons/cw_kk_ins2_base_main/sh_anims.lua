@@ -560,7 +560,7 @@ if CLIENT then
 			local newFunc
 			
 			newFunc = function(wep)
-				print(wep, "		", animName, "		", string.format("%.3f", seqDur))
+				-- print(wep, "		", animName, "		", string.format("%.3f", seqDur))
 				wep.reticleInactivity = UnPredictedCurTime() + seqDur + add
 			end
 			
