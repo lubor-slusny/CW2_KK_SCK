@@ -54,8 +54,12 @@ function SWEP:getAnimTimes(animName)
 	
 	seqName = self.Animations[animName]
 	
-	if not seqName or !isstring(seqName) then 
+	if not seqName then
 		return 
+	end
+	
+	if istable(seqName) then
+		seqName = seqName[1]
 	end
 	
 	seqTable = self.ReloadTimes[seqName]

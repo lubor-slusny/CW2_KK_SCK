@@ -52,9 +52,8 @@ SWEP.Animations = {
 	base_fire_aim = {"iron_fire_1","iron_fire_2"},
 	base_fire_empty = "base_dryfire",
 	base_fire_empty_aim = "iron_dryfire",
-	base_reload = "base_reload",				// tacticool
-	base_reload_empty = "base_reload_empty",	// empty, dryfired
-	base_reload_empty_charged = "base_reload",				// empty, charged
+	base_reload = "base_reload",
+	base_reload_empty = "base_reload_empty",
 	base_idle = "base_idle",
 	base_holster = "base_holster",
 	base_sprint = "base_sprint",
@@ -127,6 +126,12 @@ SWEP.FirstDeployTime = 3.1
 SWEP.DeployTime = 0.9
 SWEP.HolsterTime = 0.6
 
+SWEP.Chamberable = false
+SWEP.BipodInstalled = true
+SWEP.WeaponLength = 26
+
+SWEP.MuzzleVelocity = 740
+
 SWEP.ReloadTimes = {
 	base_reload = {6.2, 8.21},
 	base_reload_empty = {6.94, 8.96},
@@ -134,9 +139,3 @@ SWEP.ReloadTimes = {
 	deployed_reload = {6, 7.97},
 	deployed_reload_empty = {6.95, 8.96},
 }
-
-SWEP.Chamberable = false
-SWEP.BipodInstalled = true
-SWEP.WeaponLength = 26
-
-SWEP.MuzzleVelocity = 740

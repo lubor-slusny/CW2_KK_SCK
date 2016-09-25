@@ -14,8 +14,8 @@ SWEP.Sounds = {
 
 	base_ready = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-		{time = 26/30, sound = "CW_KK_INS2_M590_PUMPBACK"},
-		{time = 36/30, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
+		{time = 26/30, sound = "CW_KK_INS2_WW2_M1912_PUMPBACK"},
+		{time = 36/30, sound = "CW_KK_INS2_WW2_M1912_PUMPFORWARD"},
 	},
 
 	base_crawl = {
@@ -24,21 +24,21 @@ SWEP.Sounds = {
 	},
 
 	base_fire_cock_1 = {
-		{time = 1/24, sound = "CW_KK_INS2_M590_PUMPBACK"},
+		{time = 1/24, sound = "CW_KK_INS2_WW2_M1912_PUMPBACK"},
 		{time = 2/24, sound = "", callback = shell},
-		{time = 5/24, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
+		{time = 5/24, sound = "CW_KK_INS2_WW2_M1912_PUMPFORWARD"},
 		// pumpedrdy @ 6 ""},
 	},
 
 	base_fire_cock_2 = {
-		{time = 1/24, sound = "CW_KK_INS2_M590_PUMPBACK"},
+		{time = 1/24, sound = "CW_KK_INS2_WW2_M1912_PUMPBACK"},
 		{time = 2/24, sound = "", callback = shell},
-		{time = 5/24, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
+		{time = 5/24, sound = "CW_KK_INS2_WW2_M1912_PUMPFORWARD"},
 		// pumpedrdy @ 6 ""},
 	},
 
 	base_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_M590_EMPTY"},
+		{time = 0, sound = "CW_KK_INS2_WW2_M1912_EMPTY"},
 	},
 
 	base_reload_start = {
@@ -47,15 +47,15 @@ SWEP.Sounds = {
 
 	base_reload_start_empty = {
 		{time = 5/35, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
-		{time = 18/35, sound = "CW_KK_INS2_M590_PUMPBACK"},
+		{time = 18/35, sound = "CW_KK_INS2_WW2_M1912_PUMPBACK"},
 		{time = 20/35, sound = "", callback = shell},
-		{time = 51/35, sound = "CW_KK_INS2_M590_SHELLINSERTSINGLE"},
-		{time = 76/35, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
+		{time = 51/35, sound = "CW_KK_INS2_WW2_M1912_SHELLINSERTSINGLE"},
+		{time = 76/35, sound = "CW_KK_INS2_WW2_M1912_PUMPFORWARD"},
 		// reloaded @ 78 ""},
 	},
 
 	base_reload_insert = {
-		{time = 5/36, sound = "CW_KK_INS2_M590_SHELLINSERT"},
+		{time = 5/36, sound = "CW_KK_INS2_WW2_M1912_SHELLINSERT"},
 		// reloaded @ 15 ""},
 	},
 
@@ -68,21 +68,21 @@ SWEP.Sounds = {
 	},
 
 	iron_fire_cock_1 = {
-		{time = 3/35, sound = "CW_KK_INS2_M590_PUMPBACK"},
+		{time = 3/35, sound = "CW_KK_INS2_WW2_M1912_PUMPBACK"},
 		{time = 4/35, sound = "", callback = shell},
-		{time = 11/35, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
+		{time = 11/35, sound = "CW_KK_INS2_WW2_M1912_PUMPFORWARD"},
 		// pumpedrdy @ 12 ""},
 	},
 
 	iron_fire_cock_2 = {
-		{time = 3/35, sound = "CW_KK_INS2_M590_PUMPBACK"},
+		{time = 3/35, sound = "CW_KK_INS2_WW2_M1912_PUMPBACK"},
 		{time = 4/35, sound = "", callback = shell},
-		{time = 11/35, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
+		{time = 11/35, sound = "CW_KK_INS2_WW2_M1912_PUMPFORWARD"},
 		// pumpedrdy @ 12 ""},
 	},
 
 	iron_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_M590_EMPTY"},
+		{time = 0, sound = "CW_KK_INS2_WW2_M1912_EMPTY"},
 	},
 
 	foregrip_draw = {
@@ -95,8 +95,8 @@ SWEP.Sounds = {
 
 	foregrip_ready = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-		{time = 26/30, sound = "CW_KK_INS2_M590_PUMPBACK"},
-		{time = 36/30, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
+		{time = 26/30, sound = "CW_KK_INS2_WW2_M1912_PUMPBACK"},
+		{time = 36/30, sound = "CW_KK_INS2_WW2_M1912_PUMPFORWARD"},
 	},
 
 	foregrip_crawl = {
@@ -106,20 +106,20 @@ SWEP.Sounds = {
 
 	foregrip_fire_cock_1 = {
 		// shell @ 2 ""},
-		{time = 1/24, sound = "CW_KK_INS2_M590_PUMPBACK"},
-		{time = 5/24, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
+		{time = 1/24, sound = "CW_KK_INS2_WW2_M1912_PUMPBACK"},
+		{time = 5/24, sound = "CW_KK_INS2_WW2_M1912_PUMPFORWARD"},
 		// pumpedrdy @ 6 ""},
 	},
 
 	foregrip_fire_cock_2 = {
 		// shell @ 2 ""},
-		{time = 1/24, sound = "CW_KK_INS2_M590_PUMPBACK"},
-		{time = 5/24, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
+		{time = 1/24, sound = "CW_KK_INS2_WW2_M1912_PUMPBACK"},
+		{time = 5/24, sound = "CW_KK_INS2_WW2_M1912_PUMPFORWARD"},
 		// pumpedrdy @ 6 ""},
 	},
 
 	foregrip_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_M590_EMPTY"},
+		{time = 0, sound = "CW_KK_INS2_WW2_M1912_EMPTY"},
 	},
 
 	foregrip_reload_start = {
@@ -128,15 +128,15 @@ SWEP.Sounds = {
 
 	foregrip_reload_start_empty = {
 		{time = 5/35, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
-		{time = 18/35, sound = "CW_KK_INS2_M590_PUMPBACK"},
+		{time = 18/35, sound = "CW_KK_INS2_WW2_M1912_PUMPBACK"},
 		// shell @ 20 ""},
-		{time = 51/35, sound = "CW_KK_INS2_M590_SHELLINSERTSINGLE"},
-		{time = 76/35, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
+		{time = 51/35, sound = "CW_KK_INS2_WW2_M1912_SHELLINSERTSINGLE"},
+		{time = 76/35, sound = "CW_KK_INS2_WW2_M1912_PUMPFORWARD"},
 		// reloaded @ 78 ""},
 	},
 
 	foregrip_reload_insert = {
-		{time = 5/36, sound = "CW_KK_INS2_M590_SHELLINSERT"},
+		{time = 5/36, sound = "CW_KK_INS2_WW2_M1912_SHELLINSERT"},
 		// reloaded @ 15 ""},
 	},
 
@@ -150,19 +150,19 @@ SWEP.Sounds = {
 
 	foregrip_iron_fire_cock_1 = {
 		// shell @ 3 ""},
-		{time = 3/35, sound = "CW_KK_INS2_M590_PUMPBACK"},
-		{time = 11/35, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
+		{time = 3/35, sound = "CW_KK_INS2_WW2_M1912_PUMPBACK"},
+		{time = 11/35, sound = "CW_KK_INS2_WW2_M1912_PUMPFORWARD"},
 		// pumpedrdy @ 12 ""},
 	},
 
 	foregrip_iron_fire_cock_2 = {
 		// shell @ 3 ""},
-		{time = 3/35, sound = "CW_KK_INS2_M590_PUMPBACK"},
-		{time = 11/35, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
+		{time = 3/35, sound = "CW_KK_INS2_WW2_M1912_PUMPBACK"},
+		{time = 11/35, sound = "CW_KK_INS2_WW2_M1912_PUMPFORWARD"},
 		// pumpedrdy @ 12 ""},
 	},
 
 	foregrip_iron_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_M590_EMPTY"},
+		{time = 0, sound = "CW_KK_INS2_WW2_M1912_EMPTY"},
 	},
 }

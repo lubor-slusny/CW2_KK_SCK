@@ -280,7 +280,11 @@ function SWEP:beginReload()
 			anim = animPrefix .. anim .. animSuffix
 		end
 		
-		self:sendWeaponAnim(anim, self.ReloadSpeed, 0)
+		if self.reloadAnimFunc then
+			self:reloadAnimFunc(mag)
+		else
+			self:sendWeaponAnim(anim, self.ReloadSpeed, 0)
+		end
 		
 		reloadTime, reloadHalt = self:getAnimTimes(anim)
 		

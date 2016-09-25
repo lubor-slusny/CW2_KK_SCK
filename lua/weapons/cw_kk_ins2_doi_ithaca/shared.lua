@@ -92,10 +92,8 @@ SWEP.Primary.DefaultClip	= 9
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "12 Gauge"
 
--- SWEP.FireDelay = 0.8
 SWEP.FireDelay = 0.3
-SWEP.FireSound = "CW_KK_INS2_M590_FIRE"
-SWEP.FireSoundSuppressed = "CW_KK_INS2_M590_FIRE_SUPPRESSED"
+SWEP.FireSound = "CW_KK_INS2_DOI_ITHC_FIRE"
 SWEP.Recoil = 3
 
 SWEP.HipSpread = 0.05
@@ -112,14 +110,6 @@ SWEP.FirstDeployTime = 2.2
 SWEP.DeployTime = 0.8
 SWEP.HolsterTime = 0.6
 
-SWEP.ReloadFirstShell = 2.25
-
-SWEP.ReloadStartTime = 0.6
-SWEP.ReloadStartTimeEmpty = 2.59
-SWEP.InsertShellTime = 0.97
-SWEP.ReloadFinishWait = 0.66
-SWEP.ReloadFinishWaitEmpty = 0.66
-
 SWEP.Chamberable = true
 SWEP.SnapToIdlePostReload = false
 SWEP.ShotgunReload = true
@@ -130,60 +120,15 @@ SWEP.WeaponLength = 18
 
 SWEP.MuzzleVelocity = 381
 
--- function SWEP:updateReloadTimes()
-	-- local mode = self:getForegripMode()
-
-	-- if self:Clip1() == 0 then
-		-- self.Animations.reload_start = self.Animations[mode .. "reload_start_empty"]
-		-- self.Animations.insert = nil
-		-- self.ReloadStartTime = 2.2
-	-- else
-		-- self.Animations.reload_start = self.Animations[mode .. "reload_start"]
-		-- self.Animations.insert = self.Animations[mode .. "insert"]
-		-- if self.base_ReloadStartTime then
-			-- self.ReloadStartTime = self[mode .. "ReloadStartTime"] or self.base_ReloadStartTime
-		-- end
-	-- end
+SWEP.ReloadTimes = {
+	base_fire_cock_1 = {0.7, 0.7},
+	base_fire_cock_2 = {0.7, 0.7},
+	iron_fire_cock_1 = {0.7, 0.7},
+	iron_fire_cock_2 = {0.7, 0.7},
 	
-	-- self.Animations.reload_end = self.Animations[mode .. "reload_end"]
-	-- self.Animations.idle = self.Animations[mode .. "reload_end"]
-	
-	-- if self.base_InsertShellTime then
-		-- self.InsertShellTime = self[mode .. "InsertShellTime"] or self.base_InsertShellTime
-	-- end
-	-- if self.base_ReloadFinishWait then
-		-- self.ReloadFinishWait = self[mode .. "ReloadFinishWait"] or self.base_ReloadFinishWait
-	-- end
--- end
-
--- function SWEP:fireAnimFunc()
-	-- local clip = self:Clip1()
-	-- local mag = ""
-	
-	-- if clip == 0 then
-		-- mag = "_empty"
-	-- end
-	
-	-- local prefix = self:getForegripMode()
-	-- local suffix = ""
-	
-	-- if self:isAiming() then
-		-- suffix = "_aim"
-	-- end
-	
-	-- if clip > 0 then
-		-- CustomizableWeaponry.actionSequence.new(self, 0.28, nil, function() 
-			-- local prefix = self:getForegripMode()
-			-- local suffix = ""
-			
-			-- if self:isAiming() then
-				-- suffix = "_aim"
-			-- end
-			
-			-- self:sendWeaponAnim(prefix .. "bolt" .. suffix,1,0)
-		-- end)
-	-- end
-	
-	-- self:sendWeaponAnim(prefix .. "fire" .. mag .. suffix,1,0)
-	
--- end //*/
+	base_reload_start = {0.6, 0.6},
+	base_reload_start_empty = {1.9, 2.59, true},
+	base_reload_insert = {0.8, 0.88},
+	base_reload_end = {0.66, 0.66},
+	base_reload_end_empty = {0.66, 0.66},
+}

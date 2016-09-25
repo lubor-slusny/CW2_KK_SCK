@@ -204,11 +204,6 @@ SWEP.FirstDeployTime = 1.9
 SWEP.DeployTime = 0.7
 SWEP.HolsterTime = 0.5
 
-SWEP.ReloadTime = 2
-SWEP.ReloadHalt = 2.92
-SWEP.ReloadTime_Empty = 2
-SWEP.ReloadHalt_Empty = 4.1
-
 SWEP.Chamberable = false
 SWEP.KK_INS2_EmptyIdle = false
 
@@ -218,20 +213,20 @@ SWEP.WeaponLength = 16
 
 SWEP.MuzzleVelocity = 285
 
+SWEP.ReloadTimes = {
+	base_reload = {2.55, 3.33},
+	base_reloadempty = {3.88, 4.76},
+	base_reload_drum = {4.3, 5.48},
+	base_reloadempty_drum = {5.82, 6.92},
+	foregrip_reload = {2.55, 3.33},
+	foregrip_reloadempty = {3.88, 4.76},
+	foregrip_reload_drum = {4.3, 5.48},
+	foregrip_reloadempty_drum = {5.82, 6.92},
+}
+
 if CLIENT then 
 	function SWEP:updateStandardParts()
 		self:setElementActive("handguard", !self.ActiveAttachments.kk_ins2_vertgrip)
 		self:setElementActive("kk_ins2_mag_thom_20", !(self.ActiveAttachments.kk_ins2_mag_thom_30 or self.ActiveAttachments.kk_ins2_mag_thom_50))
 	end
 end
-
-SWEP.ReloadTimes = {
-	base_reload = {2.55,3.33},
-	base_reloadempty = {3.88,4.76},
-	base_reload_drum = {4.3,5.48},
-	base_reloadempty_drum = {5.82,6.92},
-	foregrip_reload = {2.55,3.33},
-	foregrip_reloadempty = {3.88,4.76},
-	foregrip_reload_drum = {4.3,5.48},
-	foregrip_reloadempty_drum = {5.82,6.92},
-}

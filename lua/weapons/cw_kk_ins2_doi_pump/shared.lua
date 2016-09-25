@@ -92,8 +92,7 @@ SWEP.Primary.Ammo			= "12 Gauge"
 
 -- SWEP.FireDelay = 0.8
 SWEP.FireDelay = 0.3
-SWEP.FireSound = "CW_KK_INS2_M590_FIRE"
-SWEP.FireSoundSuppressed = "CW_KK_INS2_M590_FIRE_SUPPRESSED"
+SWEP.FireSound = "CW_KK_INS2_WW2_M1912_FIRE"
 SWEP.Recoil = 3
 
 SWEP.HipSpread = 0.05
@@ -110,14 +109,6 @@ SWEP.FirstDeployTime = 2.2
 SWEP.DeployTime = 0.7
 SWEP.HolsterTime = 0.5
 
-SWEP.ReloadFirstShell = 2.25
-
-SWEP.ReloadStartTime = 0.6
-SWEP.ReloadStartTimeEmpty = 2.89
-SWEP.InsertShellTime = 0.72
-SWEP.ReloadFinishWait = 0.6
-SWEP.ReloadFinishWaitEmpty = 0.6
-
 SWEP.Chamberable = true
 SWEP.SnapToIdlePostReload = false
 SWEP.ShotgunReload = true
@@ -127,4 +118,16 @@ SWEP.GlobalDelayOnShoot = SWEP.FireDelay
 SWEP.WeaponLength = 18
 
 SWEP.MuzzleVelocity = 381
-SWEP.boltAction_pumpTime = 0.5
+
+SWEP.ReloadTimes = {
+	base_fire_cock_1 = {0.5, 0.5},
+	base_fire_cock_2 = {0.5, 0.5},
+	iron_fire_cock_1 = {0.5, 0.5},
+	iron_fire_cock_2 = {0.5, 0.5},
+	
+	base_reload_start = {0.6, 0.6},
+	base_reload_start_empty = {2.25, 2.89, true},
+	base_reload_insert = {0.72, 0.72},
+	base_reload_end = {0.6, 0.6},
+	base_reload_end_empty = {0.6, 0.6},
+}

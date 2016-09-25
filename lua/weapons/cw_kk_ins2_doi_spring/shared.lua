@@ -65,11 +65,6 @@ SWEP.Attachments = {
 }
 
 SWEP.Animations = {
-	reload_start = "",
-	insert = "",
-	reload_end = "",
-	idle = "",	
-	
 	base_pickup = "base_ready",
 	base_draw = "base_draw",
 	base_draw_empty = "base_draw_empty",
@@ -159,17 +154,6 @@ SWEP.HolsterTime = 0.5
 
 SWEP.RecoilToSpread = 0.8 
 
-SWEP.ReloadStartTime = 1.25
-SWEP.ReloadStartTimeEmpty = 1.25
-SWEP.InsertShellTime = 0.99
-SWEP.ReloadFinishWait = 1.45
-SWEP.ReloadFinishWaitEmpty = 1.45
-
-SWEP.ReloadTime = 3
-SWEP.ReloadHalt = 4.49
-SWEP.ReloadTime_Empty = 3
-SWEP.ReloadHalt_Empty = 4.49
-
 SWEP.SnapToIdlePostReload = false
 
 SWEP.Chamberable = false
@@ -182,7 +166,18 @@ SWEP.KK_INS2_EmptyIdle = true
 SWEP.WeaponLength = 38
 
 SWEP.MuzzleVelocity = 854
-SWEP.boltAction_pumpTime = 1.49
+
+SWEP.ReloadTimes = {
+	base_fire_end = {1.49, 1.49},
+	iron_fire_end = {1.49, 1.49},
+	
+	base_reload_full_clip = {3, 4.49},
+	base_reload_empty_clip = {3, 4.49},
+	base_reload_start = {1.25, 1.25},
+	base_reload_start_empty = {1.25, 1.25},
+	base_reload_insert = {0.99, 0.99},
+	base_reload_end = {1.45, 1.45},
+}
 
 if CLIENT then
 	function SWEP:updateStandardParts()

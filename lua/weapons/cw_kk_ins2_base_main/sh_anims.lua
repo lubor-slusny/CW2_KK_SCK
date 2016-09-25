@@ -542,8 +542,12 @@ if CLIENT then
 		for animName,add in pairs(self.reticleInactivityCallbacksRaw) do
 			local seqName = self.Animations[animName]
 			
-			if not seqName or !isstring(seqName) then 
+			if not seqName then 
 				continue 
+			end
+			
+			if istable(seqName) then
+				seqName = seqName[1]
 			end
 			
 			local _, seqDur = vm:LookupSequence(seqName)

@@ -132,10 +132,6 @@ SWEP.HolsterTime = 0.6
 SWEP.RecoilToSpread = 0.8 
 
 SWEP.ReloadSpeed = 1
-SWEP.base_ReloadTime = 2.25
-SWEP.base_ReloadTime_Empty = 2.25
-SWEP.base_ReloadHalt = 3.05
-SWEP.base_ReloadHalt_Empty = 4.55
 
 SWEP.SnapToIdlePostReload = false
 
@@ -146,10 +142,10 @@ SWEP.WeaponLength = 20
 SWEP.MuzzleVelocity = 607
 
 SWEP.ReloadTimes = {
-	base_reload = {3.50, 3.50},
-	base_reloadempty = {5.25, 5.25},
-	base_reload_ext = {3.50, 3.50},
-	base_reloadempty_ext = {5.25, 5.25},
+	base_reload = {2.5, 3.5},
+	base_reloadempty = {2.7, 5.25},
+	base_reload_ext = {2.5, 3.5},
+	base_reloadempty_ext = {2.7, 5.25},
 }
 
 if CLIENT then 

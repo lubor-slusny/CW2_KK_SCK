@@ -36,6 +36,8 @@ SWEP.Animations = {
 	base_draw_empty = "base_draw_empty",
 	base_fire = {"base_fire_1", "base_fire_2", "base_fire_3"},
 	base_fire_aim = {"iron_fire_1","iron_fire_2"},
+	base_fire_last = {"base_fire_1", "base_fire_2", "base_fire_3"},
+	base_fire_last_aim = {"iron_fire_1","iron_fire_2"},
 	base_fire_empty = "base_dryfire",
 	base_fire_empty_aim = "iron_dryfire",
 	base_reload = "base_reloadfull",
@@ -61,6 +63,8 @@ SWEP.Animations = {
 	bipod_in_empty = "deployed_in_empty",
 	bipod_fire = {"deployed_fire_1", "deployed_fire_2"},
 	bipod_fire_aim = {"deployed_iron_fire_1","deployed_iron_fire_2","deployed_iron_fire_3"},
+	bipod_fire_last = {"deployed_fire_1", "deployed_fire_2"},
+	bipod_fire_last_aim = {"deployed_iron_fire_1","deployed_iron_fire_2","deployed_iron_fire_3"},
 	bipod_fire_empty = "deployed_dryfire",
 	bipod_fire_empty_aim = "deployed_iron_dryfire",
 	bipod_reload = "deployed_reload",
@@ -131,11 +135,6 @@ SWEP.FirstDeployTime = 2.6
 SWEP.DeployTime = 0.9
 SWEP.HolsterTime = 0.7
 
-SWEP.ReloadTime = 3.54
-SWEP.ReloadHalt = 4.42
-SWEP.ReloadTime_Empty = 4.9
-SWEP.ReloadHalt_Empty = 5.79
-
 SWEP.WeaponLength = 28
 
 SWEP.Chamberable = false
@@ -143,6 +142,14 @@ SWEP.BipodInstalled = true
 SWEP.KK_INS2_EmptyIdle = true
 
 SWEP.MuzzleVelocity = 860
+
+SWEP.ReloadTimes = {
+	base_reloadfull = {3.54, 4.42},
+	base_reloadempty = {4.9, 5.79},
+	
+	deployed_reload = {3.54, 4.42},
+	deployed_reload_empty = {4.9, 5.79},
+}
 
 function SWEP:IndividualThink_INS2()
 	self.FireDelay = (self.FireMode == "barslow") and self.FireDelaySlow or self.FireDelayFast

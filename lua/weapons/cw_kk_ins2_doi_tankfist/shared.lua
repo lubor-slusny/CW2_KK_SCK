@@ -41,6 +41,9 @@ SWEP.Attachments = {
 SWEP.KK_INS2_EmptyIdle = true
 
 SWEP.Animations = {
+	at4_reload_start = "base_holster_empty",
+	at4_reload_end = "base_ready",
+	
 	base_pickup = "base_ready",
 	base_draw = "base_draw",
 	base_draw_empty = "base_draw_empty",
@@ -48,8 +51,6 @@ SWEP.Animations = {
 	base_fire_last_aim = "iron_fire",
 	base_fire_empty = "base_dryfire",
 	base_fire_empty_aim = "iron_dryfire",
-	base_reload_start = "base_holster_empty",
-	base_reload_end = "base_ready",
 	base_idle = "base_idle",
 	base_idle_empty = "base_idle_empty",
 	base_holster = "base_holster",
@@ -116,21 +117,11 @@ SWEP.FirstDeployTime = 3.4
 SWEP.DeployTime = 1
 SWEP.HolsterTime = 0.8
 
-SWEP.ReloadTime = 3.77 // 90/32.5
-SWEP.ReloadTime_Empty = 3.77
-SWEP.ReloadHalt = 5
-SWEP.ReloadHalt_Empty = 5
+// terrible hax FTW
 
-function SWEP:reloadAnimFunc(lm)
-	self.dt.AT4ReloadEnd = CurTime() + self.ReloadHalt
-	
-	self:sendWeaponAnim("base_reload_start",self.ReloadSpeed,0)
-
-	CustomizableWeaponry.actionSequence.new(self, 1.8, nil, function() 
-		if not self.ReloadDelay then return end
-		self:sendWeaponAnim("base_reload_end",self.ReloadSpeed,0)
-	end)
-end //*/
+SWEP.ReloadSpeed = 1
+SWEP.ReloadTime = 2.5
+SWEP.ReloadHalt = 4.5
 
 function SWEP:SetupDataTables()
 	self:NetworkVar("Int", 0, "State")
@@ -143,10 +134,30 @@ function SWEP:SetupDataTables()
 	self:NetworkVar("Angle", 0, "ViewOffset")
 end
 
+function SWEP:getAnimTimes()
+	return self.ReloadTime, self.ReloadHalt
+end
+
+function SWEP:reloadAnimFunc(lm)
+	self.dt.AT4ReloadEnd = CurTime() + self.ReloadHalt / self.ReloadSpeed
+	
+	self:sendWeaponAnim("at4_reload_start", self.ReloadSpeed, 0)
+
+	CustomizableWeaponry.actionSequence.new(self, 1.2 / self.ReloadSpeed, nil, function() 
+		if not self.ReloadDelay then return end
+		
+		self:sendWeaponAnim("at4_reload_end", self.ReloadSpeed, 0)
+	end)
+end //*/
+
 function SWEP:getReloadProgress()
 	local CT = CurTime()
 	
 	if self.dt.AT4ReloadEnd < CT then return end
 	
-	return math.Round((CT - self.dt.AT4ReloadEnd + self.ReloadHalt) * 100 / self.ReloadHalt)
+	if CLIENT then
+		self.reticleInactivity = self.dt.AT4ReloadEnd
+	end
+	
+	return math.Round((CT - self.dt.AT4ReloadEnd + self.ReloadHalt / self.ReloadSpeed) * 100 / self.ReloadHalt)
 end

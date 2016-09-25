@@ -106,7 +106,6 @@ SWEP.Damage = 33
 SWEP.FirstDeployTime = 1.9
 SWEP.DeployTime = 0.71
 
-SWEP.ReloadTime = 0.8
-SWEP.ReloadHalt = 0.9
-SWEP.ReloadTime_Empty = 0.8
-SWEP.ReloadHalt_Empty = 0.9
+SWEP.ReloadTimes = {
+	base_ready = {1.9, 1.9},
+}

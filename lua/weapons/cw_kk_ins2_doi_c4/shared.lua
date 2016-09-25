@@ -25,11 +25,11 @@ SWEP.CanRestOnObjects = false
 SWEP.grenadeEnt = "cw_grenade_thrown"
 
 SWEP.Animations = {
-	pullpin = "pullbackhigh",
-	throw = "throw",
+	pullpin = "base_pullback",
+	throw = "base_throw",
 	
-	pull_cook = "pullbackhighbake",
-	throw_cook = "bakethrow",
+	pull_cook = "secondary_pullback",
+	throw_cook = "secondary_throw",
 	
 	base_pickup = "base_draw",
 	base_idle = "base_idle",
@@ -73,9 +73,11 @@ SWEP.Primary.DefaultClip	= -1
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "Frag Grenades"
 
-SWEP.fuseTime = 5
+SWEP.fuseTime = 10
 
-SWEP.timeToThrow = 0.9
+SWEP.timeToThrow = 1.1
+SWEP.swapTime = 0.9
 
-SWEP.spoonTime = 23/30
-SWEP.timeToThrowCook = 1.3
+SWEP.spoonTime = 0.6
+SWEP.timeToThrowCook = 1.1
+SWEP.swapTimeCook = 0.9

@@ -119,6 +119,7 @@ SWEP.FirstDeployTime = 0.5
 SWEP.DeployTime = 0.4
 SWEP.HolsterTime = 0.4
 
+SWEP.Chamberable = false
 SWEP.CanRestOnObjects = false
 SWEP.WeaponLength = 16
 

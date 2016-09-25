@@ -115,19 +115,14 @@ SWEP.HolsterTime = 0.8
 SWEP.Chamberable = false
 SWEP.BipodInstalled = true
 
-SWEP.ReloadTime = 4
-SWEP.ReloadHalt = 5.8
-SWEP.ReloadTime_Empty = 5.8
-SWEP.ReloadHalt_Empty = 7.76
-
 SWEP.WeaponLength = 28
 
 SWEP.MuzzleVelocity = 743.7
 
 SWEP.ReloadTimes = {
-	base_reload = {5.79, 5.79},
-	base_reload_empty = {7.76, 7.76},
+	base_reload = {4, 5.79},
+	base_reload_empty = {5.8, 7.76},
 	
-	deployed_reload = {5.71, 5.71},
-	deployed_reload_empty = {7.56, 7.56},
+	deployed_reload = {4, 5.71},
+	deployed_reload_empty = {5.8, 7.56},
 }

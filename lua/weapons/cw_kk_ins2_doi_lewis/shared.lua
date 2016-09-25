@@ -129,19 +129,14 @@ SWEP.Chamberable = false
 SWEP.BipodInstalled = true
 SWEP.KK_INS2_EmptyIdle = true
 
-SWEP.ReloadTime = 4.95
-SWEP.ReloadHalt = 6.5
-SWEP.ReloadTime_Empty = 4.6
-SWEP.ReloadHalt_Empty = 7.4
-
 SWEP.WeaponLength = 28
 
 SWEP.MuzzleVelocity = 740
 
 SWEP.ReloadTimes = {
-	base_reload = {6.52, 6.52},
-	base_reloadempty = {7.42, 7.42},
+	base_reload = {170/34.5, 6.52},
+	base_reloadempty = {158/34.5, 7.42},
 	
-	deployed_reload = {6.34, 6.34},
-	deployed_reload_empty = {7.21, 7.21},
+	deployed_reload = {170/35.5, 6.34},
+	deployed_reload_empty = {158/35.5, 7.21},
 }

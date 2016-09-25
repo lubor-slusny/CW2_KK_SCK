@@ -142,11 +142,6 @@ SWEP.RecoilToSpread = 0.8
 SWEP.BipodDeployTime = 1.15
 SWEP.BipodUndeployTime = 1.15
 
-SWEP.ReloadTime = 2.3
-SWEP.ReloadTime_Empty = 2.3
-SWEP.ReloadHalt = 3.3
-SWEP.ReloadHalt_Empty = 4.6
-
 SWEP.SnapToIdlePostReload = false
 
 SWEP.KK_INS2_EmptyIdle = true
@@ -154,3 +149,8 @@ SWEP.KK_INS2_EmptyIdle = true
 SWEP.WeaponLength = 22
 
 SWEP.MuzzleVelocity = 776
+
+SWEP.ReloadTimes = {
+	base_reloadfull = {80/32, 3.3},
+	base_reloadempty = {80/32, 4.6},
+}

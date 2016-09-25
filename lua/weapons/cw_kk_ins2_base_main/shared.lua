@@ -475,8 +475,10 @@ if SERVER then
 			end
 			
 			if wasProne and !isProne then
-				self:SetNextPrimaryFire(CurTime() + delay)
-				self.GlobalDelay = CurTime() + delay
+				local t = math.max(self.GlobalDelay, CurTime() + delay)
+				
+				self:SetNextPrimaryFire(t)
+				self.GlobalDelay = t
 			end
 		end
 	end

@@ -131,12 +131,6 @@ SWEP.FirstDeployTime = 0.8
 SWEP.DeployTime = 0.4
 SWEP.HolsterTime = 0.4
 
-SWEP.ReloadTime = 2.27
-SWEP.ReloadHalt = 3
-
-SWEP.ReloadTime_Empty = 2.3
-SWEP.ReloadHalt_Empty = 4.17
-
 SWEP.CanRestOnObjects = false
 SWEP.WeaponLength = 16
 

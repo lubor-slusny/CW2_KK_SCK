@@ -135,11 +135,6 @@ SWEP.HolsterTime = 0.5
 
 SWEP.RecoilToSpread = 0.8 
 
-SWEP.ReloadTime = 4
-SWEP.ReloadHalt = 5.13
-SWEP.ReloadTime_Empty = 2.2
-SWEP.ReloadHalt_Empty = 3.33
-
 SWEP.Chamberable = false
 SWEP.KK_INS2_EmptyIdle = true
 
@@ -148,6 +143,11 @@ SWEP.SightBGs = {main = 0, foldsight = 0}
 SWEP.WeaponLength = 22
 
 SWEP.MuzzleVelocity = 853
+
+SWEP.ReloadTimes = {
+	base_reloadfull = {4, 5.13},
+	base_reloadempty = {2.2, 3.33},
+}
 
 if CLIENT then
 	local bone = 66

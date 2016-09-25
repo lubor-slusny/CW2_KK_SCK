@@ -239,10 +239,10 @@ SWEP.ReloadTimes = {
 	base_reload_insert = {0.92, 0.92},
 	base_reload_end = {1.30, 1.30},
 	
-	glsetup_reload = {5.32, 6.62},
+	glsetup_reload = {5.2, 6.62},
 	
-	glsetup_in = {5.32, 6.62},
-	glsetup_in_empty = {5.32, 6.62},
+	glsetup_in = {5.2, 6.62},
+	glsetup_in_empty = {5.2, 6.62},
 	glsetup_out = {5, 5},
 	glsetup_out_empty = {2.23, 2.23},	
 }

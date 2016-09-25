@@ -90,12 +90,6 @@ SWEP.Damage = 24
 SWEP.FirstDeployTime = 1.27
 SWEP.DeployTime = 0.45
 
-SWEP.ReloadTime = 2.05
-SWEP.ReloadHalt = 2.57
-
-SWEP.ReloadTime_Empty = 2.05
-SWEP.ReloadHalt_Empty = 3.7
-
 function SWEP:PrimaryAttack()
 	if self.Owner:KeyDown(IN_USE) then
 		if CustomizableWeaponry.quickGrenade.canThrow(self) then
