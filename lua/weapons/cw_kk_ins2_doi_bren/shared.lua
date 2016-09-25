@@ -123,3 +123,11 @@ SWEP.ReloadHalt_Empty = 7.76
 SWEP.WeaponLength = 28
 
 SWEP.MuzzleVelocity = 743.7
+
+SWEP.ReloadTimes = {
+	base_reload = {5.79, 5.79},
+	base_reload_empty = {7.76, 7.76},
+	
+	deployed_reload = {5.71, 5.71},
+	deployed_reload_empty = {7.56, 7.56},
+}

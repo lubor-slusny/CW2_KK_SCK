@@ -130,6 +130,11 @@ SWEP.ReloadTime_Empty = 3
 SWEP.ReloadHalt = 4.46
 SWEP.ReloadHalt_Empty = 4.46
 
+SWEP.ReloadTimes = {
+	base_reload = {4.46, 4.46},
+	base_reload = {4.46, 4.46},
+}
+
 local clip, cyc, rate, prefix, suffix
 
 function SWEP:fireAnimFunc()

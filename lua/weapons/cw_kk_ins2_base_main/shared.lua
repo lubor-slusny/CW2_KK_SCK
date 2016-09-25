@@ -56,6 +56,7 @@ SWEP.KKINS2Wep = true
 SWEP.KKINS2RCE = false
 SWEP.KKINS2Melee = false
 SWEP.KKINS2Nade = false
+SWEP.KKINS2Revolver = false
 SWEP.KK_INS2_EmptyIdle = false
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.m67
@@ -79,7 +80,11 @@ SWEP.HolsterSpeed = 1
 SWEP.boltAction_isShot = false
 -- SWEP.boltAction_pumpTime = 0.6
 
-SWEP.ReloadTimes = {}
+SWEP.ReloadTimes = {
+	base_reload = {1, 1},
+	base_reloadempty = {1, 1},
+	base_reload_empty = {1, 1},
+}
 
 if CLIENT then	
 	SWEP.PosBasedMuz = false

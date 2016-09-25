@@ -150,9 +150,9 @@ SWEP.Animations = {
 	base_fire_aim = {"iron_fire_1","iron_fire_2","iron_fire_3","iron_fire_4"},
 	base_fire_empty = "base_dryfire",
 	base_fire_empty_aim = "iron_dryfire",
-	base_reload = "base_reload_half",				// tacticool
-	base_reload_empty = "base_reload_empty",	// empty, dryfired
-	base_reload_empty_charged = "base_reload",				// empty, charged
+	base_reload = "base_reload",
+	base_reload_close = "base_reload_half",
+	base_reload_empty = "base_reload_empty",
 	base_idle = "base_idle",
 	base_holster = "base_holster",
 	base_sprint = "base_sprint",
@@ -165,9 +165,9 @@ SWEP.Animations = {
 	bipod_fire_aim = {"deployed_iron_fire_1","deployed_iron_fire_2"},
 	bipod_fire_empty = "deployed_dryfire",
 	bipod_fire_empty_aim = "deployed_iron_dryfire",
-	bipod_reload = "deployed_reload_half",
+	bipod_reload = "deployed_reload",
+	bipod_reload_close = "deployed_reload_half",
 	bipod_reload_empty = "deployed_reload_empty",
-	bipod_reload_empty_charged = "deployed_reload",
 	bipod_out = "deployed_out",
 }
 
@@ -220,29 +220,38 @@ SWEP.FirstDeployTime = 2.6
 SWEP.DeployTime = 0.9
 SWEP.HolsterTime = 0.6
 
-SWEP.ReloadTimes = {					
-	-- base_reload = {186/31.5, 9.5},		//qc
-	-- base_reload_half = {186/31.5, 9.84},
-	-- base_reload_empty = {150/31.5, 11},
-	
-	base_reload = {7.3, 9.5},			// CVMT
+SWEP.Chamberable = false
+SWEP.BipodInstalled = true
+SWEP.WeaponLength = 28
+
+SWEP.MuzzleVelocity = 915
+
+SWEP.ReloadTimes = {
+	base_reload = {7.3, 9.5},
 	base_reload_half = {8, 9.84},
 	base_reload_empty = {9.35, 11},
-	
-	-- deployed_reload = {186/32.5, 8.77},
-	-- deployed_reload_half = {186/32.5, 9.5},
-	-- deployed_reload_empty = {150/32.5, 10.52},
 	
 	deployed_reload = {7.1, 8.77},
 	deployed_reload_half = {7.9, 9.5},
 	deployed_reload_empty = {8.85, 10.52},
 }
 
-SWEP.Chamberable = false
-SWEP.BipodInstalled = true
-SWEP.WeaponLength = 28
+function SWEP:overrideReloadAnim(prefix, suffix)
+	local clip = self:Clip1()
+	
+	if clip > 16 then
+		return prefix .. "reload" .. suffix
+	elseif clip > 0 then
+		return prefix .. "reload_close" .. suffix
+	end
+	
+	return prefix .. "reload_empty" .. suffix
+end
 
-SWEP.MuzzleVelocity = 915
+SWEP.reticleInactivityCallbacksRaw = {
+	["base_reload_close"] = 0.1,
+	["bipod_reload_close"] = 0.1,
+}
 
 if CLIENT then
 	local counterExists = file.Exists("models/weapons/stattrack.mdl", "GAME")

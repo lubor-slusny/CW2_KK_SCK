@@ -8,7 +8,7 @@ include("sh_soundscript.lua")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "Binoculars"
+	SWEP.PrintName = "Binoculars GB"
 	SWEP.CSMuzzleFlashes = true
 	
 	SWEP.IconLetter = "f"
@@ -57,7 +57,7 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/v_binoculars.mdl"
+SWEP.ViewModel		= "models/weapons/v_binoculars_british.mdl"
 SWEP.WorldModel		= "models/weapons/w_binoculars.mdl"
 
 SWEP.WMPos = Vector(4.5, 1, -3.5)

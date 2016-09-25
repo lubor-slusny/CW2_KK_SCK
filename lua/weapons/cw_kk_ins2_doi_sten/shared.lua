@@ -160,3 +160,11 @@ SWEP.Chamberable = false
 SWEP.KK_INS2_EmptyIdle = true
 
 SWEP.MuzzleVelocity = 365
+
+SWEP.ReloadTimes = {
+	base_reload = {4.03, 4.03},
+	base_reloadempty = {5.20, 5.20},
+	
+	foregrip_reload = {4.03, 4.03},
+	foregrip_reloadempty = {5.20, 5.20},
+}

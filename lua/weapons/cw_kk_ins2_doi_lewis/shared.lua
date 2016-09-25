@@ -65,7 +65,7 @@ SWEP.Animations = {
 	bipod_fire = {"deployed_fire_1", "deployed_fire_2"},
 	bipod_fire_aim = {"deployed_iron_fire_1", "deployed_iron_fire_2"},
 	bipod_fire_last = "deployed_fire_last",
-	bipod_fire_last_aim = "deployed_fire_last",
+	bipod_fire_last_aim = "deployed_iron_fire_last",
 	bipod_fire_empty = "deployed_dryfire",
 	bipod_fire_empty_aim = "deployed_iron_dryfire",
 	bipod_reload = "deployed_reload",
@@ -137,3 +137,11 @@ SWEP.ReloadHalt_Empty = 7.4
 SWEP.WeaponLength = 28
 
 SWEP.MuzzleVelocity = 740
+
+SWEP.ReloadTimes = {
+	base_reload = {6.52, 6.52},
+	base_reloadempty = {7.42, 7.42},
+	
+	deployed_reload = {6.34, 6.34},
+	deployed_reload_empty = {7.21, 7.21},
+}

@@ -145,6 +145,13 @@ SWEP.WeaponLength = 20
 
 SWEP.MuzzleVelocity = 607
 
+SWEP.ReloadTimes = {
+	base_reload = {3.50, 3.50},
+	base_reloadempty = {5.25, 5.25},
+	base_reload_ext = {3.50, 3.50},
+	base_reloadempty_ext = {5.25, 5.25},
+}
+
 if CLIENT then 
 	function SWEP:updateStandardParts()
 		self:setElementActive("kk_ins2_mag_m1a1_15", !self.ActiveAttachments.kk_ins2_mag_m1a1_30)

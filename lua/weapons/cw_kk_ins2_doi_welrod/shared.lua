@@ -119,12 +119,11 @@ SWEP.FirstDeployTime = 2.2
 SWEP.DeployTime = 0.4
 SWEP.HolsterTime = 0.4
 
-SWEP.ReloadTime = 2.27
-SWEP.ReloadHalt = 3.17
-
-SWEP.ReloadTime_Empty = 2.27
-SWEP.ReloadHalt_Empty = 4.67
-
 SWEP.MuzzleVelocity = 300
 
-SWEP.boltAction_pumpTime = 2.2
+SWEP.ReloadTimes = {
+	base_fire_end = {2.2, 2.2},
+	iron_fire_end = {2.2, 2.2},
+	base_reload = {2.27, 3.17},
+	base_reloadempty = {2.27, 4.67},
+}

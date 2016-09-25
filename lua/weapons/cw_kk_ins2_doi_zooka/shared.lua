@@ -63,7 +63,7 @@ SWEP.Animations = {
 	base_fire_aim = "iron_fire",
 	base_fire_empty = "base_dryfire",
 	base_fire_empty_aim = "iron_dryfire",
-	base_reload = "base_reload",
+	base_reload_empty = "base_reload",
 	base_idle = "base_idle",
 	base_holster = "base_holster",
 	base_sprint = "base_sprint",
@@ -125,10 +125,16 @@ SWEP.FirstDeployTime = 6.9 // so long
 SWEP.DeployTime = 1
 SWEP.HolsterTime = 1
 
-SWEP.ReloadTime = 4.4
-SWEP.ReloadTime_Empty = 4.4
-SWEP.ReloadHalt = 6.4
-SWEP.ReloadHalt_Empty = 6.4
+SWEP.ReloadTimes = {
+	base_ready = {4.7, 6.87},
+	base_ready_phosphorus = {4.7, 6.87},
+	base_reload = {4.4, 6.43},
+	base_reload_phosphorus = {4.4, 6.43},
+}
+
+SWEP.reloadProgressAnimsRaw = {
+	base_pickup = true
+}
 
 local clip, cyc, rate, prefix, suffix
 

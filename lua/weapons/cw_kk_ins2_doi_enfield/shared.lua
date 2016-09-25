@@ -62,11 +62,6 @@ SWEP.Attachments = {
 }
 
 SWEP.Animations = {
-	reload_start = "",
-	insert = "",
-	reload_end = "",
-	idle = "",	
-	
 	base_pickup = "base_ready",
 	base_draw = "base_draw",
 	base_draw_empty = "base_draw_empty",
@@ -231,16 +226,23 @@ SWEP.KK_INS2_EmptyIdle = true
 SWEP.KK_INS2_EmptyIdleGL = true
 SWEP.WeaponLength = 38
 
-SWEP.gl_on_time = 6.62
-SWEP.gl_off_time = 5.0
-SWEP.gl_off_shot_time = 2.23
-SWEP.gl_on_ReloadTime = 5.32
-SWEP.gl_on_ReloadHalt = 6.62
-
-SWEP.ReloadTime = 5.19
-SWEP.ReloadHalt = 7.39
-SWEP.ReloadTime_Empty = 5.19
-SWEP.ReloadHalt_Empty = 7.39
-
 SWEP.MuzzleVelocity = 744
-SWEP.boltAction_pumpTime = 1.2
+
+SWEP.ReloadTimes = {
+	base_fire_end = {1.1, 1.1},
+	iron_fire_end = {1.3, 1.3},
+	
+	base_reload_full_clip = {4.81, 4.81},
+	base_reload_empty_clip = {5.19, 7.39},
+	base_reload_start = {1.12, 1.12},
+	base_reload_start_empty = {1.12, 1.12},
+	base_reload_insert = {0.92, 0.92},
+	base_reload_end = {1.30, 1.30},
+	
+	glsetup_reload = {5.32, 6.62},
+	
+	glsetup_in = {5.32, 6.62},
+	glsetup_in_empty = {5.32, 6.62},
+	glsetup_out = {5, 5},
+	glsetup_out_empty = {2.23, 2.23},	
+}

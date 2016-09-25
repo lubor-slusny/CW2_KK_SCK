@@ -298,9 +298,9 @@ function SWEP:pickupAnimFunc(mode)
 	mode = mode or self:getForegripMode()
 	anim = "pickup"
 	
-	if self.KKINS2Melee or self.KKINS2Nade then
-		anim = "draw"
-	end
+	-- if self.KKINS2Melee or self.KKINS2Nade then
+		-- anim = "draw"
+	-- end
 	
 	if SERVER then
 		self:sendWeaponAnim(mode .. anim, self.DrawSpeed, 0)

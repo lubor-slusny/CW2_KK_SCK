@@ -274,7 +274,11 @@ function SWEP:beginReload()
 			anim = "reload"
 		end
 		
-		anim = animPrefix .. anim .. animSuffix
+		if self.overrideReloadAnim then
+			anim = self:overrideReloadAnim(animPrefix, animSuffix)
+		else
+			anim = animPrefix .. anim .. animSuffix
+		end
 		
 		self:sendWeaponAnim(anim, self.ReloadSpeed, 0)
 		
@@ -317,6 +321,18 @@ function SWEP:beginReload()
 				if ammo - 1 <= 0 then
 					self.ShotgunReloadState = 2
 				end
+			end)
+		end
+
+		if self.KKINS2Revolver then
+			CustomizableWeaponry.actionSequence.new(self, reloadTime, nil, function()
+				if self.ShotgunReloadState == 0 then return end // its also possible that its already 2 because user pressed attack button
+				
+				local amt = self:Clip1()
+				self.Owner:SetAmmo(self.Owner:GetAmmoCount(self.Primary.Ammo) + amt, self.Primary.Ammo)
+				self:SetClip1(0)
+				
+				self.ShotgunReloadState = 1
 			end)
 		end
 		
@@ -426,7 +442,7 @@ function SWEP:finishReloadShotgun()
 	if self.ShotgunReloadState == 1 then
 		keyDown = self.Owner:KeyDown(IN_ATTACK) or self.Owner:KeyDown(IN_ATTACK2)
 		
-		if self.lastMag < self:Clip1() and keyDown then
+		if (self.KKINS2Revolver and 0 or self.lastMag) < self:Clip1() and keyDown then
 			self.ShotgunReloadState = 2
 		end
 		

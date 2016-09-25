@@ -133,3 +133,8 @@ SWEP.WeaponLength = 16
 SWEP.KK_INS2_EmptyIdle = true
 
 SWEP.MuzzleVelocity = 365
+
+SWEP.ReloadTimes = {
+	base_reload = {2.67, 2.67},
+	base_reloadempty = {2.83, 2.83},
+}

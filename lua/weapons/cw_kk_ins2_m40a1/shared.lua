@@ -141,11 +141,6 @@ if CustomizableWeaponry_KK.HOME then
 end
 
 SWEP.Animations = {
-	reload_start = "",
-	insert = "",
-	reload_end = "",
-	idle = "",	
-	
 	base_pickup = "base_ready",
 	base_draw = "base_draw",
 	base_fire = {"base_fire_start", "base_fire_last"},
@@ -236,12 +231,6 @@ SWEP.RecoilToSpread = 0.8
 SWEP.BipodDeployTime = 1.15
 SWEP.BipodUndeployTime = 1.15
 
-SWEP.ReloadStartTime = 0.9
-SWEP.ReloadStartTimeEmpty = 0.9
-SWEP.InsertShellTime = 0.825
-SWEP.ReloadFinishWait = 1.1
-SWEP.ReloadFinishWaitEmpty = 1.1
-
 SWEP.SnapToIdlePostReload = false
 
 SWEP.Chamberable = false
@@ -253,7 +242,21 @@ SWEP.GlobalDelayOnShoot = SWEP.FireDelay
 SWEP.WeaponLength = 38
 
 SWEP.MuzzleVelocity = 777
-SWEP.boltAction_pumpTime = 1.6
+
+SWEP.ReloadTimes = {
+	base_fire_end = {1.6, 1.6},
+	iron_fire_end = {1.75, 1.75},
+	base_reload_start = {0.9, 0.9},
+	base_reload_insert = {0.825, 0.825},
+	base_reload_end = {1.1, 1.1},
+	base_reload_end_empty = {1.1, 1.1},
+	
+	deployed_fire_end = {1.7, 1.7},
+	deployed_iron_fire_end = {1.5, 1.5},
+	deployed_reload_start = {0.9, 0.9},
+	deployed_reload_insert = {0.825, 0.825},
+	deployed_reload_end = {1.1, 1.1},
+}
 
 if CLIENT then
 	function SWEP:updateOtherParts() // call me clientSideThink
