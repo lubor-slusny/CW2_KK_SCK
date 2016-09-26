@@ -8,7 +8,7 @@ AddCSLuaFile()
 	CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_MELEE", {"weapons/universal/weapon_melee_01.wav", "weapons/universal/weapon_melee_02.wav", "weapons/universal/weapon_melee_03.wav", "weapons/universal/weapon_melee_04.wav", "weapons/universal/weapon_melee_05.wav", "weapons/universal/weapon_melee_06.wav"})
 	CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_MELEE_HITPLY", {"weapons/universal/weapon_melee_hitflesh_01.wav", "weapons/universal/weapon_melee_hitflesh_02.wav", "weapons/universal/weapon_melee_hitflesh_03.wav", "weapons/universal/weapon_melee_hitflesh_04.wav"})
 	CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_MELEE_HITWORLD", {"weapons/universal/weapon_melee_hitworld_01.wav", "weapons/universal/weapon_melee_hitworld_02.wav"})
-		
+	
 	CustomizableWeaponry:addRegularSound("CW_KK_INS2_DOI_BAYONET_DRAW", {"weapons/universal/bayonet_draw_01.wav", "weapons/universal/bayonet_draw_02.wav", "weapons/universal/bayonet_draw_03.wav"})
 	CustomizableWeaponry:addRegularSound("CW_KK_INS2_DOI_BAYONET_HOLSTER", {"weapons/universal/bayonet_holster_01.wav", "weapons/universal/bayonet_holster_02.wav", "weapons/universal/bayonet_holster_03.wav"})
 
@@ -25,12 +25,14 @@ if CLIENT then
 	local killCol = Color(255, 80, 0, 150)
 	local white = Color(255, 255, 255, 150)
 
+	killicon.AddFont("cw_kk_ins2_doi_brass",		"CW_KillIcons", "j", killCol)
 	killicon.AddFont("cw_kk_ins2_doi_k98kknife",	"CW_KillIcons", "j", killCol)
 	killicon.AddFont("cw_kk_ins2_doi_garandknife",	"CW_KillIcons", "j", killCol)
 	killicon.AddFont("cw_kk_ins2_doi_shovel_de",	"CW_KillIcons", "j", killCol)
 	killicon.AddFont("cw_kk_ins2_doi_shovel_gb",	"CW_KillIcons", "j", killCol)
 	killicon.AddFont("cw_kk_ins2_doi_shovel_us",	"CW_KillIcons", "j", killCol)
 
+	killicon.AddFont("cw_kk_ins2_doi_c96",			"CW_KillIcons", "a", killCol)
 	killicon.AddFont("cw_kk_ins2_doi_luger",		"CW_KillIcons", "a", killCol)
 	killicon.AddFont("cw_kk_ins2_doi_m1911",		"CW_KillIcons", "a", killCol)
 	killicon.AddFont("cw_kk_ins2_doi_p38",			"CW_KillIcons", "a", killCol)
@@ -38,6 +40,7 @@ if CLIENT then
 	killicon.AddFont("cw_kk_ins2_doi_webley",		"CW_KillIcons", "a", killCol)
 	killicon.AddFont("cw_kk_ins2_doi_welrod",		"CW_KillIcons", "a", killCol)
 
+	killicon.AddFont("cw_kk_ins2_doi_c96_c",		"CW_KillIcons", "x", killCol)
 	killicon.AddFont("cw_kk_ins2_doi_mp40",			"CW_KillIcons", "x", killCol)
 	killicon.AddFont("cw_kk_ins2_doi_sten",			"CW_KillIcons", "x", killCol)
 	killicon.AddFont("cw_kk_ins2_doi_thom",			"CW_KillIcons", "q", killCol)
@@ -70,7 +73,9 @@ if CLIENT then
 	killicon.AddFont("cw_kk_ins2_doi_tankfist",		"HL2MPTypeDeath", "3", killCol)
 	killicon.AddFont("cw_kk_ins2_doi_zooka",		"HL2MPTypeDeath", "3", killCol)
 	
-	killicon.AddFont("cw_kk_ins2_doi_bino",			"HL2MPTypeDeath", "3", killCol)
+	killicon.AddFont("cw_kk_ins2_doi_bino_de",		"HL2MPTypeDeath", "3", killCol)
+	killicon.AddFont("cw_kk_ins2_doi_bino_gb",		"HL2MPTypeDeath", "3", killCol)
+	killicon.AddFont("cw_kk_ins2_doi_bino_us",		"HL2MPTypeDeath", "3", killCol)
 	
 	// but w8, theres more
 	

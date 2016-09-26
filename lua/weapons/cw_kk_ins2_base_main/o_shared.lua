@@ -254,9 +254,6 @@ function SWEP:beginReload()
 
 	self.lastMag = mag
 	
-	animPrefix = self:getForegripMode()
-	animSuffix = self._KK_INS2_customReloadSuffix
-	
 	if self.dt.INS2GLActive or !self.ShotgunReload then
 		if self.dt.INS2GLActive then
 			anim = "reload"
@@ -276,7 +273,15 @@ function SWEP:beginReload()
 		
 		if self.reloadAnimFunc then
 			reloadTime, reloadHalt = self:reloadAnimFunc(mag)
+			
+			if not reloadTime or not reloadHalt then
+				error("] (" .. string.upper(self:GetClass()) .. "):reloadAnimFunc() returns invalid values.")
+				return
+			end
 		else
+			animPrefix = self:getForegripMode()
+			animSuffix = self._KK_INS2_customReloadSuffix
+			
 			if self.overrideReloadAnim then
 				anim = self:overrideReloadAnim(animPrefix, animSuffix)
 			else
@@ -286,6 +291,11 @@ function SWEP:beginReload()
 			self:sendWeaponAnim(anim, self.ReloadSpeed, 0)
 			
 			reloadTime, reloadHalt = self:getAnimTimes(anim)
+			
+			if not reloadTime or not reloadHalt then
+				error("] (" .. string.upper(self:GetClass()) .. ") Invalid SWEP.ReloadTimes setup for SWEP.Animations." .. anim)
+				return
+			end
 		end
 		
 		reloadTime = reloadTime / self.ReloadSpeed
@@ -297,6 +307,9 @@ function SWEP:beginReload()
 		self.GlobalDelay = CT + reloadHalt
 	else
 		self.WasEmpty = mag == 0
+		
+		animPrefix = self:getForegripMode()
+		animSuffix = self._KK_INS2_customReloadSuffix
 		
 		if self.WasEmpty then
 			anim = "reload_start_empty"

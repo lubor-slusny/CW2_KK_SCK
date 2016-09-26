@@ -41,14 +41,10 @@ local seqName, seqTable
 
 function SWEP:getAnimTimes(animName)
 	if not animName then
-		local msg = tostring(self) .. ":getAnimTimes() called without parameter."
-		error(msg)
 		return
 	end
 	
 	if not self.ReloadTimes then
-		local msg = tostring(self) .. " Missing main ReloadTimes table."
-		error(msg)
 		return
 	end
 	
@@ -64,11 +60,7 @@ function SWEP:getAnimTimes(animName)
 	
 	seqTable = self.ReloadTimes[seqName]
 	
-	-- print(animName, seqName, seqTable)
-	
-	if not seqTable then 
-		local msg = tostring(self) .. " Missing ReloadTimes setup for animation \"" .. animName .. "\"."
-		error(msg)
+	if not seqTable then
 		return
 	end
 	
@@ -80,19 +72,21 @@ end
 //-----------------------------------------------------------------------------
 
 if CLIENT then
+	local round, clamp = math.Round, math.Clamp
 	local cvRig = GetConVar("cw_kk_ins2_rig")
-	local currentRig
+	local currentRigs = {}
+	local set
 	
 	function SWEP:updateHands()
-		currentRig = math.Round(math.Clamp(cvRig:GetInt(),1,#CustomizableWeaponry_KK.ins2.hands), 0)
+		set = round(clamp(cvRig:GetInt(),1,#CustomizableWeaponry_KK.ins2.hands), 0)
 		
-		if self._KK_INS2_rig != currentRig then
-			if self.CW_KK_HANDS then
-				self.CW_KK_HANDS:SetModel(CustomizableWeaponry_KK.ins2.hands[currentRig])
+		if set != currentRigs[self] then
+			if IsValid(self.CW_KK_HANDS) then
+				self.CW_KK_HANDS:SetModel(CustomizableWeaponry_KK.ins2.hands[set])
 			end
 		end
 		
-		self._KK_INS2_rig = currentRig
+		currentRigs[self] = set
 	end
 end
 
