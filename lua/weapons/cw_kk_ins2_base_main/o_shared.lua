@@ -243,9 +243,9 @@ function SWEP:beginReload()
 		return 
 	end
 	
-	if !self.dt.INS2GLActive and self.ActiveAttachments.kk_ins2_ww2_stripper and self:Clip1() > 0 then 
-		return 
-	end
+	-- if !self.dt.INS2GLActive and self.ActiveAttachments.kk_ins2_ww2_stripper and self:Clip1() > 0 then 
+		-- return 
+	-- end
 	
 	-- self:updateReloadTimes()
 	

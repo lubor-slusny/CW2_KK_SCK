@@ -57,6 +57,7 @@ SWEP.KKINS2RCE = false
 SWEP.KKINS2Melee = false
 SWEP.KKINS2Nade = false
 SWEP.KKINS2Revolver = false
+
 SWEP.KK_INS2_EmptyIdle = false
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.m67
@@ -124,45 +125,45 @@ if CLIENT then
 end
 
 SWEP.AttachmentExclusions = {
-	["bg_foldsight"] = {"kk_ins2_magnifier", "kk_ins2_sights_cstm"},
-	["kk_ins2_cstm_acog"] = {"kk_ins2_magnifier"},
-	["kk_ins2_cstm_cmore"] = {"kk_ins2_magnifier"},
-	["kk_ins2_cstm_barska"] = {"kk_ins2_magnifier"},
-	["kk_ins2_cstm_microt1"] = {"kk_ins2_magnifier"},
-	["kk_ins2_cstm_sureshot"] = {"kk_ins2_magnifier"},
-	["kk_ins2_cstm_susat"] = {"kk_ins2_magnifier"},
-	["kk_ins2_aimpoint"] = {"kk_ins2_sights_cstm"},
-	["kk_ins2_elcan"] = {"kk_ins2_magnifier", "kk_ins2_sights_cstm"},
-	["kk_ins2_eotech"] = {"kk_ins2_magnifier", "kk_ins2_sights_cstm"},
-	["kk_ins2_kobra"] = {"kk_ins2_magnifier", "kk_ins2_sights_cstm"},
-	["kk_ins2_po4"] = {"kk_ins2_magnifier", "kk_ins2_sights_cstm"},
-	["kk_ins2_scope_m40"] = {"kk_ins2_magnifier", "kk_ins2_sights_cstm"},
-	["kk_ins2_scope_mosin"] = {"kk_ins2_magnifier", "kk_ins2_sights_cstm"},
+	["bg_foldsight"] = {"kk_ins2_magnifier", "kk_ins2_sights_cstm"}, 
+	["kk_ins2_cstm_acog"] = {"kk_ins2_magnifier"}, 
+	["kk_ins2_cstm_cmore"] = {"kk_ins2_magnifier"}, 
+	["kk_ins2_cstm_barska"] = {"kk_ins2_magnifier"}, 
+	["kk_ins2_cstm_microt1"] = {"kk_ins2_magnifier"}, 
+	["kk_ins2_cstm_sureshot"] = {"kk_ins2_magnifier"}, 
+	["kk_ins2_cstm_susat"] = {"kk_ins2_magnifier"}, 
+	["kk_ins2_aimpoint"] = {"kk_ins2_sights_cstm"}, 
+	["kk_ins2_elcan"] = {"kk_ins2_magnifier", "kk_ins2_sights_cstm"}, 
+	["kk_ins2_eotech"] = {"kk_ins2_magnifier", "kk_ins2_sights_cstm"}, 
+	["kk_ins2_kobra"] = {"kk_ins2_magnifier", "kk_ins2_sights_cstm"}, 
+	["kk_ins2_po4"] = {"kk_ins2_magnifier", "kk_ins2_sights_cstm"}, 
+	["kk_ins2_scope_m40"] = {"kk_ins2_magnifier", "kk_ins2_sights_cstm"}, 
+	["kk_ins2_scope_mosin"] = {"kk_ins2_magnifier", "kk_ins2_sights_cstm"}, 
 }
 
 SWEP.AttachmentDependencies = {
-	-- ["kk_ins2_aimpoint"] = {"kk_ins2_sights_base"},
-	-- ["kk_ins2_elcan"] = {"kk_ins2_sights_base"},
-	-- ["kk_ins2_eotech"] = {"kk_ins2_sights_base"},
-	-- ["kk_ins2_kobra"] = {"kk_ins2_sights_base"},
-	-- ["kk_ins2_po4"] = {"kk_ins2_sights_base"},
-	-- ["kk_ins2_scope_m40"] = {"kk_ins2_sights_base"},
-	-- ["kk_ins2_scope_mosin"] = {"kk_ins2_sights_base"},
+	-- ["kk_ins2_aimpoint"] = {"kk_ins2_sights_base"}, 
+	-- ["kk_ins2_elcan"] = {"kk_ins2_sights_base"}, 
+	-- ["kk_ins2_eotech"] = {"kk_ins2_sights_base"}, 
+	-- ["kk_ins2_kobra"] = {"kk_ins2_sights_base"}, 
+	-- ["kk_ins2_po4"] = {"kk_ins2_sights_base"}, 
+	-- ["kk_ins2_scope_m40"] = {"kk_ins2_sights_base"}, 
+	-- ["kk_ins2_scope_mosin"] = {"kk_ins2_sights_base"}, 
 	
-	["kk_ins2_cstm_cmore"] = {"kk_ins2_sights_cstm"},
-	["kk_ins2_cstm_barska"] = {"kk_ins2_sights_cstm"},
-	["kk_ins2_cstm_eotechxps"] = {"kk_ins2_sights_cstm"},
-	["kk_ins2_cstm_microt1"] = {"kk_ins2_sights_cstm"},
-	["kk_ins2_cstm_compm4s"] = {"kk_ins2_sights_cstm"},
-	["kk_ins2_cstm_acog"] = {"kk_ins2_sights_cstm"},
-	["kk_ins2_cstm_susat"] = {"kk_ins2_sights_cstm"},
+	["kk_ins2_cstm_cmore"] = {"kk_ins2_sights_cstm"}, 
+	["kk_ins2_cstm_barska"] = {"kk_ins2_sights_cstm"}, 
+	["kk_ins2_cstm_eotechxps"] = {"kk_ins2_sights_cstm"}, 
+	["kk_ins2_cstm_microt1"] = {"kk_ins2_sights_cstm"}, 
+	["kk_ins2_cstm_compm4s"] = {"kk_ins2_sights_cstm"}, 
+	["kk_ins2_cstm_acog"] = {"kk_ins2_sights_cstm"}, 
+	["kk_ins2_cstm_susat"] = {"kk_ins2_sights_cstm"}, 
 }
 
 SWEP.autoCenterExclusions = {
-	[CW_RUNNING] = true,
-	[CW_ACTION] = true,
-	[CW_HOLSTER_START] = true,
-	[CW_HOLSTER_END] = true,
+	[CW_RUNNING] = true, 
+	[CW_ACTION] = true, 
+	[CW_HOLSTER_START] = true, 
+	[CW_HOLSTER_END] = true, 
 	[CW_AIMING] = true
 }
 
@@ -374,7 +375,7 @@ if CLIENT then
 end
 
 //-----------------------------------------------------------------------------
-// toggleGLMode is code from SecondaryAttack that switches INS2GLActive state,
+// toggleGLMode is code from SecondaryAttack that switches INS2GLActive state, 
 // edited for customized grenade launcher behavior
 //-----------------------------------------------------------------------------
 
@@ -383,23 +384,28 @@ local anim, reloadTime, reloadHalt
 function SWEP:toggleGLMode(IFTP)
 	if self._currentGrenadeLauncher.ww2GrenadeLauncher then
 		if self.dt.INS2GLActive then
-			self.dt.INS2GLActive = false
-			
 			if self.M203Chamber then
 				anim = "gl_turn_off"
 			else
 				anim = "gl_turn_off_empty"
 			end
 			
-			if (SERVER and SP) or (CLIENT and MP and IFTP) then
-				self:sendWeaponAnim(anim,1,0)
-			end
-			
 			reloadTime, reloadHalt = self:getAnimTimes(anim)
 			
-			self:delayEverything(reloadHalt)
-			
-			self:unloadM203(true)
+			if self.M203Chamber then
+				local oldMAD = wep.meleeAttackDelay or 0
+				
+				CustomizableWeaponry.actionSequence.new(self, reloadTime, nil, function()
+					local newMAD = wep.meleeAttackDelay or 0
+					
+					if math.abs(newMAD - oldMAD) < 0.1 then
+						self.dt.INS2GLActive = false
+						self:unloadM203(true)
+					end
+				end)
+			else
+				self.dt.INS2GLActive = false
+			end
 		else
 			if self.Owner:GetAmmoCount("40MM") < 1 then 
 				return 
@@ -413,38 +419,32 @@ function SWEP:toggleGLMode(IFTP)
 				anim = "gl_turn_on"
 			end
 			
-			if (SERVER and SP) or (CLIENT and MP and IFTP) then
-				self:sendWeaponAnim(anim,1,0)
-			end
-			
 			reloadTime, reloadHalt = self:getAnimTimes(anim)
 			
-			CustomizableWeaponry.actionSequence.new(self, reloadTime, nil, function()
-				self.M203Chamber = true
-				if SERVER then
-					self.Owner:RemoveAmmo(1, "40MM")
-					SendUserMessage("CW_KK_INS2_READYM203", self.Owner)
-				end
-			end)
-			
-			self:delayEverything(reloadHalt)
+			self.ReloadDelay = CurTime() + reloadTime
 		end
+	
+		if (SERVER and SP) or (CLIENT and MP and IFTP) then
+			self:sendWeaponAnim(anim, 1, 0)
+		end
+		
+		self:delayEverything(reloadHalt)
+		self:setGlobalDelay(reloadHalt)
 	else
 		if self.dt.INS2GLActive then
 			self.dt.INS2GLActive = false
-			
-			if (SERVER and SP) or (CLIENT and MP and IFTP) then
-				self:sendWeaponAnim("gl_turn_off",1.5,0)
-			end
+			anim = "gl_turn_off"
 		else
 			self.dt.INS2GLActive = true
-			
-			if (SERVER and SP) or (CLIENT and MP and IFTP) then
-				self:sendWeaponAnim("gl_turn_on",1.5,0)
-			end
+			anim = "gl_turn_on"
+		end
+		
+		if (SERVER and SP) or (CLIENT and MP and IFTP) then
+			self:sendWeaponAnim(anim, 1.5, 0)
 		end
 		
 		self:delayEverything(0.6)
+		self:setGlobalDelay(0.6)
 	end
 end
 

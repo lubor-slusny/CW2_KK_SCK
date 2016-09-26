@@ -3,6 +3,11 @@ local function shell(wep)
 	wep:shellEvent() 
 end
 
+local function bulletsToClip(wep)	
+	-- wep._bulletsToClip = true
+	wep._loadingNewBelt = false
+end
+
 SWEP.Sounds = {
 	base_ready = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
@@ -54,6 +59,7 @@ SWEP.Sounds = {
 		{time = 37/33.4, sound = "CW_KK_INS2_DOI_SPRING_FETCHMAG"},
 		{time = 64/33.4, sound = "CW_KK_INS2_DOI_SPRING_MAGIN"},
 		{time = 80/33.4, sound = "CW_KK_INS2_DOI_SPRING_ROUNDSIN"},
+		{time = 90/33.4, sound = "", callback = bulletsToClip},
 		{time = 111/33.4, sound = "CW_KK_INS2_DOI_SPRING_BOLTFORWARDSTRIPPERCLIP"},
 		{time = 112/33.4, sound = "CW_KK_INS2_DOI_SPRING_STRIPPERCLIPEJECT"},
 		{time = 119/33.4, sound = "CW_KK_INS2_DOI_SPRING_BOLTLATCH"},
@@ -69,6 +75,7 @@ SWEP.Sounds = {
 		{time = 37/33.4, sound = "CW_KK_INS2_DOI_SPRING_FETCHMAG"},
 		{time = 64/33.4, sound = "CW_KK_INS2_DOI_SPRING_MAGIN"},
 		{time = 80/33.4, sound = "CW_KK_INS2_DOI_SPRING_ROUNDSIN"},
+		{time = 90/33.4, sound = "", callback = bulletsToClip},
 		{time = 111/33.4, sound = "CW_KK_INS2_DOI_SPRING_BOLTFORWARDSTRIPPERCLIP"},
 		{time = 112/33.4, sound = "CW_KK_INS2_DOI_SPRING_STRIPPERCLIPEJECT"},
 		{time = 119/33.4, sound = "CW_KK_INS2_DOI_SPRING_BOLTLATCH"},

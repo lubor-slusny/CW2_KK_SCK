@@ -3,6 +3,31 @@ local function shell(wep)
 	wep:shellEvent() 
 end
 
+local function bulletsToClip(wep)	
+	-- wep._bulletsToClip = true
+	wep._loadingNewBelt = false
+end
+
+// joke or realism?
+
+local function blankLoaded(wep)
+	wep._blankWW2Loaded = true
+end
+
+local function removeBlank(wep)
+	wep._blankWW2Loaded = false
+end
+
+local function dryFireInterruptedGL(wep)
+	if wep._blankWW2Loaded then
+		removeBlank(wep)
+		wep:CreateMuzzle()
+		wep:EmitSound(wep.FireSound)
+	else
+		wep:EmitSound("CW_KK_INS2_DOI_ENFIELD_EMPTY")
+	end
+end
+
 SWEP.Sounds = {
 	base_ready = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
@@ -52,6 +77,7 @@ SWEP.Sounds = {
 		{time = 64/36, sound = "CW_KK_INS2_DOI_ENFIELD_MAGIN"},
 		{time = 85/36, sound = "CW_KK_INS2_DOI_ENFIELD_ROUNDSIN"},
 		// { event 46 90 ""},
+		{time = 90/36, sound = "", callback = bulletsToClip},
 		{time = 113/36, sound = "CW_KK_INS2_DOI_ENFIELD_CLIPREMOVE"},
 		{time = 138/36, sound = "CW_KK_INS2_DOI_ENFIELD_BOLTFORWARD"},
 		{time = 146/36, sound = "CW_KK_INS2_DOI_ENFIELD_BOLTLATCH"},
@@ -72,6 +98,7 @@ SWEP.Sounds = {
 		{time = 153/36, sound = "CW_KK_INS2_DOI_ENFIELD_MAGIN"},
 		{time = 171/36, sound = "CW_KK_INS2_DOI_ENFIELD_ROUNDSIN"},
 		// { event 46 176 ""},
+		{time = 176/36, sound = "", callback = bulletsToClip},
 		{time = 198/36, sound = "CW_KK_INS2_DOI_ENFIELD_CLIPREMOVE"},
 		{time = 223/36, sound = "CW_KK_INS2_DOI_ENFIELD_BOLTFORWARD"},
 		{time = 231/36, sound = "CW_KK_INS2_DOI_ENFIELD_BOLTLATCH"},
@@ -82,10 +109,12 @@ SWEP.Sounds = {
 		-- { event AE_WPN_RELOAD_OFFSCREEN 42 ""},
 		{time = 19/36, sound = "CW_KK_INS2_DOI_ENFIELD_BOLTRELEASE"},
 		{time = 27/36, sound = "CW_KK_INS2_DOI_ENFIELD_BOLTBACK"},
+		{time = 29/36, sound = "", callback = shell},
 		{time = 42/36, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
 		{time = 64/36, sound = "CW_KK_INS2_DOI_ENFIELD_MAGIN"},
 		{time = 85/36, sound = "CW_KK_INS2_DOI_ENFIELD_ROUNDSIN"},
 		-- { event 46 90 ""},
+		{time = 90/36, sound = "", callback = bulletsToClip},
 		{time = 113/36, sound = "CW_KK_INS2_DOI_ENFIELD_CLIPREMOVE"},
 		{time = 138/36, sound = "CW_KK_INS2_DOI_ENFIELD_BOLTFORWARD"},
 		{time = 146/36, sound = "CW_KK_INS2_DOI_ENFIELD_BOLTLATCH"},
@@ -149,12 +178,12 @@ SWEP.Sounds = {
 	glsetup_in = {
 		{time = 19/35.5, sound = "CW_KK_INS2_DOI_ENFIELD_BOLTRELEASE"},
 		{time = 27/35.5, sound = "CW_KK_INS2_DOI_ENFIELD_BOLTBACK"},
-		{time = 66/35.5, sound = "CW_KK_INS2_DOI_ENFIELD_BULLETIN"},
+		{time = 66/35.5, sound = "CW_KK_INS2_DOI_ENFIELD_BULLETIN", callback = blankLoaded},
 		{time = 99/35.5, sound = "CW_KK_INS2_DOI_ENFIELD_BOLTFORWARD"},
 		{time = 106/35.5, sound = "CW_KK_INS2_DOI_ENFIELD_BOLTLATCH"},
 		{time = 134/35.5, sound = "CW_KK_INS2_DOI_ENFIELD_RATTLE"},
 		{time = 166/35.5, sound = "CW_KK_INS2_DOI_ENFIELD_GlLoad1"},
-		{time = 178/35.5, sound = "CW_KK_INS2_DOI_ENFIELD_GlLoad2"},
+		{time = 178/35.5, sound = "CW_KK_INS2_DOI_ENFIELD_GlLoad2", callback = removeBlank},
 		{time = 210/35.5, sound = "CW_KK_INS2_DOI_ENFIELD_RATTLE"},
 		{time = 212/35.5, sound = "CW_KK_INS2_DOI_ENFIELD_SHOULDER"},
 	},
@@ -164,12 +193,12 @@ SWEP.Sounds = {
 		{time = 27/35.5, sound = "CW_KK_INS2_DOI_ENFIELD_BOLTBACK"},
 		{time = 29/35.5, sound = "", callback = shell},
 		// { event AE_CL_CREATE_PARTICLE_BRASS 29 ""},
-		{time = 66/35.5, sound = "CW_KK_INS2_DOI_ENFIELD_BULLETIN"},
+		{time = 66/35.5, sound = "CW_KK_INS2_DOI_ENFIELD_BULLETIN", callback = blankLoaded},
 		{time = 99/35.5, sound = "CW_KK_INS2_DOI_ENFIELD_BOLTFORWARD"},
 		{time = 106/35.5, sound = "CW_KK_INS2_DOI_ENFIELD_BOLTLATCH"},
 		{time = 134/35.5, sound = "CW_KK_INS2_DOI_ENFIELD_RATTLE"},
 		{time = 166/35.5, sound = "CW_KK_INS2_DOI_ENFIELD_GlLoad1"},
-		{time = 178/35.5, sound = "CW_KK_INS2_DOI_ENFIELD_GlLoad2"},
+		{time = 178/35.5, sound = "CW_KK_INS2_DOI_ENFIELD_GlLoad2", callback = removeBlank},
 		{time = 210/35.5, sound = "CW_KK_INS2_DOI_ENFIELD_RATTLE"},
 		{time = 212/35.5, sound = "CW_KK_INS2_DOI_ENFIELD_SHOULDER"},
 	},
@@ -207,26 +236,26 @@ SWEP.Sounds = {
 	},
 
 	glsetup_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_DOI_ENFIELD_EMPTY"},
+		{time = 0, sound = "", callback = dryFireInterruptedGL},
 	},
 
 	glsetup_reload = {
 		{time = 19/35.5, sound = "CW_KK_INS2_DOI_ENFIELD_BOLTRELEASE"},
 		{time = 27/35.5, sound = "CW_KK_INS2_DOI_ENFIELD_BOLTBACK"},
 		{time = 29/35.5, sound = "", callback = shell},
-		{time = 66/35.5, sound = "CW_KK_INS2_DOI_ENFIELD_BULLETIN"},
+		{time = 66/35.5, sound = "CW_KK_INS2_DOI_ENFIELD_BULLETIN", callback = blankLoaded},
 		{time = 99/35.5, sound = "CW_KK_INS2_DOI_ENFIELD_BOLTFORWARD"},
 		{time = 106/35.5, sound = "CW_KK_INS2_DOI_ENFIELD_BOLTLATCH"},
 		{time = 134/35.5, sound = "CW_KK_INS2_DOI_ENFIELD_RATTLE"},
 		{time = 166/35.5, sound = "CW_KK_INS2_DOI_ENFIELD_GlLoad1"},
-		{time = 178/35.5, sound = "CW_KK_INS2_DOI_ENFIELD_GlLoad2"},
+		{time = 178/35.5, sound = "CW_KK_INS2_DOI_ENFIELD_GlLoad2", callback = removeBlank},
 		{time = 210/35.5, sound = "CW_KK_INS2_DOI_ENFIELD_RATTLE"},
 		{time = 212/35.5, sound = "CW_KK_INS2_DOI_ENFIELD_SHOULDER"},
 		-- { event AE_CL_CREATE_PARTICLE_BRASS 29 ""},
 	},
 
 	glsetup_iron_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_DOI_ENFIELD_EMPTY"},
+		{time = 0, sound = "", callback = dryFireInterruptedGL},
 	},
 
 	glsetup_draw_empty = {

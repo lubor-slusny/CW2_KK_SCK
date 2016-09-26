@@ -3,6 +3,29 @@ local function shell(wep)
 	wep:shellEvent() 
 end
 
+local function bulletsToClip(wep)	
+	-- wep._bulletsToClip = true
+	wep._loadingNewBelt = false
+end
+
+local function blankLoaded(wep)
+	wep._blankWW2Loaded = true
+end
+
+local function removeBlank(wep)
+	wep._blankWW2Loaded = false
+end
+
+local function dryFireInterruptedGL(wep)
+	if wep._blankWW2Loaded then
+		removeBlank(wep)
+		wep:CreateMuzzle()
+		wep:EmitSound(wep.FireSound)
+	else
+		wep:EmitSound("CW_KK_INS2_DOI_K98_EMPTY")
+	end
+end
+
 SWEP.Sounds = {
 	base_ready = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
@@ -55,6 +78,7 @@ SWEP.Sounds = {
 		{time = 40/35, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
 		{time = 64/35, sound = "CW_KK_INS2_DOI_K98_MAGIN"},
 		{time = 80/35, sound = "CW_KK_INS2_DOI_K98_ROUNDSIN"},
+		{time = 88/35, sound = "", callback = bulletsToClip},
 		{time = 111/35, sound = "CW_KK_INS2_DOI_K98_BOLTFORWARDSTRIPPERCLIP"},
 		{time = 112/35, sound = "CW_KK_INS2_DOI_K98_STRIPPERCLIPEJECT"},
 		{time = 119/35, sound = "CW_KK_INS2_DOI_K98_BOLTLATCH"},
@@ -69,6 +93,7 @@ SWEP.Sounds = {
 		{time = 40/35, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
 		{time = 64/35, sound = "CW_KK_INS2_DOI_K98_MAGIN"},
 		{time = 80/35, sound = "CW_KK_INS2_DOI_K98_ROUNDSIN"},
+		{time = 88/35, sound = "", callback = bulletsToClip},
 		{time = 111/35, sound = "CW_KK_INS2_DOI_K98_BOLTFORWARDSTRIPPERCLIP"},
 		{time = 112/35, sound = "CW_KK_INS2_DOI_K98_STRIPPERCLIPEJECT"},
 		{time = 119/35, sound = "CW_KK_INS2_DOI_K98_BOLTLATCH"},
@@ -158,6 +183,7 @@ SWEP.Sounds = {
 		{time = 40/35, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
 		{time = 64/35, sound = "CW_KK_INS2_DOI_K98_MAGIN"},
 		{time = 80/35, sound = "CW_KK_INS2_DOI_K98_ROUNDSIN"},
+		{time = 88/35, sound = "", callback = bulletsToClip},
 		{time = 111/35, sound = "CW_KK_INS2_DOI_K98_BOLTFORWARDSTRIPPERCLIP"},
 		{time = 112/35, sound = "CW_KK_INS2_DOI_K98_STRIPPERCLIPEJECT"},
 		{time = 119/35, sound = "CW_KK_INS2_DOI_K98_BOLTLATCH"},
@@ -173,6 +199,7 @@ SWEP.Sounds = {
 		{time = 40/35, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
 		{time = 64/35, sound = "CW_KK_INS2_DOI_K98_MAGIN"},
 		{time = 80/35, sound = "CW_KK_INS2_DOI_K98_ROUNDSIN"},
+		{time = 88/35, sound = "", callback = bulletsToClip},
 		{time = 111/35, sound = "CW_KK_INS2_DOI_K98_BOLTFORWARDSTRIPPERCLIP"},
 		{time = 112/35, sound = "CW_KK_INS2_DOI_K98_STRIPPERCLIPEJECT"},
 		{time = 119/35, sound = "CW_KK_INS2_DOI_K98_BOLTLATCH"},
@@ -219,12 +246,12 @@ SWEP.Sounds = {
 	glsetup_in = {
 		{time = 19/35.5, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
 		{time = 27/35.5, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
-		{time = 66/35.5, sound = "CW_KK_INS2_DOI_K98_BULLETIN"},
+		{time = 66/35.5, sound = "CW_KK_INS2_DOI_K98_BULLETIN", callback = blankLoaded},
 		{time = 99/35.5, sound = "CW_KK_INS2_DOI_K98_BOLTFORWARD"},
 		{time = 106/35.5, sound = "CW_KK_INS2_DOI_K98_BOLTLATCH"},
 		{time = 134/35.5, sound = "CW_KK_INS2_DOI_K98_RATTLE"},
 		{time = 166/35.5, sound = "CW_KK_INS2_DOI_K98_GLLOAD1"},
-		{time = 178/35.5, sound = "CW_KK_INS2_DOI_K98_GLLOAD2"},
+		{time = 178/35.5, sound = "CW_KK_INS2_DOI_K98_GLLOAD2", callback = removeBlank},
 		{time = 210/35.5, sound = "CW_KK_INS2_DOI_K98_RATTLE"},
 		{time = 212/35.5, sound = "CW_KK_INS2_DOI_K98_SHOULDER"},
 	},
@@ -234,12 +261,12 @@ SWEP.Sounds = {
 		{time = 27/35.5, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
 		-- { event AE_CL_CREATE_PARTICLE_BRASS 29 ""},
 		{time = 29/35.5, sound = "", callback = shell},
-		{time = 66/35.5, sound = "CW_KK_INS2_DOI_K98_BULLETIN"},
+		{time = 66/35.5, sound = "CW_KK_INS2_DOI_K98_BULLETIN", callback = blankLoaded},
 		{time = 99/35.5, sound = "CW_KK_INS2_DOI_K98_BOLTFORWARD"},
 		{time = 106/35.5, sound = "CW_KK_INS2_DOI_K98_BOLTLATCH"},
 		{time = 134/35.5, sound = "CW_KK_INS2_DOI_K98_RATTLE"},
 		{time = 166/35.5, sound = "CW_KK_INS2_DOI_K98_GLLOAD1"},
-		{time = 178/35.5, sound = "CW_KK_INS2_DOI_K98_GLLOAD2"},
+		{time = 178/35.5, sound = "CW_KK_INS2_DOI_K98_GLLOAD2", callback = removeBlank},
 		{time = 210/35.5, sound = "CW_KK_INS2_DOI_K98_RATTLE"},
 		{time = 212/35.5, sound = "CW_KK_INS2_DOI_K98_SHOULDER"},
 	},
@@ -277,19 +304,19 @@ SWEP.Sounds = {
 	},
 
 	glsetup_dryfire = {
-		{time = 0/30, sound = "CW_KK_INS2_DOI_K98_EMPTY"},
+		{time = 0/30, sound = "", callback = dryFireInterruptedGL},
 	},
 
 	glsetup_reload = {
 		{time = 19/35.5, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
 		{time = 27/35.5, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
 		{time = 29/35.5, sound = "", callback = shell},
-		{time = 66/35.5, sound = "CW_KK_INS2_DOI_K98_BULLETIN"},
+		{time = 66/35.5, sound = "CW_KK_INS2_DOI_K98_BULLETIN", callback = blankLoaded},
 		{time = 99/35.5, sound = "CW_KK_INS2_DOI_K98_BOLTFORWARD"},
 		{time = 106/35.5, sound = "CW_KK_INS2_DOI_K98_BOLTLATCH"},
 		{time = 134/35.5, sound = "CW_KK_INS2_DOI_K98_RATTLE"},
 		{time = 166/35.5, sound = "CW_KK_INS2_DOI_K98_GLLOAD1"},
-		{time = 178/35.5, sound = "CW_KK_INS2_DOI_K98_GLLOAD2"},
+		{time = 178/35.5, sound = "CW_KK_INS2_DOI_K98_GLLOAD2", callback = removeBlank},
 		{time = 210/35.5, sound = "CW_KK_INS2_DOI_K98_RATTLE"},
 		{time = 212/35.5, sound = "CW_KK_INS2_DOI_K98_SHOULDER"},
 		-- { event AE_CL_CREATE_PARTICLE_BRASS 29 ""},
@@ -297,7 +324,7 @@ SWEP.Sounds = {
 	},
 
 	glsetup_iron_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_DOI_K98_EMPTY"},
+		{time = 0, sound = "", callback = dryFireInterruptedGL},
 	},
 
 	base_draw_empty = {

@@ -152,6 +152,10 @@ SWEP.Animations = {
 	gl_turn_on = "glsetup_in_empty",
 	gl_turn_off = "glsetup_out",
 	gl_turn_off_empty = "glsetup_out_empty",
+	
+	stripper_reload_1 = "base_reload_clip",
+	stripper_reload_1_empty = "base_reload_full_clip",
+	stripper_reload_2 = "base_reload_empty_clip",
 }
 
 SWEP.SpeedDec = 40
@@ -212,7 +216,6 @@ SWEP.SnapToIdlePostReload = false
 
 SWEP.Chamberable = false
 SWEP.SnapToIdlePostReload = false
-SWEP.ShotgunReload = true
 SWEP.ReticleInactivityPostFire = SWEP.FireDelay + 0.2
 SWEP.GlobalDelayOnShoot = SWEP.FireDelay
 
@@ -226,8 +229,9 @@ SWEP.ReloadTimes = {
 	base_fire_end = {1.1, 1.1},
 	iron_fire_end = {1.3, 1.3},
 	
-	base_reload_full_clip = {4.81, 4.81},
-	base_reload_empty_clip = {5.19, 7.39},
+	base_reload_clip = {90/36, 4.8},
+	base_reload_full_clip = {90/36, 4.81},
+	base_reload_empty_clip = {176/36, 7.39},
 	base_reload_start = {1.12, 1.12},
 	base_reload_start_empty = {1.12, 1.12},
 	base_reload_insert = {0.92, 0.92},
@@ -237,6 +241,51 @@ SWEP.ReloadTimes = {
 	
 	glsetup_in = {5.2, 6.62},
 	glsetup_in_empty = {5.2, 6.62},
-	glsetup_out = {5, 5},
+	glsetup_out = {1.8, 5},
 	glsetup_out_empty = {2.23, 2.23},	
 }
+
+SWEP.reloadProgressAnimsRaw = {
+	stripper_reload_1 = true,
+	stripper_reload_1_empty = true,
+	stripper_reload_2 = true,
+}
+
+SWEP.reticleInactivityCallbacksRaw = {
+	["stripper_reload_1"] = 0.1,
+	["stripper_reload_1_empty"] = 0.1,
+	["stripper_reload_2"] = 0.1,
+}
+
+function SWEP:overrideReloadAnim()
+	if self.dt.INS2GLActive then
+		return "gl_on_reload"
+	end
+	
+	local clip = self:Clip1()
+	local loadAmmount = self.getFullestMag and self:getFullestMag() or math.Clamp(self.Owner:GetAmmoCount(self.Primary.Ammo), 0, self.Primary.ClipSize)
+	
+	if loadAmmount - clip < 6 then 
+		if clip < 1 then
+			return "stripper_reload_1_empty"
+		else
+			return "stripper_reload_1"
+		end
+	end
+	
+	return "stripper_reload_2"
+end
+
+if CLIENT then
+	local one = Vector(1, 1, 1)
+	local zero = Vector(0, 0, 0)
+	
+	function SWEP:updateOtherParts()
+		self.CW_VM:ManipulateBoneScale(80, (self.Sequence == self.Animations.stripper_reload_1_empty) and zero or one)
+	end
+end
+
+function SWEP:IndividualInitialize()
+	self.magType = "NONE"
+	self.ShotgunReload = true
+end

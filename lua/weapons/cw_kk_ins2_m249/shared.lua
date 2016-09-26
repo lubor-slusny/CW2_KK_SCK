@@ -236,6 +236,11 @@ SWEP.ReloadTimes = {
 	deployed_reload_empty = {8.85, 10.52},
 }
 
+SWEP.reloadProgressAnimsRaw = {
+	base_reload_close = true,
+	bipod_reload_close = true
+}
+
 SWEP.reticleInactivityCallbacksRaw = {
 	["base_reload_close"] = 0.1,
 	["bipod_reload_close"] = 0.1,

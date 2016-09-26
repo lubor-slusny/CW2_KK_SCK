@@ -145,7 +145,7 @@ if CLIENT then
 			cam.IgnoreZ(false)
 		end
 		
-		if wep:isNearWall() then
+		if wep:isNearWall() or wep:IsOwnerCrawling() then
 			nearWallOutTime = CurTime() + 0.3
 		elseif not nearWallOutTime then 
 			nearWallOutTime = CurTime()
@@ -240,7 +240,7 @@ if CLIENT then
 			cam.IgnoreZ(false)
 		end
 		
-		if wep:isNearWall() then
+		if wep:isNearWall() or wep:IsOwnerCrawling() then
 			nearWallOutTime = CurTime() + 0.3
 		elseif not nearWallOutTime then 
 			nearWallOutTime = CurTime()

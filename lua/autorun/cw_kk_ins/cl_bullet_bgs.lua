@@ -5,11 +5,20 @@ local MP = !game.SinglePlayer()
 	
 if CLIENT then
 	CustomizableWeaponry_KK.ins2.bulletBgs._getReserve = function(wep)
+		local out
+		local clip = wep:Clip1()
+		
 		if wep.getFullestMag then
-			return math.max(wep:Clip1(), wep:getFullestMag(), -1)
+			out = math.max(clip, wep:getFullestMag(), -1)
+		else
+			out = wep.Owner:GetAmmoCount(wep.Primary.Ammo) + clip
 		end
 		
-		return wep.Owner:GetAmmoCount(wep.Primary.Ammo) + wep:Clip1()
+		if wep.ActiveAttachments.kk_ins2_ww2_stripper then
+			out = math.Clamp(out - clip, 0, wep.Primary.ClipSize)
+		end
+		
+		return out
 	end
 	
 	local _getReserve = CustomizableWeaponry_KK.ins2.bulletBgs._getReserve
