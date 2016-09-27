@@ -393,10 +393,10 @@ function SWEP:toggleGLMode(IFTP)
 			reloadTime, reloadHalt = self:getAnimTimes(anim)
 			
 			if self.M203Chamber then
-				local oldMAD = wep.meleeAttackDelay or 0
+				local oldMAD = self.meleeAttackDelay or 0
 				
 				CustomizableWeaponry.actionSequence.new(self, reloadTime, nil, function()
-					local newMAD = wep.meleeAttackDelay or 0
+					local newMAD = self.meleeAttackDelay or 0
 					
 					if math.abs(newMAD - oldMAD) < 0.1 then
 						self.dt.INS2GLActive = false
