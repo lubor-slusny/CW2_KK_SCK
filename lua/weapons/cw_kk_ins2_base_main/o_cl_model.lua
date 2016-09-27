@@ -519,5 +519,9 @@ function SWEP:scaleMovement(val, mod)
 		end
 	end
 	
+	if self.ActiveAttachments.kk_ins2_ww2_knife then
+		scale = 0
+	end
+	
 	return val * scale * mod
 end
