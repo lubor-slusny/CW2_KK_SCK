@@ -52,10 +52,7 @@ if CLIENT then
 		self._funcs = self._funcs or {}
 		self._funcs[id] = func // if nil is passed, remove existing
 	end
-	
-	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_rpk", "bipod")
-	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_m249", "bipod")
-	
+		
 	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_rpg", "launcher")
 	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_piat", "launcher")
 	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_tankfist", "launcher")

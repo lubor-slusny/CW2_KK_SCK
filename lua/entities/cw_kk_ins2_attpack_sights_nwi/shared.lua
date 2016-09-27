@@ -11,7 +11,6 @@ ENT.AdminSpawnable = true
 
 ENT.attachments = {
 	"kk_ins2_magnifier",
-	"kk_ins2_scope_zf4",
 	"kk_ins2_scope_mosin",
 	"kk_ins2_scope_m40",
 	"kk_ins2_po4",

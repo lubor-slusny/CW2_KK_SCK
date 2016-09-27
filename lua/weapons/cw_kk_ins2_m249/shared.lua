@@ -259,6 +259,10 @@ function SWEP:overrideReloadAnim(prefix, suffix)
 end
 
 if CLIENT then
+	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_m249", "bipod")
+end
+
+if CLIENT then
 	local counterExists = file.Exists("models/weapons/stattrack.mdl", "GAME")
 	
 	function SWEP:updateOtherParts()

@@ -1,7 +1,7 @@
 local att = {}
 att.name = "kk_ins2_scope_zf4"
-att.displayName = "ZF4 Scope"
-att.displayNameShort = "ZF4"
+att.displayName = "ZF42 Scope"
+att.displayNameShort = "ZF42"
 att.aimPos = {"KKINS2ScopeZF4Pos", "KKINS2ScopeZF4Ang"}
 att.FOVModifier = 0
 att.AimViewModelFOV = 25

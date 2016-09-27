@@ -1,6 +1,6 @@
 local att = {}
 att.name = "kk_ins2_cstm_scar_skin"
-att.displayName = "Tan SCARH Finish"
+att.displayName = "Tan $CAR-H Finish"
 att.displayNameShort = "Tan"
 att.isBG = true
 att.KK_INS2_playIdle = true
@@ -9,24 +9,33 @@ att.statModifiers = {
 	RecoilMult = -0.2
 }
 
+att.activeVM = "models/weapons/v_cw_kk_ins2_cstm_scar_tan.mdl"
+att.activeWM = "models/weapons/w_cw_kk_ins2_cstm_scar_tan.mdl"
+att.origVM = "models/weapons/v_cw_kk_ins2_cstm_scar.mdl"
+att.origWM = "models/weapons/w_cw_kk_ins2_cstm_scar.mdl"
+
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
 	att.description = {
 		[1] = {t = "Ever played Payday 2?.", c = CustomizableWeaponry.textColors.NEUTRAL},
 		[2] = {t = "Retextures alter stats.", c = CustomizableWeaponry.textColors.VNEGATIVE},
 	}
-	
-	function att:attachFunc()
-		self.CW_VM:SetModel("models/weapons/v_cw_kk_ins2_cstm_scar_tan.mdl")
-		self.WMEnt:SetModel("models/weapons/w_cw_kk_ins2_cstm_scar_tan.mdl")
-		self.DrawCustomWM = true
-	end
+end
 
-	function att:detachFunc()
-		self.CW_VM:SetModel("models/weapons/v_cw_kk_ins2_cstm_scar.mdl")
-		self.WMEnt:SetModel("models/weapons/w_cw_kk_ins2_cstm_scar.mdl")
-		self.DrawCustomWM = false
-	end	
+function att:attachFunc()
+	if CLIENT then
+		self.CW_VM:SetModel(att.activeVM)
+	end
+	
+	self.WorldModel = att.activeWM
+end
+
+function att:detachFunc()
+	if CLIENT then
+		self.CW_VM:SetModel(att.origVM)
+	end
+	
+	self.WorldModel = att.origWM
 end
 
 CustomizableWeaponry:registerAttachment(att)

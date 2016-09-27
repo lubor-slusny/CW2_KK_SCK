@@ -14,8 +14,12 @@ att.statModifiers = {
 	DamageMult = 0.1,
 	RecoilMult = -0.2,
 	FireDelayMult = -0.071,
-	-- WeaponLength = -6
 }
+
+att.activeVM = "models/weapons/v_cw_kk_ins2_rpk_tac.mdl"
+att.activeWM = "models/weapons/w_cw_kk_ins2_rpk_tac.mdl"
+att.origVM = "models/weapons/v_rpk.mdl"
+att.origWM = "models/weapons/w_rpk.mdl"
 
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
@@ -24,20 +28,18 @@ end
 
 function att:attachFunc()
 	if CLIENT then
-		self.CW_VM:SetModel("models/weapons/v_cw_kk_ins2_rpk_tac.mdl")
-		self.WMEnt:SetModel("models/weapons/w_cw_kk_ins2_rpk_tac.mdl")
+		self.CW_VM:SetModel(att.activeVM)
 	end
 	
-	self.WorldModel = "models/weapons/w_cw_kk_ins2_rpk_tac.mdl"
+	self.WorldModel = att.activeWM
 end
 
 function att:detachFunc()
 	if CLIENT then
-		self.CW_VM:SetModel("models/weapons/v_rpk.mdl")
-		self.WMEnt:SetModel("models/weapons/w_rpk.mdl")
+		self.CW_VM:SetModel(att.origVM)
 	end
 	
-	self.WorldModel = "models/weapons/w_rpk.mdl"
+	self.WorldModel = att.origWM
 end
 
 CustomizableWeaponry:registerAttachment(att)

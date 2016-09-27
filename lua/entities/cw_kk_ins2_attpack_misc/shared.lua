@@ -15,7 +15,5 @@ ENT.attachments = {
 	"kk_ins2_gl_m203",
 	"kk_ins2_vertgrip",
 	"kk_ins2_bipod",
-	"kk_ins2_ww2_sling",
-	"kk_ins2_ww2_knife",
 	"kk_ins2_hoovy",
 }

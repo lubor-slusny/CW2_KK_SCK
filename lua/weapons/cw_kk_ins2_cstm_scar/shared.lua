@@ -300,3 +300,19 @@ if CLIENT then
 		self.AttachmentModelsVM.kk_ins2_vertgrip.ent:ManipulateBoneScale(0, zero)
 	end
 end
+
+if CLIENT then
+	local att = CustomizableWeaponry.registeredAttachmentsSKey["kk_ins2_cstm_scar_skin"]
+	
+	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_cstm_scar", function(wep, welement)
+		if wep.ActiveAttachments[att.name] then
+			if welement:GetModel() != att.activeWM then
+				welement:SetModel(att.activeWM)
+			end
+		else
+			if welement:GetModel() != att.origWM then
+				welement:SetModel(att.origWM)
+			end
+		end
+	end)
+end

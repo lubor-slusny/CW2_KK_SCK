@@ -134,7 +134,7 @@ SWEP.Attachments = {
 }
 
 if CustomizableWeaponry_KK.ins2.wsContentMounted() then
-	-- table.insert(SWEP.Attachments, 6, {header = "Package", offset = {-200, 500}, atts = {"kk_ins2_mosin_so"}})
+	table.insert(SWEP.Attachments, 6, {header = "Package", offset = {-200, 500}, atts = {"kk_ins2_mosin_so"}})
 end
 
 SWEP.Animations = {
@@ -288,7 +288,9 @@ if CLIENT then
 		muz.Ang = self.Owner:EyeAngles()
 		return muz
 	end
+end
 
+if CLIENT then
 	function SWEP:updateOtherParts()
 		local vm = self.CW_VM
 		local cycle = vm:GetCycle()
@@ -305,7 +307,9 @@ if CLIENT then
 		self.ForegripOverride = true
 		self.ForegripParent = (self.Sequence:find("deployed") and self.Sequence:find("fire")) and "LeftHandFix" or "none"
 	end
-	
+end
+
+if CLIENT then
 	function SWEP:playSwitchBipod()
 		local isBipod = self.dt.BipodDeployed
 		local vm = self.CW_VM
@@ -336,4 +340,20 @@ if CLIENT then
 		
 		self._KK_INS2_wasBipod = isBipod
 	end
+end
+
+if CLIENT then
+	local att = CustomizableWeaponry.registeredAttachmentsSKey["kk_ins2_mosin_so"]
+	
+	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_mosin", function(wep, welement)
+		if wep.ActiveAttachments[att.name] then
+			if welement:GetModel() != att.activeWM then
+				welement:SetModel(att.activeWM)
+			end
+		else
+			if welement:GetModel() != att.origWM then
+				welement:SetModel(att.origWM)
+			end
+		end
+	end)
 end

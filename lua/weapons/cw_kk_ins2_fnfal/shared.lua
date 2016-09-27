@@ -259,3 +259,51 @@ if CLIENT then
 		self:setElementActive("kk_ins2_mag_fal_20", !self.ActiveAttachments.kk_ins2_mag_fal_30)
 	end
 end
+
+if CLIENT then
+	local worldFals = {}
+	
+	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_fnfal", function(wep, welement)
+		if wep.ActiveAttachments.kk_ins2_fnfal_skin then
+			if worldFals[wep] != 1 then
+				welement:SetSubMaterial(0, "models/weapons/fal/w_blvck.mdl")
+				worldFals[wep] = 1
+			end
+		elseif wep.ActiveAttachments.kk_ins2_fnfal_skin2 then
+			if worldFals[wep] != 2 then
+				welement:SetSubMaterial(0, "models/weapons/fal/w_dosh.mdl")
+				worldFals[wep] = 2
+			end
+		else
+			if worldFals[wep] != 0 then
+				welement:SetSubMaterial(0)
+				worldFals[wep] = 0
+			end
+		end
+	end)
+end
+
+if CLIENT then
+	local droppedFals = {}
+	
+	hook.Add("Think", "CW_KK_INS2_FNFAL_DROP_SKIN", function()
+		for k,v in pairs(ents.GetAll()) do
+			if !IsValid(v) then continue end
+			if v:GetClass() != "cw_dropped_weapon" then continue end
+			if v:GetWepClass() != "cw_kk_ins2_fnfal" then continue end
+			if droppedFals[v] then continue end
+			
+			local t = v:getAttachments()
+			
+			if t then
+				if table.HasValue(t, "kk_ins2_fnfal_skin") then
+					v:SetSubMaterial(0, "models/weapons/fal/w_blvck.mdl")
+				elseif table.HasValue(t, "kk_ins2_fnfal_skin2") then
+					v:SetSubMaterial(0, "models/weapons/fal/w_dosh.mdl")
+				end
+				
+				droppedFals[v] = true
+			end
+		end
+	end)
+end

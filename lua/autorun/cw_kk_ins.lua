@@ -2,7 +2,7 @@ if not CustomizableWeaponry then return end
 
 AddCSLuaFile()
 
-local WS_PACK_REVISION = 6
+local WS_PACK_REVISION = 7
 
 CustomizableWeaponry_KK = CustomizableWeaponry_KK or {}
 CustomizableWeaponry_KK.ins2 = CustomizableWeaponry_KK.ins2 or {}

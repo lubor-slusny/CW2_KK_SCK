@@ -286,9 +286,27 @@ if CLIENT then
 		muz.Ang = self.Owner:EyeAngles()
 		return muz
 	end
+end
 
+if CLIENT then
 	function SWEP:updateStandardParts()
 		self:setElementActive("kk_ins2_galil", !self.ActiveAttachments.kk_ins2_bipod)
 		self:setElementActive("kk_ins2_mag_galil_35", !self.ActiveAttachments.kk_ins2_mag_galil_75)
 	end
+end
+
+if CLIENT then
+	local att = CustomizableWeaponry.registeredAttachmentsSKey["kk_ins2_galil_sar"]
+	
+	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_galil", function(wep, welement)
+		if wep.ActiveAttachments[att.name] then
+			if welement:GetModel() != att.activeWM then
+				welement:SetModel(att.activeWM)
+			end
+		else
+			if welement:GetModel() != att.origWM then
+				welement:SetModel(att.origWM)
+			end
+		end
+	end)
 end

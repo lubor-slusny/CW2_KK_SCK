@@ -278,6 +278,47 @@ SWEP.ReloadTimes = {
 }
 
 if CLIENT then
+	local att = CustomizableWeaponry.registeredAttachmentsSKey["kk_ins2_rpk_sopmod"]
+	
+	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_rpk", function(wep, welement)
+		if wep.ActiveAttachments[att.name] then
+			if welement:GetModel() != att.activeWM then
+				welement:SetModel(att.activeWM)
+			end
+		else
+			if welement:GetModel() != att.origWM then
+				welement:SetModel(att.origWM)
+			end
+		end
+		
+		welement:SetSequence(wep.dt.BipodDeployed and 1 or 0)
+	end)
+end
+
+if CLIENT then
+	local pos, ang
+	
+	CustomizableWeaponry.callbacks:addNew("adjustViewmodelPosition", "KK_INS2_RPK", function(wep, TargetPos, TargetAng)
+		if wep:GetClass() != "cw_kk_ins2_rpk" then return end
+		if !wep.ActiveAttachments.kk_ins2_rpk_sopmod then return end
+		if !wep:isAiming() then return end
+		
+		if wep._currentSecondarySight then
+			pos = wep._currentSecondarySight.aimPos[1]
+			ang = wep._currentSecondarySight.aimPos[2]
+		elseif wep._currentPrimarySight then
+			pos = wep._currentPrimarySight.aimPos[1]
+			ang = wep._currentPrimarySight.aimPos[2]
+		else
+			pos = "IronsightPos"
+			ang = "IronsightAng"
+		end
+		
+		return wep[pos .. "_sopmod"], wep[ang .. "_sopmod"]
+	end)
+end
+
+if CLIENT then
 	local counterExists = file.Exists("models/weapons/stattrack.mdl", "GAME")
 	
 	function SWEP:updateOtherParts()
@@ -301,28 +342,4 @@ if CLIENT then
 			self.AttachmentModelsVM.kk_counter_mag.active = counterExists
 		end
 	end
-end
-
-
-if CLIENT then
-	local pos, ang
-	
-	CustomizableWeaponry.callbacks:addNew("adjustViewmodelPosition", "KK_INS2_RPK", function(wep, TargetPos, TargetAng)
-		if wep:GetClass() != "cw_kk_ins2_rpk" then return end
-		if !wep.ActiveAttachments.kk_ins2_rpk_sopmod then return end
-		if !wep:isAiming() then return end
-		
-		if wep._currentSecondarySight then
-			pos = wep._currentSecondarySight.aimPos[1]
-			ang = wep._currentSecondarySight.aimPos[2]
-		elseif wep._currentPrimarySight then
-			pos = wep._currentPrimarySight.aimPos[1]
-			ang = wep._currentPrimarySight.aimPos[2]
-		else
-			pos = "IronsightPos"
-			ang = "IronsightAng"
-		end
-		
-		return wep[pos .. "_sopmod"], wep[ang .. "_sopmod"]
-	end)
 end
