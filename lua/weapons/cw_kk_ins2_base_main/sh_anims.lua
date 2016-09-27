@@ -148,6 +148,12 @@ if CLIENT then
 			end
 		end
 		
+		if self.ActiveAttachments.kk_ins2_ww2_knife then
+			anim = "idle"
+			rate = -1
+			cycle = 0
+		end
+		
 		if self.KKINS2Nade and self.Owner:GetAmmoCount(self.Primary.Ammo) < 1 then 
 			-- self:sendWeaponAnim("base_draw", -1, 0)
 			anim = "holster"

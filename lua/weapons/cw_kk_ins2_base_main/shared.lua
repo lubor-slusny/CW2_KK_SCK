@@ -238,6 +238,10 @@ function SWEP:IndividualThink()
 		self.CrosshairEnabled = shouldDrawCrosshair
 		self.FadeCrosshairOnAim = !shouldDrawCrosshair
 		
+		if self.AttachmentModelsVM.kk_ins2_ww2_knife then
+			self.DisableSprintViewSimulation = self.ActiveAttachments.kk_ins2_ww2_knife
+		end
+		
 		if MP and not IsFirstTimePredicted() then return end
 		
 		// 2b removed

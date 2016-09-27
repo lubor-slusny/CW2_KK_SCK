@@ -43,12 +43,16 @@ CustomizableWeaponry_KK.ins2.quickKnife.models.ww2gb = {
 }
 
 function CustomizableWeaponry_KK.ins2.quickKnife.canAttack(wep)
-	if CustomizableWeaponry.quickGrenade.restrictedStates[wep.dt.State] then
+	-- if CustomizableWeaponry.quickGrenade.restrictedStates[wep.dt.State] then
+		-- return false
+	-- end
+	
+	if wep.dt.State == CW_ACTION or wep.dt.State == CW_CUSTOMIZE then
 		return false
 	end
 	
 	if wep.dt.PinPulled then 
-		return
+		return false
 	end
 	
 	if wep.dt.BipodDeployed then
