@@ -214,8 +214,6 @@ SWEP.RecoilToSpread = 0.8
 SWEP.BipodDeployTime = 1.15
 SWEP.BipodUndeployTime = 1.15
 
-SWEP.SnapToIdlePostReload = false
-
 SWEP.Chamberable = false
 SWEP.SnapToIdlePostReload = false
 SWEP.ShotgunReload = true

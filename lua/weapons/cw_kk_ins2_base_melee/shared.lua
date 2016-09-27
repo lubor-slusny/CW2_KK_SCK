@@ -99,7 +99,7 @@ function SWEP:PrimaryAttack()
 	end
 	
 	if self.Owner:KeyDown(IN_USE) then
-		if CustomizableWeaponry.quickGrenade.canThrow(self) then
+		if CustomizableWeaponry_KK.ins2.quickGrenade.canThrow(self) then
 			CustomizableWeaponry_KK.ins2.quickGrenade.throw(self)
 			return
 		end

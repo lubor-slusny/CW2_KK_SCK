@@ -22,6 +22,8 @@ if CLIENT then
 	SWEP.CustomizationMenuScale = 0.01
 	SWEP.ReloadViewBobEnabled = false
 	SWEP.DisableSprintViewSimulation = true
+	
+	SWEP.AimOverlay = surface.GetTextureID("models/weapons/optics/binocs_overlay_british")
 end
 
 SWEP.CanRestOnObjects = false
@@ -47,7 +49,7 @@ SWEP.SlotPos = 0
 SWEP.NormalHoldType = "revolver"
 SWEP.RunHoldType = "normal"
 SWEP.FireModes = {"semi"}
-SWEP.Base = "cw_kk_ins2_base"
+SWEP.Base = "cw_kk_ins2_base_bino"
 SWEP.Category = "CW 2.0 KK INS2 DOI"
 
 SWEP.Author			= "Spy"
@@ -69,37 +71,5 @@ SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.ww2gb
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.doiContentMounted()
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.doiContentMounted()
 
-SWEP.Primary.ClipSize		= -1
-SWEP.Primary.DefaultClip	= -1
-SWEP.Primary.Automatic		= false
-SWEP.Primary.Ammo			= ""
-
-SWEP.FireDelay = 0.1
-SWEP.FireSound = "CW_KK_INS2_DOI_P08_FIRE"
-SWEP.Recoil = 0.77
-
-SWEP.HipSpread = 0.034
-SWEP.AimSpread = 0.012
-SWEP.VelocitySensitivity = 1.2
-SWEP.MaxSpreadInc = 0.04
-SWEP.SpreadPerShot = 0.01
-SWEP.SpreadCooldown = 0.22
-SWEP.Shots = 1
-SWEP.Damage = 24
-
-SWEP.FirstDeployTime = 1.27
-SWEP.DeployTime = 0.45
-
-function SWEP:PrimaryAttack()
-	if self.Owner:KeyDown(IN_USE) then
-		if CustomizableWeaponry.quickGrenade.canThrow(self) then
-			CustomizableWeaponry_KK.ins2.quickGrenade.throw(self)
-			return
-		end
-	end
-	
-end
-
-function SWEP:Reload() end
-
-function SWEP:updateReloadTimes() end
+SWEP.FireSound = "CW_KK_INS2_DOI_BINO_GB_ATTACK"
+SWEP.ResponseSound = "CW_KK_INS2_DOI_BINO_GB_SPAWN"
