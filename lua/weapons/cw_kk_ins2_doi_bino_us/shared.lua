@@ -46,8 +46,8 @@ SWEP.SpeedDec = 10
 
 SWEP.Slot = 5
 SWEP.SlotPos = 0
-SWEP.NormalHoldType = "revolver"
-SWEP.RunHoldType = "normal"
+SWEP.NormalHoldType = "slam"
+SWEP.RunHoldType = "slam"
 SWEP.FireModes = {"semi"}
 SWEP.Base = "cw_kk_ins2_base_bino"
 SWEP.Category = "CW 2.0 KK INS2 DOI"
@@ -60,10 +60,10 @@ SWEP.Instructions	= ""
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_binoculars_american.mdl"
-SWEP.WorldModel		= "models/weapons/w_binoculars.mdl"
+SWEP.WorldModel		= "models/weapons/w_binoculars_american.mdl"
 
-SWEP.WMPos = Vector(4.5, 1, -3.5)
-SWEP.WMAng = Vector(-8, 0, 180)
+SWEP.WMPos = Vector(3.48, 5.131, -0.802)
+SWEP.WMAng = Vector(57.638, 177.912, 180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2us
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.ww2us

@@ -74,7 +74,7 @@ SWEP.SpeedDec = 15
 
 SWEP.Slot = 2
 SWEP.SlotPos = 0
-SWEP.NormalHoldType = "ar2"
+SWEP.NormalHoldType = "smg"
 SWEP.RunHoldType = "passive"
 SWEP.FireModes = {"auto", "semi"}
 SWEP.Base = "cw_kk_ins2_base"
@@ -88,10 +88,10 @@ SWEP.Instructions	= ""
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_m3greasegun.mdl"
-SWEP.WorldModel		= "models/weapons/w_thompson.mdl"
+SWEP.WorldModel		= "models/weapons/w_m3greasegun.mdl"
 
-SWEP.WMPos = Vector(4, 0.395, -2)
-SWEP.WMAng = Vector(-10, 0, 180)
+SWEP.WMPos = Vector(11, 1.5, -4)
+SWEP.WMAng = Vector(-10, -4, 180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2us
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.ww2us

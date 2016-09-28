@@ -86,7 +86,7 @@ SWEP.SpeedDec = 10
 
 SWEP.Slot = 1
 SWEP.SlotPos = 0
-SWEP.NormalHoldType = "revolver"
+SWEP.NormalHoldType = "ar2"
 SWEP.RunHoldType = "normal"
 SWEP.FireModes = {"auto", "semi"}
 SWEP.Base = "cw_kk_ins2_base"
@@ -102,7 +102,7 @@ SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_c96_carbine.mdl"
 SWEP.WorldModel		= "models/weapons/w_c96_carbine.mdl"
 
-SWEP.WMPos = Vector(4.5, 1, -3.5)
+SWEP.WMPos = Vector(5, 1, -1)
 SWEP.WMAng = Vector(-8, 0, 180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2de

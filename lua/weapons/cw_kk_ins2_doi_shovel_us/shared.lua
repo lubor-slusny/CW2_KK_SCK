@@ -33,9 +33,9 @@ SWEP.Instructions	= ""
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_etool_us.mdl"
-SWEP.WorldModel		= "models/weapons/w_etool_ger.mdl"
+SWEP.WorldModel		= "models/weapons/w_etool_us.mdl"
 
-SWEP.WMPos = Vector(3.812, 1.544, -4.83)
+SWEP.WMPos = Vector(3.812, 1.544, -3)
 SWEP.WMAng = Vector(99.385, -22.739, 18.048)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2us

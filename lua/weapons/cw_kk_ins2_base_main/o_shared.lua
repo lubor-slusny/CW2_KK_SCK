@@ -518,7 +518,9 @@ function SWEP:finishReloadShotgun()
 end
 
 //-----------------------------------------------------------------------------
-// isNearWall edited to use SWEP.WeaponLength in trace
+// isNearWall edited to 
+// - use SWEP.WeaponLength in trace
+// - return whole trace result if true
 //-----------------------------------------------------------------------------
 
 local mins, maxs = Vector(-8, -8, -1), Vector(8, 8, 1)
@@ -535,7 +537,7 @@ function SWEP:isNearWall()
 	local tr = util.TraceLine(td)
 	
 	if tr.Hit or (IsValid(tr.Entity) and not tr.Entity:IsPlayer()) then
-		return true
+		return true, tr
 	end
 	
 	return false

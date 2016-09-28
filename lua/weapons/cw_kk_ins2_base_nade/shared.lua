@@ -68,12 +68,14 @@ SWEP.SpreadPerShot = 0.001
 SWEP.SpreadCooldown = 0.001
 SWEP.Recoil = 3
 
+SWEP.AddSafeMode = false
+
 SWEP.FirstDeployTime = 0.6
 SWEP.DeployTime = 0.6
 SWEP.HolsterTime = 0.5
 
 SWEP.SpeedDec = 0
-SWEP.WeaponLength = 0
+SWEP.WeaponLength = 40
 
 SWEP.fuseTime = 3			// grenade fuse time
 
@@ -88,6 +90,11 @@ SWEP.swapTimeCook = 0.7		// full length of throw_cook animation
 
 SWEP.canCook = true			// enable cooking
 SWEP.mustCook = false		// cooking only
+SWEP.canPlant = false		// stick it to whatever is in front of u when near-wall
+
+SWEP.spoonTimePlant = 1		// delay between start of plant animation and start of fuse timer
+SWEP.swapTimePlant = 1.7	// full length of plant animation
+SWEP.spawnTimePlant = 1.17	// delay between start of plant animation and creation of grenade ent
 
 //-----------------------------------------------------------------------------
 // EquipAmmo replacement for SWEP.Primary.DefaultClip
@@ -234,7 +241,7 @@ function SWEP:IndividualThink()
 	local CT = CurTime()
 	
 	if self.dt.PinPulled then
-		if CT > self.throwTime then
+		if self.throwTime and self.throwTime < CT then
 			-- if not (self.Owner:KeyDown(IN_ATTACK) or self.Owner:KeyDown(IN_ATTACK2)) then
 			if not self.Owner:KeyDown(self._curKeyPress) then
 				if not self.animPlayed then
@@ -305,6 +312,51 @@ function SWEP:IndividualThink()
 				end
 			end
 		end
+		
+		if self.plantTime and self.plantTime < CT then
+			local nw, tr = self:isNearWall()
+			
+			if nw and not self._grenadePlanted then
+				if SERVER then
+					local grenade = self:createProjectile()
+					
+					if IsValid(grenade) then
+						local pos = tr.HitPos + tr.HitNormal * 1.5
+						
+						local ang = tr.HitNormal:Angle()
+						ang:RotateAroundAxis(ang:Up(), -90)
+						ang:RotateAroundAxis(ang:Forward(), -90)
+						
+						grenade:SetPos(pos)
+						grenade:SetAngles(ang)
+							
+						if (tr.Entity:GetClass() == "worldspawn") then
+							grenade:PhysicsDestroy()
+							-- grenade:PhysicsInit(SOLID_VPHYSICS)
+						else
+							constraint.Weld(tr.Entity, grenade, tr.PhysicsBone, 0, 0, true, false)
+						end
+					
+						self._grenadePlanted = true
+					end
+				end
+				
+				local suppressAmmoUsage = CustomizableWeaponry.callbacks.processCategory(self, "shouldSuppressAmmoUsage")
+				if not suppressAmmoUsage then
+					self.Owner:RemoveAmmo(1, self.Primary.Ammo)
+				end
+			end
+			
+			if self._curSwapTime < CT then
+				if self.Owner:GetAmmoCount(self.Primary.Ammo) <= 0 then
+					self.Owner:ConCommand("lastinv")
+				else
+					self:drawAnimFunc()
+				end
+				
+				self.dt.PinPulled = false
+			end
+		end
 	end
 end
 
@@ -348,11 +400,16 @@ function SWEP:_attack(key)
 	if self.dt.PinPulled then
 		return
 	end
-	
-	for i = 1, 3 do
+
+	// ignore near-wall
+	for i = 1, 2 do
 		if not self:canFireWeapon(i) then
 			return
 		end
+	end
+	
+	if self.InactiveWeaponStates[self.dt.State] then
+		return
 	end
 	
 	self.dt.PinPulled = true
@@ -362,7 +419,24 @@ function SWEP:_attack(key)
 	
 	CT = CurTime()
 	
-	if self.mustCook or (self.canCook and key == self:getControlls()) then 	// if wep allows it and pressed key is cooking key then cook
+	local nw, tr = self:isNearWall()
+	self.plantTime = nil
+	
+	if nw and self.canPlant then							// if wep allows planting and we re near-wall then plant
+		self:sendWeaponAnim("plant")
+		self.plantTime = CT + self.spawnTimePlant
+		self.cookTime = CT + self.spoonTimePlant
+		
+		self._grenadePlanted = false
+		self.throwTime = nil
+		
+		self._curThrowAnim = nil
+		self._curSwapTime = CT + self.swapTimePlant
+		self._curSpawnTime = nil
+		
+		self:SetNextPrimaryFire(self._curSwapTime)
+		self:SetNextSecondaryFire(self._curSwapTime)
+	elseif self.mustCook or (self.canCook and key == self:getControlls()) then 	// if wep allows it and pressed key is cooking key then cook
 		self:sendWeaponAnim("pull_cook")
 		self.throwTime = CT + self.timeToThrowCook
 		self.cookTime = CT + self.spoonTime

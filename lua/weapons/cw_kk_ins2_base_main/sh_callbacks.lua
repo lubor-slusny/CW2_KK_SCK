@@ -221,6 +221,39 @@ if CLIENT then
 	end)
 end
 
+if CLIENT then
+	local White, Black = Color(255, 255, 255, 255), Color(0, 0, 0, 255)
+	local cwhud24 = "CW_HUD24"
+	local Deploy, UnDeploy = surface.GetTextureID("cw2/gui/bipod_deploy"), surface.GetTextureID("cw2/gui/bipod_undeploy")
+	
+	CustomizableWeaponry.callbacks:addNew("suppressHUDElements", "KK_INS2_BASE_PLANTABLES", function(wep)	
+		if not (wep.KKINS2RCE or (wep.KKINS2Nade and wep.canPlant)) then
+			return
+		end
+		
+		if not wep:isNearWall() then
+			return
+		end
+
+		if (wep.Owner:GetAmmoCount(wep.Primary.Ammo) < 1) then 
+			return
+		end
+		
+		local x, y = ScrW(), ScrH()
+		
+		draw.ShadowText("[PLANT]", cwhud24, x / 2, y / 2 + 100, White, Black, 2, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+		-- draw.ShadowText("[PLANT]", cwhud24, x / 2, y / 2 + 130, White, Black, 2, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+		
+		-- surface.SetTexture(Deploy)
+		
+		-- surface.SetDrawColor(0, 0, 0, 255)
+		-- surface.DrawTexturedRect(x / 2 - 47, y / 2 + 126, 96, 96)
+		
+		-- surface.SetDrawColor(255, 255, 255, 255)
+		-- surface.DrawTexturedRect(x / 2 - 48, y / 2 + 125, 96, 96)
+	end)
+end
+
 //-----------------------------------------------------------------------------
 // WELEMENTS FOR DROPPED WEAPONS COZ WHY NOT
 //-----------------------------------------------------------------------------

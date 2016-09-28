@@ -25,6 +25,8 @@ SWEP.Damage = 24
 SWEP.FirstDeployTime = 0.8
 SWEP.DeployTime = 0.8
 
+SWEP.AddSafeMode = false
+
 if CLIENT then
 	SWEP.StretchOverlayToScreen = true
 	

@@ -78,8 +78,8 @@ SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_ithaca.mdl"
 SWEP.WorldModel		= "models/weapons/w_ithaca.mdl"
 
-SWEP.WMPos = Vector(4.763, 0.935, -2.445)
-SWEP.WMAng = Vector(-10, 0, 180)
+SWEP.WMPos = Vector(5, 0.5, -1.8)
+SWEP.WMAng = Vector(-15, 3, 180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2gb
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.ww2gb

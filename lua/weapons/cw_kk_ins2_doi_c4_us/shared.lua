@@ -8,7 +8,7 @@ include("sh_soundscript.lua")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "C4"
+	SWEP.PrintName = "C4 US"
 	SWEP.CSMuzzleFlashes = true
 	
 	SWEP.IconLetter = "O"
@@ -25,6 +25,8 @@ SWEP.CanRestOnObjects = false
 SWEP.grenadeEnt = "cw_grenade_thrown"
 
 SWEP.Animations = {
+	plant = "base_plant",
+	
 	pullpin = "base_pullback",
 	throw = "base_throw",
 	
@@ -45,7 +47,7 @@ SWEP.SpeedDec = 5
 SWEP.Slot = 4
 SWEP.SlotPos = 0
 SWEP.NormalHoldType = "grenade"
-SWEP.RunHoldType = "normal"
+SWEP.RunHoldType = "slam"
 SWEP.FireModes = {"semi"}
 SWEP.Base = "cw_kk_ins2_base_nade"
 SWEP.Category = "CW 2.0 KK INS2 DOI"
@@ -60,8 +62,8 @@ SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_compb_allied.mdl"
 SWEP.WorldModel		= "models/weapons/w_compb_allied.mdl"
 
-SWEP.WMPos = Vector(3.891, 2.295, -1.765)
-SWEP.WMAng = Angle(-28.962, 155.365, 180)
+SWEP.WMPos = Vector(5.5, 3.295, -1.765)
+SWEP.WMAng = Angle(-28.962, 165.365, 70)
 
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.ww2us
 
@@ -83,3 +85,4 @@ SWEP.timeToThrowCook = 1.1
 SWEP.swapTimeCook = 0.9
 
 SWEP.mustCook = true
+SWEP.canPlant = true
