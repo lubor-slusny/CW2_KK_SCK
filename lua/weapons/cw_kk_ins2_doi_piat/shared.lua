@@ -14,7 +14,7 @@ if CLIENT then
 	SWEP.IconLetter = "i"
 	
 	SWEP.MuzzleEffect = "muzzleflash_pistol"
-	SWEP.RearEffectw = true
+	-- SWEP.RearEffectw = true
 	SWEP.NoShells = true
 	
 	SWEP.BackupSights = {

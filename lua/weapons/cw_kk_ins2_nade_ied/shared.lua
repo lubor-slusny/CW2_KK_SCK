@@ -163,7 +163,7 @@ if SERVER then
 			
 			for k,v in pairs(self.PlantedCharges) do
 				if IsValid(v) then
-					v.Detonator = owned
+					v:SetDetonator(owned)
 					owned.PlantedCharges[v] = v
 				end
 			end
@@ -246,13 +246,15 @@ function SWEP:throwC4()
 			
 			local nade = ents.Create("cw_kk_ins2_projectile_ied")
 			
-			nade.Detonator = self
+			nade:SetDetonator(self)
 			self.PlantedCharges[nade] = nade
 			
 			nade:SetPos(pos + offset)
 			nade:SetAngles(eyeAng)
 			nade:Spawn()
 			nade:Activate()
+			
+			nade:SetOwner(self.Owner)
 			
 			nade:InitPhys()
 			
@@ -291,15 +293,9 @@ function SWEP:plantC4()
 	end
 	
 	if SERVER then
-		local td = {}
-		local tr, ang, pos
-
 		CustomizableWeaponry.actionSequence.new(self, 0.2, nil, function()
-			td.start = self.Owner:GetShootPos()
-			td.endpos = td.start + (self.Owner:EyeAngles() + self.Owner:GetPunchAngle()):Forward() * 200
-			td.filter = self.Owner
-			
-			tr = util.TraceLine(td)
+			local _, tr = self:isNearWall()
+			local ang, pos
 			
 			if tr.Hit then
 				ang = tr.HitNormal:Angle()
@@ -309,13 +305,15 @@ function SWEP:plantC4()
 				
 				local nade = ents.Create("cw_kk_ins2_projectile_ied")
 				
-				nade.Detonator = self
+				nade:SetDetonator(self)
 				self.PlantedCharges[nade] = nade
 				
 				nade:SetPos(pos)
 				nade:SetAngles(ang)
 				nade:Spawn()
 				nade:Activate()
+				
+				nade:SetOwner(self.Owner)
 				
 				if (tr.Entity:GetClass() == "worldspawn") then
 					nade:SetAngles(ang)
@@ -457,7 +455,7 @@ end
 -- function SWEP:updateReloadTimes() end
 
 function SWEP:getForegripMode()
-	if self.Owner:GetAmmoCount(self.Primary.Ammo) > 0 then 
+	if IsValid(self.Owner) and self.Owner:GetAmmoCount(self.Primary.Ammo) > 0 then 
 		return "base_"
 	end
 	

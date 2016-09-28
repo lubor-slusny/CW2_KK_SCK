@@ -11,3 +11,9 @@ ENT.AdminSpawnable = false
 
 ENT.BlastDamage = 380
 ENT.BlastRadius = 600 // 1200
+
+ENT.KKIN2RCEprojetile = true
+
+function ENT:SetupDataTables()
+	self:NetworkVar("Entity", 0, "Detonator")
+end

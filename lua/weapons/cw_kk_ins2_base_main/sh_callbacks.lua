@@ -226,31 +226,44 @@ if CLIENT then
 	local cwhud24 = "CW_HUD24"
 	local Deploy, UnDeploy = surface.GetTextureID("cw2/gui/bipod_deploy"), surface.GetTextureID("cw2/gui/bipod_undeploy")
 	
-	CustomizableWeaponry.callbacks:addNew("suppressHUDElements", "KK_INS2_BASE_PLANTABLES", function(wep)	
+	local td = {}
+	
+	CustomizableWeaponry.callbacks:addNew("suppressHUDElements", "KK_INS2_BASE_PLANTABLES", function(wep)
+		td.filter = wep.Owner
+		td.start = wep.Owner:EyePos()
+		td.endpos = td.start + wep.Owner:EyeAngles():Forward() * 95
+		
+		local tr = util.TraceLine(td)
+		
+		local x, y = ScrW() / 2, ScrH() / 2 + 70
+		
+		if tr.Hit and IsValid(tr.Entity) and tr.Entity.KKIN2RCEprojetile then
+			local ent = tr.Entity
+			
+			if IsValid(ent.dt.Detonator) and ent.dt.Detonator.Owner == wep.Owner then
+				draw.ShadowText("[USE KEY - PICK UP]", cwhud24, x , y, White, Black, 2, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+				y = y + 30
+			end
+		end
+		
 		if not (wep.KKINS2RCE or (wep.KKINS2Nade and wep.canPlant)) then
 			return
 		end
+
+		if (wep.Owner:GetAmmoCount(wep.Primary.Ammo) < 1) then
+			if wep:Clip1() > 0 then
+				draw.ShadowText("[PRIMARY - DETONATE]", cwhud24, x, y, White, Black, 2, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+			end
+			return
+		end
 		
-		if not wep:isNearWall() then
+		local nw, tr = wep:isNearWall()
+		
+		if not nw then
 			return
 		end
 
-		if (wep.Owner:GetAmmoCount(wep.Primary.Ammo) < 1) then 
-			return
-		end
-		
-		local x, y = ScrW(), ScrH()
-		
-		draw.ShadowText("[PLANT]", cwhud24, x / 2, y / 2 + 100, White, Black, 2, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-		-- draw.ShadowText("[PLANT]", cwhud24, x / 2, y / 2 + 130, White, Black, 2, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
-		
-		-- surface.SetTexture(Deploy)
-		
-		-- surface.SetDrawColor(0, 0, 0, 255)
-		-- surface.DrawTexturedRect(x / 2 - 47, y / 2 + 126, 96, 96)
-		
-		-- surface.SetDrawColor(255, 255, 255, 255)
-		-- surface.DrawTexturedRect(x / 2 - 48, y / 2 + 125, 96, 96)
+		draw.ShadowText("[PRIMARY - PLANT]", cwhud24, x, y, White, Black, 2, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 	end)
 end
 

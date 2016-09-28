@@ -53,7 +53,7 @@ function ENT:Fuse(t)
 	if self:IsValid() then
 		-- util.BlastDamage(
 			-- self, 
-			-- (self.Detonator and self.Detonator.Owner) or ents.GetByIndex(1), 
+			-- (self.dt.Detonator and self.dt.Detonator.Owner) or ents.GetByIndex(1), 
 			-- self:GetPos(), 
 			-- self.BlastRadius, 
 			-- self.BlastDamage
@@ -66,8 +66,8 @@ function ENT:Fuse(t)
 		-- util.Effect("Explosion", ef)
 		
 		local expl = ents.Create("env_explosion")
-		expl.CW_KK_INS2_inflictor = IsValid(self.Detonator) and self.Detonator				//inflictor
-		expl:SetOwner((self.Detonator and self.Detonator.Owner) or ents.GetByIndex(1))		//attacker
+		expl.CW_KK_INS2_inflictor = IsValid(self.dt.Detonator) and self.dt.Detonator				//inflictor
+		expl:SetOwner((self.dt.Detonator and self.dt.Detonator.Owner) or ents.GetByIndex(1))		//attacker
 		expl:SetPos(self:GetPos())
 		expl:Spawn()
 		expl:SetKeyValue("iMagnitude", tostring(self.BlastDamage))
@@ -78,11 +78,27 @@ function ENT:Fuse(t)
 	end
 end
 
+local td = {}
+
+function ENT:verifyActivatorLOS(activator)
+	td.filter = activator
+	td.start = activator:EyePos()
+	td.endpos = td.start + activator:EyeAngles():Forward() * 256
+	
+	local tr = util.TraceLine(td)
+	
+	return tr.Hit and tr.Entity == self
+end
+
 function ENT:Use(activator, caller)
 	if SERVER then
+		if not self:verifyActivatorLOS(activator) then
+			return
+		end
+		
 		local det = activator:GetWeapon("cw_kk_ins2_nade_c4")
 		
-		if det == self.Detonator then
+		if det == self.dt.Detonator then
 			activator:GiveAmmo(1, det.Primary.Ammo)
 			self:Remove()
 		end
@@ -92,6 +108,10 @@ end
 local curParent
 
 function ENT:Think()
+	if IsValid(self.Owner) and self:GetPos():Distance(self.Owner:GetShootPos()) > 30 then
+		self:SetOwner()
+	end
+	
 	curParent = self:GetParent()
 	
 	if curParent != self._lastParent and !IsValid(curParent) then
