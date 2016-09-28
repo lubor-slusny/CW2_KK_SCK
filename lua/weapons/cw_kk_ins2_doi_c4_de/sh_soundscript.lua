@@ -1,7 +1,12 @@
 
 SWEP.Sounds = {
-	// CW_KK_INS2_DOI_MK2_SPOONEJECT
-	
+	base_plant = {
+		{time = 0/30, sound = "CW_KK_INS2_DOI_C4_PLANTARMMOVEMENT"},
+		{time = 12/30, sound = "CW_KK_INS2_DOI_C4_PLANTPLACE"},
+		{time = 31/30, sound = "CW_KK_INS2_DOI_C4_PRIME"},
+		// 35/30
+	},
+
 	base_draw = {
 		{time = 0/30, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
 	},

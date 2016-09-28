@@ -144,7 +144,7 @@ SWEP.ReloadTimes = {
 	base_reload = {2.5, 3.14},
 	base_reloadempty = {2.5, 4.53},
 	base_reload_ext = {2.5, 3.14},
-	base_reloadempty_ext = {2.5, 3.14},
+	base_reloadempty_ext = {2.5, 4.53},
 }
 
 if CLIENT then
