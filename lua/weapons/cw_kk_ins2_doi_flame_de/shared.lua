@@ -74,10 +74,10 @@ SWEP.Instructions	= ""
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_flame_werfer41.mdl"
-SWEP.WorldModel		= "models/weapons/w_lufboy.mdl"
+SWEP.WorldModel		= "models/weapons/w_flammenwerfer41.mdl"
 
-SWEP.WMPos = Vector(11, 0.395, -2.5)
-SWEP.WMAng = Vector(-10, 0, 180)
+SWEP.WMPos = Vector(11, -2, -8)
+SWEP.WMAng = Vector(10, 180, 0)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2de
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.ww2de

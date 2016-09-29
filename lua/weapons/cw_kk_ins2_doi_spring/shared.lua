@@ -36,7 +36,7 @@ if CLIENT then
 	}
 
 	SWEP.AttachmentModelsWM = {
-		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/w_iron_springfield.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/w_iron_springfield.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		
 		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/w_garand_bayonet.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		

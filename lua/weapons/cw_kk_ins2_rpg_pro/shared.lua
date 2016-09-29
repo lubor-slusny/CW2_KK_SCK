@@ -109,3 +109,9 @@ if CLIENT then
 		return self.CW_VM:GetAttachment(2)
 	end
 end
+
+if CLIENT then
+	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_rpg_pro", function(wep,welement)
+		welement:SetBodygroup(0, wep.dt.PinPulled and 1 or 0)
+	end)
+end

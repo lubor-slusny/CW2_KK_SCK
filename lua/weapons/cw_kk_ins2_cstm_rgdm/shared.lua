@@ -96,7 +96,7 @@ SWEP.timeToThrow = 0.9
 SWEP.timeToThrowCook = 1.3
 
 if CLIENT then
-	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_cstm_rdgm", "grenade")
+	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_cstm_rgdm", "grenade")
 	
 	function SWEP:updateOtherParts()
 		-- self.ForegripOverride = (string.find(self.Sequence, "throw") != nil) // nope

@@ -1,9 +1,17 @@
 AddCSLuaFile()
 
 local PANEL
+local LOCK
+
 local VM_ENT
 local RIG_ENT
-local LOCK
+local WM_ENT
+
+local typeNames = {
+	"Weapon ViewModel: ",
+	"Hands ViewModel: ",
+	"Weapon WolrdModel: ",
+}
 
 local function isReallyValid(ent)
 	return IsValid(ent) and (ent:GetModel() != nil) and (ent:SkinCount() != nil) and (ent:GetSkin() != nil) and (ent:GetNumBodyGroups() != nil)
@@ -14,10 +22,6 @@ local function updatePanel()
 	
 	PANEL:ClearControls()
 
-	if !isReallyValid(VM_ENT) then return end
-	
-	LOCK = true
-	
 	local butt
 	butt = vgui.Create("DButton", PANEL)
 	butt:SetTooltip("Loads changes made outside of this tool.")
@@ -26,71 +30,87 @@ local function updatePanel()
 	butt.DoClick = updatePanel
 	PANEL:AddItem(butt)
 	
-	local mdlTxt = vgui.Create("DLabel", PANEL)
-	mdlTxt:SetWrap(true)
-	mdlTxt:SetTextInset(0, 0)
-	mdlTxt:SetText("[" .. VM_ENT:GetModel() .. "]")
-	mdlTxt:SetContentAlignment(7)
-	mdlTxt:SetAutoStretchVertical(true)
-	mdlTxt:DockMargin(0, 0, 0, 0)
-	mdlTxt:SetDark(true)
-	PANEL:AddItem(mdlTxt)
-	
-	local slider
-	local skinCount = VM_ENT:SkinCount() - 1
-	
-	slider = vgui.Create("DNumSlider", PANEL)
-	slider:DockMargin(0, 0, 0, 0)
-	slider:SetDecimals(0)
-	slider:SetMinMax(0, skinCount)
-	slider:SetValue(VM_ENT:GetSkin())
-	slider:SetText("Skin")
-	if skinCount > 0 then slider:SetDark(true) end
-	
-	function slider:OnValueChanged(val)
-		if LOCK or !isReallyValid(VM_ENT) then return end
-		VM_ENT:SetSkin(math.Round(val, 0))
-	end	
-	
-	PANEL:AddItem(slider)
-	
-	local bgTit = vgui.Create("DLabel", PANEL)
-	bgTit:SetWrap(true)
-	bgTit:SetTextInset(0, 0)
-	bgTit:SetText("Bodygroups")
-	bgTit:SetContentAlignment(7)
-	bgTit:SetAutoStretchVertical(true)
-	bgTit:DockMargin(0, 0, 0, 0)
-	PANEL:AddItem(bgTit)
-	
-	local bgCount = VM_ENT:GetNumBodyGroups()
+	for i,ent in pairs({VM_ENT, RIG_ENT, WM_ENT}) do
+		if !isReallyValid(ent) then continue end
 		
-	for i = 0, bgCount - 1 do
-		local bgText = i .. "# " .. VM_ENT:GetBodygroupName(i)
-		local bgCount = VM_ENT:GetBodygroupCount(i) - 1
+		local label = vgui.Create("DLabel", PANEL)
+		label:SetWrap(true)
+		label:SetTextInset(0, 0)
+		label:SetText(typeNames[i])
+		label:SetContentAlignment(7)
+		label:SetAutoStretchVertical(true)
+		label:DockMargin(0, 0, 0, 0)
+		label:SetDark(true)
+		label:SetTextColor(PANEL:GetSkin().Colours.Tree.Hover)
+		
+		PANEL:AddItem(label)
+		
+		local mdlTxt = vgui.Create("DLabel", PANEL)
+		mdlTxt:SetWrap(true)
+		mdlTxt:SetTextInset(0, 0)
+		mdlTxt:SetText("[" .. ent:GetModel() .. "]")
+		mdlTxt:SetContentAlignment(7)
+		mdlTxt:SetAutoStretchVertical(true)
+		mdlTxt:DockMargin(0, 0, 0, 0)
+		mdlTxt:SetDark(true)
+		PANEL:AddItem(mdlTxt)
+		
+		local slider
+		local skinCount = ent:SkinCount() - 1
 		
 		slider = vgui.Create("DNumSlider", PANEL)
 		slider:DockMargin(8, 0, 0, 0)
 		slider:SetDecimals(0)
-		slider:SetMinMax(0, bgCount)
-		slider:SetValue(VM_ENT:GetBodygroup(i))
-		slider:SetText(bgText)
+		slider:SetMinMax(0, skinCount)
+		slider:SetValue(ent:GetSkin())
+		slider:SetText("Skin")
+		
+		if skinCount > 0 then slider:SetDark(true) end
 		
 		function slider:OnValueChanged(val)
-			if LOCK or !isReallyValid(VM_ENT) then return end
-			VM_ENT:SetBodygroup(i, math.Round(val, 0))
-		end
+			if LOCK or !isReallyValid(ent) then return end
+			ent:SetSkin(math.Round(val, 0))
+		end	
 		
 		PANEL:AddItem(slider)
 		
-		if bgCount > 0 then 
-			slider:SetDark(true) 
-			bgTit:SetDark(true)
-			bgTit:InvalidateLayout()
+		local bgTit = vgui.Create("DLabel", PANEL)
+		bgTit:SetWrap(true)
+		bgTit:SetTextInset(0, 0)
+		bgTit:SetText("Bodygroups")
+		bgTit:SetContentAlignment(7)
+		bgTit:SetAutoStretchVertical(true)
+		bgTit:DockMargin(8, 0, 0, 0)
+		PANEL:AddItem(bgTit)
+		
+		local bgCount = ent:GetNumBodyGroups()
+			
+		for i = 0, bgCount - 1 do
+			local bgText = i .. "# " .. ent:GetBodygroupName(i)
+			local bgCount = ent:GetBodygroupCount(i) - 1
+			
+			slider = vgui.Create("DNumSlider", PANEL)
+			slider:DockMargin(8, 0, 0, 0)
+			slider:SetDecimals(0)
+			slider:SetMinMax(0, bgCount)
+			slider:SetValue(ent:GetBodygroup(i))
+			slider:SetText(bgText)
+			
+			function slider:OnValueChanged(val)
+				if LOCK or !isReallyValid(ent) then return end
+				ent:SetBodygroup(i, math.Round(val, 0))
+			end
+			
+			PANEL:AddItem(slider)
+			
+			if bgCount > 0 then 
+				slider:SetDark(true) 
+				bgTit:SetDark(true)
+				bgTit:InvalidateLayout()
+			end
 		end
 	end
 	
-	LOCK = false
 end
 
 local LAST_MDL
@@ -106,9 +126,12 @@ local function KK_SCK_BGS_Think()
 	if IsValid(wep) then		
 		if wep.CW20Weapon and IsValid(wep.CW_VM) then
 			VM_ENT = wep.CW_VM
+			RIG_ENT = wep.CW_KK_HANDS or wep.Owner:GetHands()
 		elseif IsValid(wep.Wep) then
 			VM_ENT = wep.Wep
 		end
+		
+		WM_ENT = wep.WMEnt
 	end
 	
 	if !isReallyValid(VM_ENT) then return end
