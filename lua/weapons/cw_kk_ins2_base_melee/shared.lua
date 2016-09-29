@@ -93,14 +93,33 @@ end
 // delayed aim vector trace and tr.ent:TakeDamageInfo
 //-----------------------------------------------------------------------------
 
+local CT
+
 function SWEP:PrimaryAttack()
 	if self:IsOwnerCrawling() then
 		return
 	end
 	
+	CT = CurTime()
+	
+	if self.meleeAttackDelay and self.meleeAttackDelay > CT then
+		return
+	end
+	
+	// ignore near-wall
+	for i = 1, 2 do
+		if not self:canFireWeapon(i) then
+			return
+		end
+	end
+	
+	if self.InactiveWeaponStates[self.dt.State] then
+		return
+	end
+	
 	if self.Owner:KeyDown(IN_USE) then
-		if CustomizableWeaponry_KK.ins2.quickGrenade.canThrow(self) then
-			CustomizableWeaponry_KK.ins2.quickGrenade.throw(self)
+		if CustomizableWeaponry_KK.ins2.quickGrenade:canThrow(self) then
+			CustomizableWeaponry_KK.ins2.quickGrenade:throw(self)
 			return
 		end
 	end
@@ -112,7 +131,8 @@ function SWEP:PrimaryAttack()
 		
 		self:EmitSound(self.AttackSound)
 		
-		self:SetNextPrimaryFire(CurTime() + self.FireDelay)
+		self.meleeAttackDelay = CT + self.FireDelay
+		-- self:SetNextPrimaryFire(CT + self.FireDelay)
 		
 		if CLIENT then 
 			if self.ReticleInactivityPostFire then

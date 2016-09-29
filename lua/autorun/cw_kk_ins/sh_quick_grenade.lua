@@ -97,71 +97,46 @@ if CustomizableWeaponry_KK.HOME then
 	-- add({text = "N69", ammo = "Frag Grenades", class = "cw_kk_ins2_projectile_n69", default = "n69"})
 end
 
-function CustomizableWeaponry_KK.ins2.quickGrenade.getAmmo(wep)
+function CustomizableWeaponry_KK.ins2.quickGrenade:getAmmo(wep)
 	local nadeType
 	
 	if SERVER then
 		nadeType = wep.Owner:GetInfoNum("_cw_kk_ins2_qnadetype", 1)
 	else
-		nadeType = CustomizableWeaponry_KK.ins2.quickGrenade.cvarType:GetInt() or 1
+		nadeType = self.cvarType:GetInt() or 1
 	end
 	
-	nadeType = math.Clamp(nadeType, 1, #CustomizableWeaponry_KK.ins2.quickGrenade.categories)
+	nadeType = math.Clamp(nadeType, 1, #self.categories)
 	
-	return CustomizableWeaponry_KK.ins2.quickGrenade.categories[nadeType]
+	return self.categories[nadeType]
 end
 
-local td = {}
-
-function CustomizableWeaponry_KK.ins2.quickGrenade.canThrow(wep)
-	// it's disabled, can't throw
+function CustomizableWeaponry_KK.ins2.quickGrenade:canThrow(wep)
 	if not CustomizableWeaponry.quickGrenade.enabled then
 		return false
 	end
 	
-	// can't throw if we're within a restricted state
 	if CustomizableWeaponry.quickGrenade.restrictedStates[wep.dt.State] then
 		return false
 	end
 	
-	-- // can't throw while reloading
-	-- if wep.ReloadDelay then
-		-- return false
-	-- end
-	
-	// can't throw with an active bipod
 	if wep.dt.BipodDeployed then
 		return false
 	end
 	
-	// can't throw while changing weapons
 	if wep.HolsterDelay then
 		return false
 	end
 	
-	// can't throw with no grenades
-	local ammo = CustomizableWeaponry_KK.ins2.quickGrenade.getAmmo(wep).ammo
+	local ammo = self:getAmmo(wep).ammo
 	if ammo and wep.Owner:GetAmmoCount(ammo) <= 0 then
 		return false
 	end
 	
-	-- // can't throw the grenade if we're really close to an object
-	-- td.start = wep.Owner:GetShootPos()
-	-- td.endpos = td.start + CustomizableWeaponry.quickGrenade:getThrowOffset(wep.Owner)
-	-- td.filter = wep.Owner
-	
-	-- local tr = util.TraceLine(td)
-	
-	-- // something in front of us, can't throw
-	-- if tr.Hit then
-		-- return false
-	-- end
-	
-	// everything passes, can throw, woo!
 	return true
 end
 
-function CustomizableWeaponry_KK.ins2.quickGrenade.throw(wep, IFTP)
+function CustomizableWeaponry_KK.ins2.quickGrenade:throw(wep, IFTP)
 	local CT = CurTime()
 	
 	wep:setGlobalDelay(1.9)
@@ -171,7 +146,7 @@ function CustomizableWeaponry_KK.ins2.quickGrenade.throw(wep, IFTP)
 		SendUserMessage("CW_KK_INS2_THROWGRENADE", wep.Owner)
 	end
 	
-	wep.dt.State = CW_ACTION
+	wep.dt.State = CW_KK_QNADE
 	
 	IFTP = IFTP or IsFirstTimePredicted()
 	
@@ -182,9 +157,9 @@ function CustomizableWeaponry_KK.ins2.quickGrenade.throw(wep, IFTP)
 		
 		CustomizableWeaponry.callbacks.processCategory(wep, "beginThrowGrenade")
 		
-		local curSetup = CustomizableWeaponry_KK.ins2.quickGrenade.getAmmo(wep)
+		local curSetup = self:getAmmo(wep)
 		
-		local quickNadeTweak = curSetup.default and CustomizableWeaponry_KK.ins2.quickGrenade.models[curSetup.default] or wep.CW_GREN_TWEAK
+		local quickNadeTweak = curSetup.default and self.models[curSetup.default] or wep.CW_GREN_TWEAK
 		local nadeAmmo = curSetup.ammo
 		local entClass = curSetup.class
 		
@@ -228,42 +203,42 @@ function CustomizableWeaponry_KK.ins2.quickGrenade.throw(wep, IFTP)
 				// create and setup
 				local nade = ents.Create(entClass)
 				
-				if not IsValid(nade) then return end
-				
-				local pos = wep.Owner:GetShootPos()
-				local eyeAng = wep.Owner:EyeAngles()
-				local forward = eyeAng:Forward()
-				
-				nade.Model = quickNadeTweak.wm
-				nade:SetModel(quickNadeTweak.wm)
-				
-				nade:SetPos(pos)
-				nade:SetAngles(eyeAng)
-				nade:SetOwner(wep.Owner)
-				
-				nade:Spawn()
-				nade:Activate()
-				
-				nade:SetModel(quickNadeTweak.wm)
-				
-				// add velocity
-				local velocity = CustomizableWeaponry.quickGrenade:getThrowVelocity(wep.Owner, throwVelocity, addVelocity)
-				local phys = nade:GetPhysicsObject()
-				
-				if IsValid(phys) then
-					phys:SetVelocity(velocity)
-					phys:AddAngleVelocity(Vector(math.random(-500, 500), math.random(-500, 500), math.random(-500, 500)))
-				else
-					nade:SetVelocity(velocity)
+				if IsValid(nade) then
+					local pos = wep.Owner:GetShootPos()
+					local eyeAng = wep.Owner:EyeAngles()
+					local forward = eyeAng:Forward()
+					
+					nade.Model = quickNadeTweak.wm
+					nade:SetModel(quickNadeTweak.wm)
+					
+					nade:SetPos(pos)
+					nade:SetAngles(eyeAng)
+					nade:SetOwner(wep.Owner)
+					
+					nade:Spawn()
+					nade:Activate()
+					
+					nade:SetModel(quickNadeTweak.wm)
+					
+					// add velocity
+					local velocity = CustomizableWeaponry.quickGrenade:getThrowVelocity(wep.Owner, throwVelocity, addVelocity)
+					local phys = nade:GetPhysicsObject()
+					
+					if IsValid(phys) then
+						phys:SetVelocity(velocity)
+						phys:AddAngleVelocity(Vector(math.random(-500, 500), math.random(-500, 500), math.random(-500, 500)))
+					else
+						nade:SetVelocity(velocity)
+					end
+					
+					// fuse
+					if nade.Fuse then
+						nade:Fuse(3)
+					end
+					
+					nade:Fire("sETtIMER", 3)
 				end
-				
-				// fuse
-				if nade.Fuse then
-					nade:Fuse(3)
-				end
-				
-				nade:Fire("sETtIMER", 3)
-				
+
 				// consume owners ammo
 				local suppressAmmoUsage = CustomizableWeaponry.callbacks.processCategory(wep, "shouldSuppressAmmoUsage")
 				
@@ -293,7 +268,7 @@ if CLIENT then
 		wep = ply:GetActiveWeapon()
 
 		if IsValid(wep) and wep.CW20Weapon then
-			CustomizableWeaponry_KK.ins2.quickGrenade.throw(wep)
+			CustomizableWeaponry_KK.ins2.quickGrenade:throw(wep)
 		end
 	end)
 end
@@ -321,8 +296,8 @@ if SERVER then
 				return
 			end
 			
-			if CustomizableWeaponry_KK.ins2.quickGrenade.canThrow(wep) then
-				CustomizableWeaponry_KK.ins2.quickGrenade.throw(wep, true)
+			if CustomizableWeaponry_KK.ins2.quickGrenade:canThrow(wep) then
+				CustomizableWeaponry_KK.ins2.quickGrenade:throw(wep, true)
 				SendUserMessage("CW_KK_INS2_THROWGRENADE", ply)
 			end
 		else
@@ -387,18 +362,14 @@ if SERVER then
 	util.AddNetworkString("CW_KK_INS2_NWGQN")
 end
 
-local function receive(len, ply)	
-	if SERVER then
-		net.Start("CW_KK_INS2_NWGQN")
-		net.WriteEntity(ply)
-		net.Broadcast()
-	else
+if CLIENT then
+	local function receive()
 		local ply = net.ReadEntity()
 		
 		if IsValid(ply) then
 			ply:AnimRestartGesture(GESTURE_SLOT_ATTACK_AND_RELOAD, ACT_GMOD_GESTURE_ITEM_THROW, true)
 		end
 	end
-end
 	
-net.Receive("CW_KK_INS2_NWGQN", receive)
+	net.Receive("CW_KK_INS2_NWGQN", receive)
+end

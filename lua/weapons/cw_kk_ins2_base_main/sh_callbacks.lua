@@ -189,8 +189,19 @@ CustomizableWeaponry.callbacks:addNew("postDetachAttachment", "KK_INS2_BASE", fu
 end)
 
 if CLIENT then
+	local kkAction = {
+		[CW_KK_ACTION] = true,
+		[CW_KK_QNADE] = true,
+		[CW_KK_QKNIFE] = true,
+	}
+
 	CustomizableWeaponry.callbacks:addNew("adjustViewmodelPosition", "KK_INS2_BASE", function(wep, TargetPos, TargetAng)
 		if !wep.KKINS2Wep then return end
+		
+		
+		if kkAction[wep.dt.State] then
+			return wep.SwimPos, wep.SwimAng
+		end
 		
 		// no CustomizePos during crawling
 		// also SprintViewSimulation?

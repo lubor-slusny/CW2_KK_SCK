@@ -96,6 +96,8 @@ SWEP.spoonTimePlant = 1		// delay between start of plant animation and start of 
 SWEP.swapTimePlant = 1.7	// full length of plant animation
 SWEP.spawnTimePlant = 1.17	// delay between start of plant animation and creation of grenade ent
 
+SWEP.PlantAng = Vector()	// angle tweak for planted entities
+
 //-----------------------------------------------------------------------------
 // EquipAmmo replacement for SWEP.Primary.DefaultClip
 //-----------------------------------------------------------------------------
@@ -324,8 +326,9 @@ function SWEP:IndividualThink()
 						local pos = tr.HitPos + tr.HitNormal * 1.5
 						
 						local ang = tr.HitNormal:Angle()
-						ang:RotateAroundAxis(ang:Up(), -90)
-						ang:RotateAroundAxis(ang:Forward(), -90)
+						ang:RotateAroundAxis(ang:Right(), self.PlantAng.x)
+						ang:RotateAroundAxis(ang:Up(), self.PlantAng.y)
+						ang:RotateAroundAxis(ang:Forward(), self.PlantAng.z)
 						
 						grenade:SetPos(pos)
 						grenade:SetAngles(ang)

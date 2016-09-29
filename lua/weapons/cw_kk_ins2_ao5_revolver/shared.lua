@@ -8,7 +8,7 @@ local spawnable = file.Exists("models/weapons/v_snub.mdl", "GAME") and file.Exis
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "[AO5] Snap"
+	SWEP.PrintName = "Snap"
 	SWEP.CSMuzzleFlashes = true
 	
 	SWEP.IconLetter = "f"
@@ -78,7 +78,7 @@ SWEP.NormalHoldType = "revolver"
 SWEP.RunHoldType = "normal"
 SWEP.FireModes = {"semi"}
 SWEP.Base = "cw_kk_ins2_base"
-SWEP.Category = "CW 2.0 KK INS2"
+SWEP.Category = "CW 2.0 KK INS2 AO5"
 
 SWEP.Author			= "Spy"
 SWEP.Contact		= ""

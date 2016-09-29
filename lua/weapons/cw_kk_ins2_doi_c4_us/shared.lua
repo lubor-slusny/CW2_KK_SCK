@@ -13,7 +13,10 @@ if CLIENT then
 	
 	SWEP.IconLetter = "O"
 	
-	SWEP.AttachmentModelsVM = {}
+	SWEP.AttachmentModelsVM = {
+		["pcf"] = {model = "models/maxofs2d/cube_tool.mdl", pos = Vector(0.00000, 0.00000, 0.00000), angle = Angle(0.00000, -90.00000, 0.00000), size = Vector(0.01000, 0.01000, 0.01000), attachment = "prime", bodygroups = {1}, active = true},
+	}
+	
 	SWEP.AttachmentModelsWM = {}
 	
 	SWEP.MoveType = 2
@@ -86,3 +89,5 @@ SWEP.swapTimeCook = 0.9
 
 SWEP.mustCook = true
 SWEP.canPlant = true
+
+SWEP.PlantAng = Vector(0, 0, 180)

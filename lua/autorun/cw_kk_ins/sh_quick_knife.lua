@@ -3,13 +3,14 @@ local SP = game.SinglePlayer()
 
 CustomizableWeaponry_KK.ins2.quickKnife = CustomizableWeaponry_KK.ins2.quickKnife or {}
 
-// only purpose of this entity is to give melee attack knife killicon
-hook.Add("InitPostEntity", "CW_KK_INS2_MELEE_ICON", function()
+hook.Add("InitPostEntity", CustomizableWeaponry_KK.ins2.quickKnife, function()
 	if SERVER then
+		// this ent will give melee attacks custom kill-icon, how cool is dat?
 		CustomizableWeaponry_KK.ins2.quickKnife._inflictor = ents.Create("cw_kk_ins2_damage_melee")
+		// itll also give lua errors to ppl whose ents.Create fks up
 	end
 end)
-
+	
 CustomizableWeaponry_KK.ins2.quickKnife.models = {}
 
 CustomizableWeaponry_KK.ins2.quickKnife.models.gurkha = {
@@ -42,12 +43,24 @@ CustomizableWeaponry_KK.ins2.quickKnife.models.ww2gb = {
 	a_attack = "hitcenter1"
 }
 
-function CustomizableWeaponry_KK.ins2.quickKnife.canAttack(wep)
+function CustomizableWeaponry_KK.ins2.quickKnife:canAttack(wep)
+	self.restrictedStates = self.restrictedStates or {
+		[CW_ACTION] = true,
+		[CW_CUSTOMIZE] = true,
+		[CW_KK_ACTION] = true,
+		[CW_KK_QNADE] = true,
+		-- [CW_KK_QKNIFE] = true, // coz wep.meleeAttackDelay
+	}
+
 	-- if CustomizableWeaponry.quickGrenade.restrictedStates[wep.dt.State] then
 		-- return false
 	-- end
 	
-	if wep.dt.State == CW_ACTION or wep.dt.State == CW_CUSTOMIZE then
+	if wep.meleeAttackDelay and wep.meleeAttackDelay > CurTime() then 
+		return 
+	end
+	
+	if self.restrictedStates[wep.dt.State] then
 		return false
 	end
 	
@@ -134,6 +147,10 @@ if SERVER then
 						ang.p = 0
 						ent:SetVelocity(ang:Forward() * setup.npcForceMult)
 					end
+					
+					if string.find(ent:GetClass(), "breakable") then
+						ent:Fire("Break")
+					end
 				end
 				
 				wep.Owner:ViewPunch(Angle(math.Rand(-5, -4), math.Rand(-2, 2), math.Rand(-1, 1)))
@@ -145,7 +162,7 @@ if SERVER then
 	end
 end
 
-function CustomizableWeaponry_KK.ins2.quickKnife.attack(wep)
+function CustomizableWeaponry_KK.ins2.quickKnife:attack(wep)
 	local CT = CurTime()
 	
 	// reset reload delays to interrupt reload (if any)
@@ -161,86 +178,72 @@ function CustomizableWeaponry_KK.ins2.quickKnife.attack(wep)
 		wep:idleAnimFunc()
 	end
 	
-	// since we are ignoring base delays, lets add our own
-	// btw why dont I check for this in quickKnife.canAttack?
-	wep.meleeAttackDelay = CT + 0.6
-	
-	// tell client to do stuff since we are triggered using concommand, not PrimaryAttack
-	// prubly should replace this with net.Send
+	// tell client to do stuff since we are triggered using SV concommand, not PrimaryAttack
 	if SERVER then
 		SendUserMessage("CW_KK_INS2_QUICKKNIFE", wep.Owner)
 	end
 	
-	// looking back on this check few months later, it doesnt make any sense
-	if SP or (!SP and SERVER) or (!SP and CLIENT/* and IsFirstTimePredicted()*/) then
-		local category
-		
-		-- if CLIENT then
-			-- wep.Owner:AnimRestartGesture(GESTURE_SLOT_ATTACK_AND_RELOAD, ACT_HL2MP_GESTURE_RANGE_ATTACK_MELEE2, true)
-			-- wep.Owner:AnimRestartGesture(GESTURE_SLOT_ATTACK_AND_RELOAD, ACT_GMOD_GESTURE_MELEE_SHOVE_1HAND, true)
-			-- wep.Owner:AnimRestartGesture(GESTURE_SLOT_ATTACK_AND_RELOAD, ACT_GMOD_GESTURE_MELEE_SHOVE_2HAND, true)
-		-- end
-		
-		// why didnt I just broadcast this from server directly? why am I sending it to server first?
-		if CLIENT then
-			net.Start("CW_KK_INS2_NWGQK")
-			net.SendToServer()
-		end
-		
-		// this will make adding hands (DOI Thompson) fun
-		if wep.ActiveAttachments.kk_ins2_ww2_knife then			
-			if CLIENT then
-				wep:meleeAnimFunc()
-			end
-			
-			wep:setGlobalDelay(0.7)
-			wep:SetNextPrimaryFire(CT + 1)
-			
-			category = "bayonet"
-		else
-			wep:setGlobalDelay(1.2)
-			wep:SetNextPrimaryFire(CT + 1.2)
-			
-			wep.dt.State = CW_ACTION
-		
-			if wep:filterPrediction() then
-				wep:EmitSound("CW_HOLSTER")
-			end
-			
-			if CLIENT then
-				CustomizableWeaponry.actionSequence.new(wep, 0.1, nil, function()
-					wep:EmitSound("weapons/knife/knife_deploy1.wav")
-				end)
-				
-				CustomizableWeaponry.actionSequence.new(wep, 0.1, nil, function()
-					wep.GrenadePos.z = -15
-					wep.knifeTime = CurTime() + 1
-					
-					wep.CW_KK_HANDS:SetParent(wep.CW_KK_KNIFE)
-					
-					wep:playAnim(wep.CW_KK_KNIFE_TWEAK.a_attack, 0, 0.1, wep.CW_KK_KNIFE)
-				end)
-				
-				CustomizableWeaponry.actionSequence.new(wep, 0.3, nil, function()
-					wep:playAnim(wep.CW_KK_KNIFE_TWEAK.a_attack, 1, 0.1, wep.CW_KK_KNIFE)
-				end)
-				
-				CustomizableWeaponry.actionSequence.new(wep, 0.9, nil, function()
-					wep:playAnim("holster", 2, 0, wep.CW_KK_KNIFE)
-				end)
-				
-				CustomizableWeaponry.actionSequence.new(wep, 1, nil, function()
-					wep.reticleInactivity = 0
-					wep:idleAnimFunc()
-				end)
-			end
-			
-			category = "knife"
-		end
+	local category
 	
-		if SERVER then
-			CustomizableWeaponry_KK.ins2.quickKnife:_createDamage(wep, category)
+	// this will make adding hands (DOI Thompson) fun
+	if wep.ActiveAttachments.kk_ins2_ww2_knife then			
+		if CLIENT then
+			wep:meleeAnimFunc()
 		end
+		
+		wep:setGlobalDelay(0.8)
+		wep:SetNextPrimaryFire(CT + 0.8)
+		wep.meleeAttackDelay = CT + 0.8
+		
+		category = "bayonet"
+	else
+		wep:setGlobalDelay(1.2)
+		wep:SetNextPrimaryFire(CT + 1.2)
+		wep.meleeAttackDelay = CT + 1.2
+		
+		wep.dt.State = CW_KK_QKNIFE
+	
+		if wep:filterPrediction() then
+			wep:EmitSound("CW_HOLSTER")
+		end
+		
+		if CLIENT then
+			CustomizableWeaponry.actionSequence.new(wep, 0.1, nil, function()
+				wep:EmitSound("weapons/knife/knife_deploy1.wav")
+			end)
+			
+			CustomizableWeaponry.actionSequence.new(wep, 0.1, nil, function()
+				wep.GrenadePos.z = -15
+				wep.knifeTime = CurTime() + 1
+				
+				wep.CW_KK_HANDS:SetParent(wep.CW_KK_KNIFE)
+				
+				wep:playAnim(wep.CW_KK_KNIFE_TWEAK.a_attack, 0, 0.1, wep.CW_KK_KNIFE)
+			end)
+			
+			CustomizableWeaponry.actionSequence.new(wep, 0.3, nil, function()
+				wep:playAnim(wep.CW_KK_KNIFE_TWEAK.a_attack, 1, 0.1, wep.CW_KK_KNIFE)
+			end)
+			
+			CustomizableWeaponry.actionSequence.new(wep, 0.9, nil, function()
+				wep:playAnim("holster", 2, 0, wep.CW_KK_KNIFE)
+			end)
+			
+			CustomizableWeaponry.actionSequence.new(wep, 1, nil, function()
+				wep.reticleInactivity = 0
+				wep:idleAnimFunc()
+			end)
+		end
+		
+		category = "knife"
+	end
+
+	if SERVER then
+		net.Start("CW_KK_INS2_NWGQK")
+		net.WriteEntity(wep.Owner)
+		net.Broadcast()
+		
+		self:_createDamage(wep, category)
 	end
 end
 
@@ -252,7 +255,7 @@ if CLIENT then
 		wep = ply:GetActiveWeapon()
 
 		if IsValid(wep) and wep.CW20Weapon then 
-			CustomizableWeaponry_KK.ins2.quickKnife.attack(wep)
+			CustomizableWeaponry_KK.ins2.quickKnife:attack(wep)
 		end
 	end)
 
@@ -296,6 +299,7 @@ if SERVER then
 	
 	concommand.Add("cw_kk_melee", function(ply)
 		if !IsValid(ply) then return end
+		-- ply:ConCommand("_cw_kk_melee_cl")
 		
 		wep = ply:GetActiveWeapon()
 		if !IsValid(wep) then return end
@@ -313,18 +317,14 @@ if SERVER then
 	util.AddNetworkString("CW_KK_INS2_NWGQK")
 end
 
-local function receive(len, ply)	
-	if SERVER then
-		net.Start("CW_KK_INS2_NWGQK")
-		net.WriteEntity(ply)
-		net.Broadcast()
-	else
+if CLIENT then
+	local function receive()
 		local ply = net.ReadEntity()
 		
 		if IsValid(ply) then
 			ply:AnimRestartGesture(GESTURE_SLOT_ATTACK_AND_RELOAD, ACT_HL2MP_GESTURE_RANGE_ATTACK_MELEE2, true)
 		end
 	end
-end
 	
-net.Receive("CW_KK_INS2_NWGQK", receive)
+	net.Receive("CW_KK_INS2_NWGQK", receive)
+end

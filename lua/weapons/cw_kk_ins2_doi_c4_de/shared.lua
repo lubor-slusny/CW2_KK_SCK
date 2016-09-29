@@ -13,7 +13,10 @@ if CLIENT then
 	
 	SWEP.IconLetter = "O"
 	
-	SWEP.AttachmentModelsVM = {}
+	SWEP.AttachmentModelsVM = {
+		["pcf"] = {model = "models/maxofs2d/cube_tool.mdl", pos = Vector(0.00000, 0.00000, 0.00000), angle = Angle(0.00000, -90.00000, 0.00000), size = Vector(0.01000, 0.01000, 0.01000), attachment = "prime", bodygroups = {1}, active = true},
+	}
+	
 	SWEP.AttachmentModelsWM = {}
 	
 	SWEP.MoveType = 2
@@ -65,7 +68,7 @@ SWEP.WorldModel		= "models/weapons/w_compb_axis.mdl"
 SWEP.WMPos = Vector(5.5, 3.295, -1.765)
 SWEP.WMAng = Angle(-28.962, 165.365, 70)
 
-SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.ww2us
+SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.ww2de
 
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.doiContentMounted()
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.doiContentMounted()
@@ -86,3 +89,22 @@ SWEP.swapTimeCook = 0.9
 
 SWEP.mustCook = true
 SWEP.canPlant = true
+
+SWEP.PlantAng = Vector(0, 0, 180)
+
+if CLIENT then
+	function SWEP:updateOtherParts()
+		if self.Sequence != self._pcfStop then
+			self.AttachmentModelsVM.pcf.ent:StopParticles()
+			-- self.CW_VM:StopParticles()
+			
+			self._pcfStop = nil
+		else
+			-- local pos = self.AttachmentModelsVM.pcf.ent:GetPos()
+			-- local ed = EffectData()
+			-- ed:SetOrigin(pos)
+			-- ed:SetScale(0.01)
+			-- util.Effect("Sparks", ed)
+		end
+	end
+end

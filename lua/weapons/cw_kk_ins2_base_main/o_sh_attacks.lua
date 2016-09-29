@@ -22,8 +22,8 @@ function SWEP:PrimaryAttack()
 	end
 	
 	if self.Owner:KeyDown(IN_USE) then
-		if CustomizableWeaponry_KK.ins2.quickGrenade.canThrow(self) then
-			CustomizableWeaponry_KK.ins2.quickGrenade.throw(self)
+		if CustomizableWeaponry_KK.ins2.quickGrenade:canThrow(self) then
+			CustomizableWeaponry_KK.ins2.quickGrenade:throw(self)
 			return
 		end
 	end
@@ -118,7 +118,7 @@ function SWEP:PrimaryAttack()
 	
 	if not suppressAmmoUsage then
 		self:TakePrimaryAmmo(self.AmmoPerShot)
-		self.boltAction_isShot = true
+		self.boltAction_isShot = self.Animations.base_bolt != nil // temp chk2
 	end
 	
 	if self:Clip1() == 0 then

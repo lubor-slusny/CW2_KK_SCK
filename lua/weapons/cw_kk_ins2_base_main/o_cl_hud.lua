@@ -77,7 +77,7 @@ function SWEP:draw3D2DHUD()
 					
 					local nadeText
 					
-					local nadeSetup = CustomizableWeaponry_KK.ins2.quickGrenade.getAmmo(self)
+					local nadeSetup = CustomizableWeaponry_KK.ins2.quickGrenade:getAmmo(self)
 					
 					local nadeCount = nadeSetup.ammo and self.Owner:GetAmmoCount(nadeSetup.ammo) or 8
 					
@@ -153,7 +153,7 @@ function SWEP:draw3D2DHUD()
 				
 				draw.ShadowText(self.Primary.Ammo, "CW_HUD48", 90, 100, self.HUDColors.white, self.HUDColors.black, 2, TEXT_ALIGN_RIGHT, TEXT_ALIGN_CENTER)
 				
-				local nadeSetup = CustomizableWeaponry_KK.ins2.quickGrenade.getAmmo(self)
+				local nadeSetup = CustomizableWeaponry_KK.ins2.quickGrenade:getAmmo(self)
 					
 				local nadeCount = nadeSetup.ammo and self.Owner:GetAmmoCount(nadeSetup.ammo) or 8
 				
@@ -283,7 +283,7 @@ function SWEP:drawCustomHUD()
 			
 			local nadeText
 			
-			local nadeSetup = CustomizableWeaponry_KK.ins2.quickGrenade.getAmmo(self)
+			local nadeSetup = CustomizableWeaponry_KK.ins2.quickGrenade:getAmmo(self)
 			
 			local nadeCount = nadeSetup.ammo and self.Owner:GetAmmoCount(nadeSetup.ammo) or 8
 			
@@ -344,7 +344,7 @@ function SWEP:drawCustomHUD()
 		
 		local nadeText
 		
-		local nadeSetup = CustomizableWeaponry_KK.ins2.quickGrenade.getAmmo(self)
+		local nadeSetup = CustomizableWeaponry_KK.ins2.quickGrenade:getAmmo(self)
 		
 		local nadeCount = nadeSetup.ammo and self.Owner:GetAmmoCount(nadeSetup.ammo) or 8
 		

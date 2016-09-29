@@ -10,7 +10,7 @@ SWEP.magType = "arMag"
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "[AO5] BR99"
+	SWEP.PrintName = "BR99"
 	SWEP.CSMuzzleFlashes = true
 	SWEP.ViewModelMovementScale = 1.15
 	
@@ -217,7 +217,7 @@ SWEP.NormalHoldType = "ar2"
 SWEP.RunHoldType = "passive"
 SWEP.FireModes = {"auto"}
 SWEP.Base = "cw_kk_ins2_base"
-SWEP.Category = "CW 2.0 KK INS2"
+SWEP.Category = "CW 2.0 KK INS2 AO5"
 
 SWEP.Author			= "Spy"
 SWEP.Contact		= ""

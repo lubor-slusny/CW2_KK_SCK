@@ -4,6 +4,10 @@ AddCSLuaFile()
 
 local WS_PACK_REVISION = 7
 
+CW_KK_ACTION = 11
+CW_KK_QNADE = 12
+CW_KK_QKNIFE = 13
+
 CustomizableWeaponry_KK = CustomizableWeaponry_KK or {}
 CustomizableWeaponry_KK.ins2 = CustomizableWeaponry_KK.ins2 or {}
 

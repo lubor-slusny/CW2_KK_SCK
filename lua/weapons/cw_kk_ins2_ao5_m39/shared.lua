@@ -10,7 +10,7 @@ SWEP.magType = "brMag"
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "[AO5] M39"
+	SWEP.PrintName = "M39"
 	SWEP.CSMuzzleFlashes = true
 	SWEP.ViewModelMovementScale = 1.15
 	
@@ -192,7 +192,7 @@ SWEP.NormalHoldType = "ar2"
 SWEP.RunHoldType = "passive"
 SWEP.FireModes = {"semi"}
 SWEP.Base = "cw_kk_ins2_base"
-SWEP.Category = "CW 2.0 KK INS2"
+SWEP.Category = "CW 2.0 KK INS2 AO5"
 
 SWEP.Author			= "Spy"
 SWEP.Contact		= ""
@@ -212,7 +212,7 @@ SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted() and spa
 
 SWEP.Primary.ClipSize		= 10
 SWEP.Primary.DefaultClip	= 10
-SWEP.Primary.Automatic		= true
+SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "7.62x51MM"
 
 SWEP.FireDelay = 60/725

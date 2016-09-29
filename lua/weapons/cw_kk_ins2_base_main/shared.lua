@@ -176,18 +176,17 @@ local MP = !SP
 
 function SWEP:CW_KK_MELEE()
 	if SERVER then
-		if self._KK_INS2_PickedUp == false then return end
-		if self.meleeAttackDelay and self.meleeAttackDelay > CurTime() then return end
-	
+		if not self._KK_INS2_PickedUp then 
+			return 
+		end
+		
 		if self.KKINS2Melee then
 			self:PrimaryAttack()
-			
-			self.meleeAttackDelay = CurTime() + self.FireDelay
 			return
 		end
 		
-		if CustomizableWeaponry_KK.ins2.quickKnife.canAttack(self) then
-			CustomizableWeaponry_KK.ins2.quickKnife.attack(self)
+		if CustomizableWeaponry_KK.ins2.quickKnife:canAttack(self) then
+			CustomizableWeaponry_KK.ins2.quickKnife:attack(self)
 		end
 	end
 end
@@ -238,9 +237,9 @@ function SWEP:IndividualThink()
 		self.CrosshairEnabled = shouldDrawCrosshair
 		self.FadeCrosshairOnAim = !shouldDrawCrosshair
 		
-		if self.AttachmentModelsVM.kk_ins2_ww2_knife then
-			self.DisableSprintViewSimulation = self.ActiveAttachments.kk_ins2_ww2_knife
-		end
+		-- if self.AttachmentModelsVM.kk_ins2_ww2_knife then
+			-- self.DisableSprintViewSimulation = self.ActiveAttachments.kk_ins2_ww2_knife
+		-- end
 		
 		if MP and not IsFirstTimePredicted() then return end
 		
@@ -263,19 +262,20 @@ end
 // doBoltAction sets delays and plays bolt animation on shotguns/rifles
 //-----------------------------------------------------------------------------
 
-local prefix, suffix, anim
+local prefix, suffix, anim, curDelay
 
 function SWEP:doBoltAction()
-	if not self.Animations.base_bolt then // temp chk
+	if self:Clip1() < 1 then
 		self.boltAction_isShot = false
-		return
 	end
 	
-	if self:Clip1() > 0 and self:GetNextPrimaryFire() < CurTime() and self.boltAction_isShot and not self.Owner:KeyDown(IN_ATTACK) then
+	curDelay = math.max(self.GlobalDelay, self:GetNextPrimaryFire())
+	
+	if self:Clip1() > 0 and curDelay < CurTime() and self.boltAction_isShot and not self.Owner:KeyDown(IN_ATTACK) then
 		local prefix = self:getForegripMode()
 		local suffix = ""
 		
-		self.boltAction_isShot = false
+		-- self.boltAction_isShot = false
 		
 		if self:isAiming() then
 			suffix = "_aim"
@@ -283,18 +283,26 @@ function SWEP:doBoltAction()
 		
 		anim = prefix .. "bolt" .. suffix
 		
-		self:sendWeaponAnim(anim, 1, 0)
+		if SP or IsFirstTimePredicted() then
+			self:sendWeaponAnim(anim, 1, 0)
+		end
 		
-		local _, time = self:getAnimTimes(anim)
+		local time, halt = self:getAnimTimes(anim)
 		
-		time = CurTime() + time
+		local oldMAD = self.meleeAttackDelay or 0
 		
-		self:SetNextPrimaryFire(time)
-		self.GlobalDelay = time
-	end
-	
-	if self:Clip1() < 1 then
-		self.boltAction_isShot = false
+		CustomizableWeaponry.actionSequence.new(self, time, nil, function()
+			local newMAD = self.meleeAttackDelay or 0
+			
+			if math.abs(newMAD - oldMAD) < 0.1 then
+				self.boltAction_isShot = false
+			end
+		end)
+		
+		halt = CurTime() + halt
+		
+		self:SetNextPrimaryFire(halt)
+		self.GlobalDelay = halt
 	end
 end
 

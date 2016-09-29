@@ -1,14 +1,16 @@
 if not CustomizableWeaponry then return end
 
-AddCSLuaFile()
-AddCSLuaFile("sh_soundscript.lua")
-include("sh_soundscript.lua")
+local spawnable = file.Exists("models/weapons/aof/v_flashgun.mdl", "GAME") and file.Exists("models/weapons/aof/w_flashgun.mdl", "GAME")
 
-local spawnable = file.Exists("models/weapons/aof/v_m79.mdl", "GAME") and file.Exists("models/weapons/aof/w_m79.mdl", "GAME")
+AddCSLuaFile()
+AddCSLuaFile("sh_sounds.lua")
+AddCSLuaFile("sh_soundscript.lua")
+include("sh_sounds.lua")
+include("sh_soundscript.lua")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "M79"
+	SWEP.PrintName = "HK P2A1: M84 Legend"
 	SWEP.CSMuzzleFlashes = true
 	SWEP.ViewModelMovementScale = 1.15
 	
@@ -17,21 +19,27 @@ if CLIENT then
 	
 	SWEP.MuzzleEffect = "muzzleflash_pistol"
 	SWEP.NoShells = true
-	SWEP.Shell = "KK_INS2_40mm"
+	SWEP.Shell = "KK_INS2_12guage"
 	
 	SWEP.AttachmentModelsVM = {}
 	
-	SWEP.IronsightPos = Vector(-2.3908, -2, 0.3153)
-	SWEP.IronsightAng = Vector(0.9848, 0, 0)
+	SWEP.IronsightPos = Vector(-2.4598, -2, 0.5881)
+	SWEP.IronsightAng = Vector(0, 0, 0)
 
+	SWEP.CustomizationMenuScale = 0.01
 	SWEP.ReloadViewBobEnabled = false
 	SWEP.HUD_MagText = "BREECH: "
-	SWEP.CustomizationMenuScale = 0.015
 end
 
+SWEP.Chamberable = false
+SWEP.SnapToIdlePostReload = false
+SWEP.ShotgunReload = false
+
 SWEP.Attachments = {
-	{header = "", offset = {500, 0}, atts = {"kk_ins2_gp25_ammo"}},
+	-- ["+reload"] = {header = "Ammo", offset = {0, 0}, atts = {"am_slugrounds", "am_flechetterounds"}}
 }
+
+SWEP.KK_INS2_EmptyIdle = true
 
 SWEP.Animations = {
 	base_pickup = "base_ready",
@@ -41,6 +49,7 @@ SWEP.Animations = {
 	base_fire_last_aim = "iron_fire",
 	base_fire_empty = "base_dryfire",
 	base_fire_empty_aim = "iron_dryfire",
+	base_reload = "base_reload",
 	base_reload_empty = "base_reload",
 	base_idle = "base_idle",
 	base_idle_empty = "empty_idle",
@@ -60,7 +69,7 @@ SWEP.SpeedDec = 15
 
 SWEP.Slot = 4
 SWEP.SlotPos = 0
-SWEP.NormalHoldType = "ar2"
+SWEP.NormalHoldType = "revolver"
 SWEP.RunHoldType = "passive"
 SWEP.FireModes = {"break"}
 SWEP.Base = "cw_kk_ins2_base"
@@ -73,11 +82,11 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/aof/v_m79.mdl"
-SWEP.WorldModel		= "models/weapons/aof/w_m79.mdl"
+SWEP.ViewModel		= "models/weapons/aof/v_flashgun.mdl"
+SWEP.WorldModel		= "models/weapons/aof/w_flashgun.mdl"
 
 SWEP.WMPos = Vector(5.243, 1.562, -1.657)
-SWEP.WMAng = Vector(-15, 1, 180)
+SWEP.WMAng = Vector(-1, -5, 180)
 
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted() and spawnable
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted() and spawnable
@@ -85,7 +94,7 @@ SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted() and spa
 SWEP.Primary.ClipSize		= 1
 SWEP.Primary.DefaultClip	= 1
 SWEP.Primary.Automatic		= false
-SWEP.Primary.Ammo			= "40MM"
+SWEP.Primary.Ammo			= "Flash Grenades"
 
 SWEP.FireDelay = 0.8
 SWEP.FireSound = "CW_KK_INS2_P2A1_FIRE"
@@ -98,39 +107,43 @@ SWEP.VelocitySensitivity = 1.9
 SWEP.MaxSpreadInc = 0.06
 SWEP.SpreadPerShot = 0.01
 SWEP.SpreadCooldown = 0.8
-SWEP.Shots = 1
+SWEP.Shots = 12
 SWEP.Damage = 10
 
 SWEP.FirstDeployTime = 1.5
 SWEP.DeployTime = 0.5
 SWEP.HolsterTime = 0.5
 
-SWEP.Chamberable = false
-SWEP.SnapToIdlePostReload = false
-SWEP.ShotgunReload = false
-SWEP.ReticleInactivityPostFire = 0.8
-
-SWEP.KK_INS2_EmptyIdle = true
-
-SWEP.WeaponLength = 24
-
 SWEP.ReloadTimes = {
-	base_reload = {4.6, 5.17},
+	base_reload = {3.15, 5.17}
 }
 
-function SWEP:FireBullet(Damage, CurCone, ClumpSpread, Shots)
-	if Shots == 1 then
-		local target = CustomizableWeaponry.grenadeTypes.registered[self.Grenade40MM]
-
-		if not target then
-			CustomizableWeaponry.grenadeTypes.defaultFireFunc(self)
-		else
-			target.fireFunc(self)
-		end
+function SWEP:FireBullet()
+	if SERVER then
+		local pos = self.Owner:GetShootPos()
+		local eyeAng = self.Owner:EyeAngles()
+		local forward = eyeAng:Forward()
+		local offset = /*forward * 30 +*/ eyeAng:Right() * 4 - eyeAng:Up() * 3
 		
-		CustomizableWeaponry.grenadeTypes.selectFireSound(self, target)
-	else
-		weapons.GetStored("cw_base").FireBullet(self, Damage, CurCone, ClumpSpread, Shots)
+		local nade = ents.Create("cw_flash_thrown")
+		
+		nade.Model = "models/weapons/w_m84.mdl"
+		
+		eyeAng:RotateAroundAxis(eyeAng:Right(), 90)
+		
+		nade:SetPos(pos + offset)
+		nade:SetAngles(eyeAng)
+		nade:Spawn()
+		nade:Activate()
+		nade:SetOwner(self:GetOwner())
+		
+		nade:Fuse(5)
+		
+		local phys = nade:GetPhysicsObject()
+		
+		if IsValid(phys) then
+			phys:SetVelocity(forward * 3395.6625)
+		end
 	end
 end
 
@@ -140,7 +153,7 @@ if CLIENT then
 	function SWEP:updateOtherParts()
 		local cyc = self.CW_VM:GetCycle()
 		
-		if self.Sequence == self.Animations.base_reload and cyc > 0.25 and cyc < 0.4 then
+		if self.Sequence == self.Animations.base_reload and cyc > 0.28 and cyc < 0.5 then
 			if self._shellCoolDown and self._shellCoolDown > CurTime() then
 				return
 			end
@@ -153,7 +166,7 @@ if CLIENT then
 			local ang = self.Owner:EyeAngles()
 			ang:RotateAroundAxis(ang:Up(), 180)
 			
-			CustomizableWeaponry_KK.ins2.shells:make(pos, ang, down, self._shellTable1, 1)
+			CustomizableWeaponry_KK.ins2.shells:make(pos, ang, down, self._shellTable, 1)
 		end
 	end
 end
