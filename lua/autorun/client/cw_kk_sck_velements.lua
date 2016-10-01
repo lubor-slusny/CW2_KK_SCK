@@ -167,6 +167,12 @@ local function loadSliderZoom(slider)
 	slider.Wang:SetZoom(stored[id]:GetFloat())
 end
 
+local buttFuncs = {}
+
+function buttFuncs:eh()
+
+end
+
 local function updatePanel()
 	if not PANEL then return end
 	
@@ -1156,12 +1162,32 @@ local function updatePanel()
 										return
 									end
 									
-									local out, format, posFormated, angFormated, sizeFormated, attachFuncID, attachFuncVal, attachFuncCaps
+									local out, outputFormat, posFormated, angFormated, sizeFormated, attachFuncID, attachFuncVal, attachFuncCaps, rest
 									
-									format = "[\"%s\"] = {model = \"%s\", pos = %s, angle = %s, size = %s, %s = %s},"
-									posFormated = string.format("Vector(%0.5f, %0.5f, %0.5f)", data.pos.x, data.pos.y, data.pos.z)
-									angFormated = string.format("Angle(%0.5f, %0.5f, %0.5f)", data.angle.p, data.angle.y, data.angle.r)
-									sizeFormated = string.format("Vector(%0.5f, %0.5f, %0.5f)", data.size.x, data.size.y, data.size.z)
+									outputFormat = "[\"%s\"] = {model = \"%s\", pos = %s, angle = %s, size = %s, %s = %s%s},"
+									
+									local function s(x) return tostring(math.Round(x, 4)) end
+									
+									posFormated = string.format(
+										"Vector(%s, %s, %s)", 
+										s(data.pos.x), 
+										s(data.pos.y), 
+										s(data.pos.z)
+									)
+									
+									angFormated = string.format(
+										"Angle(%s, %s, %s)", 
+										s(data.angle.p),
+										s(data.angle.y),
+										s(data.angle.r)
+									)
+									
+									sizeFormated = string.format(
+										"Vector(%s, %s, %s)",
+										s(data.size.x),
+										s(data.size.y), 
+										s(data.size.z)
+									)
 									
 									if data.merge then
 										attachFuncID = "merge"
@@ -1176,15 +1202,45 @@ local function updatePanel()
 									
 									attachFuncVal = attachFuncCaps .. tostring(data[attachFuncID]) .. attachFuncCaps
 									
+									rest = ""
+									
+									if data.material then
+										rest = rest .. ", material = \"" .. data.material .. "\""
+									end
+									
+									local bgsFormated = ", bodygroups = {"
+									local bgs
+									for k = 0, data.ent:GetNumBodyGroups() - 1 do
+										local v = data.ent:GetBodygroup(k)
+										if v != 0 then
+											bgs = true
+											bgsFormated = bgsFormated .. "[" .. k .. "] = " .. v .. ","
+										end
+									end
+									if bgs then
+										rest = rest .. bgsFormated .. "}"
+									end
+									
+									local skin = data.ent:GetSkin()
+									if skin != 0 then
+										rest = rest .. ", skin = " .. skin
+									end
+									
+									local activeByDef = weapons.GetStored(WEAPON:GetClass())[t][key].active
+									if activeByDef then
+										rest = rest .. ", active = true"
+									end
+									
 									out = string.format(
-										format,
+										outputFormat,
 										key,
 										data.model,
 										posFormated,
 										angFormated,
 										sizeFormated,
 										attachFuncID,
-										attachFuncVal
+										attachFuncVal,
+										rest
 									)
 									
 									SetClipboardText(out)

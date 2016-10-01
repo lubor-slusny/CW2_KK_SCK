@@ -7,6 +7,8 @@ local function pcf(wep)
 	ParticleEffectAttach("muzzleflash_pistol", PATTACH_POINT_FOLLOW, vm, 0)
 	
 	wep._pcfStop = wep.Sequence
+	
+	wep._soundStop = vm:StartLoopingSound("CW_KK_INS2_DOI_C4_FUSELOOP")
 end
 
 SWEP.Sounds = {

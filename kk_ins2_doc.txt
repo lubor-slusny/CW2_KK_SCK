@@ -68,10 +68,12 @@ User-handled:
 		SWEP.HUD_3D2DBone = int, bone id to attach 3d2d hud to, only works in Melee and Nade base
 		
 	blank functions (used if defined):
-		SWEP:KK_INS2_FL_SRC_OVERRIDE() - client side, alternative way to get flashlight source position/angle, might be unsupported by certain FL versions
+		SWEP:KK_INS2_FL_SRC_OVERRIDE() - client side, alternative way to get flashlight source position/angle, might be unsupported by newer flashlights
 		SWEP:updateOtherParts() - client side, called from Think, usually used for aimposition tweaking (older RPK Sopmod, older M16)
 		SWEP:updateStandardParts() - client side, post attach/detach callback, usually used for standard parts(handguards, railcovers)
-		SWEP:overrideReloadAnim(prefix, suffix) - shared, called from beginReload, has to return alternative to (prefix .. ("reload" or "reload_empty") .. suffix)
+		SWEP:overrideReloadAnim(prefix, suffix) 
+			- shared, called if not SWEP.ShotgunReload, has to return alternative to (prefix .. ("reload" or "reload_empty") .. suffix)
+			- returned val is passed to SWEP:getAnimTimes to get ReloadTime and ReloadHalt
 		SWEP:reloadAnimFunc() - shared, called if not SWEP.ShotgunReload, HAS TO RETURN 2 float values for ReloadTime and ReloadHalt(in this order)
 		
 	utility functions (for use in updateStandardParts/Thinks):
@@ -83,7 +85,7 @@ User-handled:
 		merge - bool, bonemerge velement to viewmodel instead of using bone matrix, overrides {attachment, bone, pos, angle, size}
 		attachment - string, attach to viewmodel mdl attachment(alternative to attaching to bone)
 		material - string, same as in SCK - used in velement:SetMaterial()
-		nodraw - bool, if true, model position and angles are updated but velement:DrawModel() is not called - used by previously versions stencil sights
+		nodraw - bool, if true, model position and angles are updated but velement:DrawModel() is not called - currently used by feature creeps
 		
 	CW2 attachment attributes:
 		att.KK_INS2_playIdle - play idle animation after attaching/detaching of this attachment
