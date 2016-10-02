@@ -21,15 +21,8 @@ if CLIENT then
 	
 	SWEP.ShellViewAngleAlign = {Forward = -90, Right = 0, Up = 0}
 	
-	SWEP.AttachmentModelsVM = {		
-		["kk_ins2_mag_m1911_8"] = {model = "models/weapons/upgrades/a_magazine_1911_8.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
-		["kk_ins2_mag_m1911_15"] = {model = "models/weapons/upgrades/a_magazine_1911_15.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-	}
-
-	SWEP.AttachmentModelsWM = {
-		["kk_ins2_mag_m1911_8"] = {model = "models/weapons/upgrades/w_magazine_1911_8.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
-		["kk_ins2_mag_m1911_15"] = {model = "models/weapons/upgrades/w_magazine_1911_15.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-	}
+	SWEP.AttachmentModelsVM = {}
+	SWEP.AttachmentModelsWM = {}
 	
 	SWEP.IronsightPos = Vector(-1.8248, 0, 0.3468)
 	SWEP.IronsightAng = Vector(0.7758, 0.0761, 6.2803)
@@ -40,7 +33,7 @@ if CLIENT then
 end
 
 SWEP.Attachments = {
-	{header = "Magazine", offset = {-500, 150}, atts = {"kk_ins2_mag_m1911_15"}},
+	-- {header = "Magazine", offset = {-500, 150}, atts = {"kk_ins2_mag_m1911_15"}},
 	["+reload"] = {header = "Ammo", offset = {500, 150}, atts = {"am_magnum", "am_matchgrade"}}
 }
 

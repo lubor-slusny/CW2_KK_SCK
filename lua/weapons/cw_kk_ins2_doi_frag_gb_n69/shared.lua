@@ -71,5 +71,6 @@ SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "Frag Grenades"
 
 SWEP.timeToThrow = 1.1
+SWEP.maxVelDelay = 1.5
 
 SWEP.canCook = false // this one detonates on impact

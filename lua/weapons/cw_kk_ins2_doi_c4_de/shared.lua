@@ -86,6 +86,7 @@ SWEP.swapTime = 0.9
 SWEP.spoonTime = 29/30
 SWEP.timeToThrowCook = 1.1
 SWEP.swapTimeCook = 0.9
+SWEP.maxVelDelayCook = 1.5
 
 SWEP.mustCook = true
 SWEP.canPlant = true

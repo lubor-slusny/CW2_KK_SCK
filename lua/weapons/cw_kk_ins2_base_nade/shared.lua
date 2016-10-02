@@ -79,24 +79,27 @@ SWEP.WeaponLength = 40
 
 SWEP.fuseTime = 3			// grenade fuse time
 
-SWEP.timeToThrow = 0.8		// full length of pinpull animation
+SWEP.timeToThrow = 0.8		// minimal allowed length of pinpull animation
 SWEP.spawnTime = 0.2		// delay between start of throw animation and creation of grenade ent
-SWEP.swapTime = 0.7			// full length of throw animation
+SWEP.swapTime = 0.7			// minimal allowed length of throw animation
 
 SWEP.spoonTime = 23/30		// delay between start of pinpull_cook animation and start of fuse timer
-SWEP.timeToThrowCook = 0.8	// full length of pinpull_cook animation
+SWEP.timeToThrowCook = 0.8	// minimal allowed length of pinpull_cook animation
 SWEP.spawnTimeCook = 0.2	// delay between start of throw_cook animation and creation of grenade ent
-SWEP.swapTimeCook = 0.7		// full length of throw_cook animation
+SWEP.swapTimeCook = 0.7		// minimal allowed length of throw_cook animation
 
 SWEP.canCook = true			// enable cooking
-SWEP.mustCook = false		// cooking only
-SWEP.canPlant = false		// stick it to whatever is in front of u when near-wall
+SWEP.mustCook = false		// cooking only (overrides SWEP.canCook)
+SWEP.canPlant = false		// can stick to "wall" when "near-wall"
 
 SWEP.spoonTimePlant = 1		// delay between start of plant animation and start of fuse timer
-SWEP.swapTimePlant = 1.7	// full length of plant animation
 SWEP.spawnTimePlant = 1.17	// delay between start of plant animation and creation of grenade ent
+SWEP.swapTimePlant = 1.7	// minimal allowed length of plant animation
 
 SWEP.PlantAng = Vector()	// angle tweak for planted entities
+
+SWEP.maxVelDelay = 1.35		// delay between start of pinpull animation and full throw velocity being available (full length of pinpull animation)
+SWEP.maxVelDelayCook = 1.7	// delay between start of pinpull_cook animation and full throw velocity being available (full length of pinpull_cook animation)
 
 //-----------------------------------------------------------------------------
 // EquipAmmo replacement for SWEP.Primary.DefaultClip
@@ -424,6 +427,7 @@ function SWEP:_attack(key)
 	
 	local nw, tr = self:isNearWall()
 	self.plantTime = nil
+	self.attackStartTime = CT
 	
 	if nw and self.canPlant then							// if wep allows planting and we re near-wall then plant
 		self:sendWeaponAnim("plant")
@@ -447,6 +451,8 @@ function SWEP:_attack(key)
 		self._curThrowAnim = "throw_cook"
 		self._curSwapTime = self.swapTimeCook
 		self._curSpawnTime = self.spawnTimeCook
+		
+		self._maxVelocityTime = CT + self.maxVelDelayCook
 	else													// else hold your spoon
 		self:sendWeaponAnim("pullpin")
 		self.throwTime = CT + self.timeToThrow
@@ -455,6 +461,8 @@ function SWEP:_attack(key)
 		self._curThrowAnim = "throw"
 		self._curSwapTime = self.swapTime
 		self._curSpawnTime = self.spawnTime
+		
+		self._maxVelocityTime = CT + self.maxVelDelay
 	end
 end
 
@@ -527,7 +535,9 @@ end
 local v = Vector(0, 0, 150)
 
 function SWEP:applyThrowVelocity(grenade)
-	CustomizableWeaponry.quickGrenade:applyThrowVelocity(self.Owner, grenade, 800, v)
+	local forward, up = self:getThrowVelocityMods()
+	
+	CustomizableWeaponry.quickGrenade:applyThrowVelocity(self.Owner, grenade, 800 * forward, v * up)
 end
 
 //-----------------------------------------------------------------------------
@@ -535,3 +545,22 @@ end
 //-----------------------------------------------------------------------------
 
 function SWEP:updateReloadTimes() end
+
+//-----------------------------------------------------------------------------
+// getThrowVelocityMods counts velocity multipliers based 
+// on extra time spent in pinpull animation - full anim played -> max velocity
+//-----------------------------------------------------------------------------
+
+function SWEP:getThrowVelocityMods()
+	local min, max = self.throwTime, self._maxVelocityTime
+	local CT = CurTime() - self._curSpawnTime 					// fixes offset caused by delay between start of throw anim and ent creation
+	local mul = math.Clamp((CT - min) / (max - min), 0, 1)
+	
+	local min, max = 0.5, 1.6
+	local forward = min + mul * (max - min)
+	
+	local min, max = 0.8, 1.2
+	local up = min + mul * (max - min)
+
+	return forward, up
+end

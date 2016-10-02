@@ -77,9 +77,11 @@ SWEP.HolsterTime = 0.6
 
 SWEP.fuseTime = 5
 
-SWEP.timeToThrow = 1.5
+SWEP.timeToThrow = 1.2
 SWEP.spawnTime = 0.95
 SWEP.swapTime = 1.4
+SWEP.maxVelDelay = 1.5
 
 SWEP.spoonTime = 44/35.2
-SWEP.timeToThrowCook = 1.7
+SWEP.timeToThrowCook = 1.5
+SWEP.maxVelDelayCook = 1.8
