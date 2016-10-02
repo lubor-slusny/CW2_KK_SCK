@@ -14,7 +14,7 @@ if CLIENT then
 	SWEP.IconLetter = "O"
 	
 	SWEP.AttachmentModelsVM = {
-		["pcf"] = {model = "models/maxofs2d/cube_tool.mdl", pos = Vector(0, 0, 0), angle = Angle(0, -90, 0), size = Vector(0.01, 0.01, 0.01), attachment = "prime", bodygroups = {1}, active = true},
+		["pcf"] = {model = "models/maxofs2d/cube_tool.mdl", pos = Vector(0, 0, 0), angle = Angle(0, -90, 0), size = Vector(0.01, 0.01, 0.01), attachment = "prime", bodygroups = {1}, active = true, nodraw = true},
 	}
 	
 	SWEP.AttachmentModelsWM = {}
@@ -97,11 +97,20 @@ if CLIENT then
 	function SWEP:updateOtherParts()
 		if self._pcfStop and self.Sequence != self._pcfStop then
 			self.AttachmentModelsVM.pcf.ent:StopParticles()
-			self.AttachmentModelsVM.pcf.ent:StopLoopingSound(self._soundStop)
+			-- self.AttachmentModelsVM.pcf.ent:StopLoopingSound(self._soundStop)
 			-- self.CW_VM:StopParticles()
 			
 			self._pcfStop = nil
 			
+			local sound = self.soundLoop
+			
+			if sound then
+				timer.Simple(self.spawnTime, function()
+					if sound then 
+						sound:Stop()
+					end
+				end)
+			end
 		else
 			-- local pos = self.AttachmentModelsVM.pcf.ent:GetPos()
 			-- local ed = EffectData()

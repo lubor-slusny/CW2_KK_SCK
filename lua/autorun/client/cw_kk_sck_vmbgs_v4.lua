@@ -8,9 +8,9 @@ local RIG_ENT
 local WM_ENT
 
 local typeNames = {
-	"Weapon ViewModel: ",
-	"Hands ViewModel: ",
-	"Weapon WolrdModel: ",
+	"Weapon View Model: ",
+	"Hands View Model: ",
+	"Weapon World Model: ",
 }
 
 local function isReallyValid(ent)
@@ -126,12 +126,12 @@ local function KK_SCK_BGS_Think()
 	if IsValid(wep) then		
 		if wep.CW20Weapon and IsValid(wep.CW_VM) then
 			VM_ENT = wep.CW_VM
-			RIG_ENT = wep.CW_KK_HANDS or wep.Owner:GetHands()
+			RIG_ENT = wep.CW_KK_HANDS or (wep.UseHands and wep.Owner:GetHands())
 		elseif IsValid(wep.Wep) then
 			VM_ENT = wep.Wep
 		end
 		
-		WM_ENT = wep.WMEnt
+		WM_ENT = wep.WMEnt or wep
 	end
 	
 	if !isReallyValid(VM_ENT) then return end

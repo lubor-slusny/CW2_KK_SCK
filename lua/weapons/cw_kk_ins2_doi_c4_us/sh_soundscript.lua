@@ -1,9 +1,37 @@
 
+local function pcf(wep)
+	if SERVER then return end
+	
+	local vm = wep.AttachmentModelsVM.pcf.ent
+	
+	ParticleEffectAttach("muzzleflash_pistol", PATTACH_POINT_FOLLOW, vm, 0)
+	
+	wep._pcfStop = wep.Sequence
+	
+	-- wep._soundStop = vm:StartLoopingSound("CW_KK_INS2_DOI_C4_FUSELOOP") // doesnt play
+	-- vm:EmitSound("CW_KK_INS2_DOI_C4_FUSELOOP")	// doesnt stop
+	// gg wp
+end
+
+local function soundLoop(wep)
+	if wep.soundLoop then wep.soundLoop:Stop() end
+	
+	-- sound.PlayFile("CW_KK_INS2_DOI_C4_FUSELOOP", "3d", function(sound, ...)
+	sound.PlayFile("sound/weapons/compositonb/handling/compositonb_fuse_loop.wav", "", function(sound)
+		if IsValid(sound) then
+			wep.soundLoop = sound
+			sound:EnableLooping(true)
+			sound:Play()
+		end
+	end)
+end
+
 SWEP.Sounds = {
 	base_plant = {
 		{time = 0/30, sound = "CW_KK_INS2_DOI_C4_PLANTARMMOVEMENT"},
 		{time = 12/30, sound = "CW_KK_INS2_DOI_C4_PLANTPLACE"},
-		{time = 31/30, sound = "CW_KK_INS2_DOI_C4_PRIME"},
+		{time = 31/30, sound = "CW_KK_INS2_DOI_C4_PRIME", callback = pcf},
+		{time = 35/30, sound = "", callback = soundLoop},
 		// 35/30
 	},
 
@@ -21,17 +49,20 @@ SWEP.Sounds = {
 	},
 
 	base_pullback = {
-		{time = 19/33, sound = "CW_KK_INS2_DOI_C4_PRIME"},
+		{time = 19/33, sound = "CW_KK_INS2_DOI_C4_PRIME", callback = pcf},
+		{time = 29/33, sound = "", callback = soundLoop},
 		// { event 3900 29 ""},
 	},
 
 	secondary_pullback = {
-		{time = 19/33, sound = "CW_KK_INS2_DOI_C4_PRIME"},
+		{time = 19/33, sound = "CW_KK_INS2_DOI_C4_PRIME", callback = pcf},
+		{time = 29/33, sound = "", callback = soundLoop},
 		// { event 3900 29 ""},
 	},
 
 	low_pullback = {
-		{time = 19/33, sound = "CW_KK_INS2_DOI_C4_PRIME"},
+		{time = 19/33, sound = "CW_KK_INS2_DOI_C4_PRIME", callback = pcf},
+		{time = 32/33, sound = "", callback = soundLoop},
 		// { event 3900 32 ""},
 	},
 

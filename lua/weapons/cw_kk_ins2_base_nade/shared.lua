@@ -490,13 +490,16 @@ function SWEP:overCook()
 	local hitPos = self.Owner:EyePos() + (self.Owner:EyeAngles():Forward() * 18)
 	
 	local grenade = ents.Create(self.grenadeEnt)
-	grenade:SetNoDraw(true)
-	grenade:SetPos(hitPos)
-	grenade:Spawn()
-	grenade:Activate()
-	grenade:SetOwner(self.Owner)
 	
-	grenade:Fuse(0)
+	if IsValid(grenade) then
+		grenade:SetNoDraw(true)
+		grenade:SetPos(hitPos)
+		grenade:Spawn()
+		grenade:Activate()
+		grenade:SetOwner(self.Owner)
+		
+		self:fuseProjectile(grenade, 0)
+	end
 end
 
 //-----------------------------------------------------------------------------
@@ -505,27 +508,44 @@ end
 
 function SWEP:createProjectile()
 	local grenade = ents.Create(self.grenadeEnt)
-	grenade.Model = self.WM or self.WorldModel
 	
-	// move to anm14`s shared lua
-	if self:GetClass() == "cw_kk_ins2_nade_anm14" then
-		grenade.BreakOnImpact = false
-	end
-	
-	grenade:SetPos(self.lastOwner:GetShootPos())
-	grenade:SetAngles(self.lastOwner:EyeAngles())
-	
-	grenade:Spawn()
-	grenade:Activate()
-	grenade:SetOwner(self.lastOwner)
-	
-	if self.cookTime then
-		grenade:Fuse(math.Clamp((self.cookTime + self.fuseTime) - CurTime(), 0, self.fuseTime))
-	else
-		grenade:Fuse(self.fuseTime)
+	if IsValid(grenade) then
+		grenade.Model = self.WM or self.WorldModel
+		
+		// move to anm14`s shared lua
+		if self:GetClass() == "cw_kk_ins2_nade_anm14" then
+			grenade.BreakOnImpact = false
+		end
+		
+		grenade:SetPos(self.lastOwner:GetShootPos())
+		grenade:SetAngles(self.lastOwner:EyeAngles())
+		
+		grenade:Spawn()
+		grenade:Activate()
+		grenade:SetOwner(self.lastOwner)
+		
+		self:fuseProjectile(grenade)
 	end
 	
 	return grenade
+end
+
+//-----------------------------------------------------------------------------
+// same purpose as overCook
+//-----------------------------------------------------------------------------
+
+function SWEP:fuseProjectile(grenade, overrideTime)
+	local time
+	
+	if self.cookTime then
+		time = math.Clamp((self.cookTime + self.fuseTime) - CurTime(), 0, self.fuseTime)
+	else
+		time = self.fuseTime
+	end
+	
+	time = overrideTime or time
+	
+	grenade:Fuse(time)
 end
 
 //-----------------------------------------------------------------------------
@@ -556,7 +576,7 @@ function SWEP:getThrowVelocityMods()
 	local CT = CurTime() - self._curSpawnTime 					// fixes offset caused by delay between start of throw anim and ent creation
 	local mul = math.Clamp((CT - min) / (max - min), 0, 1)
 	
-	local min, max = 0.5, 1.6
+	local min, max = 0.5, 1.4
 	local forward = min + mul * (max - min)
 	
 	local min, max = 0.8, 1.2

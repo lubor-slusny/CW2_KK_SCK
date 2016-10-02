@@ -5,7 +5,7 @@ include("shared.lua")
 ENT.MaxIntensityDistance = 384 -- if an entity is THIS close to the grenade upon explosion, the intensity of the flashbang will be maximum
 ENT.FlashDistance = 1024 -- will decay over this much distance
 ENT.FlashDuration = 2
-ENT.Model = "models/weapons/w_eq_flashbang_thrown.mdl"
+ENT.Model = "models/weapons/w_m84.mdl"
 
 local phys, ef
 
@@ -47,7 +47,7 @@ function ENT:PhysicsCollide(data, physobj)
 		CT = CurTime()
 		
 		if CT > self.NextImpact then
-			self:EmitSound("weapons/smokegrenade/grenade_hit1.wav", 75, 100)
+			self:EmitSound("CW_KK_INS2_M84_ENT_BOUNCE", 75, 100)
 			self.NextImpact = CT + 0.1
 		end
 	end
@@ -63,7 +63,7 @@ function ENT:Fuse(t)
 		if self:IsValid() then
 			local hitPos = self:GetPos()
 			
-			self:EmitSound("weapons/flashbang/flashbang_explode2.wav", 85, 100)
+			self:EmitSound("CW_KK_INS2_M84_ENT_DETONATE", 100, 100)
 			
 			for key, obj in ipairs(player.GetAll()) do
 				if obj:Alive() then
