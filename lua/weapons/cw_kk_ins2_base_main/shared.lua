@@ -391,7 +391,7 @@ end
 // edited for customized grenade launcher behavior
 //-----------------------------------------------------------------------------
 
-local anim, reloadTime, reloadHalt
+local anim, reloadTime, reloadHalt, flag, unloadTime
 
 function SWEP:toggleGLMode(IFTP)
 	if self._currentGrenadeLauncher.ww2GrenadeLauncher then
@@ -424,16 +424,26 @@ function SWEP:toggleGLMode(IFTP)
 			end
 			
 			self.dt.INS2GLActive = true
+			local clip = self:Clip1()
 			
-			if self:Clip1() > 0 then
+			if clip > 0 then
 				anim = "gl_turn_on_full"
 			else
 				anim = "gl_turn_on"
 			end
 			
-			reloadTime, reloadHalt = self:getAnimTimes(anim)
+			reloadTime, reloadHalt, flag, unloadTime = self:getAnimTimes(anim)
 			
 			self.ReloadDelay = CurTime() + reloadTime
+			
+			if clip > 0 and flag == KK_INS2_RIFLEGL_UNLOAD_ONE then
+				CustomizableWeaponry.actionSequence.new(self, unloadTime, nil, function()
+					if not self.ReloadDelay then return end	// melee attack interruption
+					
+					self:SetClip1(clip - 1)
+					self.Owner:SetAmmo(self.Owner:GetAmmoCount(self.Primary.Ammo) + 1, self.Primary.Ammo)
+				end)
+			end
 		end
 	
 		if (SERVER and SP) or (CLIENT and MP and IFTP) then

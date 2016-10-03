@@ -26,7 +26,7 @@ if CLIENT then
 		["kk_ins2_ww2_stripper"] = {model = "models/weapons/upgrades/a_enfield_stripper_clip.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/a_enfield_bayonet.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/a_enfield_bayonet_spike.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_ww2_knife_fat"] = {model = "models/weapons/upgrades/a_enfield_bayonet_spike.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_gl_enfield"] = {model = "models/weapons/upgrades/a_enfield_gl.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 
 		["kk_ins2_scope_enfield"] = {model = "models/weapons/upgrades/a_optic_enfield.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
@@ -34,7 +34,7 @@ if CLIENT then
 
 	SWEP.AttachmentModelsWM = {
 		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/w_enfield_bayonet.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/w_enfield_bayonet_spike.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_ww2_knife_fat"] = {model = "models/weapons/upgrades/w_enfield_bayonet_spike.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_gl_enfield"] = {model = "models/weapons/upgrades/w_enfield_gl.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
@@ -226,20 +226,20 @@ SWEP.WeaponLength = 38
 SWEP.MuzzleVelocity = 744
 
 SWEP.ReloadTimes = {
-	base_fire_end = {1.1, 1.1},
-	iron_fire_end = {1.3, 1.3},
+	base_fire_end = {20/38, 1.1},
+	iron_fire_end = {16/38, 1.3},
 	
-	base_reload_clip = {90/36, 4.8},
+	base_reload_clip = {90/36, 4.8, KK_INS2_STRIPPERCLIP_UNLOAD_ONE, 29/36},
 	base_reload_full_clip = {90/36, 4.81},
-	base_reload_empty_clip = {176/36, 7.39},
-	base_reload_start = {1.12, 1.12},
+	base_reload_empty_clip = {176/36, 7.39, KK_INS2_STRIPPERCLIP_UNLOAD_ONE, 29/36},
+	base_reload_start = {29/38.5, 1.12, KK_INS2_SHOTGUN_UNLOAD_ONE},
 	base_reload_start_empty = {1.12, 1.12},
 	base_reload_insert = {0.92, 0.92},
 	base_reload_end = {1.30, 1.30},
 	
 	glsetup_reload = {5.2, 6.62},
 	
-	glsetup_in = {5.2, 6.62},
+	glsetup_in = {5.2, 6.62, KK_INS2_RIFLEGL_UNLOAD_ONE, 29/35.5},
 	glsetup_in_empty = {5.2, 6.62},
 	glsetup_out = {1.8, 5},
 	glsetup_out_empty = {2.23, 2.23},	

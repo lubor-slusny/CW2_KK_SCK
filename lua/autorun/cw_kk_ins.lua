@@ -8,6 +8,11 @@ CW_KK_ACTION = 11
 CW_KK_QNADE = 12
 CW_KK_QKNIFE = 13
 
+KK_INS2_SHOTGUN_LOAD_FIRST = 1
+KK_INS2_SHOTGUN_UNLOAD_ONE = 2
+KK_INS2_STRIPPERCLIP_UNLOAD_ONE = 3
+KK_INS2_RIFLEGL_UNLOAD_ONE = 4
+
 CustomizableWeaponry_KK = CustomizableWeaponry_KK or {}
 CustomizableWeaponry_KK.ins2 = CustomizableWeaponry_KK.ins2 or {}
 

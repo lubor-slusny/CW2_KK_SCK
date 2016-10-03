@@ -122,8 +122,8 @@ SWEP.HolsterTime = 0.4
 SWEP.MuzzleVelocity = 300
 
 SWEP.ReloadTimes = {
-	base_fire_end = {2.2, 2.2},
-	iron_fire_end = {2.2, 2.2},
+	base_fire_end = {25/30, 2.2},
+	iron_fire_end = {25/30, 2.2},
 	base_reload = {2.27, 3.17},
 	base_reloadempty = {2.27, 4.67},
 }

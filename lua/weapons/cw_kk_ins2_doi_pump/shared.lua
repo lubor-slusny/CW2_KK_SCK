@@ -120,13 +120,13 @@ SWEP.WeaponLength = 18
 SWEP.MuzzleVelocity = 381
 
 SWEP.ReloadTimes = {
-	base_fire_cock_1 = {0.5, 0.5},
-	base_fire_cock_2 = {0.5, 0.5},
-	iron_fire_cock_1 = {0.5, 0.5},
-	iron_fire_cock_2 = {0.5, 0.5},
+	base_fire_cock_1 = {2/24, 0.5},
+	base_fire_cock_2 = {2/24, 0.5},
+	iron_fire_cock_1 = {4/35, 0.5},
+	iron_fire_cock_2 = {4/35, 0.5},
 	
 	base_reload_start = {0.6, 0.6},
-	base_reload_start_empty = {2.25, 2.89, true},
+	base_reload_start_empty = {2.25, 2.89, KK_INS2_SHOTGUN_LOAD_FIRST},
 	base_reload_insert = {0.72, 0.72},
 	base_reload_end = {0.6, 0.6},
 	base_reload_end_empty = {0.6, 0.6},

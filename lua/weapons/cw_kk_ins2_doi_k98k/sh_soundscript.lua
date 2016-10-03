@@ -50,12 +50,12 @@ SWEP.Sounds = {
 	},
 
 	base_fire_end = {
-		-- { event AE_CL_CREATE_PARTICLE_BRASS 20 ""},
+		// { event AE_CL_CREATE_PARTICLE_BRASS 20 ""},
 		{time = 13/35, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
 		{time = 14/35, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
 		{time = 20/35, sound = "", callback = shell},
 		{time = 22/35, sound = "CW_KK_INS2_DOI_K98_BOLTFORWARD"},
-		-- { event AE_WPN_COCK 24 ""},
+		// { event AE_WPN_COCK 24 ""},
 		{time = 26/35, sound = "CW_KK_INS2_DOI_K98_BOLTLATCH"},
 	},
 
@@ -68,12 +68,12 @@ SWEP.Sounds = {
 	},
 
 	base_reload_empty_clip = {
-		-- { event AE_CL_CREATE_PARTICLE_BRASS 29 ""},
+		// { event AE_CL_CREATE_PARTICLE_BRASS 29 ""},
 		{time = 19/35, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
 		{time = 27/35, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
 		{time = 29/35, sound = "", callback = shell},
-		-- { event 46 88 ""},
-		-- { event AE_WPN_RELOAD_OFFSCREEN 40 ""},
+		// { event 46 88 ""},
+		// { event AE_WPN_RELOAD_OFFSCREEN 40 ""},
 		{time = 37/35, sound = "CW_KK_INS2_DOI_K98_FETCHMAG"},
 		{time = 40/35, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
 		{time = 64/35, sound = "CW_KK_INS2_DOI_K98_MAGIN"},
@@ -84,20 +84,20 @@ SWEP.Sounds = {
 		{time = 119/35, sound = "CW_KK_INS2_DOI_K98_BOLTLATCH"},
 	},
 
-	base_reload_full_clip = {
-		{time = 19/35, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
-		{time = 27/35, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
-		-- { event 46 88 ""},
-		-- { event AE_WPN_RELOAD_OFFSCREEN 40 ""},
-		{time = 37/35, sound = "CW_KK_INS2_DOI_K98_FETCHMAG"},
-		{time = 40/35, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
-		{time = 64/35, sound = "CW_KK_INS2_DOI_K98_MAGIN"},
-		{time = 80/35, sound = "CW_KK_INS2_DOI_K98_ROUNDSIN"},
-		{time = 88/35, sound = "", callback = bulletsToClip},
-		{time = 111/35, sound = "CW_KK_INS2_DOI_K98_BOLTFORWARDSTRIPPERCLIP"},
-		{time = 112/35, sound = "CW_KK_INS2_DOI_K98_STRIPPERCLIPEJECT"},
-		{time = 119/35, sound = "CW_KK_INS2_DOI_K98_BOLTLATCH"},
-	},
+	-- base_reload_full_clip = {
+		-- {time = 19/35, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
+		-- {time = 27/35, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
+		-- // { event 46 88 ""},
+		-- // { event AE_WPN_RELOAD_OFFSCREEN 40 ""},
+		-- {time = 37/35, sound = "CW_KK_INS2_DOI_K98_FETCHMAG"},
+		-- {time = 40/35, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
+		-- {time = 64/35, sound = "CW_KK_INS2_DOI_K98_MAGIN"},
+		-- {time = 80/35, sound = "CW_KK_INS2_DOI_K98_ROUNDSIN"},
+		-- {time = 88/35, sound = "", callback = bulletsToClip},
+		-- {time = 111/35, sound = "CW_KK_INS2_DOI_K98_BOLTFORWARDSTRIPPERCLIP"},
+		-- {time = 112/35, sound = "CW_KK_INS2_DOI_K98_STRIPPERCLIPEJECT"},
+		-- {time = 119/35, sound = "CW_KK_INS2_DOI_K98_BOLTLATCH"},
+	-- },
 
 	base_reload_start = {
 		{time = 19/35.5, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
@@ -105,7 +105,7 @@ SWEP.Sounds = {
 	},
 
 	base_reload_start_empty = {
-		-- { event AE_CL_CREATE_PARTICLE_BRASS 29 ""},
+		// { event AE_CL_CREATE_PARTICLE_BRASS 29 ""},
 		{time = 19/35.5, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
 		{time = 27/35.5, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
 		{time = 29/35.5, sound = "", callback = shell},
@@ -114,7 +114,7 @@ SWEP.Sounds = {
 	base_reload_insert = {
 		{time = 14/37.2, sound = "CW_KK_INS2_DOI_K98_BULLETIN"},
 		{time = 21/37.2, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToClip},
-		-- { event 46 22 ""},
+		// { event 46 22 ""},
 	},
 
 	base_reload_end = {
@@ -123,12 +123,12 @@ SWEP.Sounds = {
 	},
 
 	iron_fire_end = {
-		-- { event AE_CL_CREATE_PARTICLE_BRASS 18 ""},
+		// { event AE_CL_CREATE_PARTICLE_BRASS 18 ""},
 		{time = 13/35, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
 		{time = 16/35, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
 		{time = 18/35, sound = "", callback = shell},
 		{time = 24/35, sound = "CW_KK_INS2_DOI_K98_BOLTFORWARD"},
-		-- { event AE_WPN_COCK 26 ""},
+		// { event AE_WPN_COCK 26 ""},
 		{time = 27/35, sound = "CW_KK_INS2_DOI_K98_BOLTLATCH"},
 	},
 
@@ -159,12 +159,12 @@ SWEP.Sounds = {
 	},
 
 	gl_fire_end = {
-		-- { event AE_CL_CREATE_PARTICLE_BRASS 20 ""},
+		// { event AE_CL_CREATE_PARTICLE_BRASS 20 ""},
 		{time = 13/35, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
 		{time = 14/35, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
 		{time = 20/35, sound = "", callback = shell},
 		{time = 22/35, sound = "CW_KK_INS2_DOI_K98_BOLTFORWARD"},
-		-- { event AE_WPN_COCK 24 ""},
+		// { event AE_WPN_COCK 24 ""},
 		{time = 26/35, sound = "CW_KK_INS2_DOI_K98_BOLTLATCH"},
 	},
 
@@ -173,12 +173,12 @@ SWEP.Sounds = {
 	},
 
 	gl_reload_empty_stripper = {
-		-- { event AE_CL_CREATE_PARTICLE_BRASS 29 ""},
+		// { event AE_CL_CREATE_PARTICLE_BRASS 29 ""},
 		{time = 19/35, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
 		{time = 27/35, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
 		{time = 29/35, sound = "", callback = shell},
-		-- { event 46 88 ""},
-		-- { event AE_WPN_RELOAD_OFFSCREEN 40 ""},
+		// { event 46 88 ""},
+		// { event AE_WPN_RELOAD_OFFSCREEN 40 ""},
 		{time = 37/35, sound = "CW_KK_INS2_DOI_K98_FETCHMAG"},
 		{time = 40/35, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
 		{time = 64/35, sound = "CW_KK_INS2_DOI_K98_MAGIN"},
@@ -190,11 +190,11 @@ SWEP.Sounds = {
 	},
 
 	gl_reload_full_clip = {
-		-- { event AE_CL_CREATE_PARTICLE_BRASS 29 ""},
+		// { event AE_CL_CREATE_PARTICLE_BRASS 29 ""},
 		{time = 19/35, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
 		{time = 27/35, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
-		-- { event 46 88 ""},
-		-- { event AE_WPN_RELOAD_OFFSCREEN 40 ""},
+		// { event 46 88 ""},
+		// { event AE_WPN_RELOAD_OFFSCREEN 40 ""},
 		{time = 37/35, sound = "CW_KK_INS2_DOI_K98_FETCHMAG"},
 		{time = 40/35, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
 		{time = 64/35, sound = "CW_KK_INS2_DOI_K98_MAGIN"},
@@ -211,17 +211,17 @@ SWEP.Sounds = {
 	},
 
 	gl_reload_start_empty = {
-		-- { event AE_CL_CREATE_PARTICLE_BRASS 29 ""},
+		// { event AE_CL_CREATE_PARTICLE_BRASS 29 ""},
 		{time = 19/35.5, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
 		{time = 27/35.5, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
 		{time = 29/35.5, sound = "", callback = shell},
 	},
 
 	gl_reload_insert = {
-		-- { event AE_WPN_RELOAD_OFFSCREEN 21 ""},
+		// { event AE_WPN_RELOAD_OFFSCREEN 21 ""},
 		{time = 14/37.2, sound = "CW_KK_INS2_DOI_K98_BULLETIN"},
 		{time = 21/37.2, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToClip},
-		-- { event 46 22 ""},
+		// { event 46 22 ""},
 	},
 
 	gl_reload_end = {
@@ -230,12 +230,12 @@ SWEP.Sounds = {
 	},
 
 	gl_iron_fire_end = {
-		-- { event AE_CL_CREATE_PARTICLE_BRASS 18 ""},
+		// { event AE_CL_CREATE_PARTICLE_BRASS 18 ""},
 		{time = 13/35, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
 		{time = 16/35, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
 		{time = 18/35, sound = "", callback = shell},
 		{time = 24/35, sound = "CW_KK_INS2_DOI_K98_BOLTFORWARD"},
-		-- { event AE_WPN_COCK 26 ""},
+		// { event AE_WPN_COCK 26 ""},
 		{time = 27/35, sound = "CW_KK_INS2_DOI_K98_BOLTLATCH"},
 	},
 
@@ -259,7 +259,7 @@ SWEP.Sounds = {
 	glsetup_in_empty = {
 		{time = 19/35.5, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
 		{time = 27/35.5, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
-		-- { event AE_CL_CREATE_PARTICLE_BRASS 29 ""},
+		// { event AE_CL_CREATE_PARTICLE_BRASS 29 ""},
 		{time = 29/35.5, sound = "", callback = shell},
 		{time = 66/35.5, sound = "CW_KK_INS2_DOI_K98_BULLETIN", callback = blankLoaded},
 		{time = 99/35.5, sound = "CW_KK_INS2_DOI_K98_BOLTFORWARD"},
@@ -286,7 +286,7 @@ SWEP.Sounds = {
 		{time = 29/35.5, sound = "", callback = shell},
 		{time = 38/35.5, sound = "CW_KK_INS2_DOI_K98_BOLTFORWARD"},
 		{time = 45/35.5, sound = "CW_KK_INS2_DOI_K98_BOLTLATCH"},
-		-- { event AE_CL_CREATE_PARTICLE_BRASS 29 ""},
+		// { event AE_CL_CREATE_PARTICLE_BRASS 29 ""},
 		{time = 63/35.5, sound = "CW_KK_INS2_DOI_K98_RATTLE"},
 	},
 
@@ -319,8 +319,8 @@ SWEP.Sounds = {
 		{time = 178/35.5, sound = "CW_KK_INS2_DOI_K98_GLLOAD2", callback = removeBlank},
 		{time = 210/35.5, sound = "CW_KK_INS2_DOI_K98_RATTLE"},
 		{time = 212/35.5, sound = "CW_KK_INS2_DOI_K98_SHOULDER"},
-		-- { event AE_CL_CREATE_PARTICLE_BRASS 29 ""},
-		-- { event 46 182 ""},
+		// { event AE_CL_CREATE_PARTICLE_BRASS 29 ""},
+		// { event 46 182 ""},
 	},
 
 	glsetup_iron_dryfire = {

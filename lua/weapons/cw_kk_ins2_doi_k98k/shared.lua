@@ -227,27 +227,28 @@ SWEP.WeaponLength = 38
 SWEP.MuzzleVelocity = 760
 
 SWEP.ReloadTimes = {
-	base_fire_end = {1.2, 1.2},
-	iron_fire_end = {1.4, 1.4},
-	base_reload_full_clip = {88/35, 4.29},
-	base_reload_empty_clip = {88/35, 4.29},
-	base_reload_start = {1.21, 1.21},
+	base_fire_end = {20/35, 1.2},
+	iron_fire_end = {18/35, 1.4},
+	
+	-- base_reload_full_clip = {88/35, 4.29},
+	base_reload_empty_clip = {88/35, 4.29, KK_INS2_STRIPPERCLIP_UNLOAD_ONE, 29/35},
+	base_reload_start = {29/35.5, 1.21, KK_INS2_SHOTGUN_UNLOAD_ONE},
 	base_reload_start_empty = {1.21, 1.21},
 	base_reload_insert = {0.99, 0.99},
 	base_reload_end = {1.41, 1.41},
 
-	gl_fire_end = {1.2, 1.2},
-	gl_iron_fire_end = {1.4, 1.4},
+	gl_fire_end = {20/35, 1.2},
+	gl_iron_fire_end = {18/35, 1.4},
 	gl_reload_empty_stripper = {88/35, 4.29},
-	gl_reload_full_clip = {88/35, 4.29},
-	gl_reload_start = {1.21, 1.21},
+	gl_reload_full_clip = {88/35, 4.29, KK_INS2_STRIPPERCLIP_UNLOAD_ONE, 29/35},
+	gl_reload_start = {29/35.5, 1.21, KK_INS2_SHOTGUN_UNLOAD_ONE},
 	gl_reload_start_empty = {1.21, 1.21},
 	gl_reload_insert = {0.99, 0.99},
 	gl_reload_end = {1.41, 1.41},
 	
 	glsetup_reload = {5.4, 6.6},
 	
-	glsetup_in = {5.4, 6.6}, 
+	glsetup_in = {5.4, 6.6, KK_INS2_RIFLEGL_UNLOAD_ONE, 29/35.5}, 
 	glsetup_in_empty = {5.4, 6.6},	
 	glsetup_out = {2, 5},
 	glsetup_out_empty = {2.2, 2.2},

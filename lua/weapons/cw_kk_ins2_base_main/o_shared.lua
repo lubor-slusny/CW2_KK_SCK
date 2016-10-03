@@ -236,7 +236,7 @@ end
 // - use different shotgun reload logic and animations
 //-----------------------------------------------------------------------------
 
-local CT, mag, ammo, reloadTime, reloadHalt, anim, animPrefix, animSuffix, firstShell
+local CT, mag, ammo, reloadTime, reloadHalt, anim, animPrefix, animSuffix, flag, unloadTime
 
 function SWEP:beginReload()
 	if self.boltAction_isShot then 
@@ -290,11 +290,20 @@ function SWEP:beginReload()
 			
 			self:sendWeaponAnim(anim, self.ReloadSpeed, 0)
 			
-			reloadTime, reloadHalt = self:getAnimTimes(anim)
+			reloadTime, reloadHalt, flag, unloadTime = self:getAnimTimes(anim)
 			
 			if not reloadTime or not reloadHalt then
 				error("] (" .. string.upper(self:GetClass()) .. ") Invalid SWEP.ReloadTimes setup for SWEP.Animations." .. anim)
 				return
+			end
+			
+			if self.lastMag > 0 and flag == KK_INS2_STRIPPERCLIP_UNLOAD_ONE then
+				CustomizableWeaponry.actionSequence.new(self, unloadTime, nil, function()
+					if not self.ReloadDelay then return end	// melee attack interruption
+					
+					self:SetClip1(mag - 1)
+					self.Owner:SetAmmo(ammo + 1, self.Primary.Ammo)
+				end)
 			end
 		end
 		
@@ -321,24 +330,35 @@ function SWEP:beginReload()
 		
 		self:sendWeaponAnim(anim, self.ReloadSpeed, 0)
 		
-		reloadTime, reloadHalt, firstShell = self:getAnimTimes(anim)
+		reloadTime, reloadHalt, flag = self:getAnimTimes(anim)
 		
-		self.ReloadFirstShell = self.WasEmpty and firstShell
+		self.ReloadFirstShell = self.WasEmpty and flag == KK_INS2_SHOTGUN_LOAD_FIRST
 		
 		reloadTime = reloadTime / self.ReloadSpeed
 		reloadHalt = reloadHalt / self.ReloadSpeed
 		
-		if SERVER and self.WasEmpty and firstShell then
-			CustomizableWeaponry.actionSequence.new(self, reloadTime, nil, function()
-				if self.ShotgunReloadState == 0 then return end	// melee attack interruption
-				
-				self:SetClip1(mag + 1)
-				self.Owner:SetAmmo(ammo - 1, self.Primary.Ammo)
-				
-				if ammo - 1 <= 0 then
-					self.ShotgunReloadState = 2
-				end
-			end)
+		if SERVER then
+			if self.WasEmpty and flag == KK_INS2_SHOTGUN_LOAD_FIRST then
+				CustomizableWeaponry.actionSequence.new(self, reloadTime, nil, function()
+					if self.ShotgunReloadState == 0 then return end	// melee attack interruption
+					
+					self:SetClip1(mag + 1)
+					self.Owner:SetAmmo(ammo - 1, self.Primary.Ammo)
+					
+					if ammo - 1 <= 0 then
+						self.ShotgunReloadState = 2
+					end
+				end)
+			end
+			
+			if !self.WasEmpty and flag == KK_INS2_SHOTGUN_UNLOAD_ONE then
+				CustomizableWeaponry.actionSequence.new(self, reloadTime, nil, function()
+					if self.ShotgunReloadState == 0 then return end	// melee attack interruption
+					
+					self:SetClip1(mag - 1)
+					self.Owner:SetAmmo(ammo + 1, self.Primary.Ammo)
+				end)
+			end
 		end
 
 		if self.KKINS2Revolver then
