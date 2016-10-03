@@ -17,3 +17,6 @@ ENT.KKIN2RCEprojetile = true
 function ENT:SetupDataTables()
 	self:NetworkVar("Entity", 0, "Detonator")
 end
+
+CustomizableWeaponry:addRegularSound("CW_KK_INS2_C4_ENT_BOUNCE", {"weapons/c4/c4_bounce_01.wav", "weapons/c4/c4_bounce_02.wav", "weapons/c4/c4_bounce_03.wav"})
+CustomizableWeaponry:addRegularSound("CW_KK_INS2_C4_ENT_DETONATE", {"weapons/c4/c4_detonate_01.wav", "weapons/c4/c4_detonate_02.wav", "weapons/c4/c4_detonate_03.wav"})

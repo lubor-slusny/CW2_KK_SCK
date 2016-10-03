@@ -84,7 +84,7 @@ SWEP.Animations = {
 
 SWEP.SpeedDec = 10
 
-SWEP.Slot = 1
+SWEP.Slot = 2
 SWEP.SlotPos = 0
 SWEP.NormalHoldType = "ar2"
 SWEP.RunHoldType = "normal"

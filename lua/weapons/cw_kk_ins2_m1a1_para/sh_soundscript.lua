@@ -96,7 +96,7 @@ SWEP.Sounds = {
 		{time = 115/30, sound = "CW_KK_INS2_M1A1_BOLTRELEASE"},
 	},
 
-	foregrip_iron_dryfire = {
+	foregrip_iron_dryfire_b = {
 		{time = 0, sound = "CW_KK_INS2_M1A1_EMPTY"},
 	},
 	

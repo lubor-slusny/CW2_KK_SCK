@@ -43,7 +43,7 @@ function ENT:PhysicsCollide(data, physobj)
 		CT = CurTime()
 		
 		if CT > self.NextImpact then
-			self:EmitSound("weapons/hegrenade/he_bounce-1.wav", 75, 100)
+			self:EmitSound("CW_KK_INS2_C4_ENT_BOUNCE", 75, 100)
 			self.NextImpact = CT + 0.1
 		end
 	end
@@ -69,11 +69,14 @@ function ENT:Fuse(t)
 		expl.CW_KK_INS2_inflictor = IsValid(self.dt.Detonator) and self.dt.Detonator				//inflictor
 		expl:SetOwner((self.dt.Detonator and self.dt.Detonator.Owner) or ents.GetByIndex(1))		//attacker
 		expl:SetPos(self:GetPos())
+		
 		expl:Spawn()
 		expl:SetKeyValue("iMagnitude", tostring(self.BlastDamage))
 		expl:SetKeyValue("iRadiusOverride", tostring(self.BlastRadius))
+		
 		expl:Fire("Explode",0,0)
-	
+		expl:EmitSound("CW_KK_INS2_C4_ENT_DETONATE")
+		
 		self:Remove()
 	end
 end
@@ -96,9 +99,9 @@ function ENT:Use(activator, caller)
 			return
 		end
 		
-		local det = activator:GetWeapon("cw_kk_ins2_nade_c4")
+		local det = self.dt.Detonator
 		
-		if det == self.dt.Detonator then
+		if IsValid(det) and det.Owner == activator then
 			activator:GiveAmmo(1, det.Primary.Ammo)
 			self:Remove()
 		end

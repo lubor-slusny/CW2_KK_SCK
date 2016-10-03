@@ -96,6 +96,7 @@ SWEP.spoonTimePlant = 1		// delay between start of plant animation and start of 
 SWEP.spawnTimePlant = 1.17	// delay between start of plant animation and creation of grenade ent
 SWEP.swapTimePlant = 1.7	// minimal allowed length of plant animation
 
+SWEP.PlantPos = Vector()	// position offset for planted entities (tr.HitPos-relative)
 SWEP.PlantAng = Vector()	// angle tweak for planted entities
 
 SWEP.maxVelDelay = 1.35		// delay between start of pinpull animation and full throw velocity being available (full length of pinpull animation)
@@ -216,6 +217,7 @@ function SWEP:Reload() end
 // - apply throw velocity using separate function
 // - use shouldSuppressAmmoUsage callback
 // - overcook grenade using separate function
+// - plant charges when possible
 //-----------------------------------------------------------------------------
 
 local SP = game.SinglePlayer()
@@ -265,7 +267,7 @@ function SWEP:IndividualThink()
 					end
 					
 					if not CustomizableWeaponry.callbacks.processCategory(wep, "shouldSuppressAmmoUsage") then
-						self:TakePrimaryAmmo(1)
+						self.Owner:RemoveAmmo(1, self.Primary.Ammo)
 						CustomizableWeaponry.callbacks.processCategory(wep, "postConsumeAmmo")
 					end
 					
@@ -276,7 +278,7 @@ function SWEP:IndividualThink()
 					
 					timer.Simple(animLength, function()
 						if IsValid(self) and IsValid(self.Owner) then
-							if self.Owner:GetAmmoCount(self.Primary.Ammo) <= 0 then
+							if self.Owner:GetAmmoCount(self.Primary.Ammo) <= 0 and not self.KKINS2RCE then
 								self.Owner:ConCommand("lastinv")
 							else
 								self:drawAnimFunc()
@@ -298,7 +300,7 @@ function SWEP:IndividualThink()
 					end
 					
 					if not CustomizableWeaponry.callbacks.processCategory(wep, "shouldSuppressAmmoUsage") then
-						self:TakePrimaryAmmo(1)
+						self.Owner:RemoveAmmo(1, self.Primary.Ammo)
 						CustomizableWeaponry.callbacks.processCategory(wep, "postConsumeAmmo")
 					end
 					
@@ -326,9 +328,13 @@ function SWEP:IndividualThink()
 					local grenade = self:createProjectile()
 					
 					if IsValid(grenade) then
-						local pos = tr.HitPos + tr.HitNormal * 1.5
-						
 						local ang = tr.HitNormal:Angle()
+						
+						local pos = tr.HitPos
+						pos = pos + ang:Forward() * self.PlantPos.x
+						pos = pos + ang:Right() * self.PlantPos.y
+						pos = pos + ang:Up() * self.PlantPos.z
+						
 						ang:RotateAroundAxis(ang:Right(), self.PlantAng.x)
 						ang:RotateAroundAxis(ang:Up(), self.PlantAng.y)
 						ang:RotateAroundAxis(ang:Forward(), self.PlantAng.z)

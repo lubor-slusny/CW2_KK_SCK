@@ -27,14 +27,14 @@ end
 SWEP.CanRestOnObjects = false
 SWEP.grenadeEnt = "cw_grenade_thrown"
 
-SWEP.Animations = {
-	plant = "base_plant",
-	
+SWEP.Animations = {	
 	pullpin = "base_pullback",
 	throw = "base_throw",
 	
 	pull_cook = "secondary_pullback",
 	throw_cook = "secondary_throw",
+	
+	plant = "base_plant",
 	
 	base_pickup = "base_draw",
 	base_idle = "base_idle",
@@ -91,6 +91,7 @@ SWEP.maxVelDelayCook = 1.5
 SWEP.mustCook = true
 SWEP.canPlant = true
 
+SWEP.PlantPos = Vector(1.5, 0, 0)
 SWEP.PlantAng = Vector(0, 0, 180)
 
 if CLIENT then

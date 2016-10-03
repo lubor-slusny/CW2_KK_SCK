@@ -43,7 +43,7 @@ function ENT:PhysicsCollide(data, physobj)
 		CT = CurTime()
 		
 		if CT > self.NextImpact then
-			self:EmitSound("weapons/hegrenade/he_bounce-1.wav", 75, 100)
+			self:EmitSound("CW_KK_INS2_IED_ENT_BOUNCE", 75, 100)
 			self.NextImpact = CT + 0.1
 		end
 	end
@@ -98,9 +98,9 @@ function ENT:Use(activator, caller)
 			return
 		end
 		
-		local det = activator:GetWeapon("cw_kk_ins2_nade_ied")
+		local det = self.dt.Detonator
 		
-		if det == self.dt.Detonator then
+		if IsValid(det) and det.Owner == activator then
 			activator:GiveAmmo(1, det.Primary.Ammo)
 			self:Remove()
 		end
