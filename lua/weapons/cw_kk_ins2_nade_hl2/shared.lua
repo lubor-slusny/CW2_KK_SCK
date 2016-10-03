@@ -1,5 +1,4 @@
 if not CustomizableWeaponry then return end
-if not CustomizableWeaponry_KK.HOME then return end
 
 AddCSLuaFile()
 AddCSLuaFile("sh_soundscript.lua")
@@ -7,7 +6,7 @@ include("sh_soundscript.lua")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "M18 HL2"
+	SWEP.PrintName = "HL2 M18"
 	SWEP.CSMuzzleFlashes = true
 	
 	SWEP.IconLetter = "P"

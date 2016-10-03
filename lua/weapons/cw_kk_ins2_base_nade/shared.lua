@@ -205,6 +205,7 @@ end
 
 //-----------------------------------------------------------------------------
 // nothing to reload
+// for now
 //-----------------------------------------------------------------------------
 
 function SWEP:Reload() end
@@ -489,7 +490,9 @@ function SWEP:SecondaryAttack()
 end
 
 //-----------------------------------------------------------------------------
-// overCook is separate function to allow derived SWEPs to override this behavior
+// overCook is
+// - called once fuse timer runs out while holding the grenade
+// - separate function to allow derived SWEPs to override this behavior
 //-----------------------------------------------------------------------------
 
 function SWEP:overCook()
@@ -509,7 +512,11 @@ function SWEP:overCook()
 end
 
 //-----------------------------------------------------------------------------
-// same purpose as overCook
+// createProjectile
+// - initializes grenade entity
+// - calls fuseProjectile to set timer on grenade entity
+// - returns created entity
+// - separate function to allow derived SWEPs to override this behavior
 //-----------------------------------------------------------------------------
 
 function SWEP:createProjectile()
@@ -537,7 +544,9 @@ function SWEP:createProjectile()
 end
 
 //-----------------------------------------------------------------------------
-// same purpose as overCook
+// fuseProjectile
+// - sets fuse timer on passed grenade entity
+// - separate function to allow derived SWEPs to override this behavior
 //-----------------------------------------------------------------------------
 
 function SWEP:fuseProjectile(grenade, overrideTime)
@@ -555,7 +564,9 @@ function SWEP:fuseProjectile(grenade, overrideTime)
 end
 
 //-----------------------------------------------------------------------------
-// same purpose as overCook
+// applyThrowVelocity
+// - gets velocity multipliers and applies velocity to passed grenade entity
+// - separate function to allow derived SWEPs to override this behavior
 //-----------------------------------------------------------------------------
 
 local v = Vector(0, 0, 150)
@@ -573,8 +584,8 @@ end
 function SWEP:updateReloadTimes() end
 
 //-----------------------------------------------------------------------------
-// getThrowVelocityMods counts velocity multipliers based 
-// on extra time spent in pinpull animation - full anim played -> max velocity
+// getThrowVelocityMods counts velocity multipliers based on
+// extra time spent in pinpull animation - full anim played -> max velocity
 //-----------------------------------------------------------------------------
 
 function SWEP:getThrowVelocityMods()

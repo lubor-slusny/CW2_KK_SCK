@@ -14,7 +14,10 @@ if CLIENT then
 	
 	SWEP.IconLetter = "O"
 	
-	SWEP.AttachmentModelsVM = {}
+	SWEP.AttachmentModelsVM = {
+		["fx_light"] = {model = "models/maxofs2d/cube_tool.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(0.01, 0.01, 0.01), attachment = "lighter", active = true, nodraw = true},
+		["fx_rag"] = {model = "models/maxofs2d/cube_tool.mdl", pos = Vector(-0.67614, 0.05519, -0.63427), angle = Angle(0, 0, 0), size = Vector(0.01, 0.01, 0.01), attachment = "rag", active = true, nodraw = true},
+	}
 	
 	SWEP.MoveType = 2
 	SWEP.ViewModelMovementScale = 0.8
@@ -67,41 +70,12 @@ SWEP.Primary.DefaultClip	= -1
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "Incediary"
 
-SWEP.Effect_Lighter = "fire_verysmall_01"
-SWEP.Effect_Rag = "fire_verysmall_01"
+SWEP.timeToThrow = 1.5
+SWEP.maxVelDelay = 2
 
-PrecacheParticleSystem(SWEP.Effect_Lighter)
-PrecacheParticleSystem(SWEP.Effect_Rag)
+SWEP.canCook = false // this one detonates on impact
 
 if CLIENT then
-	function SWEP:DrawFX()
-		local vm = self.CW_VM
-		local cyc = vm:GetCycle()
-		local seq = self.Sequence
-		
-		if seq == "pullback_high" then
-			if cyc < 1 then
-				ParticleEffectAttach(self.Effect_Lighter, PATTACH_POINT_FOLLOW, vm, 1)
-			end
-
-			if cyc > 0.34 then
-				ParticleEffectAttach(self.Effect_Rag, PATTACH_POINT_FOLLOW, vm, 2)
-			end
-		else
-			vm:StopParticles()
-		end	
-	end
-	
-	function SWEP:RenderTargetFunc()
-		local vm = self.CW_VM
-		
-		if not self.elementRender.molotov_fx then
-			function self.elementRender:molotov_fx()
-				self:DrawFX()
-			end
-		end
-	end
-	
 	local m
 	local muz = {}
 	
@@ -116,7 +90,3 @@ if CLIENT then
 		return self.CW_VM:GetAttachment(2)
 	end
 end
-
-SWEP.timeToThrow = 1.6
-
-SWEP.canCook = false // this one detonates on impact

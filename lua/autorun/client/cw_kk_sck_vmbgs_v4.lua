@@ -13,10 +13,6 @@ local typeNames = {
 	"Weapon World Model: ",
 }
 
-local function isReallyValid(ent)
-	return IsValid(ent) and (ent:GetModel() != nil) and (ent:SkinCount() != nil) and (ent:GetSkin() != nil) and (ent:GetNumBodyGroups() != nil)
-end
-
 local function updatePanel()
 	if !IsValid(PANEL) then return end
 	
@@ -30,20 +26,27 @@ local function updatePanel()
 	butt.DoClick = updatePanel
 	PANEL:AddItem(butt)
 	
-	for i,ent in pairs({VM_ENT, RIG_ENT, WM_ENT}) do
-		if !isReallyValid(ent) then continue end
+	for entType,ent in pairs({VM_ENT, RIG_ENT, WM_ENT}) do
+		if not IsValid(ent) then
+			-- PANEL:AddControl("Label", {text = "INVALID ENTITY"}):DockMargin(0, 0, 0, 0)
+			continue 
+		end
 		
 		local label = vgui.Create("DLabel", PANEL)
 		label:SetWrap(true)
 		label:SetTextInset(0, 0)
-		label:SetText(typeNames[i])
+		label:SetText(typeNames[entType])
 		label:SetContentAlignment(7)
 		label:SetAutoStretchVertical(true)
 		label:DockMargin(0, 0, 0, 0)
 		label:SetDark(true)
 		label:SetTextColor(PANEL:GetSkin().Colours.Tree.Hover)
-		
 		PANEL:AddItem(label)
+		
+		if not ent:GetModel() then
+			PANEL:AddControl("Label", {text = "GetModel ERROR"}):DockMargin(0, 0, 0, 0)
+			continue
+		end
 		
 		local mdlTxt = vgui.Create("DLabel", PANEL)
 		mdlTxt:SetWrap(true)
@@ -54,6 +57,16 @@ local function updatePanel()
 		mdlTxt:DockMargin(0, 0, 0, 0)
 		mdlTxt:SetDark(true)
 		PANEL:AddItem(mdlTxt)
+		
+		if not ent:SkinCount() then
+			PANEL:AddControl("Label", {text = "SkinCount ERROR"}):DockMargin(0, 0, 0, 0)
+			continue
+		end
+		
+		if not ent:GetSkin() then
+			PANEL:AddControl("Label", {text = "GetSkin ERROR"}):DockMargin(0, 0, 0, 0)
+			continue
+		end
 		
 		local slider
 		local skinCount = ent:SkinCount() - 1
@@ -68,8 +81,9 @@ local function updatePanel()
 		if skinCount > 0 then slider:SetDark(true) end
 		
 		function slider:OnValueChanged(val)
-			if LOCK or !isReallyValid(ent) then return end
-			ent:SetSkin(math.Round(val, 0))
+			if IsValid(ent) then
+				ent:SetSkin(math.Round(val, 0))
+			end
 		end	
 		
 		PANEL:AddItem(slider)
@@ -83,9 +97,29 @@ local function updatePanel()
 		bgTit:DockMargin(8, 0, 0, 0)
 		PANEL:AddItem(bgTit)
 		
+		if not ent:GetNumBodyGroups() then
+			PANEL:AddControl("Label", {text = "GetNumBodyGroups ERROR"}):DockMargin(0, 0, 0, 0)
+			continue
+		end
+		
 		local bgCount = ent:GetNumBodyGroups()
 			
 		for i = 0, bgCount - 1 do
+			if not ent:GetBodygroupName(i) then
+				PANEL:AddControl("Label", {text = "GetBodygroupName ERROR"}):DockMargin(0, 0, 0, 0)
+				continue
+			end
+			
+			if not ent:GetBodygroupCount(i) then
+				PANEL:AddControl("Label", {text = "GetBodygroupCount ERROR"}):DockMargin(0, 0, 0, 0)
+				continue
+			end
+			
+			if not ent:GetBodygroup(i) then
+				PANEL:AddControl("Label", {text = "GetBodygroup ERROR"}):DockMargin(0, 0, 0, 0)
+				continue
+			end
+			
 			local bgText = i .. "# " .. ent:GetBodygroupName(i)
 			local bgCount = ent:GetBodygroupCount(i) - 1
 			
@@ -97,8 +131,9 @@ local function updatePanel()
 			slider:SetText(bgText)
 			
 			function slider:OnValueChanged(val)
-				if LOCK or !isReallyValid(ent) then return end
-				ent:SetBodygroup(i, math.Round(val, 0))
+				if IsValid(ent) then
+					ent:SetBodygroup(i, math.Round(val, 0))
+				end
 			end
 			
 			PANEL:AddItem(slider)
@@ -113,34 +148,31 @@ local function updatePanel()
 	
 end
 
-local LAST_MDL
+local LAST_SETUP
 
 local function KK_SCK_BGS_Think()
 	local ply = LocalPlayer()
 	if !IsValid(ply) then return end
 	
 	VM_ENT = ply:GetViewModel()
+	RIG_ENT = ply:GetHands()
 	
 	local wep = ply:GetActiveWeapon()
+	WM_ENT = wep
 	
 	if IsValid(wep) then		
-		if wep.CW20Weapon and IsValid(wep.CW_VM) then
-			VM_ENT = wep.CW_VM
-			RIG_ENT = wep.CW_KK_HANDS or (wep.UseHands and wep.Owner:GetHands())
-		elseif IsValid(wep.Wep) then
-			VM_ENT = wep.Wep
-		end
-		
-		WM_ENT = wep.WMEnt or wep
+		VM_ENT = wep.CW_VM or wep.Wep or VM_ENT
+		RIG_ENT = wep.CW_KK_HANDS or wep.CW_HANDS_VM or (wep.UseHands and RIG_ENT)
+		WM_ENT = wep.WMEnt
 	end
 	
-	if !isReallyValid(VM_ENT) then return end
+	local curSetup = tostring(IsValid(wep) and wep:GetClass()) .. "|" .. tostring(IsValid(VM_ENT) and VM_ENT:GetModel())
 	
-	local vm = VM_ENT:GetModel()
-	if vm != LAST_MDL then 
+	if curSetup != LAST_SETUP then 
 		updatePanel()
 	end
-	LAST_MDL = vm
+	
+	LAST_SETUP = curSetup
 end
 
 hook.Add("PopulateToolMenu", "KK_SCK_BGS", function()
