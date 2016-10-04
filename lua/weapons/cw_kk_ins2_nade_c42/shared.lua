@@ -118,27 +118,12 @@ function SWEP:PrimaryAttack()
 end
 
 function SWEP:fuseProjectile(grenade, overrideTime)
+	grenade:SetOwner()
+	
+	grenade:InitPhys()
+	
 	grenade:SetDetonator(self)
 	self.PlantedCharges[grenade] = grenade
-end
-
-function SWEP:createProjectile()
-	local grenade = ents.Create(self.grenadeEnt)
-	
-	if IsValid(grenade) then
-		grenade:SetPos(self.lastOwner:GetShootPos())
-		grenade:SetAngles(self.lastOwner:EyeAngles())
-		
-		grenade:Spawn()
-		grenade:Activate()
-		grenade:SetOwner(self.lastOwner)
-		
-		grenade:InitPhys()
-		
-		self:fuseProjectile(grenade)
-	end
-	
-	return grenade
 end
 
 //-----------------------------------------------------------------------------
@@ -206,6 +191,8 @@ function SWEP:IndividualThink_INS2()
 end
 
 function SWEP:detonateC4()
+	self:EmitSound("CW_KK_INS2_C4_TRIGGERSEC")
+	
 	if SERVER then 
 		for _,v in pairs(self.PlantedCharges) do
 			v:Fuse()
@@ -231,28 +218,36 @@ function SWEP:SecondaryAttack()
 			self:holsterAnimFunc()
 		end
 		
+		local oldMAD = self.meleeAttackDelay or 0
+		
 		CustomizableWeaponry.actionSequence.new(self, 0.4, nil, function()
+			if math.abs((self.meleeAttackDelay or 0) - oldMAD) > 0.1 then return end
+			
 			if self:canAnimate() then
 				self:sendWeaponAnim("det_draw", 1, 0)
 			end
 		end)
 		
 		CustomizableWeaponry.actionSequence.new(self, 0.7, nil, function()
+			if math.abs((self.meleeAttackDelay or 0) - oldMAD) > 0.1 then return end
+			
 			if self:canAnimate() then
 				self:sendWeaponAnim("det_boom", 1, 0)
 			end
 		end)
 		
+		CustomizableWeaponry.actionSequence.new(self, 1, nil, function()
+			if math.abs((self.meleeAttackDelay or 0) - oldMAD) > 0.1 then return end
+			
+			self:detonateC4()
+		end)
+
 		CustomizableWeaponry.actionSequence.new(self, 1.7, nil, function()
 			if self:canAnimate() then
 				self:drawAnimFunc()
 			end
 		end)
 		
-		CustomizableWeaponry.actionSequence.new(self, 1.1, nil, function()
-			self:detonateC4()
-		end)
-
 		local CT = CurTime()
 		
 		self:SetNextPrimaryFire(CT + 2)
@@ -273,7 +268,11 @@ function SWEP:detonateLast()
 		end
 	end)
 	
-	CustomizableWeaponry.actionSequence.new(self, 0.5, nil, function()
+	local oldMAD = self.meleeAttackDelay or 0
+	
+	CustomizableWeaponry.actionSequence.new(self, 10/30, nil, function()
+		if math.abs((self.meleeAttackDelay or 0) - oldMAD) > 0.1 then return end
+		
 		self:detonateC4()
 	end)
 	

@@ -56,7 +56,6 @@ SWEP.KKINS2Wep = true
 SWEP.KKINS2RCE = false
 SWEP.KKINS2Melee = false
 SWEP.KKINS2Nade = false
-SWEP.KKINS2Revolver = false
 
 SWEP.KK_INS2_EmptyIdle = false
 

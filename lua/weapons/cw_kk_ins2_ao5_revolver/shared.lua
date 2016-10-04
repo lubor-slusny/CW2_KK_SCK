@@ -125,13 +125,11 @@ SWEP.WeaponLength = 16
 
 SWEP.MuzzleVelocity = 250
 
-SWEP.KKINS2Revolver = true
-
 SWEP.ReloadTimes = {
-	base_reload_start = {1.6, 2.36},
+	base_reload_start = {1.6, 2.36, KK_INS2_REVOLVER_SLOW_UNLOAD},
 	base_reload_insert = {0.98, 0.98},
 	base_reload_end = {1.74, 1.74},
-	base_reload_speed = {3.6, 4.2},
+	base_reload_speed = {3.6, 4.2, KK_INS2_REVOLVER_SPEED_UNLOAD, 54/33.5},
 }
 
 function SWEP:IndividualInitialize()

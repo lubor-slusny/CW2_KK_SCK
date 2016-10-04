@@ -142,7 +142,8 @@ if CLIENT then
 end
 
 //-----------------------------------------------------------------------------
-// 
+// hasInstalledRTScope returns true if weapon has attached scope that uses
+// render targets
 //-----------------------------------------------------------------------------
 
 function SWEP:hasInstalledRTScope()
@@ -153,14 +154,19 @@ function SWEP:hasInstalledRTScope()
 		self.ActiveAttachments.kk_ins2_scope_m40 or
 		self.ActiveAttachments.kk_ins2_scope_mosin or
 		
+		self.ActiveAttachments.kk_ins2_cstm_susat or
 		self.ActiveAttachments.kk_ins2_cstm_acog or
 		self.ActiveAttachments.kk_ins2_cstm_pgo7 or
 		
+		self.ActiveAttachments.kk_ins2_scope_enfield or
+		self.ActiveAttachments.kk_ins2_scope_k98 or
+		self.ActiveAttachments.kk_ins2_scope_m73 or
 		self.ActiveAttachments.kk_ins2_scope_zf4
 end
 
 //-----------------------------------------------------------------------------
-// 
+// hasInstalledStencilSight returns true if weapon has attached sight that uses
+// stencils 
 //-----------------------------------------------------------------------------
 
 function SWEP:hasInstalledStencilSight()
@@ -178,7 +184,7 @@ function SWEP:hasInstalledStencilSight()
 end
 
 //-----------------------------------------------------------------------------
-// 
+// hasInstalledGL returns true if weapon has attached grenade launcher
 //-----------------------------------------------------------------------------
 
 function SWEP:hasInstalledGL()
@@ -206,7 +212,7 @@ function SWEP:getForegripMode()
 end
 
 //-----------------------------------------------------------------------------
-// 
+// getPrimarySight returns att.name of active primary sight (if any)
 //-----------------------------------------------------------------------------
 
 function SWEP:getPrimarySight()	
@@ -214,7 +220,7 @@ function SWEP:getPrimarySight()
 end
 
 //-----------------------------------------------------------------------------
-// 
+// getSecondarySight returns att.name of active secondary sight (magnifier)
 //-----------------------------------------------------------------------------
 
 function SWEP:getSecondarySight()
@@ -222,7 +228,7 @@ function SWEP:getSecondarySight()
 end
 
 //-----------------------------------------------------------------------------
-// 
+// getGLAttName returns att.name of active grenade launcher attachment (if any)
 //-----------------------------------------------------------------------------
 
 function SWEP:getGLAttName()

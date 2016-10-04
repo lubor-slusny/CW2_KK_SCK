@@ -305,6 +305,15 @@ function SWEP:beginReload()
 					self.Owner:SetAmmo(ammo + 1, self.Primary.Ammo)
 				end)
 			end
+			
+			if flag == KK_INS2_REVOLVER_SPEED_UNLOAD then
+				CustomizableWeaponry.actionSequence.new(self, unloadTime, nil, function()
+					if not self.ReloadDelay then return end	// melee attack interruption
+					
+					self:SetClip1(0)
+					self.Owner:SetAmmo(ammo + mag, self.Primary.Ammo)
+				end)
+			end
 		end
 		
 		reloadTime = reloadTime / self.ReloadSpeed
@@ -333,6 +342,7 @@ function SWEP:beginReload()
 		reloadTime, reloadHalt, flag = self:getAnimTimes(anim)
 		
 		self.ReloadFirstShell = self.WasEmpty and flag == KK_INS2_SHOTGUN_LOAD_FIRST
+		self.ReloadingRevolver = flag == KK_INS2_REVOLVER_SLOW_UNLOAD
 		
 		reloadTime = reloadTime / self.ReloadSpeed
 		reloadHalt = reloadHalt / self.ReloadSpeed
@@ -359,18 +369,17 @@ function SWEP:beginReload()
 					self.Owner:SetAmmo(ammo + 1, self.Primary.Ammo)
 				end)
 			end
-		end
-
-		if self.KKINS2Revolver then
-			CustomizableWeaponry.actionSequence.new(self, reloadTime, nil, function()
-				if self.ShotgunReloadState == 0 then return end // its also possible that its already 2 because user pressed attack button
-				
-				local amt = self:Clip1()
-				self.Owner:SetAmmo(self.Owner:GetAmmoCount(self.Primary.Ammo) + amt, self.Primary.Ammo)
-				self:SetClip1(0)
-				
-				self.ShotgunReloadState = 1
-			end)
+			
+			if flag == KK_INS2_REVOLVER_SLOW_UNLOAD then
+				CustomizableWeaponry.actionSequence.new(self, reloadTime, nil, function()
+					if self.ShotgunReloadState == 0 then return end // its also possible that its already 2 because user pressed attack button
+					
+					self:SetClip1(0)
+					self.Owner:SetAmmo(ammo + mag, self.Primary.Ammo)
+					
+					self.ShotgunReloadState = 1
+				end)
+			end
 		end
 		
 		self.ReloadDelay = CT + reloadHalt
@@ -479,7 +488,7 @@ function SWEP:finishReloadShotgun()
 	if self.ShotgunReloadState == 1 then
 		keyDown = self.Owner:KeyDown(IN_ATTACK) or self.Owner:KeyDown(IN_ATTACK2)
 		
-		if (self.KKINS2Revolver and 0 or self.lastMag) < self:Clip1() and keyDown then
+		if (self.ReloadingRevolver and 0 or self.lastMag) < self:Clip1() and keyDown then
 			self.ShotgunReloadState = 2
 		end
 		

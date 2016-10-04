@@ -56,7 +56,7 @@ SWEP.Sounds = {
 	},
 
 	det_detonate = {
-		{time = 10/30, sound = "CW_KK_INS2_C4_TRIGGERSEC"},
+		-- {time = 10/30, sound = "CW_KK_INS2_C4_TRIGGERSEC"},
 		{time = 20/30, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
 	},
 }

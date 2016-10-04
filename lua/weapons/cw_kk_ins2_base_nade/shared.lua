@@ -307,7 +307,7 @@ function SWEP:IndividualThink()
 					
 					timer.Simple(0.2, function()
 						if IsValid(self) and IsValid(self.Owner) then
-							if self.Owner:GetAmmoCount(self.Primary.Ammo) <= 0 then
+							if self.Owner:GetAmmoCount(self.Primary.Ammo) <= 0 and not self.KKINS2RCE then
 								self.Owner:ConCommand("lastinv")
 							else
 								self:drawAnimFunc()
@@ -361,7 +361,7 @@ function SWEP:IndividualThink()
 			end
 			
 			if self._curSwapTime < CT then
-				if self.Owner:GetAmmoCount(self.Primary.Ammo) <= 0 then
+				if self.Owner:GetAmmoCount(self.Primary.Ammo) <= 0 and not self.KKINS2RCE then
 					self.Owner:ConCommand("lastinv")
 				else
 					self:drawAnimFunc()
