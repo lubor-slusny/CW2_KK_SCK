@@ -248,7 +248,7 @@ SWEP.ReloadTimes = {
 	iron_fire_end = {17/28.5, 1.75},
 	
 	base_reload_start = {15/30, 0.9, KK_INS2_SHOTGUN_UNLOAD_ONE},
-	base_reload_insert = {0.825, 0.825},
+	base_reload_insert = {12/32, 0.825},
 	base_reload_end = {1.1, 1.1},
 	base_reload_end_empty = {1.1, 1.1},
 	
@@ -256,7 +256,7 @@ SWEP.ReloadTimes = {
 	deployed_iron_fire_end = {15/34, 1.5},
 	
 	deployed_reload_start = {15/30, 0.9, KK_INS2_SHOTGUN_UNLOAD_ONE},
-	deployed_reload_insert = {0.825, 0.825},
+	deployed_reload_insert = {12/30, 0.825},
 	deployed_reload_end = {1.1, 1.1},
 }
 

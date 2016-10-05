@@ -474,7 +474,7 @@ end
 // - disallow reload interruption unless at least one round was loaded
 //-----------------------------------------------------------------------------
 
-local CT, keyDown, mag, ammo, anim
+local CT, keyDown, mag, ammo, anim, reloadTime, reloadHalt
 
 function SWEP:finishReloadShotgun()
 	CT = CurTime()
@@ -503,14 +503,18 @@ function SWEP:finishReloadShotgun()
 			
 			mag, ammo = self:Clip1(), self.Owner:GetAmmoCount(self.Primary.Ammo)
 			
+			reloadTime, reloadHalt = self:getAnimTimes(anim)
+			
 			if SERVER then
-				self:SetClip1(mag + 1)
-				self.Owner:SetAmmo(ammo - 1, self.Primary.Ammo)
+				CustomizableWeaponry.actionSequence.new(self, reloadTime, nil, function()
+					if not self.ReloadDelay then return end	// melee attack interruption
+					
+					self:SetClip1(mag + 1)
+					self.Owner:SetAmmo(ammo - 1, self.Primary.Ammo)
+				end)
 			end
 			
-			local _, time = self:getAnimTimes(anim)
-			
-			self.ReloadDelay = CT + time / self.ReloadSpeed
+			self.ReloadDelay = CT + reloadHalt / self.ReloadSpeed
 			
 			local clipSize = self.Primary.ClipSize
 			
@@ -534,13 +538,13 @@ function SWEP:finishReloadShotgun()
 			
 			self:sendWeaponAnim(anim, self.ReloadSpeed)
 			
-			local _, time = self:getAnimTimes(anim)
+			reloadTime, reloadHalt = self:getAnimTimes(anim)
 			
-			time = CT + time / self.ReloadSpeed
+			reloadHalt = CT + reloadHalt / self.ReloadSpeed
 			
-			self:SetNextPrimaryFire(time)
-			self:SetNextSecondaryFire(time)
-			self.ReloadWait = time
+			self:SetNextPrimaryFire(reloadHalt)
+			self:SetNextSecondaryFire(reloadHalt)
+			self.ReloadWait = reloadHalt
 			self.ReloadDelay = nil
 		end
 	end

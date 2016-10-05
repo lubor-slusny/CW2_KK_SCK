@@ -112,12 +112,7 @@ if CustomizableWeaponry_KK.HOME then
 	-- table.insert(SWEP.Attachments, {header = "CSGO", offset = {2100, 400}, atts = {"kk_textbox"}})
 end
 
-SWEP.Animations = {
-	reload_start = "",
-	insert = "",
-	reload_end = "",
-	idle = "",	
-	
+SWEP.Animations = {	
 	base_pickup = "base_ready",
 	base_draw = "base_draw",
 	base_fire = "base_fire",
@@ -224,7 +219,7 @@ SWEP.ReloadTimes = {
 	iron_fire_cock = {4/35, 0.7},
 	base_reload_start = {0.6, 0.6},
 	base_reload_start_empty = {2.25, 2.89, KK_INS2_SHOTGUN_LOAD_FIRST},
-	base_reload_insert = {0.72, 0.72},
+	base_reload_insert = {15/36, 0.72},
 	base_reload_end = {0.6, 0.6},
 	base_reload_end_empty = {0.6, 0.6},
 
@@ -232,7 +227,7 @@ SWEP.ReloadTimes = {
 	foregrip_iron_fire_cock = {3/35, 0.7},
 	foregrip_reload_start = {0.6, 0.6},
 	foregrip_reload_start_empty = {2.25, 2.89, KK_INS2_SHOTGUN_LOAD_FIRST},
-	foregrip_reload_insert = {0.72, 0.72},
+	foregrip_reload_insert = {15/36, 0.72},
 	foregrip_reload_end = {0.6, 0.6},
 	foregrip_reload_end_empty = {0.6, 0.6},
 }

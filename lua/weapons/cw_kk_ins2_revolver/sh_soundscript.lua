@@ -66,7 +66,7 @@ SWEP.Sounds = {
 	},
 
 	base_reload_insert = {
-		{time = 0/34.6, sound = "", callback = toclip},
+		{time = 1/34.6, sound = "", callback = toclip},
 		{time = 6/34.6, sound = "CW_KK_INS2_REVOLVER_INSERTSINGLE"},
 		{time = 18/34.6, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
 	},

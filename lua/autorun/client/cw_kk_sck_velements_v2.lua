@@ -1242,6 +1242,16 @@ function TOOL:updatePanel()
 										rest = rest .. ", skin = " .. skin
 									end
 									
+									if data.adjustment then
+										rest = rest .. string.format(
+											", adjustment = {axis = \"%s\", min = %s, max = %s, inverseOffsetCalc = %s}",
+											tostring(data.adjustment.axis),
+											tostring(data.adjustment.min),
+											tostring(data.adjustment.max),
+											tostring(data.adjustment.inverseOffsetCalc)
+										)
+									end
+									
 									local activeByDef = weapons.GetStored(WEAPON:GetClass())[t][key].active
 									if activeByDef then
 										rest = rest .. ", active = true"

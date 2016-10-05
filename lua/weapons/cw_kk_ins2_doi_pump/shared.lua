@@ -127,7 +127,7 @@ SWEP.ReloadTimes = {
 	
 	base_reload_start = {0.6, 0.6},
 	base_reload_start_empty = {2.25, 2.89, KK_INS2_SHOTGUN_LOAD_FIRST},
-	base_reload_insert = {0.72, 0.72},
+	base_reload_insert = {15/36, 0.72},
 	base_reload_end = {0.6, 0.6},
 	base_reload_end_empty = {0.6, 0.6},
 }

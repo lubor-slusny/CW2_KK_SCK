@@ -16,7 +16,11 @@ function SWEP:fireM203(IFTP)
 	self:delayEverything(0.6)
 	self:setGlobalDelay(0.6)
 	
-	CustomizableWeaponry.grenadeTypes.selectFireFunc(self, IFTP)
+	if self._currentGrenadeLauncher.ww2GrenadeLauncher then
+		CustomizableWeaponry.grenadeTypes.selectFireFunc(self, IFTP)
+	else
+		CustomizableWeaponry.grenadeTypes.selectFireFunc(self, IFTP)
+	end
 	
 	if self:filterPrediction() then
 		self:MakeRecoil(5)

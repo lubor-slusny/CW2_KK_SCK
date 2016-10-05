@@ -235,11 +235,10 @@ function SWEP:plantC4()
 	
 	if SERVER then
 		CustomizableWeaponry.actionSequence.new(self, 0.2, nil, function()
-			local _, tr = self:isNearWall()
+			local hit, tr = self:isNearWall()
 			
-			local ang = tr.HitNormal:Angle()
-			
-			if tr.Hit then
+			if hit then
+				local ang = tr.HitNormal:Angle()
 				local nade = ents.Create("cw_kk_ins2_projectile_c4")
 				
 				nade:SetDetonator(self)

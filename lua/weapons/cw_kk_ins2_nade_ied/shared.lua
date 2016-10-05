@@ -294,10 +294,10 @@ function SWEP:plantC4()
 	
 	if SERVER then
 		CustomizableWeaponry.actionSequence.new(self, 0.2, nil, function()
-			local _, tr = self:isNearWall()
+			local hit, tr = self:isNearWall()
 			local ang, pos
 			
-			if tr.Hit then
+			if hit then
 				ang = tr.HitNormal:Angle()
 				pos = tr.HitPos + ang:Right() * 3 + ang:Forward() * 1.5 + ang:Up() * -1.5
 				ang:RotateAroundAxis(ang:Up(), 90)

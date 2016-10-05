@@ -422,7 +422,6 @@ function SWEP:toggleGLMode(IFTP)
 				return 
 			end
 			
-			self.dt.INS2GLActive = true
 			local clip = self:Clip1()
 			
 			if clip > 0 then
@@ -435,13 +434,17 @@ function SWEP:toggleGLMode(IFTP)
 			
 			self.ReloadDelay = CurTime() + reloadTime
 			
-			if clip > 0 and flag == KK_INS2_RIFLEGL_UNLOAD_ONE then
+			if flag == KK_INS2_RIFLEGL_UNLOAD_ONE and clip > 0 then
 				CustomizableWeaponry.actionSequence.new(self, unloadTime, nil, function()
 					if not self.ReloadDelay then return end	// melee attack interruption
 					
 					self:SetClip1(clip - 1)
 					self.Owner:SetAmmo(self.Owner:GetAmmoCount(self.Primary.Ammo) + 1, self.Primary.Ammo)
+					
+					self.dt.INS2GLActive = true
 				end)
+			else
+				self.dt.INS2GLActive = true
 			end
 		end
 	

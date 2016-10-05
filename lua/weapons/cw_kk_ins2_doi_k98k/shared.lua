@@ -234,7 +234,7 @@ SWEP.ReloadTimes = {
 	base_reload_empty_clip = {88/35, 4.29, KK_INS2_STRIPPERCLIP_UNLOAD_ONE, 29/35},
 	base_reload_start = {29/35.5, 1.21, KK_INS2_SHOTGUN_UNLOAD_ONE},
 	base_reload_start_empty = {1.21, 1.21},
-	base_reload_insert = {0.99, 0.99},
+	base_reload_insert = {19/37.2, 0.99},
 	base_reload_end = {1.41, 1.41},
 
 	gl_fire_end = {20/35, 1.2},
@@ -243,7 +243,7 @@ SWEP.ReloadTimes = {
 	gl_reload_full_clip = {88/35, 4.29, KK_INS2_STRIPPERCLIP_UNLOAD_ONE, 29/35},
 	gl_reload_start = {29/35.5, 1.21, KK_INS2_SHOTGUN_UNLOAD_ONE},
 	gl_reload_start_empty = {1.21, 1.21},
-	gl_reload_insert = {0.99, 0.99},
+	gl_reload_insert = {19/37.2, 0.99},
 	gl_reload_end = {1.41, 1.41},
 	
 	glsetup_reload = {5.4, 6.6},
