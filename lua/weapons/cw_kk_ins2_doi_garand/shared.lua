@@ -145,8 +145,12 @@ SWEP.WeaponLength = 22
 SWEP.MuzzleVelocity = 853
 
 SWEP.ReloadTimes = {
-	base_reloadfull = {4, 5.13},
+	base_reloadfull = {4, 5.13, KK_INS2_REVOLVER_SPEED_UNLOAD, 1.1},
 	base_reloadempty = {2.2, 3.33},
+}
+
+SWEP.freezeBeltOnStart = {
+	base_reloadfull = true
 }
 
 if CLIENT then

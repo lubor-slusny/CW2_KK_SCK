@@ -15,6 +15,7 @@ if CLIENT then
 		end
 		
 		if wep.ActiveAttachments.kk_ins2_ww2_stripper then
+			out = math.Clamp(out, 0, wep.Primary.ClipSize) // srsly, get teh dam mag system
 			out = math.Clamp(out - clip, 0, wep.Primary.ClipSize)
 		end
 		
@@ -33,6 +34,12 @@ if CLIENT then
 			wep._bulletsToClip = false
 		else
 			local prefix = wep:getForegripMode()
+		
+			if wep.freezeBeltOnStart and wep.freezeBeltOnStart[wep.Sequence] then
+				if not wep._loadingNewBelt then
+					return
+				end
+			end
 		
 			if wep.Sequence == wep.Animations[prefix .. "reload_start_empty"] then
 				return
