@@ -31,9 +31,9 @@ SWEP.Animations = {
 	pull_cook = "pullbackhighbake",
 	throw_cook = "bakethrow",
 	
-	base_idle = "idle",
 	base_pickup = "draw",
 	base_draw = "draw",
+	base_idle = "idle",
 	base_holster = "holster",
 	base_sprint = "sprint",
 	base_safe = "down",

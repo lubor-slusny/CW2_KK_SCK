@@ -263,6 +263,9 @@ function SWEP:overrideReloadAnim()
 	end
 	
 	local clip = self:Clip1()
+	
+	clip = clip > 0 and clip - 1 or clip
+	
 	local loadAmmount = self.getFullestMag and self:getFullestMag() or math.Clamp(self.Owner:GetAmmoCount(self.Primary.Ammo), 0, self.Primary.ClipSize)
 	
 	if loadAmmount - clip < 6 then 

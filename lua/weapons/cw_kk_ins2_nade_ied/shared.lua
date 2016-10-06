@@ -25,8 +25,8 @@ SWEP.Animations = {
 	pullpin = "base_pullback",
 	
 	base_pickup = "draw",
-	base_idle = "idle",
 	base_draw = "draw",
+	base_idle = "idle",
 	base_holster = "holster",
 	base_sprint = "base_sprint",
 	base_crawl = "crawl",

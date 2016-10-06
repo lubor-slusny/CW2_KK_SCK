@@ -304,10 +304,6 @@ function SWEP:pickupAnimFunc(mode)
 	mode = mode or self:getForegripMode()
 	anim = "pickup"
 	
-	-- if self.KKINS2Melee or self.KKINS2Nade then
-		-- anim = "draw"
-	-- end
-	
 	if SERVER then
 		self:sendWeaponAnim(mode .. anim, self.DrawSpeed, 0)
 	end
@@ -319,7 +315,7 @@ function SWEP:pickupAnimFunc(mode)
 	end
 end
 
-function SWEP:drawAnimFunc(ctrl)
+function SWEP:drawAnimFunc()
 	if not self._KK_INS2_PickedUp then
 		return
 	end
@@ -331,8 +327,6 @@ function SWEP:drawAnimFunc(ctrl)
 	cycle = 0
 	
 	clip = self:Clip1()
-	
-	-- if not ctrl then return end
 	
 	if self.dt.INS2GLActive then
 		if !self.M203Chamber and self.KK_INS2_EmptyIdleGL then
@@ -357,7 +351,7 @@ function SWEP:drawAnimFunc(ctrl)
 end
 
 function SWEP:meleeAnimFunc()
-	if self.KKINS2Nade then 
+	if self.KKINS2Nade then		// I believe grenades wont have bayonets any time soon
 		return 
 	end
 	
@@ -401,9 +395,7 @@ function SWEP:fireAnimFunc()
 	self:sendWeaponAnim(prefix .. "fire" .. suffix, rate, cyc)
 end //*/
 
-function SWEP:holsterAnimFunc(ctrl)
-	-- if not ctrl then return end
-	
+function SWEP:holsterAnimFunc()	
 	prefix = self:getForegripMode()
 	suffix = ""
 	cycle = 0
@@ -584,7 +576,7 @@ if CLIENT then
 	end
 end
 
-if CLIENT then	
+if CLIENT then
 	SWEP.soundTableLoopsRaw = {
 		["base_crawl"] = true,
 		["base_crawl_empty"] = true,
@@ -703,85 +695,6 @@ if CLIENT then
 		end
 	end
 end
-
--- //-----------------------------------------------------------------------------
--- // server-side sprint state anyone? :P
--- //-----------------------------------------------------------------------------
-
--- if SERVER then
-	-- util.AddNetworkString("kkins2_animate")
--- end
-
--- function SWEP:sendWeaponAnimINS2(anim, rate, cycle, clok)
-	-- if not anim then
-		-- return
-	-- end
-	
-	-- rate = rate or 1
-	-- cycle = cycle or 0
-	
-	-- print(anim, rate, cycle, clok)
-	
-	-- if SERVER then
-		-- net.Start("kkins2_animate")
-		-- net.WriteEntity(self)
-		-- net.WriteString(anim)
-		-- net.WriteFloat(rate)
-		-- net.WriteFloat(cycle)
-		-- net.Send(self.Owner)
-	-- end
-	
-	-- if self.animCallbacks and self.animCallbacks[anim] then
-		-- self.animCallbacks[anim](self)
-	-- end
-	
-	-- local foundAnim = self.Animations[anim]
-	
-	-- if not foundAnim then
-		-- return
-	-- end
-	
-	-- if type(foundAnim) == "table" then
-		-- foundAnim = table.Random(foundAnim)
-	-- end
-	
-	-- if self.Sounds[foundAnim] then
-		-- self:setCurSoundTable(self.Sounds[foundAnim], rate, cycle, foundAnim)
-	-- else
-		-- self:removeCurSoundTable()
-	-- end
-	
-	-- if CLIENT and clok then
-		-- local ent = self.CW_VM
-		
-		-- ent:ResetSequence(foundAnim)
-		
-		-- if cycle > 0 then
-			-- ent:SetCycle(cycle)
-		-- else
-			-- ent:SetCycle(0)
-		-- end
-		
-		-- ent:SetPlaybackRate(rate)
-	-- end
--- end
-
--- if CLIENT then
-	-- local LocalPlayer = LocalPlayer
-	
-	-- local function kkins2_animate()
-		-- local wep = net.ReadEntity()
-		-- local anim = net.ReadString()
-		-- local rate = net.ReadFloat()
-		-- local cycle = net.ReadFloat()
-		
-		-- if wep.sendWeaponAnimINS2 then
-			-- wep:sendWeaponAnimINS2(anim, rate, cycle, true)
-		-- end
-	-- end
-	
-	-- net.Receive("kkins2_animate", kkins2_animate)
--- end
 
 -- //-----------------------------------------------------------------------------
 -- // no fix for prediction

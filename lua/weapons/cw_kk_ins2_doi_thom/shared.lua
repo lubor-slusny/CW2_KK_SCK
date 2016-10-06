@@ -22,6 +22,8 @@ if CLIENT then
 		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_iron_thompson_s.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), merge = true, active = false},
 		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_iron_thompson_l.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), merge = true},
 		
+		["kk_ins2_ww2_knife"] = {model = "models/weapons/v_brassknuckles.mdl", pos = Vector(-2.3145, -0.7286, 11.7285), angle = Angle(-49.8959, 22.8366, 26.1512), size = Vector(1, 1, 1), bone = "R Hand", nodraw = true},
+		
 		["handguard"] = {model = "models/weapons/upgrades/a_thompson_standard.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), merge = true, active = true},
 		["kk_ins2_mag_thom_20"] = {model = "models/weapons/upgrades/a_thompson_mag_20.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		
@@ -57,6 +59,7 @@ end
 
 SWEP.Attachments = {
 	{header = "Sight", offset = {400, -500}, atts = {"bg_foldsight"}},
+	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_ww2_knife"}},
 	{header = "Under", offset = {-500, 0}, atts = {"kk_ins2_vertgrip"}},
 	{header = "Magazine", offset = {-50, 500}, atts = {"kk_ins2_mag_thom_30", "kk_ins2_mag_thom_50"}},
 	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
@@ -110,6 +113,9 @@ SWEP.Animations = {
 	base_crawl = "base_crawl",
 	base_crawl_empty_mm = "base_crawl_empty_drum",
 	
+	base_melee = "base_melee",
+	base_melee_empty_mm = "base_melee_empty_drum",
+	
 	foregrip_pickup = "foregrip_ready",
 	foregrip_draw = "foregrip_draw",
 	-- foregrip_draw_empty = "foregrip_draw_empty",
@@ -151,6 +157,9 @@ SWEP.Animations = {
 	foregrip_safe_empty_mm_aim = "foregrip_iron_down_empty_drum",
 	foregrip_crawl = "foregrip_crawl",
 	foregrip_crawl_empty_mm = "foregrip_crawl_empty_drum",
+	
+	foregrip_melee = "foregrip_melee",
+	foregrip_melee_empty_mm = "foregrip_melee_empty_drum",
 }
 
 SWEP.SpeedDec = 15

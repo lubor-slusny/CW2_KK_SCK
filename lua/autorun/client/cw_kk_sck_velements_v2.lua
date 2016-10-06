@@ -279,7 +279,7 @@ function TOOL:updatePanel()
 						elementNamePanel:SetMouseInputEnabled(true)
 						elementNamePanel.DoClick = updateTitle
 					end
-						
+					
 					local curData
 					
 					if t == openTab.t and key == openTab.key then
@@ -747,146 +747,6 @@ function TOOL:updatePanel()
 							sliderXYZ._kk_sck_id = "settSizeXYZ"
 							self:loadSliderZoom(sliderXYZ)
 							
-							if curData.ent:SkinCount() > 1 then 
-								local settSkinPanel = vgui.Create("DPanel", elementSettingPanel)
-									
-								local slider
-								slider = vgui.Create("DNumSlider", settSkinPanel)
-								slider:Dock(FILL)
-								slider:DockMargin(8,0,8,0)
-								slider:SetDecimals(0)
-								slider:SetMinMax(0, curData.ent:SkinCount() - 1)
-								slider:SetValue(curData.ent:GetSkin())
-								slider:SetText("Skin")
-								slider:SetDark(true)
-								function slider:OnValueChanged(val)
-									curData.skin = val
-									curData.ent:SetSkin(val)
-								end
-
-								settSkinPanel:Dock(TOP)
-								settSkinPanel:DockMargin(0,8,0,0)
-								settSkinPanel:SetBackgroundColor(TOOL.darkBackground)
-								settSkinPanel:SizeToContents()
-								
-								elementSettingPanelHeight = elementSettingPanelHeight + 32
-							end
-							
-							local bgSettings = false
-							
-							for i = 0, curData.ent:GetNumBodyGroups() - 1 do
-								bgSettings = bgSettings or (curData.ent:GetBodygroupCount(i) - 1 > 0)
-							end
-							
-							if bgSettings then 
-								local settBodygroupLabelPanel = vgui.Create("DPanel", elementSettingPanel)
-									
-									local label
-									label = vgui.Create("DLabel", settBodygroupLabelPanel)
-									label:SetText("Bodygroups:")
-									label:SetDark(true)
-									label:Dock(FILL)
-									label:DockMargin(8,0,0,0)
-									label:SizeToContents()
-									label:SetMouseInputEnabled(true)
-									
-								settBodygroupLabelPanel:Dock(TOP)
-								settBodygroupLabelPanel:DockMargin(0,8,0,0)
-								settBodygroupLabelPanel:SetBackgroundColor(TOOL.darkBackground)
-								settBodygroupLabelPanel:SizeToContents()
-								
-								elementSettingPanelHeight = elementSettingPanelHeight + 34
-							
-								for i = 0, curData.ent:GetNumBodyGroups() - 1 do
-									local bgCount = curData.ent:GetBodygroupCount(i) - 1
-									if bgCount > 0 then
-										
-										local settBodygroupPanel = vgui.Create("DPanel", elementSettingPanel)
-											
-											local slider
-											slider = vgui.Create("DNumSlider", settBodygroupPanel)
-											slider:Dock(FILL)
-											slider:DockMargin(8,0,8,0)
-											slider:SetDecimals(0)
-											slider:SetMinMax(0, bgCount)
-											slider:SetValue(curData.ent:GetBodygroup(i))
-											slider:SetText(i .. "# " .. curData.ent:GetBodygroupName(i))
-											slider:SetDark(true)
-											function slider:OnValueChanged(val)
-												local t = curData.bodygroups
-												curData.bodygroups = {}
-												if t then
-													for k,v in pairs(t) do
-														curData.bodygroups[k] = v
-													end
-												end
-												curData.bodygroups[i] = val
-												curData.ent:SetBodygroup(i, val)
-											end
-
-										settBodygroupPanel:Dock(TOP)
-										settBodygroupPanel:SetBackgroundColor(TOOL.darkBackground)
-										settBodygroupPanel:SizeToContents()
-										
-										elementSettingPanelHeight = elementSettingPanelHeight + 24
-									end
-								end
-							end
-				
-							local settAnimatedPanel = vgui.Create("DPanel", elementSettingPanel)
-
-								local cbox, label
-								cbox = vgui.Create("DCheckBoxLabel", settAnimatedPanel)
-								cbox:SetText("Animated")
-								cbox:SetTooltip("CW2 md_m203")
-								cbox:SetDark(true)
-								cbox:Dock(FILL)
-								-- cbox:DockMargin(8,0,0,0)
-								
-								cbox:SetValue(curData.animated)
-								function cbox:OnChange(val)
-									curData.animated = val
-								end
-						
-							settAnimatedPanel:SetSize(200,16)
-							settAnimatedPanel:Dock(TOP)
-							settAnimatedPanel:DockMargin(8,8,0,0)
-							settAnimatedPanel:SetPaintBackground(false)
-							settAnimatedPanel:SizeToContents()
-							
-							if WEAPON.KKINS2Wep then
-								local settMaterialPanel = vgui.Create("DPanel", elementSettingPanel)
-									
-									local label
-									label = vgui.Create("DLabel", settMaterialPanel)
-									label:SetText("Material Override:")
-									label:SetDark(true)
-									label:Dock(LEFT)
-									label:DockMargin(8,0,0,0)
-									label:SizeToContents()
-									
-									local entry
-									entry = vgui.Create("DTextEntry", settMaterialPanel)
-									entry:Dock(FILL)
-									entry:DockMargin(8,0,8,0)
-									
-									entry:SetValue(curData.material or "")
-									
-									function entry:OnChange()
-										local f = self:GetValue()
-										
-										curData.material = f
-										curData.ent:SetMaterial(f)
-									end
-									
-								settMaterialPanel:Dock(TOP)
-								settMaterialPanel:DockMargin(0,8,0,0)
-								settMaterialPanel:SetPaintBackground(false)
-								settMaterialPanel:SizeToContents()
-								
-								elementSettingPanelHeight = elementSettingPanelHeight + 34
-							end
-							
 							if tProps.adjustable then
 								local settAdjustmentLabelPanel = vgui.Create("DPanel", elementSettingPanel)
 									
@@ -917,7 +777,8 @@ function TOOL:updatePanel()
 												min = 0, 
 												max = 0, 
 												axis = "x", 
-												inverseOffsetCalc = false
+												inverse = false,
+												inverseOffsetCalc = false,
 											}
 											TOOL:updatePanel()
 										end
@@ -1095,6 +956,168 @@ function TOOL:updatePanel()
 								end
 							end
 							
+							if curData.ent:SkinCount() > 1 then 
+								local settSkinPanel = vgui.Create("DPanel", elementSettingPanel)
+									
+								local slider
+								slider = vgui.Create("DNumSlider", settSkinPanel)
+								slider:Dock(FILL)
+								slider:DockMargin(8,0,8,0)
+								slider:SetDecimals(0)
+								slider:SetMinMax(0, curData.ent:SkinCount() - 1)
+								slider:SetValue(curData.ent:GetSkin())
+								slider:SetText("Skin")
+								slider:SetDark(true)
+								function slider:OnValueChanged(val)
+									curData.skin = val
+									curData.ent:SetSkin(val)
+								end
+
+								settSkinPanel:Dock(TOP)
+								settSkinPanel:DockMargin(0,8,0,0)
+								settSkinPanel:SetBackgroundColor(TOOL.darkBackground)
+								settSkinPanel:SizeToContents()
+								
+								elementSettingPanelHeight = elementSettingPanelHeight + 32
+							end
+							
+							local bgSettings = false
+							
+							for i = 0, curData.ent:GetNumBodyGroups() - 1 do
+								bgSettings = bgSettings or (curData.ent:GetBodygroupCount(i) - 1 > 0)
+							end
+							
+							if bgSettings then 
+								local settBodygroupLabelPanel = vgui.Create("DPanel", elementSettingPanel)
+									
+									local label
+									label = vgui.Create("DLabel", settBodygroupLabelPanel)
+									label:SetText("Bodygroups:")
+									label:SetDark(true)
+									label:Dock(FILL)
+									label:DockMargin(8,0,0,0)
+									label:SizeToContents()
+									label:SetMouseInputEnabled(true)
+									
+								settBodygroupLabelPanel:Dock(TOP)
+								settBodygroupLabelPanel:DockMargin(0,8,0,0)
+								settBodygroupLabelPanel:SetBackgroundColor(TOOL.darkBackground)
+								settBodygroupLabelPanel:SizeToContents()
+								
+								elementSettingPanelHeight = elementSettingPanelHeight + 34
+							
+								for i = 0, curData.ent:GetNumBodyGroups() - 1 do
+									local bgCount = curData.ent:GetBodygroupCount(i) - 1
+									if bgCount > 0 then
+										
+										local settBodygroupPanel = vgui.Create("DPanel", elementSettingPanel)
+											
+											local slider
+											slider = vgui.Create("DNumSlider", settBodygroupPanel)
+											slider:Dock(FILL)
+											slider:DockMargin(8,0,8,0)
+											slider:SetDecimals(0)
+											slider:SetMinMax(0, bgCount)
+											slider:SetValue(curData.ent:GetBodygroup(i))
+											slider:SetText(i .. "# " .. curData.ent:GetBodygroupName(i))
+											slider:SetDark(true)
+											function slider:OnValueChanged(val)
+												local t = curData.bodygroups
+												curData.bodygroups = {}
+												if t then
+													for k,v in pairs(t) do
+														curData.bodygroups[k] = v
+													end
+												end
+												curData.bodygroups[i] = val
+												curData.ent:SetBodygroup(i, val)
+											end
+
+										settBodygroupPanel:Dock(TOP)
+										settBodygroupPanel:SetBackgroundColor(TOOL.darkBackground)
+										settBodygroupPanel:SizeToContents()
+										
+										elementSettingPanelHeight = elementSettingPanelHeight + 24
+									end
+								end
+							end
+							
+							if WEAPON.KKINS2Wep then
+								local settMaterialPanel = vgui.Create("DPanel", elementSettingPanel)
+									
+									local label
+									label = vgui.Create("DLabel", settMaterialPanel)
+									label:SetText("Material Override:")
+									label:SetDark(true)
+									label:Dock(LEFT)
+									label:DockMargin(8,0,0,0)
+									label:SizeToContents()
+									
+									local entry
+									entry = vgui.Create("DTextEntry", settMaterialPanel)
+									entry:Dock(FILL)
+									entry:DockMargin(8,0,8,0)
+									
+									entry:SetValue(curData.material or "")
+									
+									function entry:OnChange()
+										local f = self:GetValue()
+										
+										curData.material = f
+										curData.ent:SetMaterial(f)
+									end
+									
+								settMaterialPanel:Dock(TOP)
+								settMaterialPanel:DockMargin(0,8,0,0)
+								settMaterialPanel:SetPaintBackground(false)
+								settMaterialPanel:SizeToContents()
+								
+								elementSettingPanelHeight = elementSettingPanelHeight + 34
+								
+								local settNoDrawPanel = vgui.Create("DPanel", elementSettingPanel)
+								
+									local cbox, label
+									cbox = vgui.Create("DCheckBoxLabel", settNoDrawPanel)
+									cbox:SetText("No Draw (Pos/Ang updates only)")
+									cbox:SetTooltip("cube tool")
+									cbox:SetDark(true)
+									cbox:Dock(FILL)
+									
+									cbox:SetValue(curData.nodraw)
+									function cbox:OnChange(val)
+										curData.nodraw = val
+									end
+							
+								settNoDrawPanel:SetSize(200,16)
+								settNoDrawPanel:Dock(TOP)
+								settNoDrawPanel:DockMargin(8,8,0,0)
+								settNoDrawPanel:SetPaintBackground(false)
+								settNoDrawPanel:SizeToContents()
+								
+								elementSettingPanelHeight = elementSettingPanelHeight + 24
+							end
+							
+							local settAnimatedPanel = vgui.Create("DPanel", elementSettingPanel)
+							
+								local cbox, label
+								cbox = vgui.Create("DCheckBoxLabel", settAnimatedPanel)
+								cbox:SetText("Animated")
+								cbox:SetTooltip("CW2 md_m203")
+								cbox:SetDark(true)
+								cbox:Dock(FILL)
+								-- cbox:DockMargin(8,0,0,0)
+								
+								cbox:SetValue(curData.animated)
+								function cbox:OnChange(val)
+									curData.animated = val
+								end
+						
+							settAnimatedPanel:SetSize(200,16)
+							settAnimatedPanel:Dock(TOP)
+							settAnimatedPanel:DockMargin(8,8,0,0)
+							settAnimatedPanel:SetPaintBackground(false)
+							settAnimatedPanel:SizeToContents()
+							
 							local unknownSettings = {}
 							
 							for k,v in pairs(curData) do
@@ -1208,7 +1231,7 @@ function TOOL:updatePanel()
 									if data.merge then
 										attachFuncID = "merge"
 										attachFuncCaps = ""
-									elseif curData.attachment then
+									elseif data.attachment then
 										attachFuncID = "attachment"
 										attachFuncCaps = "\""
 									else
@@ -1219,6 +1242,17 @@ function TOOL:updatePanel()
 									attachFuncVal = attachFuncCaps .. tostring(data[attachFuncID]) .. attachFuncCaps
 									
 									rest = ""
+									
+									if data.adjustment then
+										rest = rest .. string.format(
+											", adjustment = {axis = \"%s\", min = %s, max = %s, inverse = %s, inverseOffsetCalc = %s}",
+											tostring(data.adjustment.axis),
+											tostring(data.adjustment.min),
+											tostring(data.adjustment.max),
+											tostring(data.adjustment.inverse),
+											tostring(data.adjustment.inverseOffsetCalc)
+										)
+									end
 									
 									if data.material then
 										rest = rest .. ", material = \"" .. data.material .. "\""
@@ -1242,14 +1276,12 @@ function TOOL:updatePanel()
 										rest = rest .. ", skin = " .. skin
 									end
 									
-									if data.adjustment then
-										rest = rest .. string.format(
-											", adjustment = {axis = \"%s\", min = %s, max = %s, inverseOffsetCalc = %s}",
-											tostring(data.adjustment.axis),
-											tostring(data.adjustment.min),
-											tostring(data.adjustment.max),
-											tostring(data.adjustment.inverseOffsetCalc)
-										)
+									if data.nodraw then
+										rest = rest .. ", nodraw = true"
+									end
+									
+									if data.animated then
+										rest = rest .. ", animated = true"
 									end
 									
 									local activeByDef = weapons.GetStored(WEAPON:GetClass())[t][key].active

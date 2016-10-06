@@ -73,10 +73,10 @@ CustomizableWeaponry_KK.ins2.quickGrenade.models.n77 = {
 	a_throw = "throw"
 }
 
-CustomizableWeaponry_KK.ins2.quickGrenade.categories = {}
+CustomizableWeaponry_KK.ins2.quickGrenade.types = {}
 
 local function add(tab)
-	table.insert(CustomizableWeaponry_KK.ins2.quickGrenade.categories, tab)
+	table.insert(CustomizableWeaponry_KK.ins2.quickGrenade.types, tab)
 end
 
 add({text = "FRAG", ammo = "Frag Grenades", class = "cw_grenade_thrown"})
@@ -106,9 +106,9 @@ function CustomizableWeaponry_KK.ins2.quickGrenade:getAmmo(wep)
 		nadeType = self.cvarType:GetInt() or 1
 	end
 	
-	nadeType = math.Clamp(nadeType, 1, #self.categories)
+	nadeType = math.Clamp(nadeType, 1, #self.types)
 	
-	return self.categories[nadeType]
+	return self.types[nadeType]
 end
 
 function CustomizableWeaponry_KK.ins2.quickGrenade:canThrow(wep)
@@ -185,14 +185,14 @@ function CustomizableWeaponry_KK.ins2.quickGrenade:throw(wep, IFTP)
 		end
 		
 		if SERVER then
+			CustomizableWeaponry.actionSequence.new(wep, 0.3, nil, function()
+				wep.canDropGrenade = true
+			end)
+			
 			CustomizableWeaponry.actionSequence.new(wep, 0.4, nil, function()
 				net.Start("CW_KK_INS2_NWGQN")
 				net.WriteEntity(wep.Owner)
 				net.Broadcast()
-			end)
-
-			CustomizableWeaponry.actionSequence.new(wep, 0.3, nil, function()
-				wep.canDropGrenade = true
 			end)
 		
 			CustomizableWeaponry.actionSequence.new(wep, 0.9, nil, function()
@@ -319,7 +319,7 @@ end
 // concommand for cycling type
 
 if CLIENT then
-	local cats = CustomizableWeaponry_KK.ins2.quickGrenade.categories
+	local cats = CustomizableWeaponry_KK.ins2.quickGrenade.types
 	
 	local function cw_kk_cyclefrag(ply)
 		if !IsValid(ply) then return end

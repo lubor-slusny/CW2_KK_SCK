@@ -41,6 +41,7 @@ if CLIENT then
 	killicon.AddFont("cw_kk_ins2_doi_welrod",		"CW_KillIcons", "a", killCol)
 
 	killicon.AddFont("cw_kk_ins2_doi_c96_c",		"CW_KillIcons", "x", killCol)
+	killicon.AddFont("cw_kk_ins2_doi_grease",		"CW_KillIcons", "q", killCol)
 	killicon.AddFont("cw_kk_ins2_doi_mp40",			"CW_KillIcons", "x", killCol)
 	killicon.AddFont("cw_kk_ins2_doi_sten",			"CW_KillIcons", "x", killCol)
 	killicon.AddFont("cw_kk_ins2_doi_thom",			"CW_KillIcons", "q", killCol)
@@ -61,6 +62,8 @@ if CLIENT then
 	killicon.AddFont("cw_kk_ins2_doi_spring",		"CW_KillIcons", "r", killCol)
 	killicon.AddFont("cw_kk_ins2_doi_stg44",		"CW_KillIcons", "w", killCol)
 
+	killicon.AddFont("cw_kk_ins2_doi_c4_de",		"CW_KillIcons", "e", killCol)
+	killicon.AddFont("cw_kk_ins2_doi_c4_us",		"CW_KillIcons", "e", killCol)
 	killicon.AddFont("cw_kk_ins2_doi_flame_de",		"CW_KillIcons", "e", killCol)
 	killicon.AddFont("cw_kk_ins2_doi_flame_gb",		"CW_KillIcons", "e", killCol)
 	killicon.AddFont("cw_kk_ins2_doi_flame_us",		"CW_KillIcons", "e", killCol)
