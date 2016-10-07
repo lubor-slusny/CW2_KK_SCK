@@ -19,7 +19,7 @@ end
 function ENT:Draw()
 	self:DrawModel()
 	
-	if self.dt.State == self.States.armed and self.SelfDestructTime > CurTime() then
+	if self.dt.State == self.States.armed and self.selfDestructTime > CurTime() then
 		self:DrawDLight()
 		self:DrawEffect()
 		-- self:DrawTrailParticle()

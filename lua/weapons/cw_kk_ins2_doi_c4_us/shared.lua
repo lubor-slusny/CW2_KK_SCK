@@ -25,7 +25,7 @@ if CLIENT then
 end
 
 SWEP.CanRestOnObjects = false
-SWEP.grenadeEnt = "cw_grenade_thrown"
+SWEP.grenadeEnt = "cw_kk_ins2_projectile_ww2_c4"
 
 SWEP.Animations = {	
 	pullpin = "base_pullback",

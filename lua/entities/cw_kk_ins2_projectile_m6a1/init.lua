@@ -24,11 +24,11 @@ function ENT:PhysicsCollide(data, physobj)
 	local impactAngle = math.deg(math.acos(data.OurOldVelocity:GetNormalized():Dot(data.HitNormal:GetNormalized()))) // so much math
 	
 	if data.Speed > 100 and impactAngle < 70 then
-		self:SelfDestruct()
+		self:selfDestruct()
 	end
 end
 
-function ENT:SelfDestruct()
+function ENT:selfDestruct()
 	self.HadEnough = true
 	
 	if self.DontDestroy then return end
@@ -66,7 +66,7 @@ function ENT:SearchNDestroy()
 		if IsValid(v) and v.IsNPC and v:IsNPC() then
 			if choppas[v:GetClass()] then
 				if v:GetPos():Distance(self:GetPos()) < 400 then
-					v:Fire("SelfDestruct")
+					v:Fire("selfDestruct")
 					hit = true
 				end
 			end
@@ -74,13 +74,13 @@ function ENT:SearchNDestroy()
 	end
 	
 	if hit then 
-		self:SelfDestruct()
+		self:selfDestruct()
 	end
 end
 
 function ENT:OnTakeDamage(dmg)
 	if self.HadEnough then return end
 	
-	self:SelfDestruct()
+	self:selfDestruct()
 end
 	

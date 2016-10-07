@@ -401,7 +401,7 @@ if CLIENT then
 	killicon.AddFont("cw_kk_ins2_projectile_m6a1",	"HL2MPTypeDeath", "3", killCol)
 	killicon.AddFont("cw_kk_ins2_projectile_pf60",	"HL2MPTypeDeath", "3", killCol)
 	
-	killicon.AddFont("cw_flash_thrown_cook",		"CW_KillIcons", "Q", killCol)
+	killicon.AddFont("cw_kk_ins2_projectile_m84",		"CW_KillIcons", "Q", killCol)
 end
 
 if CLIENT then
@@ -417,7 +417,7 @@ if CLIENT then
 	
 	language.Add("cw_kk_ins2_thrown_molotov", "Fake Molotov")
 	
-	language.Add("cw_flash_thrown_cook", "Flashbang")
+	language.Add("cw_kk_ins2_projectile_m84", "Flashbang")
 end
 
 // MAG SYSTEM
@@ -453,7 +453,7 @@ if CustomizableWeaponry_KK.HOME then
 		-- local eyeAng = self.Owner:EyeAngles()
 		-- local forward = eyeAng:Forward()
 		
-		-- local nade = ents.Create("cw_grenade_thrown")
+		-- local nade = ents.Create("cw_kk_ins2_projectile_frag")
 		-- nade:SetPos(pos + offset)
 		-- nade:SetAngles(eyeAng)
 		-- nade:Spawn()

@@ -25,7 +25,7 @@ if CLIENT then
 end
 
 SWEP.CanRestOnObjects = false
-SWEP.grenadeEnt = "cw_grenade_thrown"
+SWEP.grenadeEnt = "cw_kk_ins2_projectile_ww2_c4"
 
 SWEP.Animations = {
 	plant = "base_plant",
@@ -78,7 +78,7 @@ SWEP.Primary.DefaultClip	= -1
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "Frag Grenades"
 
-SWEP.fuseTime = 10
+SWEP.fuseTime = 30
 
 SWEP.timeToThrow = 1.1
 SWEP.swapTime = 0.9

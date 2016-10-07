@@ -45,11 +45,11 @@ CustomizableWeaponry_KK.ins2.quickKnife.models.ww2gb = {
 
 function CustomizableWeaponry_KK.ins2.quickKnife:canAttack(wep)
 	self.restrictedStates = self.restrictedStates or {
-		[CW_ACTION] = true,
+		-- [CW_ACTION] = true, // it should work underwater and on ladders
 		[CW_CUSTOMIZE] = true,
 		[CW_KK_ACTION] = true,
-		[CW_KK_QNADE] = true,
-		-- [CW_KK_QKNIFE] = true, // coz wep.meleeAttackDelay
+		[CW_KK_QNADE] = true, // since we re ignoring CW_ACTION
+		-- [CW_KK_QKNIFE] = true, // we re using wep.meleeAttackDelay
 	}
 
 	-- if CustomizableWeaponry.quickGrenade.restrictedStates[wep.dt.State] then
@@ -61,6 +61,10 @@ function CustomizableWeaponry_KK.ins2.quickKnife:canAttack(wep)
 	end
 	
 	if self.restrictedStates[wep.dt.State] then
+		return false
+	end
+	
+	if wep.Owner:InVehicle() and not wep.Owner:GetAllowWeaponsInVehicle() then
 		return false
 	end
 	

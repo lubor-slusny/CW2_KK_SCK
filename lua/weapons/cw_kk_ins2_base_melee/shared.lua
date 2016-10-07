@@ -33,6 +33,7 @@ SWEP.AdminSpawnable		= false
 SWEP.AimingEnabled = false
 SWEP.CanCustomize = false
 SWEP.HolsterUnderwater = false
+SWEP.HolsterOnLadder = false
 SWEP.AccuracyEnabled = false
 SWEP.AddSafeMode = false
 

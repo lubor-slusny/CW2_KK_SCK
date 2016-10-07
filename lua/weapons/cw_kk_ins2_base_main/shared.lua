@@ -223,6 +223,23 @@ function SWEP:IndividualThink()
 	
 	self:doBoltAction()
 	
+	if CustomizableWeaponry_KK.ins2.hotPotato:getPotato(self) then
+		if !self.Owner:KeyDown(IN_USE) then
+			print(self.Owner, "throws", CustomizableWeaponry_KK.ins2.hotPotato:getPotato(self))
+			
+			CustomizableWeaponry_KK.ins2.hotPotato:throw(self)
+		else
+			local t = 0.5
+			
+			if CLIENT then
+				self.GrenadePos.z = 0
+				self.grenadeTime = CurTime() + t
+			end
+			
+			self:forceState(CW_ACTION, t, SP)
+		end
+	end
+	
 	if SERVER then
 		self:checkProneStatus()
 	end

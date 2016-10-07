@@ -125,7 +125,7 @@ function SWEP:FireBullet()
 		local forward = eyeAng:Forward()
 		local offset = /*forward * 30 +*/ eyeAng:Right() * 4 - eyeAng:Up() * 3
 		
-		local nade = ents.Create("cw_flash_thrown")
+		local nade = ents.Create("cw_kk_ins2_projectile_m84")
 		
 		nade.Model = "models/weapons/w_m84.mdl"
 		
@@ -137,7 +137,7 @@ function SWEP:FireBullet()
 		nade:Activate()
 		nade:SetOwner(self:GetOwner())
 		
-		nade:Fuse(5)
+		nade:Fuse(1.8)
 		
 		local phys = nade:GetPhysicsObject()
 		

@@ -79,9 +79,9 @@ local function add(tab)
 	table.insert(CustomizableWeaponry_KK.ins2.quickGrenade.types, tab)
 end
 
-add({text = "FRAG", ammo = "Frag Grenades", class = "cw_grenade_thrown"})
-add({text = "FLASH", ammo = "Flash Grenades", class = "cw_flash_thrown", default = "m84"})
-add({text = "SMOKE", ammo = "Smoke Grenades", class = "cw_smoke_thrown", default = "m18"})
+add({text = "FRAG", ammo = "Frag Grenades", class = "cw_kk_ins2_projectile_frag"})
+add({text = "FLASH", ammo = "Flash Grenades", class = "cw_kk_ins2_projectile_m84", default = "m84"})
+add({text = "SMOKE", ammo = "Smoke Grenades", class = "cw_kk_ins2_projectile_m18", default = "m18"})
 	
 if CustomizableWeaponry_KK.HOME then
 	CustomizableWeaponry_KK.ins2.quickGrenade.models.roflkek = {
@@ -171,6 +171,7 @@ function CustomizableWeaponry_KK.ins2.quickGrenade:throw(wep, IFTP)
 				wep.grenadeTime = CurTime() + 1.5
 				
 				wep.CW_KK_HANDS:SetParent(wep.CW_GREN)
+				wep.CW_KK_HANDS:AddEffects(EF_BONEMERGE_FASTCULL)
 				
 				wep:playAnim(quickNadeTweak.a_pinpull, 1, 0, wep.CW_GREN)
 			end)

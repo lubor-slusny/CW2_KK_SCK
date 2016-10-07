@@ -18,7 +18,7 @@ function ENT:PhysicsCollide(data, physobj)
 	
 end
 
-function ENT:SelfDestruct()
+function ENT:selfDestruct()
 	
 end
 

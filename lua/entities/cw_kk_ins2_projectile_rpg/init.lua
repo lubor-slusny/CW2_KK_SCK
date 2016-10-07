@@ -47,7 +47,7 @@ function ENT:clusterFuckHENade()
 	local pos = self:GetPos()
 	local ang = self:GetAngles()
 	
-	local nade = ents.Create("cw_grenade_thrown")
+	local nade = ents.Create("cw_kk_ins2_projectile_frag")
 	nade:SetPos(pos - ang:Forward())
 	nade:SetAngles(ang)
 	nade:Spawn()
@@ -65,16 +65,16 @@ end
 
 local shraps = {
 	"cw_kk_ins2_projectile_rpg",
-	"cw_grenade_thrown",
-	"cw_grenade_thrown",
-	"cw_grenade_thrown",
-	"cw_grenade_thrown",
-	"cw_grenade_thrown",
-	"cw_grenade_thrown",
-	"cw_grenade_thrown",
-	"cw_flash_thrown",
-	"cw_flash_thrown",
-	"cw_smoke_thrown",
+	"cw_kk_ins2_projectile_frag",
+	"cw_kk_ins2_projectile_frag",
+	"cw_kk_ins2_projectile_frag",
+	"cw_kk_ins2_projectile_frag",
+	"cw_kk_ins2_projectile_frag",
+	"cw_kk_ins2_projectile_frag",
+	"cw_kk_ins2_projectile_frag",
+	"cw_kk_ins2_projectile_m84",
+	"cw_kk_ins2_projectile_m84",
+	"cw_kk_ins2_projectile_m18",
 }
 
 function ENT:clusterFuckNades()
@@ -109,16 +109,16 @@ function ENT:Think()
 		
 	if self.dt.State == self.States.misfired then 
 		-- if math.random(1,10000) == 1337 then 
-			-- self:SelfDestruct()
+			-- self:selfDestruct()
 		-- end
 		return 
 	end
 	
 	local CT = CurTime()
 	
-	if CT > self.SelfDestructTime then
+	if CT > self.selfDestructTime then
 		if self.safetyBypass and self.missfiredArmTime then return end
-		self:SelfDestruct()
+		self:selfDestruct()
 	elseif CT > self.ArmTime then
 		self.dt.State = self.States.armed
 		
@@ -176,7 +176,7 @@ function ENT:Touch(ent)
 	if !ent:IsPlayer() and !ent:IsNPC() then return end
 	
 	if self.dt.State != self.States.misfired and CurTime() > self.ArmTime then
-		self:SelfDestruct()
+		self:selfDestruct()
 	end
 end
 
@@ -202,7 +202,7 @@ function ENT:PhysicsCollide(data, physobj)
 			return
 		end
 		
-		self:SelfDestruct()
+		self:selfDestruct()
 	else
 		self:EmitSound("physics/metal/metal_grenade_impact_hard" .. math.random(1, 3) .. ".wav", 80, 100)
 		if self.safetyBypass then
@@ -220,7 +220,7 @@ function ENT:PhysicsCollide(data, physobj)
 	end
 end
 
-function ENT:SelfDestruct()
+function ENT:selfDestruct()
 	self.HadEnough = true
 	
 	if self.DontDestroy then return end
@@ -262,7 +262,7 @@ function ENT:SearchNDestroy()
 		if IsValid(v) and v.IsNPC and v:IsNPC() then
 			if choppas[v:GetClass()] then
 				if v:GetPos():Distance(self:GetPos()) < 400 then
-					v:Fire("SelfDestruct")
+					v:Fire("selfDestruct")
 					hit = true
 				end
 			end
@@ -270,13 +270,13 @@ function ENT:SearchNDestroy()
 	end
 	
 	if hit then 
-		self:SelfDestruct()
+		self:selfDestruct()
 	end
 end
 
 function ENT:OnTakeDamage(dmg)
 	if self.HadEnough then return end
 	
-	self:SelfDestruct()
+	self:selfDestruct()
 end
 	

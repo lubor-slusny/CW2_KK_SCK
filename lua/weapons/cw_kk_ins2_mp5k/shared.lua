@@ -211,6 +211,10 @@ SWEP.ReloadTimes = {
 
 if CLIENT then
 	function SWEP:nametagElementRender()
+		if not self.allocatedMags then
+			return
+		end
+		
 		local ent = self.AttachmentModelsVM.kk_textbox.ent
 		
 		local mags = 0

@@ -150,27 +150,26 @@ function SWEP:createGrenadeModel() end
 // drawGrenade edited to draw hands-model entity
 //-----------------------------------------------------------------------------
 
-local pos, ang
-
 function SWEP:drawGrenade()
 	if CurTime() > self.grenadeTime then
 		return
 	end
 	
-	if self.CW_GREN:GetCycle() >= 0.98 then
-		return
-	end
+	-- if self.CW_GREN:GetCycle() >= 0.98 then
+		-- return
+	-- end
 	
-	pos, ang = EyePos(), EyeAngles()
+	local pos, ang = EyePos(), EyeAngles()
+	local FT = FrameTime()
 	
-	self.GrenadePos.z = Lerp(FrameTime() * 10, self.GrenadePos.z, 0)
+	self.GrenadePos.z = Lerp(FT * 10, self.GrenadePos.z, 0)
 	
 	pos = pos + ang:Up() * self.GrenadePos.z
 	pos = pos + ang:Forward() * 2
 	
 	self.CW_GREN:SetPos(pos)
 	self.CW_GREN:SetAngles(ang)
-	self.CW_GREN:FrameAdvance(FrameTime())
+	self.CW_GREN:FrameAdvance(FT)
 	
 	cam.IgnoreZ(true)
 		self.CW_GREN:DrawModel()

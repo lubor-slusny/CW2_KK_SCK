@@ -52,7 +52,7 @@ function ENT:Initialize()
 	local CT = CurTime()
 	
 	self.ArmTime = CT + 0.1
-	self.SelfDestructTime = CT + 5.1
+	self.selfDestructTime = CT + 5.1
 end
 
 function ENT:SetupDataTables()
