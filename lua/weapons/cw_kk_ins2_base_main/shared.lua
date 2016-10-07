@@ -65,6 +65,7 @@ SWEP.CW_KK_40MM_MDL = "models/weapons/upgrades/a_projectile_m203.mdl"
 
 SWEP._KK_INS2_customEmptySuffix = ""
 SWEP._KK_INS2_customReloadSuffix = ""
+SWEP._KK_INS2_customPickupSuffix = ""
 
 SWEP.DeployTime = 0.46
 SWEP.HolsterTime = 0.46
@@ -222,23 +223,6 @@ function SWEP:IndividualThink()
 	self:DrawShadow(false)
 	
 	self:doBoltAction()
-	
-	if CustomizableWeaponry_KK.ins2.hotPotato:getPotato(self) then
-		if !self.Owner:KeyDown(IN_USE) then
-			print(self.Owner, "throws", CustomizableWeaponry_KK.ins2.hotPotato:getPotato(self))
-			
-			CustomizableWeaponry_KK.ins2.hotPotato:throw(self)
-		else
-			local t = 0.5
-			
-			if CLIENT then
-				self.GrenadePos.z = 0
-				self.grenadeTime = CurTime() + t
-			end
-			
-			self:forceState(CW_ACTION, t, SP)
-		end
-	end
 	
 	if SERVER then
 		self:checkProneStatus()

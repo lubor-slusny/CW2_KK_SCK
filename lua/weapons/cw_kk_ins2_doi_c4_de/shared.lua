@@ -78,13 +78,10 @@ SWEP.Primary.DefaultClip	= -1
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "Frag Grenades"
 
-SWEP.fuseTime = 30
-
-SWEP.timeToThrow = 1.1
-SWEP.swapTime = 0.9
+SWEP.fuseTime = 10
 
 SWEP.spoonTime = 29/30
-SWEP.timeToThrowCook = 1.1
+SWEP.timeToThrowCook = 0.8
 SWEP.swapTimeCook = 0.9
 SWEP.maxVelDelayCook = 1.5
 

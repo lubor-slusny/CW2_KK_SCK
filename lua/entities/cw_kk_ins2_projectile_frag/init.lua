@@ -49,7 +49,7 @@ function ENT:PhysicsCollide(data, physobj)
 end
 
 function ENT:Fuse(t)
-	t = 20 // t or 3
+	t = t or 3
 	
 	local pwner = self.Owner
 	
@@ -57,7 +57,7 @@ function ENT:Fuse(t)
 	
 	timer.Simple(t, function()
 		if self:IsValid() then
-			-- util.BlastDamage(self, self:GetOwner(), self:GetPos(), self.ExplodeRadius, self.ExplodeDamage)
+			util.BlastDamage(self, pwner, self:GetPos(), self.ExplodeRadius, self.ExplodeDamage)
 			
 			ef = EffectData()
 			ef:SetOrigin(self:GetPos())

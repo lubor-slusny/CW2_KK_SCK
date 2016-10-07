@@ -157,6 +157,7 @@ end
 	CustomizableWeaponry:registerAmmo("PG-7VM Grenade", "PG-7VM Grenades", 0, 0)
 	CustomizableWeaponry:registerAmmo("AT4 Launcher", "AT4 Rocket Launchers", 0, 0)
 	CustomizableWeaponry:registerAmmo("M6A1 Rocket", "M6A1 Rockets", 0, 0)
+	CustomizableWeaponry:registerAmmo("M10A1 Rocket", "M10A1 Smoke Rockets", 0, 0)
 	CustomizableWeaponry:registerAmmo("Panzerfaust", "Panzerfaust Rocket Launchers", 0, 0)
 	
 	CustomizableWeaponry:registerAmmo("25MM Flare", "25MM Flares", 0, 0)
@@ -407,17 +408,16 @@ end
 if CLIENT then
 	language.Add("cw_kk_ins2_damage_melee", "Melee attack")
 	
+	language.Add("cw_kk_ins2_projectile_at4", "AT4 rocket")
 	language.Add("cw_kk_ins2_projectile_rpg", "PG-7VM grenade")
 	language.Add("cw_kk_ins2_projectile_rpg_2", "PG-7VM grenade")
-	language.Add("cw_kk_ins2_projectile_at4", "AT4 rocket")
+	language.Add("cw_kk_ins2_projectile_flare", "25MM Flare")
 	
 	language.Add("cw_kk_ins2_projectile_c4", "Active C4 charge")
 	language.Add("cw_kk_ins2_projectile_ied", "Active IED")
-	language.Add("cw_kk_ins2_projectile_flare", "25MM Flare")
-	
-	language.Add("cw_kk_ins2_thrown_molotov", "Fake Molotov")
-	
-	language.Add("cw_kk_ins2_projectile_m84", "Flashbang")
+	language.Add("cw_kk_ins2_projectile_frag", "Frag. Grenade")
+	language.Add("cw_kk_ins2_projectile_m84", "M84 Stun Grenade")
+	language.Add("cw_kk_ins2_projectile_m18", "M18 Smoke Grenade")
 end
 
 // MAG SYSTEM

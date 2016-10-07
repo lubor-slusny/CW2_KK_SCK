@@ -32,6 +32,7 @@ if CLIENT then
 	killicon.AddFont("cw_kk_ins2_doi_shovel_gb",	"CW_KillIcons", "j", killCol)
 	killicon.AddFont("cw_kk_ins2_doi_shovel_us",	"CW_KillIcons", "j", killCol)
 
+	killicon.AddFont("cw_kk_ins2_doi_browninghp",	"CW_KillIcons", "a", killCol)
 	killicon.AddFont("cw_kk_ins2_doi_c96",			"CW_KillIcons", "a", killCol)
 	killicon.AddFont("cw_kk_ins2_doi_luger",		"CW_KillIcons", "a", killCol)
 	killicon.AddFont("cw_kk_ins2_doi_m1911",		"CW_KillIcons", "a", killCol)
@@ -82,6 +83,7 @@ if CLIENT then
 	
 	// but w8, theres more
 	
+	language.Add("cw_kk_ins2_projectile_m10", "M10A1 smoke rocket")
 	language.Add("cw_kk_ins2_projectile_m6a1", "M6A1 rocket")
 	language.Add("cw_kk_ins2_projectile_pf60", "Panzerfaust projectile")
 	

@@ -45,7 +45,7 @@ SWEP.Attachments = {
 }
 
 SWEP.Animations = {
-	base_pickup = "base_draw",
+	base_pickup = "base_ready",
 	base_draw = "base_draw",
 	base_draw_empty = "empty_draw",
 	base_fire = {"base_fire", "base_fire_2", "base_fire_3"},
@@ -117,7 +117,7 @@ SWEP.SpreadCooldown = 0.15
 SWEP.Shots = 1
 SWEP.Damage = 35
 
-SWEP.FirstDeployTime = 0.8
+SWEP.FirstDeployTime = 2.5
 SWEP.DeployTime = 0.8
 SWEP.HolsterTime = 0.7
 
@@ -132,7 +132,7 @@ SWEP.MuzzleVelocity = 280
 
 SWEP.ReloadTimes = {
 	base_reload = {2.4, 3.35},
-	base_reloadempty = {2.4, 5},
+	base_reloadempty = {2.4, 4.75},
 }
 
 if CLIENT then 

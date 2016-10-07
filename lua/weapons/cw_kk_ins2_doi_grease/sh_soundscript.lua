@@ -1,5 +1,10 @@
 
 SWEP.Sounds = {
+	base_ready = {
+		{time = 0/30, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
+		{time = 26/30, sound = "CW_KK_INS2_DOI_GREASE_BOLTBACK"},
+	},
+
 	base_draw = {
 		{time = 0/31.8, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
 	},
@@ -51,7 +56,7 @@ SWEP.Sounds = {
 		{time = 64/32.5, sound = "CW_KK_INS2_DOI_GREASE_MAGIN"},
 		{time = 76/32.5, sound = "CW_KK_INS2_DOI_GREASE_MAGHIT"},
 		// { event 46 77 ""},
-		{time = 121/32.5, sound = "CW_KK_INS2_DOI_GREASE_BOLTBACK"},
+		{time = 107/32.5, sound = "CW_KK_INS2_DOI_GREASE_BOLTBACK"},
 	},
 
 	empty_draw = {

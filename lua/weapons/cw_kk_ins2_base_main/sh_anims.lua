@@ -303,14 +303,15 @@ end
 function SWEP:pickupAnimFunc(mode)
 	mode = mode or self:getForegripMode()
 	anim = "pickup"
+	suffix = self._KK_INS2_customPickupSuffix
 	
 	if SERVER then
-		self:sendWeaponAnim(mode .. anim, self.DrawSpeed, 0)
+		self:sendWeaponAnim(mode .. anim .. suffix, self.DrawSpeed, 0)
 	end
 	
 	if CLIENT then
 		if self.Sequence != self.Animations[mode .. anim] then
-			self:sendWeaponAnim(mode .. anim, self.DrawSpeed, 0)
+			self:sendWeaponAnim(mode .. anim .. suffix, self.DrawSpeed, 0)
 		end
 	end
 end

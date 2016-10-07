@@ -93,6 +93,34 @@ function CustomizableWeaponry_KK.ins2.rpgs.fireM6A1(wep, IFTP)
 	end
 end
 
+function CustomizableWeaponry_KK.ins2.rpgs.fireM10(wep, IFTP)
+	if IFTP then
+		if SERVER then
+			local pos = wep.Owner:GetShootPos()
+			local eyeAng = wep.Owner:EyeAngles()
+			
+			local fwdAng = eyeAng
+			fwdAng:RotateAroundAxis(fwdAng:Right(), 1.8)
+			local forward = fwdAng:Forward()
+			
+			local offset = eyeAng:Right() * 4 - eyeAng:Up() * 3
+			
+			local nade = ents.Create("cw_kk_ins2_projectile_m10")
+			nade:SetPos(pos + offset)
+			nade:SetAngles(fwdAng)
+			nade:Spawn()
+			nade:Activate()
+			nade:SetOwner(wep.Owner)
+			
+			local phys = nade:GetPhysicsObject()
+			
+			if IsValid(phys) then
+				phys:SetVelocity(forward * 4000)
+			end
+		end
+	end
+end
+
 function CustomizableWeaponry_KK.ins2.rpgs.firePF60(wep, IFTP)
 	if IFTP then
 		if SERVER then
