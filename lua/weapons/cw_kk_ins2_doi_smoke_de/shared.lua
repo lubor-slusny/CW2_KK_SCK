@@ -71,7 +71,7 @@ SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.doiContentMounted()
 SWEP.Primary.ClipSize		= -1
 SWEP.Primary.DefaultClip	= -1
 SWEP.Primary.Automatic		= false
-SWEP.Primary.Ammo			= "Frag Grenades"
+SWEP.Primary.Ammo			= "Smoke Grenades"
 
 SWEP.HolsterTime = 0.6
 

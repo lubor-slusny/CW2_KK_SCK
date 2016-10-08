@@ -52,7 +52,7 @@ SWEP.Chamberable = false
 SWEP.WeaponLength = 44
 
 SWEP.Attachments = {
-	{header = "Ammo", offset = {300, -300}, atts = {"kk_ins2_ammo_m10"}},
+	{header = "Ammo", offset = {600, -200}, atts = {"kk_ins2_ammo_m10"}},
 }
 
 SWEP.Animations = {

@@ -28,11 +28,12 @@ if CLIENT then
 		["mag"] = {model = "models/weapons/upgrades/w_thompson_mag_30.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 	}
 
-	SWEP.IronsightPos = Vector(-2.2474, -2, 1.0881)
-	SWEP.IronsightAng = Vector(-0.1194, 0.0632, 0)
+	SWEP.IronsightPos = Vector(-2.2506, -2, 1.0881)
+	SWEP.IronsightAng = Vector(-0.1194, 0.019, 0)
 
-	SWEP.FoldSightPos = Vector(-2.2474, -2, 1.0881)
-	SWEP.FoldSightAng = Vector(-0.1194, 0.0632, 0)
+	SWEP.FoldSightPos = Vector(-2.2506, -2, 1.0881)
+	SWEP.FoldSightAng = Vector(-0.1194, 0.019, 0)
+
 end
 
 SWEP.Attachments = {

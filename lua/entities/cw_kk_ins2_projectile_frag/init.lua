@@ -34,8 +34,8 @@ function ENT:PhysicsCollide(data, physobj)
 	vel = physobj:GetVelocity()
 	len = vel:Length()
 	
-	if len > 500 then -- let it roll
-		physobj:SetVelocity(vel * 0.6) -- cheap as fuck, but it works
+	if len > 500 then
+		physobj:SetVelocity(vel * 0.6)
 	end
 	
 	if len > 100 then
@@ -53,8 +53,6 @@ function ENT:Fuse(t)
 	
 	local pwner = self.Owner
 	
-	self:SetOwner()
-	
 	timer.Simple(t, function()
 		if self:IsValid() then
 			util.BlastDamage(self, pwner, self:GetPos(), self.ExplodeRadius, self.ExplodeDamage)
@@ -71,6 +69,10 @@ function ENT:Fuse(t)
 end
 
 function ENT:Use(activator, caller)
+	if not CustomizableWeaponry_KK.HOME then
+		return false
+	end
+	
 	if IsValid(activator) and activator:IsPlayer() then
 		CustomizableWeaponry_KK.ins2.hotPotato:pickUp(activator, self)
 	end
