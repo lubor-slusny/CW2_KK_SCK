@@ -2,13 +2,14 @@ local att = {}
 att.name = "kk_ins2_ammo_m10"
 att.displayName = "M10A1 Smoke Rockets"
 att.displayNameShort = "Smoke"
+att.KK_INS2_playIdle = true
 
 att.statModifiers = {}
 
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
 	att.description = {
-		[1] = {t = "Swaps HEAT rockets for white phosphorus smoke rokcets.", c = CustomizableWeaponry.textColors.NETURAL}
+		[1] = {t = "Swaps HEAT rockets for white phosphorus smoke rockets.", c = CustomizableWeaponry.textColors.NETURAL}
 	}
 end
 

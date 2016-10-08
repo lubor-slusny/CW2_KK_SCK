@@ -18,7 +18,7 @@ if CLIENT then
 	SWEP.NoShells = true
 	SWEP.ShellScale = 2
 	SWEP.Shell2 = "KK_INS2_REVOLVER"
-	
+		
 	SWEP.AttachmentModelsVM = {
 		-- ["kk_ins2_optic_rail"] = {model = "models/v_fas2_leupold_mounts.mdl", bone = "Weapon", pos = Vector(0, -1.895, 3.381), angle = Angle(0, -90, 0), size = Vector(1.8, 1.8, 1.8), bodygroups = {6},
 			-- material = "models/weapons/view/pistols/ragingbull/ragingbullmount",
@@ -34,6 +34,11 @@ if CLIENT then
 		-- ["kk_holosight"] = {model = "models/weapons/attachments/c_cw_kk_holosight.mdl", bone = "Weapon", pos = Vector(0.028, -1.219, -1.505), angle = Angle(0, -90, 0), size = Vector(0.75, 0.75, 0.75)},
 	}
 
+	SWEP.AttachmentModelsWM = {
+		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_mak.mdl", pos = Vector(10.3093, -1.804, 1.3029), angle = Angle(-2.9683, 6.6904, 0), size = Vector(1, 1, 1), bone = "R Hand"},
+		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_mak.mdl", pos = Vector(10.3093, -1.804, 1.3029), angle = Angle(-2.9683, 6.6904, 0), size = Vector(1, 1, 1), bone = "R Hand"},
+	}
+	
 	SWEP.IronsightPos = Vector(-1.8503, 0, -0.1013)
 	SWEP.IronsightAng = Vector(0, 0.0104, 0)
 

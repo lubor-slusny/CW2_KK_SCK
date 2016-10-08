@@ -25,7 +25,7 @@ SWEP.Animations = {
 	base_crawl = "crawl",
 }
 
-SWEP.NormalHoldType = "knife"
+SWEP.NormalHoldType = "fist"
 SWEP.RunHoldType = "passive"
 SWEP.FireModes = {"auto"}
 SWEP.Base = "cw_kk_ins2_base_melee"
