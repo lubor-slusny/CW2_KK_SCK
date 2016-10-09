@@ -31,14 +31,21 @@ function CustomizableWeaponry_KK.ins2.hotPotato:pickUp(ply, nade)
 		umsg.End()
 	end
 	
-	if CLIENT then
-		wep.GrenadePos.z = 0
-		wep.grenadeTime = CurTime() + 1.5
+	wep.Animations["_grenade_pu"] = "throwback"
+	wep.Animations["_grenade_bt"] = "bakethrow"
+	
+	wep.dt.State = CW_ACTION
+	
+	CustomizableWeaponry.actionSequence.new(wep, 0.1, nil, function()
+		wep.dt.State = CW_KK_QNADE
 		
-		wep.CW_KK_HANDS:SetParent(wep.CW_GREN)
-		
-		wep:playAnim("throwback", 1, 0, wep.CW_GREN)
-	end
+		if CLIENT then
+			wep.grenadeTime = CurTime() + 1.5
+			wep.CW_VM:SetModel(wep.CW_GREN_TWEAK.vm)
+			
+			wep:playAnim("_grenade_pu", 1, 0)
+		end
+	end)
 end
 
 if CLIENT then
@@ -77,8 +84,16 @@ function CustomizableWeaponry_KK.ins2.hotPotato:throw(wep)
 	
 	self.held[wep.Owner] = nil
 	
+	wep.Animations["_grenade_pu"] = "throwback"
+	wep.Animations["_grenade_bt"] = "bakethrow"
+	
 	if CLIENT then
-		wep:playAnim("bakethrow", 1, 0, wep.CW_GREN)
+		wep:playAnim("_grenade_bt", 1, 0)
+		
+		CustomizableWeaponry.actionSequence.new(wep, 1, nil, function()
+			wep.CW_VM:SetModel(wep.ViewModel)
+			wep:idleAnimFunc()
+		end)
 	end
 	
 	if SERVER then
@@ -97,7 +112,7 @@ function CustomizableWeaponry_KK.ins2.hotPotato:throw(wep)
 				nade:SetVelocity(velocity)
 			end
 			
-			nade:SetOwner(wep.Owner)		
+			nade:SetOwner(wep.Owner)
 		end)
 	end
 end

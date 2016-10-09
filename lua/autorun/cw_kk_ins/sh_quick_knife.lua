@@ -205,38 +205,87 @@ function CustomizableWeaponry_KK.ins2.quickKnife:attack(wep)
 		wep:SetNextPrimaryFire(CT + 1.2)
 		wep.meleeAttackDelay = CT + 1.2
 		
-		wep.dt.State = CW_KK_QKNIFE
+		if wep.KKINS2Potato then
+			wep.dt.State = CW_ACTION
 	
-		if wep:filterPrediction() then
-			wep:EmitSound("CW_HOLSTER")
-		end
+			wep.Animations["_melee_a"] = wep.CW_KK_KNIFE_TWEAK.a_attack
+			wep.Animations["_melee_h"] = "holster"
+			
+			CustomizableWeaponry.actionSequence.new(wep, 0.1, nil, function()
+				wep.dt.State = CW_KK_QKNIFE
+				
+				if CLIENT then
+					wep.knifeTime = CurTime() + 1
+					wep.CW_VM:SetModel(wep.CW_KK_KNIFE_TWEAK.vm)
+					wep:EmitSound("weapons/knife/knife_deploy1.wav")
+					wep:playAnim("_melee_a", 0, 0.1)
+				end
+			end)
 		
-		if CLIENT then
-			CustomizableWeaponry.actionSequence.new(wep, 0.1, nil, function()
-				wep:EmitSound("weapons/knife/knife_deploy1.wav")
-			end)
-			
-			CustomizableWeaponry.actionSequence.new(wep, 0.1, nil, function()
-				wep.GrenadePos.z = -15
-				wep.knifeTime = CurTime() + 1
-				
-				wep.CW_KK_HANDS:SetParent(wep.CW_KK_KNIFE)
-				
-				wep:playAnim(wep.CW_KK_KNIFE_TWEAK.a_attack, 0, 0.1, wep.CW_KK_KNIFE)
-			end)
-			
-			CustomizableWeaponry.actionSequence.new(wep, 0.3, nil, function()
-				wep:playAnim(wep.CW_KK_KNIFE_TWEAK.a_attack, 1, 0.1, wep.CW_KK_KNIFE)
-			end)
+			if CLIENT then
+				CustomizableWeaponry.actionSequence.new(wep, 0.3, nil, function()
+					wep:playAnim("_melee_a", 1, 0.1)
+				end)
+			end
 			
 			CustomizableWeaponry.actionSequence.new(wep, 0.9, nil, function()
-				wep:playAnim("holster", 2, 0, wep.CW_KK_KNIFE)
+				wep.dt.State = CW_ACTION
+				
+				if CLIENT then
+					wep:playAnim("_melee_h", 2, 0)
+				end
 			end)
 			
-			CustomizableWeaponry.actionSequence.new(wep, 1, nil, function()
-				wep.reticleInactivity = 0
-				wep:idleAnimFunc()
+			if CLIENT then
+				CustomizableWeaponry.actionSequence.new(wep, 1, nil, function()
+					wep.CW_VM:SetModel(wep.ViewModel)
+					wep:idleAnimFunc()
+					-- wep.reticleInactivity = 0
+					-- wep:idleAnimFunc()
+				end)
+			end
+				
+			CustomizableWeaponry.actionSequence.new(wep, 1.2, nil, function()
+				-- wep.dt.State = CW_IDLE
+				
+				if CLIENT then
+					wep.reticleInactivity = 0
+				end
 			end)
+		else
+			wep.dt.State = CW_KK_QKNIFE
+		
+			if wep:filterPrediction() then
+				wep:EmitSound("CW_HOLSTER")
+			end
+			
+			if CLIENT then
+				CustomizableWeaponry.actionSequence.new(wep, 0.1, nil, function()
+					wep:EmitSound("weapons/knife/knife_deploy1.wav")
+				end)
+				
+				CustomizableWeaponry.actionSequence.new(wep, 0.1, nil, function()
+					wep.GrenadePos.z = -15
+					wep.knifeTime = CurTime() + 1
+					
+					wep.CW_KK_HANDS:SetParent(wep.CW_KK_KNIFE)
+					
+					wep:playAnim(wep.CW_KK_KNIFE_TWEAK.a_attack, 0, 0.1, wep.CW_KK_KNIFE)
+				end)
+				
+				CustomizableWeaponry.actionSequence.new(wep, 0.3, nil, function()
+					wep:playAnim(wep.CW_KK_KNIFE_TWEAK.a_attack, 1, 0.1, wep.CW_KK_KNIFE)
+				end)
+				
+				CustomizableWeaponry.actionSequence.new(wep, 0.9, nil, function()
+					wep:playAnim("holster", 2, 0, wep.CW_KK_KNIFE)
+				end)
+				
+				CustomizableWeaponry.actionSequence.new(wep, 1, nil, function()
+					wep.reticleInactivity = 0
+					wep:idleAnimFunc()
+				end)
+			end
 		end
 		
 		category = "knife"

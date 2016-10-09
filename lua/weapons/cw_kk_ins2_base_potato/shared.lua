@@ -4,6 +4,11 @@ AddCSLuaFile()
 
 SWEP.Base = "cw_kk_ins2_base_main"
 
+SWEP.KKINS2Potato = true
+
+local SP = game.SinglePlayer()
+local MP = !SP
+
 local cvarFA = GetConVar("cw_freeaim")
 local cvarFAAC = GetConVar("cw_freeaim_autocenter")
 
@@ -31,7 +36,7 @@ function SWEP:IndividualThink()
 				self.grenadeTime = CurTime() + t
 			end
 			
-			self:forceState(CW_ACTION, t, SP)
+			self:forceState(CW_KK_QNADE, t, SP)
 		end
 	end
 	

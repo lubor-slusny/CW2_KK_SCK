@@ -199,7 +199,7 @@ if CLIENT then
 		if !wep.KKINS2Wep then return end
 		
 		
-		if kkAction[wep.dt.State] then
+		if kkAction[wep.dt.State] and not wep.KKINS2Potato then
 			return wep.SwimPos, wep.SwimAng
 		end
 		

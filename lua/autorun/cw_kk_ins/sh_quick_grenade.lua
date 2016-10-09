@@ -163,94 +163,98 @@ function CustomizableWeaponry_KK.ins2.quickGrenade:throw(wep, IFTP)
 		local nadeAmmo = curSetup.ammo
 		local entClass = curSetup.class
 		
-		if CLIENT then
-			wep.CW_GREN:SetModel(quickNadeTweak.vm)
-		
-			CustomizableWeaponry.actionSequence.new(wep, 0.45, nil, function()
-				wep.GrenadePos.z = -10
-				wep.grenadeTime = CurTime() + 1.5
-				
-				wep.CW_KK_HANDS:SetParent(wep.CW_GREN)
-				wep.CW_KK_HANDS:AddEffects(EF_BONEMERGE_FASTCULL)
-				
-				wep:playAnim(quickNadeTweak.a_pinpull, 1, 0, wep.CW_GREN)
-			end)
+		if wep.KKINS2Potato then
 			
-			CustomizableWeaponry.actionSequence.new(wep, 0.7, nil, function()
-				surface.PlaySound("weapons/pinpull.wav")
-			end)
+		else
+			if CLIENT then
+				wep.CW_GREN:SetModel(quickNadeTweak.vm)
 			
-			CustomizableWeaponry.actionSequence.new(wep, 1, nil, function()
-				wep:playAnim(quickNadeTweak.a_throw, 1.1, 0, wep.CW_GREN)
-			end)
-		end
-		
-		if SERVER then
-			CustomizableWeaponry.actionSequence.new(wep, 0.3, nil, function()
-				wep.canDropGrenade = true
-			end)
-			
-			CustomizableWeaponry.actionSequence.new(wep, 0.4, nil, function()
-				net.Start("CW_KK_INS2_NWGQN")
-				net.WriteEntity(wep.Owner)
-				net.Broadcast()
-			end)
-		
-			CustomizableWeaponry.actionSequence.new(wep, 0.9, nil, function()
-				wep.liveGrenade = true
-			end)
-		
-			CustomizableWeaponry.actionSequence.new(wep, 1.2, nil, function()
-				// create and setup
-				local nade = ents.Create(entClass)
+				CustomizableWeaponry.actionSequence.new(wep, 0.45, nil, function()
+					wep.GrenadePos.z = -10
+					wep.grenadeTime = CurTime() + 1.5
+					
+					wep.CW_KK_HANDS:SetParent(wep.CW_GREN)
+					wep.CW_KK_HANDS:AddEffects(EF_BONEMERGE_FASTCULL)
+					
+					wep:playAnim(quickNadeTweak.a_pinpull, 1, 0, wep.CW_GREN)
+				end)
 				
-				if IsValid(nade) then
-					local pos = wep.Owner:GetShootPos()
-					local eyeAng = wep.Owner:EyeAngles()
-					local forward = eyeAng:Forward()
+				CustomizableWeaponry.actionSequence.new(wep, 0.7, nil, function()
+					surface.PlaySound("weapons/pinpull.wav")
+				end)
+				
+				CustomizableWeaponry.actionSequence.new(wep, 1, nil, function()
+					wep:playAnim(quickNadeTweak.a_throw, 1.1, 0, wep.CW_GREN)
+				end)
+			end
+			
+			if SERVER then
+				CustomizableWeaponry.actionSequence.new(wep, 0.3, nil, function()
+					wep.canDropGrenade = true
+				end)
+				
+				CustomizableWeaponry.actionSequence.new(wep, 0.4, nil, function()
+					net.Start("CW_KK_INS2_NWGQN")
+					net.WriteEntity(wep.Owner)
+					net.Broadcast()
+				end)
+			
+				CustomizableWeaponry.actionSequence.new(wep, 0.9, nil, function()
+					wep.liveGrenade = true
+				end)
+			
+				CustomizableWeaponry.actionSequence.new(wep, 1.2, nil, function()
+					// create and setup
+					local nade = ents.Create(entClass)
 					
-					nade.Model = quickNadeTweak.wm
-					nade:SetModel(quickNadeTweak.wm)
-					
-					nade:SetPos(pos)
-					nade:SetAngles(eyeAng)
-					nade:SetOwner(wep.Owner)
-					
-					nade:Spawn()
-					nade:Activate()
-					
-					nade:SetModel(quickNadeTweak.wm)
-					
-					// add velocity
-					local velocity = CustomizableWeaponry.quickGrenade:getThrowVelocity(wep.Owner, throwVelocity, addVelocity)
-					local phys = nade:GetPhysicsObject()
-					
-					if IsValid(phys) then
-						phys:SetVelocity(velocity)
-						phys:AddAngleVelocity(Vector(math.random(-500, 500), math.random(-500, 500), math.random(-500, 500)))
-					else
-						nade:SetVelocity(velocity)
+					if IsValid(nade) then
+						local pos = wep.Owner:GetShootPos()
+						local eyeAng = wep.Owner:EyeAngles()
+						local forward = eyeAng:Forward()
+						
+						nade.Model = quickNadeTweak.wm
+						nade:SetModel(quickNadeTweak.wm)
+						
+						nade:SetPos(pos)
+						nade:SetAngles(eyeAng)
+						-- nade:SetOwner(wep.Owner)
+						
+						nade:Spawn()
+						nade:Activate()
+						
+						nade:SetModel(quickNadeTweak.wm)
+						
+						// add velocity
+						local velocity = CustomizableWeaponry.quickGrenade:getThrowVelocity(wep.Owner, throwVelocity, addVelocity)
+						local phys = nade:GetPhysicsObject()
+						
+						if IsValid(phys) then
+							phys:SetVelocity(velocity)
+							phys:AddAngleVelocity(Vector(math.random(-500, 500), math.random(-500, 500), math.random(-500, 500)))
+						else
+							nade:SetVelocity(velocity)
+						end
+						
+						// fuse
+						if nade.Fuse then
+							nade:Fuse(3)
+						end
+						
+						nade:Fire("sETtIMER", 3)
 					end
-					
-					// fuse
-					if nade.Fuse then
-						nade:Fuse(3)
-					end
-					
-					nade:Fire("sETtIMER", 3)
-				end
 
-				// consume owners ammo
-				local suppressAmmoUsage = CustomizableWeaponry.callbacks.processCategory(wep, "shouldSuppressAmmoUsage")
-				
-				if nadeAmmo and not suppressAmmoUsage then
-					wep.Owner:RemoveAmmo(1, nadeAmmo)
-				end
-				
-				// ease on martyrdom
-				wep.liveGrenade = false
-				wep.canDropGrenade = false
-			end)
+					// consume owners ammo
+					local suppressAmmoUsage = CustomizableWeaponry.callbacks.processCategory(wep, "shouldSuppressAmmoUsage")
+					
+					if nadeAmmo and not suppressAmmoUsage then
+						wep.Owner:RemoveAmmo(1, nadeAmmo)
+					end
+					
+					// ease on martyrdom
+					wep.liveGrenade = false
+					wep.canDropGrenade = false
+				end)
+			end
 		end
 		
 		CustomizableWeaponry.actionSequence.new(wep, 2, nil, function()
