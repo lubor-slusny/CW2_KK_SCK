@@ -244,7 +244,7 @@ function CustomizableWeaponry_KK.ins2.quickKnife:attack(wep)
 					-- wep:idleAnimFunc()
 				end)
 			end
-				
+			
 			CustomizableWeaponry.actionSequence.new(wep, 1.2, nil, function()
 				-- wep.dt.State = CW_IDLE
 				

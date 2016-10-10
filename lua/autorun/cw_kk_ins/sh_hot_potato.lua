@@ -31,8 +31,8 @@ function CustomizableWeaponry_KK.ins2.hotPotato:pickUp(ply, nade)
 		umsg.End()
 	end
 	
-	wep.Animations["_grenade_pu"] = "throwback"
-	wep.Animations["_grenade_bt"] = "bakethrow"
+	wep.Animations["_potato_pickup"] = "throwback"
+	wep.Animations["_potato_throw"] = "bakethrow"
 	
 	wep.dt.State = CW_ACTION
 	
@@ -43,7 +43,7 @@ function CustomizableWeaponry_KK.ins2.hotPotato:pickUp(ply, nade)
 			wep.grenadeTime = CurTime() + 1.5
 			wep.CW_VM:SetModel(wep.CW_GREN_TWEAK.vm)
 			
-			wep:playAnim("_grenade_pu", 1, 0)
+			wep:playAnim("_potato_pickup", 1, 0)
 		end
 	end)
 end
@@ -84,11 +84,11 @@ function CustomizableWeaponry_KK.ins2.hotPotato:throw(wep)
 	
 	self.held[wep.Owner] = nil
 	
-	wep.Animations["_grenade_pu"] = "throwback"
-	wep.Animations["_grenade_bt"] = "bakethrow"
+	wep.Animations["_potato_pickup"] = "throwback"
+	wep.Animations["_potato_throw"] = "bakethrow"
 	
 	if CLIENT then
-		wep:playAnim("_grenade_bt", 1, 0)
+		wep:playAnim("_potato_throw", 1, 0)
 		
 		CustomizableWeaponry.actionSequence.new(wep, 1, nil, function()
 			wep.CW_VM:SetModel(wep.ViewModel)
