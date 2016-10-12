@@ -9,36 +9,31 @@ SWEP.KKINS2Potato = true
 local SP = game.SinglePlayer()
 local MP = !SP
 
+function SWEP:SetupDataTables()
+	self:NetworkVar("Int", 0, "State")
+	self:NetworkVar("Int", 1, "Shots")
+	-- self:NetworkVar("Int", 2, "INS2LAMMode")
+	self:NetworkVar("Float", 0, "HolsterDelay")
+	self:NetworkVar("Bool", 0, "Suppressed")
+	self:NetworkVar("Bool", 1, "Safe")
+	self:NetworkVar("Bool", 2, "BipodDeployed")
+	self:NetworkVar("Bool", 3, "INS2GLActive")
+	self:NetworkVar("Angle", 0, "ViewOffset")
+	self:NetworkVar("Entity", 0, "Potato")
+end
+
 local cvarFA = GetConVar("cw_freeaim")
 local cvarFAAC = GetConVar("cw_freeaim_autocenter")
 
 local shouldDrawCrosshair, fa
 
 function SWEP:IndividualThink()
-	self.lastOwner = self.Owner
-
-	self:IndividualThink_INS2()
-	
 	self:DrawShadow(false)
+	self.lastOwner = self.Owner
 	
+	self:IndividualThink_INS2()
 	self:doBoltAction()
-	
-	if CustomizableWeaponry_KK.ins2.hotPotato:getPotato(self) then
-		if !self.Owner:KeyDown(IN_USE) then
-			print(self.Owner, "throws", CustomizableWeaponry_KK.ins2.hotPotato:getPotato(self))
-			
-			CustomizableWeaponry_KK.ins2.hotPotato:throw(self)
-		else
-			local t = 0.5
-			
-			if CLIENT then
-				self.GrenadePos.z = 0
-				self.grenadeTime = CurTime() + t
-			end
-			
-			self:forceState(CW_KK_QNADE, t, SP)
-		end
-	end
+	self:processPotatos()
 	
 	if SERVER then
 		self:checkProneStatus()
@@ -62,6 +57,107 @@ function SWEP:IndividualThink()
 		
 		self:playSwitchBipod()
 		self:playHolsterTransitions()
+	end
+end
+
+function SWEP:processPotatos()
+	local is, was = IsValid(self.dt.Potato), self._potatoWas
+	
+	if is then
+		if !was then
+			self:animatePotatoPickup()
+			self.potatoDelay = CurTime() + 0.5
+		end
+		
+		if self.Owner:KeyDown(IN_USE) then
+			local t = 1
+			
+			if CLIENT then
+				self.grenadeTime = CurTime() + t
+				self.reticleInactivity = UnPredictedCurTime() + t
+			end
+			
+			self:forceState(CW_KK_QNADE, t, SP)
+			
+			if SERVER then
+				self.dt.Potato:SetPos(self.Owner:EyePos())
+			end
+		elseif CurTime() > self.potatoDelay then
+			self:throwPotato()
+		end
+	else
+		if was then
+			self:animatePotatoThrow()
+		end
+	end
+	
+	self._potatoWas = is
+end
+
+function SWEP:animatePotatoPickup()
+	-- self.dt.Potato:SetCollisionGroup(COLLISION_GROUP_IN_VEHICLE)
+	self.dt.Potato:SetNoDraw(true)
+	
+	self.Animations["_potato_pickup"] = "throwback"
+	self.Animations["_potato_throw"] = "bakethrow"
+	
+	self.dt.State = CW_ACTION
+	
+	CustomizableWeaponry.actionSequence.new(self, 0.1, nil, function()
+		self.dt.State = CW_KK_QNADE
+		
+		if CLIENT then
+			self.reticleInactivity = UnPredictedCurTime() + 1.5
+			
+			self.grenadeTime = CurTime() + 1.5
+			self.CW_VM:SetModel(self.CW_GREN_TWEAK.vm)
+			
+			self:playAnim("_potato_pickup", 1, 0)
+		end
+	end)
+end
+
+function SWEP:animatePotatoThrow()
+	
+	self.Animations["_potato_pickup"] = "throwback"
+	self.Animations["_potato_throw"] = "bakethrow"
+	
+	if CLIENT then
+		self:playAnim("_potato_throw", 1, 0)
+		
+		CustomizableWeaponry.actionSequence.new(self, 1, nil, function()
+			self.CW_VM:SetModel(self.ViewModel)
+			self:idleAnimFunc()
+		end)
+	end
+end
+
+function SWEP:throwPotato()
+
+	if SERVER then
+		local nade = self.dt.Potato
+		self.dt.Potato = nil
+	
+		if !IsValid(nade) then
+			return 
+		end
+		
+		nade:SetOwner(ply)
+		nade:SetCollisionGroup(COLLISION_GROUP_NONE)
+		
+		nade:SetPos(self.Owner:EyePos())
+		
+		local velocity = CustomizableWeaponry.quickGrenade:getThrowVelocity(self.Owner)
+		local phys = nade:GetPhysicsObject()
+		
+		if IsValid(phys) then
+			phys:SetVelocity(velocity)
+			phys:AddAngleVelocity(Vector(math.random(-500, 500), math.random(-500, 500), math.random(-500, 500)))
+		else
+			nade:SetVelocity(velocity)
+		end
+		
+		nade:SetNoDraw(false)
 	end
 end
 

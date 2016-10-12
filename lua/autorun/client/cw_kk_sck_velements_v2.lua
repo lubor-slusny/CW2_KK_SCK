@@ -1640,6 +1640,8 @@ function TOOL:updatePanel()
 		end
 	end
 	
+	if not CustomizableWeaponry then return end
+	
 	if not openTab.key and not addingNewElement then
 		local i = 0
 

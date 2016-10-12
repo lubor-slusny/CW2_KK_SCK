@@ -108,7 +108,8 @@ if CLIENT then
 	function att:elementRender()
 		if not self.ActiveAttachments[att.name] then return end
 		
-		if (self.dt.INS2LAMMode % 2) == 1 then
+		-- if (self.dt.INS2LAMMode % 2) == 1 then
+		if (self:GetNWInt("INS2LAMMode") % 2) == 1 then
 			local model, beamAtt
 			
 			if self.AttachmentModelsVM[att.name] then
@@ -132,7 +133,8 @@ if CLIENT then
 end
 
 function att:attachFunc()
-	self.dt.INS2LAMMode = 0
+	-- self.dt.INS2LAMMode = 0
+	self:SetNWInt("INS2LAMMode", 0)
 end
 
 CustomizableWeaponry:registerAttachment(att)

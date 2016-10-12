@@ -11,6 +11,7 @@ end
 CustomizableWeaponry_KK.ins2.quickGrenade.models = {}
 
 CustomizableWeaponry_KK.ins2.quickGrenade.models.m67 = {
+	id = "m67",
 	vm = "models/weapons/v_cw_kk_ins2_m67.mdl",
 	wm = "models/weapons/w_cw_kk_ins2_m67.mdl",
 	a_pinpull = "pullbackhigh",
@@ -18,6 +19,7 @@ CustomizableWeaponry_KK.ins2.quickGrenade.models.m67 = {
 }
 
 CustomizableWeaponry_KK.ins2.quickGrenade.models.f1 = {
+	id = "f1",
 	vm = "models/weapons/v_f1.mdl",
 	wm = "models/weapons/w_f1.mdl",
 	a_pinpull = "pullbackhigh",
@@ -25,6 +27,7 @@ CustomizableWeaponry_KK.ins2.quickGrenade.models.f1 = {
 }
 
 CustomizableWeaponry_KK.ins2.quickGrenade.models.m18 = {
+	id = "m18",
 	vm = "models/weapons/v_m18.mdl",
 	wm = "models/weapons/w_m18.mdl",
 	a_pinpull = "pullbackhigh",
@@ -32,6 +35,7 @@ CustomizableWeaponry_KK.ins2.quickGrenade.models.m18 = {
 }
 
 CustomizableWeaponry_KK.ins2.quickGrenade.models.m84 = {
+	id = "m84",
 	vm = "models/weapons/v_m84.mdl",
 	wm = "models/weapons/w_m84.mdl",
 	a_pinpull = "pullbackhigh",
@@ -39,6 +43,7 @@ CustomizableWeaponry_KK.ins2.quickGrenade.models.m84 = {
 }
 
 CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2us = {
+	id = "ww2us",
 	vm = "models/weapons/v_mk2.mdl",
 	wm = "models/weapons/w_mk2.mdl",
 	a_pinpull = "pullbackhigh",
@@ -46,6 +51,7 @@ CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2us = {
 }
 
 CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2de = {
+	id = "ww2de",
 	vm = "models/weapons/v_stielhandgranate.mdl",
 	wm = "models/weapons/w_stielhandgranate.mdl",
 	a_pinpull = "pullbackhigh",
@@ -53,6 +59,7 @@ CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2de = {
 }
 
 CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2gb = {
+	id = "ww2gb",
 	vm = "models/weapons/v_mills.mdl",
 	wm = "models/weapons/w_mills.mdl",
 	a_pinpull = "pullbackhigh",
@@ -60,6 +67,7 @@ CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2gb = {
 }
 
 CustomizableWeaponry_KK.ins2.quickGrenade.models.n69 = {
+	id = "n69",
 	vm = "models/weapons/v_no69.mdl",
 	wm = "models/weapons/w_no69.mdl",
 	a_pinpull = "pullbackhigh",
@@ -67,6 +75,7 @@ CustomizableWeaponry_KK.ins2.quickGrenade.models.n69 = {
 }
 
 CustomizableWeaponry_KK.ins2.quickGrenade.models.n77 = {
+	id = "n77",
 	vm = "models/weapons/v_no77.mdl",
 	wm = "models/weapons/w_no77.mdl",
 	a_pinpull = "pullbackhigh",

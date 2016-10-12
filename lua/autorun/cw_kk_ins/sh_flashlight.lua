@@ -81,16 +81,28 @@ if SERVER then
 		if !hasFL then return end
 		local max = self.atts[hasFL]
 		
+		-- if #args > 0 then
+			-- wep.dt.INS2LAMMode = wep.dt.INS2LAMMode - 1
+		-- else
+			-- wep.dt.INS2LAMMode = wep.dt.INS2LAMMode + 1
+		-- end
+		
+		-- if wep.dt.INS2LAMMode > max then
+			-- wep.dt.INS2LAMMode = 0
+		-- elseif wep.dt.INS2LAMMode < 0 then
+			-- wep.dt.INS2LAMMode = max
+		-- end
+		
 		if #args > 0 then
-			wep.dt.INS2LAMMode = wep.dt.INS2LAMMode - 1
+			wep:SetNWInt("INS2LAMMode", wep:GetNWInt("INS2LAMMode") - 1)
 		else
-			wep.dt.INS2LAMMode = wep.dt.INS2LAMMode + 1
+			wep:SetNWInt("INS2LAMMode", wep:GetNWInt("INS2LAMMode") + 1)
 		end
 		
-		if wep.dt.INS2LAMMode > max then
-			wep.dt.INS2LAMMode = 0
-		elseif wep.dt.INS2LAMMode < 0 then
-			wep.dt.INS2LAMMode = max
+		if wep:GetNWInt("INS2LAMMode") > max then
+			wep:SetNWInt("INS2LAMMode", 0)
+		elseif wep:GetNWInt("INS2LAMMode") < 0 then
+			wep:SetNWInt("INS2LAMMode", max)
 		end
 		
 		wep:EmitSound("CW_KK_INS2_UMP45_FIRESELECT")
@@ -201,7 +213,8 @@ if CLIENT then
 end
 
 function CustomizableWeaponry_KK.ins2.flashlight.v6:attach(att)
-	self.dt.INS2LAMMode = 0
+	-- self.dt.INS2LAMMode = 0
+	self:SetNWInt("INS2LAMMode", 0)
 end
 
 function CustomizableWeaponry_KK.ins2.flashlight.v6:detach()

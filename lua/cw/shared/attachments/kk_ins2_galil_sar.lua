@@ -25,21 +25,23 @@ if CLIENT then
 end
 
 function att:attachFunc()
-	if CLIENT then
-		self.AttachmentModelsVM.kk_ins2_vertgrip.ent:SetModel("models/weapons/upgrades/a_foregrip_sec2.mdl")
-		self.CW_VM:SetModel(att.activeVM)
-	end
-	
+	self.ViewModel = att.activeVM
 	self.WorldModel = att.activeWM
+	
+	if CLIENT then
+		self.CW_VM:SetModel(self.ViewModel)
+		self.AttachmentModelsVM.kk_ins2_vertgrip.ent:SetModel("models/weapons/upgrades/a_foregrip_sec2.mdl")
+	end
 end
 
 function att:detachFunc()
-	if CLIENT then
-		self.AttachmentModelsVM.kk_ins2_vertgrip.ent:SetModel("models/weapons/upgrades/a_foregrip_ins.mdl")
-		self.CW_VM:SetModel(att.origVM)
-	end
-	
+	self.ViewModel = att.origVM
 	self.WorldModel = att.origWM
+	
+	if CLIENT then
+		self.CW_VM:SetModel(self.ViewModel)
+		self.AttachmentModelsVM.kk_ins2_vertgrip.ent:SetModel("models/weapons/upgrades/a_foregrip_ins.mdl")
+	end
 end
 
 CustomizableWeaponry:registerAttachment(att)

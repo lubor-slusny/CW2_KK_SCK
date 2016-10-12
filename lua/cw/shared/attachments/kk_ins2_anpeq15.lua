@@ -24,7 +24,8 @@ if CLIENT then
 	function att:elementRender()
 		if not self.ActiveAttachments[att.name] then return end
 		
-		mode = self.dt.INS2LAMMode
+		-- mode = self.dt.INS2LAMMode
+		mode = self:GetNWInt("INS2LAMMode")
 		
 		if self.AttachmentModelsVM[att.name] then
 			laserAtt = self.AttachmentModelsVM[att.name].ent:GetAttachment(1)
@@ -49,7 +50,8 @@ if CLIENT then
 	
 	// for V6 LEM, true - ON, false - OFF
 	function att:getLEMState()
-		return (self.dt.INS2LAMMode > 1)
+		-- return (self.dt.INS2LAMMode > 1)
+		return (self:GetNWInt("INS2LAMMode") > 1)
 	end
 end
 

@@ -65,8 +65,17 @@ function ENT:Fuse(t)
 			
 			self:EmitSound("CW_KK_INS2_M84_ENT_DETONATE", 100, 100)
 			
-			for key, obj in ipairs(player.GetAll()) do
-				if obj:Alive() then
+			-- for key, obj in ipairs(player.GetAll()) do
+			for key, obj in ipairs(ents.GetAll()) do
+				if !obj.IsNPC and !obj.IsPlayer then
+					continue
+				end
+				
+				if !obj:IsNPC() and !obj:IsPlayer() then 
+					continue 
+				end
+				
+				if obj:IsNPC() or obj:Alive() then
 					local bone = obj:LookupBone("ValveBiped.Bip01_Head1")
 					
 					if bone then
@@ -100,10 +109,27 @@ function ENT:Fuse(t)
 							intensity = math.min((intensity + 0.25) * dotToGeneralDirection, 1)
 							local duration = intensity * self.FlashDuration
 							
-							umsg.Start("CW_FLASHBANGED", obj)
-								umsg.Float(intensity)
-								umsg.Float(duration)
-							umsg.End()
+							print("flashin target", obj)
+							
+							if obj:IsPlayer() then
+								umsg.Start("CW_FLASHBANGED", obj)
+									umsg.Float(intensity)
+									umsg.Float(duration)
+								umsg.End()
+							end
+							
+							if obj:IsNPC() then
+								obj:SetCondition(COND_NPC_FREEZE)
+								obj:ClearEnemyMemory()
+								obj:SelectWeightedSequence(ACT_COWER)
+								
+								timer.Simple(5, function()
+									if IsValid(obj) then
+										obj:ClearEnemyMemory()
+										obj:SetCondition(COND_NPC_UNFREEZE)
+									end
+								end)
+							end
 						end
 					end
 				end

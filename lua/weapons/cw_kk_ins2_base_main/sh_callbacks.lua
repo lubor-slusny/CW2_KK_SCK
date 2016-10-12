@@ -23,6 +23,8 @@ local customFireFuncs = {
 }
 
 CustomizableWeaponry.callbacks:addNew("initialize", "KK_INS2_BASE", function(wep)
+	-- wep:SetNWVarProxy("Potato", print)
+	
 	if CLIENT then
 		-- wep.ReticleInactivityPostFire = wep.ReticleInactivityPostFire or wep.FireDelay
 		
@@ -276,6 +278,17 @@ if CLIENT then
 
 		draw.ShadowText("[PRIMARY - PLANT]", cwhud24, x, y, White, Black, 2, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 	end)
+	
+	hook.Add("FindUseEntity", "findmesomeentity", print)
+	
+	local eh = GAMEMODE.FindUseEntity
+	
+	GAMEMODE.FindUseEntity = function(...)
+		print("found FindUseEntity")
+		print(...)
+		eh(...)
+	end
+	
 end
 
 //-----------------------------------------------------------------------------

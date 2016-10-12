@@ -31,6 +31,8 @@ end
 local vel, len, CT
 
 function ENT:PhysicsCollide(data, physobj)
+	self.prepareForNextPickup = true
+	
 	vel = physobj:GetVelocity()
 	len = vel:Length()
 	
@@ -49,23 +51,8 @@ function ENT:PhysicsCollide(data, physobj)
 end
 
 function ENT:Fuse(t)
-	t = t or 3
-	
-	local pwner = self.Owner
-	
-	timer.Simple(t, function()
-		if self:IsValid() then
-			util.BlastDamage(self, pwner, self:GetPos(), self.ExplodeRadius, self.ExplodeDamage)
-			
-			ef = EffectData()
-			ef:SetOrigin(self:GetPos())
-			ef:SetMagnitude(1)
-			
-			util.Effect("Explosion", ef)
-			
-			self:Remove()
-		end
-	end)
+	self.kaboomboom = CurTime() + 60 // (t or 3)
+	self.fuser = self:GetOwner()
 end
 
 function ENT:Use(activator, caller)
@@ -74,6 +61,27 @@ function ENT:Use(activator, caller)
 	end
 	
 	if IsValid(activator) and activator:IsPlayer() then
-		CustomizableWeaponry_KK.ins2.hotPotato:pickUp(activator, self)
+		CustomizableWeaponry_KK.ins2.hotPotato:attemptPickUp(activator, self)
+	end
+end
+
+function ENT:Think()
+	if self.prepareForNextPickup then
+		self.prepareForNextPickup = false
+		
+		self:SetCollisionGroup(COLLISION_GROUP_WEAPON)
+		self:SetOwner()
+	end
+	
+	if CurTime() > self.kaboomboom then
+		util.BlastDamage(self, self.fuser or self, self:GetPos(), self.ExplodeRadius, self.ExplodeDamage)
+		
+		ef = EffectData()
+		ef:SetOrigin(self:GetPos())
+		ef:SetMagnitude(1)
+		
+		util.Effect("Explosion", ef)
+		
+		self:Remove()
 	end
 end

@@ -43,7 +43,8 @@ if CLIENT then
 	
 	// for V6 LEM, true - ON, false - OFF
 	function att:getLEMState()
-		return (self.dt.INS2LAMMode % 2) != 0
+		-- return (self.dt.INS2LAMMode % 2) != 0
+		return (self:GetNWInt("INS2LAMMode") % 2) != 0
 	end
 end
 
