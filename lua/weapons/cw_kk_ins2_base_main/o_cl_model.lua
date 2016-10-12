@@ -193,6 +193,24 @@ end
 // - WElement init
 //-----------------------------------------------------------------------------
 
+local scopes = {
+	["kk_ins2_magnifier"] = true,
+	["kk_ins2_elcan"] = true,
+	["kk_ins2_po4"] = true,
+	["kk_ins2_scope_m40"] = true,
+	["kk_ins2_scope_mosin"] = true,
+		
+	["kk_ins2_cstm_susat"] = true,
+	["kk_ins2_cstm_acog"] = true,
+	["kk_ins2_cstm_pgo7"] = true,
+		
+	["kk_ins2_scope_enfield"] = true,
+	["kk_ins2_scope_k98"] = true,
+	["kk_ins2_scope_m73"] = true,
+	["kk_ins2_scope_zf4"] = true,
+}
+
+	
 function SWEP:setupAttachmentModels()
 	if self.AttachmentModelsVM then
 		for k, v in pairs(self.AttachmentModelsVM) do
@@ -248,6 +266,12 @@ function SWEP:setupAttachmentModels()
 			if v.material then 
 				v.ent:SetMaterial(v.material)
 			end
+			
+			-- if scopes[k] then
+				-- print("new bounds for", v.ent)
+				-- v.ent:SetCollisionBounds(Vector(-2,-1,-0), Vector(2,1,2))
+				-- v.ent:SetRenderBounds(Vector(-2,-1,-0), Vector(2,1,2))
+			-- end
 		end
 	end
 	
@@ -258,7 +282,41 @@ end
 // drawAttachments edited to support custom attach points
 //-----------------------------------------------------------------------------
 
-local active, pos, ang, m, vma, model
+local nFront, nRight, nTop = Vector(1,0,0), Vector(0,1,0), Vector(0,0,1)
+local nBack, nLeft, nBottom = -1 * nFront, -1 * nRight, -1 * nTop
+
+local function recomputeLighting(i, pos, ang)
+	if i == 1 then
+		-- pos = pos - ang:Forward() * 500
+		-- pos = EyePos()
+		
+		render.SuppressEngineLighting(true)
+		
+		local lFront = render.ComputeLighting(pos, nFront)
+		local lBack = render.ComputeLighting(pos, nBack)
+		
+		local lRight = render.ComputeLighting(pos, nRight)
+		local lLeft = render.ComputeLighting(pos, nLeft)
+		
+		local lTop = render.ComputeLighting(pos, nTop)
+		local lBottom = render.ComputeLighting(pos, nBottom)
+		
+		render.SetModelLighting(BOX_FRONT, lFront.x, lFront.y, lFront.z)
+		render.SetModelLighting(BOX_BACK, lBack.x, lBack.y, lBack.z)
+		
+		render.SetModelLighting(BOX_RIGHT, lRight.x, lRight.y, lRight.z)
+		render.SetModelLighting(BOX_LEFT, lLeft.x, lLeft.y, lLeft.z)
+		
+		render.SetModelLighting(BOX_TOP, lTop.x, lTop.y, lTop.z)
+		render.SetModelLighting(BOX_BOTTOM, lBottom.x, lBottom.y, lBottom.z)
+	else
+		render.SuppressEngineLighting(false)
+	end
+end
+
+local cvarFixScopes = CreateClientConVar("cw_kk_ins2_scopelightingfix", 0, true, false)
+
+local active, pos, ang, m, vma, model, doRecompute
 
 function SWEP:drawAttachments()
 	if not self.AttachmentModelsVM then
@@ -271,11 +329,15 @@ function SWEP:drawAttachments()
 		-- else
 			active = v.active
 		-- end
-	
+		
+		doRecompute = cvarFixScopes:GetInt() == 1 and scopes[k]
+			
 		if v.ent and active then
-			if v.merge then				// this was an attempt to unfuck lighting on certain velements
-				-- pos = EyePos()		// css rig now seem to be working fine witout it 
-				-- ang = EyeAngles()	// aimpoint2x was always messed up
+			if v.merge then					// this was an attempt to unfuck lighting on certain velements
+				if doRecompute then
+					pos = EyePos()			// css rig now seem to be working fine witout it 
+					ang = EyeAngles()		// aimpoint2x was always messed up
+				end
 			elseif v._attachment then
 				vma = self.CW_VM:GetAttachment(v._attachment)
 				pos = vma.Pos
@@ -286,18 +348,19 @@ function SWEP:drawAttachments()
 				ang = m:GetAngles()
 			end
 			
-			model = v.ent
-			
-			if not v.merge then			// FOR STENCILS, EVERYTHING
-				model:SetPos(pos + ang:Forward() * v.pos.x + ang:Right() * v.pos.y + ang:Up() * v.pos.z)
+			if not v.merge or doRecompute then
+				pos = pos + ang:Forward() * v.pos.x + ang:Right() * v.pos.y + ang:Up() * v.pos.z
 				
 				ang:RotateAroundAxis(ang:Up(), v.angle.y)
 				ang:RotateAroundAxis(ang:Right(), v.angle.p)
 				ang:RotateAroundAxis(ang:Forward(), v.angle.r)
+			end
+			
+			model = v.ent
+			
+			if not v.merge then
+				model:SetPos(pos)
 				model:SetAngles(ang)
-				
-				-- model:SetPos(pos)
-				-- model:SetAngles(ang)
 			end
 			
 			if v.animated then
@@ -306,7 +369,11 @@ function SWEP:drawAttachments()
 			end
 			
 			if !v.nodraw then
+				recomputeLighting(doRecompute and 1 or false, pos, ang)
+				
 				model:DrawModel()
+				
+				recomputeLighting(true or whatever, pos, ang)
 			end
 		end
 	end

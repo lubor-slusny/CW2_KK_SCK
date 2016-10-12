@@ -31,7 +31,7 @@ end
 local vel, len, CT
 
 function ENT:PhysicsCollide(data, physobj)
-	self.prepareForNextPickup = true
+	self.prepareNextPickup = true
 	
 	vel = physobj:GetVelocity()
 	len = vel:Length()
@@ -51,8 +51,8 @@ function ENT:PhysicsCollide(data, physobj)
 end
 
 function ENT:Fuse(t)
-	self.kaboomboom = CurTime() + 60 // (t or 3)
 	self.fuser = self:GetOwner()
+	self.kaboomboom = CurTime() + 60 // (t or 3)
 end
 
 function ENT:Use(activator, caller)
@@ -66,20 +66,20 @@ function ENT:Use(activator, caller)
 end
 
 function ENT:Think()
-	if self.prepareForNextPickup then
-		self.prepareForNextPickup = false
+	if self.prepareNextPickup then
+		print(self, "reseting owner @ ", math.Round(CurTime(), 2))
+		self.prepareNextPickup = false
 		
 		self:SetCollisionGroup(COLLISION_GROUP_WEAPON)
 		self:SetOwner()
 	end
 	
-	if CurTime() > self.kaboomboom then
+	if self.kaboomboom and CurTime() > self.kaboomboom then
 		util.BlastDamage(self, self.fuser or self, self:GetPos(), self.ExplodeRadius, self.ExplodeDamage)
 		
 		ef = EffectData()
 		ef:SetOrigin(self:GetPos())
 		ef:SetMagnitude(1)
-		
 		util.Effect("Explosion", ef)
 		
 		self:Remove()

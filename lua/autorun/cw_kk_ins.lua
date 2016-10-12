@@ -225,6 +225,12 @@ if CLIENT then
 			Command = "cw_kk_ins2_ins_nade_ctrls"
 		}):DockMargin(8, 8, 8, 0)
 		
+		// scope experiments - lighting
+		panel:AddControl("CheckBox", {
+			Label = "Fix shadows + break phong on RT Scopes.", 
+			Command = "cw_kk_ins2_scopelightingfix"
+		}):DockMargin(8, 8, 8, 0)
+		
 		if not CustomizableWeaponry_KK.HOME then return end
 		
 		// cam3d experiments

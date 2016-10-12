@@ -281,14 +281,6 @@ if CLIENT then
 	
 	hook.Add("FindUseEntity", "findmesomeentity", print)
 	
-	local eh = GAMEMODE.FindUseEntity
-	
-	GAMEMODE.FindUseEntity = function(...)
-		print("found FindUseEntity")
-		print(...)
-		eh(...)
-	end
-	
 end
 
 //-----------------------------------------------------------------------------
