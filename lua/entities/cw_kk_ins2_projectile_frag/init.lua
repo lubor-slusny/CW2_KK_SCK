@@ -31,7 +31,9 @@ end
 local vel, len, CT
 
 function ENT:PhysicsCollide(data, physobj)
-	self.prepareNextPickup = true
+	if not self:IsHeldPotato() then
+		self.prepareNextPickup = true
+	end
 	
 	vel = physobj:GetVelocity()
 	len = vel:Length()
@@ -65,9 +67,12 @@ function ENT:Use(activator, caller)
 	end
 end
 
+function ENT:IsHeldPotato()
+	return IsValid(self.heldBy) and self.heldBy.dt.Potato == self
+end
+
 function ENT:Think()
 	if self.prepareNextPickup then
-		print(self, "reseting owner @ ", math.Round(CurTime(), 2))
 		self.prepareNextPickup = false
 		
 		self:SetCollisionGroup(COLLISION_GROUP_WEAPON)

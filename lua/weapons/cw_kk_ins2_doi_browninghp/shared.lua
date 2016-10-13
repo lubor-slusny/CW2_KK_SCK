@@ -20,20 +20,36 @@ if CLIENT then
 	SWEP.ShellDelay = 0.06
 	SWEP.ShellWorldAngleAlign = {Forward = 90, Right = 0, Up = 0}
 	
-	SWEP.AttachmentModelsVM = {}
+	SWEP.AttachmentModelsVM = {
+		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_slide_base_browninghp.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
+		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_slide_alt_browninghp.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		
+		["kk_ins2_hoovy"] = {model = "models/weapons/upgrades/a_compensator_browninghp.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		
+		["bg_ar15sturdystock"] = {model = "models/weapons/upgrades/a_stock_browninghp.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		
+	}
 	
 	SWEP.AttachmentModelsWM = {}
 	
-	SWEP.IronsightPos = Vector(-1.8673, 0, 0.5681)
-	SWEP.IronsightAng = Vector(0.7222, 0.0055, 6.5)
+	SWEP.IronsightPos = Vector(-2.1241, 0, 0.5782)
+	SWEP.IronsightAng = Vector(0.7222, 0.0454, 0)
+
+	SWEP.FoldSightPos = Vector(-2.118, 0, 0.7924)
+	SWEP.FoldSightAng = Vector(-0.0121, 0.0454, 0)
 
 	SWEP.CustomizationMenuScale = 0.01
 	SWEP.ReloadViewBobEnabled = false
 	SWEP.DisableSprintViewSimulation = true
 end
 
+SWEP.SightBGs = {main = 0, foldsight = 0}
+SWEP.StockBGs = {main = 0, regular = 0, heavy = 0, sturdy = 0}
+
 SWEP.Attachments = {
-	-- {header = "Lasers", offset = {500, -400}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_flashlight6"}},
+	{header = "Sight", offset = {500, -400}, atts = {"bg_foldsight"}},
+	-- {header = "Barrel", offset = {-500, -400}, atts = {"kk_ins2_hoovy"}},
+	{header = "Stock", offset = {-500, 150}, atts = {"bg_ar15sturdystock"}},
 	["+reload"] = {header = "Ammo", offset = {500, 50}, atts = {"am_magnum", "am_matchgrade"}}
 }
 

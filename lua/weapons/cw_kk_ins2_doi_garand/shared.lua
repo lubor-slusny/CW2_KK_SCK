@@ -28,7 +28,9 @@ if CLIENT then
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_iron_garand_l.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_iron_garand_s.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-	
+		
+		["kk_ins2_scope_m73"] = {model = "models/weapons/upgrades/a_optic_garand.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(0.075, 0.075, 0.075), merge = true},
+		
 		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/a_garand_bayonet.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 	}
 	
@@ -42,11 +44,16 @@ if CLIENT then
 	SWEP.FoldSightPos = Vector(-2.4643, -2, 1.1174)
 	SWEP.FoldSightAng = Vector(-0.4782, 0.006, 0)
 
+	SWEP.KKINS2ScopeM73Pos = Vector(-1.3779, -2, 0.7695)
+	SWEP.KKINS2ScopeM73Ang = Vector(0, 0, 0)
+
 	SWEP.CustomizationMenuScale = 0.02
 end
 
+SWEP.SightBGs = {main = 0, foldsight = 0}
+
 SWEP.Attachments = {
-	{header = "Sight", offset = {400, -500}, atts = {"bg_foldsight"}},
+	{header = "Sight", offset = {400, -500}, atts = {"bg_foldsight", "kk_ins2_scope_m73"}},
 	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_ww2_knife"}},
 	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_magnum", "am_matchgrade"}}
@@ -137,8 +144,6 @@ SWEP.RecoilToSpread = 0.8
 
 SWEP.Chamberable = false
 SWEP.KK_INS2_EmptyIdle = true
-
-SWEP.SightBGs = {main = 0, foldsight = 0}
 
 SWEP.WeaponLength = 22
 

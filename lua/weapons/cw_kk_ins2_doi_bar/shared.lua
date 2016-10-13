@@ -18,14 +18,20 @@ if CLIENT then
 	SWEP.Shell = "KK_INS2_762x54"
 	SWEP.ShellDelay = 0.12
 	
-	SWEP.AttachmentModelsVM = {}
-	SWEP.AttachmentModelsWM = {}
+	SWEP.AttachmentModelsVM = {
+		["kk_ins2_bipod"] = {model = "models/weapons/upgrades/a_bipod_bar.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+	}
+	
+	SWEP.AttachmentModelsWM = {
+		["kk_ins2_bipod"] = {model = "models/weapons/upgrades/w_bipod_bar.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+	}
 	
 	SWEP.IronsightPos = Vector(-2.1192, -2, 1.4437)
 	SWEP.IronsightAng = Vector(-0.3029, 0, 0)
 end
 
 SWEP.Attachments = {
+	{header = "Under", offset = {-500, 0}, atts = {"kk_ins2_bipod"}},
 	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
 	["+reload"] = {header = "Ammo", offset = {700, 300}, atts = {"am_magnum", "am_matchgrade"}}
 }

@@ -64,26 +64,36 @@ function SWEP:processPotatos()
 	local is, was = IsValid(self.dt.Potato), self._potatoWas
 	
 	if is then
+		local CT = CurTime()
+		local t = 0
+		
 		if !was then
 			self:animatePotatoPickup()
-			self.potatoDelay = CurTime() + 0.5
+			self.potatoDelay = CT + 0.8
 		end
 		
-		if self.Owner:KeyDown(IN_USE) then
-			local t = 1
+		if CT > self.potatoDelay then
+			t = 1
 			
-			if CLIENT then
-				self.grenadeTime = CurTime() + t
-				self.reticleInactivity = UnPredictedCurTime() + t
+			if self.Owner:KeyDown(IN_USE) then
+				self:forceState(CW_KK_QNADE, t, SP)
+				
+				if SERVER then
+					self.dt.Potato:SetPos(self.Owner:EyePos())
+				end
+			else
+				local nade = self.dt.Potato
+				self.dt.Potato = nil
+				
+				CustomizableWeaponry.actionSequence.new(self, 0.2, nil, function()
+					self:throwPotato(nade)
+				end)
 			end
-			
-			self:forceState(CW_KK_QNADE, t, SP)
-			
-			if SERVER then
-				self.dt.Potato:SetPos(self.Owner:EyePos())
-			end
-		elseif CurTime() > self.potatoDelay then
-			self:throwPotato()
+		end
+		
+		if CLIENT then
+			self.grenadeTime = CT + t
+			self.reticleInactivity = UnPredictedCurTime() + t
 		end
 	else
 		if was then
@@ -95,8 +105,6 @@ function SWEP:processPotatos()
 end
 
 function SWEP:animatePotatoPickup()
-	-- self.dt.Potato:SetCollisionGroup(COLLISION_GROUP_IN_VEHICLE)
-	self.dt.Potato:SetNoDraw(true)
 	
 	self.Animations["_potato_pickup"] = "throwback"
 	self.Animations["_potato_throw"] = "bakethrow"
@@ -132,17 +140,13 @@ function SWEP:animatePotatoThrow()
 	end
 end
 
-function SWEP:throwPotato()
-
+function SWEP:throwPotato(nade)
 	if SERVER then
-		local nade = self.dt.Potato
-		self.dt.Potato = nil
-	
 		if !IsValid(nade) then
 			return 
 		end
 		
-		nade:SetOwner(ply)
+		nade:SetOwner(self.Owner)
 		nade:SetCollisionGroup(COLLISION_GROUP_NONE)
 		
 		nade:SetPos(self.Owner:EyePos())

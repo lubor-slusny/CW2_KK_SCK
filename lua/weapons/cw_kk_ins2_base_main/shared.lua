@@ -164,7 +164,10 @@ SWEP.autoCenterExclusions = {
 	[CW_ACTION] = true, 
 	[CW_HOLSTER_START] = true, 
 	[CW_HOLSTER_END] = true, 
-	[CW_AIMING] = true
+	[CW_AIMING] = true,
+	[CW_KK_ACTION] = true,
+	[CW_KK_QNADE] = true,
+	[CW_KK_QKNIFE] = true,
 }
 
 local SP = game.SinglePlayer()

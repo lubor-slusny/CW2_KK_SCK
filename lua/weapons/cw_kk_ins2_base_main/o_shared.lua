@@ -753,3 +753,24 @@ function SWEP:getReloadProgress()
 	
 	return nil
 end
+
+//-----------------------------------------------------------------------------
+// canPenetrate temp fix for GM update 2016 10
+//-----------------------------------------------------------------------------
+
+function SWEP:canPenetrate(traceData, direction)
+	local dot = 0
+	
+	if not self.NoPenetration[traceData.MatType] then
+		dot = -direction:DotProduct(traceData.HitNormal)
+		ent = traceData.Entity
+	
+		if not ent:IsNPC() and not ent:IsPlayer() then
+			if dot > 0.26 and self.CanPenetrate then
+				return true, dot
+			end
+		end
+	end
+	
+	return false, dot
+end

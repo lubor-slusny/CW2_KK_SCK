@@ -23,6 +23,8 @@ if CLIENT then
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_c96_barrel_std"] = {model = "models/weapons/upgrades/a_barrel_c96_short.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		["kk_ins2_c96_barrel_lng"] = {model = "models/weapons/upgrades/a_barrel_c96_long.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), merge = true},
+		
+		["bg_ar15sturdystock"] = {model = "models/weapons/upgrades/a_stock_c96.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 	}
 	
 	SWEP.AttachmentModelsWM = {}
@@ -39,7 +41,10 @@ if CLIENT then
 	SWEP.DisableSprintViewSimulation = true
 end
 
+SWEP.StockBGs = {main = 0, regular = 0, heavy = 0, sturdy = 0}
+
 SWEP.Attachments = {
+	{header = "Stock", offset = {500, -400}, atts = {"bg_ar15sturdystock"}},
 	-- {header = "Lasers", offset = {500, -400}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_m6x"}},
 	-- {header = "Barrel", offset = {-500, -400}, atts = {"kk_ins2_c96_barrel_lng"}},
 	["+reload"] = {header = "Ammo", offset = {500, 50}, atts = {"am_magnum", "am_matchgrade"}}

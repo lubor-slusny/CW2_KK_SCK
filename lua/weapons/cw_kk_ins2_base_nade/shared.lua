@@ -180,6 +180,7 @@ function SWEP:SetupDataTables()
 	self:NetworkVar("Bool", 2, "BipodDeployed")
 	self:NetworkVar("Bool", 3, "PinPulled")
 	self:NetworkVar("Angle", 0, "ViewOffset")
+	self:NetworkVar("Entity", 0, "Potato")
 end
 
 //-----------------------------------------------------------------------------
@@ -240,7 +241,12 @@ function SWEP:IndividualThink()
 	self._lastPrimaryAmmoCount = cur
 	
 	-- weapons.GetStored("cw_kk_ins2_base").IndividualThink(self)
-	weapons.GetStored("cw_kk_ins2_base_main").IndividualThink(self)
+	
+	if CustomizableWeaponry_KK.HOME then
+		weapons.GetStored("cw_kk_ins2_base_potato").IndividualThink(self)
+	else
+		weapons.GetStored("cw_kk_ins2_base_main").IndividualThink(self)
+	end
 	
 	if SP and CLIENT then 
 		return

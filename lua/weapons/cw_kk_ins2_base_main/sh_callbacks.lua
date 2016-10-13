@@ -1,6 +1,10 @@
 
 local SP = game.SinglePlayer()
 
+//-----------------------------------------------------------------------------
+// Initialize extra links(shells, muzzles) and generate tweak data(anim callbacks)
+//-----------------------------------------------------------------------------
+
 //yea im layzeeee
 local copyPaste = {
 	["KKINS2CSTMCMore"] = "KKINS2Aimpoint", 
@@ -15,8 +19,8 @@ local copyPasteSx = {
 }
 
 // this might help
-local customFireFuncs = {
-	["PG-7VM Grenade"] = CustomizableWeaponry_KK.ins2.rpgs.fireRPG, 
+local customFireFuncs = {	// helps making lulz after map transitions
+	["PG-7VM Grenade"] = CustomizableWeaponry_KK.ins2.rpgs.fireRPG,
 	["AT4 Launcher"] = CustomizableWeaponry_KK.ins2.rpgs.fireAT4, 
 	["M6A1 Rocket"] = CustomizableWeaponry_KK.ins2.rpgs.fireM6A1, 
 	["Panzerfaust"] = CustomizableWeaponry_KK.ins2.rpgs.firePF60, 
@@ -57,12 +61,12 @@ CustomizableWeaponry.callbacks:addNew("initialize", "KK_INS2_BASE", function(wep
 		// sth sth darqside
 		wep._deployedShells = {}
 		
-		// inactivity anims
+		// setup anim callbacks for inactivity anims
 		if wep.setupReticleInactivityCallbacks then
 			wep:setupReticleInactivityCallbacks() // sh_anims.lua
 		end
 		
-		// crawl anims soundtables
+		// setup loops in crawl anims soundtables
 		if wep.setupSoundTableLoops then
 			wep:setupSoundTableLoops() // sh_anims.lua
 		end
@@ -74,6 +78,7 @@ CustomizableWeaponry.callbacks:addNew("initialize", "KK_INS2_BASE", function(wep
 	end
 	
 	// bullet-firing-weapons really shouldnt do these checks every time theyre about to fire a bullet
+		// prubly move these into individual sweps in the future
 	local fireFunc = customFireFuncs[wep.Primary.Ammo]
 	
 	if fireFunc then
@@ -84,6 +89,10 @@ CustomizableWeaponry.callbacks:addNew("initialize", "KK_INS2_BASE", function(wep
 		end
 	end
 end)
+
+//-----------------------------------------------------------------------------
+// Attach/Detach callbacks for sights and standard parts (elements)
+//-----------------------------------------------------------------------------
 
 local CW2_ATTS = CustomizableWeaponry.registeredAttachmentsSKey
 
@@ -115,7 +124,6 @@ local function sharedAttachDetach(wep, att)
 		// individual standard parts
 		wep:updateStandardParts()
 	end
-	
 end
 
 local att
@@ -190,6 +198,10 @@ CustomizableWeaponry.callbacks:addNew("postDetachAttachment", "KK_INS2_BASE", fu
 	sharedAttachDetach(wep, att)
 end)
 
+//-----------------------------------------------------------------------------
+// custom Action states
+//-----------------------------------------------------------------------------
+
 if CLIENT then
 	local kkAction = {
 		[CW_KK_ACTION] = true,
@@ -233,6 +245,10 @@ if CLIENT then
 		end
 	end)
 end
+
+//-----------------------------------------------------------------------------
+// Hints for plant-able-s
+//-----------------------------------------------------------------------------
 
 if CLIENT then
 	local White, Black = Color(255, 255, 255, 255), Color(0, 0, 0, 255)
@@ -284,7 +300,7 @@ if CLIENT then
 end
 
 //-----------------------------------------------------------------------------
-// WELEMENTS FOR DROPPED WEAPONS COZ WHY NOT
+// WElements for cw_dropped_weapon
 //-----------------------------------------------------------------------------
 
 CustomizableWeaponry_KK.ins2.welementDrop = CustomizableWeaponry_KK.ins2.welementDrop or {}
@@ -411,7 +427,7 @@ if CLIENT then
 end
 
 //-----------------------------------------------------------------------------
-// GO PRO(ne)
+// Prone Mod recoil mod
 //-----------------------------------------------------------------------------
 
 CustomizableWeaponry.callbacks:addNew("calculateRecoil", "KK_INS2_BASE", function(wep, mod)

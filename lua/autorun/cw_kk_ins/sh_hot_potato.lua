@@ -3,6 +3,7 @@ local SP = game.SinglePlayer()
 local MP = !SP
 
 CustomizableWeaponry_KK.ins2.hotPotato = CustomizableWeaponry_KK.ins2.hotPotato or {}
+function CustomizableWeaponry_KK.ins2.hotPotato:IsValid() return true end
 
 function CustomizableWeaponry_KK.ins2.hotPotato:attemptPickUp(ply, nade)
 	self.restrictedStates = self.restrictedStates or {
@@ -31,8 +32,25 @@ function CustomizableWeaponry_KK.ins2.hotPotato:attemptPickUp(ply, nade)
 		return
 	end
 	
+	nade:SetNoDraw(true)
+	nade:SetCollisionGroup(COLLISION_GROUP_IN_VEHICLE)
 	nade:SetOwner(ply)
-	nade:SetCollisionGroup(COLLISION_GROUP_NONE)
 	
 	wep.dt.Potato = nade
+	nade.heldBy = wep
 end
+
+function CustomizableWeaponry_KK.ins2.hotPotato:DoPlayerDeath(victim, attacker, dmginfo)
+	local wep = victim:GetActiveWeapon()
+	
+	if IsValid(wep) then
+		local nade = wep.dt.Potato
+		
+		if IsValid(nade) then
+			nade:SetCollisionGroup(COLLISION_GROUP_NONE)
+			nade:SetNoDraw(false)
+		end
+	end
+end
+
+hook.Add("DoPlayerDeath", CustomizableWeaponry_KK.ins2.hotPotato, CustomizableWeaponry_KK.ins2.hotPotato.DoPlayerDeath)

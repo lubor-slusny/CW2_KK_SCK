@@ -369,11 +369,17 @@ function SWEP:drawAttachments()
 			end
 			
 			if !v.nodraw then
+			
+				-- model:DrawModel()
+				
 				recomputeLighting(doRecompute and 1 or false, pos, ang)
 				
 				model:DrawModel()
 				
 				recomputeLighting(true or whatever, pos, ang)
+				
+				-- model:DrawModel()
+				
 			end
 		end
 	end

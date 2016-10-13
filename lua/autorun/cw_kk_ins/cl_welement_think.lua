@@ -56,6 +56,7 @@ if CLIENT then
 	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_rpg", "launcher")
 	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_piat", "launcher")
 	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_tankfist", "launcher")
+	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_tankshrek", "launcher")
 	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_zooka", "launcher")
 	
 	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_nade_anm14", "grenade")
@@ -67,6 +68,8 @@ if CLIENT then
 	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_frag_gb_n69", "grenade")
 	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_frag_gb_n77", "grenade")
 	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_frag_us", "grenade")
+	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_c4_de", "grenade")
+	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_c4_us", "grenade")
 	
 	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_nade_c4", "rcex")
 	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_nade_ied", "rcex")
