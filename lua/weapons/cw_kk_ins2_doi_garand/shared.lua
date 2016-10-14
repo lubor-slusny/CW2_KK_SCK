@@ -25,6 +25,13 @@ if CLIENT then
 	SWEP.Shell2ViewAngleAlign = {Forward = 0, Right = 30, Up = -90}
 	SWEP.Shell2WorldAngleAlign = {Forward = 0, Right = 0, Up = 90}
 	
+	SWEP.BackupSights = {
+		["kk_ins2_scope_m73"] = {
+			Vector(-2.4643, -2, 1.1174),
+			Vector(-0.4782, 0.006, 0)
+		},
+	}
+	
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_iron_garand_l.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_iron_garand_s.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
@@ -44,7 +51,7 @@ if CLIENT then
 	SWEP.FoldSightPos = Vector(-2.4643, -2, 1.1174)
 	SWEP.FoldSightAng = Vector(-0.4782, 0.006, 0)
 
-	SWEP.KKINS2ScopeM73Pos = Vector(-1.3779, -2, 0.7695)
+	SWEP.KKINS2ScopeM73Pos = Vector(-1.3779, -3.5, 0.7695)
 	SWEP.KKINS2ScopeM73Ang = Vector(0, 0, 0)
 
 	SWEP.CustomizationMenuScale = 0.02

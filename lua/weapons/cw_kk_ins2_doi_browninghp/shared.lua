@@ -48,7 +48,7 @@ SWEP.StockBGs = {main = 0, regular = 0, heavy = 0, sturdy = 0}
 
 SWEP.Attachments = {
 	{header = "Sight", offset = {500, -400}, atts = {"bg_foldsight"}},
-	-- {header = "Barrel", offset = {-500, -400}, atts = {"kk_ins2_hoovy"}},
+	{header = "Barrel", offset = {-500, -400}, atts = {"kk_ins2_hoovy"}},
 	{header = "Stock", offset = {-500, 150}, atts = {"bg_ar15sturdystock"}},
 	["+reload"] = {header = "Ammo", offset = {500, 50}, atts = {"am_magnum", "am_matchgrade"}}
 }
@@ -64,9 +64,7 @@ SWEP.Animations = {
 	base_fire_empty = "base_dryfire",
 	base_fire_empty_aim = "iron_dryfire",
 	base_reload = "base_reload",
-	base_reload_mm = "base_reload_extmag",
 	base_reload_empty = "base_reloadempty",
-	base_reload_empty_mm = "base_reloadempty_extmag",
 	base_idle = "base_idle",
 	base_idle_empty = "empty_idle",
 	base_holster = "base_holster",
@@ -142,5 +140,5 @@ SWEP.MuzzleVelocity = 335
 
 SWEP.ReloadTimes = {
 	base_reload = {2, 2.65},
-	base_reloadempty = {2, 2.83},
+	base_reloadempty = {2, 3.2},
 }

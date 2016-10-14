@@ -33,10 +33,6 @@ if CLIENT then
 		["kk_ins2_suppressor_sec"] = {model = "models/weapons/upgrades/a_suppressor_sec.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 
 		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/a_thompson_foregrip.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), merge = true},
-
-		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_band.mdl", bone = "M1928A1", pos = Vector(0.007, 12.043, 1.338), angle = Angle(0, -90, -90), size = Vector(0.8, 0.8, 0.8)},
-		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_band.mdl", bone = "M1928A1", pos = Vector(0.007, 12.043, 1.338), angle = Angle(0, -90, -90), size = Vector(0.8, 0.8, 0.8)},
-		["kk_ins2_anpeq15"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_anpeq_band.mdl", bone = "M1928A1", pos = Vector(0.007, 12.043, 1.338), angle = Angle(0, -90, -90), size = Vector(0.8, 0.8, 0.8)},
 	}
 	
 	SWEP.AttachmentModelsWM = {

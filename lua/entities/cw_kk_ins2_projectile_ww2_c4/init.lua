@@ -33,6 +33,8 @@ function ENT:OnRemove()
 		self:StopSound("CW_KK_INS2_DOI_C4_FUSELOOP")
 	end
 	
+	self:StopParticles()
+	
 	return false
 end 
 
@@ -96,4 +98,11 @@ end
 function ENT:OnTakeDamage(dmg)	
 	self:Kaboomboom()
 end
+
+function ENT:Think()
+	local a = self:GetAttachment(1)
 	
+	a.Ang:RotateAroundAxis(a.Ang:Right(), 180)
+	
+	ParticleEffect("muzzleflash_pistol", a.Pos, a.Ang, self)
+end

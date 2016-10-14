@@ -17,18 +17,7 @@ if CLIENT then
 	SWEP.RearEffectw = true
 	SWEP.NoShells = true
 	
-	SWEP.BackupSights = {
-		["nil"] = {
-			Vector(-1.4887, 0, -1.3139),
-			Vector(7.5622, -0.9048, 13.5897)
-		},
-	}
-	
-	SWEP.AttachmentModelsVM = {
-		-- ["h347"] = {model = "models/weapons/upgrades/a_warhead_bazooka_1.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
-		-- ["kk_ins2_ammo_m10"] = {model = "models/weapons/upgrades/a_warhead_bazooka_2.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-	}
-	
+	SWEP.AttachmentModelsVM = {}
 	SWEP.AttachmentModelsWM = {}
 	
 	SWEP.IronsightPos = Vector(-2.3552, 0, 0.7429)
@@ -45,22 +34,18 @@ end
 SWEP.Chamberable = false
 SWEP.WeaponLength = 44
 
-SWEP.Attachments = {
-	{header = "Ammo", offset = {600, -200}, atts = {"kk_ins2_ammo_m10"}},
-}
+SWEP.Attachments = {}
 
 SWEP.Animations = {
 	base_insert = "base_reload",
 	
 	base_pickup = "base_ready",
-	base_pickup_mm = "base_ready_phosphorus",
 	base_draw = "base_draw",
 	base_fire = "base_fire",
 	base_fire_aim = "iron_fire",
 	base_fire_empty = "base_dryfire",
 	base_fire_empty_aim = "iron_dryfire",
 	base_reload_empty = "base_reload",
-	base_reload_empty_mm = "base_reload_phosphorus",
 	base_idle = "base_idle",
 	base_holster = "base_holster",
 	base_sprint = "base_sprint",

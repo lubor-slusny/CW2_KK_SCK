@@ -89,7 +89,7 @@ SWEP.mustCook = true
 SWEP.canPlant = true
 
 SWEP.PlantPos = Vector(1.5, 0, 0)
-SWEP.PlantAng = Vector(0, 0, 180)
+SWEP.PlantAng = Vector(0, 0, 0)
 
 if CLIENT then
 	function SWEP:updateOtherParts()

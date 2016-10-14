@@ -19,16 +19,13 @@ if CLIENT then
 	SWEP.ShellDelay = 0.13
 
 	SWEP.AttachmentModelsVM = {
-		["handle"] = {model = "models/weapons/upgrades/a_charginghandle_m3.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), merge = true},
 		["kk_ins2_hoovy"] = {model = "models/weapons/upgrades/a_flash_hider_m3.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), merge = true},
 		
 		["paypay2"] = {model = "models/weapons/upgrades/a_stock_extended_m3.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), merge = true, active = true},
 		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_stock_collapsed_m3.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), merge = true},
 	}
 	
-	SWEP.AttachmentModelsWM = {
-		-- ["handguard"] = {model = "models/weapons/upgrades/w_thompson_standard.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
-	}
+	SWEP.AttachmentModelsWM = {}
 
 	SWEP.IronsightPos = Vector(-2.5062, -2, 1.2973)
 	SWEP.IronsightAng = Vector(-0.0021, 0.0392, 6)
