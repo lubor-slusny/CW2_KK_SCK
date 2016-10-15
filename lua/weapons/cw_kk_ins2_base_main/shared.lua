@@ -108,20 +108,20 @@ if CLIENT then
 	
 	SWEP.knifeTime = 0
 	
-	SWEP.SprintPos = Vector(0, 0, 0)
-	SWEP.SprintAng = Vector(0, 0, 0)
+	SWEP.SprintPos = Vector()
+	SWEP.SprintAng = Vector()
 	
-	SWEP.AlternativePos = Vector(0, 0, 0)
-	SWEP.AlternativeAng = Vector(0, 0, 0)
+	SWEP.AlternativePos = Vector()
+	SWEP.AlternativeAng = Vector()
 	
-	SWEP.M203Pos = Vector(0, 0, 0)
-	SWEP.M203Ang = Vector(0, 0, 0)
+	SWEP.M203Pos = Vector()
+	SWEP.M203Ang = Vector()
 	
-	SWEP.LaserPosAdjust = Vector(0, 0, 0) 
-	SWEP.LaserAngAdjust = Angle(0, 0, 0) 
+	SWEP.LaserPosAdjust = Vector() 
+	SWEP.LaserAngAdjust = Angle() 
 	
-	SWEP.IronsightPos = Vector(0, 0, 0)
-	SWEP.IronsightAng = Vector(0, 0, 0)
+	SWEP.IronsightPos = Vector()
+	SWEP.IronsightAng = Vector()
 end
 
 SWEP.AttachmentExclusions = {

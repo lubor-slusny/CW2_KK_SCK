@@ -14,11 +14,13 @@ if CLIENT then
 	ENT.LightColor = Color(255,100,100,255)
 end
 
+local mins, maxs = Vector(-1, -1, -1), Vector(1, 1, 1)
+
 function ENT:Initialize()
 	if SERVER then
 		self:SetModel("models/weapons/w_flare_projectile.mdl") 
 		-- self:PhysicsInit(SOLID_VPHYSICS)
-		self:PhysicsInitBox(Vector(-1,-1,-1), Vector(1,1,1))
+		self:PhysicsInitBox(mins, maxs)
 		self:SetMoveType(MOVETYPE_VPHYSICS)
 		self:SetSolid(SOLID_VPHYSICS)
 		self:SetCollisionGroup(COLLISION_GROUP_NONE) // HL2 racket

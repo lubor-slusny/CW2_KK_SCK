@@ -73,7 +73,7 @@ function ENT:Fuse(t)
 				end
 			end)
 			
-			ParticleEffect("cstm_smoke", smokeScreen:GetPos(), Angle(0, 0, 0), smokeScreen)
+			ParticleEffect("cstm_smoke", smokeScreen:GetPos(), Angle(), smokeScreen)
 			
 			self:Remove()
 		end

@@ -28,28 +28,28 @@ if CLIENT then
 	}
 	
 	SWEP.AttachmentModelsVM = {
-		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/a_kar98k_bayonet.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/a_kar98k_bayonet.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_ww2_stripper"] = {model = "models/weapons/upgrades/a_kar98k_stripper_clip.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_ww2_stripper"] = {model = "models/weapons/upgrades/a_kar98k_stripper_clip.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_gl_ggg"] = {model = "models/weapons/upgrades/a_kar98k_gl.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_gl_ggg"] = {model = "models/weapons/upgrades/a_kar98k_gl.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 
-		["kk_ins2_scope_k98"] = {model = "models/weapons/upgrades/a_optic_kar98k.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_scope_k98"] = {model = "models/weapons/upgrades/a_optic_kar98k.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 
 	SWEP.AttachmentModelsWM = {
-		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/w_kar98k_bayonet.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/w_kar98k_bayonet.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_gl_ggg"] = {model = "models/weapons/upgrades/w_enfield_gl.mdl", pos = Vector(41.9803, -0.1208, 4.8887), angle = Angle(1.7669, -1.2005, 0), size = Vector(1, 1, 1), bone = "R Hand"},
 		
-		["kk_ins2_scope_k98"] = {model = "models/weapons/upgrades/w_optic_kar98k.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_scope_k98"] = {model = "models/weapons/upgrades/w_optic_kar98k.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
 	SWEP.IronsightPos = Vector(-2.5615, -4, 1.588)
 	SWEP.IronsightAng = Vector(0.2652, 0.0073, 0)
 
 	SWEP.KKINS2ScopeK98Pos = Vector(-2.5434, -1.5, 0.3398)
-	SWEP.KKINS2ScopeK98Ang = Vector(0, 0, 0)
+	SWEP.KKINS2ScopeK98Ang = Vector()
 
 	SWEP.M203Pos = Vector(-0.9306, 0, 3.634)
 	SWEP.M203Ang = Vector(1.9036, 0, 0)

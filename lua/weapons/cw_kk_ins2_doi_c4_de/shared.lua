@@ -14,7 +14,7 @@ if CLIENT then
 	SWEP.IconLetter = "O"
 	
 	SWEP.AttachmentModelsVM = {
-		["pcf"] = {model = "models/maxofs2d/cube_tool.mdl", pos = Vector(0, 0, 0), angle = Angle(0, -90, 0), size = Vector(0.01, 0.01, 0.01), attachment = "tail", bodygroups = {1}, active = true, nodraw = true},
+		["pcf"] = {model = "models/maxofs2d/cube_tool.mdl", pos = Vector(), angle = Angle(0, -90, 0), size = Vector(0.01, 0.01, 0.01), attachment = "tail", bodygroups = {1}, active = true, nodraw = true},
 	}
 	
 	SWEP.AttachmentModelsWM = {}
@@ -89,7 +89,7 @@ SWEP.mustCook = true
 SWEP.canPlant = true
 
 SWEP.PlantPos = Vector(1.5, 0, 0)
-SWEP.PlantAng = Vector(0, 0, 0)
+SWEP.PlantAng = Vector()
 
 if CLIENT then
 	function SWEP:updateOtherParts()

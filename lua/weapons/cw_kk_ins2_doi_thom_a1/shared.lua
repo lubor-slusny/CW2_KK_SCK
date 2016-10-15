@@ -19,13 +19,13 @@ if CLIENT then
 	SWEP.ShellDelay = 0.13
 
 	SWEP.AttachmentModelsVM = {
-		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_iron_thompson_m1a1_1.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), merge = true, active = true}, 
-		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_iron_thompson_m1a1_2.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), merge = true}, 
+		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_iron_thompson_m1a1_1.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), merge = true, active = true}, 
+		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_iron_thompson_m1a1_2.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), merge = true}, 
 	}
 	
 	SWEP.AttachmentModelsWM = {
-		["handguard"] = {model = "models/weapons/upgrades/w_thompson_standard.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
-		["mag"] = {model = "models/weapons/upgrades/w_thompson_mag_30.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
+		["handguard"] = {model = "models/weapons/upgrades/w_thompson_standard.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
+		["mag"] = {model = "models/weapons/upgrades/w_thompson_mag_30.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
 	}
 
 	SWEP.IronsightPos = Vector(-2.2506, -2, 1.0881)

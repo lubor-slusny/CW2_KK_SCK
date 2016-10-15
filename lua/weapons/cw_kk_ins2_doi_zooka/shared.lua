@@ -25,8 +25,8 @@ if CLIENT then
 	}
 	
 	SWEP.AttachmentModelsVM = {
-		["h347"] = {model = "models/weapons/upgrades/a_warhead_bazooka_1.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
-		["kk_ins2_ammo_m10"] = {model = "models/weapons/upgrades/a_warhead_bazooka_2.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["h347"] = {model = "models/weapons/upgrades/a_warhead_bazooka_1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
+		["kk_ins2_ammo_m10"] = {model = "models/weapons/upgrades/a_warhead_bazooka_2.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
 	SWEP.AttachmentModelsWM = {}

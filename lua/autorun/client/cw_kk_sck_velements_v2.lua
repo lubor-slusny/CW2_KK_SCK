@@ -313,7 +313,7 @@ function TOOL:updatePanel()
 						
 						new.model = model
 						new.pos = Vector()
-						new.angle = Angle(0, 0, 0)
+						new.angle = Angle()
 						
 						if model == "models/maxofs2d/cube_tool.mdl" then
 							new.size = Vector(0.075, 0.075, 0.075)

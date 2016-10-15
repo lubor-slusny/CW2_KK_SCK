@@ -25,135 +25,135 @@ if CLIENT then
 	SWEP.ShellDelay = 0.06
 	
 	SWEP.AttachmentModelsVM = {
-		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_modkit_06.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_modkit_06.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_counter"] = {model = "models/weapons/stattrack.mdl", bone = "Weapon", pos = Vector(0.33, -3.289, -0.137), angle = Angle(0, -90, 0), size = Vector(1, 1, 1)},
 		["kk_counter_mag"] = {model = "models/weapons/stattrack.mdl", bone = "Magazine", pos = Vector(0.941, -1.086, 0.783), angle = Angle(-31.362, -9.11, -16.441), size = Vector(0.449, 0.449, 0.449)},
 
-		["kk_ins2_pbs1"] = {model = "models/weapons/upgrades/a_suppressor_ak.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_pbs1"] = {model = "models/weapons/upgrades/a_suppressor_ak.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_band.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_band.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_anpeq15"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_anpeq_band.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_band.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_band.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_anpeq15"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_anpeq_band.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 
-		["kk_ins2_magnifier"] = {model = "models/weapons/upgrades/a_optic_aimp2x.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_magnifier"] = {model = "models/weapons/upgrades/a_optic_aimp2x.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_aimpoint"] = {model = "models/weapons/upgrades/a_optic_aimpoint.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_elcan"] = {model = "models/weapons/upgrades/a_optic_elcan_m.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, retSizeMult = 0.85},
-		["kk_ins2_eotech"] = {model = "models/weapons/upgrades/a_optic_eotech.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_kobra"] = {model = "models/weapons/upgrades/a_optic_kobra_l.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, retSizeMult = 1.2},
-		["kk_ins2_po4"] = {model = "models/weapons/upgrades/a_optic_po4x24.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_aimpoint"] = {model = "models/weapons/upgrades/a_optic_aimpoint.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_elcan"] = {model = "models/weapons/upgrades/a_optic_elcan_m.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, retSizeMult = 0.85},
+		["kk_ins2_eotech"] = {model = "models/weapons/upgrades/a_optic_eotech.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_kobra"] = {model = "models/weapons/upgrades/a_optic_kobra_l.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, retSizeMult = 1.2},
+		["kk_ins2_po4"] = {model = "models/weapons/upgrades/a_optic_po4x24.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	
-		["kk_ins2_cstm_cmore"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_cmore.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_cstm_compm4s"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_compm4s.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_cstm_microt1"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_microt1.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_cstm_acog"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_acog_m.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, retSizeMult = 0.85},
-		["kk_ins2_cstm_barska"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_barska.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_cstm_eotechxps"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_eotechxps.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_cstm_cmore"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_cmore.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_cstm_compm4s"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_compm4s.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_cstm_microt1"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_microt1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_cstm_acog"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_acog_m.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, retSizeMult = 0.85},
+		["kk_ins2_cstm_barska"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_barska.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_cstm_eotechxps"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_eotechxps.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
 	SWEP.AttachmentModelsWM = {
-		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/w_modkit_6.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/w_modkit_6.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_pbs1"] = {model = "models/weapons/upgrades/w_sil_ins1.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_pbs1"] = {model = "models/weapons/upgrades/w_sil_ins1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_lam"] = {model = "models/weapons/upgrades/w_laser_ins.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/w_laser_ins.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_lam"] = {model = "models/weapons/upgrades/w_laser_ins.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/w_laser_ins.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	
-		["kk_ins2_magnifier"] = {model = "models/weapons/upgrades/w_magaim.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_magnifier"] = {model = "models/weapons/upgrades/w_magaim.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_aimpoint"] = {model = "models/weapons/upgrades/w_aimpoint.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_elcan"] = {model = "models/weapons/upgrades/w_elcan.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_eotech"] = {model = "models/weapons/upgrades/w_eotech.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_kobra"] = {model = "models/weapons/upgrades/w_kobra.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_po4"] = {model = "models/weapons/upgrades/w_po.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_aimpoint"] = {model = "models/weapons/upgrades/w_aimpoint.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_elcan"] = {model = "models/weapons/upgrades/w_elcan.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_eotech"] = {model = "models/weapons/upgrades/w_eotech.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_kobra"] = {model = "models/weapons/upgrades/w_kobra.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_po4"] = {model = "models/weapons/upgrades/w_po.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_cstm_cmore"] = {model = "models/weapons/attachments/w_cw_kk_ins2_cstm_cmore.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_cstm_compm4s"] = {model = "models/weapons/upgrades/w_aimpoint.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_cstm_microt1"] = {model = "models/weapons/upgrades/w_aimpoint.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_cstm_acog"] = {model = "models/weapons/attachments/w_cw_kk_ins2_cstm_acog.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_cstm_barska"] = {model = "models/weapons/upgrades/w_eotech.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_cstm_eotechxps"] = {model = "models/weapons/attachments/w_cw_kk_ins2_cstm_eotechxps.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_cstm_cmore"] = {model = "models/weapons/attachments/w_cw_kk_ins2_cstm_cmore.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_cstm_compm4s"] = {model = "models/weapons/upgrades/w_aimpoint.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_cstm_microt1"] = {model = "models/weapons/upgrades/w_aimpoint.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_cstm_acog"] = {model = "models/weapons/attachments/w_cw_kk_ins2_cstm_acog.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_cstm_barska"] = {model = "models/weapons/upgrades/w_eotech.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_cstm_eotechxps"] = {model = "models/weapons/attachments/w_cw_kk_ins2_cstm_eotechxps.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 
 	SWEP.IronsightPos = Vector(-2.3, -2, 0.13)
 	SWEP.IronsightAng = Vector(0.95, 0.05, 0)
 
 	SWEP.KKINS2KobraPos = Vector(-2.3107, -2, -0.5233)
-	SWEP.KKINS2KobraAng = Vector(0, 0, 0)
+	SWEP.KKINS2KobraAng = Vector()
 	
 	SWEP.KKINS2EoTechPos = Vector(-2.3099, -2, -0.4734)
-	SWEP.KKINS2EoTechAng = Vector(0, 0, 0)
+	SWEP.KKINS2EoTechAng = Vector()
 
 	SWEP.KKINS2AimpointPos = Vector(-2.3021, -2, -0.4478)
-	SWEP.KKINS2AimpointAng = Vector(0, 0, 0)
+	SWEP.KKINS2AimpointAng = Vector()
 
 	SWEP.KKINS2ElcanPos = Vector(-2.3062, -2, -0.5652)
-	SWEP.KKINS2ElcanAng = Vector(0, 0, 0)
+	SWEP.KKINS2ElcanAng = Vector()
 
 	SWEP.KKINS2PO4Pos = Vector(-2.2495, -1, -0.3634)
-	SWEP.KKINS2PO4Ang = Vector(0, 0, 0)
+	SWEP.KKINS2PO4Ang = Vector()
 
 	SWEP.KKINS2MagnifierPos = Vector(-2.307, -2, -0.4629)
-	SWEP.KKINS2MagnifierAng = Vector(0, 0, 0)
+	SWEP.KKINS2MagnifierAng = Vector()
 
 	SWEP.KKINS2CSTMCMorePos = Vector(-2.3021, -2, -0.4478)
-	SWEP.KKINS2CSTMCMoreAng = Vector(0, 0, 0)
+	SWEP.KKINS2CSTMCMoreAng = Vector()
 
 	SWEP.KKINS2CSTMBarskaPos = Vector(-2.3099, -2, -0.4734)
-	SWEP.KKINS2CSTMBarskaAng = Vector(0, 0, 0)
+	SWEP.KKINS2CSTMBarskaAng = Vector()
 
 	SWEP.KKINS2CSTMMicroT1Pos = Vector(-2.3021, -2, -0.4478)
-	SWEP.KKINS2CSTMMicroT1Ang = Vector(0, 0, 0)
+	SWEP.KKINS2CSTMMicroT1Ang = Vector()
 
 	SWEP.KKINS2CSTMEoTechXPSPos = Vector(-2.3099, -2, -0.4734)
-	SWEP.KKINS2CSTMEoTechXPSAng = Vector(0, 0, 0)
+	SWEP.KKINS2CSTMEoTechXPSAng = Vector()
 
 	SWEP.KKINS2CSTMCompM4SPos = Vector(-2.3021, -2, -0.4478)
-	SWEP.KKINS2CSTMCompM4SAng = Vector(0, 0, 0)
+	SWEP.KKINS2CSTMCompM4SAng = Vector()
 
 	SWEP.KKINS2CSTMACOGPos = Vector(-2.3062, -2, -0.5652)
-	SWEP.KKINS2CSTMACOGAng = Vector(0, 0, 0)
+	SWEP.KKINS2CSTMACOGAng = Vector()
 
 	// coz why nut
 	SWEP.IronsightPos_sopmod = Vector(-2.3118, -2, 0.4771)
 	SWEP.IronsightAng_sopmod = Vector(0.7678, 0.05, 0)
 
 	SWEP.KKINS2KobraPos_sopmod = Vector(-2.3107, -8, -0.3917)
-	SWEP.KKINS2KobraAng_sopmod = Vector(0, 0, 0)
+	SWEP.KKINS2KobraAng_sopmod = Vector()
 
 	SWEP.KKINS2EoTechPos_sopmod = Vector(-2.3099, -8, -0.3084)
-	SWEP.KKINS2EoTechAng_sopmod = Vector(0, 0, 0)
+	SWEP.KKINS2EoTechAng_sopmod = Vector()
 
 	SWEP.KKINS2AimpointPos_sopmod = Vector(-2.3021, -8, -0.296)
-	SWEP.KKINS2AimpointAng_sopmod = Vector(0, 0, 0)
+	SWEP.KKINS2AimpointAng_sopmod = Vector()
 
 	SWEP.KKINS2ElcanPos_sopmod = Vector(-2.3068, -10, -0.401)
-	SWEP.KKINS2ElcanAng_sopmod = Vector(0, 0, 0)
+	SWEP.KKINS2ElcanAng_sopmod = Vector()
 
 	SWEP.KKINS2PO4Pos_sopmod = Vector(-2.2503, -10, -0.2003)
-	SWEP.KKINS2PO4Ang_sopmod = Vector(0, 0, 0)
+	SWEP.KKINS2PO4Ang_sopmod = Vector()
 
 	SWEP.KKINS2MagnifierPos_sopmod = Vector(-2.307, -10, -0.3014)
-	SWEP.KKINS2MagnifierAng_sopmod = Vector(0, 0, 0)
+	SWEP.KKINS2MagnifierAng_sopmod = Vector()
 
 	SWEP.KKINS2CSTMCMorePos_sopmod = Vector(-2.3021, -8, -0.296)
-	SWEP.KKINS2CSTMCMoreAng_sopmod = Vector(0, 0, 0)
+	SWEP.KKINS2CSTMCMoreAng_sopmod = Vector()
 
 	SWEP.KKINS2CSTMBarskaPos_sopmod = Vector(-2.3099, -8, -0.3084)
-	SWEP.KKINS2CSTMBarskaAng_sopmod = Vector(0, 0, 0)
+	SWEP.KKINS2CSTMBarskaAng_sopmod = Vector()
 
 	SWEP.KKINS2CSTMMicroT1Pos_sopmod = Vector(-2.3021, -8, -0.296)
-	SWEP.KKINS2CSTMMicroT1Ang_sopmod = Vector(0, 0, 0)
+	SWEP.KKINS2CSTMMicroT1Ang_sopmod = Vector()
 
 	SWEP.KKINS2CSTMEoTechXPSPos_sopmod = Vector(-2.3099, -8, -0.3084)
-	SWEP.KKINS2CSTMEoTechXPSAng_sopmod = Vector(0, 0, 0)
+	SWEP.KKINS2CSTMEoTechXPSAng_sopmod = Vector()
 
 	SWEP.KKINS2CSTMCompM4SPos_sopmod = Vector(-2.3021, -8, -0.296)
-	SWEP.KKINS2CSTMCompM4SAng_sopmod = Vector(0, 0, 0)
+	SWEP.KKINS2CSTMCompM4SAng_sopmod = Vector()
 
 	SWEP.KKINS2CSTMACOGPos_sopmod = Vector(-2.3068, -10, -0.401)
-	SWEP.KKINS2CSTMACOGAng_sopmod = Vector(0, 0, 0)
+	SWEP.KKINS2CSTMACOGAng_sopmod = Vector()
 
 	SWEP.CustomizationMenuScale = 0.018
 end

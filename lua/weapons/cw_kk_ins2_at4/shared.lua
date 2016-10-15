@@ -18,7 +18,7 @@ if CLIENT then
 	SWEP.NoShells = true
 	
 	SWEP.AttachmentModelsVM = {
-		["kk_counter_front"] = {model = "models/weapons/stattrack.mdl", bone = "AT4", rel = "", pos = Vector(-0.029, 3.767, 2.51), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), ignoreKKBGO = true},
+		["kk_counter_front"] = {model = "models/weapons/stattrack.mdl", bone = "AT4", rel = "", pos = Vector(-0.029, 3.767, 2.51), angle = Angle(), size = Vector(1, 1, 1), ignoreKKBGO = true},
 		["kk_counter_mid"] = {model = "models/weapons/stattrack.mdl", bone = "AT4", rel = "", pos = Vector(1.218, -8.176, 1.179), angle = Angle(-47.401, 0, 0), size = Vector(0.699, 0.699, 0.699), ignoreKKBGO = true},
 		["kk_counter_back"] = {model = "models/weapons/stattrack.mdl", bone = "AT4", rel = "", pos = Vector(-0.788, -10.893, 2.131), angle = Angle(0, -90, 15), size = Vector(1, 1, 1), ignoreKKBGO = true},
 	}

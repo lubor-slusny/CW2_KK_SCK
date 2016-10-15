@@ -16,7 +16,7 @@ if CLIENT then
 	SWEP.NoShells = true
 	
 	SWEP.AttachmentModelsVM = {
-		["kk_ins2_gl_gp25"] = {model = "models/weapons/upgrades/a_gl_gp25.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
+		["kk_ins2_gl_gp25"] = {model = "models/weapons/upgrades/a_gl_gp25.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
 		
 		["40mm_kk_1337"] = {model = "models/weapons/w_at4_projectile.mdl", bone = "GL_Round", pos = Vector(1.75,0,0), angle = Angle(0, 180, 0), size = Vector(0.85, 0.85, 0.85),
 			-- active = function(self)
@@ -28,7 +28,7 @@ if CLIENT then
 	}
 
 	SWEP.AttachmentModelsWM = {
-		["kk_ins2_gl_gp25_merge"] = {model = "models/weapons/upgrades/w_gp25.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
+		["kk_ins2_gl_gp25_merge"] = {model = "models/weapons/upgrades/w_gp25.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
 	}
 	
 	SWEP.ForeGripOffsetCycle_Reload = 0
@@ -37,7 +37,7 @@ if CLIENT then
 	
 	SWEP.ForegripOverridePos = {
 		righthandfix = {
-			["R Clavicle"] = {pos = Vector(9.68, 0, -0.046), angle = Angle(0, 0, 0)}
+			["R Clavicle"] = {pos = Vector(9.68, 0, -0.046), angle = Angle()}
 		}
 	}
 	
@@ -48,13 +48,13 @@ if CLIENT then
 	SWEP.IronsightAng = Vector(5.3932, 0.0032, 0)
 
 	SWEP.AlternativePos = Vector(1, -8, 0)
-	SWEP.AlternativeAng = Vector(0, 0, 0)
+	SWEP.AlternativeAng = Vector()
 
 	SWEP.CustomizePos = Vector(1, -8, 0)
-	SWEP.CustomizeAng = Vector(0, 0, 0)
+	SWEP.CustomizeAng = Vector()
 	
 	SWEP.SprintPos = Vector(1, -8, 0)
-	SWEP.SprintAng = Vector(0, 0, 0)
+	SWEP.SprintAng = Vector()
 	
 	SWEP.HUD_MagText = "BARREL: "
 	SWEP.CustomizationMenuScale = 0.01

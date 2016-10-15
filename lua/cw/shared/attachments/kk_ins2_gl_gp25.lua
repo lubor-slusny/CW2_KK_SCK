@@ -42,7 +42,7 @@ if CLIENT then
 				return nadeTypes[self.Grenade40MM] and nadeTypes[self.Grenade40MM].name == "40mm_kk_1339"
 			end
 		},
-		["40mm_kk_13399"] = { type = "Model", model = "models/effects/combineball.mdl", bone = "GL_Round", pos = Vector(-0.3, 0, 0), angle = Angle(0, 0, 0), size = Vector(0.065, 0.065, 0.065),
+		["40mm_kk_13399"] = { type = "Model", model = "models/effects/combineball.mdl", bone = "GL_Round", pos = Vector(-0.3, 0, 0), angle = Angle(), size = Vector(0.065, 0.065, 0.065),
 			active = function(self)
 				return nadeTypes[self.Grenade40MM] and nadeTypes[self.Grenade40MM].name == "40mm_kk_13399"
 			end

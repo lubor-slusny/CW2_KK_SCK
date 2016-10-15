@@ -79,7 +79,7 @@ local function updatePanel()
 			
 			function butt:DoClick()
 				WEAPON._kkSCKVMFreezePosOffset = Vector()
-				WEAPON._kkSCKVMFreezeAng = Angle(0, 0, 0)
+				WEAPON._kkSCKVMFreezeAng = Angle()
 				
 				updatePanel()
 			end

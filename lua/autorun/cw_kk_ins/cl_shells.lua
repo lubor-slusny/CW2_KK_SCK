@@ -23,7 +23,7 @@ if CLIENT then
 		SafeRemoveEntity(shell)
 	end
 
-	local angleVel = Vector(0, 0, 0)
+	local angleVel = Vector()
 	
 	function CustomizableWeaponry_KK.ins2.shells:make(pos, ang, velocity, t, scale)
 		pos = pos or EyePos()

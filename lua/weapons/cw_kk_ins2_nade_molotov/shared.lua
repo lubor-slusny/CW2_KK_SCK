@@ -15,8 +15,8 @@ if CLIENT then
 	SWEP.IconLetter = "O"
 	
 	SWEP.AttachmentModelsVM = {
-		["fx_light"] = {model = "models/maxofs2d/cube_tool.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(0.01, 0.01, 0.01), attachment = "lighter", active = true, nodraw = true},
-		["fx_rag"] = {model = "models/maxofs2d/cube_tool.mdl", pos = Vector(-0.67614, 0.05519, -0.63427), angle = Angle(0, 0, 0), size = Vector(0.01, 0.01, 0.01), attachment = "rag", active = true, nodraw = true},
+		["fx_light"] = {model = "models/maxofs2d/cube_tool.mdl", pos = Vector(), angle = Angle(), size = Vector(0.01, 0.01, 0.01), attachment = "lighter", active = true, nodraw = true},
+		["fx_rag"] = {model = "models/maxofs2d/cube_tool.mdl", pos = Vector(-0.67614, 0.05519, -0.63427), angle = Angle(), size = Vector(0.01, 0.01, 0.01), attachment = "rag", active = true, nodraw = true},
 	}
 	
 	SWEP.MoveType = 2

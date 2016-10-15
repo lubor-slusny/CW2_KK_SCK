@@ -40,7 +40,7 @@ function SWEP:buildBoneTable()
 		end
 		
 		-- some ins models have [__INVALIDBONE__]s so to prevent nilpointerexceptions bone = 1
-		self.vmBones[i + 1] = {boneName = boneName, bone = i, curPos = Vector(0, 0, 0), curAng = Angle(0, 0, 0), targetPos = Vector(0, 0, 0), targetAng = Angle(0, 0, 0)}
+		self.vmBones[i + 1] = {boneName = boneName, bone = i, curPos = Vector(), curAng = Angle(), targetPos = Vector(), targetAng = Angle()}
 	end
 end
 

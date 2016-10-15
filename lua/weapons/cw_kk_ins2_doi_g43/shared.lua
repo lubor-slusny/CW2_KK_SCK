@@ -21,11 +21,11 @@ if CLIENT then
 	SWEP.ShellDelay = 0.05
 	
 	SWEP.AttachmentModelsVM = {
-		["kk_ins2_scope_zf4"] = {model = "models/weapons/upgrades/a_optic_zf4.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_scope_zf4"] = {model = "models/weapons/upgrades/a_optic_zf4.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 
 	SWEP.AttachmentModelsWM = {
-		["kk_ins2_scope_zf4"] = {model = "models/weapons/upgrades/w_scope_g43.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_scope_zf4"] = {model = "models/weapons/upgrades/w_scope_g43.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
 	SWEP.BackupSights = {
@@ -39,7 +39,7 @@ if CLIENT then
 	SWEP.IronsightAng = Vector(0.0762, 0.0089, 0)
 
 	SWEP.KKINS2ScopeZF4Pos = Vector(-2.7179, -3, 0.3701)
-	SWEP.KKINS2ScopeZF4Ang = Vector(0, 0, 0)
+	SWEP.KKINS2ScopeZF4Ang = Vector()
 
 	SWEP.CustomizationMenuScale = 0.019
 end

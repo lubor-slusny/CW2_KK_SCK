@@ -24,7 +24,7 @@ if CLIENT then
 			-- material = "models/weapons/view/pistols/ragingbull/ragingbullmount",
 		-- },
 	
-		["kk_ins2_revolver_mag"] = {model = "models/weapons/upgrades/a_cobraloader_rev.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_revolver_mag"] = {model = "models/weapons/upgrades/a_cobraloader_rev.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 
 		["kk_counter"] = {model = "models/weapons/stattrack_cut.mdl", bone = "Weapon", pos = Vector(0.31, -0.57, 0.347), angle = Angle(0, -90, 0), size = Vector(0.4, 0.449, 0.449)}, 
 		

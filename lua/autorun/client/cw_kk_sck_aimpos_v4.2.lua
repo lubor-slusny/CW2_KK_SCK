@@ -177,8 +177,8 @@ local function menuThink()
 			SIGHT = att
 			
 			WEAPON._KK_SCK_modifiedPositions = WEAPON._KK_SCK_modifiedPositions or {}
-			WEAPON[SIGHT.aimPos[1]] = WEAPON[SIGHT.aimPos[1]] or Vector(0, 0, 0)
-			WEAPON[SIGHT.aimPos[2]] = WEAPON[SIGHT.aimPos[2]] or Vector(0, 0, 0)
+			WEAPON[SIGHT.aimPos[1]] = WEAPON[SIGHT.aimPos[1]] or Vector()
+			WEAPON[SIGHT.aimPos[2]] = WEAPON[SIGHT.aimPos[2]] or Vector()
 			
 			updateSliders()
 		end
@@ -245,7 +245,7 @@ local function sliderUpdate(slider)
 	if not WEAPON or not SIGHT then return end
 	
 	if not WEAPON[SIGHT._KK_SCK_prefix .. slider._KK_SCK_vec] then
-		WEAPON[SIGHT._KK_SCK_prefix .. slider._KK_SCK_vec] = Vector(0, 0, 0)
+		WEAPON[SIGHT._KK_SCK_prefix .. slider._KK_SCK_vec] = Vector()
 	end
 	
 	slider:SetValue(WEAPON[SIGHT._KK_SCK_prefix .. slider._KK_SCK_vec][slider._KK_SCK_vec_pos])
@@ -256,8 +256,8 @@ local function buttonReloadAimPos()
 	
 	local stored = weapons.GetStored(WEAPON:GetClass())
 
-	local posCopy = vectorClone(stored[SIGHT.aimPos[1]] or Vector(0, 0, 0))
-	local angCopy = vectorClone(stored[SIGHT.aimPos[2]] or Vector(0, 0, 0))
+	local posCopy = vectorClone(stored[SIGHT.aimPos[1]] or Vector())
+	local angCopy = vectorClone(stored[SIGHT.aimPos[2]] or Vector())
 	
 	WEAPON[SIGHT.aimPos[1]] = posCopy
 	WEAPON[SIGHT.aimPos[2]] = angCopy
@@ -730,7 +730,7 @@ local function buildPanel(panel)
 			if not WEAPON or not SIGHT then return end
 			
 			if not WEAPON["Alternative" .. slider._KK_SCK_vec] then
-				WEAPON["Alternative" .. slider._KK_SCK_vec] = Vector(0, 0, 0)
+				WEAPON["Alternative" .. slider._KK_SCK_vec] = Vector()
 			end
 			
 			slider:SetValue(WEAPON["Alternative" .. slider._KK_SCK_vec][slider._KK_SCK_vec_pos])

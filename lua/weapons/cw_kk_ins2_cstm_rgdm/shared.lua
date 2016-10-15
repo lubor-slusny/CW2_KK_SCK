@@ -18,19 +18,19 @@ if CLIENT then
 	
 	SWEP.ForegripOverridePos = {
 		none = {
-			["Pin_F1"] = {pos = Vector(0, 0, 0), angle = Angle(0, 0, 0)},
-			["Pin_2_F1"] = {pos = Vector(0, 0, 0), angle = Angle(0, 0, 0)},
-			["Pin_Pull"] = {pos = Vector(0, 0, 0), angle = Angle(0, 0, 0)},
-			["Weapon_F1"] = {pos = Vector(0, 0, 0), angle = Angle(0, 0, 0)},
-			["Spoon_F1"] = {pos = Vector(0, 0, 0), angle = Angle(0, 0, 0)}
+			["Pin_F1"] = {pos = Vector(), angle = Angle()},
+			["Pin_2_F1"] = {pos = Vector(), angle = Angle()},
+			["Pin_Pull"] = {pos = Vector(), angle = Angle()},
+			["Weapon_F1"] = {pos = Vector(), angle = Angle()},
+			["Spoon_F1"] = {pos = Vector(), angle = Angle()}
 		},
 		
 		throwfix = {
-			["Pin_F1"] = {pos = Vector(0, 0, -20), angle = Angle(0, 0, 0)},
-			["Pin_2_F1"] = {pos = Vector(0, 0, -20), angle = Angle(0, 0, 0)},
-			["Pin_Pull"] = {pos = Vector(0, 0, -20), angle = Angle(0, 0, 0)},
-			["Weapon_F1"] = {pos = Vector(0, 0, -20), angle = Angle(0, 0, 0)},
-			["Spoon_F1"] = {pos = Vector(0, 0, -20), angle = Angle(0, 0, 0)}
+			["Pin_F1"] = {pos = Vector(0, 0, -20), angle = Angle()},
+			["Pin_2_F1"] = {pos = Vector(0, 0, -20), angle = Angle()},
+			["Pin_Pull"] = {pos = Vector(0, 0, -20), angle = Angle()},
+			["Weapon_F1"] = {pos = Vector(0, 0, -20), angle = Angle()},
+			["Spoon_F1"] = {pos = Vector(0, 0, -20), angle = Angle()}
 		}
 	}
 	

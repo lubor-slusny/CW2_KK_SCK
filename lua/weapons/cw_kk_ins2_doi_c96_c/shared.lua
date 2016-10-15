@@ -19,16 +19,16 @@ if CLIENT then
 	SWEP.ShellWorldAngleAlign = {Forward = 90, Right = 0, Up = 0}
 	
 	SWEP.AttachmentModelsVM = {
-		["kk_ins2_c96_barrel_std"] = {model = "models/weapons/upgrades/a_barrel_c96_short.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), merge = true, active = true},
-		["kk_ins2_c96_barrel_lng"] = {model = "models/weapons/upgrades/a_barrel_c96_long.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_c96_barrel_std"] = {model = "models/weapons/upgrades/a_barrel_c96_short.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), merge = true, active = true},
+		["kk_ins2_c96_barrel_lng"] = {model = "models/weapons/upgrades/a_barrel_c96_long.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_mag_c96_20"] = {model = "models/weapons/upgrades/a_magazine_c96_20.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), merge = true, active = true},
-		["kk_ins2_mag_c96_40"] = {model = "models/weapons/upgrades/a_magazine_c96_40.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_mag_c96_20"] = {model = "models/weapons/upgrades/a_magazine_c96_20.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), merge = true, active = true},
+		["kk_ins2_mag_c96_40"] = {model = "models/weapons/upgrades/a_magazine_c96_40.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), merge = true},
 	}
 	
 	SWEP.AttachmentModelsWM = {
-		["kk_ins2_mag_c96_20"] = {model = "models/weapons/upgrades/w_c96carbine_mag_20.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), merge = true, active = true},
-		["kk_ins2_mag_c96_40"] = {model = "models/weapons/upgrades/w_c96carbine_mag_40.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_mag_c96_20"] = {model = "models/weapons/upgrades/w_c96carbine_mag_20.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), merge = true, active = true},
+		["kk_ins2_mag_c96_40"] = {model = "models/weapons/upgrades/w_c96carbine_mag_40.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), merge = true},
 	}
 
 	// long B
