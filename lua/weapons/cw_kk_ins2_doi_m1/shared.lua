@@ -71,6 +71,7 @@ SWEP.Animations = {
 	base_idle = "base_idle",
 	base_holster = "base_holster",
 	base_sprint = "base_sprint",
+	base_sprint_knife = "base_sprint_melee",
 	base_safe = "base_down",
 	base_safe_aim = "iron_down",
 	
