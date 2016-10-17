@@ -73,10 +73,10 @@ SWEP.AimViewModelFOV = 30
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_panzerschreck.mdl"
-SWEP.WorldModel		= "models/weapons/w_bazooka.mdl"
+SWEP.WorldModel		= "models/weapons/w_panzerschreck.mdl"
 
 SWEP.DrawCustomWM = true
-SWEP.WMPos = Vector(-5, 0, -0.5)
+SWEP.WMPos = Vector(5, 0, -1.5)
 SWEP.WMAng = Vector(8, 180, -180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2de

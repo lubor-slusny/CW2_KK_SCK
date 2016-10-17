@@ -208,9 +208,10 @@ local scopes = {
 	["kk_ins2_scope_k98"] = true,
 	["kk_ins2_scope_m73"] = true,
 	["kk_ins2_scope_zf4"] = true,
+	["kk_ins2_scope_u8x"] = true,
+	["kk_ins2_scope_m82"] = true,
 }
 
-	
 function SWEP:setupAttachmentModels()
 	if self.AttachmentModelsVM then
 		for k, v in pairs(self.AttachmentModelsVM) do

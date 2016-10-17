@@ -43,7 +43,7 @@ end
 function CustomizableWeaponry_KK.ins2.hotPotato:DoPlayerDeath(victim, attacker, dmginfo)
 	local wep = victim:GetActiveWeapon()
 	
-	if IsValid(wep) then
+	if IsValid(wep) and wep.KKINS2Wep then
 		local nade = wep.dt.Potato
 		
 		if IsValid(nade) then

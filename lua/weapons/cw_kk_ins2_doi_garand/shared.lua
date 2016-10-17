@@ -26,7 +26,7 @@ if CLIENT then
 	SWEP.Shell2WorldAngleAlign = {Forward = 0, Right = 0, Up = 90}
 	
 	SWEP.BackupSights = {
-		["kk_ins2_scope_m73"] = {
+		["kk_ins2_scope_m82"] = {
 			Vector(-2.4643, -2, 1.1174),
 			Vector(-0.4782, 0.006, 0)
 		},
@@ -36,7 +36,7 @@ if CLIENT then
 		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_iron_garand_l.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
 		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_iron_garand_s.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_scope_m73"] = {model = "models/weapons/upgrades/a_optic_garand.mdl", pos = Vector(), angle = Angle(), size = Vector(0.075, 0.075, 0.075), merge = true},
+		["kk_ins2_scope_m82"] = {model = "models/weapons/upgrades/a_optic_garand.mdl", pos = Vector(), angle = Angle(), size = Vector(0.075, 0.075, 0.075), merge = true},
 		
 		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/a_garand_bayonet.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
@@ -51,8 +51,8 @@ if CLIENT then
 	SWEP.FoldSightPos = Vector(-2.4643, -2, 1.1174)
 	SWEP.FoldSightAng = Vector(-0.4782, 0.006, 0)
 
-	SWEP.KKINS2ScopeM73Pos = Vector(-1.3779, -3.5, 0.7695)
-	SWEP.KKINS2ScopeM73Ang = Vector()
+	SWEP.KKINS2ScopeM82Pos = Vector(-1.3779, -3.5, 0.7695)
+	SWEP.KKINS2ScopeM82Ang = Vector()
 
 	SWEP.CustomizationMenuScale = 0.02
 end
@@ -60,7 +60,7 @@ end
 SWEP.SightBGs = {main = 0, foldsight = 0}
 
 SWEP.Attachments = {
-	{header = "Sight", offset = {400, -500}, atts = {"bg_foldsight", "kk_ins2_scope_m73"}},
+	{header = "Sight", offset = {400, -500}, atts = {"bg_foldsight", "kk_ins2_scope_m82"}},
 	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_ww2_knife"}},
 	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_magnum", "am_matchgrade"}}

@@ -33,6 +33,7 @@ if CLIENT then
 		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/a_garand_bayonet.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_scope_m73"] = {model = "models/weapons/upgrades/a_optic_springfield.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_scope_u8x"] = {model = "models/weapons/upgrades/a_optic_springfield_7x.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 
 	SWEP.AttachmentModelsWM = {
@@ -41,6 +42,7 @@ if CLIENT then
 		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/w_garand_bayonet.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_scope_m73"] = {model = "models/weapons/upgrades/w_optic_springfield.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_scope_u8x"] = {model = "models/weapons/upgrades/w_optic_springfield.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
 	SWEP.IronsightPos = Vector(-2.5643, -3, 1.3156)
@@ -49,15 +51,28 @@ if CLIENT then
 	SWEP.KKINS2ScopeM73Pos = Vector(-2.5631, -3, 1.2384)
 	SWEP.KKINS2ScopeM73Ang = Vector()
 
+	SWEP.KKINS2ScopeU8XPos = Vector(-2.5712, -3, 1.1658)
+	SWEP.KKINS2ScopeU8XAng = Vector(0, 0, 0)
+
 	SWEP.CustomizationMenuScale = 0.015
 end
 
 SWEP.Attachments = {
-	-- {header = "Sight", offset = {500, -500}, atts = {"kk_ins2_cstm_barska", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_cstm_acog", "kk_ins2_po4", "kk_ins2_scope_mosin", "kk_ins2_scope_m40"}},
-	{header = "Sight", offset = {500, -500}, atts = {"kk_ins2_scope_m73"}, exclusions = {["kk_ins2_ww2_stripper"] = true}},
+	{header = "Sight", offset = {500, -500}, atts = {
+		"kk_ins2_scope_m73", 
+		"kk_ins2_scope_u8x",
+	}, exclusions = {[
+		"kk_ins2_ww2_stripper"] = true
+	}},
+	
 	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_ww2_knife"}},
 	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
-	{header = "Clip", offset = {200, 0}, atts = {"kk_ins2_ww2_stripper"}, exclusions = {["kk_ins2_scope_m73"] = true}},
+	
+	{header = "Clip", offset = {200, 0}, atts = {"kk_ins2_ww2_stripper"}, exclusions = {
+		["kk_ins2_scope_m73"] = true,
+		["kk_ins2_scope_u8x"] = true
+	}},
+	
 	-- {header = "Under", offset = {-500, 0}, atts = {"kk_ins2_bipod"}},
 	-- {header = "Lasers", offset = {125, 200}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}},
 	-- {header = "More Sight", offset = {1200, 0}, atts = {"kk_ins2_magnifier"}, dependencies = CustomizableWeaponry_KK.ins2.magnifierDependencies},
@@ -183,7 +198,8 @@ SWEP.ReloadTimes = {
 
 if CLIENT then
 	function SWEP:updateStandardParts()
-		self:setElementActive("bolt_iron", !self.ActiveAttachments.kk_ins2_scope_m73)
-		self:setElementActive("bolt_scope", self.ActiveAttachments.kk_ins2_scope_m73)
+		local scope = self:getActiveAttachmentInCategory(1) != nil
+		self:setElementActive("bolt_iron", !scope)
+		self:setElementActive("bolt_scope", scope)
 	end
 end

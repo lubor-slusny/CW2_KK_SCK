@@ -1,8 +1,8 @@
 local att = {}
-att.name = "kk_ins2_scope_m73"
-att.displayNameShort = "M73"
-att.displayName = "M73 Weaver Scope"
-att.aimPos = {"KKINS2ScopeM73Pos", "KKINS2ScopeM73Ang"}
+att.name = "kk_ins2_scope_m82"
+att.displayNameShort = "M82"
+att.displayName = "M82 Lyman Scope"
+att.aimPos = {"KKINS2ScopeM82Pos", "KKINS2ScopeM82Ang"}
 att.FOVModifier = 0
 att.AimViewModelFOV = 25
 att.isSight = true

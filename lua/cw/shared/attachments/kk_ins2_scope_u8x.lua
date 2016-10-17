@@ -1,8 +1,8 @@
 local att = {}
-att.name = "kk_ins2_scope_m73"
-att.displayNameShort = "M73"
-att.displayName = "M73 Weaver Scope"
-att.aimPos = {"KKINS2ScopeM73Pos", "KKINS2ScopeM73Ang"}
+att.name = "kk_ins2_scope_u8x"
+att.displayNameShort = "Unertl 8x"
+att.displayName = "Unertl 8x scope"
+att.aimPos = {"KKINS2ScopeU8XPos", "KKINS2ScopeU8XAng"}
 att.FOVModifier = 0
 att.AimViewModelFOV = 25
 att.isSight = true
@@ -16,7 +16,7 @@ att.statModifiers = {
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
 	att.description = {
-		[1] = {t = "Provides 4x magnification.", c = CustomizableWeaponry.textColors.POSITIVE},
+		[1] = {t = "Provides 7.8x magnification.", c = CustomizableWeaponry.textColors.POSITIVE},
 		[2] = {t = "Narrow scope reduces awareness.", c = CustomizableWeaponry.textColors.NEGATIVE},
 		[3] = {t = "Can be disorienting at close range.", c = CustomizableWeaponry.textColors.NEGATIVE}
 	}
@@ -27,7 +27,7 @@ if CLIENT then
 		{tex = surface.GetTextureID(path), offset = {0, 1}},
 	}
 	
-	att._rtFov = 12
+	att._rtFov = 6
 	att._rtReticle = surface.GetTextureID(path)
 	att._reticleMat = Material(path)
 	

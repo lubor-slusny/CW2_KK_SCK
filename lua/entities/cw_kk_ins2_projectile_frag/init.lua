@@ -53,8 +53,9 @@ function ENT:PhysicsCollide(data, physobj)
 end
 
 function ENT:Fuse(t)
-	self.fuser = self:GetOwner()
-	self.kaboomboom = CurTime() + 60 // (t or 3)
+	local p = self:GetOwner()
+	self.fuser = IsValid(p) and p or self
+	self.kaboomboom = CurTime() + (t or 3)
 end
 
 function ENT:Use(activator, caller)
@@ -80,7 +81,7 @@ function ENT:Think()
 	end
 	
 	if self.kaboomboom and CurTime() > self.kaboomboom then
-		util.BlastDamage(self, self.fuser or self, self:GetPos(), self.ExplodeRadius, self.ExplodeDamage)
+		util.BlastDamage(self, self.fuser, self:GetPos(), self.ExplodeRadius, self.ExplodeDamage)
 		
 		ef = EffectData()
 		ef:SetOrigin(self:GetPos())

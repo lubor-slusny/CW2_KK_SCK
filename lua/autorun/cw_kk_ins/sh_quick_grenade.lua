@@ -239,7 +239,7 @@ function CustomizableWeaponry_KK.ins2.quickGrenade:throw(wep, IFTP)
 						
 						nade:SetPos(pos)
 						nade:SetAngles(eyeAng)
-						nade:SetOwner(wep.Owner)
+						-- nade:SetOwner(wep.Owner)
 						
 						nade:Spawn()
 						nade:Activate()
@@ -340,7 +340,7 @@ function CustomizableWeaponry_KK.ins2.quickGrenade:throw(wep, IFTP)
 						
 						nade:SetPos(pos)
 						nade:SetAngles(eyeAng)
-						-- nade:SetOwner(wep.Owner)
+						nade:SetOwner(wep.Owner)
 						
 						nade:Spawn()
 						nade:Activate()
