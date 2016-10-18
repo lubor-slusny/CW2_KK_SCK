@@ -51,7 +51,7 @@ if CLIENT then
 	SWEP.KKINS2ScopeM73Pos = Vector(-2.5631, -3, 1.2384)
 	SWEP.KKINS2ScopeM73Ang = Vector()
 
-	SWEP.KKINS2ScopeU8XPos = Vector(-2.5712, -3, 1.1658)
+	SWEP.KKINS2ScopeU8XPos = Vector(-2.57, -4, 1.1622)
 	SWEP.KKINS2ScopeU8XAng = Vector(0, 0, 0)
 
 	SWEP.CustomizationMenuScale = 0.015

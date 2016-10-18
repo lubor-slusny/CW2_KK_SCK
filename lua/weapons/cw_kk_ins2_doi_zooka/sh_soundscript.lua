@@ -33,8 +33,8 @@ SWEP.Sounds = {
 	},
 
 	base_crawl = {
-		{time = 12/32, sound = "uni_RightCrawl"},
-		{time = 37/32, sound = "uni_LeftCrawl"},
+		{time = 12/32, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
+		{time = 37/32, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
 	},
 
 	base_dryfire = {

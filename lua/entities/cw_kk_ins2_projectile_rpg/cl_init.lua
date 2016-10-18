@@ -33,7 +33,7 @@ end
 
 function ENT:DrawDLight()
 	dlight = DynamicLight(self:EntIndex())
-					
+	
 	dlight.r = 255 
 	dlight.g = 218
 	dlight.b = 74

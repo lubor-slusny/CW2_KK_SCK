@@ -111,7 +111,7 @@ SWEP.Primary.DefaultClip	= 1
 SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= "M6A1 Rocket"
 
-SWEP.FireDelay = 0.3
+SWEP.FireDelay = 0.5
 SWEP.FireSound = "CW_KK_INS2_DOI_BAZOOKA_FIRE"
 SWEP.Recoil = 0.5
 
@@ -123,6 +123,10 @@ SWEP.SpreadPerShot = 0.01
 SWEP.SpreadCooldown = 0.8
 SWEP.Shots = 1
 SWEP.Damage = 100
+
+SWEP.MuzzleVelocity = 80
+SWEP.projectileClass = "cw_kk_ins2_projectile_m6a1"
+SWEP.hipBulletDelay = 0.25
 
 SWEP.FirstDeployTime = 6.9 // so long
 SWEP.DeployTime = 1
@@ -139,24 +143,6 @@ SWEP.reloadProgressAnimsRaw = {
 	base_pickup = true,
 	base_pickup_mm = true
 }
-
-local cyc, suffix
-
-function SWEP:fireAnimFunc()
-	cyc = 0.25
-	suffix = ""
-	
-	if (self:Clip1() == 0) then
-		cyc = 0
-		suffix = "_empty"
-	end
-	
-	if self:isAiming() then
-		suffix = suffix .. "_aim"
-	end
-	
-	self:sendWeaponAnim("base_fire" .. suffix, 1, cyc)
-end //*/
 
 if CLIENT then
 	function SWEP:updateStandardParts()

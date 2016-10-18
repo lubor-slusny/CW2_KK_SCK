@@ -97,7 +97,7 @@ SWEP.spawnTimePlant = 1.17	// delay between start of plant animation and creatio
 SWEP.swapTimePlant = 1.7	// minimal allowed length of plant animation
 
 SWEP.PlantPos = Vector()	// position offset for planted entities (tr.HitPos-relative)
-SWEP.PlantAng = Vector()	// angle tweak for planted entities
+SWEP.PlantAng = Angle()	// angle tweak for planted entities
 
 SWEP.maxVelDelay = 1.35		// delay between start of pinpull animation and full throw velocity being available (full length of pinpull animation)
 SWEP.maxVelDelayCook = 1.7	// delay between start of pinpull_cook animation and full throw velocity being available (full length of pinpull_cook animation)
@@ -336,16 +336,16 @@ function SWEP:IndividualThink()
 					local grenade = self:createProjectile()
 					
 					if IsValid(grenade) then
+						local pos = tr.HitPos
 						local ang = tr.HitNormal:Angle()
 						
-						local pos = tr.HitPos
 						pos = pos + ang:Forward() * self.PlantPos.x
 						pos = pos + ang:Right() * self.PlantPos.y
 						pos = pos + ang:Up() * self.PlantPos.z
 						
-						ang:RotateAroundAxis(ang:Right(), self.PlantAng.x)
+						ang:RotateAroundAxis(ang:Right(), self.PlantAng.p)
 						ang:RotateAroundAxis(ang:Up(), self.PlantAng.y)
-						ang:RotateAroundAxis(ang:Forward(), self.PlantAng.z)
+						ang:RotateAroundAxis(ang:Forward(), self.PlantAng.r)
 						
 						grenade:SetPos(pos)
 						grenade:SetAngles(ang)

@@ -2,115 +2,10 @@ AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("shared.lua")
 include("shared.lua")
 
-function ENT:clusterFuckRackit()
-	local pos = self:GetPos()
-	local ang = self:GetAngles()
-	
-	local nade = ents.Create("cw_kk_ins2_projectile_rpg")
-	nade:SetPos(pos)
-	nade:SetAngles(ang)
-	nade:Spawn()
-	nade:Activate()
-	nade:SetOwner(self.Owner)
-	nade.OnTakeDamage = nil
-	
-	nade.safetyBypass = true
-	
-	local phys = nade:GetPhysicsObject()
-	
-	if IsValid(phys) then
-		phys:SetVelocity(self:GetVelocity() + VectorRand() * 300)
-		phys:AddAngleVelocity(Vector(math.random(-500, 500), math.random(-500, 500), math.random(-500, 500)))
-	end
-	
-	// KEK
-	local ply = self.Owner
-	local ent = ents.Create("gmod_cameraprop")
-	if !IsValid(ent) then return end
-	ent:SetKey(0)
-	ent.controlkey = 0
-	ent:SetPlayer(ply)
-	ent.toggle = 0
-	ent.locked = 0
-	ent:Spawn()
-	ent:SetTracking(NULL, Vector(0))
-	ent:SetLocked(0)
-	
-	ply:SetViewEntity(ent)
-	ply.UsingCamera = ent
-	ent.UsingPlayer = ply
-	
-	self.cum = ent
-end
-
-function ENT:clusterFuckHENade()
-	local pos = self:GetPos()
-	local ang = self:GetAngles()
-	
-	local nade = ents.Create("cw_kk_ins2_projectile_frag")
-	nade:SetPos(pos - ang:Forward())
-	nade:SetAngles(ang)
-	nade:Spawn()
-	nade:Activate()
-	nade:Fuse(math.random(2,8))
-	nade:SetOwner(self.Owner)
-	-- nade.OnTakeDamage = nil
-	
-	local phys = nade:GetPhysicsObject()
-	
-	if IsValid(phys) then
-		phys:AddAngleVelocity(Vector(math.random(-500, 500), math.random(-500, 500), math.random(-500, 500)))
-	end
-end
-
-local shraps = {
-	"cw_kk_ins2_projectile_rpg",
-	"cw_kk_ins2_projectile_frag",
-	"cw_kk_ins2_projectile_frag",
-	"cw_kk_ins2_projectile_frag",
-	"cw_kk_ins2_projectile_frag",
-	"cw_kk_ins2_projectile_frag",
-	"cw_kk_ins2_projectile_frag",
-	"cw_kk_ins2_projectile_frag",
-	"cw_kk_ins2_projectile_m84",
-	"cw_kk_ins2_projectile_m84",
-	"cw_kk_ins2_projectile_m18",
-}
-
-function ENT:clusterFuckNades()
-	for i = 1,math.random(10,15) do
-		local pos = self:GetPos()
-		local ang = self:GetAngles()
-		
-		local nade = ents.Create(shraps[math.random(table.Count(shraps))])
-		nade:SetPos(pos - ang:Forward())
-		nade:SetAngles(ang)
-		nade:Spawn()
-		nade:Activate()
-		if nade.Fuse then nade:Fuse(2 + math.random(20) / 10) end
-		nade:SetOwner(self.Owner)
-		-- nade.OnTakeDamage = nil
-		
-		local phys = nade:GetPhysicsObject()
-		
-		if IsValid(phys) then
-			phys:AddAngleVelocity(Vector(math.random(-500, 500), math.random(-500, 500), math.random(-500, 500)))
-		end
-	end
-end
-
 function ENT:Think()
-	if IsValid(self.cum) then
-		self.cum:SetPos(self:GetPos())
-		self.cum:SetAngles(self:GetAngles())
-	end
-	
 	self:SetBodygroup(0,1)
 		
-	if self.dt.State == self.States.misfired then 
-		-- if math.random(1,10000) == 1337 then 
-			-- self:selfDestruct()
-		-- end
+	if self.dt.State == self.States.misfired then
 		return 
 	end
 	
@@ -144,12 +39,7 @@ function ENT:Think()
 				self.ArmDir = phys:GetVelocity()
 			end
 		
-			-- phys:SetVelocity(self.ArmDir:GetNormalized() * 11574.78) // 294m/s coz some web about how rpg works
-			-- phys:SetVelocity(self.ArmDir:GetNormalized() * -0.1)
-			-- phys:SetVelocity((self.ArmDir:GetNormalized() * 11574.78) + VectorRand() * 10)
 			phys:SetVelocity((self.ArmDir:GetNormalized() * 5787.39) + VectorRand() * 10)
-			-- self:SetLocalAngularVelocity(Angle(90,90,0))
-			-- self:SetVelocity((self.ArmDir:GetNormalized() * 5787.39) + VectorRand() * 10)
 			
 			local ang = self:GetAngles()
 			ang:RotateAroundAxis(ang:Forward(), 10)
@@ -165,7 +55,6 @@ function ENT:Use(activator, caller)
 end
 
 function ENT:OnRemove()
-	SafeRemoveEntity(self.cum)
 	return false
 end 
 
@@ -221,6 +110,8 @@ function ENT:PhysicsCollide(data, physobj)
 end
 
 function ENT:selfDestruct()
+	if self.HadEnough then return end
+	
 	self.HadEnough = true
 	
 	if self.DontDestroy then return end
@@ -241,10 +132,6 @@ function ENT:selfDestruct()
 	expl:SetKeyValue("iMagnitude", tostring(self.BlastDamage))
 	expl:SetKeyValue("iRadiusOverride", tostring(self.BlastRadius))
 	expl:Fire("Explode",0,0)
-	
-	if self.doAClusterFuck then 		
-		self:clusterFuckNades()
-	end
 	
 	self:Remove()
 end
@@ -275,8 +162,6 @@ function ENT:SearchNDestroy()
 end
 
 function ENT:OnTakeDamage(dmg)
-	if self.HadEnough then return end
-	
 	self:selfDestruct()
 end
 	

@@ -79,23 +79,48 @@ function SWEP:PrimaryAttack()
 	CT = CurTime()
 	
 	if IFTP then
-		local muzzleData = EffectData()
-		muzzleData:SetEntity(self)
-		util.Effect("cw_kk_ins2_muzzleflash", muzzleData)
-		
-		if self.dt.Suppressed then
-			self:EmitSound(self.FireSoundSuppressed, 105, 100)
+		if self.projectileClass then
+			if ((SP and SERVER) or (!SP and CLIENT)) then
+				self:fireAnimFunc()
+			end
+			
+			local delay = wep.hipBulletDelay or 0
+			
+			if wep:isAiming() then
+				delay = 0
+			end
+
+			CustomizableWeaponry.actionSequence.new(wep, delay, nil, function()
+				local muzzleData = EffectData()
+				muzzleData:SetEntity(self)
+				util.Effect("cw_kk_ins2_muzzleflash", muzzleData)
+				
+				self:EmitSound(self.FireSound, 105, 100)
+				
+				CustomizableWeaponry_KK.ins2.rpgs.fireShared(self, true, true)
+				self:makeFireEffects()
+				self:MakeRecoil()
+			end)
 		else
-			self:EmitSound(self.FireSound, 105, 100)
+			local muzzleData = EffectData()
+			muzzleData:SetEntity(self)
+			util.Effect("cw_kk_ins2_muzzleflash", muzzleData)
+			
+			if self.dt.Suppressed then
+				self:EmitSound(self.FireSoundSuppressed, 105, 100)
+			else
+				self:EmitSound(self.FireSound, 105, 100)
+			end
+			
+			if ((SP and SERVER) or (!SP and CLIENT)) then
+				self:fireAnimFunc()
+			end
+			
+			self:FireBullet(self.Damage, self.CurCone, self.ClumpSpread, self.Shots)
+			self:makeFireEffects()
+			self:MakeRecoil()
 		end
 		
-		if ((SP and SERVER) or (!SP and CLIENT)) then
-			self:fireAnimFunc()
-		end
-		
-		self:FireBullet(self.Damage, self.CurCone, self.ClumpSpread, self.Shots)
-		self:makeFireEffects()
-		self:MakeRecoil()
 		self:addFireSpread(CT)
 		
 		if CLIENT then

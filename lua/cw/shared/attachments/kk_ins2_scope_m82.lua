@@ -21,7 +21,7 @@ if CLIENT then
 		[3] = {t = "Can be disorienting at close range.", c = CustomizableWeaponry.textColors.NEGATIVE}
 	}
 
-	local path = "models/weapons/optics/weaver_crosshair"
+	local path = "models/weapons/optics/enfield_crosshair"
 	
 	att.zoomTextures = {
 		{tex = surface.GetTextureID(path), offset = {0, 1}},

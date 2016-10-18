@@ -18,14 +18,6 @@ local copyPasteSx = {
 	"Pos", "Ang"
 }
 
-// this might help
-local customFireFuncs = {	// helps making lulz after map transitions
-	["PG-7VM Grenade"] = CustomizableWeaponry_KK.ins2.rpgs.fireRPG,
-	["AT4 Launcher"] = CustomizableWeaponry_KK.ins2.rpgs.fireAT4, 
-	["M6A1 Rocket"] = CustomizableWeaponry_KK.ins2.rpgs.fireM6A1, 
-	["Panzerfaust"] = CustomizableWeaponry_KK.ins2.rpgs.firePF60, 
-}
-
 CustomizableWeaponry.callbacks:addNew("initialize", "KK_INS2_BASE", function(wep)
 	-- wep:SetNWVarProxy("Potato", print)
 	
@@ -75,18 +67,6 @@ CustomizableWeaponry.callbacks:addNew("initialize", "KK_INS2_BASE", function(wep
 	// Ive never really used ammo crate before so here s quickfix for explosives
 	if wep.KKINS2RCE or wep.KKINS2Nade then
 		wep.Primary.ClipSize_Orig = 1
-	end
-	
-	// bullet-firing-weapons really shouldnt do these checks every time theyre about to fire a bullet
-		// prubly move these into individual sweps in the future
-	local fireFunc = customFireFuncs[wep.Primary.Ammo]
-	
-	if fireFunc then
-		wep.FireBullet = function(wep)
-			local IFTP = IsFirstTimePredicted()
-			
-			fireFunc(wep, IFTP, true)
-		end
 	end
 end)
 

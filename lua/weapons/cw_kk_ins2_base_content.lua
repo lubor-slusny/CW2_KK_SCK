@@ -428,82 +428,212 @@ if CustomizableWeaponry.magSystem then
 	CustomizableWeaponry.magSystem:registerMagType("m1Clip", " M1 Garand Clip", 6)	
 end
 
--- // KEK
+// KEK
 
 if CustomizableWeaponry_KK.HOME then
-	-- // RPG
-	-- local gren = {}
-	-- gren.name = "40mm_kk_1337"
-	-- gren.display = " - 1337 ROFLKEK"
+	/*
+	// RPG
+	local gren = {}
+	gren.name = "40mm_kk_1337"
+	gren.display = " - 1337 ROFLKEK"
 
-	-- function gren:fireFunc()
-		-- CustomizableWeaponry_KK.ins2.rpgs.fireRPG(self, IsFirstTimePredicted()) // yay I can doo this two
-	-- end
+	function gren:fireFunc()
+		if IsFirstTimePredicted() then
+			if SERVER then
+				local pos = IsValid(wep.Owner) and wep.Owner:GetShootPos() or wep:GetPos()
+				local eyeAng = IsValid(wep.Owner) and wep.Owner:EyeAngles() or wep:GetAngles()
+				
+				local fwdAng = eyeAng
+				fwdAng:RotateAroundAxis(fwdAng:Right(), 1.8)
+				local forward = fwdAng:Forward()
+				
+				-- local offset = eyeAng:Right() * 4 - eyeAng:Up() * 3
+				local offset = eyeAng:Right() * 4 - eyeAng:Up() * 6
+				
+				local nade = ents.Create("cw_kk_ins2_projectile_rpg")
+				nade:SetPos(pos + offset)
+				nade:SetAngles(fwdAng)
+				nade:Spawn()
+				nade:Activate()
+				nade:SetOwner(wep.Owner)
+				
+				if not legit then
+					nade.safetyBypass = true
+					-- nade.doAClusterFuck = true
+				end
+				
+				local phys = nade:GetPhysicsObject()
+				
+				if IsValid(phys) then
+					-- phys:SetVelocity(forward * 4527.55) // 115 m/s coz wiki
+					phys:SetVelocity(forward * 3395.6625)
+					-- phys:SetVelocity(forward * 2263.775)
+				end
+			end
+		end
+	end
 
-	-- CustomizableWeaponry.grenadeTypes:addNew(gren)
+	CustomizableWeaponry.grenadeTypes:addNew(gren) // */
 	
-	-- // FRAG
-	-- local gren = {}
-	-- gren.name = "40mm_kk_1338"
-	-- gren.display = " - 1338 ROFLKEK"
+	/*
+	// FRAG
+	local gren = {}
+	gren.name = "40mm_kk_1338"
+	gren.display = " - 1338 ROFLKEK"
 
-	-- function gren:fireFunc()
-		-- local pos = self.Owner:GetShootPos()
-		-- local offset = CustomizableWeaponry.quickGrenade.getThrowOffset(self.Owner)
-		-- local eyeAng = self.Owner:EyeAngles()
-		-- local forward = eyeAng:Forward()
+	function gren:fireFunc()
+		local pos = self.Owner:GetShootPos()
+		local offset = CustomizableWeaponry.quickGrenade.getThrowOffset(self.Owner)
+		local eyeAng = self.Owner:EyeAngles()
+		local forward = eyeAng:Forward()
 		
-		-- local nade = ents.Create("cw_kk_ins2_projectile_frag")
-		-- nade:SetPos(pos + offset)
-		-- nade:SetAngles(eyeAng)
-		-- nade:Spawn()
-		-- nade:Activate()
-		-- nade:Fuse(3)
-		-- nade:SetOwner(self.Owner)
+		local nade = ents.Create("cw_kk_ins2_projectile_frag")
+		nade:SetPos(pos + offset)
+		nade:SetAngles(eyeAng)
+		nade:Spawn()
+		nade:Activate()
+		nade:Fuse(3)
+		nade:SetOwner(self.Owner)
 		
-		-- local phys = nade:GetPhysicsObject()
+		local phys = nade:GetPhysicsObject()
 		
-		-- if IsValid(phys) then
-			-- local overallSideMod = self.Owner:KeyDown(IN_SPEED) and 2 or 1
+		if IsValid(phys) then
+			local overallSideMod = self.Owner:KeyDown(IN_SPEED) and 2 or 1
 
-			-- // take the velocity into account
-			-- addMod = math.Clamp(self.Owner:GetVelocity():Length() / self.Owner:GetRunSpeed(), 0, 1)
+			// take the velocity into account
+			addMod = math.Clamp(self.Owner:GetVelocity():Length() / self.Owner:GetRunSpeed(), 0, 1)
 			
-			-- local velocity = forward * CustomizableWeaponry.quickGrenade.throwVelocity + CustomizableWeaponry.quickGrenade.addVelocity
-			-- local velNorm = self.Owner:GetVelocity():GetNormal()
-			-- velNorm.z = 0
+			local velocity = forward * CustomizableWeaponry.quickGrenade.throwVelocity + CustomizableWeaponry.quickGrenade.addVelocity
+			local velNorm = self.Owner:GetVelocity():GetNormal()
+			velNorm.z = 0
 			
-			-- // add velocity based on player velocity normal
-			-- velocity = velocity + velNorm * CustomizableWeaponry.quickGrenade.movementAddVelocity * addMod
+			// add velocity based on player velocity normal
+			velocity = velocity + velNorm * CustomizableWeaponry.quickGrenade.movementAddVelocity * addMod
 			
-			-- phys:SetVelocity(velocity)
-			-- phys:AddAngleVelocity(Vector(math.random(-500, 500), math.random(-500, 500), math.random(-500, 500)))
-		-- end
-	-- end
+			phys:SetVelocity(velocity)
+			phys:AddAngleVelocity(Vector(math.random(-500, 500), math.random(-500, 500), math.random(-500, 500)))
+		end
+	end
 
-	-- CustomizableWeaponry.grenadeTypes:addNew(gren)	
+	CustomizableWeaponry.grenadeTypes:addNew(gren) // */
 	
-	-- // magnuss
-	-- local gren = {}
-	-- gren.name = "40mm_kk_1339"
-	-- gren.display = " - ANTI-STRIDER"
+	/*
+	// magnuss 
+	local gren = {}
+	gren.name = "40mm_kk_1339"
+	gren.display = " - ANTI-STRIDER"
 
-	-- function gren:fireFunc()
-		-- CustomizableWeaponry_KK.ins2.rpgs.fireHL2EP2(self, IsFirstTimePredicted())
-	-- end
+	function gren:fireFunc()
+		if IsFirstTimePredicted() then
+			local pos = wep.Owner:GetShootPos()
+			local eyeAng = wep.Owner:EyeAngles()
+			local forward = eyeAng:Forward()
+			local offset = forward * 30 + eyeAng:Right() * 4 - eyeAng:Up() * 3
+			
+			local nade = ents.Create("weapon_striderbuster")
+			nade:SetPos(pos + offset)
+			nade:SetAngles(eyeAng)
+			nade:Spawn()
+			nade:Activate()
+			nade:SetOwner(wep.Owner)
+			local phys = nade:GetPhysicsObject()
+			
+			if IsValid(phys) then
+				phys:SetVelocity(forward * 2500)
+			end
+			
+			-- nade:SetKeyValue("Dud Bomb", "false")
+			-- nade:Fire("string", "param", 0)
+			-- nade:Fire("OnPhysCannon")
+			-- nade:AddGameFlag(FVPHYSICS_WAS_THROWN)
+			-- nade:Fire("Wake")
+			-- nade:Fire("EnablePuntSound")
+			-- nade:SetKeyValue("ExplodeIn", "0")
+			-- nade:Fire("PUNTED_BY_CANNON")
+			-- nade:Fire("physgun_pickup")
+			-- nade:Fire("physgun_punt")
+			-- hook.Run("GravGunPunt", wep.Owner, nade)
+			-- nade:Fire("ignite")
+			-- nade:Fire("activate")
+			-- nade:Fire("arm")
+			-- nade:Fire("punt")
+			-- nade:Fire("launch")
+			-- nade:Fire("ExplodeIn", "2", 2)
+			-- nade:SetKeyValue("explodein", "2")
+			-- nade:Fire("explodein", "2")
+			
+			-- nade:Fire("Launch")
+			-- nade:Fire("Launch", wep.Owner)
+			-- nade:SetKeyValue("m_bLaunched", "true")
+			-- nade:Launch(wep.Owner)
+			-- nade.m_bLaunched = true
+			-- nade:launch(wep.Owner)
+			-- nade:Fire("ExplodeIn", "2", 0)
+		end
+	end
 
-	-- CustomizableWeaponry.grenadeTypes:addNew(gren)
+	CustomizableWeaponry.grenadeTypes:addNew(gren) // */
 	
+	/*
 	// balls
 	local gren = {}
 	gren.name = "40mm_kk_13399"
 	gren.display = " - BALLSBALLSBALLSBALLS"
 
-	function gren:fireFunc()
-		CustomizableWeaponry_KK.ins2.rpgs.fireHL2EP1(self, IsFirstTimePredicted())
+	function gren.fireFunc(wep)
+		if !IsValid(wep._EP1Launcher) then
+			wep._EP1Launcher = ents.Create("point_combine_ball_launcher")
+		end
+
+		if IsFirstTimePredicted() then 
+			local pos = wep.Owner:GetShootPos()
+			local eyeAng = wep.Owner:EyeAngles()
+			local forward = eyeAng:Forward()
+			
+			wep._EP1Launcher:SetOwner(wep.Owner)
+			
+			wep._EP1Launcher:SetPos(pos)
+			wep._EP1Launcher:SetAngles(eyeAng)
+			
+			wep._EP1Launcher:SetKeyValue("launchconenoise", "0")
+			wep._EP1Launcher:SetKeyValue("ballcount", "1000")
+			wep._EP1Launcher:SetKeyValue("minspeed", "2000")
+			wep._EP1Launcher:SetKeyValue("maxspeed", "2000")
+			wep._EP1Launcher:SetKeyValue("ballradius", "10")
+			wep._EP1Launcher:SetKeyValue("maxballbounces", "4")
+			wep._EP1Launcher:SetKeyValue("balltype", "2")
+			
+			wep._EP1Launcher:Fire("Enable")
+			wep._EP1Launcher:Fire("LaunchBall")
+			wep._EP1Launcher:Fire("Disable")
+			
+			-- local nade = ents.Create("prop_combine_ball")
+			-- nade:SetPos(pos)
+			
+			-- nade:Fire("setradius", "10")
+			-- nade:Fire("SetOwnerEntity", wep.Owner)
+			-- nade:Fire("SetOriginalOwner", wep.Owner)
+			-- nade:Fire("SetAbsVelocity", forward * 10)
+			-- nade:SetOwner(wep.Owner)
+			
+			-- nade:Spawn()
+			
+			-- nade:Fire("SetMass", 150)
+			-- nade:Fire("StartLifetime", 4)
+			
+			-- nade:Activate()
+			
+			-- nade:Fire("SetAbsVelocity", forward * 10)
+			
+			-- local phys = nade:GetPhysicsObject()
+			
+			-- if IsValid(phys) then
+				-- phys:SetVelocity(forward * 10)
+			-- end
+		end
 	end
 
-	CustomizableWeaponry.grenadeTypes:addNew(gren)
+	CustomizableWeaponry.grenadeTypes:addNew(gren) // */
 	
-	-- // add mw2 m203 flare kek
+	// add mw2 m203 flare kek
 end

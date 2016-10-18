@@ -83,9 +83,8 @@ SWEP.Primary.DefaultClip	= 1
 SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= "AT4 Launcher"
 
-SWEP.FireDelay = 0.3
+SWEP.FireDelay = 0.5
 SWEP.FireSound = "CW_KK_INS2_AT4_FIRE"
-SWEP.FireSoundSuppressed = "CW_KK_INS2_AT4_FIRE"
 
 SWEP.Recoil = 0.5
 SWEP.HipSpread = 0.05
@@ -96,6 +95,10 @@ SWEP.SpreadPerShot = 0.01
 SWEP.SpreadCooldown = 0.8
 SWEP.Shots = 1
 SWEP.Damage = 100
+
+SWEP.MuzzleVelocity = 285
+SWEP.projectileClass = "cw_kk_ins2_projectile_at4"
+SWEP.hipBulletDelay = 0.3
 
 SWEP.DeployTime = 1
 SWEP.HolsterTime = 1
@@ -156,21 +159,3 @@ end
 SWEP.reticleInactivityCallbacksRaw = {
 	at4_reload_start = 0.1
 }
-
-local cyc, suffix
-
-function SWEP:fireAnimFunc()
-	cyc = 0.3
-	suffix = ""
-
-	if self:Clip1() == 0 then
-		suffix = "_empty"
-		cyc = 0
-	end
-
-	if self:isAiming() then
-		suffix = suffix .. "_aim"
-	end
-
-	self:sendWeaponAnim("base_fire" .. suffix, 1, cyc)
-end

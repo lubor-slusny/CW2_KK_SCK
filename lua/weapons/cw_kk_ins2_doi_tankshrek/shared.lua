@@ -8,7 +8,7 @@ include("sh_soundscript.lua")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "Panzerschreck"
+	SWEP.PrintName = "RPzB 54"
 	
 	SWEP.SelectFont = "CW_SelectIcons2"
 	SWEP.IconLetter = "i"
@@ -46,7 +46,7 @@ SWEP.Animations = {
 	base_fire_empty = "base_dryfire",
 	base_fire_empty_aim = "iron_dryfire",
 	base_reload_empty = "base_reload",
-	base_idle = "base_idle",
+	base_idle = "iron_idle",
 	base_holster = "base_holster",
 	base_sprint = "base_sprint",
 	base_safe = "base_down",
@@ -90,8 +90,8 @@ SWEP.Primary.DefaultClip	= 1
 SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= "M6A1 Rocket"
 
-SWEP.FireDelay = 0.3
-SWEP.FireSound = "CW_KK_INS2_DOI_BAZOOKA_FIRE"
+SWEP.FireDelay = 0.5
+SWEP.FireSound = "CW_KK_INS2_DOI_SHREK_FIRE"
 SWEP.Recoil = 0.5
 
 SWEP.HipSpread = 0.05
@@ -103,42 +103,14 @@ SWEP.SpreadCooldown = 0.8
 SWEP.Shots = 1
 SWEP.Damage = 100
 
-SWEP.FirstDeployTime = 1.4
+SWEP.MuzzleVelocity = 110
+SWEP.projectileClass = "cw_kk_ins2_projectile_pf60"
+SWEP.hipBulletDelay = 0.25
+
+SWEP.FirstDeployTime = 3.45
 SWEP.DeployTime = 1
 SWEP.HolsterTime = 1
 
 SWEP.ReloadTimes = {
-	base_ready = {4.7, 6.87},
-	base_ready_phosphorus = {4.7, 6.87},
 	base_reload = {4.4, 6.43},
-	base_reload_phosphorus = {4.4, 6.43},
 }
-
-SWEP.reloadProgressAnimsRaw = {
-	base_pickup = true,
-	base_pickup_mm = true
-}
-
-local cyc, suffix
-
-function SWEP:fireAnimFunc()
-	cyc = 0.25
-	suffix = ""
-	
-	if (self:Clip1() == 0) then
-		cyc = 0
-		suffix = "_empty"
-	end
-	
-	if self:isAiming() then
-		suffix = suffix .. "_aim"
-	end
-	
-	self:sendWeaponAnim("base_fire" .. suffix, 1, cyc)
-end //*/
-
--- if CLIENT then
-	-- function SWEP:updateStandardParts()
-		-- self:setElementActive("h347", !self.ActiveAttachments.kk_ins2_ammo_m10)
-	-- end
--- end

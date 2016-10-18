@@ -20,6 +20,7 @@ if CLIENT then
 	SWEP.Shell = "KK_INS2_12guage"
 	
 	SWEP.AttachmentModelsVM = {}
+	SWEP.AttachmentModelsWM = {}
 	
 	SWEP.IronsightPos = Vector(-2.4598, -2, 0.5881)
 	SWEP.IronsightAng = Vector()
@@ -109,6 +110,9 @@ SWEP.SpreadCooldown = 0.8
 SWEP.Shots = 12
 SWEP.Damage = 10
 
+SWEP.MuzzleVelocity = 100
+SWEP.projectileClass = "cw_kk_ins2_projectile_flare"
+
 SWEP.FirstDeployTime = 1.5
 SWEP.DeployTime = 0.5
 SWEP.HolsterTime = 0.5
@@ -116,49 +120,3 @@ SWEP.HolsterTime = 0.5
 SWEP.ReloadTimes = {
 	base_reload = {3.15, 5.17}
 }
-
-function SWEP:FireBullet()
-	if SERVER then
-		local pos = self.Owner:GetShootPos()
-		local eyeAng = self.Owner:EyeAngles()
-		local forward = eyeAng:Forward()
-		local offset = /*forward * 30 +*/ eyeAng:Right() * 4 - eyeAng:Up() * 3
-		
-		local nade = ents.Create("cw_kk_ins2_projectile_flare")
-		nade:SetPos(pos + offset)
-		nade:SetAngles(eyeAng)
-		nade:Spawn()
-		nade:Activate()
-		nade:SetOwner(self:GetOwner())
-		
-		local phys = nade:GetPhysicsObject()
-		
-		if IsValid(phys) then
-			phys:SetVelocity(forward * 3395.6625)
-		end
-	end
-end
-
-if CLIENT then
-	local down = Vector(0,0,10)
-	
-	function SWEP:updateOtherParts()
-		local cyc = self.CW_VM:GetCycle()
-		
-		if self.Sequence == self.Animations.base_reload and cyc > 0.28 and cyc < 0.5 then
-			if self._shellCoolDown and self._shellCoolDown > CurTime() then
-				return
-			end
-			
-			self._shellCoolDown = CurTime() + 3
-			
-			local att = self.CW_VM:GetAttachment(2)
-			local dir = att.Ang:Forward()
-			local pos = att.Pos + dir * 10
-			local ang = self.Owner:EyeAngles()
-			ang:RotateAroundAxis(ang:Up(), 180)
-			
-			CustomizableWeaponry_KK.ins2.shells:make(pos, ang, down, self._shellTable, 1)
-		end
-	end
-end

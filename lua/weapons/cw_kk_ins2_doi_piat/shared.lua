@@ -108,7 +108,7 @@ SWEP.Primary.DefaultClip	= 1
 SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= "M6A1 Rocket"
 
-SWEP.FireDelay = 0.3
+SWEP.FireDelay = 0.5
 SWEP.FireSound = "CW_KK_INS2_DOI_PIAT_FIRE"
 SWEP.Recoil = 0.5
 
@@ -121,6 +121,10 @@ SWEP.SpreadCooldown = 0.8
 SWEP.Shots = 1
 SWEP.Damage = 100
 
+SWEP.MuzzleVelocity = 76
+SWEP.projectileClass = "cw_kk_ins2_projectile_pf60"
+SWEP.hipBulletDelay = 0.25
+
 SWEP.FirstDeployTime = 1.4
 SWEP.DeployTime = 1.5
 SWEP.HolsterTime = 1.4
@@ -128,21 +132,3 @@ SWEP.HolsterTime = 1.4
 SWEP.ReloadTimes = {
 	base_reload = {2.7, 4.4},
 }
-
-local cyc, suffix
-
-function SWEP:fireAnimFunc()
-	cyc = 0.25
-	suffix = ""
-	
-	if (self:Clip1() == 0) then
-		suffix = "_empty"
-		cyc = 0
-	end
-	
-	if self:isAiming() then
-		suffix = suffix .. "_aim"
-	end
-	
-	self:sendWeaponAnim("base_fire" .. suffix, 1, cyc)
-end //*/

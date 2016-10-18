@@ -18,7 +18,7 @@ if CLIENT then
 	SWEP.BackupSights = {
 		["kk_ins2_cstm_pgo7"] = {
 			Vector(-2.1193, -2, -0.9167),
-			Vector(2.6952, 0.0549, 0)
+			Vector(2.6066, -0.2973, 8)
 		},
 	}
 	
@@ -48,14 +48,8 @@ if CLIENT then
 	
 	SWEP.LaserAngAdjust = Angle(0,-1,0)
 	
-	-- SWEP.IronsightPos = Vector(-2.1193, -2, -0.9167) // cod stayle
-	-- SWEP.IronsightAng = Vector(2.7606, 0.032, 0)
-
-	-- SWEP.IronsightPos = Vector(-2.1193, -2, -0.9167) // zeroed for rpg drop
-	-- SWEP.IronsightAng = Vector(1.5694, 0.032, 0)
-
-	SWEP.IronsightPos = Vector(-2.1193, -2, -0.9167) // rpg drop got fixed
-	SWEP.IronsightAng = Vector(2.6952, 0.0549, 0)
+	SWEP.IronsightPos = Vector(-2.1193, -2, -0.9167)
+	SWEP.IronsightAng = Vector(2.6066, -0.2973, 8)
 
 	SWEP.KKINS2CSTMPGO7Pos = Vector(-0.8264, -1, -0.3879)
 	SWEP.KKINS2CSTMPGO7Ang = Vector(2.6952, -0.3054, 7.5)
@@ -209,9 +203,8 @@ SWEP.Primary.DefaultClip	= 1
 SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= "PG-7VM Grenade"
 
-SWEP.FireDelay = 0.3
+SWEP.FireDelay = 0.5
 SWEP.FireSound = "CW_KK_INS2_RPG_FIRE"
-SWEP.FireSoundSuppressed = "CW_KK_INS2_RPG_FIRE"
 SWEP.Recoil = 0.5
 
 SWEP.HipSpread = 0.05
@@ -222,6 +215,10 @@ SWEP.SpreadPerShot = 0
 SWEP.SpreadCooldown = 0
 SWEP.Shots = 1
 SWEP.Damage = 100
+
+SWEP.MuzzleVelocity = 115
+SWEP.projectileClass = "cw_kk_ins2_projectile_rpg"
+SWEP.hipBulletDelay = 0.2727
 
 SWEP.FirstDeployTime = 4.7
 SWEP.DeployTime = 1.1
@@ -235,21 +232,3 @@ SWEP.ReloadTimes = {
 SWEP.reloadProgressAnimsRaw = {
 	base_pickup = true
 }
-
-local cyc, suffix
-
-function SWEP:fireAnimFunc()
-	cyc = 0.2727
-	suffix = ""
-
-	if self:Clip1() == 0 then
-		suffix = "_empty"
-		cyc = 0
-	end
-
-	if self:isAiming() then
-		suffix = suffix .. "_aim"
-	end
-
-	self:sendWeaponAnim("base_fire" .. suffix, 1,cyc)
-end

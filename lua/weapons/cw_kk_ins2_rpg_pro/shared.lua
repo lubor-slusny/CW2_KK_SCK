@@ -71,6 +71,11 @@ SWEP.Primary.DefaultClip	= -1
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "PG-7VM Grenade"
 
+SWEP.MuzzleVelocity = 25
+SWEP.projectileClass = "cw_kk_ins2_projectile_rpg"
+SWEP.projectileOffsetPos = Vector()
+SWEP.projectileOffsetAng = Angle(5, 0, 0)
+
 SWEP.HolsterTime = 0.6
 SWEP.timeToThrow = 1.5
 SWEP.swapTime = 0.5
@@ -78,7 +83,7 @@ SWEP.swapTime = 0.5
 SWEP.canCook = false // this swep should b cook only lol
 
 function SWEP:createProjectile()
-	CustomizableWeaponry_KK.ins2.rpgs.fireRPG(self, IsFirstTimePredicted())
+	CustomizableWeaponry_KK.ins2.rpgs.fireShared(self, IsFirstTimePredicted())
 end
 
 if CLIENT then

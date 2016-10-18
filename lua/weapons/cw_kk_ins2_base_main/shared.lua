@@ -78,7 +78,15 @@ SWEP.WeaponLength = 20
 
 SWEP.HolsterSpeed = 1
 
-SWEP.boltAction_isShot = false
+SWEP.hipBulletDelay = false // float
+SWEP.projectileClass = false // string
+SWEP.projectileOffsetPos = Vector(0, 4, -6)
+SWEP.projectileOffsetAng = Angle(1.8, 0, 0)
+
+SWEP.projectileOffsetPosAim = Vector(0, 0, -6)
+
+SWEP.projectileRotation = Angle(0, 0, 0)
+SWEP.projectileFuse = false // float
 
 if CLIENT then	
 	SWEP.PosBasedMuz = false
@@ -264,6 +272,8 @@ end
 //-----------------------------------------------------------------------------
 // doBoltAction sets delays and plays bolt animation on shotguns/rifles
 //-----------------------------------------------------------------------------
+
+SWEP.boltAction_isShot = false // internal bool
 
 local prefix, suffix, anim, curDelay
 

@@ -49,6 +49,8 @@ SWEP.Animations = {
 	base_draw_empty = "base_draw_empty",
 	base_fire = "base_fire",
 	base_fire_aim = "iron_fire",
+	base_fire_last = "base_fire",
+	base_fire_last_aim = "iron_fire",
 	base_fire_empty = "base_dryfire",
 	base_fire_empty_aim = "iron_dryfire",
 	base_idle = "base_idle",
@@ -100,7 +102,7 @@ SWEP.Primary.DefaultClip	= 1
 SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= "Panzerfaust"
 
-SWEP.FireDelay = 0.3
+SWEP.FireDelay = 0.5
 SWEP.FireSound = "CW_KK_INS2_DOI_PANZERFAUST_FIRE"
 SWEP.Recoil = 0.5
 
@@ -112,6 +114,10 @@ SWEP.SpreadPerShot = 0.01
 SWEP.SpreadCooldown = 0.8
 SWEP.Shots = 1
 SWEP.Damage = 100
+
+SWEP.MuzzleVelocity = 45
+SWEP.projectileClass = "cw_kk_ins2_projectile_pf60"
+SWEP.hipBulletDelay = 0
 
 SWEP.FirstDeployTime = 3.4
 SWEP.DeployTime = 1
@@ -167,21 +173,3 @@ end
 SWEP.reticleInactivityCallbacksRaw = {
 	at4_reload_start = 0.1
 }
-
-local cyc, suffix
-
-function SWEP:fireAnimFunc()
-	cyc = 0.3
-	suffix = ""
-
-	if self:Clip1() == 0 then
-		suffix = "_empty"
-		cyc = 0
-	end
-
-	if self:isAiming() then
-		suffix = suffix .. "_aim"
-	end
-
-	self:sendWeaponAnim("base_fire" .. suffix, 1, cyc)
-end

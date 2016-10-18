@@ -16,27 +16,21 @@ end
 function att:attachFunc()
 	self._KK_INS2_customPickupSuffix = "_mm"
 	self._KK_INS2_customReloadSuffix = "_mm"
-	self.Primary.Ammo = "M10A1 Rocket"
-	self:unloadWeapon()
 	
-	self.FireBullet = function(wep)
-		local IFTP = IsFirstTimePredicted()
-		
-		CustomizableWeaponry_KK.ins2.rpgs.fireM10(wep, IFTP, true)
-	end
+	self.Primary.Ammo = "M10A1 Rocket"
+	self.projectileClass = "cw_kk_ins2_projectile_m10"
+	
+	self:unloadWeapon()
 end
 
 function att:detachFunc()
 	self._KK_INS2_customPickupSuffix = ""
 	self._KK_INS2_customReloadSuffix = ""
-	self.Primary.Ammo = "M6A1 Rocket"
-	self:unloadWeapon()
 	
-	self.FireBullet = function(wep)
-		local IFTP = IsFirstTimePredicted()
-		
-		CustomizableWeaponry_KK.ins2.rpgs.fireM6A1(wep, IFTP, true)
-	end
+	self.Primary.Ammo = "M6A1 Rocket"
+	self.projectileClass = "cw_kk_ins2_projectile_m6a1"
+	
+	self:unloadWeapon()
 end
 
 CustomizableWeaponry:registerAttachment(att)

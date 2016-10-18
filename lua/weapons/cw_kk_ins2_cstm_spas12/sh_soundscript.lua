@@ -15,8 +15,8 @@ SWEP.Sounds = {
 	},
 
 	base_crawl = {
-		{time = 15/30, sound = "CW_KK_INS2_UNIVERSAL_kk_ins2_rightCrawl"},
-		{time = 38/30, sound = "CW_KK_INS2_UNIVERSAL_LeftCrawl"},
+		{time = 15/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
+		{time = 38/30, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
 	},
 
 	base_fire = {
@@ -100,8 +100,8 @@ SWEP.Sounds = {
 	},
 
 	foregrip_crawl = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_LeftCrawl"},
-		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_kk_ins2_rightCrawl"},
+		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
+		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
 	},
 
 	foregrip_fire_1 = {
