@@ -127,6 +127,10 @@ if CLIENT then
 	SWEP.KKINS2CSTMACOGAng = Vector()
 end
 
+SWEP.MuzzleEffect = "muzzleflash_akm_1p"
+PrecacheParticleSystem(SWEP.MuzzleEffect)
+-- ""
+
 SWEP.Attachments = {
 	{header = "Sight", offset = {400, -450}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_po4", "kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_microt1", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"}},
 	{header = "Barrel", offset = {-100, -450}, atts = {"kk_ins2_pbs1"}},

@@ -15,7 +15,7 @@ if CLIENT then
 	
 	SWEP.IconLetter = "q"
 	
-	SWEP.MuzzleEffect = "muzzleflash_smg"
+	
 	SWEP.Shell = "KK_INS2_45apc"
 
 	SWEP.AttachmentModelsVM = {}
@@ -25,6 +25,9 @@ if CLIENT then
 	SWEP.IronsightAng = Vector(0.1611, 0.0052, 0)
 
 end
+
+SWEP.MuzzleEffect = "flamethrower_blue"
+PrecacheParticleSystem(SWEP.MuzzleEffect)
 
 SWEP.WeaponLength = 16
 
@@ -50,7 +53,8 @@ SWEP.Animations = {
 	base_reload_empty = "base_ready",
 	base_idle = "base_idle",
 	base_holster = "base_holster",
-	base_sprint = "base_sprint",
+	-- base_sprint = "base_sprint",
+	base_sprint = "base_down",
 	base_safe = "base_down",
 	base_safe_aim = "iron_down",
 	base_crawl = "base_crawl",
@@ -109,3 +113,17 @@ SWEP.DeployTime = 0.71
 SWEP.ReloadTimes = {
 	base_ready = {1.9, 1.9},
 }
+
+if CLIENT then
+	function SWEP:postPrimaryAttack()
+		self.stopParticlesTime = CurTime() + 0.1
+	end
+	
+	function SWEP:IndividualThink_INS2()
+		if self.stopParticlesTime and CurTime() > self.stopParticlesTime then
+			self.CW_VM:StopParticles()
+			self.WMEnt:StopParticles()
+			self:StopParticles()
+		end
+	end
+end
