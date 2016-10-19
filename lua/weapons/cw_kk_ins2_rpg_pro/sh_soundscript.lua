@@ -1,10 +1,30 @@
 
+SWEP.particleLighter = "molotov_lighter"
+SWEP.particleRag = "weapon_compB_fuse"
+
+PrecacheParticleSystem(SWEP.particleLighter)
+PrecacheParticleSystem(SWEP.particleRag)
+
+if CLIENT then
+	function SWEP:updateOtherParts()
+		if self.Sequence != self._ragStop then
+			self.AttachmentModelsVM.fx_rag.ent:StopParticles()
+			self._ragStop = nil
+		end
+		
+		if self.Sequence != self._lighterStop or self.CW_VM:GetCycle() >= 1 then
+			self.AttachmentModelsVM.fx_light.ent:StopParticles()
+			self._lighterStop = nil
+		end
+	end
+end
+
 local function lighter(wep)
 	if SERVER then return end
 	
 	local vm = wep.AttachmentModelsVM.fx_light.ent
 	
-	ParticleEffectAttach(wep.Effect_Lighter, PATTACH_POINT_FOLLOW, vm, 0)
+	ParticleEffectAttach(wep.particleLighter, PATTACH_POINT_FOLLOW, vm, 1)
 	
 	wep._lighterStop = wep.Sequence
 end
@@ -20,7 +40,7 @@ local function rag(wep)
 	
 	local vm = wep.AttachmentModelsVM.fx_rag.ent
 	
-	-- ParticleEffectAttach(wep.Effect_Rag, PATTACH_POINT_FOLLOW, vm, 1)
+	ParticleEffectAttach(wep.particleRag, PATTACH_POINT_FOLLOW, vm, 0)
 	
 	wep._ragStop = wep.Sequence
 end
@@ -75,29 +95,3 @@ SWEP.Sounds = {
 		{time = 0.3, sound = "CW_KK_INS2_RPG_FIRE"},
 	}
 }
-
-SWEP.Effect_Lighter = "fire_verysmall_01"
-SWEP.Effect_Rag = "embers_small_01"
-
-PrecacheParticleSystem(SWEP.Effect_Lighter)
-PrecacheParticleSystem(SWEP.Effect_Rag)
-
-if CLIENT then
-	function SWEP:updateOtherParts()
-		if self.Sequence != self._ragStop then
-			-- self.AttachmentModelsVM.fx_rag.ent:StopParticles()
-			self._ragStop = nil
-		else
-			local pos = self.AttachmentModelsVM.fx_rag.ent:GetPos()
-			local ed = EffectData()
-			ed:SetOrigin(pos)
-			ed:SetScale(0.01)
-			util.Effect("MetalSpark", ed)
-		end
-		
-		if self.Sequence != self._lighterStop or self.CW_VM:GetCycle() >= 1 then
-			self.AttachmentModelsVM.fx_light.ent:StopParticles()
-			self._lighterStop = nil
-		end
-	end
-end

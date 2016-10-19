@@ -14,7 +14,7 @@ if CLIENT then
 	SWEP.IconLetter = "O"
 	
 	SWEP.AttachmentModelsVM = {
-		["pcf"] = {model = "models/maxofs2d/cube_tool.mdl", pos = Vector(), angle = Angle(0, -90, 0), size = Vector(0.01, 0.01, 0.01), attachment = "tail", bodygroups = {1}, active = true, nodraw = true},
+		["pcf"] = {model = "models/maxofs2d/cube_tool.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(0.01, 0.01, 0.01), attachment = "tail", bodygroups = {1}, active = true, nodraw = true},
 	}
 	
 	SWEP.AttachmentModelsWM = {}

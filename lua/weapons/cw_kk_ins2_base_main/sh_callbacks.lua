@@ -68,6 +68,10 @@ CustomizableWeaponry.callbacks:addNew("initialize", "KK_INS2_BASE", function(wep
 	if wep.KKINS2RCE or wep.KKINS2Nade then
 		wep.Primary.ClipSize_Orig = 1
 	end
+	
+	if wep.MuzzleEffect then
+		PrecacheParticleSystem(wep.MuzzleEffect)
+	end
 end)
 
 //-----------------------------------------------------------------------------

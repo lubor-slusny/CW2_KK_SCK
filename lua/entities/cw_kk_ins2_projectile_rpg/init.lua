@@ -4,7 +4,7 @@ include("shared.lua")
 
 function ENT:Think()
 	self:SetBodygroup(0,1)
-		
+	
 	if self.dt.State == self.States.misfired then
 		return 
 	end
@@ -19,18 +19,6 @@ function ENT:Think()
 		
 		self:SearchNDestroy()
 		
-		if self.doAClusterFuck and CT > self.ArmTime + 0.3 then
-			for i = 1,math.random(5,7) do
-				self:clusterFuckRackit()
-			end
-			
-			for i = 1,math.random(10,15) do
-				self:clusterFuckHENade()
-			end
-			
-			self.doAClusterFuck = false
-		end
-	
 		local phys = self:GetPhysicsObject()
 				
 		if IsValid(phys) then
@@ -81,10 +69,6 @@ function ENT:PhysicsCollide(data, physobj)
 		return
 	end
 	
-	if self.doAClusterFuck then
-		self:clusterFuckRackit()
-	end
-	
 	if CurTime() > self.ArmTime then
 		-- if math.random(5) != 2 then
 		if self.safetyBypass and self.missfiredArmTime and (CurTime() < self.missfiredArmTime) then
@@ -109,14 +93,23 @@ function ENT:PhysicsCollide(data, physobj)
 	end
 end
 
+local pcf = "ins_rpg_explosion"
+PrecacheParticleSystem(pcf)
+
 function ENT:selfDestruct()
 	if self.HadEnough then return end
 	
 	self.HadEnough = true
 	
+	self:SetNoDraw(true)
+	self:PhysicsDestroy()
+
 	if self.DontDestroy then return end
 	
-	-- util.BlastDamage(self, self.Owner, self:GetPos(), self.BlastRadius, self.BlastDamage)
+	util.BlastDamage(self, self.Owner, self:GetPos(), self.BlastRadius, self.BlastDamage)
+	
+	-- ParticleEffect(pcf, self:GetPos(), self:GetAngles(), self)
+	ParticleEffectAttach(pcf, PATTACH_POINT_FOLLOW, self, 0)
 	
 	-- local ef = EffectData()
 	-- ef:SetOrigin(self:GetPos())
@@ -124,16 +117,18 @@ function ENT:selfDestruct()
 	
 	-- util.Effect("Explosion", ef)
 	
-	local expl = ents.Create("env_explosion")
-	expl.CW_KK_INS2_inflictor = self
-	expl:SetPos(self:GetPos())
-	expl:SetOwner(self.Owner or ents.GetByIndex(1))
-	expl:Spawn()
-	expl:SetKeyValue("iMagnitude", tostring(self.BlastDamage))
-	expl:SetKeyValue("iRadiusOverride", tostring(self.BlastRadius))
-	expl:Fire("Explode",0,0)
-	
-	self:Remove()
+	-- local expl = ents.Create("env_explosion")
+	-- expl.CW_KK_INS2_inflictor = self
+	-- expl:SetPos(self:GetPos())
+	-- expl:SetOwner(self.Owner or ents.GetByIndex(1))
+	-- expl:Spawn()
+	-- expl:SetKeyValue("iMagnitude", tostring(self.BlastDamage))
+	-- expl:SetKeyValue("iRadiusOverride", tostring(self.BlastRadius))
+	-- expl:Fire("Explode",0,0)
+
+	timer.Simple(5, function()
+		SafeRemoveEntity(self)
+	end)
 end
 
 local choppas = {

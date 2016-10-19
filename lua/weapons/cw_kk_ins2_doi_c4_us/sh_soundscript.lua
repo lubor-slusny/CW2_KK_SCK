@@ -4,7 +4,7 @@ local function pcf(wep)
 	
 	local vm = wep.AttachmentModelsVM.pcf.ent
 	
-	ParticleEffectAttach("muzzleflash_pistol", PATTACH_POINT_FOLLOW, vm, 0)
+	ParticleEffectAttach("weapon_compB_fuse", PATTACH_POINT_FOLLOW, vm, 0)
 	
 	wep._pcfStop = wep.Sequence
 	

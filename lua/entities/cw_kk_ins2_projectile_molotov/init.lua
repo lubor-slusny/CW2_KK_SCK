@@ -38,7 +38,7 @@ local vel, len, CT
 
 function ENT:PhysicsCollide(data, physobj)
 	if self.BreakOnImpact then
-		self:Detonate()
+		self.kaboomboomTime = CurTime()
 		return
 	end
 
@@ -62,22 +62,38 @@ end
 function ENT:Fuse(t)
 	t = t or 3
 	
-	timer.Simple(t, function()
-		if self:IsValid() then
-			self:Detonate()
-		end
-	end)
+	self.kaboomboomTime = CurTime() + t
+	
+	ParticleEffectAttach(self.fuseParticles, PATTACH_POINT_FOLLOW, self, 1)
 end
 
 function ENT:Detonate()
+	if self.wentBoomAlready then
+		return 
+	end
+	
+	self.wentBoomAlready = true
+	
 	if self:IsValid() then
-		local hitPos = self:GetPos()
+		ParticleEffectAttach("ins_molotov_explosion", PATTACH_POINT_FOLLOW, self, 1)
 		
+		self:SetNoDraw(true)
+		self:PhysicsDestroy()
+	
+		local hitPos = self:GetPos()
 		local smokeScreen = ents.Create("cw_smokescreen_impact")
 		smokeScreen:SetPos(hitPos)
 		smokeScreen:Spawn()
-		smokeScreen:CreateParticles()
+		-- smokeScreen:CreateParticles()
 		
-		self:Remove()
+		timer.Simple(5, function()
+			SafeRemoveEntity(self)
+		end)
+	end
+end
+
+function ENT:Think()
+	if self.kaboomboomTime and CurTime() > self.kaboomboomTime then
+		self:Detonate()
 	end
 end

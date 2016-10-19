@@ -70,6 +70,8 @@ function ENT:Fuse(t)
 		self.StopSounds = i
 	end
 	
+	ParticleEffectAttach(self.fuseParticles, PATTACH_POINT_FOLLOW, self, 1)
+	
 	timer.Simple(t, function()
 		if self:IsValid() then
 			self:Kaboomboom()
@@ -100,9 +102,9 @@ function ENT:OnTakeDamage(dmg)
 end
 
 function ENT:Think()
-	local a = self:GetAttachment(1)
+	-- local a = self:GetAttachment(1)
 	
-	a.Ang:RotateAroundAxis(a.Ang:Right(), 180)
+	-- a.Ang:RotateAroundAxis(a.Ang:Right(), 180)
 	
-	ParticleEffect("muzzleflash_pistol", a.Pos, a.Ang, self)
+	-- ParticleEffect(self.fuseParticles, a.Pos, a.Ang, self)
 end
