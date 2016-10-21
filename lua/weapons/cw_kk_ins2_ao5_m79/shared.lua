@@ -29,6 +29,8 @@ if CLIENT then
 	SWEP.CustomizationMenuScale = 0.015
 end
 
+SWEP.MuzzleEffect = "ins_weapon_m203"
+
 SWEP.Attachments = {
 	{header = "", offset = {500, 0}, atts = {"kk_ins2_gp25_ammo"}},
 }

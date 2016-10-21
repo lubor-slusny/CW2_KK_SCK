@@ -53,6 +53,8 @@ if CLIENT then
 	SWEP.HUD_MagText = "CYLINDER: "
 end
 
+SWEP.MuzzleEffect = "muzzleflash_m9_1p_core"
+
 if CustomizableWeaponry_KK.HOME == nil then
 	SWEP.Attachments = {
 		{header = "Lasers", offset = {-400, -400}, atts = {"kk_ins2_lam", "kk_ins2_flashlight"}},

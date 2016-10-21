@@ -121,6 +121,8 @@ if CLIENT then
 	SWEP.CustomizationMenuScale = 0.013
 end
 
+SWEP.MuzzleEffect = "muzzleflash_m16_1p_core"
+
 SWEP.WeaponLength = 20
 
 SWEP.Attachments = {

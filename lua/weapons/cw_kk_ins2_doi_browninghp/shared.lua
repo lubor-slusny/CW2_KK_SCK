@@ -21,8 +21,8 @@ if CLIENT then
 	SWEP.ShellWorldAngleAlign = {Forward = 90, Right = 0, Up = 0}
 	
 	SWEP.AttachmentModelsVM = {
-		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_slide_base_browninghp.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
-		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_slide_alt_browninghp.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_slide_alt_browninghp.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
+		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_slide_base_browninghp.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_hoovy"] = {model = "models/weapons/upgrades/a_compensator_browninghp.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
@@ -32,11 +32,11 @@ if CLIENT then
 	
 	SWEP.AttachmentModelsWM = {}
 	
-	SWEP.IronsightPos = Vector(-2.1241, 0, 0.5782)
-	SWEP.IronsightAng = Vector(0.7222, 0.0454, 0)
+	SWEP.IronsightPos = Vector(-2.118, 0, 0.7924)
+	SWEP.IronsightAng = Vector(-0.0121, 0.0454, 0)
 
-	SWEP.FoldSightPos = Vector(-2.118, 0, 0.7924)
-	SWEP.FoldSightAng = Vector(-0.0121, 0.0454, 0)
+	SWEP.FoldSightPos = Vector(-2.1241, 0, 0.5782)
+	SWEP.FoldSightAng = Vector(0.7222, 0.0454, 0)
 
 	SWEP.CustomizationMenuScale = 0.01
 	SWEP.ReloadViewBobEnabled = false

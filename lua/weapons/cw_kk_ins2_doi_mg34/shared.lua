@@ -40,6 +40,8 @@ if CLIENT then
 	SWEP.CustomizationMenuScale = 0.015
 end
 
+SWEP.MuzzleEffect = "muzzleflash_mg34_1p"
+
 SWEP.Attachments = {
 	["+reload"] = {header = "Ammo", offset = {200, 600}, atts = {"am_magnum", "am_matchgrade"}}
 }

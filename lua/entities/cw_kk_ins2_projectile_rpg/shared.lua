@@ -75,3 +75,36 @@ ENT.States = {
 	armed = 2,
 	misfired = 3
 }
+
+ENT.explosionSound0 = "CW_KK_INS2_RPG_ENT_DETONATE"
+ENT.explosionSound1 = "CW_KK_INS2_RPG_ENT_DETONATE_D1"
+ENT.explosionSound2 = "CW_KK_INS2_RPG_ENT_DETONATE_D2"
+ENT.explosionSoundW0 = "CW_KK_INS2_RPG_ENT_DETONATE_WATER"
+ENT.explosionSoundW1 = "CW_KK_INS2_RPG_ENT_DETONATE_WATER_D1"
+
+ENT.explosionParticles = {
+	-- "ins_rpg_explosion", // too much nearglow
+	
+	"ins_grenade_explosion_shockwave",
+	"ins_rpg_explosion_smoke_c",
+	"generic_crater_smoke",
+	"ins_rpg_explosion_debris",
+	"ins_rpg_explosion_smoke",
+	"ins_rpg_inner_explosion",
+	"ins_rpg_explosion_spikes",
+	"ins_rpg_explosion_smoke_b",
+	"ins_rpg_explosion_sparks",
+	"ins_rpg_explosion_debris",
+	"ins_grenade_explosion_smoke_ground_c",
+	"ins_grenade_inner_explosion_debris",
+	"ins_rpg_flash",
+	"ins_rpg_flash_b",
+	-- "generic_nearglow",
+	"ins_rpg_explosion_flames",
+	"ins_rpg_glow",
+	"ins_c4_explosion_sparks_burst",
+}
+
+ENT.explosionParticlesWater = {
+	"ins_Water_explosion"
+}

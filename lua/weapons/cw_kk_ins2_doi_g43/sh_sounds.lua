@@ -1,6 +1,7 @@
 CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_G43_FIRE", "weapons/g43/g43_fp.wav", 1, 105, CHAN_STATIC)
 
 -- CustomizableWeaponry:addReloadSound("CW_KK_INS2_DOI_G43_wat?", "weapons/g43/handling/g43_boltback.wav")
+CustomizableWeaponry:addReloadSound("CW_KK_INS2_DOI_G43_BOLTBACK", "weapons/g43/handling/g43_boltback.wav")
 CustomizableWeaponry:addReloadSound("CW_KK_INS2_DOI_G43_BOLTRELEASE", "weapons/g43/handling/g43_boltrelease.wav")
 CustomizableWeaponry:addReloadSound("CW_KK_INS2_DOI_G43_EMPTY", "weapons/g43/handling/g43_empty.wav")
 CustomizableWeaponry:addReloadSound("CW_KK_INS2_DOI_G43_FETCHMAG", "weapons/g43/handling/g43_fetchmag.wav")

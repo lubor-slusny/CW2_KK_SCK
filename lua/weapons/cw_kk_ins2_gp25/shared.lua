@@ -62,6 +62,8 @@ if CLIENT then
 	SWEP.LuaVMRecoilAxisMod = {vert = 1, hor = 1.5, roll = 3, forward = 1, pitch = 4}
 end
 
+SWEP.MuzzleEffect = "ins_weapon_m203"
+
 SWEP.Chamberable = false
 SWEP.LuaViewmodelRecoil = true
 SWEP.CanRestOnObjects = false

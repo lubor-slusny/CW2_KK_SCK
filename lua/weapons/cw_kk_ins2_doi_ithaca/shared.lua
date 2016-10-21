@@ -31,6 +31,8 @@ if CLIENT then
 	SWEP.CustomizationMenuScale = 0.015
 end
 
+SWEP.MuzzleEffect = "muzzleflash_ithica_3p"
+
 SWEP.Attachments = {
 	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_slugrounds", "am_flechetterounds"}}

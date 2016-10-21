@@ -72,6 +72,10 @@ CustomizableWeaponry.callbacks:addNew("initialize", "KK_INS2_BASE", function(wep
 	if wep.MuzzleEffect then
 		PrecacheParticleSystem(wep.MuzzleEffect)
 	end
+	
+	if wep.MuzzleEffectSupp then
+		PrecacheParticleSystem(wep.MuzzleEffectSupp)
+	end
 end)
 
 //-----------------------------------------------------------------------------

@@ -81,13 +81,17 @@ function ENT:Think()
 	end
 	
 	if self.kaboomboom and CurTime() > self.kaboomboom then
+		self.kaboomboom = nil
+		
 		util.BlastDamage(self, self.fuser, self:GetPos(), self.ExplodeRadius, self.ExplodeDamage)
 		
-		ef = EffectData()
-		ef:SetOrigin(self:GetPos())
-		ef:SetMagnitude(1)
-		util.Effect("Explosion", ef)
+		ed = EffectData()
+		ed:SetEntity(self)
+		util.Effect("cw_kk_ins2_explosion_frag", ed)
 		
-		self:Remove()
+		self:SetNoDraw(true)
+		self:PhysicsDestroy()
+		
+		SafeRemoveEntityDelayed(self, 0.2)
 	end
 end

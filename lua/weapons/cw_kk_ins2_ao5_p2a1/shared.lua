@@ -31,6 +31,8 @@ if CLIENT then
 	SWEP.HUD_MagText = "BREECH: "
 end
 
+SWEP.MuzzleEffect = "ins_weapon_m203"
+
 SWEP.Chamberable = false
 SWEP.SnapToIdlePostReload = false
 SWEP.ShotgunReload = false

@@ -102,28 +102,24 @@ function ENT:PhysicsCollide(data, physobj)
 end
 
 function ENT:selfDestruct()
+	if self.HadEnough then 
+		return 
+	end
+	
 	self.HadEnough = true
 	
 	if self.DontDestroy then return end
 	
-	-- util.BlastDamage(self, self.Owner, self:GetPos(), self.BlastRadius, self.BlastDamage)
+	util.BlastDamage(self, self.Owner, self:GetPos(), self.BlastRadius, self.BlastDamage)
 	
-	-- local ef = EffectData()
-	-- ef:SetOrigin(self:GetPos())
-	-- ef:SetMagnitude(1)
+	ed = EffectData()
+	ed:SetEntity(self)
+	util.Effect("cw_kk_ins2_explosion_rpg", ed)
 	
-	-- util.Effect("Explosion", ef)
+	self:SetNoDraw(true)
+	self:PhysicsDestroy()
 	
-	local expl = ents.Create("env_explosion")
-	expl.CW_KK_INS2_inflictor = self
-	expl:SetPos(self:GetPos())
-	expl:SetOwner(self.Owner or ents.GetByIndex(1))
-	expl:Spawn()
-	expl:SetKeyValue("iMagnitude", tostring(self.BlastDamage))
-	expl:SetKeyValue("iRadiusOverride", tostring(self.BlastRadius))
-	expl:Fire("Explode",0,0)
-	
-	self:Remove()
+	SafeRemoveEntityDelayed(self, 0.2)
 end
 
 local choppas = {
@@ -151,9 +147,7 @@ function ENT:SearchNDestroy()
 	end
 end
 
-function ENT:OnTakeDamage(dmg)
-	if self.HadEnough then return end
-	
+function ENT:OnTakeDamage(dmg)	
 	self:selfDestruct()
 end
 	

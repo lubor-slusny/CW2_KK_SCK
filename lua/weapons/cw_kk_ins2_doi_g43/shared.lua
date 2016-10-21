@@ -135,7 +135,7 @@ SWEP.BipodUndeployTime = 1.15
 
 SWEP.SnapToIdlePostReload = false
 
-SWEP.KK_INS2_EmptyIdle = true
+SWEP.KK_INS2_EmptyIdle = false
 
 SWEP.WeaponLength = 22
 
@@ -143,5 +143,5 @@ SWEP.MuzzleVelocity = 776
 
 SWEP.ReloadTimes = {
 	base_reloadfull = {80/32, 3.3},
-	base_reloadempty = {80/31, 4.6},
+	base_reloadempty = {80/31, 5.3},
 }

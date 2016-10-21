@@ -36,14 +36,25 @@ SWEP.Sounds = {
 		{time = 98/32, sound = "CW_KK_INS2_DOI_G43_RATTLE"},
 	},
 
+	-- base_reloadempty = {
+		-- {time = 14/31, sound = "CW_KK_INS2_DOI_G43_MAGRELEASE"},
+		-- {time = 24/31, sound = "CW_KK_INS2_DOI_G43_MAGOUT"},
+		-- {time = 30/31, sound = "CW_KK_INS2_DOI_G43_FETCHMAG"},
+		-- {time = 79/31, sound = "CW_KK_INS2_DOI_G43_MAGIN"},
+		-- // reload time = 80 ""},
+		-- {time = 108/31, sound = "CW_KK_INS2_DOI_G43_BOLTRELEASE"},
+		-- {time = 127/31, sound = "CW_KK_INS2_DOI_G43_RATTLE"},
+	-- },
+
 	base_reloadempty = {
-		{time = 14/31, sound = "CW_KK_INS2_DOI_G43_MAGRELEASE"},
+		{time = 20/31, sound = "CW_KK_INS2_DOI_G43_MAGRELEASE"},
 		{time = 24/31, sound = "CW_KK_INS2_DOI_G43_MAGOUT"},
 		{time = 30/31, sound = "CW_KK_INS2_DOI_G43_FETCHMAG"},
-		{time = 79/31, sound = "CW_KK_INS2_DOI_G43_MAGIN"},
+		{time = 78/31, sound = "CW_KK_INS2_DOI_G43_MAGIN"},
 		// reload time = 80 ""},
-		{time = 108/31, sound = "CW_KK_INS2_DOI_G43_BOLTRELEASE"},
-		{time = 127/31, sound = "CW_KK_INS2_DOI_G43_RATTLE"},
+		{time = 110/31, sound = "CW_KK_INS2_DOI_G43_BOLTBACK"},
+		{time = 122/31, sound = "CW_KK_INS2_DOI_G43_BOLTRELEASE"},
+		{time = 141/31, sound = "CW_KK_INS2_DOI_G43_RATTLE"},
 	},
 
 	iron_dryfire = {

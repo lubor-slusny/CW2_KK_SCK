@@ -106,6 +106,8 @@ if CLIENT then
 	SWEP.CustomizationMenuScale = 0.012
 end
 
+SWEP.MuzzleEffect = "muzzleflash_ump_1p_core"
+
 SWEP.Attachments = {
 	{header = "Sight", offset = {400, -700}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_po4", "kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_microt1", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"}},
 	{header = "Barrel", offset = {-300, -700}, atts = {"kk_ins2_suppressor_sec"}},

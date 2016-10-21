@@ -59,11 +59,13 @@ traceData.mask = bit.bor(CONTENTS_SOLID, CONTENTS_MOVEABLE, CONTENTS_DEBRIS, CON
 function ENT:Fuse(t)
 	t = t or 2.5
 	
-	timer.Simple(t, function() // git it on GIT pls
+	timer.Simple(t, function()
 		if self:IsValid() then
 			local hitPos = self:GetPos()
 			
-			self:EmitSound("CW_KK_INS2_M84_ENT_DETONATE", 100, 100)
+			ed = EffectData()
+			ed:SetEntity(self)
+			util.Effect("cw_kk_ins2_explosion_flash", ed)
 			
 			-- for key, obj in ipairs(player.GetAll()) do
 			for key, obj in ipairs(ents.GetAll()) do
@@ -109,8 +111,6 @@ function ENT:Fuse(t)
 							intensity = math.min((intensity + 0.25) * dotToGeneralDirection, 1)
 							local duration = intensity * self.FlashDuration
 							
-							print("flashin target", obj)
-							
 							if obj:IsPlayer() then
 								umsg.Start("CW_FLASHBANGED", obj)
 									umsg.Float(intensity)
@@ -135,7 +135,10 @@ function ENT:Fuse(t)
 				end
 			end
 			
-			self:Remove()
+			self:SetNoDraw(true)
+			self:PhysicsDestroy()
+			
+			SafeRemoveEntityDelayed(self, 0.1)
 		end
 	end)
 end

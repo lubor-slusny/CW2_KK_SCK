@@ -29,12 +29,6 @@ function ENT:Use(activator, caller)
 end
 
 function ENT:OnRemove()
-	for i = 0, (self.StopSounds or 0) + 2 do
-		self:StopSound("CW_KK_INS2_DOI_C4_FUSELOOP")
-	end
-	
-	self:StopParticles()
-	
 	return false
 end 
 
@@ -86,15 +80,22 @@ function ENT:Kaboomboom()
 	
 	self.weDidThisAlready = true
 	
+	self:StopParticles()
+	
+	for i = 0, (self.StopSounds or 0) + 2 do
+		self:StopSound("CW_KK_INS2_DOI_C4_FUSELOOP")
+	end
+	
 	util.BlastDamage(self, self:GetOwner(), self:GetPos(), self.ExplodeRadius, self.ExplodeDamage)
 	
-	ef = EffectData()
-	ef:SetOrigin(self:GetPos())
-	ef:SetMagnitude(1)
+	ed = EffectData()
+	ed:SetEntity(self)
+	util.Effect("cw_kk_ins2_explosion_c4", ed)
 	
-	util.Effect("Explosion", ef)
+	self:SetNoDraw(true)
+	self:PhysicsDestroy()
 	
-	self:Remove()
+	SafeRemoveEntityDelayed(self, 0.2)
 end
 
 function ENT:OnTakeDamage(dmg)	

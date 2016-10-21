@@ -50,34 +50,28 @@ function ENT:PhysicsCollide(data, physobj)
 end
 
 function ENT:Fuse(t)
-	if self:IsValid() then
-		self.HadEnough = true
-		
-		-- util.BlastDamage(
-			-- self, 
-			-- (self.dt.Detonator and self.dt.Detonator.Owner) or ents.GetByIndex(1), 
-			-- self:GetPos(), 
-			-- self.BlastRadius, 
-			-- self.BlastDamage
-		-- )
-		
-		-- ef = EffectData()
-		-- ef:SetOrigin(self:GetPos())
-		-- ef:SetMagnitude(1)
-		
-		-- util.Effect("Explosion", ef)
-			
-		local expl = ents.Create("env_explosion")
-		expl.CW_KK_INS2_inflictor = IsValid(self.dt.Detonator) and self.dt.Detonator				//inflictor
-		expl:SetOwner((self.dt.Detonator and self.dt.Detonator.Owner) or ents.GetByIndex(1))		//attacker
-		expl:SetPos(self:GetPos())
-		expl:Spawn()
-		expl:SetKeyValue("iMagnitude", tostring(self.BlastDamage))
-		expl:SetKeyValue("iRadiusOverride", tostring(self.BlastRadius))
-		expl:Fire("Explode",0,0)
-		
-		self:Remove()
+	if self.fusedAlready then
+		return
 	end
+	
+	self.fusedAlready = true
+	
+	util.BlastDamage(
+		self, 
+		(self.dt.Detonator and self.dt.Detonator.Owner) or ents.GetByIndex(1), 
+		self:GetPos(), 
+		self.BlastRadius, 
+		self.BlastDamage
+	)
+	
+	ed = EffectData()
+	ed:SetEntity(self)
+	util.Effect("cw_kk_ins2_explosion_c4", ed)
+	
+	self:SetNoDraw(true)
+	self:PhysicsDestroy()
+	
+	SafeRemoveEntityDelayed(self, 0.2)
 end
 
 local td = {}
@@ -125,7 +119,5 @@ function ENT:Think()
 end
 
 function ENT:OnTakeDamage(dmg)
-	if self.HadEnough then return end
-	
 	self:Fuse()
 end
