@@ -41,6 +41,7 @@ if CLIENT then
 end
 
 SWEP.MuzzleEffect = "muzzleflash_mg34_1p"
+SWEP.MuzzleEffectWorld = "muzzleflash_mg42_3p"
 
 SWEP.Attachments = {
 	["+reload"] = {header = "Ammo", offset = {200, 600}, atts = {"am_magnum", "am_matchgrade"}}

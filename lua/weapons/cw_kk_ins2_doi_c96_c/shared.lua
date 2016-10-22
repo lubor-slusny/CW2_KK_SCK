@@ -43,6 +43,9 @@ if CLIENT then
 	SWEP.DisableSprintViewSimulation = true
 end
 
+SWEP.MuzzleEffect = "muzzleflash_mp40_1p_core"
+SWEP.MuzzleEffectWorld = "muzzleflash_mp40_3p"
+
 SWEP.Attachments = {
 	-- {header = "Lasers", offset = {500, -400}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_m6x"}},
 	{header = "Barrel", offset = {-500, -400}, atts = {"kk_ins2_c96_barrel_lng"}},

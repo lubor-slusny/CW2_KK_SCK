@@ -42,13 +42,23 @@ function ENT:Fuse(t)
 	// muhehe
 end
 
+PrecacheParticleSystem("doi_WPgrenade_explosion")
+PrecacheParticleSystem("doi_grenade_explosion")
+PrecacheParticleSystem("doi_frag_explosion")
+PrecacheParticleSystem("doi_compB_explosion")
+PrecacheParticleSystem("skybox_gunrun")
+
 function ENT:Kaboomboom()
 	local hitPos = self:GetPos()
 	
-	local smokeScreen = ents.Create("cw_smokescreen_impact")
-	smokeScreen:SetPos(hitPos)
-	smokeScreen:Spawn()
-	smokeScreen:CreateParticles()
+	-- local smokeScreen = ents.Create("cw_smokescreen_impact")
+	-- smokeScreen:SetPos(hitPos)
+	-- smokeScreen:Spawn()
+	-- smokeScreen:CreateParticles()
 	
-	self:Remove()
+	ParticleEffectAttach("skybox_gunrun", PATTACH_ABSORIGIN, self, 0)
+	
+	self:PhysicsDestroy()
+	
+	SafeRemoveEntityDelayed(self, 10)
 end

@@ -31,6 +31,8 @@ if CLIENT then
 	SWEP.HUD_MagText = "TUBE: "
 end
 
+SWEP.MuzzleEffect = "ins_weapon_at4_frontblast"
+
 SWEP.Attachments = {
 	{header = "Nope, no attachments for this one.", offset = {-250, 0}, atts = {}},
 	{header = "Just sit back and enjoy awsum rpg rockets.", offset = {-250, 75}, atts = {}}

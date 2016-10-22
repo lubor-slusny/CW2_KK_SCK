@@ -32,6 +32,9 @@ if CLIENT then
 
 end
 
+SWEP.MuzzleEffect = "muzzleflash_sten_1p_core"
+SWEP.MuzzleEffectWorld = "muzzleflash_sten_3p"
+
 SWEP.Attachments = {
 	-- {header = "Sight", offset = {400, -500}, atts = {"bg_foldsight"}},
 	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_hoovy"}},

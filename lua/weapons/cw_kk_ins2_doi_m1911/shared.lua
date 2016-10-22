@@ -32,6 +32,9 @@ if CLIENT then
 	SWEP.DisableSprintViewSimulation = true
 end
 
+SWEP.MuzzleEffect = "muzzleflash_1911_1p_core"
+SWEP.MuzzleEffectWorld = "muzzleflash_sten_3p"
+
 SWEP.Attachments = {
 	-- {header = "Magazine", offset = {-500, 150}, atts = {"kk_ins2_mag_m1911_15"}},
 	["+reload"] = {header = "Ammo", offset = {500, 150}, atts = {"am_magnum", "am_matchgrade"}}

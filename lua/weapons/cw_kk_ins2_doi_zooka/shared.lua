@@ -48,6 +48,9 @@ if CLIENT then
 	SWEP.HUD_MagText = "TUBE: "
 end
 
+SWEP.MuzzleEffect = "ins_weapon_rpg_frontblast"
+SWEP.MuzzleEffectWorld = "ins_weapon_rpg_frontblast"
+
 SWEP.Chamberable = false
 SWEP.WeaponLength = 44
 

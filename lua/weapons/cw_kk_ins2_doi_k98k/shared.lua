@@ -57,6 +57,9 @@ if CLIENT then
 	SWEP.CustomizationMenuScale = 0.018
 end
 
+SWEP.MuzzleEffect = "muzzleflash_k98_1p_core"
+SWEP.MuzzleEffectWorld = "muzzleflash_k98_3p"
+
 SWEP.Attachments = {
 	{header = "Sight", offset = {500, -500}, atts = {"kk_ins2_scope_k98"}, exclusions = {["kk_ins2_ww2_stripper"] = true}},
 	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_ww2_knife", "kk_ins2_gl_ggg"}},

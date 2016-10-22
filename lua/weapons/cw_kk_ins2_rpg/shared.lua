@@ -81,6 +81,8 @@ if CLIENT then
 	}
 end
 
+SWEP.MuzzleEffect = "ins_weapon_rpg_frontblast"
+
 SWEP.Chamberable = false
 SWEP.WeaponLength = 44
 

@@ -30,6 +30,9 @@ if CLIENT then
 	SWEP.IronsightAng = Vector(-0.3029, 0, 0)
 end
 
+SWEP.MuzzleEffect = "muzzleflash_bar_1p"
+SWEP.MuzzleEffectWorld = "muzzleflash_bar_3p"
+
 SWEP.Attachments = {
 	{header = "Under", offset = {-500, 0}, atts = {"kk_ins2_bipod"}},
 	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},

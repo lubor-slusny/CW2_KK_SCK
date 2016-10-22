@@ -43,6 +43,9 @@ if CLIENT then
 	SWEP.DisableSprintViewSimulation = true
 end
 
+SWEP.MuzzleEffect = "muzzleflash_1911_1p_core"
+SWEP.MuzzleEffectWorld = "muzzleflash_sten_3p"
+
 SWEP.SightBGs = {main = 0, foldsight = 0}
 SWEP.StockBGs = {main = 0, regular = 0, heavy = 0, sturdy = 0}
 

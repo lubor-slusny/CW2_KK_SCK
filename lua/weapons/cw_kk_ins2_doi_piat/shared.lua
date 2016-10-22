@@ -13,7 +13,7 @@ if CLIENT then
 	SWEP.SelectFont = "CW_SelectIcons2"
 	SWEP.IconLetter = "i"
 	
-	SWEP.MuzzleEffect = "muzzleflash_pistol"
+	SWEP.MuzzleEffect = false
 	-- SWEP.RearEffectw = true
 	SWEP.NoShells = true
 	

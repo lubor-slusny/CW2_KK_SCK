@@ -36,6 +36,9 @@ if CLIENT then
 	SWEP.HUD_MagText = "CYLINDER: "
 end
 
+SWEP.MuzzleEffect = "muzzleflash_1911_1p_core"
+SWEP.MuzzleEffectWorld = "muzzleflash_sten_3p"
+
 SWEP.Attachments = {
 	{header = "Reload Aid", offset = {500, -400}, atts = {"kk_ins2_revolver_mag"}},
 	["+reload"] = {header = "Ammo", offset = {500, 150}, atts = {"am_magnum", "am_matchgrade"}}

@@ -57,6 +57,9 @@ if CLIENT then
 	SWEP.CustomizationMenuScale = 0.02
 end
 
+SWEP.MuzzleEffect = "muzzleflash_garand_1p_core"
+SWEP.MuzzleEffectWorld = "muzzleflash_garand_3p"
+
 SWEP.SightBGs = {main = 0, foldsight = 0}
 
 SWEP.Attachments = {

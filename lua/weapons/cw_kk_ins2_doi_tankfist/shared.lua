@@ -32,6 +32,9 @@ if CLIENT then
 	SWEP.MuzzleAttachmentName = "glmuzzle"
 end
 
+SWEP.MuzzleEffect = "ins_weapon_m203"
+SWEP.MuzzleEffectWorld = "ins_weapon_m203"
+
 SWEP.Chamberable = false
 SWEP.WeaponLength = 35
 
