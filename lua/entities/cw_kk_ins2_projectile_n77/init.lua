@@ -51,13 +51,14 @@ PrecacheParticleSystem("skybox_gunrun")
 function ENT:Kaboomboom()
 	local hitPos = self:GetPos()
 	
-	-- local smokeScreen = ents.Create("cw_smokescreen_impact")
-	-- smokeScreen:SetPos(hitPos)
-	-- smokeScreen:Spawn()
-	-- smokeScreen:CreateParticles()
+	local smokeScreen = ents.Create("cw_smokescreen_impact")
+	smokeScreen:SetPos(hitPos)
+	smokeScreen:Spawn()
+	smokeScreen:CreateParticles()
 	
-	ParticleEffectAttach("skybox_gunrun", PATTACH_ABSORIGIN, self, 0)
+	-- ParticleEffectAttach("skybox_gunrun", PATTACH_ABSORIGIN, self, 0)
 	
+	self:SetNoDraw(true)
 	self:PhysicsDestroy()
 	
 	SafeRemoveEntityDelayed(self, 10)

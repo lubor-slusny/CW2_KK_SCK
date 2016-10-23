@@ -39,17 +39,19 @@ function ENT:PhysicsCollide(data, physobj)
 end
 
 function ENT:Fuse(t)
-	// muhehe
+	local p = self:GetOwner()
+	self.fuser = IsValid(p) and p or self
 end
 
 function ENT:Kaboomboom()
-	util.BlastDamage(self, self:GetOwner(), self:GetPos(), self.ExplodeRadius, self.ExplodeDamage)
+	util.BlastDamage(self, self.fuser, self:GetPos(), self.ExplodeRadius, self.ExplodeDamage)
 	
-	ef = EffectData()
-	ef:SetOrigin(self:GetPos())
-	ef:SetMagnitude(1)
+	ed = EffectData()
+	ed:SetEntity(self)
+	util.Effect("cw_kk_ins2_explosion_frag", ed)
 	
-	util.Effect("Explosion", ef)
+	self:SetNoDraw(true)
+	self:PhysicsDestroy()
 	
-	self:Remove()
+	SafeRemoveEntityDelayed(self, 0.2)
 end

@@ -1,6 +1,6 @@
 AddCSLuaFile()
 
-local ang0 = Angle()
+local ang0 = Angle(-90, 0, 0)
 
 local ent, pos
 

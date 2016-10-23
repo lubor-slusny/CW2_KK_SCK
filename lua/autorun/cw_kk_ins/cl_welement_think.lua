@@ -66,6 +66,7 @@ if CLIENT then
 	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_nade_m84", "grenade")
 	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_frag_gb", "grenade")
 	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_frag_gb_n69", "grenade")
+	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_frag_gb_n76", "grenade")
 	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_frag_gb_n77", "grenade")
 	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_frag_us", "grenade")
 	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_c4_de", "grenade")
