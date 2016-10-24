@@ -4,7 +4,7 @@ include("shared.lua")
 
 ENT.MaxIntensityDistance = 384 -- if an entity is THIS close to the grenade upon explosion, the intensity of the flashbang will be maximum
 ENT.FlashDistance = 1024 -- will decay over this much distance
-ENT.FlashDuration = 2
+ENT.FlashDuration = 3
 ENT.Model = "models/weapons/w_m84.mdl"
 
 local phys, ef
@@ -60,12 +60,14 @@ function ENT:Fuse(t)
 	t = t or 2.5
 	
 	timer.Simple(t, function()
+		local fx = ents.Create("cw_kk_ins2_particles")
+		fx:processProjectile(self)
+		fx:Spawn()
+	end)
+	
+	timer.Simple(t + 0.1, function()
 		if self:IsValid() then
 			local hitPos = self:GetPos()
-			
-			ed = EffectData()
-			ed:SetEntity(self)
-			util.Effect("cw_kk_ins2_explosion_flash", ed)
 			
 			-- for key, obj in ipairs(player.GetAll()) do
 			for key, obj in ipairs(ents.GetAll()) do
@@ -135,10 +137,7 @@ function ENT:Fuse(t)
 				end
 			end
 			
-			self:SetNoDraw(true)
-			self:PhysicsDestroy()
-			
-			SafeRemoveEntityDelayed(self, 0.1)
+			SafeRemoveEntity(self)
 		end
 	end)
 end

@@ -56,22 +56,21 @@ function ENT:Fuse(t)
 	
 	self.fusedAlready = true
 	
+	local fuser = (self.dt.Detonator and self.dt.Detonator.Owner) or ents.GetByIndex(1)
+	
 	util.BlastDamage(
 		self, 
-		(self.dt.Detonator and self.dt.Detonator.Owner) or ents.GetByIndex(1), 
+		fuser, 
 		self:GetPos(), 
 		self.BlastRadius, 
 		self.BlastDamage
 	)
 	
-	ed = EffectData()
-	ed:SetEntity(self)
-	util.Effect("cw_kk_ins2_explosion_c4", ed)
+	local fx = ents.Create("cw_kk_ins2_particles")
+	fx:processProjectile(self)
+	fx:Spawn()
 	
-	self:SetNoDraw(true)
-	self:PhysicsDestroy()
-	
-	SafeRemoveEntityDelayed(self, 0.2)
+	SafeRemoveEntity(self)
 end
 
 local td = {}

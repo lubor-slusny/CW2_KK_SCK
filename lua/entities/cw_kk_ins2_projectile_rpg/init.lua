@@ -104,14 +104,11 @@ function ENT:selfDestruct()
 	
 	util.BlastDamage(self, self.Owner, self:GetPos(), self.BlastRadius, self.BlastDamage)
 	
-	ed = EffectData()
-	ed:SetEntity(self)
-	util.Effect("cw_kk_ins2_explosion_rpg", ed)
+	local fx = ents.Create("cw_kk_ins2_particles")
+	fx:processProjectile(self)
+	fx:Spawn()
 	
-	self:SetNoDraw(true)
-	self:PhysicsDestroy()
-	
-	SafeRemoveEntityDelayed(self, 0.2)
+	SafeRemoveEntity(self)
 end
 
 local choppas = {

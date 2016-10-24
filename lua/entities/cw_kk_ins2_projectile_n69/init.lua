@@ -46,12 +46,9 @@ end
 function ENT:Kaboomboom()
 	util.BlastDamage(self, self.fuser, self:GetPos(), self.ExplodeRadius, self.ExplodeDamage)
 	
-	ed = EffectData()
-	ed:SetEntity(self)
-	util.Effect("cw_kk_ins2_explosion_frag", ed)
+	local fx = ents.Create("cw_kk_ins2_particles")
+	fx:processProjectile(self)
+	fx:Spawn()
 	
-	self:SetNoDraw(true)
-	self:PhysicsDestroy()
-	
-	SafeRemoveEntityDelayed(self, 0.2)
+	SafeRemoveEntity(self)
 end

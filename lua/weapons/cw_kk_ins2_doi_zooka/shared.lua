@@ -129,7 +129,7 @@ SWEP.Damage = 100
 
 SWEP.MuzzleVelocity = 80
 SWEP.projectileClass = "cw_kk_ins2_projectile_m6a1"
-SWEP.hipBulletDelay = 0.25
+SWEP.hipBulletDelay = 0.3
 
 SWEP.FirstDeployTime = 6.9 // so long
 SWEP.DeployTime = 1

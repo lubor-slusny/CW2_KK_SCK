@@ -33,24 +33,13 @@ function ENT:selfDestruct()
 	
 	if self.DontDestroy then return end
 	
-	-- util.BlastDamage(self, self.Owner, self:GetPos(), self.BlastRadius, self.BlastDamage)
+	util.BlastDamage(self, self.Owner, self:GetPos(), self.BlastRadius, self.BlastDamage)
 	
-	-- local ef = EffectData()
-	-- ef:SetOrigin(self:GetPos())
-	-- ef:SetMagnitude(1)
-	
-	-- util.Effect("Explosion", ef)
-	
-	local expl = ents.Create("env_explosion")
-	expl.CW_KK_INS2_inflictor = self
-	expl:SetPos(self:GetPos())
-	expl:SetOwner(self.Owner or ents.GetByIndex(1))
-	expl:Spawn()
-	expl:SetKeyValue("iMagnitude", tostring(self.BlastDamage))
-	expl:SetKeyValue("iRadiusOverride", tostring(self.BlastRadius))
-	expl:Fire("Explode",0,0)
-	
-	self:Remove()
+	local fx = ents.Create("cw_kk_ins2_particles")
+	fx:processProjectile(self)
+	fx:Spawn()
+
+	SafeRemoveEntity(self)
 end
 
 local choppas = {
