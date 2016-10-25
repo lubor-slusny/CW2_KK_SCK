@@ -120,7 +120,7 @@ SWEP.timeToThrowShort = 0.8	// minimal allowed length of pinpull_short animation
 SWEP.spawnTimeShort = 0.2	// delay between start of throw_short animation and creation of grenade ent
 SWEP.swapTimeShort = 0.7	// minimal allowed length of throw_short animation
 
-SWEP.spawnOffsetShort = Vector()
+SWEP.spawnOffsetShort = Vector(0, -5, 0)
 
 SWEP.shortForwardMinMax = {0.3, 0.5}
 SWEP.throwForwardMinMax = {0.5, 1.4}
@@ -386,9 +386,9 @@ function SWEP:IndividualThink()
 						pos = pos + ang:Right() * self.PlantPos.y
 						pos = pos + ang:Up() * self.PlantPos.z
 						
-						ang:RotateAroundAxis(ang:Right(), self.PlantAng.p)
+						ang:RotateAroundAxis(ang:Right(), self.PlantAng.x)
 						ang:RotateAroundAxis(ang:Up(), self.PlantAng.y)
-						ang:RotateAroundAxis(ang:Forward(), self.PlantAng.r)
+						ang:RotateAroundAxis(ang:Forward(), self.PlantAng.z)
 						
 						grenade:SetPos(pos)
 						grenade:SetAngles(ang)
@@ -595,7 +595,10 @@ function SWEP:createProjectile()
 		
 		if self._doingShortThrow then
 			local ang = self.lastOwner:EyeAngles()
-			pos = pos + (ang:Up() * -5)
+			
+			pos = pos + ang:Right() * self.spawnOffsetShort.x
+			pos = pos + ang:Up() * self.spawnOffsetShort.y
+			pos = pos + ang:Forward() * self.spawnOffsetShort.z
 		end
 		
 		grenade:SetPos(pos)
@@ -665,17 +668,21 @@ function SWEP:getThrowVelocityMods()
 	local mul = math.Clamp((CT - min) / (max - min), 0, 1)
 	
 	if self._doingShortThrow then
-		min, max = 0.3, 0.5
+		min = self.shortForwardMinMax[1]
+		max = self.shortForwardMinMax[2]
 	else
-		min, max = 0.5, 1.4
+		min = self.throwForwardMinMax[1]
+		max = self.throwForwardMinMax[2]
 	end
 	
 	local forward = min + mul * (max - min)
 	
 	if self._doingShortThrow then
-		min, max = 0.4, 0.6
+		min = self.shortUpMinMax[1]
+		max = self.shortUpMinMax[2]
 	else
-		min, max = 0.8, 1.2
+		min = self.throwUpMinMax[1]
+		max = self.throwUpMinMax[2]
 	end
 	
 	local up = min + mul * (max - min)

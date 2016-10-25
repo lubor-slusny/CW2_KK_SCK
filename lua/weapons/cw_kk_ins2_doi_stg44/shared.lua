@@ -27,7 +27,7 @@ if CLIENT then
 	SWEP.CustomizationMenuScale = 0.02
 end
 
-SWEP.MuzzleEffect = "muzzleflash_stg44_1p_core"
+SWEP.MuzzleEffect = "muzzleflash_stg44_1p"
 SWEP.MuzzleEffectWorld = "muzzleflash_stg44_3p"
 
 SWEP.Attachments = {

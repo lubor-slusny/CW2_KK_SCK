@@ -23,7 +23,9 @@ function EFFECT:Init(fx)
 		return
 	end
 	
-	particleEffect = wep:getFireParticles()
+	-- particleEffect = wep:getFireParticles()
+	particleEffect = wep.dt.Suppressed and wep.MuzzleEffectSupp or (wep.MuzzleEffectWorld or wep.MuzzleEffect)
+
 	att = ent:GetAttachment(wep.WorldMuzzleAttachmentID)
 	
 	if particleEffect and att then
@@ -47,8 +49,9 @@ function EFFECT:Init(fx)
 		att = ent:GetAttachment(2)
 		
 		if att then
-			ParticleEffectAttach("muzzleflash_m3", PATTACH_POINT_FOLLOW, ent, 2)
-			ParticleEffectAttach("muzzleflash_m3", PATTACH_POINT_FOLLOW, ent, 2)
+			-- ParticleEffectAttach("muzzleflash_m3", PATTACH_POINT_FOLLOW, ent, 2)
+			-- ParticleEffectAttach("muzzleflash_m3", PATTACH_POINT_FOLLOW, ent, 2)
+			ParticleEffectAttach(particleEffect, PATTACH_POINT_FOLLOW, ent, 2)
 			
 			local dlight = DynamicLight(self:EntIndex())
 			

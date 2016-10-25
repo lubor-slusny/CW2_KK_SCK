@@ -48,6 +48,7 @@ SWEP.Animations = {
 	base_fire_aim = "iron_fire",
 	base_fire_empty = "base_dryfire",
 	base_fire_empty_aim = "iron_dryfire",
+	base_reload = "base_reload",
 	base_reload_empty = "base_reload",
 	base_idle = "iron_idle",
 	base_holster = "base_holster",

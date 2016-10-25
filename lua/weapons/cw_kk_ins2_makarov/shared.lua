@@ -53,6 +53,7 @@ if CLIENT then
 end
 
 SWEP.MuzzleEffect = "muzzleflash_makarov_1p_core"
+SWEP.MuzzleEffectWorld = "muzzleflash_makarov_3rd"
 
 SWEP.Attachments = {
 	{header = "Lasers", offset = {500, -400}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_m6x"}},

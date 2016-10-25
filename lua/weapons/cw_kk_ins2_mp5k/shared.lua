@@ -117,6 +117,7 @@ if CLIENT then
 end
 
 SWEP.MuzzleEffect = "muzzleflash_mp5_1p_core"
+SWEP.MuzzleEffectWorld = "muzzleflash_mp5_3rd"
 
 SWEP.WeaponLength = 16
 

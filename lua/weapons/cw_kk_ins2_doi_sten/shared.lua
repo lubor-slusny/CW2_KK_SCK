@@ -47,7 +47,7 @@ if CLIENT then
 	SWEP.CustomizationMenuScale = 0.013
 end
 
-SWEP.MuzzleEffect = "muzzleflash_sten_1p_core"
+SWEP.MuzzleEffect = "muzzleflash_sten_1p"
 SWEP.MuzzleEffectWorld = "muzzleflash_sten_3p"
 
 SWEP.StockBGs = {main = 0, regular = 0, heavy = 0, sturdy = 0}

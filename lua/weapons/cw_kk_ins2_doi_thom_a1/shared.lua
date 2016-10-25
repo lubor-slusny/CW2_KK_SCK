@@ -36,7 +36,7 @@ if CLIENT then
 
 end
 
-SWEP.MuzzleEffect = "muzzleflash_thompson_1p_core"
+SWEP.MuzzleEffect = "muzzleflash_thompson_1p"
 SWEP.MuzzleEffectWorld = "muzzleflash_thompson_3p"
 
 SWEP.Attachments = {

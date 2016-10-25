@@ -17,12 +17,20 @@ if CLIENT then
 	SWEP.ViewModelMovementScale = 0.8
 	SWEP.DisableSprintViewSimulation = true
 	SWEP.HUD_MagText = "PLANTED: "
+	
+	SWEP.HUD_3D2DOffset = Vector()
+	SWEP.HUD_3D2DOffsetMenu = Vector(-7, 1, 0)
+	SWEP.CustomizationMenuScale = 0.0055
 end
 
 SWEP.Animations = {
-	throw = "base_throw",
-	plant = "plant",
 	pullpin = "base_pullback",
+	throw = "base_throw",
+	
+	pull_short = "low_pullback",
+	throw_short = "low_throw",
+	
+	plant = "plant",
 	
 	base_pickup = "draw",
 	base_draw = "draw",
@@ -43,7 +51,7 @@ SWEP.CanRestOnObjects = false
 	
 -- SWEP.SprintingEnabled = false
 SWEP.AimingEnabled = false
-SWEP.CanCustomize = false
+SWEP.CanCustomize = true
 SWEP.AccuracyEnabled = false
 
 SWEP.SpeedDec = 5
@@ -90,6 +98,55 @@ SWEP.Recoil = 1
 SWEP.WeaponLength = 40
 
 SWEP.KKINS2RCE = true
+
+SWEP.canCook = false
+SWEP.mustCook = false
+SWEP.canPlant = true
+
+SWEP.projectileClass = "cw_kk_ins2_projectile_ied"
+
+SWEP.fuseTime = 0
+SWEP.timeToThrow = 0.4
+SWEP.swapTime = 0.9
+SWEP.maxVelDelay = 0.7
+
+SWEP.spawnTimePlant = 0.4
+SWEP.swapTimePlant = 1
+
+SWEP.PlantPos = Vector(1.5, 3, -1.5)
+SWEP.PlantAng = Angle(-90, 0, -90)
+
+SWEP.spawnOffsetShort = Vector(0, 0, 0)
+
+SWEP.shortForwardMinMax = {0.5, 1.2}
+SWEP.throwForwardMinMax = {0.5, 1.2}
+SWEP.shortUpMinMax = {0.6, 1.1}
+SWEP.throwUpMinMax = {0.6, 1.1}
+
+SWEP.reticleInactivityCallbacksRaw = {
+	["det_boom"] = 0.1,
+}
+
+function SWEP:PrimaryAttack()
+	if self.Owner:GetAmmoCount(self.Primary.Ammo) > 0 then
+		self:_attack(1)
+	else
+		self:detonateLast()
+	end
+end
+
+function SWEP:fuseProjectile(grenade, overrideTime)
+	grenade:SetOwner(self.lastOwner)
+	
+	grenade:InitPhys()
+	
+	grenade:SetDetonator(self)
+	self.PlantedCharges[grenade] = grenade
+end
+
+//-----------------------------------------------------------------------------
+// edits of the old
+//-----------------------------------------------------------------------------
 
 if SERVER then	
 	function SWEP:EquipAmmo(ply)
@@ -139,204 +196,37 @@ end
 
 local SP = game.SinglePlayer()
 
-function SWEP:IndividualThink()
-	if SERVER then
-		self.Owner:ShouldDropWeapon(true)
+function SWEP:IndividualThink_INS2()
+	if self.PlantedCharges then
+		for k,v in pairs(self.PlantedCharges) do
+			if !IsValid(v) then
+				self.PlantedCharges[v] = nil
+			end
+		end
 		
-		if self.PlantedCharges then
-			for k,v in pairs(self.PlantedCharges) do
-				if !IsValid(v) then
-					self.PlantedCharges[v] = nil
-				end
-			end
-			
-			self:SetClip1(table.Count(self.PlantedCharges))
-		end
-			
-		// for 0-to-1-ammo draw-anim
-		local cur = self.Owner:GetAmmoCount(self.Primary.Ammo)
-		local last = self._lastPrimaryAmmoCount
-		if last and last < cur and cur == 1 then
-			self:drawAnimFunc()
-			self:SetNextPrimaryFire(CurTime() + self.DeployTime)
-			self:SetNextSecondaryFire(CurTime() + self.DeployTime)
-		end
-		self._lastPrimaryAmmoCount = cur
-	end
-	
-	-- weapons.GetStored("cw_kk_ins2_base").IndividualThink(self)
-	weapons.GetStored("cw_kk_ins2_base_main").IndividualThink(self)
-end
-
-function SWEP:throwC4()
-	if CLIENT then
-		if SP or IsFirstTimePredicted() then
-			self:playAnim("throw", 1, 0)
-		end
-	end
-	
-	if SERVER then
-		CustomizableWeaponry.actionSequence.new(self, 0.2, nil, function()
-			local pos = self.Owner:GetShootPos()
-			local eyeAng = self.Owner:EyeAngles()
-			local offset = eyeAng:Up() * -3 + eyeAng:Forward() * 0 + eyeAng:Right() * 3
-			local forward = eyeAng:Forward()
-			
-			local nade = ents.Create("cw_kk_ins2_projectile_ied")
-			
-			nade:SetDetonator(self)
-			self.PlantedCharges[nade] = nade
-			
-			nade:SetPos(pos + offset)
-			nade:SetAngles(eyeAng)
-			nade:Spawn()
-			nade:Activate()
-			
-			nade:SetOwner(self.Owner)
-			
-			nade:InitPhys()
-			
-			local phys = nade:GetPhysicsObject()
-			
-			if IsValid(phys) then
-				local overallSideMod = self.Owner:KeyDown(IN_SPEED) and 2 or 1
-
-				// take the velocity into account
-				addMod = math.Clamp(self.Owner:GetVelocity():Length() / self.Owner:GetRunSpeed(), 0, 1)
-				
-				local velocity = forward * CustomizableWeaponry.quickGrenade.throwVelocity + CustomizableWeaponry.quickGrenade.addVelocity
-				local velNorm = self.Owner:GetVelocity():GetNormal()
-				velNorm.z = 0
-				
-				// add velocity based on player velocity normal
-				velocity = velocity + velNorm * CustomizableWeaponry.quickGrenade.movementAddVelocity * addMod
-				
-				phys:SetVelocity(velocity / 2)
-				phys:AddAngleVelocity(Vector(math.random(-500, 500), math.random(-500, 500), math.random(-500, 500)))
-			end
-			
-			local suppressAmmoUsage = CustomizableWeaponry.callbacks.processCategory(self, "shouldSuppressAmmoUsage")
-			if not suppressAmmoUsage then
-				self.Owner:RemoveAmmo(1, self.Primary.Ammo)
-			end
-		end)
-	end
-end
-
-function SWEP:plantC4()
-	if CLIENT then
-		if SP or IsFirstTimePredicted() then
-			self:playAnim("plant", 1, 0)
-		end
-	end
-	
-	if SERVER then
-		CustomizableWeaponry.actionSequence.new(self, 0.2, nil, function()
-			local hit, tr = self:isNearWall()
-			local ang, pos
-			
-			if hit then
-				ang = tr.HitNormal:Angle()
-				pos = tr.HitPos + ang:Right() * 3 + ang:Forward() * 1.5 + ang:Up() * -1.5
-				ang:RotateAroundAxis(ang:Up(), 90)
-				ang:RotateAroundAxis(ang:Right(), -90)
-				
-				local nade = ents.Create("cw_kk_ins2_projectile_ied")
-				
-				nade:SetDetonator(self)
-				self.PlantedCharges[nade] = nade
-				
-				nade:SetPos(pos)
-				nade:SetAngles(ang)
-				nade:Spawn()
-				nade:Activate()
-				
-				nade:SetOwner(self.Owner)
-				
-				if (tr.Entity:GetClass() == "worldspawn") then
-					nade:SetAngles(ang)
-				else
-					nade:InitPhys()
-					constraint.Weld(tr.Entity, nade, tr.PhysicsBone, 0, 0, true, false)
-				end
-				
-				local suppressAmmoUsage = CustomizableWeaponry.callbacks.processCategory(self, "shouldSuppressAmmoUsage")
-				if not suppressAmmoUsage then
-					self.Owner:RemoveAmmo(1, self.Primary.Ammo)
-				end
-			end
-		end)
+		self:SetClip1(table.Count(self.PlantedCharges))
 	end
 end
 
 function SWEP:detonateC4()
+	self:EmitSound("CW_KK_INS2_C4_TRIGGERSEC")
+	
 	if SERVER then 
-		for k,v in pairs(self.PlantedCharges) do
+		for _,v in pairs(self.PlantedCharges) do
 			v:Fuse()
 		end
 	end
 end
 
-function SWEP:PrimaryAttack()
-	if not self:canFireWeapon(1) then
-		return
-	end
-	
-	if self.Owner:KeyDown(IN_USE) then		
-		if CustomizableWeaponry_KK.ins2.quickGrenade:canThrow(self) then
-			CustomizableWeaponry_KK.ins2.quickGrenade:throw(self)
-			return
-		end
-	end
-	
-	if not self:canFireWeapon(2) then
-		return
-	end
-	
-	if self.InactiveWeaponStates[self.dt.State] then
-		return
-	end
-	
-	if SP and SERVER then
-		SendUserMessage("CW_KK_INS2_IED_PRIMARY", self.Owner)
-	end
-	
-	if self.Owner:GetAmmoCount(self.Primary.Ammo) > 0 then
-		self.reticleInactivity = UnPredictedCurTime() + 2
-		
-		if self:isNearWall() then
-			self:plantC4()
-		else
-			self:throwC4()
-			-- self:plantC4()
-		end
-		
-		if self:canAnimate() then
-			CustomizableWeaponry.actionSequence.new(self, 1, nil, function()
-				if self.Owner:GetAmmoCount(self.Primary.Ammo) > 0 then
-					self:drawAnimFunc()
-				else
-					self:sendWeaponAnim("det_draw", 1, 0)
-				end
-			end)
-		end		
-
-		self:SetNextPrimaryFire(CurTime() + 1.5)
-		self:SetNextSecondaryFire(CurTime() + 1.5)
-	else
-		self:detonateLast()
-	end
-end
-
 function SWEP:canAnimate()
-	return (SP and SERVER) or (!SP and CLIENT and IsFirstTimePredicted())
+	if SP then 
+		return SERVER
+	else
+		return CLIENT and IsFirstTimePredicted()
+	end
 end
 
 function SWEP:SecondaryAttack()
-	if SP and SERVER then
-		SendUserMessage("CW_KK_INS2_IED_SECONDARY", self.Owner)
-	end
-	
 	if self.Owner:GetAmmoCount(self.Primary.Ammo) > 0 then
 		if CLIENT then
 			self.reticleInactivity = UnPredictedCurTime() + 2.5
@@ -344,53 +234,75 @@ function SWEP:SecondaryAttack()
 		
 		if self:canAnimate() then
 			self:holsterAnimFunc()
-			
-			CustomizableWeaponry.actionSequence.new(self, 0.4, nil, function()
-				self:sendWeaponAnim("det_draw", 1, 0)
-			end)
-			
-			CustomizableWeaponry.actionSequence.new(self, 0.7, nil, function()
-				self:sendWeaponAnim("det_boom", 1, 0)
-			end)
-			
-			CustomizableWeaponry.actionSequence.new(self, 1.7, nil, function()
-				self:drawAnimFunc()
-			end)
 		end
 		
+		local oldMAD = self.meleeAttackDelay or 0
+		
+		CustomizableWeaponry.actionSequence.new(self, 0.4, nil, function()
+			if math.abs((self.meleeAttackDelay or 0) - oldMAD) > 0.1 then return end
+			
+			if self:canAnimate() then
+				self:sendWeaponAnim("det_draw", 1, 0)
+			end
+		end)
+		
+		CustomizableWeaponry.actionSequence.new(self, 0.7, nil, function()
+			if math.abs((self.meleeAttackDelay or 0) - oldMAD) > 0.1 then return end
+			
+			if self:canAnimate() then
+				self:sendWeaponAnim("det_boom", 1, 0)
+			end
+		end)
+		
 		CustomizableWeaponry.actionSequence.new(self, 1.1, nil, function()
+			if math.abs((self.meleeAttackDelay or 0) - oldMAD) > 0.1 then return end
+			
 			self:detonateC4()
 		end)
 
-		self:SetNextPrimaryFire(CurTime() + 2)
-		self:SetNextSecondaryFire(CurTime() + 2)
+		CustomizableWeaponry.actionSequence.new(self, 1.7, nil, function()
+			if math.abs((self.meleeAttackDelay or 0) - oldMAD) > 0.1 then return end
+			
+			if self:canAnimate() then
+				self:drawAnimFunc()
+			end
+		end)
+		
+		local CT = CurTime()
+		
+		self:SetNextPrimaryFire(CT + 2)
+		self:SetNextSecondaryFire(CT + 2)
 	else
 		self:detonateLast()
 	end
 end
 
 function SWEP:detonateLast()
-	if CLIENT then
-		self.reticleInactivity = UnPredictedCurTime() + 1.5
-	end
-	
 	if self:canAnimate() then
 		self:sendWeaponAnim("det_boom", 1, 0)
-		
-		CustomizableWeaponry.actionSequence.new(self, 0.61, nil, function()
-			self:sendWeaponAnim("det_idle", 1, 0)
-		end)
 	end
 	
+	local oldMAD = self.meleeAttackDelay or 0
+	
 	CustomizableWeaponry.actionSequence.new(self, 0.5, nil, function()
+		if math.abs((self.meleeAttackDelay or 0) - oldMAD) > 0.1 then return end
+		
 		self:detonateC4()
 	end)
 	
-	self:SetNextPrimaryFire(CurTime() + 1)
-	self:SetNextSecondaryFire(CurTime() + 1)
+	CustomizableWeaponry.actionSequence.new(self, 0.61, nil, function()
+		if math.abs((self.meleeAttackDelay or 0) - oldMAD) > 0.1 then return end
+		
+		if self:canAnimate() then
+			self:sendWeaponAnim("det_idle", 1, 0)
+		end
+	end)
+	
+	local CT = CurTime()
+	
+	self:SetNextPrimaryFire(CT + 1)
+	self:SetNextSecondaryFire(CT + 1)
 end
-
--- function SWEP:updateReloadTimes() end
 
 function SWEP:getForegripMode()
 	if IsValid(self.Owner) and self.Owner:GetAmmoCount(self.Primary.Ammo) > 0 then 
@@ -418,8 +330,14 @@ function SWEP:sprintAnimFunc()
 	self:sendWeaponAnim(prefix .. "sprint", 1, 0)
 end
 
+function SWEP:proneAnimFunc()
+	local prefix = self:getForegripMode()
+	
+	self:sendWeaponAnim(prefix .. "crawl", 1, 0)
+end
+
 if CLIENT then
-	local m
+	local m, pos, ang, offset
 	local muz = {}
 	
 	function SWEP:getMuzzlePosition()
@@ -433,30 +351,21 @@ if CLIENT then
 			end
 		end
 
-		muz.Pos = m:GetTranslation()
+		if self.CustomizeMenuAlpha > 0 then
+			offset = self.HUD_3D2DOffsetMenu
+		else
+			offset = self.HUD_3D2DOffset
+		end
+		
+		pos = m:GetTranslation()
+		ang = EyeAngles()
+		
+		pos = pos + ang:Right() * offset.x
+		pos = pos + ang:Up() * offset.y
+		pos = pos + ang:Forward() * offset.z
+		
+		muz.Pos = pos
 		muz.Ang = m:GetAngles()
 		return muz
 	end
-end
-
-if CLIENT then
-	usermessage.Hook("CW_KK_INS2_IED_PRIMARY", function(um)
-		local ply = LocalPlayer()
-		if !IsValid(ply) then return end
-		
-		local wep = ply:GetActiveWeapon()
-		if !IsValid(wep) then return end
-		
-		wep:PrimaryAttack()
-	end)
-	
-	usermessage.Hook("CW_KK_INS2_IED_SECONDARY", function(um)
-		local ply = LocalPlayer()
-		if !IsValid(ply) then return end
-		
-		local wep = ply:GetActiveWeapon()
-		if !IsValid(wep) then return end
-		
-		wep:SecondaryAttack()
-	end)
 end

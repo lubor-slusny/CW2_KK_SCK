@@ -31,7 +31,7 @@ if CLIENT then
 	SWEP.DisableSprintViewSimulation = true
 end
 
-SWEP.MuzzleEffect = "muzzleflash_luger_1p_core"
+SWEP.MuzzleEffect = "muzzleflash_luger_1p"
 SWEP.MuzzleEffectWorld = "muzzleflash_mp40_3p"
 
 SWEP.Attachments = {

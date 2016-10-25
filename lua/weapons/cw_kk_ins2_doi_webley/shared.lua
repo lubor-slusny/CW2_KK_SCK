@@ -36,7 +36,7 @@ if CLIENT then
 	SWEP.HUD_MagText = "CYLINDER: "
 end
 
-SWEP.MuzzleEffect = "muzzleflash_1911_1p_core"
+SWEP.MuzzleEffect = "muzzleflash_1911_1p"
 SWEP.MuzzleEffectWorld = "muzzleflash_sten_3p"
 
 SWEP.Attachments = {
