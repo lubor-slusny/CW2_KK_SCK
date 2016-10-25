@@ -216,7 +216,7 @@ SWEP.MaxSpreadInc = 0.01
 SWEP.SpreadPerShot = 0
 SWEP.SpreadCooldown = 0
 SWEP.Shots = 1
-SWEP.Damage = 100
+SWEP.Damage = 0
 
 SWEP.MuzzleVelocity = 115
 SWEP.projectileClass = "cw_kk_ins2_projectile_rpg"

@@ -22,7 +22,7 @@ if CLIENT then
 end
 
 SWEP.CanRestOnObjects = false
-SWEP.grenadeEnt = "cw_kk_ins2_projectile_n69"
+SWEP.projectileClass = "cw_kk_ins2_projectile_n69"
 
 SWEP.Animations = {
 	pullpin = "pullbackhigh",
@@ -70,6 +70,7 @@ SWEP.Primary.DefaultClip	= -1
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "Frag Grenades"
 
+SWEP.fuseTime = 0
 SWEP.timeToThrow = 1.1
 SWEP.maxVelDelay = 1.5
 

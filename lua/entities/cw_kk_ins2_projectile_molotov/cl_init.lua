@@ -1,8 +1,9 @@
 include("shared.lua")
 
 function ENT:Initialize()
-	self.Entity.Emitter = ParticleEmitter(self.Entity:GetPos())
-	self.Entity.ParticleDelay = 0
+	if self:GetBreakOnImpact() then
+		ParticleEffectAttach(self.fuseParticles, PATTACH_POINT_FOLLOW, self, 1)
+	end
 end
 
 function ENT:Draw()

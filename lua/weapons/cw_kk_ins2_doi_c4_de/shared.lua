@@ -22,10 +22,14 @@ if CLIENT then
 	SWEP.MoveType = 2
 	SWEP.ViewModelMovementScale = 0.8
 	SWEP.DisableSprintViewSimulation = true
+	
+	SWEP.HUD_3D2DOffset = Vector(0, 0, 0)
+	SWEP.HUD_3D2DOffsetMenu = Vector(2.5, 2.5, 0)
+	SWEP.CustomizationMenuScale = 0.0055
 end
 
 SWEP.CanRestOnObjects = false
-SWEP.grenadeEnt = "cw_kk_ins2_projectile_ww2_c4"
+SWEP.projectileClass = "cw_kk_ins2_projectile_ww2_c4"
 
 SWEP.Animations = {
 	plant = "base_plant",

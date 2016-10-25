@@ -179,6 +179,72 @@ ENT.db = {
 			"generic_nearglow",
 			-- "generic_nearglow_b",
 		},
+		explosionParticlesWater = {
+			"ins_water_explosion",
+		}
+	},
+	
+	cw_kk_ins2_projectile_molotov = {
+		effectClass = "cw_kk_ins2_explosion_molotov",
+		explosionSound0 = "CW_KK_INS2_M84_ENT_DETONATE",
+		explosionSound1 = "CW_KK_INS2_M84_ENT_DETONATE_D1",
+		explosionSound2 = "CW_KK_INS2_M84_ENT_DETONATE_D2",
+		explosionSoundW0 = "",
+		explosionSoundW1 = "",
+		explosionParticles = {
+			"ins_molotov_explosion",
+			-- "doi_smoke_artillery",
+			-- "doi_wpgrenade_explosion",
+			
+		},
+		explosionParticlesWater = {
+			"ins_molotov_explosion",
+		}
+	},
+	
+	cw_kk_ins2_projectile_anm14 = {
+		effectClass = "cw_kk_ins2_explosion_molotov",
+		explosionSound0 = "CW_KK_INS2_M84_ENT_DETONATE",
+		explosionSound1 = "CW_KK_INS2_M84_ENT_DETONATE_D1",
+		explosionSound2 = "CW_KK_INS2_M84_ENT_DETONATE_D2",
+		explosionSoundW0 = "",
+		explosionSoundW1 = "",
+		explosionParticles = {			
+			-- "ins_thermite_explosion", // too pink
+			
+			"ins_thermite_smoke_c",
+			"ins_thermite_smoke_b",
+			"ins_thermite_smoke",
+			"ins_thermite_flame_c",
+			"ins_thermite_sparks_b",
+			"ins_thermite_burst",
+			-- "ins_thermite_glow",
+			"ins_thermite_flame_sparks",
+			
+		},
+		explosionParticlesWater = {
+			"ins_thermite_smoke_c",
+			"ins_thermite_smoke_b",
+			"ins_thermite_smoke",
+			"ins_thermite_flame_c",
+			"ins_thermite_sparks_b",
+			"ins_thermite_burst",
+			-- "ins_thermite_glow",
+			"ins_thermite_flame_sparks",
+		}
+	},
+	
+	cw_kk_ins2_projectile_m18 = {
+		followProjectile = true,
+		effectClass = "cw_kk_ins2_explosion_molotov",
+		explosionSound0 = "CW_KK_INS2_M84_ENT_DETONATE",
+		explosionSound1 = "CW_KK_INS2_M84_ENT_DETONATE_D1",
+		explosionSound2 = "CW_KK_INS2_M84_ENT_DETONATE_D2",
+		explosionSoundW0 = "",
+		explosionSoundW1 = "",
+		explosionParticles = {
+			"ins_smokegrenade",
+		},
 		explosionParticlesWater = {}
 	},
 	
@@ -280,9 +346,6 @@ for class,tweakData in pairs(ENT.db) do
 		end
 	end
 end
-
-PrintTable(ENT._dbInt2str)
-PrintTable(ENT._dbStr2int)
 
 function ENT:getTweakData()
 	local i = self:GetProjectileClass()

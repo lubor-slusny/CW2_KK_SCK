@@ -73,9 +73,11 @@ function ENT:Fuse(t)
 				end
 			end)
 			
-			ParticleEffect("cstm_smoke", smokeScreen:GetPos(), Angle(), smokeScreen)
+			local fx = ents.Create("cw_kk_ins2_particles")
+			fx:processProjectile(self)
+			fx:Spawn()
 			
-			self:Remove()
+			SafeRemoveEntityDelayed(self, 30)
 		end
 	end)
 end

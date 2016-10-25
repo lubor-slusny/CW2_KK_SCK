@@ -22,10 +22,11 @@ if CLIENT then
 	SWEP.MoveType = 2
 	SWEP.ViewModelMovementScale = 0.8
 	SWEP.DisableSprintViewSimulation = true
+	
 end
 
 SWEP.CanRestOnObjects = false
-SWEP.grenadeEnt = "cw_kk_ins2_projectile_molotov"
+SWEP.projectileClass = "cw_kk_ins2_projectile_molotov"
 
 SWEP.Animations = {
 	pullpin = "pullback_high",
@@ -71,6 +72,7 @@ SWEP.Primary.DefaultClip	= -1
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "Incediary"
 
+SWEP.fuseTime = 0
 SWEP.timeToThrow = 1.5
 SWEP.maxVelDelay = 2
 
@@ -88,6 +90,39 @@ if CLIENT then
 			return muz
 		end
 		
-		return self.CW_VM:GetAttachment(2)
+		m = self.CW_VM:GetAttachment(2)
+		
+		if self.CustomizeMenuAlpha > 0 then
+			offset = self.HUD_3D2DOffsetMenu
+		else
+			offset = self.HUD_3D2DOffset
+		end
+		
+		pos = m.Pos
+		ang = EyeAngles()
+		
+		pos = pos + ang:Right() * offset.x
+		pos = pos + ang:Up() * offset.y
+		pos = pos + ang:Forward() * offset.z
+		
+		muz.Pos = pos
+		muz.Ang = m.Ang
+		return muz
 	end
+end
+
+function SWEP:fuseProjectile(grenade, overrideTime)
+	-- local time
+	
+	-- if self.cookTime then
+		-- time = math.Clamp((self.cookTime + self.fuseTime) - CurTime(), 0, self.fuseTime)
+	-- else
+		-- time = self.fuseTime
+	-- end
+	
+	-- time = overrideTime or time
+	
+	-- grenade:Fuse(time)
+	
+	grenade:SetBreakOnImpact(true)
 end

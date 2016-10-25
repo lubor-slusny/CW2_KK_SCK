@@ -19,10 +19,14 @@ if CLIENT then
 	SWEP.MoveType = 2
 	SWEP.ViewModelMovementScale = 0.8
 	SWEP.DisableSprintViewSimulation = true
+	
+	SWEP.HUD_3D2DOffset = Vector(-1, 3, 0)
+	SWEP.HUD_3D2DOffsetMenu = Vector(-8, 6, 0)
+	SWEP.CustomizationMenuScale = 0.006
 end
 
 SWEP.CanRestOnObjects = false
-SWEP.grenadeEnt = "cw_kk_ins2_projectile_m18"
+SWEP.projectileClass = "cw_kk_ins2_projectile_m18"
 
 SWEP.Animations = {
 	pullpin = "pullbackhigh",

@@ -1,10 +1,13 @@
 if not CustomizableWeaponry then return end
 
 AddCSLuaFile()
+AddCSLuaFile("cl_statdisplay.lua")
 
 SWEP.KKINS2Nade = true
 
-if CLIENT then	
+if CLIENT then
+	include("cl_statdisplay.lua")
+	
 	SWEP.DrawCrosshair = false
 	SWEP.PrintName = "Grenade base (KK INS2 Edit)"
 	
@@ -15,21 +18,23 @@ if CLIENT then
 	SWEP.HUD_3D2DScale = 0.008
 	
 	SWEP.HUD_3D2DBone = 59
+	SWEP.HUD_3D2DOffset = Vector(-5, 2.5, 0)
+	SWEP.HUD_3D2DOffsetMenu = Vector(-5, 2.5, 0)
+	SWEP.CustomizationMenuScale = 0.005
 	
 	SWEP.CustomizePos = Vector()
 	SWEP.CustomizeAng = Vector()
-	
-	SWEP.CustomizationMenuScale = 0.01
 end
 
 SWEP.CanRestOnObjects = false
+SWEP.projectileClass = "cw_kk_ins2_projectile_m18"
 	
 -- SWEP.SprintingEnabled = false
 SWEP.AimingEnabled = false
-SWEP.CanCustomize = false
+SWEP.CanCustomize = true
 SWEP.AccuracyEnabled = false
 
-SWEP.Attachments = {}
+SWEP.Attachments = {{header = "CSGO", offset = {1000, -500}, atts = {"kk_counter"}, dependencies = {aintgonnahappen = true}}}
 SWEP.Sounds = {}
 
 SWEP.Slot = 1
@@ -60,13 +65,22 @@ SWEP.Primary.Ammo			= ""
 
 SWEP.HoldToAim				= false
 
-SWEP.HipSpread = 0.045
-SWEP.AimSpread = 0.045
-SWEP.VelocitySensitivity = 0.001
-SWEP.MaxSpreadInc = 0.001
-SWEP.SpreadPerShot = 0.001
-SWEP.SpreadCooldown = 0.001
+SWEP.FireDelay = 0
 SWEP.Recoil = 3
+
+SWEP.HipSpread = 0.05
+SWEP.AimSpread = 0
+SWEP.VelocitySensitivity = 0
+SWEP.MaxSpreadInc = 0.01
+SWEP.SpreadPerShot = 0
+SWEP.SpreadCooldown = 0
+SWEP.Shots = 1
+SWEP.Damage = 0
+
+SWEP.ReloadTime = 0
+SWEP.ReloadTime_Empty = 0
+SWEP.ReloadHalt = 0
+SWEP.ReloadHalt_Empty = 0
 
 SWEP.AddSafeMode = false
 
@@ -188,7 +202,7 @@ end
 //-----------------------------------------------------------------------------
 
 if CLIENT then
-	local m
+	local m, pos, ang, offset
 	local muz = {}
 	
 	function SWEP:getMuzzlePosition()
@@ -198,7 +212,20 @@ if CLIENT then
 			m = self.CW_VM:GetBoneMatrix(self.HUD_3D2DBone)
 		end
 		
-		muz.Pos = m:GetTranslation()
+		if self.CustomizeMenuAlpha > 0 then
+			offset = self.HUD_3D2DOffsetMenu
+		else
+			offset = self.HUD_3D2DOffset
+		end
+		
+		pos = m:GetTranslation()
+		ang = EyeAngles()
+		
+		pos = pos + ang:Right() * offset.x
+		pos = pos + ang:Up() * offset.y
+		pos = pos + ang:Forward() * offset.z
+		
+		muz.Pos = pos
 		muz.Ang = m:GetAngles()
 		return muz
 	end
@@ -227,6 +254,11 @@ local SP = game.SinglePlayer()
 function SWEP:IndividualThink()
 	// for OnDrop func
 	self.lastOwner = self.Owner
+	
+	// for lulz
+	if CLIENT then
+		self.CustomizationTab = self.CustomizationTabOverride
+	end
 	
 	// for 0-to-1-ammo draw-anim
 	local cur = self.Owner:GetAmmoCount(self.Primary.Ammo)
@@ -506,7 +538,7 @@ end
 function SWEP:overCook()
 	local hitPos = self.Owner:EyePos() + (self.Owner:EyeAngles():Forward() * 18)
 	
-	local grenade = ents.Create(self.grenadeEnt)
+	local grenade = ents.Create(self.projectileClass)
 	
 	if IsValid(grenade) then
 		grenade:SetNoDraw(true)
@@ -528,15 +560,10 @@ end
 //-----------------------------------------------------------------------------
 
 function SWEP:createProjectile()
-	local grenade = ents.Create(self.grenadeEnt)
+	local grenade = ents.Create(self.projectileClass)
 	
 	if IsValid(grenade) then
 		grenade.Model = self.WM or self.WorldModel
-		
-		// move to anm14`s shared lua
-		if self:GetClass() == "cw_kk_ins2_nade_anm14" then
-			grenade.BreakOnImpact = false
-		end
 		
 		grenade:SetPos(self.lastOwner:GetShootPos())
 		grenade:SetAngles(self.lastOwner:EyeAngles())

@@ -6,7 +6,6 @@ ENT.ExplodeRadius = 384
 ENT.ExplodeDamage = 100
 
 ENT.Model = "models/weapons/w_molotov.mdl"
-ENT.BreakOnImpact = true
 
 local phys, ef
 
@@ -37,7 +36,7 @@ end
 local vel, len, CT
 
 function ENT:PhysicsCollide(data, physobj)
-	if self.BreakOnImpact then
+	if self:GetBreakOnImpact() then
 		self.kaboomboomTime = 0
 		return
 	end
@@ -63,8 +62,6 @@ function ENT:Fuse(t)
 	t = t or 3
 	
 	self.kaboomboomTime = CurTime() + t
-	
-	ParticleEffectAttach(self.fuseParticles, PATTACH_POINT_FOLLOW, self, 1)
 end
 
 function ENT:Detonate()
@@ -76,12 +73,11 @@ function ENT:Detonate()
 	
 	self:StopParticles()
 	
-	ParticleEffectAttach("ins_molotov_explosion", PATTACH_POINT_FOLLOW, self, 1)
+	local fx = ents.Create("cw_kk_ins2_particles")
+	fx:processProjectile(self)
+	fx:Spawn()
 	
-	self:SetNoDraw(true)
-	self:PhysicsDestroy()
-	
-	SafeRemoveEntityDelayed(self, 10)
+	SafeRemoveEntity(self)
 end
 
 function ENT:Think()

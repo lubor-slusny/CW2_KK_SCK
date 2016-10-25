@@ -8,3 +8,7 @@ ENT.AdminSpawnable = false
 
 ENT.fuseParticles = "molotov_trail"
 PrecacheParticleSystem(ENT.fuseParticles)
+
+function ENT:SetupDataTables()
+	self:NetworkVar("Bool", 0, "BreakOnImpact")
+end

@@ -264,23 +264,25 @@ if CLIENT then
 		end
 		
 		if not (wep.KKINS2RCE or (wep.KKINS2Nade and wep.canPlant)) then
-			return
+			return nil, nil, wep.KKINS2Nade
 		end
 
 		if (wep.Owner:GetAmmoCount(wep.Primary.Ammo) < 1) then
 			if wep:Clip1() > 0 then
 				draw.ShadowText("[PRIMARY - DETONATE]", cwhud24, x, y, White, Black, 2, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 			end
-			return
+			return nil, nil, wep.KKINS2Nade
 		end
 		
 		local nw, tr = wep:isNearWall()
 		
 		if not nw then
-			return
+			return nil, nil, wep.KKINS2Nade
 		end
 
 		draw.ShadowText("[PRIMARY - PLANT]", cwhud24, x, y, White, Black, 2, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+		
+		return nil, nil, wep.KKINS2Nade
 	end)
 	
 	hook.Add("FindUseEntity", "findmesomeentity", print)

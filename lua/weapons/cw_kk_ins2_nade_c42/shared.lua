@@ -17,6 +17,8 @@ if CLIENT then
 	SWEP.ViewModelMovementScale = 0.8
 	SWEP.DisableSprintViewSimulation = true
 	SWEP.HUD_MagText = "PLANTED: "
+	
+	SWEP.CustomizationMenuScale = 0.006
 end
 
 SWEP.Animations = {
@@ -44,7 +46,7 @@ SWEP.CanRestOnObjects = false
 	
 -- SWEP.SprintingEnabled = false
 SWEP.AimingEnabled = false
-SWEP.CanCustomize = false
+SWEP.CanCustomize = true
 SWEP.AccuracyEnabled = false
 
 SWEP.SpeedDec = 5
@@ -96,8 +98,9 @@ SWEP.canCook = false
 SWEP.mustCook = false
 SWEP.canPlant = true
 
-SWEP.grenadeEnt = "cw_kk_ins2_projectile_c4"
+SWEP.projectileClass = "cw_kk_ins2_projectile_c4"
 
+SWEP.fuseTime = 0
 SWEP.timeToThrow = 0.4
 SWEP.swapTime = 0.9
 SWEP.maxVelDelay = 0.6
@@ -315,7 +318,7 @@ function SWEP:proneAnimFunc()
 end
 
 if CLIENT then
-	local m
+	local m, pos, ang, offset
 	local muz = {}
 	
 	function SWEP:getMuzzlePosition()
@@ -329,7 +332,20 @@ if CLIENT then
 			end		
 		end
 
-		muz.Pos = m:GetTranslation()
+		if self.CustomizeMenuAlpha > 0 then
+			offset = self.HUD_3D2DOffsetMenu
+		else
+			offset = self.HUD_3D2DOffset
+		end
+		
+		pos = m:GetTranslation()
+		ang = EyeAngles()
+		
+		pos = pos + ang:Right() * offset.x
+		pos = pos + ang:Up() * offset.y
+		pos = pos + ang:Forward() * offset.z
+		
+		muz.Pos = pos
 		muz.Ang = m:GetAngles()
 		return muz
 	end

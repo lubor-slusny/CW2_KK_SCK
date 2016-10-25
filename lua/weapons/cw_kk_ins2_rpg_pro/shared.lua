@@ -111,7 +111,24 @@ if CLIENT then
 			return muz
 		end
 		
-		return self.CW_VM:GetAttachment(2)
+		m = self.CW_VM:GetAttachment(2)
+		
+		if self.CustomizeMenuAlpha > 0 then
+			offset = self.HUD_3D2DOffsetMenu
+		else
+			offset = self.HUD_3D2DOffset
+		end
+		
+		pos = m.Pos
+		ang = EyeAngles()
+		
+		pos = pos + ang:Right() * offset.x
+		pos = pos + ang:Up() * offset.y
+		pos = pos + ang:Forward() * offset.z
+		
+		muz.Pos = pos
+		muz.Ang = m.Ang
+		return muz
 	end
 end
 

@@ -22,6 +22,11 @@ function ENT:Initialize()
 	local tweak = self._dbStr2int[class]
 	self:SetProjectileClass(tweak)
 	
+	if self.db[class].followProjectile then
+		self:SetMoveType(MOVETYPE_NONE)
+		self:SetParent(self._sourceEnt)
+	end
+	
 	SafeRemoveEntityDelayed(self, 30)
 end
 
