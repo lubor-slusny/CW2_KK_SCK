@@ -36,32 +36,11 @@ end
 local vel, len, CT
 
 function ENT:PhysicsCollide(data, physobj)
-	if self:GetBreakOnImpact() then
-		self.kaboomboomTime = 0
-		return
-	end
-
-	vel = physobj:GetVelocity()
-	len = vel:Length()
-	
-	if len > 500 then -- let it roll
-		physobj:SetVelocity(vel * 0.6) -- cheap as fuck, but it works
-	end
-	
-	if len > 100 then
-		CT = CurTime()
-		
-		if CT > self.NextImpact then
-			self:EmitSound("weapons/smokegrenade/grenade_hit1.wav", 75, 100)
-			self.NextImpact = CT + 0.1
-		end
-	end
+	self:Detonate()
 end
 
 function ENT:Fuse(t)
-	t = t or 3
-	
-	self.kaboomboomTime = CurTime() + t
+	//muhehe
 end
 
 function ENT:Detonate()
@@ -73,15 +52,19 @@ function ENT:Detonate()
 	
 	self:StopParticles()
 	
-	local fx = ents.Create("cw_kk_ins2_particles")
-	fx:processProjectile(self)
-	fx:Spawn()
-	
-	SafeRemoveEntity(self)
+	if self:WaterLevel() == 0 then
+		local fx = ents.Create("cw_kk_ins2_particles")
+		fx:processProjectile(self)
+		fx:Spawn()
+		
+		SafeRemoveEntity(self)
+	else
+		SafeRemoveEntityDelayed(self, 60)
+	end
 end
 
 function ENT:Think()
-	if self.kaboomboomTime and CurTime() > self.kaboomboomTime then
+	if self:WaterLevel() != 0 then
 		self:Detonate()
 	end
 end

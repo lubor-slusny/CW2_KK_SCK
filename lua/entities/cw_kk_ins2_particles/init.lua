@@ -36,8 +36,3 @@ end
 function ENT:Use(activator, caller)
 	return false
 end
-
-function ENT:OnRemove()
-	self:StopParticles()
-	return false
-end

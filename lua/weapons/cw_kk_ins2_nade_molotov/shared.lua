@@ -32,6 +32,9 @@ SWEP.Animations = {
 	pullpin = "pullback_high",
 	throw = "throw",
 	
+	pull_short = "pullback_low",
+	throw_short = "lowthrow",
+	
 	base_pickup = "base_draw",
 	base_draw = "base_draw",
 	base_idle = "base_idle",
@@ -109,20 +112,4 @@ if CLIENT then
 		muz.Ang = m.Ang
 		return muz
 	end
-end
-
-function SWEP:fuseProjectile(grenade, overrideTime)
-	-- local time
-	
-	-- if self.cookTime then
-		-- time = math.Clamp((self.cookTime + self.fuseTime) - CurTime(), 0, self.fuseTime)
-	-- else
-		-- time = self.fuseTime
-	-- end
-	
-	-- time = overrideTime or time
-	
-	-- grenade:Fuse(time)
-	
-	grenade:SetBreakOnImpact(true)
 end

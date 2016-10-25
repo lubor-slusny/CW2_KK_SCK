@@ -67,17 +67,17 @@ SWEP.Sounds = {
 	},
 
 	pullback_highbake = {
-		{time = 1, sound = "CW_KK_INS2_MOLOTOV_LIGHTEROPEN"},
-		{time = 5, sound = "CW_KK_INS2_MOLOTOV_LIGHTERSTRIKE", callback = lighter},
-		{time = 8, sound = "CW_KK_INS2_MOLOTOV_IGNITE", callback = rag},
-		{time = 17, sound = "CW_KK_INS2_MOLOTOV_LIGHTERCLOSE", callback = lighterFin},
+		{time = 1/20, sound = "CW_KK_INS2_MOLOTOV_LIGHTEROPEN"},
+		{time = 5/20, sound = "CW_KK_INS2_MOLOTOV_LIGHTERSTRIKE", callback = lighter},
+		{time = 8/20, sound = "CW_KK_INS2_MOLOTOV_IGNITE", callback = rag},
+		{time = 17/20, sound = "CW_KK_INS2_MOLOTOV_LIGHTERCLOSE", callback = lighterFin},
 	},
 
 	pullback_low = {
-		{time = 1, sound = "CW_KK_INS2_MOLOTOV_LIGHTEROPEN"},
-		{time = 5, sound = "CW_KK_INS2_MOLOTOV_LIGHTERSTRIKE", callback = lighter},
-		{time = 8, sound = "CW_KK_INS2_MOLOTOV_IGNITE", callback = rag},
-		{time = 17, sound = "CW_KK_INS2_MOLOTOV_LIGHTERCLOSE", callback = lighterFin},
+		{time = 1/20, sound = "CW_KK_INS2_MOLOTOV_LIGHTEROPEN"},
+		{time = 5/20, sound = "CW_KK_INS2_MOLOTOV_LIGHTERSTRIKE", callback = lighter},
+		{time = 8/20, sound = "CW_KK_INS2_MOLOTOV_IGNITE", callback = rag},
+		{time = 17/20, sound = "CW_KK_INS2_MOLOTOV_LIGHTERCLOSE", callback = lighterFin},
 	},
 
 	throw = {

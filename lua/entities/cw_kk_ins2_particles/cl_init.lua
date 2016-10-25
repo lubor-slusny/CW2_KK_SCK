@@ -8,10 +8,6 @@ function ENT:Initialize()
 	ed:SetEntity(self)
 	util.Effect(self.db[class].effectClass, ed)
 end
-	
-function ENT:OnRemove()
-	self:StopParticles()
-end
 
 function ENT:Think()
 end 

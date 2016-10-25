@@ -6,5 +6,4 @@ ENT.Information = "Thrown incendiary grenade"
 ENT.Spawnable = false
 ENT.AdminSpawnable = false
 
-ENT.fuseParticles = "molotov_trail"
-PrecacheParticleSystem(ENT.fuseParticles)
+CustomizableWeaponry:addRegularSound("CW_KK_INS2_ANM14_ENT_BOUNCE", {"weapons/anm14/an_m14_bounce_01.wav", "weapons/anm14/an_m14_bounce_02.wav", "weapons/anm14/an_m14_bounce_03.wav"})

@@ -28,6 +28,9 @@ SWEP.Animations = {
 	pullpin = "pullbackhigh",
 	throw = "throw",
 	
+	pull_short = "pullbacklow",
+	throw_short = "lowthrow",
+	
 	base_pickup = "base_draw",
 	base_draw = "base_draw",
 	base_idle = "base_idle",

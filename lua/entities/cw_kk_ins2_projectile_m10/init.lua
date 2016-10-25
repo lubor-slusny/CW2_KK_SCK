@@ -20,12 +20,19 @@ function ENT:PhysicsCollide(data, physobj)
 end
 
 function ENT:selfDestruct()
-	self:EmitSound("CW_KK_INS2_DOI_M10_ENT_BOOM")
+	if self.ded then 
+		return
+	end
+	
+	self.ded = true
 	
 	local smokeScreen = ents.Create("cw_smokescreen_impact")
 	smokeScreen:SetPos(self:GetPos())
 	smokeScreen:Spawn()
-	smokeScreen:CreateParticles()
 	
-	self:Remove()
+	local fx = ents.Create("cw_kk_ins2_particles")
+	fx:processProjectile(self)
+	fx:Spawn()
+	
+	SafeRemoveEntityDelayed(self, 30)
 end

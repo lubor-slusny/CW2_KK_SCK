@@ -122,7 +122,7 @@ SWEP.Shots = 1
 SWEP.Damage = 100
 
 SWEP.MuzzleVelocity = 76
-SWEP.projectileClass = "cw_kk_ins2_projectile_pf60"
+SWEP.projectileClass = "cw_kk_ins2_projectile_piat"
 SWEP.hipBulletDelay = 0.25
 
 SWEP.FirstDeployTime = 1.4

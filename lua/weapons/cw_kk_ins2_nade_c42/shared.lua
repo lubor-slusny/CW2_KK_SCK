@@ -25,6 +25,9 @@ SWEP.Animations = {
 	pullpin = "base_pullback",
 	throw = "base_throw",
 	
+	pull_short = "low_pullback",
+	throw_short = "low_throw",
+	
 	plant = "base_plant",
 	
 	base_pickup = "base_draw",

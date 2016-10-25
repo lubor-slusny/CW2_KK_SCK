@@ -111,10 +111,21 @@ SWEP.spawnTimePlant = 1.17	// delay between start of plant animation and creatio
 SWEP.swapTimePlant = 1.7	// minimal allowed length of plant animation
 
 SWEP.PlantPos = Vector()	// position offset for planted entities (tr.HitPos-relative)
-SWEP.PlantAng = Angle()	// angle tweak for planted entities
+SWEP.PlantAng = Angle()		// angle tweak for planted entities
 
 SWEP.maxVelDelay = 1.35		// delay between start of pinpull animation and full throw velocity being available (full length of pinpull animation)
 SWEP.maxVelDelayCook = 1.7	// delay between start of pinpull_cook animation and full throw velocity being available (full length of pinpull_cook animation)
+
+SWEP.timeToThrowShort = 0.8	// minimal allowed length of pinpull_short animation
+SWEP.spawnTimeShort = 0.2	// delay between start of throw_short animation and creation of grenade ent
+SWEP.swapTimeShort = 0.7	// minimal allowed length of throw_short animation
+
+SWEP.spawnOffsetShort = Vector()
+
+SWEP.shortForwardMinMax = {0.3, 0.5}
+SWEP.throwForwardMinMax = {0.5, 1.4}
+SWEP.shortUpMinMax = {0.4, 0.6}
+SWEP.throwUpMinMax = {0.8, 1.2}
 
 //-----------------------------------------------------------------------------
 // EquipAmmo replacement for SWEP.Primary.DefaultClip
@@ -475,6 +486,7 @@ function SWEP:_attack(key)
 	local nw, tr = self:isNearWall()
 	self.plantTime = nil
 	self.attackStartTime = CT
+	self._doingShortThrow = false
 	
 	if nw and self.canPlant then							// if wep allows planting and we re near-wall then plant
 		self:sendWeaponAnim("plant")
@@ -491,21 +503,35 @@ function SWEP:_attack(key)
 		self:SetNextPrimaryFire(self._curSwapTime)
 		self:SetNextSecondaryFire(self._curSwapTime)
 	elseif self.mustCook or (self.canCook and key == self:getControlls()) then 	// if wep allows it and pressed key is cooking key then cook
-		self:sendWeaponAnim("pull_cook")
+		if self.mustCook and self.Owner:KeyDown(IN_USE) then	// either both keys cook - then accept short mod
+			self:sendWeaponAnim("pull_short")
+			self._curThrowAnim = "throw_short"
+			self._doingShortThrow = true
+		else													// otherwise u shud have used the other key
+			self:sendWeaponAnim("pull_cook")
+			self._curThrowAnim = "throw_cook"
+		end
+		
 		self.throwTime = CT + self.timeToThrowCook
 		self.cookTime = CT + self.spoonTime
 		
-		self._curThrowAnim = "throw_cook"
 		self._curSwapTime = self.swapTimeCook
 		self._curSpawnTime = self.spawnTimeCook
 		
 		self._maxVelocityTime = CT + self.maxVelDelayCook
 	else													// else hold your spoon
-		self:sendWeaponAnim("pullpin")
+		if self.Owner:KeyDown(IN_USE) then
+			self:sendWeaponAnim("pull_short")
+			self._curThrowAnim = "throw_short"
+			self._doingShortThrow = true
+		else
+			self:sendWeaponAnim("pullpin")
+			self._curThrowAnim = "throw"
+		end
+		
 		self.throwTime = CT + self.timeToThrow
 		self.cookTime = nil
 		
-		self._curThrowAnim = "throw"
 		self._curSwapTime = self.swapTime
 		self._curSpawnTime = self.spawnTime
 		
@@ -565,7 +591,14 @@ function SWEP:createProjectile()
 	if IsValid(grenade) then
 		grenade.Model = self.WM or self.WorldModel
 		
-		grenade:SetPos(self.lastOwner:GetShootPos())
+		local pos = self.lastOwner:GetShootPos()
+		
+		if self._doingShortThrow then
+			local ang = self.lastOwner:EyeAngles()
+			pos = pos + (ang:Up() * -5)
+		end
+		
+		grenade:SetPos(pos)
 		grenade:SetAngles(self.lastOwner:EyeAngles())
 		
 		grenade:Spawn()
@@ -621,17 +654,30 @@ function SWEP:updateReloadTimes() end
 //-----------------------------------------------------------------------------
 // getThrowVelocityMods counts velocity multipliers based on
 // extra time spent in pinpull animation - full anim played -> max velocity
+// - later edited to implement short throws
 //-----------------------------------------------------------------------------
+
+local min, max
 
 function SWEP:getThrowVelocityMods()
 	local min, max = self.throwTime, self._maxVelocityTime
 	local CT = CurTime() - self._curSpawnTime 					// fixes offset caused by delay between start of throw anim and ent creation
 	local mul = math.Clamp((CT - min) / (max - min), 0, 1)
 	
-	local min, max = 0.5, 1.4
+	if self._doingShortThrow then
+		min, max = 0.3, 0.5
+	else
+		min, max = 0.5, 1.4
+	end
+	
 	local forward = min + mul * (max - min)
 	
-	local min, max = 0.8, 1.2
+	if self._doingShortThrow then
+		min, max = 0.4, 0.6
+	else
+		min, max = 0.8, 1.2
+	end
+	
 	local up = min + mul * (max - min)
 
 	return forward, up

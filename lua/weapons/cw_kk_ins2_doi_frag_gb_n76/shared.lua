@@ -24,11 +24,14 @@ if CLIENT then
 end
 
 SWEP.CanRestOnObjects = false
-SWEP.projectileClass = "cw_kk_ins2_projectile_n77"
+SWEP.projectileClass = "cw_kk_ins2_projectile_n76"
 
 SWEP.Animations = {
 	pullpin = "pullbackhigh",
 	throw = "throw",
+	
+	pull_short = "pullbacklow",
+	throw_short = "lowthrow",
 	
 	base_pickup = "base_draw",
 	base_draw = "base_draw",

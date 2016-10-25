@@ -157,11 +157,13 @@ CustomizableWeaponry.originalValue:add("projectileClass", false, true)
 		["cw_kk_ins2_projectile_ied"] = "RCEx",
 		["cw_kk_ins2_projectile_m84"] = "STUN",
 		["cw_kk_ins2_projectile_m18"] = "SMOKE",
+		["cw_kk_ins2_projectile_anm14"] = "INCD",
 		["cw_kk_ins2_projectile_molotov"] = "INCD",
 		["cw_kk_ins2_projectile_rpg"] = "JOKE",
 		["npc_grenade_frag"] = "JOKE",
 		["cw_kk_ins2_projectile_ww2_c4"] = "HE SC",
 		["cw_kk_ins2_projectile_n69"] = "ID FG",
+		["cw_kk_ins2_projectile_n76"] = "WP",
 		["cw_kk_ins2_projectile_n77"] = "ID SM",
 	}
 	
@@ -174,6 +176,7 @@ CustomizableWeaponry.originalValue:add("projectileClass", false, true)
 		["JOKE"] = "For admins and staff.",
 		["INCD"] = "Incendiary - sets surrounding area on fire.",
 		["ID FG"] = "Impact-detonated fragmentation grenade.",
+		["WP"] = "Self-igniting phosphorus grenade.",
 		["ID SM"] = "Impact-detonated smoke grenade.",
 		["UNKWN"] = "Unknown grenade type."
 	}
@@ -226,7 +229,11 @@ CustomizableWeaponry.originalValue:add("canCook", false, true)
 		local out = wep.canCook and "YES" or "NO"
 		
 		if wep.KKINS2RCE then
-			out = "YES"
+			self.desc[1] = "I guess."
+			self.desc[2] = "Kinda?"
+		else
+			self.desc[1] = self.descBase
+			self.desc[2] = wep.canCook and "Press and hold " .. getKeyBind(keys[wep:getControlls()]) .. " to cook." or nil
 		end
 		
 		return out
@@ -236,11 +243,7 @@ CustomizableWeaponry.originalValue:add("canCook", false, true)
 		local out = wep.canCook_Orig and "YES" or "NO"
 		
 		if wep.KKINS2RCE then
-			self.desc[1] = "I guess."
-			self.desc[2] = "Kinda."
-		else
-			self.desc[1] = self.descBase
-			self.desc[2] = wep.canCook and "Press and hold " .. getKeyBind(keys[wep:getControlls()]) .. " to cook." or nil
+			out = "YES"
 		end
 		
 		return out
@@ -260,6 +263,7 @@ CustomizableWeaponry.originalValue:add("mustCook", false, true)
 	stat.desc = "Does the fuse start with pin-pull."
 
 	function stat:textFunc(wep)
+		self.desc[2] = wep.mustCook and "Both primary and secondary attack cook." or nil
 		return wep.mustCook and "YES" or "NO"
 	end
 
@@ -299,7 +303,7 @@ CustomizableWeaponry.originalValue:add("canPlant", false, true)
 
 local tab = {}
 tab.name = "TAB_INS2NADESTATS"
-tab.text = "WEAPON STATS"
+tab.text = "GRENADE STATS"
 tab.switchToKey = "gm_showteam"
 tab.descOfStat = 1
 

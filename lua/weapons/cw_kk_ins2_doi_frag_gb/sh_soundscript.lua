@@ -54,6 +54,7 @@ SWEP.Sounds = {
 
 	lowthrow = {
 		{time = 6/31.5, sound = "CW_KK_INS2_DOI_MILLS_THROW"},
+		{time = 7/31.5, sound = "CW_KK_INS2_DOI_MILLS_SPOONEJECT"},
 		// { event 3016 6 ""},
 	},
 }

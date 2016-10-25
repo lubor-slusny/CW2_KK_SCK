@@ -4,7 +4,8 @@ include("shared.lua")
 
 ENT.ExplodeRadius = 384
 ENT.ExplodeDamage = 100
-ENT.Model = "models/weapons/w_eq_smokegrenade_thrown.mdl"
+
+ENT.Model = "models/weapons/w_molotov.mdl"
 
 local phys, ef
 
@@ -35,29 +36,47 @@ end
 local vel, len, CT
 
 function ENT:PhysicsCollide(data, physobj)
-	self:Kaboomboom()
+	vel = physobj:GetVelocity()
+	len = vel:Length()
+	
+	if len > 500 then -- let it roll
+		physobj:SetVelocity(vel * 0.6) -- cheap as fuck, but it works
+	end
+	
+	if len > 100 then
+		CT = CurTime()
+		
+		if CT > self.NextImpact then
+			self:EmitSound("CW_KK_INS2_ANM14_ENT_BOUNCE", 75, 100)
+			self.NextImpact = CT + 0.1
+		end
+	end
 end
 
 function ENT:Fuse(t)
-	// muhehe
+	t = t or 3
+	
+	self.kaboomboomTime = CurTime() + t
 end
 
-PrecacheParticleSystem("doi_WPgrenade_explosion")
-PrecacheParticleSystem("doi_grenade_explosion")
-PrecacheParticleSystem("doi_frag_explosion")
-PrecacheParticleSystem("doi_compB_explosion")
-PrecacheParticleSystem("skybox_gunrun")
-
-function ENT:Kaboomboom()
-	local hitPos = self:GetPos()
+function ENT:Detonate()
+	if self.wentBoomAlready then
+		return
+	end
 	
-	local smokeScreen = ents.Create("cw_smokescreen_impact")
-	smokeScreen:SetPos(hitPos)
-	smokeScreen:Spawn()
+	self.wentBoomAlready = true
+	
+	self:StopParticles()
 	
 	local fx = ents.Create("cw_kk_ins2_particles")
 	fx:processProjectile(self)
 	fx:Spawn()
-
+	
 	SafeRemoveEntity(self)
+end
+
+function ENT:Think()
+	if self.kaboomboomTime and CurTime() > self.kaboomboomTime then
+		self:Detonate()
+	end
 end

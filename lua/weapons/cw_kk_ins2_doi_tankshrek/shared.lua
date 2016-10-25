@@ -107,7 +107,7 @@ SWEP.Shots = 1
 SWEP.Damage = 100
 
 SWEP.MuzzleVelocity = 110
-SWEP.projectileClass = "cw_kk_ins2_projectile_pf60"
+SWEP.projectileClass = "cw_kk_ins2_projectile_shrek"
 SWEP.hipBulletDelay = 0.4
 
 SWEP.FirstDeployTime = 3.45

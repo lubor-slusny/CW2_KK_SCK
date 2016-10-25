@@ -27,6 +27,8 @@ function EFFECT:Init(fx)
 			ParticleEffect(p, pos, ang0)
 		end
 		sound.Play(tweakData.explosionSound0, pos, 180)
+	else
+		sound.Play(tweakData.explosionSound2, pos, 180)
 	end
 end
 

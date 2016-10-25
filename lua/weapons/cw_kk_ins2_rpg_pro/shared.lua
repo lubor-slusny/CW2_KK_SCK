@@ -28,6 +28,9 @@ SWEP.Animations = {
 	pull_cook = "pullback_highbake",
 	throw_cook = "throw_bake",
 	
+	pull_short = "pullback_low",
+	throw_short = "throw_low",
+	
 	base_pickup = "base_draw",
 	base_draw = "base_draw",
 	base_idle = "base_idle",
@@ -80,6 +83,7 @@ SWEP.HolsterTime = 0.6
 SWEP.timeToThrow = 1.5
 SWEP.swapTime = 0.5
 
+SWEP.fuseTime = 0
 SWEP.canCook = false // this swep should b cook only lol
 
 function SWEP:createProjectile()

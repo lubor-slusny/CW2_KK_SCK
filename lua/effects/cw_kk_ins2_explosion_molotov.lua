@@ -16,6 +16,12 @@ function EFFECT:Init(fx)
 			ParticleEffect(p, pos, ang0)
 		end
 		sound.Play(tweakData.explosionSound0, pos, 180)
+	else
+		for _,p in pairs(tweakData.explosionParticlesWater) do
+			ParticleEffect(p, pos, ang, ent)
+		end
+		
+		sound.Play(tweakData.explosionSoundW0, pos, 180)
 	end
 end
 

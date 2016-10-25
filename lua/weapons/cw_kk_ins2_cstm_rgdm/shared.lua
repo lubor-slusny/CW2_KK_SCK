@@ -50,6 +50,9 @@ SWEP.Animations = {
 	pull_cook = "pullbackhighbake",
 	throw_cook = "bakethrow",
 	
+	pull_short = "pullbacklow",
+	throw_short = "lowthrow",
+	
 	base_idle = "base_idle",
 	base_draw = "base_draw",
 	base_holster = "base_holster",
@@ -89,7 +92,7 @@ SWEP.Primary.DefaultClip	= -1
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "Smoke Grenades"
 
-SWEP.fuseTime = 3.5
+SWEP.fuseTime = 4
 
 SWEP.timeToThrow = 0.9
 

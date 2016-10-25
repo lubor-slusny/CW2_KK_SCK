@@ -1,11 +1,11 @@
 local origInflictor, origAttacker
 
 local isProjectile = {
-	cw_kk_ins2_projectile_at4 = true,
-	cw_kk_ins2_projectile_m6a1 = true,
-	cw_kk_ins2_projectile_pf60 = true,
-	cw_kk_ins2_projectile_rpg = true,
-	cw_kk_ins2_projectile_rpg_2 = true,
+	-- cw_kk_ins2_projectile_at4 = true, // these no longer use env_explosion
+	-- cw_kk_ins2_projectile_m6a1 = true,
+	-- cw_kk_ins2_projectile_pf60 = true,
+	-- cw_kk_ins2_projectile_rpg = true,
+	-- cw_kk_ins2_projectile_rpg_2 = true,
 	cw_kk_css_projectile_m72 = true,
 }
 
@@ -33,3 +33,10 @@ local function takeDmg(ent, d)
 end
 
 hook.Add("EntityTakeDamage", "CW_KK_INS2_RPGS", takeDmg)
+
+local function takeDmg(ent, d)
+	d:SetAttacker(origInflictor._kkFixAttacker or d:GetAttacker())
+	d:SetInflictor(origInflictor._kkFixInflictor or d:GetInflictor())
+end
+
+hook.Add("EntityTakeDamage", "CW_KK_INS2_OTHER", takeDmg)

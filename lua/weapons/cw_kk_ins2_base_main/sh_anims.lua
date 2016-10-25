@@ -423,6 +423,10 @@ function SWEP:holsterAnimFunc()
 	self:sendWeaponAnim(prefix .. "holster" .. suffix, self.HolsterSpeed, cycle)
 end
 
+//-----------------------------------------------------------------------------
+// reticle inactivity anims
+//-----------------------------------------------------------------------------
+
 if CLIENT then
 	SWEP.reticleInactivityCallbacksRaw = {
 		["reload"] = 0.1,			// Actually, reloads anims are only played using
@@ -527,6 +531,7 @@ if CLIENT then
 		
 		["throw"] = 0.1,
 		["throw_cook"] = 0.1,
+		["throw_short"] = 0.1,
 	}
 
 	local print = chat.AddText
@@ -575,6 +580,10 @@ if CLIENT then
 		
 	end
 end
+
+//-----------------------------------------------------------------------------
+// soundtable looping anims
+//-----------------------------------------------------------------------------
 
 if CLIENT then
 	SWEP.soundTableLoopsRaw = {
@@ -631,6 +640,10 @@ if CLIENT then
 		end
 	end
 end
+
+//-----------------------------------------------------------------------------
+// reload progress anims
+//-----------------------------------------------------------------------------
 
 if CLIENT then	
 	SWEP.reloadProgressAnimsRaw = {

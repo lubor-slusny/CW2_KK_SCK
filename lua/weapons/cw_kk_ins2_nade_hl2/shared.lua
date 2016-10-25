@@ -27,6 +27,9 @@ SWEP.Animations = {
 	pull_cook = "pullbackhighbake",
 	throw_cook = "bakethrow",
 	
+	pull_short = "pullbacklow",
+	throw_short = "lowthrow",
+	
 	base_pickup = "base_draw",
 	base_draw = "base_draw",
 	base_idle = "base_idle",
@@ -82,6 +85,8 @@ function SWEP:applyThrowVelocity(grenade)
 end
 
 function SWEP:fuseProjectile(grenade)
+	grenade._kkFixAttacker = self.lastOwner
+	
 	local time
 	
 	if self.cookTime then
