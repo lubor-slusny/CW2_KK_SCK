@@ -18,30 +18,30 @@ SWEP.Sounds = {
 	},
 
 	base_dryfire = {
-		{time = 0/30, sound = "CW_KK_INS2_DOI_STEN2_EMPTY"},
+		{time = 0/30, sound = "CW_KK_INS2_DOI_STEN5_EMPTY"},
 	},
 
 	base_reload = {
-		{time = 29/30, sound = "CW_KK_INS2_DOI_STEN2_MAGRELEASE"},
-		{time = 34/30, sound = "CW_KK_INS2_DOI_STEN2_MAGOUT"},
-		{time = 40/30, sound = "CW_KK_INS2_DOI_STEN2_FETCHMAG"},
-		{time = 83/30, sound = "CW_KK_INS2_DOI_STEN2_MAGIN"},
+		{time = 29/30, sound = "CW_KK_INS2_DOI_STEN5_MAGRELEASE"},
+		{time = 34/30, sound = "CW_KK_INS2_DOI_STEN5_MAGOUT"},
+		{time = 40/30, sound = "CW_KK_INS2_DOI_STEN5_FETCHMAG"},
+		{time = 83/30, sound = "CW_KK_INS2_DOI_STEN5_MAGIN"},
 		-- { event 46 86 ""},
-		{time = 109/30, sound = "CW_KK_INS2_DOI_STEN2_RATTLE"},
+		{time = 109/30, sound = "CW_KK_INS2_DOI_STEN5_RATTLE"},
 	},
 
 	base_reloadempty = {
-		{time = 29/30, sound = "CW_KK_INS2_DOI_STEN2_MAGRELEASE"},
-		{time = 34/30, sound = "CW_KK_INS2_DOI_STEN2_MAGOUT"},
-		{time = 40/30, sound = "CW_KK_INS2_DOI_STEN2_FETCHMAG"},
-		{time = 89/30, sound = "CW_KK_INS2_DOI_STEN2_MAGIN"},
-		{time = 119/30, sound = "CW_KK_INS2_DOI_STEN2_BOLTBACK"},
+		{time = 29/30, sound = "CW_KK_INS2_DOI_STEN5_MAGRELEASE"},
+		{time = 34/30, sound = "CW_KK_INS2_DOI_STEN5_MAGOUT"},
+		{time = 40/30, sound = "CW_KK_INS2_DOI_STEN5_FETCHMAG"},
+		{time = 89/30, sound = "CW_KK_INS2_DOI_STEN5_MAGIN"},
+		{time = 119/30, sound = "CW_KK_INS2_DOI_STEN5_BOLTBACK"},
 		-- { event 46 91 ""},
-		{time = 147/30, sound = "CW_KK_INS2_DOI_STEN2_RATTLE"},
+		{time = 147/30, sound = "CW_KK_INS2_DOI_STEN5_RATTLE"},
 	},
 
 	iron_dryfire = {
-		{time = 0/30, sound = "CW_KK_INS2_DOI_STEN2_EMPTY"},
+		{time = 0/30, sound = "CW_KK_INS2_DOI_STEN5_EMPTY"},
 	},
 
 	foregrip_draw = {
@@ -58,30 +58,30 @@ SWEP.Sounds = {
 	},
 
 	foregrip_dryfire = {
-		{time = 0/30, sound = "CW_KK_INS2_DOI_STEN2_EMPTY"},
+		{time = 0/30, sound = "CW_KK_INS2_DOI_STEN5_EMPTY"},
 	},
 
 	foregrip_reload = {
-		{time = 29/30, sound = "CW_KK_INS2_DOI_STEN2_MAGRELEASE"},
-		{time = 34/30, sound = "CW_KK_INS2_DOI_STEN2_MAGOUT"},
-		{time = 40/30, sound = "CW_KK_INS2_DOI_STEN2_FETCHMAG"},
-		{time = 83/30, sound = "CW_KK_INS2_DOI_STEN2_MAGIN"},
+		{time = 29/30, sound = "CW_KK_INS2_DOI_STEN5_MAGRELEASE"},
+		{time = 34/30, sound = "CW_KK_INS2_DOI_STEN5_MAGOUT"},
+		{time = 40/30, sound = "CW_KK_INS2_DOI_STEN5_FETCHMAG"},
+		{time = 83/30, sound = "CW_KK_INS2_DOI_STEN5_MAGIN"},
 		-- { event 46 86 ""},
-		{time = 109/30, sound = "CW_KK_INS2_DOI_STEN2_RATTLE"},
+		{time = 109/30, sound = "CW_KK_INS2_DOI_STEN5_RATTLE"},
 	},
 
 	foregrip_reloadempty = {
-		{time = 29/30, sound = "CW_KK_INS2_DOI_STEN2_MAGRELEASE"},
-		{time = 34/30, sound = "CW_KK_INS2_DOI_STEN2_MAGOUT"},
-		{time = 40/30, sound = "CW_KK_INS2_DOI_STEN2_FETCHMAG"},
-		{time = 89/30, sound = "CW_KK_INS2_DOI_STEN2_MAGIN"},
-		{time = 119/30, sound = "CW_KK_INS2_DOI_STEN2_BOLTBACK"},
+		{time = 29/30, sound = "CW_KK_INS2_DOI_STEN5_MAGRELEASE"},
+		{time = 34/30, sound = "CW_KK_INS2_DOI_STEN5_MAGOUT"},
+		{time = 40/30, sound = "CW_KK_INS2_DOI_STEN5_FETCHMAG"},
+		{time = 89/30, sound = "CW_KK_INS2_DOI_STEN5_MAGIN"},
+		{time = 119/30, sound = "CW_KK_INS2_DOI_STEN5_BOLTBACK"},
 		-- { event 46 91 ""},
-		{time = 147/30, sound = "CW_KK_INS2_DOI_STEN2_RATTLE"},
+		{time = 147/30, sound = "CW_KK_INS2_DOI_STEN5_RATTLE"},
 	},
 
 	foregrip_iron_dryfire = {
-		{time = 0/30, sound = "CW_KK_INS2_DOI_STEN2_EMPTY"},
+		{time = 0/30, sound = "CW_KK_INS2_DOI_STEN5_EMPTY"},
 	},
 
 	foregrip_draw_empty = {

@@ -84,13 +84,13 @@ function SWEP:PrimaryAttack()
 				self:fireAnimFunc()
 			end
 			
-			local delay = wep.hipBulletDelay or 0
+			local delay = self.hipBulletDelay or 0
 			
-			if wep:isAiming() then
+			if self:isAiming() then
 				delay = 0
 			end
 
-			CustomizableWeaponry.actionSequence.new(wep, delay, nil, function()
+			CustomizableWeaponry.actionSequence.new(self, delay, nil, function()
 				local muzzleData = EffectData()
 				muzzleData:SetEntity(self)
 				util.Effect("cw_kk_ins2_muzzleflash", muzzleData)

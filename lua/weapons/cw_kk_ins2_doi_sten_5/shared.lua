@@ -10,7 +10,7 @@ SWEP.magType = "smgMag"
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "Sten Mk2"
+	SWEP.PrintName = "Sten Mk5"
 	SWEP.CSMuzzleFlashes = true
 	SWEP.ViewModelMovementScale = 1.15
 	
@@ -24,25 +24,21 @@ if CLIENT then
 	SWEP.ShellWorldAngleAlign = {Forward = 0, Right = 0, Up = 180}
 	
 	SWEP.AttachmentModelsVM = {
-		-- ["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/a_sten_foregrip.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/a_sten_foregrip.mdl", bone = "Weapon", pos = Vector(2.4687, -2.8842, -11.6320), angle = Angle(90, -90, 0), size = Vector(1, 1, 1)},
+		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/a_stenmk5_foregrip.mdl", pos = Vector(2.4687, -2.8842, -11.632), angle = Angle(90, -90, 0), size = Vector(1, 1, 1), merge = true},
 		
-		["std_barrel"] = {model = "models/weapons/upgrades/a_stenmk2_barrel_standard.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
-		["kk_ins2_suppressor_sterling"] = {model = "models/weapons/upgrades/a_stenmk2_silencer.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["std_barrel"] = {model = "models/weapons/upgrades/a_stenmk5_barrel_standard.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
+		["kk_ins2_suppressor_sterling"] = {model = "models/weapons/upgrades/a_stenmk5_silencer.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/a_enfield_bayonet.mdl", pos = Vector(-2.2399, 41.1901, 0), angle = Angle(0, -90, 0), size = Vector(1, 1, 1), merge = true},
 		
-		["std_stock"] = {model = "models/weapons/upgrades/a_stenmk2_stock_standard.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
-		["bg_ar15sturdystock"] = {model = "models/weapons/upgrades/a_stenmk2_stock_alt.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["std_stock"] = {model = "models/weapons/upgrades/a_stenmk5_stock_standard.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 	}
 	
 	SWEP.AttachmentModelsWM = {
 		-- ["kk_ins2_vertgrip"] = {model = "models/weapons/attachments/w_cw_kk_ins2_cstm_eotechxps.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
-	-- SWEP.IronsightPos = Vector(-2.3491, 0, 1.7527)
-	-- SWEP.IronsightAng = Vector(-0.4149, 0, 0)
-
-	SWEP.IronsightPos = Vector(-2.6229, 0, 2.0622)
-	SWEP.IronsightAng = Vector(-0.5089, -0.0389, 8)
+	SWEP.IronsightPos = Vector(-2.6076, 0, 2.0204)
+	SWEP.IronsightAng = Vector(0, 0.0438, 10)
 
 	SWEP.CustomizationMenuScale = 0.013
 end
@@ -53,9 +49,9 @@ SWEP.MuzzleEffectWorld = "muzzleflash_sten_3p"
 SWEP.StockBGs = {main = 0, regular = 0, heavy = 0, sturdy = 0}
 
 SWEP.Attachments = {
-	{header = "Barrel", offset = {-300, -600}, atts = {"kk_ins2_suppressor_sterling"}},
-	-- {header = "Under", offset = {-500, 0}, atts = {"kk_ins2_vertgrip"}},
-	{header = "Stock", offset = {1000, 0}, atts = {"bg_ar15sturdystock"}},
+	{header = "Barrel", offset = {-300, -600}, atts = {"kk_ins2_suppressor_sterling", "kk_ins2_ww2_knife"}},
+	{header = "Under", offset = {-500, 0}, atts = {"kk_ins2_vertgrip"}},
+	-- {header = "Stock", offset = {1000, 0}, atts = {"bg_ar15sturdystock"}},
 	["+reload"] = {header = "Ammo", offset = {0, 400}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
@@ -77,36 +73,41 @@ SWEP.Animations = {
 	base_holster_empty = "base_holster_empty",
 	base_sprint = "base_sprint",
 	base_sprint_empty = "base_sprint_empty",
+	base_sprint_knife = "base_sprint_bayonet",
 	base_safe = "base_down",
 	base_safe_aim = "iron_down",
 	base_safe_empty = "base_down_empty",
 	base_safe_empty_aim = "iron_down_empty",
 	base_crawl = "base_crawl",
 	base_crawl_empty = "base_crawl_empty",
+	base_melee = "base_melee",
+	base_melee_empty = "base_melee_empty",
 	
-	-- foregrip_pickup = "foregrip_draw",
-	-- foregrip_draw = "foregrip_draw",
-	-- foregrip_draw_empty = "foregrip_draw_empty",
-	-- foregrip_fire = {"foregrip_fire_1","foregrip_fire_2"},
-	-- foregrip_fire_aim = {"foregrip_iron_fire_1","foregrip_iron_fire_2","foregrip_iron_fire_3"},
-	-- foregrip_fire_last = "foregrip_firelast",
-	-- foregrip_fire_last_aim = "foregrip_iron_firelast",
-	-- foregrip_fire_empty = "foregrip_dryfire",
-	-- foregrip_fire_empty_aim = "foregrip_iron_dryfire",
-	-- foregrip_reload = "foregrip_reload",
-	-- foregrip_reload_empty = "foregrip_reloadempty",
-	-- foregrip_idle = "foregrip_iron_idle",
-	-- foregrip_idle_empty = "foregrip_iron_idle_empty",
-	-- foregrip_holster = "foregrip_holster",
-	-- foregrip_holster_empty = "foregrip_holster_empty",
-	-- foregrip_sprint = "foregrip_sprint",
-	-- foregrip_sprint_empty = "foregrip_sprint_empty",
-	-- foregrip_safe = "foregrip_down",
-	-- foregrip_safe_aim = "foregrip_iron_down",
-	-- foregrip_safe_empty = "foregrip_down_empty",
-	-- foregrip_safe_empty_aim = "foregrip_iron_down_empty",
-	-- foregrip_crawl = "foregrip_crawl",
-	-- foregrip_crawl_empty = "foregrip_crawl_empty",
+	foregrip_pickup = "foregrip_ready",
+	foregrip_draw = "foregrip_draw",
+	foregrip_draw_empty = "foregrip_draw_empty",
+	foregrip_fire = {"foregrip_fire_1","foregrip_fire_2"},
+	foregrip_fire_aim = {"foregrip_iron_fire_1","foregrip_iron_fire_2","foregrip_iron_fire_3"},
+	foregrip_fire_last = "foregrip_fire_last",
+	foregrip_fire_last_aim = "foregrip_iron_fire_last",
+	foregrip_fire_empty = "foregrip_dryfire",
+	foregrip_fire_empty_aim = "foregrip_iron_dryfire",
+	foregrip_reload = "foregrip_reload",
+	foregrip_reload_empty = "foregrip_reloadempty",
+	foregrip_idle = "foregrip_holster",
+	foregrip_idle_empty = "foregrip_iron_idle_empty",
+	foregrip_holster = "foregrip_holster",
+	foregrip_holster_empty = "foregrip_holster_empty",
+	foregrip_sprint = "foregrip_sprint",
+	foregrip_sprint_empty = "foregrip_sprint_empty",
+	foregrip_safe = "foregrip_down",
+	foregrip_safe_aim = "foregrip_iron_down",
+	foregrip_safe_empty = "foregrip_down_empty",
+	foregrip_safe_empty_aim = "foregrip_iron_down_empty",
+	foregrip_crawl = "foregrip_crawl",
+	foregrip_crawl_empty = "foregrip_crawl_empty",
+	foregrip_melee = "foregrip_melee",
+	foregrip_melee_empty = "foregrip_melee_empty",
 }
 
 SWEP.SpeedDec = 15
@@ -126,7 +127,8 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/v_sten_mk2.mdl"
+-- SWEP.ViewModel		= "models/weapons/v_sten.mdl"
+SWEP.ViewModel		= "models/weapons/v_sten_mk5.mdl"
 SWEP.WorldModel		= "models/weapons/w_sten.mdl"
 
 SWEP.WMPos = Vector(10, 6, -1)
@@ -144,8 +146,8 @@ SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= "9x19MM"
 
 SWEP.FireDelay = 60/550 
-SWEP.FireSound = "CW_KK_INS2_DOI_STEN2_FIRE"
-SWEP.FireSoundSuppressed = "CW_KK_INS2_DOI_STEN_FIRE2_SUPPRESSED"
+SWEP.FireSound = "CW_KK_INS2_DOI_STEN5_FIRE"
+SWEP.FireSoundSuppressed = "CW_KK_INS2_DOI_STEN5_FIRE_SUPPRESSED"
 SWEP.Recoil = 0.7
 
 SWEP.HipSpread = 0.035

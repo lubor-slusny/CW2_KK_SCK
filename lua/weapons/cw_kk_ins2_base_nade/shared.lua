@@ -518,6 +518,11 @@ function SWEP:_attack(key)
 			
 			self._maxVelocityTime = CT + self.maxVelDelayShort
 		else													// otherwise u shud have used the other key
+			if self.Owner:KeyDown(IN_USE) then
+				self.dt.PinPulled = false
+				return
+			end
+			
 			self:sendWeaponAnim("pull_cook")
 			self._curThrowAnim = "throw_cook"
 			

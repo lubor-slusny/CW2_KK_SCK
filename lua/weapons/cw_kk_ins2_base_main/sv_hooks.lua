@@ -35,6 +35,8 @@ end
 hook.Add("EntityTakeDamage", "CW_KK_INS2_RPGS", takeDmg)
 
 local function takeDmg(ent, d)
+	origInflictor = d:GetInflictor()
+	
 	d:SetAttacker(origInflictor._kkFixAttacker or d:GetAttacker())
 	d:SetInflictor(origInflictor._kkFixInflictor or d:GetInflictor())
 end
