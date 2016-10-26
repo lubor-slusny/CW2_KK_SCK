@@ -241,6 +241,7 @@ ENT.db = {
 	},
 	
 	cw_kk_ins2_projectile_anm14 = {
+		followProjectile = true,
 		effectClass = "cw_kk_ins2_explosion_molotov",
 		explosionSound0 = "CW_KK_INS2_ANM14_ENT_DETONATE",
 		explosionSound1 = "",

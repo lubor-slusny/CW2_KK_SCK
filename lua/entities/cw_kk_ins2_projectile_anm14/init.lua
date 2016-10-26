@@ -36,6 +36,8 @@ end
 local vel, len, CT
 
 function ENT:PhysicsCollide(data, physobj)
+	self.resetOwner = true
+	
 	vel = physobj:GetVelocity()
 	len = vel:Length()
 	
@@ -72,11 +74,16 @@ function ENT:Detonate()
 	fx:processProjectile(self)
 	fx:Spawn()
 	
-	SafeRemoveEntity(self)
+	SafeRemoveEntityDelayed(self, 30)
 end
 
 function ENT:Think()
 	if self.kaboomboomTime and CurTime() > self.kaboomboomTime then
 		self:Detonate()
+	end
+	
+	if self.resetOwner then
+		self:SetOwner()
+		self.resetOwner = false
 	end
 end

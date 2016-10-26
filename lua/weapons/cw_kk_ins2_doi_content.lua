@@ -15,6 +15,8 @@ AddCSLuaFile()
 // AMMO
 	CustomizableWeaponry:registerAmmo(".380/200", "9x20MMR Rounds", 9, 19.7)
 	CustomizableWeaponry:registerAmmo(".303 British", "7.7x56MMR Rounds", 7.7, 56)
+	CustomizableWeaponry:registerAmmo("PIAT Bomb", "PIAT Bombs", 0, 0)
+	CustomizableWeaponry:registerAmmo("88MM Rocket", "88MM Rockets", 0, 0)
 
 // FIREMODES
 	CustomizableWeaponry.firemodes:registerFiremode("barfast", "FAST-AUTO", true, 0, 5)

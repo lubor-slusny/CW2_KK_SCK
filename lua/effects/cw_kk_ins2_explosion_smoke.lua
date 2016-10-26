@@ -6,6 +6,7 @@ local ent, pos, tweakData
 
 function EFFECT:Init(fx)
 	ent = fx:GetEntity()
+	ent:SetAngles(ang0)
 	
 	pos = ent:GetPos()
 	

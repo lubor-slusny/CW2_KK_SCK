@@ -157,7 +157,7 @@ end
 	CustomizableWeaponry:registerAmmo("PG-7VM Grenade", "PG-7VM Grenades", 0, 0)
 	CustomizableWeaponry:registerAmmo("AT4 Launcher", "AT4 Rocket Launchers", 0, 0)
 	CustomizableWeaponry:registerAmmo("M6A1 Rocket", "M6A1 Rockets", 0, 0)
-	CustomizableWeaponry:registerAmmo("M10A1 Rocket", "M10A1 Smoke Rockets", 0, 0)
+	CustomizableWeaponry:registerAmmo("M10A1 Rocket", "M10A1 WP Rockets", 0, 0)
 	CustomizableWeaponry:registerAmmo("Panzerfaust", "Panzerfaust Rocket Launchers", 0, 0)
 	
 	CustomizableWeaponry:registerAmmo("25MM Flare", "25MM Flares", 0, 0)

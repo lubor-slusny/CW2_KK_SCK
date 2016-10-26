@@ -92,7 +92,7 @@ SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.doiContentMounted()
 SWEP.Primary.ClipSize		= 1
 SWEP.Primary.DefaultClip	= 1
 SWEP.Primary.Automatic		= true
-SWEP.Primary.Ammo			= "M6A1 Rocket"
+SWEP.Primary.Ammo			= "88MM Rocket"
 
 SWEP.FireDelay = 0.5
 SWEP.FireSound = "CW_KK_INS2_DOI_SHREK_FIRE"

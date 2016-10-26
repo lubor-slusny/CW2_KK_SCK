@@ -263,7 +263,7 @@ CustomizableWeaponry.originalValue:add("mustCook", false, true)
 	stat.desc = "Does the fuse start with pin-pull."
 
 	function stat:textFunc(wep)
-		self.desc[2] = wep.mustCook and "Both primary and secondary attack cook." or nil
+		self.desc[2] = wep.mustCook and "Both primary and secondary attacks cook." or nil
 		return wep.mustCook and "YES" or "NO"
 	end
 
