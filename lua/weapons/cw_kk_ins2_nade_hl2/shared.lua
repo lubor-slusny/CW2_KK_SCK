@@ -77,6 +77,8 @@ SWEP.timeToThrow = 0.9
 
 SWEP.timeToThrowCook = 1.3
 
+SWEP.timeToThrowShort = 0.9
+
 local v = Vector(0, 0, 150)
 
 function SWEP:applyThrowVelocity(grenade)

@@ -54,6 +54,7 @@ if CLIENT then
 end
 
 SWEP.MuzzleEffect = "muzzleflash_m9_1p_core"
+SWEP.MuzzleEffectWorld = "muzzleflash_m9_3rd"
 
 if CustomizableWeaponry_KK.HOME == nil then
 	SWEP.Attachments = {

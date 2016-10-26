@@ -83,6 +83,9 @@ SWEP.HolsterTime = 0.6
 SWEP.timeToThrow = 1.5
 SWEP.swapTime = 0.5
 
+SWEP.timeToThrowShort = 1.5
+SWEP.swapTimeShort = 0.5
+
 SWEP.fuseTime = 0
 SWEP.canCook = false // this swep should b cook only lol
 

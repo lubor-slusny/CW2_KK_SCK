@@ -23,16 +23,18 @@ function ENT:Initialize()
 	self:SetProjectileClass(tweak)
 	
 	if self.db[class].followProjectile then
-		self:SetMoveType(MOVETYPE_NONE)
-		self:SetParent(self._sourceEnt)
+		self.followedProjectile = self._sourceEnt
 	end
 	
 	SafeRemoveEntityDelayed(self, 30)
 end
 
-function ENT:Think()
-end
-
 function ENT:Use(activator, caller)
 	return false
+end
+
+function ENT:Think()
+	if IsValid(self.followedProjectile) then
+		self:SetPos(self.followedProjectile:GetPos())
+	end
 end

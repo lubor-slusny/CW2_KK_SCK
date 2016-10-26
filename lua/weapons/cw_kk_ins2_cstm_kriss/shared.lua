@@ -107,6 +107,7 @@ if CLIENT then
 end
 
 SWEP.MuzzleEffect = "muzzleflash_ump_1p_core"
+SWEP.MuzzleEffectWorld = "muzzleflash_ump_3rd"
 
 SWEP.Attachments = {
 	{header = "Sight", offset = {400, -700}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_po4", "kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_microt1", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"}},
@@ -140,7 +141,7 @@ SWEP.SpeedDec = 15
 
 SWEP.Slot = 2
 SWEP.SlotPos = 0
-SWEP.NormalHoldType = "smg"
+SWEP.NormalHoldType = "ar2"
 SWEP.RunHoldType = "passive"
 SWEP.FireModes = {"auto", "2burst", "semi"}
 SWEP.Base = "cw_kk_ins2_base"
@@ -156,8 +157,8 @@ SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_cw_kk_ins2_cstm_kriss.mdl"
 SWEP.WorldModel		= "models/weapons/w_cw_kk_ins2_cstm_kriss.mdl"
 
-SWEP.WMPos = Vector(4.471, 0.967, 0.5)
-SWEP.WMAng = Vector(-10, 0, 180)
+SWEP.WMPos = Vector(5.471, 0.967, 0.5)
+SWEP.WMAng = Vector(-15, 0, 180)
 
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.wsContentMounted()
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.wsContentMounted()

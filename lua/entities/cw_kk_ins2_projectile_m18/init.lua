@@ -57,19 +57,20 @@ function ENT:Fuse(t)
 	
 	timer.Simple(t, function()
 		if self:IsValid() then
-			local hitPos = self:GetPos()
+			self.canDoAnother = CurTime() + 4
 			
 			local smokeScreen = ents.Create("cw_smokescreen_impact")
-			smokeScreen:SetPos(hitPos)
+			smokeScreen:SetPos(self:GetPos())
 			smokeScreen:Spawn()
+			-- smokeScreen:CreateParticles()
 			
-			smokeScreen:EmitSound("CW_KK_INS2_SMOKE_ENT_DETONATE", 100, 100)
-			smokeScreen:EmitSound("CW_KK_INS2_SMOKE_ENT_LOOP", 100, 100)
+			self:EmitSound("CW_KK_INS2_SMOKE_ENT_DETONATE", 100, 100)
+			self:EmitSound("CW_KK_INS2_SMOKE_ENT_LOOP", 100, 100)
 			
-			timer.Simple(10, function()
-				if IsValid(smokeScreen) then 
-					smokeScreen:StopSound("CW_KK_INS2_SMOKE_ENT_LOOP")
-					smokeScreen:EmitSound("CW_KK_INS2_SMOKE_ENT_END", 100, 100) 
+			timer.Simple(15, function()
+				if IsValid(self) then 
+					self:StopSound("CW_KK_INS2_SMOKE_ENT_LOOP")
+					self:EmitSound("CW_KK_INS2_SMOKE_ENT_END", 100, 100) 
 				end
 			end)
 			
@@ -80,4 +81,18 @@ function ENT:Fuse(t)
 			SafeRemoveEntityDelayed(self, 30)
 		end
 	end)
+end
+
+function ENT:Think()
+	if self:GetVelocity():Length() < 40 then
+		if not self.canDoAnother then return end
+		if self.canDoAnother > CurTime() then return end
+		
+		self.canDoAnother = false
+		
+		local smokeScreen = ents.Create("cw_smokescreen_impact")
+		smokeScreen:SetPos(self:GetPos())
+		smokeScreen:Spawn()
+		-- smokeScreen:CreateParticles()
+	end
 end

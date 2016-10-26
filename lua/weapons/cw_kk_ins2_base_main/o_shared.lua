@@ -742,6 +742,7 @@ end
 
 //-----------------------------------------------------------------------------
 // getReloadProgress
+// - edited to show progress of any anim listed in SWEP.reloadProgressAnims
 //-----------------------------------------------------------------------------
 
 function SWEP:getReloadProgress()
@@ -755,34 +756,8 @@ function SWEP:getReloadProgress()
 end
 
 //-----------------------------------------------------------------------------
-// canPenetrate temp fix for GM update 2016 10
-//-----------------------------------------------------------------------------
-
-function SWEP:canPenetrate(traceData, direction)
-	local dot = 0
-	
-	if not self.NoPenetration[traceData.MatType] then
-		dot = -direction:DotProduct(traceData.HitNormal)
-		ent = traceData.Entity
-	
-		if not ent:IsNPC() and not ent:IsPlayer() then
-			if dot > 0.26 and self.CanPenetrate then
-				return true, dot
-			end
-		end
-	end
-	
-	return false, dot
-end
-
-//-----------------------------------------------------------------------------
 // more temp fixes
 //-----------------------------------------------------------------------------
-
-SWEP.AttachmentEligibilityEnum = {
-	ACTIVE_ATTACHMENT_EXCLUSION = -1,
-	NEED_ATTACHMENTS = -2
-}
 
 function SWEP:isAttachmentEligible(name, activeAttachments)
 	local found = nil

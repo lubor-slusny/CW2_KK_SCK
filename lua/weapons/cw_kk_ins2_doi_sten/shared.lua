@@ -130,7 +130,7 @@ SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_sten_mk2.mdl"
 SWEP.WorldModel		= "models/weapons/w_sten.mdl"
 
-SWEP.WMPos = Vector(10, 6, -2)
+SWEP.WMPos = Vector(10, 6, -1)
 SWEP.WMAng = Vector(-10, 0, 180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2gb

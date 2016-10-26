@@ -112,15 +112,19 @@ SWEP.timeToThrow = 0.4
 SWEP.swapTime = 0.9
 SWEP.maxVelDelay = 0.7
 
+SWEP.timeToThrowShort = 0.4
+SWEP.swapTimeShort = 0.9
+SWEP.maxVelDelayShort = 0.7
+
 SWEP.spawnTimePlant = 0.4
 SWEP.swapTimePlant = 1
 
 SWEP.spawnOffsetShort = Vector(0, 0, 0)
 
-SWEP.shortForwardMinMax = {0.5, 1.2}
-SWEP.throwForwardMinMax = {0.5, 1.2}
-SWEP.shortUpMinMax = {0.6, 1.1}
-SWEP.throwUpMinMax = {0.6, 1.1}
+SWEP.velocityModForwardMinMaxShort = {0.5, 1.2}
+SWEP.velocityModForwardMinMax = {0.5, 1.2}
+SWEP.velocityModUpMinMaxShort = {0.6, 1.1}
+SWEP.velocityModUpMinMax = {0.6, 1.1}
 
 SWEP.reticleInactivityCallbacksRaw = {
 	["det_boom"] = 0.1,

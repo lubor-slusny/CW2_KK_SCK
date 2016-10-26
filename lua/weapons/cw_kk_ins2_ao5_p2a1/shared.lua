@@ -3,9 +3,7 @@ if not CustomizableWeaponry then return end
 local spawnable = file.Exists("models/weapons/aof/v_flashgun.mdl", "GAME") and file.Exists("models/weapons/aof/w_flashgun.mdl", "GAME")
 
 AddCSLuaFile()
-AddCSLuaFile("sh_sounds.lua")
 AddCSLuaFile("sh_soundscript.lua")
-include("sh_sounds.lua")
 include("sh_soundscript.lua")
 
 if CLIENT then
@@ -32,6 +30,7 @@ if CLIENT then
 end
 
 SWEP.MuzzleEffect = "ins_weapon_m203"
+SWEP.MuzzleEffectWorld = "ins_weapon_m203"
 
 SWEP.Chamberable = false
 SWEP.SnapToIdlePostReload = false

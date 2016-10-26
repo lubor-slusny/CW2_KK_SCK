@@ -116,16 +116,18 @@ SWEP.PlantAng = Angle()		// angle tweak for planted entities
 SWEP.maxVelDelay = 1.35		// delay between start of pinpull animation and full throw velocity being available (full length of pinpull animation)
 SWEP.maxVelDelayCook = 1.7	// delay between start of pinpull_cook animation and full throw velocity being available (full length of pinpull_cook animation)
 
-SWEP.timeToThrowShort = 0.8	// minimal allowed length of pinpull_short animation
-SWEP.spawnTimeShort = 0.2	// delay between start of throw_short animation and creation of grenade ent
-SWEP.swapTimeShort = 0.7	// minimal allowed length of throw_short animation
+SWEP.spoonTimeShort = 23/30		// delay between start of pinpull_short animation and start of fuse timer - for on mustCook sweps
+SWEP.timeToThrowShort = 0.8		// minimal allowed length of pinpull_short animation
+SWEP.spawnTimeShort = 0.2		// delay between start of throw_short animation and creation of grenade ent
+SWEP.swapTimeShort = 0.7		// minimal allowed length of throw_short animation
+SWEP.maxVelDelayShort = 1.35	// delay between start of pinpull_short animation and full throw velocity being available (full length of pinpull_short animation)
 
 SWEP.spawnOffsetShort = Vector(0, -5, 0)
 
-SWEP.shortForwardMinMax = {0.3, 0.5}
-SWEP.throwForwardMinMax = {0.5, 1.4}
-SWEP.shortUpMinMax = {0.4, 0.6}
-SWEP.throwUpMinMax = {0.8, 1.2}
+SWEP.velocityModForwardMinMaxShort = {0.3, 0.5}
+SWEP.velocityModForwardMinMax = {0.5, 1.4}
+SWEP.velocityModUpMinMaxShort = {0.4, 0.6}
+SWEP.velocityModUpMinMax = {0.8, 1.2}
 
 //-----------------------------------------------------------------------------
 // EquipAmmo replacement for SWEP.Primary.DefaultClip
@@ -507,35 +509,51 @@ function SWEP:_attack(key)
 			self:sendWeaponAnim("pull_short")
 			self._curThrowAnim = "throw_short"
 			self._doingShortThrow = true
+		
+			self.throwTime = CT + self.timeToThrowShort
+			self.cookTime = CT + self.spoonTimeShort
+			
+			self._curSwapTime = self.swapTimeShort
+			self._curSpawnTime = self.spawnTimeShort
+			
+			self._maxVelocityTime = CT + self.maxVelDelayShort
 		else													// otherwise u shud have used the other key
 			self:sendWeaponAnim("pull_cook")
 			self._curThrowAnim = "throw_cook"
+			
+			self.throwTime = CT + self.timeToThrowCook
+			self.cookTime = CT + self.spoonTime
+			
+			self._curSwapTime = self.swapTimeCook
+			self._curSpawnTime = self.spawnTimeCook
+			
+			self._maxVelocityTime = CT + self.maxVelDelayCook
 		end
-		
-		self.throwTime = CT + self.timeToThrowCook
-		self.cookTime = CT + self.spoonTime
-		
-		self._curSwapTime = self.swapTimeCook
-		self._curSpawnTime = self.spawnTimeCook
-		
-		self._maxVelocityTime = CT + self.maxVelDelayCook
 	else													// else hold your spoon
 		if self.Owner:KeyDown(IN_USE) then
 			self:sendWeaponAnim("pull_short")
 			self._curThrowAnim = "throw_short"
 			self._doingShortThrow = true
+			
+			self.throwTime = CT + self.timeToThrowShort
+			self.cookTime = nil
+			
+			self._curSwapTime = self.swapTimeShort
+			self._curSpawnTime = self.spawnTimeShort
+			
+			self._maxVelocityTime = CT + self.maxVelDelayShort
 		else
 			self:sendWeaponAnim("pullpin")
 			self._curThrowAnim = "throw"
+			
+			self.throwTime = CT + self.timeToThrow
+			self.cookTime = nil
+			
+			self._curSwapTime = self.swapTime
+			self._curSpawnTime = self.spawnTime
+			
+			self._maxVelocityTime = CT + self.maxVelDelay
 		end
-		
-		self.throwTime = CT + self.timeToThrow
-		self.cookTime = nil
-		
-		self._curSwapTime = self.swapTime
-		self._curSpawnTime = self.spawnTime
-		
-		self._maxVelocityTime = CT + self.maxVelDelay
 	end
 end
 
@@ -668,21 +686,21 @@ function SWEP:getThrowVelocityMods()
 	local mul = math.Clamp((CT - min) / (max - min), 0, 1)
 	
 	if self._doingShortThrow then
-		min = self.shortForwardMinMax[1]
-		max = self.shortForwardMinMax[2]
+		min = self.velocityModForwardMinMaxShort[1]
+		max = self.velocityModForwardMinMaxShort[2]
 	else
-		min = self.throwForwardMinMax[1]
-		max = self.throwForwardMinMax[2]
+		min = self.velocityModForwardMinMax[1]
+		max = self.velocityModForwardMinMax[2]
 	end
 	
 	local forward = min + mul * (max - min)
 	
 	if self._doingShortThrow then
-		min = self.shortUpMinMax[1]
-		max = self.shortUpMinMax[2]
+		min = self.velocityModUpMinMaxShort[1]
+		max = self.velocityModUpMinMaxShort[2]
 	else
-		min = self.throwUpMinMax[1]
-		max = self.throwUpMinMax[2]
+		min = self.velocityModUpMinMax[1]
+		max = self.velocityModUpMinMax[2]
 	end
 	
 	local up = min + mul * (max - min)

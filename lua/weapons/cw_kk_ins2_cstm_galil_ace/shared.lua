@@ -106,6 +106,7 @@ if CLIENT then
 end
 
 SWEP.MuzzleEffect = "muzzleflash_m16_1p_core"
+SWEP.MuzzleEffectWorld = "muzzleflash_m16_3rd"
 
 SWEP.Attachments = {
 	{header = "Sight", offset = {300, -600}, atts = {"kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", /*"kk_ins2_cstm_eotechxps", "kk_ins2_eotech", */"kk_ins2_aimpoint", /*"kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"*/}},

@@ -77,4 +77,7 @@ SWEP.fuseTime = 0
 SWEP.timeToThrow = 1.1
 SWEP.maxVelDelay = 1.5
 
+SWEP.timeToThrowShort = 1.1
+SWEP.maxVelDelayShort = 1.5
+
 SWEP.canCook = false // this one detonates on impact

@@ -85,6 +85,7 @@ if CLIENT then
 end
 
 SWEP.MuzzleEffect = "muzzleflash_m590_1p_core"
+SWEP.MuzzleEffectWorld = "muzzleflash_m590_3rd"
 
 SWEP.Attachments = {
 	{header = "Sight", offset = {400, -550}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_microt1", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_compm4s"}},
@@ -138,7 +139,7 @@ SWEP.SpeedDec = 15
 
 SWEP.Slot = 3
 SWEP.SlotPos = 0
-SWEP.NormalHoldType = "shotgun"
+SWEP.NormalHoldType = "ar2"
 SWEP.RunHoldType = "passive"
 SWEP.FireModes = {"pump"}
 SWEP.Base = "cw_kk_ins2_base"

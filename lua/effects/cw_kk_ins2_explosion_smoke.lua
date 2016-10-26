@@ -13,7 +13,7 @@ function EFFECT:Init(fx)
 	
 	if ent:WaterLevel() == 0 then
 		for _,p in pairs(tweakData.explosionParticles) do
-			ParticleEffect(p, pos, ang0)
+			ParticleEffectAttach(p, PATTACH_ABSORIGIN_FOLLOW, ent, 0)
 		end
 		sound.Play(tweakData.explosionSound0, pos, 180)
 	end

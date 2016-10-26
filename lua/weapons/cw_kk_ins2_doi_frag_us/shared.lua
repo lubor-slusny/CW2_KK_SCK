@@ -82,3 +82,5 @@ SWEP.timeToThrow = 0.9
 
 SWEP.spoonTime = 23/30
 SWEP.timeToThrowCook = 1.3
+
+SWEP.timeToThrowShort = 0.9

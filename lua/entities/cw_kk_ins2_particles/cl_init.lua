@@ -9,8 +9,5 @@ function ENT:Initialize()
 	util.Effect(self.db[class].effectClass, ed)
 end
 
-function ENT:Think()
-end 
-
 function ENT:Draw()
 end

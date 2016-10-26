@@ -72,3 +72,5 @@ SWEP.fuseTime = 1.8
 SWEP.timeToThrow = 0.9
 
 SWEP.timeToThrowCook = 1.3
+
+SWEP.timeToThrowShort = 0.9

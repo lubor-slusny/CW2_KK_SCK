@@ -31,6 +31,7 @@ if CLIENT then
 end
 
 SWEP.MuzzleEffect = "ins_weapon_m203"
+SWEP.MuzzleEffectWorld = "ins_weapon_m203"
 
 SWEP.Chamberable = false
 SWEP.SnapToIdlePostReload = false

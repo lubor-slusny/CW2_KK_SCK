@@ -92,3 +92,8 @@ SWEP.maxVelDelay = 1.5
 SWEP.spoonTime = 44/35.2
 SWEP.timeToThrowCook = 1.5
 SWEP.maxVelDelayCook = 1.8
+
+SWEP.timeToThrowShort = 1.2
+SWEP.spawnTimeShort = 0.65
+SWEP.swapTimeShort = 1.3
+SWEP.maxVelDelayShort = 1.5
