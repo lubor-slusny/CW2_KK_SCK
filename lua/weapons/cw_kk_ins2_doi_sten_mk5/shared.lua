@@ -24,7 +24,7 @@ if CLIENT then
 	SWEP.ShellWorldAngleAlign = {Forward = 0, Right = 0, Up = 180}
 	
 	SWEP.AttachmentModelsVM = {
-		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/a_stenmk5_foregrip.mdl", pos = Vector(2.4687, -2.8842, -11.632), angle = Angle(90, -90, 0), size = Vector(1, 1, 1), merge = true},
+		-- ["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/a_stenmk5_foregrip.mdl", pos = Vector(2.4687, -2.8842, -11.632), angle = Angle(90, -90, 0), size = Vector(1, 1, 1), merge = true},
 		
 		["std_barrel"] = {model = "models/weapons/upgrades/a_stenmk5_barrel_standard.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		["kk_ins2_suppressor_sterling"] = {model = "models/weapons/upgrades/a_stenmk5_silencer.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
@@ -50,7 +50,7 @@ SWEP.StockBGs = {main = 0, regular = 0, heavy = 0, sturdy = 0}
 
 SWEP.Attachments = {
 	{header = "Barrel", offset = {-300, -600}, atts = {"kk_ins2_suppressor_sterling", "kk_ins2_ww2_knife"}},
-	{header = "Under", offset = {-500, 0}, atts = {"kk_ins2_vertgrip"}},
+	-- {header = "Under", offset = {-500, 0}, atts = {"kk_ins2_vertgrip"}},
 	-- {header = "Stock", offset = {1000, 0}, atts = {"bg_ar15sturdystock"}},
 	["+reload"] = {header = "Ammo", offset = {0, 400}, atts = {"am_magnum", "am_matchgrade"}}
 }
@@ -83,31 +83,31 @@ SWEP.Animations = {
 	base_melee = "base_melee",
 	base_melee_empty = "base_melee_empty",
 	
-	foregrip_pickup = "foregrip_ready",
-	foregrip_draw = "foregrip_draw",
-	foregrip_draw_empty = "foregrip_draw_empty",
-	foregrip_fire = {"foregrip_fire_1","foregrip_fire_2"},
-	foregrip_fire_aim = {"foregrip_iron_fire_1","foregrip_iron_fire_2","foregrip_iron_fire_3"},
-	foregrip_fire_last = "foregrip_fire_last",
-	foregrip_fire_last_aim = "foregrip_iron_fire_last",
-	foregrip_fire_empty = "foregrip_dryfire",
-	foregrip_fire_empty_aim = "foregrip_iron_dryfire",
-	foregrip_reload = "foregrip_reload",
-	foregrip_reload_empty = "foregrip_reloadempty",
-	foregrip_idle = "foregrip_holster",
-	foregrip_idle_empty = "foregrip_iron_idle_empty",
-	foregrip_holster = "foregrip_holster",
-	foregrip_holster_empty = "foregrip_holster_empty",
-	foregrip_sprint = "foregrip_sprint",
-	foregrip_sprint_empty = "foregrip_sprint_empty",
-	foregrip_safe = "foregrip_down",
-	foregrip_safe_aim = "foregrip_iron_down",
-	foregrip_safe_empty = "foregrip_down_empty",
-	foregrip_safe_empty_aim = "foregrip_iron_down_empty",
-	foregrip_crawl = "foregrip_crawl",
-	foregrip_crawl_empty = "foregrip_crawl_empty",
-	foregrip_melee = "foregrip_melee",
-	foregrip_melee_empty = "foregrip_melee_empty",
+	-- foregrip_pickup = "foregrip_ready",
+	-- foregrip_draw = "foregrip_draw",
+	-- foregrip_draw_empty = "foregrip_draw_empty",
+	-- foregrip_fire = {"foregrip_fire_1","foregrip_fire_2"},
+	-- foregrip_fire_aim = {"foregrip_iron_fire_1","foregrip_iron_fire_2","foregrip_iron_fire_3"},
+	-- foregrip_fire_last = "foregrip_fire_last",
+	-- foregrip_fire_last_aim = "foregrip_iron_fire_last",
+	-- foregrip_fire_empty = "foregrip_dryfire",
+	-- foregrip_fire_empty_aim = "foregrip_iron_dryfire",
+	-- foregrip_reload = "foregrip_reload",
+	-- foregrip_reload_empty = "foregrip_reloadempty",
+	-- foregrip_idle = "foregrip_holster",
+	-- foregrip_idle_empty = "foregrip_iron_idle_empty",
+	-- foregrip_holster = "foregrip_holster",
+	-- foregrip_holster_empty = "foregrip_holster_empty",
+	-- foregrip_sprint = "foregrip_sprint",
+	-- foregrip_sprint_empty = "foregrip_sprint_empty",
+	-- foregrip_safe = "foregrip_down",
+	-- foregrip_safe_aim = "foregrip_iron_down",
+	-- foregrip_safe_empty = "foregrip_down_empty",
+	-- foregrip_safe_empty_aim = "foregrip_iron_down_empty",
+	-- foregrip_crawl = "foregrip_crawl",
+	-- foregrip_crawl_empty = "foregrip_crawl_empty",
+	-- foregrip_melee = "foregrip_melee",
+	-- foregrip_melee_empty = "foregrip_melee_empty",
 }
 
 SWEP.SpeedDec = 15
@@ -127,9 +127,8 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
--- SWEP.ViewModel		= "models/weapons/v_sten.mdl"
 SWEP.ViewModel		= "models/weapons/v_sten_mk5.mdl"
-SWEP.WorldModel		= "models/weapons/w_sten.mdl"
+SWEP.WorldModel		= "models/weapons/w_sten_mk5.mdl"
 
 SWEP.WMPos = Vector(10, 6, -1)
 SWEP.WMAng = Vector(-10, 0, 180)

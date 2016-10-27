@@ -24,8 +24,8 @@ if CLIENT then
 	}
 	
 	SWEP.AttachmentModelsWM = {
-		["handguard"] = {model = "models/weapons/upgrades/w_thompson_standard.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
-		["mag"] = {model = "models/weapons/upgrades/w_thompson_mag_30.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
+		-- ["handguard"] = {model = "models/weapons/upgrades/w_thompson_standard.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
+		-- ["mag"] = {model = "models/weapons/upgrades/w_thompson_mag_30.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
 	}
 
 	SWEP.IronsightPos = Vector(-2.2506, -2, 1.0881)
@@ -89,7 +89,7 @@ SWEP.Instructions	= ""
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_thompson_m1a1.mdl"
-SWEP.WorldModel		= "models/weapons/w_thompson.mdl"
+SWEP.WorldModel		= "models/weapons/w_thompson_m1a1.mdl"
 
 SWEP.WMPos = Vector(4, 0.395, -2)
 SWEP.WMAng = Vector(-10, 0, 180)
@@ -106,7 +106,7 @@ SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= ".45 ACP"
 
 SWEP.FireDelay = 60/700
-SWEP.FireSound = "CW_KK_INS2_DOI_THOM_M1A1_FIRE"
+SWEP.FireSound = "CW_KK_INS2_DOI_THOMPSON_FIRE"
 SWEP.Recoil = 0.7
 
 SWEP.HipSpread = 0.04

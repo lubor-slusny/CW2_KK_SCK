@@ -315,7 +315,7 @@ local function recomputeLighting(i, pos, ang)
 	end
 end
 
-local cvarFixScopes = CreateClientConVar("cw_kk_ins2_scopelightingfix", 0, true, false)
+local cvarFixScopes = CreateClientConVar("cw_kk_ins2_scopelightingfix", 1, true, false)
 
 local active, pos, ang, m, vma, model, doRecompute
 
