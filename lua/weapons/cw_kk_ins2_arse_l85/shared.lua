@@ -9,7 +9,7 @@ SWEP.magType = "arMag"
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "Yo Momma's Gun"
+	SWEP.PrintName = "L85"
 	SWEP.CSMuzzleFlashes = true
 	SWEP.ViewModelMovementScale = 1.15
 	
@@ -27,17 +27,25 @@ if CLIENT then
 	}
 	
 	SWEP.AttachmentModelsVM = {
-		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_carryhandle_l85.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
+		["kk_ins2_optic_iron"] = {model = "models/weapons/l85/a_l85sight.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
+		["kk_ins2_optic_raul"] = {model = "models/weapons/l85/a_l85modkit.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
+		["std_barrel"] = {model = "models/weapons/l85/a_l85barrel.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
+		["kk_ins2_hoovy"] = {model = "models/weapons/l85/a_l85longbarrel.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_suppressor_sec"] = {model = "models/weapons/upgrades/a_suppressor_sec.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
+		["std_handguard"] = {model = "models/weapons/l85/a_l85forend.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
+		
 		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/a_foregrip_sec.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), attachment = "Foregrip"},
-		["kk_ins2_gl_m320"] = {model = "models/weapons/upgrades/a_gl_m320.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		-- ["kk_ins2_vertgrip"] = {model = "models/weapons/l85/a_grippod.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), attachment = "Foregrip"},
+		["kk_ins2_gl_m320"] = {model = "models/weapons/l85/a_ugl.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_rail.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_rail.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_anpeq15"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_anpeq_rail.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 
+		["std_mag"] = {model = "models/weapons/l85/a_emag.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
+		
 		["kk_ins2_magnifier"] = {model = "models/weapons/upgrades/a_optic_aimp2x_l.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, retSizeMult = 1.25},
 		
 		["kk_ins2_aimpoint"] = {model = "models/weapons/upgrades/a_optic_aimpoint_l.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, retSizeMult = 1.2},
@@ -53,20 +61,26 @@ if CLIENT then
 		["kk_ins2_cstm_barska"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_barska_xl.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, retSizeMult = 1.25},
 		["kk_ins2_cstm_eotechxps"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_eotechxps_xl.mdl", pos = Vector(0, 0, -1), angle = Angle(90, 90, 0), size = Vector(1, 1, 1), merge = true, retSizeMult = 1.25},
 		
-		["kk_ins2_cstm_susat"] = {model = "models/weapons/upgrades/a_optic_susat.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_cstm_susat"] = {model = "models/weapons/l85/a_optic_susat.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
 	SWEP.AttachmentModelsWM = {
-		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/w_flipup85.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
+		["kk_ins2_optic_iron"] = {model = "models/weapons/l85/w_l85sight.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
 		
+		["std_barrel"] = {model = "models/weapons/l85/w_l85barrel.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
+		["kk_ins2_hoovy"] = {model = "models/weapons/l85/w_l85longbarrel.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_suppressor_sec"] = {model = "models/weapons/upgrades/w_sil_sec1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
+		["std_handguard"] = {model = "models/weapons/l85/w_l85forend.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
+		
 		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/w_foregrip_sec1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_gl_m320"] = {model = "models/weapons/upgrades/w_m203.mdl", attachment = "gl", pos = Vector(-12,1.1,0), angle = Angle(0, 0, -90), size = Vector(1, 1, 1)},
+		["kk_ins2_gl_m320"] = {model = "models/weapons/upgrades/w_ugl.mdl", attachment = "gl", pos = Vector(-12,1.1,0), angle = Angle(0, 0, -90), size = Vector(1, 1, 1)},
 		
 		["kk_ins2_lam"] = {model = "models/weapons/upgrades/w_laser_sec.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/w_laser_sec.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 
+		["std_mag"] = {model = "models/weapons/l85/w_l85mag.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
+		
 		["kk_ins2_magnifier"] = {model = "models/weapons/upgrades/w_magaim.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	
 		["kk_ins2_aimpoint"] = {model = "models/weapons/upgrades/w_aimpoint.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
@@ -262,3 +276,13 @@ SWEP.ReloadTimes = {
 	
 	glsetup_reload = {2.95, 3.85},
 }
+
+if CLIENT then
+	function SWEP:updateOtherParts()
+		local raul = !self.AttachmentModelsVM.kk_ins2_optic_iron.active and !self.AttachmentModelsVM.kk_ins2_cstm_susat.active
+		self:setElementActive("kk_ins2_optic_raul", raul)
+		
+		self:setElementActive("std_barrel", !self.ActiveAttachments.kk_ins2_hoovy)
+		self:setElementActive("std_handguard", !self.ActiveAttachments.kk_ins2_gl_m320)
+	end
+end

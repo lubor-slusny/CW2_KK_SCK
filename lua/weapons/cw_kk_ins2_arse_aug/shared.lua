@@ -128,8 +128,6 @@ SWEP.Animations = {
 	base_reload_empty = "base_reloadempty",
 	base_idle = "base_idle",
 	base_holster = "base_holster",
-	base_firemode = "base_fireselect",
-	base_firemode_aim = "iron_fireselect",
 	base_sprint = "base_sprint",
 	base_safe = "base_down",
 	base_safe_aim = "iron_down",
@@ -159,7 +157,7 @@ SWEP.Slot = 3
 SWEP.SlotPos = 0
 SWEP.NormalHoldType = "ar2"
 SWEP.RunHoldType = "passive"
-SWEP.FireModes = {"auto", "semi"}
+SWEP.FireModes = {"auto"}
 SWEP.Base = "cw_kk_ins2_base"
 SWEP.Category = "CW 2.0 KK INS2 AR"
 
