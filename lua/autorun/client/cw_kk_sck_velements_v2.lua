@@ -460,6 +460,14 @@ function TOOL:updatePanel()
 							icon:SetImage("icon16/bullet_red.png")
 						end
 						
+						function icon:Think()
+							if self:IsHovered() then
+								if input.IsMouseDown(MOUSE_RIGHT) then
+									SetClipboardText(key)
+								end
+							end
+						end
+						
 						local label
 						label = vgui.Create("DLabel", elementNamePanel)
 						label:SetText(key)

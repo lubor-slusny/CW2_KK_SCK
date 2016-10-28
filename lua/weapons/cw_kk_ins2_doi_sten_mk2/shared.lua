@@ -36,6 +36,9 @@ if CLIENT then
 	
 	SWEP.AttachmentModelsWM = {
 		-- ["kk_ins2_vertgrip"] = {model = "models/weapons/attachments/w_cw_kk_ins2_cstm_eotechxps.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		
+		["std_barrel"] = {model = "models/weapons/upgrades/w_barrel_standard_mk2.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
+		["kk_ins2_suppressor_sterling"] = {model = "models/weapons/upgrades/w_silencer_sten.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
 	-- SWEP.IronsightPos = Vector(-2.3491, 0, 1.7527)
@@ -129,8 +132,8 @@ SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_sten_mk2.mdl"
 SWEP.WorldModel		= "models/weapons/w_sten.mdl"
 
-SWEP.WMPos = Vector(10, 6, -1)
-SWEP.WMAng = Vector(-10, 0, 180)
+SWEP.WMPos = Vector(9, -1, -4)
+SWEP.WMAng = Vector(-10, 0, 90)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2gb
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.ww2gb
