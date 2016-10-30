@@ -1,5 +1,4 @@
 if not CustomizableWeaponry then return end
-if not CustomizableWeaponry_KK.HOME then return end
 
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
@@ -16,18 +15,19 @@ if CLIENT then
 	
 	SWEP.IconLetter = "f"
 	
-	SWEP.MuzzleEffect = "muzzleflash_pistol"
+	
 	SWEP.Shell = "KK_INS2_45apc"
 	SWEP.ShellDelay = 0.06
 	
 	SWEP.ShellViewAngleAlign = {Forward = 0, Right = 0, Up = 180}
 	
 	SWEP.AttachmentModelsVM = {
+		["std_barrel"] = {model = "models/weapons/usp/a_uspbarrel.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), merge = true, active = true},
+		["kk_ins2_hoovy"] = {model = "models/weapons/usp/a_match.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_suppressor_pistol"] = {model = "models/weapons/upgrades/a_suppressor_pistol.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), merge = true},
+
 		["kk_ins2_mag_m45_8"] = {model = "models/weapons/usp/a_magazine_usp_standard.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
 		["kk_ins2_mag_m45_15"] = {model = "models/weapons/usp/a_magazine_usp_15.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
-
-		["std_barrel"] = {model = "models/weapons/usp/a_uspbarrel.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), merge = true, active = true},
-		["kk_ins2_suppressor_pistol"] = {model = "models/weapons/upgrades/a_suppressor_pistol.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), merge = true},
 
 		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_mak.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_mak.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
@@ -39,9 +39,11 @@ if CLIENT then
 	}
 
 	SWEP.AttachmentModelsWM = {
+		["kk_ins2_hoovy"] = {model = "models/weapons/upgrades/w_match.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_suppressor_pistol"] = {model = "models/weapons/upgrades/w_sil_pistol.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_mag_m45_8"] = {model = "models/weapons/upgrades/w_magazine_m45_8.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
-		["kk_ins2_mag_m45_15"] = {model = "models/weapons/upgrades/w_magazine_m45_15.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		
+		["kk_ins2_mag_m45_8"] = {model = "models/weapons/usp/w_uspmag.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
+		["kk_ins2_mag_m45_15"] = {model = "models/weapons/usp/w_extuspmag.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_lam"] = {model = "models/weapons/upgrades/w_laser_sec.mdl", pos = Vector(), angle = Angle(0, 180, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/w_laser_sec.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
@@ -116,15 +118,15 @@ SWEP.WorldModel		= "models/weapons/usp/w_usp.mdl"
 SWEP.WMPos = Vector(5.309, 1.623, -1.616)
 SWEP.WMAng = Vector(-3, -5, 180)
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
 
-SWEP.Primary.ClipSize		= 7
-SWEP.Primary.DefaultClip	= 7
+SWEP.Primary.ClipSize		= 12
+SWEP.Primary.DefaultClip	= 12
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= ".45 ACP"
 
-SWEP.FireDelay = 0.1
+SWEP.FireDelay = 60/600
 SWEP.FireSound = "CW_KK_INS2_M45_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_M45_FIRE_SUPPRESSED"
 SWEP.Recoil = 1

@@ -11,7 +11,7 @@ if CLIENT then
 	SWEP.SelectFont = "CW_SelectIcons2"
 	SWEP.IconLetter = "i"
 	
-	SWEP.MuzzleEffect = "muzzleflash_pistol"
+	
 	SWEP.RearEffectw = true
 	SWEP.NoShells = true
 	
@@ -198,8 +198,8 @@ SWEP.WMAng = Vector(-10, 0, 180)
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.f1
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.gurkha
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
 
 SWEP.Primary.ClipSize		= 1
 SWEP.Primary.DefaultClip	= 1

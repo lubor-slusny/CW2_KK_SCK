@@ -1,5 +1,4 @@
 if not CustomizableWeaponry then return end
-if not CustomizableWeaponry_KK.HOME then return end
 
 AddCSLuaFile()
 AddCSLuaFile("sh_soundscript.lua")
@@ -15,7 +14,7 @@ if CLIENT then
 	
 	SWEP.IconLetter = "w"
 	
-	SWEP.MuzzleEffect = "muzzleflash_6"
+	
 	SWEP.Shell = "KK_INS2_556x45"
 	SWEP.NoShells = true
 	
@@ -44,7 +43,8 @@ if CLIENT then
 		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_rail.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_anpeq15"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_anpeq_rail.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 
-		["std_mag"] = {model = "models/weapons/l85/a_emag.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
+		["std_mag"] = {model = "models/weapons/upgrades/a_standardmag_stanag.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
+		["ext_mag"] = {model = "models/weapons/upgrades/a_extendedmag_stanag.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_magnifier"] = {model = "models/weapons/upgrades/a_optic_aimp2x_l.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, retSizeMult = 1.25},
 		
@@ -80,6 +80,7 @@ if CLIENT then
 		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/w_laser_sec.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 
 		["std_mag"] = {model = "models/weapons/l85/w_l85mag.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
+		["ext_mag"] = {model = "models/weapons/upgrades/w_extendedmag_stanag.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_magnifier"] = {model = "models/weapons/upgrades/w_magaim.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	
@@ -99,8 +100,8 @@ if CLIENT then
 		["kk_ins2_cstm_susat"] = {model = "models/weapons/upgrades/w_elcan.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
-	SWEP.IronsightPos = Vector(-2.85, -2, 0.3502)
-	SWEP.IronsightAng = Vector()
+	SWEP.IronsightPos = Vector(-2.8575, -2, 0.1844)
+	SWEP.IronsightAng = Vector(0.1304, 0.0024, 0)
 
 	SWEP.FoldSightPos = Vector(-2.8561, -2, 1.0194)
 	SWEP.FoldSightAng = Vector(-1.1876, 0, 0)
@@ -233,15 +234,15 @@ SWEP.WorldModel		= "models/weapons/l85/w_l85.mdl"
 SWEP.WMPos = Vector(5.219, 0.554, -0.893)
 SWEP.WMAng = Vector(-10, -1, 180)
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.wsContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.wsContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
 
 SWEP.Primary.ClipSize		= 30
 SWEP.Primary.DefaultClip	= 30
 SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= "5.56x45MM"
 
-SWEP.FireDelay = 60/775
+SWEP.FireDelay = 60/675
 -- SWEP.FireDelay = 60/1500
 SWEP.FireSound = "CW_KK_INS2_M4A1_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_M4A1_FIRE_SUPPRESSED"

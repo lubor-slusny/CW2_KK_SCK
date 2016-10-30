@@ -1,5 +1,4 @@
 if not CustomizableWeaponry then return end
-if not CustomizableWeaponry_KK.HOME then return end
 
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
@@ -17,7 +16,7 @@ if CLIENT then
 	
 	SWEP.IconLetter = "w"
 	
-	SWEP.MuzzleEffect = "muzzleflash_6"
+	
 	SWEP.Shell = "KK_INS2_556x45"
 	SWEP.ShellDelay = 0.06
 	
@@ -79,8 +78,8 @@ if CLIENT then
 		["kk_ins2_cstm_eotechxps"] = {model = "models/weapons/attachments/w_cw_kk_ins2_cstm_eotechxps.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true}, 
 	}
 	
-	SWEP.IronsightPos = Vector(-2.549, -2, 0.7535)
-	SWEP.IronsightAng = Vector(0.1915, 0.0105, 0)
+	SWEP.IronsightPos = Vector(-2.3813, -2, 0.7493)
+	SWEP.IronsightAng = Vector(-0.1613, 0, 0)
 
 	SWEP.KKINS2KobraPos = Vector(-2.55, -2, 0.6936)
 	SWEP.KKINS2KobraAng = Vector()
@@ -178,15 +177,15 @@ SWEP.WorldModel		= "models/weapons/sg552/w_sg552.mdl"
 SWEP.WMPos = Vector(5.018, 0.711, -0.743)
 SWEP.WMAng = Vector(-10, 0, 180)
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
 
 SWEP.Primary.ClipSize		= 30
 SWEP.Primary.DefaultClip	= 30
 SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= "5.56x45MM"
 
-SWEP.FireDelay = 0.066666666666667
+SWEP.FireDelay = 60/780
 SWEP.FireSound = "CW_KK_INS2_MK18_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_MK18_FIRE_SUPPRESSED"
 SWEP.Recoil = 1.05

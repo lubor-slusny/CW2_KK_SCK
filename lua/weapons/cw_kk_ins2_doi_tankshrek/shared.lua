@@ -13,7 +13,7 @@ if CLIENT then
 	SWEP.SelectFont = "CW_SelectIcons2"
 	SWEP.IconLetter = "i"
 	
-	SWEP.MuzzleEffect = "muzzleflash_pistol"
+	
 	SWEP.RearEffectw = true
 	SWEP.NoShells = true
 	
@@ -79,15 +79,17 @@ SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_panzerschreck.mdl"
 SWEP.WorldModel		= "models/weapons/w_panzerschreck.mdl"
 
-SWEP.DrawCustomWM = true
-SWEP.WMPos = Vector(5, 0, -1.5)
-SWEP.WMAng = Vector(8, 180, -180)
+-- SWEP.DrawCustomWM = true
+-- SWEP.WMPos = Vector(5, 0, -1.5)
+-- SWEP.WMAng = Vector(8, 180, -180)
+SWEP.WMPos = Vector(10, 0.5, -8)
+SWEP.WMAng = Vector(8, 180, 0)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2de
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.ww2de
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.doiContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.doiContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
 
 SWEP.Primary.ClipSize		= 1
 SWEP.Primary.DefaultClip	= 1

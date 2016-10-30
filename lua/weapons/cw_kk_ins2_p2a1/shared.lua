@@ -15,7 +15,7 @@ if CLIENT then
 	SWEP.SelectFont = "HL2MPTypeDeath"
 	SWEP.IconLetter = "7"
 	
-	SWEP.MuzzleEffect = "muzzleflash_pistol"
+	
 	SWEP.NoShells = true
 	SWEP.Shell = "KK_INS2_12guage"
 	
@@ -91,8 +91,8 @@ SWEP.WorldModel		= "models/weapons/w_p2a1.mdl"
 SWEP.WMPos = Vector(5.243, 1.562, -1.657)
 SWEP.WMAng = Vector(-1, -5, 180)
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
 
 SWEP.Primary.ClipSize		= 1
 SWEP.Primary.DefaultClip	= 1

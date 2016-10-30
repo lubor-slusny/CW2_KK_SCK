@@ -16,7 +16,7 @@ if CLIENT then
 	
 	SWEP.IconLetter = "w"
 	
-	SWEP.MuzzleEffect = "muzzleflash_6"
+	
 	SWEP.NoShells = true
 	
 	SWEP.Shell = "KK_INS2_556x45"
@@ -197,8 +197,8 @@ SWEP.WorldModel		= "models/weapons/w_m249.mdl"
 SWEP.WMPos = Vector(5.184, 0.935, -1.03)
 SWEP.WMAng = Vector(-10, -1, 180)
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
 
 SWEP.Primary.ClipSize		= 200
 SWEP.Primary.DefaultClip	= 200

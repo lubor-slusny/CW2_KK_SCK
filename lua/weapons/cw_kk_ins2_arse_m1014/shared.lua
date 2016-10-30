@@ -1,11 +1,38 @@
 if not CustomizableWeaponry then return end
-if not CustomizableWeaponry_KK.HOME then return end
 
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
 AddCSLuaFile("sh_soundscript.lua")
 include("sh_sounds.lua")
 include("sh_soundscript.lua")
+
+local att = {}
+att.name = "kk_ins2_arse_mag_m1014_7"
+att.displayName = "7 round tube"
+att.displayNameShort = "7 RND"
+
+att.statModifiers = {}
+
+if CLIENT then
+	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
+	att.description = {
+		[1] = {t = "Increases ammo capacity to 7+1 rounds.", c = CustomizableWeaponry.textColors.POSITIVE}
+	}
+end
+
+function att:attachFunc()
+	self:unloadWeapon()
+	self.Primary.ClipSize = 7
+	self.Primary.ClipSize_Orig = 7
+end
+
+function att:detachFunc()
+	self:unloadWeapon()
+	self.Primary.ClipSize = self.Primary.ClipSize_ORIG_REAL
+	self.Primary.ClipSize_Orig = self.Primary.ClipSize_ORIG_REAL
+end
+
+CustomizableWeaponry:registerAttachment(att)
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
@@ -15,7 +42,7 @@ if CLIENT then
 	
 	SWEP.IconLetter = "i"
 	
-	SWEP.MuzzleEffect = "muzzleflash_m3"
+	
 
 	SWEP.NoShells = true
 	SWEP.Shell = "KK_INS2_12guage"
@@ -30,7 +57,7 @@ if CLIENT then
 		["kk_ins2_anpeq15"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_anpeq_shotgun.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["std_mag"] = {model = "models/weapons/m1014/a_magazine_m1014_standard.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
-		["ext_mag"] = {model = "models/weapons/m1014/a_magazine_m1014_extended.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_arse_mag_m1014_7"] = {model = "models/weapons/m1014/a_magazine_m1014_extended.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		["std_ammo"] = {model = "models/weapons/m1014/a_shell_m1014_standard.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		
 		["kk_ins2_magnifier"] = {model = "models/weapons/upgrades/a_optic_aimp2x.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
@@ -41,7 +68,7 @@ if CLIENT then
 		
 		["kk_ins2_cstm_cmore"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_cmore.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_cstm_compm4s"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_compm4s.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_cstm_microt1"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_microt1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_cstm_microt1"] = {model = "models/weapons/upgrades/a_optic_micro_rifle.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_cstm_barska"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_barska.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_cstm_eotechxps"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_eotechxps.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
@@ -68,9 +95,9 @@ if CLIENT then
 		["kk_ins2_cstm_eotechxps"] = {model = "models/weapons/attachments/w_cw_kk_ins2_cstm_eotechxps.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
-	SWEP.IronsightPos = Vector(-2.004, -2, 0.82)
-	SWEP.IronsightAng = Vector(0, 0.06, 0)
-	
+	SWEP.IronsightPos = Vector(-2.0064, -2, 0.7054)
+	SWEP.IronsightAng = Vector(-0.0263, 0.0097, 0)
+
 	SWEP.KKINS2KobraPos = Vector(-2.0135, -2, -0.2049)
 	SWEP.KKINS2KobraAng = Vector()
 
@@ -83,11 +110,17 @@ if CLIENT then
 	SWEP.KKINS2MagnifierPos = Vector(-2.004, -1, -0.125)
 	SWEP.KKINS2MagnifierAng = Vector(-0.2, 0.08, 0)
 	
+	SWEP.KKINS2CSTMMicroT1Pos = Vector(-2.0114, -2, 0.4448)
+	SWEP.KKINS2CSTMMicroT1Ang = Vector(0, 0, 0)
+
+	SWEP.KKINS2MagnifierPos = Vector(-2.0092, -3, -0.1908)
+	SWEP.KKINS2MagnifierAng = Vector(0, 0, 0)
+
 	SWEP.CustomizationMenuScale = 0.015
 end
 
-SWEP.MuzzleEffect = "muzzleflash_m590_1p_core"
-SWEP.MuzzleEffectWorld = "muzzleflash_m590_3rd"
+SWEP.MuzzleEffect = "muzzleflash_toz_1p_core"
+SWEP.MuzzleEffectWorld = "muzzleflash_toz_3rd"
 
 SWEP.Attachments = {
 	{header = "Sight", offset = {400, -450}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_microt1", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_compm4s"}},
@@ -95,6 +128,7 @@ SWEP.Attachments = {
 	{header = "Under", offset = {-400, 0}, atts = {"kk_ins2_vertgrip"}},
 	{header = "Lasers", offset = {125, 400}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}},
 	{header = "More Sight", offset = {1000, 0}, atts = {"kk_ins2_magnifier"}, dependencies = CustomizableWeaponry_KK.ins2.magnifierDependencies},
+	{header = "Magazine", offset = {-200, 600}, atts = {"kk_ins2_arse_mag_m1014_7"}},
 	["+use"] = {header = "Sight Contract", offset = {400, 0}, atts = {"kk_ins2_sights_cstm"}},
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_slugrounds", "am_flechetterounds"}}
 }
@@ -160,15 +194,15 @@ SWEP.WorldModel		= "models/weapons/m1014/w_m1014.mdl"
 SWEP.WMPos = Vector(4.763, 0.935, -1.945)
 SWEP.WMAng = Vector(-10, 0, 180)
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
 
-SWEP.Primary.ClipSize		= 8
-SWEP.Primary.DefaultClip	= 9
+SWEP.Primary.ClipSize		= 4 // 7 ext
+SWEP.Primary.DefaultClip	= 5
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "12 Gauge"
 
-SWEP.FireDelay = 0.3
+SWEP.FireDelay = 60/280
 SWEP.FireSound = "CW_KK_INS2_M590_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_M590_FIRE_SUPPRESSED"
 SWEP.Recoil = 3
@@ -198,21 +232,11 @@ SWEP.WeaponLength = 18
 SWEP.MuzzleVelocity = 244
 
 SWEP.ReloadTimes = {
-	base_fire_cock_1 = {2/24, 0.7},
-	base_fire_cock_2 = {2/24, 0.7},
-	iron_fire_cock_1 = {4/35, 0.7},
-	iron_fire_cock_2 = {4/35, 0.7},
-	
 	base_reload_start = {0.6, 0.6},
 	base_reload_start_empty = {2.25, 2.89, KK_INS2_SHOTGUN_LOAD_FIRST},
 	base_reload_insert = {15/36, 0.72},
 	base_reload_end = {0.6, 0.6},
 	base_reload_end_empty = {0.6, 0.6},
-	
-	foregrip_fire_cock_1 = {2/24, 0.5},
-	foregrip_fire_cock_2 = {2/24, 0.5},
-	foregrip_iron_fire_cock_1 = {3/35, 0.5},
-	foregrip_iron_fire_cock_2 = {3/35, 0.5},
 	
 	foregrip_reload_start = {0.6, 0.6},
 	foregrip_reload_start_empty = {2.25, 2.89, KK_INS2_SHOTGUN_LOAD_FIRST},
@@ -220,3 +244,9 @@ SWEP.ReloadTimes = {
 	foregrip_reload_end = {0.6, 0.6},
 	foregrip_reload_end_empty = {0.6, 0.6},
 }
+
+if CLIENT then 
+	function SWEP:updateOtherParts()
+		self:setElementActive("std_mag", !self.ActiveAttachments.kk_ins2_arse_mag_m1014_7)
+	end
+end

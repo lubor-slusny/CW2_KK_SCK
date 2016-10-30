@@ -17,7 +17,7 @@ if CLIENT then
 	
 	SWEP.IconLetter = "b"
 	
-	SWEP.MuzzleEffect = "muzzleflash_ak74"
+	
 	SWEP.MuzzleAttachmentName = "muzzle"
 	
 	SWEP.NoShells = true
@@ -100,8 +100,8 @@ SWEP.WMAng = Vector(-10, 0, 180)
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2us
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.ww2us
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.doiContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.doiContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
 
 SWEP.Primary.ClipSize		= 250
 SWEP.Primary.DefaultClip	= 250

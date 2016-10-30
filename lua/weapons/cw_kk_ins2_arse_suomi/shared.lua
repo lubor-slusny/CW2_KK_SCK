@@ -1,5 +1,4 @@
 if not CustomizableWeaponry then return end
-if not CustomizableWeaponry_KK.HOME then return end
 
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
@@ -15,7 +14,7 @@ if CLIENT then
 	
 	SWEP.IconLetter = "q"
 	
-	SWEP.MuzzleEffect = "muzzleflash_smg"
+	
 	SWEP.Shell = "KK_INS2_45apc"
 	SWEP.ShellDelay = 0.13
 
@@ -29,19 +28,13 @@ if CLIENT then
 		["kk_ins2_mag_thom_50"] = {model = "models/weapons/suomi/w_suomi_drum.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 
-	SWEP.IronsightPos = Vector(-2.2377, -2, 1.0456)
-	SWEP.IronsightAng = Vector(0.1611, 0.0052, 0)
-
-	SWEP.FoldSightPos = Vector(-2.2377, -2, 1.0456)
-	SWEP.FoldSightAng = Vector(0.1611, 0.0052, 0)
-
-	SWEP.FoldSightPos = Vector(-2.2355, -2, 1.1378)
-	SWEP.FoldSightAng = Vector(-0.1139, 0.0259, 0)
+	SWEP.IronsightPos = Vector(-3.0691, -2, 1.4411)
+	SWEP.IronsightAng = Vector(-0.035, -0.0044, 0)
 
 end
 
-SWEP.MuzzleEffect = "muzzleflash_thompson_1p"
-SWEP.MuzzleEffectWorld = "muzzleflash_thompson_3p"
+SWEP.MuzzleEffect = "muzzleflash_mp40_1p_core"
+SWEP.MuzzleEffectWorld = "muzzleflash_mp40_3rd"
 
 SWEP.Attachments = {
 	{header = "Magazine", offset = {-50, 500}, atts = {"kk_ins2_mag_thom_50"}},
@@ -106,15 +99,15 @@ SWEP.WMAng = Vector(-10, 0, 180)
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2us
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.ww2us
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.wsContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.wsContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
 
-SWEP.Primary.ClipSize		= 20
-SWEP.Primary.DefaultClip	= 20
+SWEP.Primary.ClipSize		= 34
+SWEP.Primary.DefaultClip	= 34
 SWEP.Primary.Automatic		= true
-SWEP.Primary.Ammo			= ".45 ACP"
+SWEP.Primary.Ammo			= "9x19MM"
 
-SWEP.FireDelay = 60/700
+SWEP.FireDelay = 60/980
 SWEP.FireSound = "CW_KK_INS2_DOI_THOMPSON_FIRE"
 SWEP.Recoil = 0.7
 

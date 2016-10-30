@@ -40,8 +40,8 @@ SWEP.WMAng = Vector(99.385, -22.739, 18.048)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2us
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.doiContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.doiContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
 
 SWEP.FirstDeployTime = 0.8
 SWEP.DeployTime = 0.8

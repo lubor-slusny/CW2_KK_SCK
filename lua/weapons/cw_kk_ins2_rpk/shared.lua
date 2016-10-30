@@ -20,7 +20,7 @@ if CLIENT then
 	
 	SWEP.IconLetter = "b"
 	
-	SWEP.MuzzleEffect = "muzzleflash_ak74"
+	
 	SWEP.Shell = "KK_INS2_762x39"
 	SWEP.ShellDelay = 0.06
 	
@@ -170,7 +170,7 @@ SWEP.Attachments = {
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
-if CustomizableWeaponry_KK.ins2.wsContentMounted() then
+if CustomizableWeaponry_KK.ins2.isContentMounted(SWEP) then
 	table.insert(SWEP.Attachments, 3, {header = "Package", offset = {-400, 0}, atts = {"kk_ins2_rpk_sopmod"}})
 end
 
@@ -237,8 +237,8 @@ SWEP.WMAng = Angle(-10, 0, 180)
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.f1
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.gurkha
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
 
 SWEP.Primary.ClipSize		= 75
 SWEP.Primary.DefaultClip	= 75

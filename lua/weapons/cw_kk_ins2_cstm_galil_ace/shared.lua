@@ -15,7 +15,7 @@ if CLIENT then
 	
 	SWEP.IconLetter = "b"
 	
-	SWEP.MuzzleEffect = "muzzleflash_ak74"
+	
 	SWEP.Shell = "KK_INS2_556x45"
 	SWEP.ShellDelay = 0.06
 	
@@ -196,8 +196,8 @@ SWEP.WMAng = Angle(-10, 0, 180)
 
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.gurkha
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
 
 SWEP.AdminOnly			= true
 

@@ -13,7 +13,7 @@ if CLIENT then
 	SWEP.SelectFont = "CW_SelectIcons2"
 	SWEP.IconLetter = "i"
 	
-	SWEP.MuzzleEffect = "muzzleflash_pistol"
+	
 	SWEP.RearEffectw = true
 	SWEP.NoShells = true
 	
@@ -77,8 +77,8 @@ SWEP.WorldModel		= "models/weapons/w_at4.mdl"
 SWEP.WMPos = Vector(7, 1, -2)
 SWEP.WMAng = Vector(-10, 0, 180)
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
 
 SWEP.Primary.ClipSize		= 1
 SWEP.Primary.DefaultClip	= 1

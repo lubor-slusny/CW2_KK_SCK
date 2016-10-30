@@ -1,5 +1,4 @@
 if not CustomizableWeaponry then return end
-if not CustomizableWeaponry_KK.HOME then return end
 
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
@@ -16,13 +15,15 @@ if CLIENT then
 	
 	SWEP.IconLetter = "f"
 	
-	SWEP.MuzzleEffect = "muzzleflash_pistol"
 	SWEP.Shell = "KK_INS2_9x19"
 	SWEP.ShellDelay = 0.06
 	SWEP.ShellWorldAngleAlign = {Forward = 0, Right = 0, Up = 180}
 	
 	SWEP.AttachmentModelsVM = {		
 		["kk_ins2_suppressor_pistol"] = {model = "models/weapons/upgrades/a_suppressor_pistol.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), merge = true},
+		
+		["kk_ins2_mag_m45_8"] = {model = "models/weapons/glock/a_magazine_glock_standard.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
+		["kk_ins2_mag_m45_15"] = {model = "models/weapons/glock/a_magazine_glock_extended.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_m9.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_m9.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
@@ -37,12 +38,15 @@ if CLIENT then
 	SWEP.AttachmentModelsWM = {
 		["kk_ins2_suppressor_pistol"] = {model = "models/weapons/upgrades/w_sil_pistol.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), merge = true},
 		
+		["kk_ins2_mag_m45_8"] = {model = "models/weapons/glock/w_glockmag.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
+		["kk_ins2_mag_m45_15"] = {model = "models/weapons/glock/w_glockextmag.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		
 		["kk_ins2_lam"] = {model = "models/weapons/upgrades/w_laser_sec.mdl", pos = Vector(), angle = Angle(0, 180, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/w_laser_sec.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
-	SWEP.IronsightPos = Vector(-1.8521, 0, 0.4934)
-	SWEP.IronsightAng = Vector(0, 0.07, 0)
+	SWEP.IronsightPos = Vector(-2.8559, 0, 1.0221)
+	SWEP.IronsightAng = Vector(0.1215, 0.0108, 0)
 
 	SWEP.CustomizationMenuScale = 0.01
 	SWEP.ReloadViewBobEnabled = false
@@ -71,6 +75,8 @@ SWEP.Animations = {
 	base_fire_empty_aim = "iron_dryfire",
 	base_reload = "base_reload",
 	base_reload_empty = "base_reloadempty",
+	base_reload_mm = "base_reload_extmag",
+	base_reload_empty_mm = "base_reloadempty_extmag",
 	base_idle = "base_idle",
 	base_idle_empty = "empty_idle",
 	base_holster = "base_holster",
@@ -108,11 +114,11 @@ SWEP.WorldModel		= "models/weapons/glock/w_glock17.mdl"
 SWEP.WMPos = Vector(5.309, 1.623, -1.821)
 SWEP.WMAng = Vector(-3, -5, 180)
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
 
-SWEP.Primary.ClipSize		= 15
-SWEP.Primary.DefaultClip	= 15
+SWEP.Primary.ClipSize		= 12 // 33 ext
+SWEP.Primary.DefaultClip	= 12
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "9x19MM"
 
@@ -133,7 +139,7 @@ SWEP.SpreadCooldown = 0.22
 SWEP.Shots = 1
 SWEP.Damage = 24
 
-SWEP.FireDelay = 0.1
+SWEP.FireDelay = 60/600
 SWEP.FirstDeployTime = 1.3
 
 SWEP.DeployTime = 0.4
@@ -144,4 +150,12 @@ SWEP.MuzzleVelocity = 381
 SWEP.ReloadTimes = {
 	base_reload = {2, 2.65},
 	base_reloadempty = {2, 2.65},
+	base_reload_extmag = {2, 2.65},
+	base_reloadempty_extmag = {2, 2.65},
 }
+
+if CLIENT then 
+	function SWEP:updateStandardParts()
+		self:setElementActive("kk_ins2_mag_m45_8", !self.ActiveAttachments.kk_ins2_mag_m45_15)
+	end
+end

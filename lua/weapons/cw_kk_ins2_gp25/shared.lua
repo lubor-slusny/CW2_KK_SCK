@@ -11,7 +11,7 @@ if CLIENT then
 	
 	SWEP.IconLetter = "C"
 	
-	SWEP.MuzzleEffect = "muzzleflash_pistol"
+	
 	SWEP.MuzzleAttachmentName = "muzzle_gl"
 	SWEP.NoShells = true
 	
@@ -326,8 +326,8 @@ SWEP.WMAng = Angle(-10, 0, 180)
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.f1
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.gurkha
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
 
 SWEP.AdminOnly		= true
 

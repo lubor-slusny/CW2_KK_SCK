@@ -108,7 +108,7 @@ if CLIENT then
 	SWEP.ZoomAmount = 0
 	SWEP.FOVPerShot = 0
 	
-	SWEP.SprintAnimSpeed = 1.5
+	SWEP.SprintAnimSpeed = 1.1
 	SWEP.ViewModelMovementScale_sprint = 0
 	SWEP.ViewModelMovementScale_base = 1
 	

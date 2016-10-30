@@ -12,7 +12,7 @@ end
 SWEP.Animations = {
 	base_pickup = "base_draw",
 	base_draw = "base_draw",
-	base_fire = {"base_attack_1", "base_attack_2", "base_attack_3", "abase_ttack_kill"},
+	base_fire = {"swing_left_miss", "swing_right_miss", "swing_center_miss"},
 	base_idle = "base_idle",
 	base_holster = "base_holster",
 	base_sprint = "base_sprint",
@@ -40,8 +40,8 @@ SWEP.WMAng = Vector(99.385, -22.739, 18.048)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2de
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.doiContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.doiContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
 
 SWEP.FirstDeployTime = 0.8
 SWEP.DeployTime = 0.8

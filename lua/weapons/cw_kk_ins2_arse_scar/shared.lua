@@ -1,5 +1,4 @@
 if not CustomizableWeaponry then return end
-if not CustomizableWeaponry_KK.HOME then return end
 
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
@@ -17,7 +16,7 @@ if CLIENT then
 	
 	SWEP.IconLetter = "i"
 	
-	SWEP.MuzzleEffect = "muzzleflash_m14"
+	
 	SWEP.Shell = "KK_INS2_762x51"
 	SWEP.ShellDelay = 0.06
 	
@@ -115,8 +114,8 @@ if CLIENT then
 	SWEP.CustomizationMenuScale = 0.016
 end
 
-SWEP.MuzzleEffect = "muzzleflash_m14_1p_core"
-SWEP.MuzzleEffectWorld = "muzzleflash_m14_3rd"
+SWEP.MuzzleEffect = "muzzleflash_m16_1p_core"
+SWEP.MuzzleEffectWorld = "muzzleflash_m16_3rd"
 
 SWEP.Attachments = {
 	{header = "Sight", offset = {400, -500}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_scope_m40", "kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_microt1", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"}, /*dependencies = {["kk_ins2_sights_base"] = true, ["kk_ins2_sights_cstm"] = true}*/ },
@@ -229,10 +228,10 @@ SWEP.WorldModel		= "models/weapons/scar/w_scar.mdl"
 SWEP.WMPos = Vector(4.072, 0.924, -0.537)
 SWEP.WMAng = Vector(-10, 0, 180)
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.wsContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.wsContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
 
-SWEP.Primary.ClipSize		= 20
+SWEP.Primary.ClipSize		= 20 // 25 ext
 SWEP.Primary.DefaultClip	= 20
 SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= "7.62x51MM"

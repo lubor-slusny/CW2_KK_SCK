@@ -71,51 +71,87 @@ for _,f in pairs({
 	doigameContentOK = doigameContentOK and file.Exists(f, "GAME")
 end
 
-CustomizableWeaponry_KK.ins2.baseContentMounted = function()
+local ao5ContentOK = true
+
+for _,f in pairs({
+		"models/weapons/w_snub.mdl",
+		"models/weapons/aof/v_flashgun.mdl",
+		"models/weapons/aof/v_m79.mdl",
+		"models/weapons/aof/w_machete.phy",
+		"models/weapons/upgrades/w_flipup_br99.mdl",
+	}) do
+	
+	ao5ContentOK = ao5ContentOK and file.Exists(f, "GAME")
+end
+
+local arseContentOK = true
+
+for _,f in pairs({
+		"models/weapons/beretta/insguns_v_beretta.mdl",
+		"models/weapons/l85/w_l85sight.mdl",
+		"models/weapons/scar/a_scar_standardbarrel.mdl",
+		"models/weapons/usp/w_uspmag.mdl",
+		"models/weapons/upgrades/w_ugl.mdl",
+	}) do
+	
+	arseContentOK = arseContentOK and file.Exists(f, "GAME")
+end
+
+local subs
+local sub = string.sub
+local starts = string.StartWith
+
+function CustomizableWeaponry_KK.ins2:isContentMounted()
+	subs = subs or {
+		["cw_kk_ins2_cstm"] = (baseContentOK and (CustomizableWeaponry_KK.ins2.ws == WS_PACK_REVISION)),
+		["cw_kk_ins2_ww2"] = false,
+		["cw_kk_ins2_doi"] = (doigameContentOK),
+		["cw_kk_ins2_ao5"] = (baseContentOK and ao5ContentOK),
+		["cw_kk_ins2_arse"] = (baseContentOK and arseContentOK),
+	}
+	
+	local class = sub(self.Folder, 9)
+	
+	for k,v in pairs(subs) do
+		if starts(class, k) then
+			return v
+		end
+	end
+	
 	return baseContentOK
-end
-
-CustomizableWeaponry_KK.ins2.wsContentMounted = function()
-	return (baseContentOK and (CustomizableWeaponry_KK.ins2.ws == WS_PACK_REVISION))
-end
-
-CustomizableWeaponry_KK.ins2.ww2ContentMounted = function()
-	return false
-end
-
-CustomizableWeaponry_KK.ins2.doiContentMounted = function()
-	return (baseContentOK and doigameContentOK)
 end
 
 if CLIENT then
 	CreateClientConVar("cw_kk_freeze_reticles", 0, false, false)
 	
-	local cvXH = CreateClientConVar("cw_kk_gm_xhair", 0, false, false)
-	local cvLA = CreateClientConVar("cw_kk_sck_lock_ads", 0, false, false)
+	if SP then
+		local cvXH = CreateClientConVar("cw_kk_gm_xhair", 0, false, false)
+		local cvLA = CreateClientConVar("cw_kk_sck_lock_ads", 0, false, false)
 
-	local ply, wep
-	
-	hook.Add("Think", "cw_kk_gm_xhair_think", function()
-		ply = LocalPlayer()
-		wep = ply:GetActiveWeapon()
+		local ply, wep
 		
-		if !wep.CW20Weapon then return end
-		
-		wep.DrawCrosshair = cvXH:GetInt() == 1
-	end)
+		hook.Add("Think", "cw_kk_gm_xhair_think", function()
+			ply = LocalPlayer()
+			wep = ply:GetActiveWeapon()
+			
+			if !wep.CW20Weapon then return end
+			
+			wep.DrawCrosshair = cvXH:GetInt() == 1
+		end)
 
-	local _ADS_LAST, cur
-	hook.Add("Think", "cw_kk_sck_lock_ads_think", function() 
-		cur = cvLA:GetInt()
-		if cur != _ADS_LAST and _ADS_LAST != nil then
-			if cur == 0 then
-				RunConsoleCommand("-attack2")
-			else
-				RunConsoleCommand("+attack2")
+		local _ADS_LAST, cur
+		hook.Add("Think", "cw_kk_sck_lock_ads_think", function() 
+			cur = cvLA:GetInt()
+			if cur != _ADS_LAST and _ADS_LAST != nil then
+				if cur == 0 then
+					RunConsoleCommand("-attack2")
+				else
+					RunConsoleCommand("+attack2")
+				end
 			end
-		end
-		_ADS_LAST = cur
-	end)
+			_ADS_LAST = cur
+		end)
+	end
 end
 
 if CLIENT then
@@ -251,7 +287,7 @@ if CLIENT then
 		if LocalPlayer():GetPos():Distance(pos) > 100 then
 			hook.Remove("Think", "CW_KK_INS2_WS_UPDATE_NOTIFY")
 			
-			if not CustomizableWeaponry_KK.ins2.baseContentMounted() then
+			if not baseContentOK then
 				chat.AddText(
 					Color(200, 157, 96),
 					"[KK INS2 SWEPS] ",
@@ -262,7 +298,7 @@ if CLIENT then
 				return
 			end
 			
-			if CustomizableWeaponry_KK.ins2.baseContentMounted() and (CustomizableWeaponry_KK.ins2.ws != nil) and not CustomizableWeaponry_KK.ins2.wsContentMounted() then
+			if baseContentOK and CustomizableWeaponry_KK.ins2.ws != nil and CustomizableWeaponry_KK.ins2.ws < WS_PACK_REVISION then
 				chat.AddText(
 					Color(200, 157, 96),
 					"[KK INS2 SWEPS] ",

@@ -64,8 +64,8 @@ SWEP.WorldModel		= "models/weapons/w_cw_kk_ins2_rpg7_projectile_pd2.mdl"
 SWEP.WMPos = Vector(14.17, -0.193, -25.729)
 SWEP.WMAng = Angle(113.916, 13.63, 0)
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.baseContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.baseContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
 
 SWEP.AdminOnly			= true
 

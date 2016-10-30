@@ -16,7 +16,7 @@ if CLIENT then
 	
 	SWEP.IconLetter = "x"
 	
-	SWEP.MuzzleEffect = "muzzleflash_smg"
+	
 	SWEP.Shell = "KK_INS2_9x19"
 	SWEP.ShellDelay = 0.13
 	
@@ -158,8 +158,8 @@ SWEP.WMAng = Vector(-10, 0, 180)
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.f1
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.gurkha
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.wsContentMounted()
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.wsContentMounted()
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
 
 SWEP.Primary.ClipSize		= 32
 SWEP.Primary.DefaultClip	= 32
