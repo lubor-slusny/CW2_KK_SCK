@@ -142,6 +142,6 @@ SWEP.KK_INS2_EmptyIdle = true
 SWEP.MuzzleVelocity = 335
 
 SWEP.ReloadTimes = {
-	base_reload = {2, 2.65},
-	base_reloadempty = {2, 3.2},
+	base_reload = {60/31.5, 2.6},
+	base_reloadempty = {60/31.5, 3.2},
 }

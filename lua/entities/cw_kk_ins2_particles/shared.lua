@@ -92,11 +92,17 @@ CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_PIAT_ENT_DETONATE_D2", {"weapo
 CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_PIAT_ENT_DETONATE_WATER", {"weapons/piat/water/piat_water_detonate_01.wav", "weapons/piat/water/piat_water_detonate_02.wav", "weapons/piat/water/piat_water_detonate_03.wav"})
 CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_PIAT_ENT_DETONATE_WATER_D1", {"weapons/piat/water/piat_water_detonate_dist_01.wav", "weapons/piat/water/piat_water_detonate_dist_02.wav", "weapons/piat/water/piat_water_detonate_dist_03.wav"})
 
-CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_C4_ENT_DETONATE", {"weapons/compositonb/compositonb_detonate_01.wav", "weapons/compositonb/compositonb_detonate_02.wav", "weapons/compositonb/compositonb_detonate_03.wav"})
-CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_C4_ENT_DETONATE_D1", {"weapons/compositonb/compositonb_detonate_dist_01.wav", "weapons/compositonb/compositonb_detonate_dist_02.wav", "weapons/compositonb/compositonb_detonate_dist_03.wav"})
-CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_C4_ENT_DETONATE_D2", {"weapons/compositonb/compositonb_detonate_far_dist_01.wav", "weapons/compositonb/compositonb_detonate_far_dist_02.wav", "weapons/compositonb/compositonb_detonate_far_dist_03.wav"})
-CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_C4_ENT_DETONATE_WATER", {"weapons/compositonb/water/compositonb_water_detonate_01.wav", "weapons/compositonb/water/compositonb_water_detonate_02.wav", "weapons/compositonb/water/compositonb_water_detonate_03.wav"})
-CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_C4_ENT_DETONATE_WATER_D1", {"weapons/compositonb/water/compositonb_water_detonate_dist_01.wav", "weapons/compositonb/water/compositonb_water_detonate_dist_02.wav", "weapons/compositonb/water/compositonb_water_detonate_dist_03.wav"})
+CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_C4_DE_ENT_DETONATE", {"weapons/tnt/tnt_detonate_01.wav", "weapons/tnt/tnt_detonate_02.wav", "weapons/tnt/tnt_detonate_03.wav"})
+CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_C4_DE_ENT_DETONATE_D1", {"weapons/tnt/tnt_detonate_dist_01.wav", "weapons/tnt/tnt_detonate_dist_02.wav", "weapons/tnt/tnt_detonate_dist_03.wav"})
+CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_C4_DE_ENT_DETONATE_D2", {"weapons/tnt/tnt_detonate_far_dist_01.wav", "weapons/tnt/tnt_detonate_far_dist_02.wav", "weapons/tnt/tnt_detonate_far_dist_03.wav"})
+CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_C4_DE_ENT_DETONATE_WATER", {"weapons/tnt/water/tnt_water_detonate_01.wav", "weapons/tnt/water/tnt_water_detonate_02.wav", "weapons/tnt/water/tnt_water_detonate_03.wav"})
+CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_C4_DE_ENT_DETONATE_WATER_D1", {"weapons/tnt/water/tnt_water_detonate_dist_01.wav", "weapons/tnt/water/tnt_water_detonate_dist_02.wav", "weapons/tnt/water/tnt_water_detonate_dist_03.wav"})
+
+CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_C4_US_ENT_DETONATE", {"weapons/compositonb/compositonb_detonate_01.wav", "weapons/compositonb/compositonb_detonate_02.wav", "weapons/compositonb/compositonb_detonate_03.wav"})
+CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_C4_US_ENT_DETONATE_D1", {"weapons/compositonb/compositonb_detonate_dist_01.wav", "weapons/compositonb/compositonb_detonate_dist_02.wav", "weapons/compositonb/compositonb_detonate_dist_03.wav"})
+CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_C4_US_ENT_DETONATE_D2", {"weapons/compositonb/compositonb_detonate_far_dist_01.wav", "weapons/compositonb/compositonb_detonate_far_dist_02.wav", "weapons/compositonb/compositonb_detonate_far_dist_03.wav"})
+CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_C4_US_ENT_DETONATE_WATER", {"weapons/compositonb/water/compositonb_water_detonate_01.wav", "weapons/compositonb/water/compositonb_water_detonate_02.wav", "weapons/compositonb/water/compositonb_water_detonate_03.wav"})
+CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_C4_US_ENT_DETONATE_WATER_D1", {"weapons/compositonb/water/compositonb_water_detonate_dist_01.wav", "weapons/compositonb/water/compositonb_water_detonate_dist_02.wav", "weapons/compositonb/water/compositonb_water_detonate_dist_03.wav"})
 
 ENT.db = {
 	cw_kk_ins2_projectile_at4 = {
@@ -418,13 +424,28 @@ ENT.db = {
 		}
 	},
 	
-	cw_kk_ins2_projectile_ww2_c4 = {
+	cw_kk_ins2_projectile_ww2_c4_de = {
 		effectClass = "cw_kk_ins2_explosion_c4",
-		explosionSound0 = "CW_KK_INS2_DOI_C4_ENT_DETONATE",
-		explosionSound1 = "CW_KK_INS2_DOI_C4_ENT_DETONATE_D1",
-		explosionSound2 = "CW_KK_INS2_DOI_C4_ENT_DETONATE_D2",
-		explosionSoundW0 = "CW_KK_INS2_DOI_C4_ENT_DETONATE_WATER",
-		explosionSoundW1 = "CW_KK_INS2_DOI_C4_ENT_DETONATE_WATER_D1",
+		explosionSound0 = "CW_KK_INS2_DOI_C4_DE_ENT_DETONATE",
+		explosionSound1 = "CW_KK_INS2_DOI_C4_DE_ENT_DETONATE_D1",
+		explosionSound2 = "CW_KK_INS2_DOI_C4_DE_ENT_DETONATE_D2",
+		explosionSoundW0 = "CW_KK_INS2_DOI_C4_DE_ENT_DETONATE_WATER",
+		explosionSoundW1 = "CW_KK_INS2_DOI_C4_DE_ENT_DETONATE_WATER_D1",
+		explosionParticles = {
+			"doi_compB_explosion",
+		},
+		explosionParticlesWater = {
+			"ins_Water_explosion"
+		}
+	},
+	
+	cw_kk_ins2_projectile_ww2_c4_us = {
+		effectClass = "cw_kk_ins2_explosion_c4",
+		explosionSound0 = "CW_KK_INS2_DOI_C4_US_ENT_DETONATE",
+		explosionSound1 = "CW_KK_INS2_DOI_C4_US_ENT_DETONATE_D1",
+		explosionSound2 = "CW_KK_INS2_DOI_C4_US_ENT_DETONATE_D2",
+		explosionSoundW0 = "CW_KK_INS2_DOI_C4_US_ENT_DETONATE_WATER",
+		explosionSoundW1 = "CW_KK_INS2_DOI_C4_US_ENT_DETONATE_WATER_D1",
 		explosionParticles = {
 			"doi_compB_explosion",
 		},

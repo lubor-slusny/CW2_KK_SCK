@@ -29,7 +29,7 @@ if CLIENT then
 end
 
 SWEP.CanRestOnObjects = false
-SWEP.projectileClass = "cw_kk_ins2_projectile_ww2_c4"
+SWEP.projectileClass = "cw_kk_ins2_projectile_ww2_c4_us"
 
 SWEP.Animations = {	
 	pullpin = "base_pullback",
@@ -108,7 +108,7 @@ if CLIENT then
 		if self._pcfStop and self.Sequence != self._pcfStop then
 			self.AttachmentModelsVM.pcf.ent:StopParticles()
 			-- self.AttachmentModelsVM.pcf.ent:StopLoopingSound(self._soundStop)
-			-- self.AttachmentModelsVM.pcf.ent:StopSound("CW_KK_INS2_DOI_C4_FUSELOOP")
+			-- self.AttachmentModelsVM.pcf.ent:StopSound("CW_KK_INS2_DOI_C4_US_FUSELOOP")
 			-- self.CW_VM:StopParticles()
 			
 			self._pcfStop = nil

@@ -97,7 +97,7 @@ SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= "88MM Rocket"
 
 SWEP.FireDelay = 0.5
-SWEP.FireSound = "CW_KK_INS2_DOI_SHREK_FIRE"
+SWEP.FireSound = "CW_KK_INS2_DOI_TANKSHREK_FIRE"
 SWEP.Recoil = 0.5
 
 SWEP.HipSpread = 0.05
@@ -116,6 +116,8 @@ SWEP.hipBulletDelay = 0.4
 SWEP.FirstDeployTime = 3.45
 SWEP.DeployTime = 1
 SWEP.HolsterTime = 1
+
+SWEP.ironFireAnimStartCycle = 0.28
 
 SWEP.ReloadTimes = {
 	base_reload = {4.4, 6.43},

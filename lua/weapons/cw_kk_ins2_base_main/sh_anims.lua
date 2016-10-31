@@ -355,7 +355,7 @@ function SWEP:meleeAnimFunc()
 		return 
 	end
 	
-	cyc = 0
+	cycle = 0
 	rate = 1
 	prefix = self:getForegripMode()
 	suffix = ""
@@ -372,12 +372,12 @@ function SWEP:meleeAnimFunc()
 		end
 	end
 	
-	self:sendWeaponAnim(prefix .. "melee" .. suffix, rate, cyc)
+	self:sendWeaponAnim(prefix .. "melee" .. suffix, rate, cycle)
 end //*/
 	
 function SWEP:fireAnimFunc()
 	clip = self:Clip1()
-	cyc = 0
+	cycle = 0
 	rate = 1
 	prefix = self:getForegripMode()
 	suffix = ""
@@ -390,9 +390,10 @@ function SWEP:fireAnimFunc()
 	
 	if self:isAiming() then
 		suffix = suffix .. "_aim"
+		cycle = self.ironFireAnimStartCycle
 	end
 	
-	self:sendWeaponAnim(prefix .. "fire" .. suffix, rate, cyc)
+	self:sendWeaponAnim(prefix .. "fire" .. suffix, rate, cycle)
 end //*/
 
 function SWEP:holsterAnimFunc()	

@@ -29,7 +29,7 @@ if CLIENT then
 end
 
 SWEP.CanRestOnObjects = false
-SWEP.projectileClass = "cw_kk_ins2_projectile_ww2_c4"
+SWEP.projectileClass = "cw_kk_ins2_projectile_ww2_c4_de"
 
 SWEP.Animations = {
 	plant = "base_plant",

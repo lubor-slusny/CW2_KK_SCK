@@ -23,8 +23,8 @@ if CLIENT then
 		["kk_counter_back"] = {model = "models/weapons/stattrack.mdl", bone = "AT4", rel = "", pos = Vector(-0.788, -10.893, 2.131), angle = Angle(0, -90, 15), size = Vector(1, 1, 1), ignoreKKBGO = true},
 	}
 
-	SWEP.IronsightPos = Vector(-1.292, -2, 0.5674)
-	SWEP.IronsightAng = Vector(1.9728, -1.9566, 0)
+	SWEP.IronsightPos = Vector(-1.2966, -2, 0.5867)
+	SWEP.IronsightAng = Vector(1.6276, -2.1752, 7)
 
 	SWEP.ViewModelMovementScale_sprint = 0.5
 	SWEP.CustomizationMenuScale = 0.01
@@ -112,6 +112,8 @@ SWEP.FirstDeployTime = 3.4
 SWEP.WeaponLength = 40
 
 // terrible hax FTW
+
+SWEP.ironFireAnimStartCycle = 0.25
 
 SWEP.ReloadSpeed = 1
 SWEP.ReloadTime = 3.5

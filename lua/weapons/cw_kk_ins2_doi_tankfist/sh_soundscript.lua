@@ -6,7 +6,7 @@ SWEP.Sounds = {
 	},
 
 	base_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_DOI_PANZERFAUST_EMPTY"},
+		{time = 0, sound = "CW_KK_INS2_DOI_DOI_TANKFIST_EMPTY"},
 	},
 
 	base_draw = {
@@ -19,13 +19,13 @@ SWEP.Sounds = {
 
 	base_ready = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-		{time = 35/31, sound = "CW_KK_INS2_DOI_PANZERFAUST_PINOUT"},
-		{time = 68/31, sound = "CW_KK_INS2_DOI_PANZERFAUST_SIGHTUP"},
-		{time = 95/31, sound = "CW_KK_INS2_DOI_PANZERFAUST_SHOULDER"},
+		{time = 35/31, sound = "CW_KK_INS2_DOI_DOI_TANKFIST_PINOUT"},
+		{time = 68/31, sound = "CW_KK_INS2_DOI_DOI_TANKFIST_SIGHTUP"},
+		{time = 95/31, sound = "CW_KK_INS2_DOI_DOI_TANKFIST_SHOULDER"},
 	},
 
 	iron_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_DOI_PANZERFAUST_EMPTY"},
+		{time = 0, sound = "CW_KK_INS2_DOI_DOI_TANKFIST_EMPTY"},
 	},
 
 	base_crawl_empty = {

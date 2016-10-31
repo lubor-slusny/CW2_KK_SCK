@@ -55,7 +55,7 @@ if CLIENT then
 	SWEP.KKINS2ScopeM82Pos = Vector(-1.3779, -3.5, 0.7695)
 	SWEP.KKINS2ScopeM82Ang = Vector()
 
-	SWEP.CustomizationMenuScale = 0.02
+	SWEP.CustomizationMenuScale = 0.019
 end
 
 SWEP.MuzzleEffect = "muzzleflash_garand_1p"
@@ -64,10 +64,10 @@ SWEP.MuzzleEffectWorld = "muzzleflash_garand_3p"
 SWEP.SightBGs = {main = 0, foldsight = 0}
 
 SWEP.Attachments = {
-	{header = "Sight", offset = {400, -500}, atts = {"bg_foldsight", "kk_ins2_scope_m82"}},
-	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_ww2_knife"}},
-	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
-	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_magnum", "am_matchgrade"}}
+	{header = "Sight", offset = {700, -200}, atts = {"bg_foldsight", "kk_ins2_scope_m82"}},
+	{header = "Barrel", offset = {-300, -200}, atts = {"kk_ins2_ww2_knife"}},
+	{header = "Stock", offset = {1100, 300}, atts = {"kk_ins2_ww2_sling"}},
+	["+reload"] = {header = "Ammo", offset = {100, 300}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
 SWEP.Animations = {

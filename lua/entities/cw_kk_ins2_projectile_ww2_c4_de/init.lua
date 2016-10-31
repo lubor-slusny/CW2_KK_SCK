@@ -46,7 +46,7 @@ function ENT:PhysicsCollide(data, physobj)
 		CT = CurTime()
 		
 		if CT > self.NextImpact then
-			self:EmitSound("CW_KK_INS2_DOI_C4_ENT_BOUNCE", 75, 100)
+			self:EmitSound("CW_KK_INS2_DOI_C4_DE_ENT_BOUNCE", 75, 100)
 			self.NextImpact = CT + 0.1
 		end
 	end
@@ -58,7 +58,7 @@ function ENT:Fuse(t)
 	for i = 0, t / 6 do 
 		timer.Simple(i * 6, function()
 			if IsValid(self) then
-				self:EmitSound("CW_KK_INS2_DOI_C4_FUSELOOP")
+				self:EmitSound("CW_KK_INS2_DOI_C4_DE_FUSELOOP")
 			end
 		end)
 		self.StopSounds = i
@@ -81,7 +81,7 @@ function ENT:Kaboomboom()
 	self:StopParticles()
 	
 	for i = 0, (self.StopSounds or 0) + 2 do
-		self:StopSound("CW_KK_INS2_DOI_C4_FUSELOOP")
+		self:StopSound("CW_KK_INS2_DOI_C4_DE_FUSELOOP")
 	end
 	
 	util.BlastDamage(self, self:GetOwner(), self:GetPos(), self.ExplodeRadius, self.ExplodeDamage)

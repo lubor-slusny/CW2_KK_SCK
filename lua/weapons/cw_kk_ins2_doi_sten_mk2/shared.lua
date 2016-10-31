@@ -147,8 +147,8 @@ SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= "9x19MM"
 
 SWEP.FireDelay = 60/550 
-SWEP.FireSound = "CW_KK_INS2_DOI_STEN2_FIRE"
-SWEP.FireSoundSuppressed = "CW_KK_INS2_DOI_STEN2_FIRE_SUPPRESSED"
+SWEP.FireSound = "CW_KK_INS2_DOI_STEN_FIRE"
+SWEP.FireSoundSuppressed = "CW_KK_INS2_DOI_STEN_FIRE_SUPPRESSED"
 SWEP.Recoil = 0.7
 
 SWEP.HipSpread = 0.035
@@ -172,11 +172,8 @@ SWEP.KK_INS2_EmptyIdle = true
 SWEP.MuzzleVelocity = 365
 
 SWEP.ReloadTimes = {
-	base_reload = {2.9, 4},
-	base_reloadempty = {3.2, 5.2},
-	
-	foregrip_reload = {2.9, 4},
-	foregrip_reloadempty = {3.2, 5.2},
+	base_reload = {80/33, 3.75},
+	base_reloadempty = {80/33, 4.75},
 }
 
 if CLIENT then 

@@ -34,9 +34,9 @@ SWEP.MuzzleEffect = "muzzleflash_bar_1p"
 SWEP.MuzzleEffectWorld = "muzzleflash_bar_3p"
 
 SWEP.Attachments = {
-	{header = "Under", offset = {-500, 0}, atts = {"kk_ins2_bipod"}},
-	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
-	["+reload"] = {header = "Ammo", offset = {700, 300}, atts = {"am_magnum", "am_matchgrade"}}
+	{header = "Barrel", offset = {-300, -200}, atts = {"kk_ins2_bipod"}},
+	{header = "Stock", offset = {700, -200}, atts = {"kk_ins2_ww2_sling"}},
+	["+reload"] = {header = "Ammo", offset = {1100, 300}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
 SWEP.Animations = {

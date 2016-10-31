@@ -2,14 +2,15 @@
 SWEP.Sounds = {
 	base_ready = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-		{time = 30/30, sound = "CW_KK_INS2_DOI_SHREK_SHOULDER"},
-		{time = 75/30, sound = "CW_KK_INS2_DOI_SHREK_RATTLE"},
-		{time = 93/30, sound = "CW_KK_INS2_DOI_SHREK_RESHOULDER"},
+		{time = 30/30, sound = "CW_KK_INS2_DOI_TANKSHREK_SHOULDER"},
+		{time = 75/30, sound = "CW_KK_INS2_DOI_TANKSHREK_RATTLE"},
+		{time = 93/30, sound = "CW_KK_INS2_DOI_TANKSHREK_RESHOULDER"},
 	},
 	
 	base_draw = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-		{time = 30/30, sound = "CW_KK_INS2_DOI_SHREK_SHOULDER"},
+		{time = 16/30, sound = "CW_KK_INS2_DOI_TANKSHREK_RATTLE"},
+		{time = 30/30, sound = "CW_KK_INS2_DOI_TANKSHREK_SHOULDER"},
 	},
 
 	base_holster = {
@@ -26,14 +27,14 @@ SWEP.Sounds = {
 	},
 
 	base_reload = {
-		{time = 31/32.5, sound = "CW_KK_INS2_DOI_SHREK_RATTLE"},
-		{time = 50/32.5, sound = "CW_KK_INS2_DOI_SHREK_FETCH"},
-		{time = 78/32.5, sound = "CW_KK_INS2_DOI_SHREK_LOAD1"},
-		{time = 87/32.5, sound = "CW_KK_INS2_DOI_SHREK_LOAD2"},
-		{time = 114/32.5, sound = "CW_KK_INS2_DOI_SHREK_WIRE"},
-		{time = 160/32.5, sound = "CW_KK_INS2_DOI_SHREK_RESHOULDER"},
-		{time = 180/32.5, sound = "CW_KK_INS2_DOI_SHREK_RATTLE"},
-		{time = 199/32.5, sound = "CW_KK_INS2_DOI_SHREK_SHOULDER"},
+		{time = 31/32.5, sound = "CW_KK_INS2_DOI_TANKSHREK_RATTLE"},
+		{time = 50/32.5, sound = "CW_KK_INS2_DOI_TANKSHREK_FETCH"},
+		{time = 78/32.5, sound = "CW_KK_INS2_DOI_TANKSHREK_LOAD1"},
+		{time = 87/32.5, sound = "CW_KK_INS2_DOI_TANKSHREK_LOAD2"},
+		{time = 114/32.5, sound = "CW_KK_INS2_DOI_TANKSHREK_WIRE"},
+		{time = 160/32.5, sound = "CW_KK_INS2_DOI_TANKSHREK_RESHOULDER"},
+		{time = 180/32.5, sound = "CW_KK_INS2_DOI_TANKSHREK_RATTLE"},
+		{time = 199/32.5, sound = "CW_KK_INS2_DOI_TANKSHREK_SHOULDER"},
 		-- { event 46 132 ""},
 	},
 

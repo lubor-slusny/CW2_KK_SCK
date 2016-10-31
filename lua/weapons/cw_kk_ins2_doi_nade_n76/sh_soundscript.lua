@@ -14,40 +14,40 @@ SWEP.Sounds = {
 	},
 
 	pullbackhigh = {
-		{time = 20/30, sound = "CW_KK_INS2_DOI_N76_CAPOFF"},
-		{time = 30/30, sound = "CW_KK_INS2_DOI_N76_ARMDRAW"},
+		{time = 20/30, sound = "CW_KK_INS2_DOI_NADE_N76_CAPOFF"},
+		{time = 30/30, sound = "CW_KK_INS2_DOI_NADE_N76_ARMDRAW"},
 		// { event 3900 41 ""},
 	},
 
 	pullbackhighbake = {
-		{time = 20/30, sound = "CW_KK_INS2_DOI_N76_CAPOFF"},
-		{time = 30/30, sound = "CW_KK_INS2_DOI_N76_ARMDRAW"},
+		{time = 20/30, sound = "CW_KK_INS2_DOI_NADE_N76_CAPOFF"},
+		{time = 30/30, sound = "CW_KK_INS2_DOI_NADE_N76_ARMDRAW"},
 		// { event 3900 41 ""},
 	},
 
 	pullbacklow = {
-		{time = 20/30, sound = "CW_KK_INS2_DOI_N76_CAPOFF"},
-		{time = 30/30, sound = "CW_KK_INS2_DOI_N76_ARMDRAW"},
+		{time = 20/30, sound = "CW_KK_INS2_DOI_NADE_N76_CAPOFF"},
+		{time = 30/30, sound = "CW_KK_INS2_DOI_NADE_N76_ARMDRAW"},
 		// { event 3900 41 ""},
 	},
 
 	throw = {
-		{time = 3/31.5, sound = "CW_KK_INS2_DOI_N76_THROW"},
+		{time = 3/31.5, sound = "CW_KK_INS2_DOI_NADE_N76_THROW"},
 		// { event 3005 3 ""},
 	},
 
 	throwback = {
-		{time = 14/30, sound = "CW_KK_INS2_DOI_N76_ARMDRAW"},
+		{time = 14/30, sound = "CW_KK_INS2_DOI_NADE_N76_ARMDRAW"},
 		// { event 3900 25 ""},
 	},
 
 	bakethrow = {
-		{time = 3/31.5, sound = "CW_KK_INS2_DOI_N76_THROW"},
+		{time = 3/31.5, sound = "CW_KK_INS2_DOI_NADE_N76_THROW"},
 		// { event 3013 3 ""},
 	},
 
 	lowthrow = {
-		{time = 6/31.5, sound = "CW_KK_INS2_DOI_N76_THROW"},
+		{time = 6/31.5, sound = "CW_KK_INS2_DOI_NADE_N76_THROW"},
 		// { event 3016 6 ""},
 	},
 }

@@ -33,8 +33,12 @@ function ENT:Use(activator, caller)
 	return false
 end
 
+local offset = Vector(0,0,10)
+local angle = Angle()
+
 function ENT:Think()
 	if IsValid(self.followedProjectile) then
-		self:SetPos(self.followedProjectile:GetPos())
+		self:SetPos(self.followedProjectile:GetPos() + offset)
+		self:SetAngles(angle)
 	end
 end

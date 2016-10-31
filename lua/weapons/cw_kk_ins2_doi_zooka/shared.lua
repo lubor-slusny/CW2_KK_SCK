@@ -116,8 +116,8 @@ SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= "M6A1 Rocket"
 
 SWEP.FireDelay = 0.5
-SWEP.FireSound = "CW_KK_INS2_DOI_BAZOOKA_FIRE"
-SWEP.Recoil = 0.5
+SWEP.FireSound = "CW_KK_INS2_DOI_ZOOKA_FIRE"
+SWEP.Recoil = 1
 
 SWEP.HipSpread = 0.05
 SWEP.AimSpread = 0.005
@@ -135,6 +135,8 @@ SWEP.hipBulletDelay = 0.3
 SWEP.FirstDeployTime = 6.9 // so long
 SWEP.DeployTime = 1
 SWEP.HolsterTime = 1
+
+SWEP.ironFireAnimStartCycle = 0.28
 
 SWEP.ReloadTimes = {
 	base_ready = {4.7, 6.87},

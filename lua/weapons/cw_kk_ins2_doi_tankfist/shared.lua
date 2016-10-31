@@ -20,8 +20,8 @@ if CLIENT then
 	SWEP.AttachmentModelsVM = {}
 	SWEP.AttachmentModelsWM = {}
 	
-	SWEP.IronsightPos = Vector(-2.6525, -2, 0.2846) // 60M
-	SWEP.IronsightAng = Vector(1.2093, 0, 7)
+	SWEP.IronsightPos = Vector(-2.6525, -2, 0.2846)
+	SWEP.IronsightAng = Vector(0.0752, 0, 7)
 
 	SWEP.SprintAnimSpeed = 1
 	SWEP.ViewModelMovementScale_sprint = 0.6
@@ -106,7 +106,7 @@ SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= "Panzerfaust"
 
 SWEP.FireDelay = 0.5
-SWEP.FireSound = "CW_KK_INS2_DOI_PANZERFAUST_FIRE"
+SWEP.FireSound = "CW_KK_INS2_DOI_DOI_TANKFIST_FIRE"
 SWEP.Recoil = 0.5
 
 SWEP.HipSpread = 0.05

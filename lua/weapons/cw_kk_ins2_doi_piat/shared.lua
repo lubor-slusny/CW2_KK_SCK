@@ -19,16 +19,16 @@ if CLIENT then
 	
 	SWEP.BackupSights = {
 		["nil"] = {
-			Vector(-1.4887, 0, -1.3139),
-			Vector(7.5622, -0.9048, 13.5897)
+			Vector(-3.5442, 0, 1.9215),
+			Vector(-4.1281, 0.0421, -6)
 		},
 	}
 	
 	SWEP.AttachmentModelsVM = {}
 	SWEP.AttachmentModelsWM = {}
 	
-	SWEP.IronsightPos = Vector(-3.5969, 0, 1.5163)
-	SWEP.IronsightAng = Vector(-2.3185, 0.038, -5.9126)
+	SWEP.IronsightPos = Vector(-3.5949, 0, 1.4701)
+	SWEP.IronsightAng = Vector(-2.3778, 0.006, -7)
 
 	SWEP.SprintAnimSpeed = 1
 	SWEP.ViewModelMovementScale_sprint = 0.6

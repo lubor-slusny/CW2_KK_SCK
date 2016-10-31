@@ -227,6 +227,8 @@ SWEP.FirstDeployTime = 4.7
 SWEP.DeployTime = 1.1
 SWEP.HolsterTime = 0.9
 
+SWEP.ironFireAnimStartCycle = 0.3
+
 SWEP.ReloadTimes = {
 	base_ready = {4.7, 4.7},
 	base_reload = {3.4, 4.8},

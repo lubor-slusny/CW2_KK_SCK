@@ -95,7 +95,7 @@ SWEP.Primary.Ammo			= "12 Gauge"
 
 -- SWEP.FireDelay = 0.8
 SWEP.FireDelay = 0.3
-SWEP.FireSound = "CW_KK_INS2_WW2_M1912_FIRE"
+SWEP.FireSound = "CW_KK_INS2_DOI_M1912_FIRE"
 SWEP.Recoil = 3
 
 SWEP.HipSpread = 0.05

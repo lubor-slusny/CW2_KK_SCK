@@ -91,7 +91,7 @@ SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= ".45 ACP"
 
 SWEP.FireDelay = 60/700
-SWEP.FireSound = "CW_KK_INS2_WW2_THOMPSON_FIRE"
+SWEP.FireSound = "CW_KK_INS2_DOI_FLAME_GB_FIRE_START"
 SWEP.Recoil = 0.7
 
 SWEP.HipSpread = 0.04

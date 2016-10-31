@@ -2,9 +2,9 @@
 SWEP.Sounds = {
 	base_ready = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_PISTOL_DRAW"},
-		{time = 17/30, sound = "CW_KK_INS2_DOI_M1911_SAFETY"},
-		{time = 40/30, sound = "CW_KK_INS2_DOI_M1911_BOLTBACK"},
-		{time = 45/30, sound = "CW_KK_INS2_DOI_M1911_BOLTRELEASE"},
+		{time = 17/30, sound = "CW_KK_INS2_DOI_BHP_SAFETY"},
+		{time = 40/30, sound = "CW_KK_INS2_DOI_BHP_BOLTBACK"},
+		{time = 45/30, sound = "CW_KK_INS2_DOI_BHP_BOLTRELEASE"},
 	},
 
 	base_draw = {
@@ -41,41 +41,24 @@ SWEP.Sounds = {
 	-- },
 
 	base_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_DOI_M1911_EMPTY"},
+		{time = 0, sound = "CW_KK_INS2_DOI_BHP_EMPTY"},
 	},
 
 	base_reload = {
-		{time = 12/31.5, sound = "CW_KK_INS2_DOI_M1911_MAGRELEASE"},
-		{time = 15/31.5, sound = "CW_KK_INS2_DOI_M1911_MAGOUT"},
-		{time = 48/31.5, sound = "CW_KK_INS2_DOI_M1911_MAGIN"},
-		{time = 55/31.5, sound = "CW_KK_INS2_DOI_M1911_MAGHIT"},
-		-- { event 46 56 ""},
+		{time = 10/31.5, sound = "CW_KK_INS2_DOI_BHP_MAGRELEASE"},
+		{time = 12/31.5, sound = "CW_KK_INS2_DOI_BHP_MAGOUT"},
+		{time = 49/31.5, sound = "CW_KK_INS2_DOI_BHP_MAGIN"},
+		{time = 58/31.5, sound = "CW_KK_INS2_DOI_BHP_MAGHIT"},
+		-- { event 46 60 ""},
 	},
 
 	base_reloadempty = {
-		{time = 12/31.5, sound = "CW_KK_INS2_DOI_M1911_MAGRELEASE"},
-		{time = 15/31.5, sound = "CW_KK_INS2_DOI_M1911_MAGOUT"},
-		{time = 48/31.5, sound = "CW_KK_INS2_DOI_M1911_MAGIN"},
-		{time = 55/31.5, sound = "CW_KK_INS2_DOI_M1911_MAGHIT"},
-		-- { event 46 56 ""},
-		{time = 77/31.5, sound = "CW_KK_INS2_DOI_M1911_BOLTRELEASE"},
-	},
-
-	base_reload_extmag = {
-		{time = 12/31.5, sound = "CW_KK_INS2_DOI_M1911_MAGRELEASE"},
-		{time = 15/31.5, sound = "CW_KK_INS2_DOI_M1911_MAGOUT"},
-		{time = 48/31.5, sound = "CW_KK_INS2_DOI_M1911_MAGIN"},
-		{time = 55/31.5, sound = "CW_KK_INS2_DOI_M1911_MAGHIT"},
-		-- { event 46 56 ""},
-	},
-
-	base_reloadempty_extmag = {
-		{time = 12/31.5, sound = "CW_KK_INS2_DOI_M1911_MAGRELEASE"},
-		{time = 15/31.5, sound = "CW_KK_INS2_DOI_M1911_MAGOUT"},
-		{time = 48/31.5, sound = "CW_KK_INS2_DOI_M1911_MAGIN"},
-		{time = 55/31.5, sound = "CW_KK_INS2_DOI_M1911_MAGHIT"},
-		-- { event 46 56 ""},
-		{time = 77/31.5, sound = "CW_KK_INS2_DOI_M1911_BOLTRELEASE"},
+		{time = 10/31.5, sound = "CW_KK_INS2_DOI_BHP_MAGRELEASE"},
+		{time = 12/31.5, sound = "CW_KK_INS2_DOI_BHP_MAGOUT"},
+		{time = 49/31.5, sound = "CW_KK_INS2_DOI_BHP_MAGIN"},
+		{time = 58/31.5, sound = "CW_KK_INS2_DOI_BHP_MAGHIT"},
+		-- { event 46 60 ""},
+		{time = 77/31.5, sound = "CW_KK_INS2_DOI_BHP_BOLTRELEASE"},
 	},
 
 	empty_draw = {
@@ -112,6 +95,6 @@ SWEP.Sounds = {
 	-- },
 
 	iron_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_DOI_M1911_EMPTY"},
+		{time = 0, sound = "CW_KK_INS2_DOI_BHP_EMPTY"},
 	},
 }

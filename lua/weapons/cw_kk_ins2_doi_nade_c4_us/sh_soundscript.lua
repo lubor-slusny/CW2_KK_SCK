@@ -8,15 +8,15 @@ local function pcf(wep)
 	
 	wep._pcfStop = wep.Sequence
 	
-	-- wep._soundStop = vm:StartLoopingSound("CW_KK_INS2_DOI_C4_FUSELOOP") // doesnt play
-	-- vm:EmitSound("CW_KK_INS2_DOI_C4_FUSELOOP")	// doesnt stop
+	-- wep._soundStop = vm:StartLoopingSound("CW_KK_INS2_DOI_C4_US_FUSELOOP") // doesnt play
+	-- vm:EmitSound("CW_KK_INS2_DOI_C4_US_FUSELOOP")	// doesnt stop
 	// gg wp
 end
 
 local function soundLoop(wep)
 	if wep.soundLoop then wep.soundLoop:Stop() end
 	
-	-- sound.PlayFile("CW_KK_INS2_DOI_C4_FUSELOOP", "3d", function(sound, ...)
+	-- sound.PlayFile("CW_KK_INS2_DOI_C4_US_FUSELOOP", "3d", function(sound, ...)
 	sound.PlayFile("sound/weapons/compositonb/handling/compositonb_fuse_loop.wav", "", function(sound)
 		if IsValid(sound) then
 			wep.soundLoop = sound
@@ -28,9 +28,9 @@ end
 
 SWEP.Sounds = {
 	base_plant = {
-		{time = 0/30, sound = "CW_KK_INS2_DOI_C4_PLANTARMMOVEMENT"},
-		{time = 12/30, sound = "CW_KK_INS2_DOI_C4_PLANTPLACE"},
-		{time = 31/30, sound = "CW_KK_INS2_DOI_C4_PRIME", callback = pcf},
+		{time = 0/30, sound = "CW_KK_INS2_DOI_C4_US_PLANTARMMOVEMENT"},
+		{time = 12/30, sound = "CW_KK_INS2_DOI_C4_US_PLANTPLACE"},
+		{time = 31/30, sound = "CW_KK_INS2_DOI_C4_US_PRIME", callback = pcf},
 		{time = 35/30, sound = "", callback = soundLoop},
 		// 35/30
 	},
@@ -49,35 +49,35 @@ SWEP.Sounds = {
 	},
 
 	base_pullback = {
-		{time = 19/33, sound = "CW_KK_INS2_DOI_C4_PRIME", callback = pcf},
+		{time = 19/33, sound = "CW_KK_INS2_DOI_C4_US_PRIME", callback = pcf},
 		{time = 29/33, sound = "", callback = soundLoop},
 		// { event 3900 29 ""},
 	},
 
 	secondary_pullback = {
-		{time = 19/33, sound = "CW_KK_INS2_DOI_C4_PRIME", callback = pcf},
+		{time = 19/33, sound = "CW_KK_INS2_DOI_C4_US_PRIME", callback = pcf},
 		{time = 29/33, sound = "", callback = soundLoop},
 		// { event 3900 29 ""},
 	},
 
 	low_pullback = {
-		{time = 19/33, sound = "CW_KK_INS2_DOI_C4_PRIME", callback = pcf},
+		{time = 19/33, sound = "CW_KK_INS2_DOI_C4_US_PRIME", callback = pcf},
 		{time = 32/33, sound = "", callback = soundLoop},
 		// { event 3900 32 ""},
 	},
 
 	base_throw = {
-		{time = 6/33, sound = "CW_KK_INS2_DOI_C4_THROW"},
+		{time = 6/33, sound = "CW_KK_INS2_DOI_C4_US_THROW"},
 		// { event 3005 7 ""},
 	},
 
 	secondary_throw = {
-		{time = 6/33, sound = "CW_KK_INS2_DOI_C4_THROW"},
+		{time = 6/33, sound = "CW_KK_INS2_DOI_C4_US_THROW"},
 		// { event 3005 7 ""},
 	},
 
 	low_throw = {
-		{time = 6/30, sound = "CW_KK_INS2_DOI_C4_THROW"},
+		{time = 6/30, sound = "CW_KK_INS2_DOI_C4_US_THROW"},
 		// { event 3005 7 ""},
 	},
 }

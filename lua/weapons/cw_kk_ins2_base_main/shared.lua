@@ -66,6 +66,7 @@ SWEP.CW_KK_40MM_MDL = "models/weapons/upgrades/a_projectile_m203.mdl"
 SWEP._KK_INS2_customEmptySuffix = ""
 SWEP._KK_INS2_customReloadSuffix = ""
 SWEP._KK_INS2_customPickupSuffix = ""
+SWEP.ironFireAnimStartCycle = 0
 
 SWEP.DeployTime = 0.46
 SWEP.HolsterTime = 0.46

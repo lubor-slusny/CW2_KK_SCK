@@ -107,7 +107,7 @@ function CustomizableWeaponry_KK.ins2:isContentMounted()
 		["cw_kk_ins2_ww2"] = false,
 		["cw_kk_ins2_doi"] = (doigameContentOK),
 		["cw_kk_ins2_ao5"] = (baseContentOK and ao5ContentOK),
-		["cw_kk_ins2_arse"] = (baseContentOK and arseContentOK),
+		["cw_kk_ins2_arse"] = (baseContentOK and arseContentOK and CustomizableWeaponry_KK.HOME),
 	}
 	
 	local class = sub(self.Folder, 9)
