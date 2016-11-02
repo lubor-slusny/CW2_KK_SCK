@@ -178,13 +178,14 @@ SWEP.Primary.Ammo			= "12 Gauge"
 SWEP.FireDelay = 0.3
 SWEP.FireSound = "CW_KK_INS2_TOZ_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_TOZ_FIRE_SUPPRESSED"
-SWEP.Recoil = 3
 
 SWEP.Chamberable = true
 SWEP.SnapToIdlePostReload = false
 SWEP.ShotgunReload = true
 SWEP.ReticleInactivityPostFire = SWEP.FireDelay + 0.3
 SWEP.GlobalDelayOnShoot = SWEP.FireDelay
+
+SWEP.Recoil = 3
 
 SWEP.HipSpread = 0.05
 SWEP.AimSpread = 0.005

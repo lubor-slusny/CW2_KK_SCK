@@ -131,11 +131,11 @@ SWEP.FireSoundSuppressed = "CW_KK_INS2_M1911_FIRE_SUPPRESSED"
 SWEP.Recoil = 1
 
 SWEP.HipSpread = 0.04
-SWEP.AimSpread = 0.013
+SWEP.AimSpread = 0.01
 SWEP.VelocitySensitivity = 1.25
 SWEP.MaxSpreadInc = 0.036
 SWEP.SpreadPerShot = 0.0125
-SWEP.SpreadCooldown = 0.22
+SWEP.SpreadCooldown = 0.18
 SWEP.Shots = 1
 SWEP.Damage = 31
 

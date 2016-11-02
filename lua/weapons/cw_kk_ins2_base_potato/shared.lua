@@ -43,7 +43,7 @@ function SWEP:IndividualThink()
 		fa = cvarFA:GetInt()
 		fa = (fa == 1) and cvarFAAC:SetInt(fa)
 		
-		shouldDrawCrosshair = self.Owner:ShouldDrawLocalPlayer()
+		shouldDrawCrosshair = true // self.Owner:ShouldDrawLocalPlayer()
 		self.CrosshairEnabled = shouldDrawCrosshair
 		self.FadeCrosshairOnAim = !shouldDrawCrosshair
 		

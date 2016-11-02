@@ -196,25 +196,22 @@ SWEP.Primary.DefaultClip	= 5
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "7.92x57MM"
 
--- SWEP.FireDelay = 60/36
 SWEP.FireDelay = 0.3
 SWEP.FireSound = "CW_KK_INS2_DOI_K98_FIRE"
-SWEP.Recoil = 1.6
+SWEP.Recoil = 2.5
 
-SWEP.HipSpread = 0.055
-SWEP.AimSpread = 0.002
-SWEP.VelocitySensitivity = 2.1
-SWEP.MaxSpreadInc = 0.07
+SWEP.HipSpread = 0.075
+SWEP.AimSpread = 0.001
+SWEP.VelocitySensitivity = 2.5
+SWEP.MaxSpreadInc = 0.2
 SWEP.SpreadPerShot = 0.01
-SWEP.SpreadCooldown = 0.12
+SWEP.SpreadCooldown = 1.6
 SWEP.Shots = 1
 SWEP.Damage = 61
 
 SWEP.FirstDeployTime = 2.7
 SWEP.DeployTime = 0.7
 SWEP.HolsterTime = 0.5
-
-SWEP.RecoilToSpread = 0.8 
 
 SWEP.BipodDeployTime = 1.15
 SWEP.BipodUndeployTime = 1.15

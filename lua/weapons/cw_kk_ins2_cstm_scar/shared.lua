@@ -261,19 +261,16 @@ SWEP.Primary.Ammo			= "7.62x51MM"
 SWEP.FireDelay = 60/625
 SWEP.FireSound = "CW_KK_INS2_CSTM_SCAR_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_M14_FIRE_SUPPRESSED"
+SWEP.Recoil = 1.4
 
-SWEP.Recoil = 1.6
-SWEP.RecoilToSpread = 0.8 
-SWEP.HipSpread = 0.055
-SWEP.AimSpread = 0.002
-SWEP.VelocitySensitivity = 2.1
-SWEP.MaxSpreadInc = 0.07
+SWEP.HipSpread = 0.048
+SWEP.AimSpread = 0.0025
+SWEP.VelocitySensitivity = 2
+SWEP.MaxSpreadInc = 0.065
 SWEP.SpreadPerShot = 0.01
-SWEP.SpreadCooldown = 0.12
+SWEP.SpreadCooldown = 0.15
 SWEP.Shots = 1
 SWEP.Damage = 63
-
-SWEP.SnapToIdlePostReload = false
 
 SWEP.FirstDeployTime = 1.9
 SWEP.DeployTime = 0.7

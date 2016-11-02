@@ -192,10 +192,10 @@ SWEP.Primary.Ammo			= "5.45x39MM"
 SWEP.FireDelay = 60/700
 SWEP.FireSound = "CW_KK_INS2_AKS74U_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_AKS74U_FIRE_SUPPRESSED"
+SWEP.Recoil = 1.2
 
-SWEP.Recoil = 1
 SWEP.HipSpread = 0.043
-SWEP.AimSpread = 0.005
+SWEP.AimSpread = 0.01
 SWEP.VelocitySensitivity = 1.6
 SWEP.MaxSpreadInc = 0.05
 SWEP.SpreadPerShot = 0.007

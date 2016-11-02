@@ -108,10 +108,10 @@ SWEP.Primary.Ammo			= ".38 Special"
 SWEP.FireDelay = 60/380
 SWEP.FireSound = "CW_KK_INS2_REVOLVER_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_REVOLVER_FIRE_SUPPRESSED"
-SWEP.Recoil = 2.6
+SWEP.Recoil = 2.86
 
 SWEP.HipSpread = 0.039
-SWEP.AimSpread = 0.01
+SWEP.AimSpread = 0.0085
 SWEP.VelocitySensitivity = 1.35
 SWEP.MaxSpreadInc = 0.06
 SWEP.SpreadPerShot = 0.02

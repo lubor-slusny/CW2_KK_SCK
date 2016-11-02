@@ -102,14 +102,14 @@ SWEP.WeaponLength = 16
 
 SWEP.SuppressedOnEquip = true
 SWEP.FireSoundSuppressed = "CW_KK_INS2_DOI_WELROD_FIRE"
+SWEP.Recoil = 0.6545
 
-SWEP.Recoil = 0.77
 SWEP.HipSpread = 0.034
-SWEP.AimSpread = 0.012
+SWEP.AimSpread = 0.011
 SWEP.VelocitySensitivity = 1.2
 SWEP.MaxSpreadInc = 0.04
 SWEP.SpreadPerShot = 0.01
-SWEP.SpreadCooldown = 0.22
+SWEP.SpreadCooldown = 0.17
 SWEP.Shots = 1
 SWEP.Damage = 25
 

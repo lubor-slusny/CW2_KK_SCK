@@ -126,14 +126,14 @@ SWEP.FireDelay = 60/650
 SWEP.FireDelayFast = 60/650
 SWEP.FireDelaySlow = 60/450
 SWEP.FireSound = "CW_KK_INS2_DOI_BAR_FIRE"
-SWEP.Recoil = 1.6
+SWEP.Recoil = 1.5
 
-SWEP.HipSpread = 0.055
+SWEP.HipSpread = 0.05
 SWEP.AimSpread = 0.002
-SWEP.VelocitySensitivity = 2.1
-SWEP.MaxSpreadInc = 0.07
+SWEP.VelocitySensitivity = 2
+SWEP.MaxSpreadInc = 0.06
 SWEP.SpreadPerShot = 0.01
-SWEP.SpreadCooldown = 0.12
+SWEP.SpreadCooldown = 0.17
 SWEP.Shots = 1
 SWEP.Damage = 59
 

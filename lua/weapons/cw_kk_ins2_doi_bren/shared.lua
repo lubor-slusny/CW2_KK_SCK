@@ -100,14 +100,14 @@ SWEP.Primary.Ammo			= ".303 British"
 
 SWEP.FireDelay = 60/520
 SWEP.FireSound = "CW_KK_INS2_DOI_BREN_FIRE"
-SWEP.Recoil = 1.05
+SWEP.Recoil = 1.1
 
-SWEP.HipSpread = 0.045
+SWEP.HipSpread = 0.065
 SWEP.AimSpread = 0.003
-SWEP.VelocitySensitivity = 1.8
+SWEP.VelocitySensitivity = 2.4
 SWEP.MaxSpreadInc = 0.04
 SWEP.SpreadPerShot = 0.007
-SWEP.SpreadCooldown = 0.13
+SWEP.SpreadCooldown = 0.15
 SWEP.Shots = 1
 SWEP.Damage = 60
 

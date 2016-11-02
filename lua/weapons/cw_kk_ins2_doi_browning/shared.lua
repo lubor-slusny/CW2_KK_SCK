@@ -110,14 +110,14 @@ SWEP.Primary.Ammo			= ".30-06"
 
 SWEP.FireDelay = 60/500
 SWEP.FireSound = "CW_KK_INS2_DOI_BROWNING_FIRE"
-SWEP.Recoil = 1.2
+SWEP.Recoil = 1.1
 
-SWEP.HipSpread = 0.043
-SWEP.AimSpread = 0.005
-SWEP.VelocitySensitivity = 1.6
-SWEP.MaxSpreadInc = 0.05
+SWEP.HipSpread = 0.065
+SWEP.AimSpread = 0.003
+SWEP.VelocitySensitivity = 2.4
+SWEP.MaxSpreadInc = 0.04
 SWEP.SpreadPerShot = 0.007
-SWEP.SpreadCooldown = 0.13
+SWEP.SpreadCooldown = 0.15
 SWEP.Shots = 1
 SWEP.Damage = 60
 

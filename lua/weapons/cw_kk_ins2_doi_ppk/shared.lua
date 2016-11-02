@@ -103,14 +103,14 @@ SWEP.Primary.Ammo			= ".380 ACP"
 SWEP.FireDelay = 0.1
 SWEP.FireSound = "CW_KK_INS2_DOI_PPK_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_M9_FIRE_SUPPRESSED"
-SWEP.Recoil = 0.77
+SWEP.Recoil = 0.7
 
-SWEP.HipSpread = 0.034
-SWEP.AimSpread = 0.012
-SWEP.VelocitySensitivity = 1.2
-SWEP.MaxSpreadInc = 0.04
-SWEP.SpreadPerShot = 0.01
-SWEP.SpreadCooldown = 0.22
+SWEP.HipSpread = 0.038
+SWEP.AimSpread = 0.0125
+SWEP.VelocitySensitivity = 1
+SWEP.MaxSpreadInc = 0.03
+SWEP.SpreadPerShot = 0.005
+SWEP.SpreadCooldown = 0.15
 SWEP.Shots = 1
 SWEP.Damage = 23
 

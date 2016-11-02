@@ -153,8 +153,6 @@ SWEP.FirstDeployTime = 2
 SWEP.DeployTime = 0.7
 SWEP.HolsterTime = 0.5
 
-SWEP.RecoilToSpread = 0.8 
-
 SWEP.Chamberable = false
 SWEP.KK_INS2_EmptyIdle = true
 

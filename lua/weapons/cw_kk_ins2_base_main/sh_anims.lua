@@ -744,3 +744,26 @@ end
 	-- hook.Add("PlayerSwitchWeapon", "CW_KK_INS2_ANIMS", fnuk)
 -- end
 
+-- if CLIENT then
+	-- local Player = FindMetaTable("Player")
+	-- local switch = {}
+	
+	-- function Player:SelectWeapon(class)
+		-- if (!self:HasWeapon(class)) then return end
+		-- switch[self] = self:GetWeapon(class)
+	-- end
+
+	-- local ply
+	
+	-- hook.Add("CreateMove", "CW_KK_INS2_ANIMS", function(cmd)
+		-- ply = LocalPlayer()
+		
+		-- if (!IsValid(switch[ply])) then return end
+
+		-- cmd:SelectWeapon(switch[ply])
+
+		-- if (ply:GetActiveWeapon() == switch[ply]) then
+			-- switch[ply] = nil
+		-- end
+	-- end)
+-- end

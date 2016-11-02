@@ -93,18 +93,17 @@ SWEP.Primary.DefaultClip	= 9
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "12 Gauge"
 
--- SWEP.FireDelay = 0.8
 SWEP.FireDelay = 0.3
 SWEP.FireSound = "CW_KK_INS2_DOI_M1912_FIRE"
-SWEP.Recoil = 3
+SWEP.Recoil = 2
 
-SWEP.HipSpread = 0.05
-SWEP.AimSpread = 0.005
-SWEP.VelocitySensitivity = 1.9
-SWEP.MaxSpreadInc = 0.06
-SWEP.ClumpSpread = 0.013
-SWEP.SpreadPerShot = 0.01
-SWEP.SpreadCooldown = 0.8
+SWEP.HipSpread = 0.04
+SWEP.AimSpread = 0.01
+SWEP.VelocitySensitivity = 1.4
+SWEP.MaxSpreadInc = 0.02
+SWEP.ClumpSpread = 0.02
+SWEP.SpreadPerShot = 0.007
+SWEP.SpreadCooldown = 0.85
 SWEP.Shots = 12
 SWEP.Damage = 11
 

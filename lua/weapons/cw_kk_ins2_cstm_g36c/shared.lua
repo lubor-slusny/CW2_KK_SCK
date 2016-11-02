@@ -207,14 +207,14 @@ SWEP.Primary.Ammo			= "5.56x45MM"
 SWEP.FireDelay = 60/750
 SWEP.FireSound = "CW_KK_INS2_MK18_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_MK18_FIRE_SUPPRESSED"
-SWEP.Recoil = 1.05
+SWEP.Recoil = 1
 
-SWEP.HipSpread = 0.045
-SWEP.AimSpread = 0.003
-SWEP.VelocitySensitivity = 1.8
-SWEP.MaxSpreadInc = 0.04
-SWEP.SpreadPerShot = 0.007
-SWEP.SpreadCooldown = 0.13
+SWEP.HipSpread = 0.042
+SWEP.AimSpread = 0.0045
+SWEP.VelocitySensitivity = 1.6
+SWEP.MaxSpreadInc = 0.035
+SWEP.SpreadPerShot = 0.006
+SWEP.SpreadCooldown = 0.15
 SWEP.Shots = 1
 SWEP.Damage = 38
 

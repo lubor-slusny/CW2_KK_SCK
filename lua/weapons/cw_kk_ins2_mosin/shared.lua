@@ -213,22 +213,20 @@ SWEP.Primary.Ammo			= "7.62x54MMR"
 SWEP.FireDelay = 0.3 // 60/37
 SWEP.FireSound = "CW_KK_INS2_MOSIN_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_MOSIN_FIRE_SUPPRESSED"
-SWEP.Recoil = 1.6
+SWEP.Recoil = 2.5
 
-SWEP.HipSpread = 0.055
-SWEP.AimSpread = 0.002
-SWEP.VelocitySensitivity = 2.1
-SWEP.MaxSpreadInc = 0.07
+SWEP.HipSpread = 0.075
+SWEP.AimSpread = 0.001
+SWEP.VelocitySensitivity = 2.5
+SWEP.MaxSpreadInc = 0.2
 SWEP.SpreadPerShot = 0.01
-SWEP.SpreadCooldown = 0.12
+SWEP.SpreadCooldown = 2
 SWEP.Shots = 1
 SWEP.Damage = 63
 
 SWEP.FirstDeployTime = 3
 SWEP.DeployTime = 0.7
 SWEP.HolsterTime = 0.5
-
-SWEP.RecoilToSpread = 0.8 
 
 SWEP.BipodDeployTime = 1.15
 SWEP.BipodUndeployTime = 1.15

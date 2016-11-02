@@ -246,8 +246,8 @@ SWEP.Primary.Ammo			= "7.62x39MM"
 SWEP.FireDelay = 0.092307692307692
 SWEP.FireSound = "CW_KK_INS2_AKM_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_AKM_FIRE_SUPPRESSED"
+SWEP.Recoil = 1.32
 
-SWEP.Recoil = 1.2
 SWEP.HipSpread = 0.043
 SWEP.AimSpread = 0.005
 SWEP.VelocitySensitivity = 1.6

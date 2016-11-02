@@ -136,10 +136,10 @@ SWEP.Primary.Ammo			= ".357 Magnum"
 SWEP.FireDelay = 60/380
 SWEP.FireSound = "CW_KK_INS2_CSTM_COBRA_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_REVOLVER_FIRE_SUPPRESSED"
-SWEP.Recoil = 2.6
+SWEP.Recoil = 3.12
 
 SWEP.HipSpread = 0.039
-SWEP.AimSpread = 0.01
+SWEP.AimSpread = 0.008
 SWEP.VelocitySensitivity = 1.35
 SWEP.MaxSpreadInc = 0.06
 SWEP.SpreadPerShot = 0.02

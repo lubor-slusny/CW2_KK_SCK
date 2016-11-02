@@ -227,17 +227,16 @@ SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= "5.56x45MM"
 
 SWEP.FireDelay = 60/775
--- SWEP.FireDelay = 60/1500
 SWEP.FireSound = "CW_KK_INS2_M4A1_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_M4A1_FIRE_SUPPRESSED"
 SWEP.Recoil = 1.05
 
 SWEP.HipSpread = 0.045
-SWEP.AimSpread = 0.003
+SWEP.AimSpread = 0.0025
 SWEP.VelocitySensitivity = 1.8
-SWEP.MaxSpreadInc = 0.04
+SWEP.MaxSpreadInc = 0.033
 SWEP.SpreadPerShot = 0.007
-SWEP.SpreadCooldown = 0.13
+SWEP.SpreadCooldown = 0.16
 SWEP.Shots = 1
 SWEP.Damage = 38
 

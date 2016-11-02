@@ -193,7 +193,7 @@ SWEP.FireSoundSuppressed = "CW_KK_INS2_MP5K_FIRE_SUPPRESSED"
 SWEP.Recoil = 0.7
 
 SWEP.HipSpread = 0.035
-SWEP.AimSpread = 0.009
+SWEP.AimSpread = 0.0153
 SWEP.VelocitySensitivity = 1.5
 SWEP.MaxSpreadInc = 0.03
 SWEP.SpreadPerShot = 0.005
