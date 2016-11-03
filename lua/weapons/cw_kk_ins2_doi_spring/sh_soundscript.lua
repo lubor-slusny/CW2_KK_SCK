@@ -1,9 +1,13 @@
 
 local function shell(wep) 
+	if SERVER then return end
+	
 	wep:shellEvent() 
 end
 
 local function bulletsToClip(wep)	
+	if SERVER then return end
+	
 	-- wep._bulletsToClip = true
 	wep._loadingNewBelt = false
 end

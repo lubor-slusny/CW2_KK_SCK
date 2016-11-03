@@ -1,22 +1,32 @@
 
 local function shell(wep)
+	if SERVER then return end
+	
 	wep:shellEvent() 
 end
 
 local function bulletsToClip(wep)	
+	if SERVER then return end
+	
 	-- wep._bulletsToClip = true
 	wep._loadingNewBelt = false
 end
 
 local function blankLoaded(wep)
+	if SERVER then return end
+	
 	wep._blankWW2Loaded = true
 end
 
 local function removeBlank(wep)
+	if SERVER then return end
+	
 	wep._blankWW2Loaded = false
 end
 
 local function dryFireInterruptedGL(wep)
+	if SERVER then return end
+	
 	if wep._blankWW2Loaded then
 		removeBlank(wep)
 		wep:CreateMuzzle()

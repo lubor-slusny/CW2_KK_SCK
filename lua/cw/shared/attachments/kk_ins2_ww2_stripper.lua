@@ -9,8 +9,8 @@ if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
 	att.description = {}
 	
-	function att:elementRender()
-	end
+	-- function att:elementRender()
+	-- end
 end
 
 local ep3 = {t = "Detaching unloads all allocated magazines.", c = CustomizableWeaponry.textColors.REGULAR}

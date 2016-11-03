@@ -14,14 +14,14 @@ if CLIENT then
 		[2] = {t = "Increases range and damage of melee attack.", c = CustomizableWeaponry.textColors.POSITIVE},
 	}
 	
-	function att:elementRender()
-	end
+	-- function att:elementRender()
+	-- end
 	
-	function att:attachFunc()
-	end
+	-- function att:attachFunc()
+	-- end
 	
-	function att:detachFunc()
-	end
+	-- function att:detachFunc()
+	-- end
 end
 
 CustomizableWeaponry:registerAttachment(att)

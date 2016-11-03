@@ -105,8 +105,8 @@ SWEP.WorldModel		= "models/weapons/w_p38.mdl"
 SWEP.WMPos = Vector(4.5, 1, -3.5)
 SWEP.WMAng = Vector(-8, 0, 180)
 
-SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2de
-SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.ww2de
+SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2us
+SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.ww2us
 
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
@@ -118,14 +118,14 @@ SWEP.Primary.Ammo			= "9x19MM"
 
 SWEP.FireDelay = 0.1
 SWEP.FireSound = "CW_KK_INS2_DOI_BHP_FIRE"
-SWEP.Recoil = 1
+SWEP.Recoil = 0.77
 
-SWEP.HipSpread = 0.04
-SWEP.AimSpread = 0.01
-SWEP.VelocitySensitivity = 1.25
-SWEP.MaxSpreadInc = 0.036
-SWEP.SpreadPerShot = 0.0125
-SWEP.SpreadCooldown = 0.18
+SWEP.HipSpread = 0.034
+SWEP.AimSpread = 0.011
+SWEP.VelocitySensitivity = 1.2
+SWEP.MaxSpreadInc = 0.04
+SWEP.SpreadPerShot = 0.01
+SWEP.SpreadCooldown = 0.17
 SWEP.Shots = 1
 SWEP.Damage = 24
 

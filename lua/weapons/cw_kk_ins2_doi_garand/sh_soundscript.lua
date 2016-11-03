@@ -1,9 +1,13 @@
 
 local function shell(wep)
+	if SERVER then return end
+	
 	wep:shellEvent()
 end
 
 local function clip(wep) 
+	if SERVER then return end
+	
 	wep:shellEvent2() 
 end
 

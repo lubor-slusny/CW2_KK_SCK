@@ -595,8 +595,12 @@ function SWEP:GetDeployTime()
 		return self.DeployTime
 	end
 	
-	if self._KK_INS2_PickedUp or (self.KK_INS2_EmptyIdle and self:Clip1() == 0) then
-		return self.DeployTime
+	if self._KK_INS2_PickedUp or (self.KK_INS2_EmptyIdle and self:Clip1() == 0) then	
+		if self:hasInstalledGL() and self._currentGrenadeLauncher.ww2GrenadeLauncher and self.dt.INS2GLActive then
+			return self.DeployTime + 0.2
+		else
+			return self.DeployTime
+		end
 	end
 	
 	return self.FirstDeployTime + 0.2 // woot
@@ -607,7 +611,11 @@ end
 //-----------------------------------------------------------------------------
 
 function SWEP:GetHolsterTime()
-	return self.HolsterTime
+	if self:hasInstalledGL() and self._currentGrenadeLauncher.ww2GrenadeLauncher and self.dt.INS2GLActive then
+		return self.HolsterTime + 0.2
+	else
+		return self.HolsterTime
+	end
 end
 
 //-----------------------------------------------------------------------------
@@ -646,12 +654,12 @@ function SWEP:Holster(wep)
 	end
 	
 	if self.dt.State ~= CW_HOLSTER_START then
-		self.dt.HolsterDelay = CurTime() + (self:GetHolsterTime() / (self.HolsterSpeed * self.HolsterSpeedMult))
+		self.dt.HolsterDelay = CT + (self:GetHolsterTime() / (self.HolsterSpeed * self.HolsterSpeedMult))
 	end
 	
 	self.dt.State = CW_HOLSTER_START
 	
-	if self.SwitchWep and self.dt.State == CW_HOLSTER_START and CurTime() > self.dt.HolsterDelay then
+	if self.SwitchWep and self.dt.State == CW_HOLSTER_START and CT > self.dt.HolsterDelay then
 		self.dt.State = CW_IDLE
 		self.dt.HolsterDelay = 0
 		
@@ -753,4 +761,53 @@ function SWEP:getReloadProgress()
 	end
 	
 	return nil
+end
+
+//-----------------------------------------------------------------------------
+// CalculateSpread
+// - edited to support prone mod
+//-----------------------------------------------------------------------------
+
+function SWEP:getProneSpreadModifier()
+	return self.dt.State == CW_AIMING and 0.8 or 0.75
+end
+
+local CT, aim
+
+local reg = debug.getregistry()
+local GetAimVector = reg.Player.GetAimVector
+
+function SWEP:CalculateSpread(vel, dt)
+	if not self.AccuracyEnabled then
+		return
+	end
+	
+	aim = GetAimVector(self.Owner)
+	CT = CurTime()
+	
+	if not self.Owner.LastView then
+		self.Owner.LastView = aim
+		self.Owner.ViewAff = 0
+	else
+		self.Owner.ViewAff = LerpCW20(dt * 10, self.Owner.ViewAff, (aim - self.Owner.LastView):Length() * 0.5)
+		self.Owner.LastView = aim
+	end
+	
+	local baseCone, maxSpreadMod = self:getBaseCone()
+	self.BaseCone = baseCone
+	
+	if self:IsOwnerProne() then
+		self.BaseCone = self.BaseCone * self:getProneSpreadModifier()
+	else
+		if self.Owner:Crouching() then
+			self.BaseCone = self.BaseCone * self:getCrouchSpreadModifier()
+		end
+	end
+	
+	self.CurCone = self:getFinalSpread(vel, maxSpreadMod)
+	
+	if CT > self.SpreadWait then
+		self.AddSpread = math.Clamp(self.AddSpread - 0.5 * self.AddSpreadSpeed * dt, 0, self:getMaxSpreadIncrease(maxSpreadMod))
+		self.AddSpreadSpeed = math.Clamp(self.AddSpreadSpeed + 5 * dt, 0, 1)
+	end
 end

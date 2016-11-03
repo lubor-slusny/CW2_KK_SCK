@@ -1,9 +1,13 @@
 
 local function prepareShells(self)
+	if SERVER then return end
+	
 	self._numShells = self.CW_VM:GetBodygroup(self._shellsBGID) - self:Clip1()
 end
 
 local function shells(self)
+	if SERVER then return end
+	
 	for _ = 1, self._numShells do 
 		self:shellEventWebley()
 	end

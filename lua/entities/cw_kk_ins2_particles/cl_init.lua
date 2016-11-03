@@ -4,9 +4,11 @@ function ENT:Initialize()
 	local i = self:GetProjectileClass()
 	local class = self._dbInt2str[i]
 	
-	ed = EffectData()
-	ed:SetEntity(self)
-	util.Effect(self.db[class].effectClass, ed)
+	if class then
+		ed = EffectData()
+		ed:SetEntity(self)
+		util.Effect(self.db[class].effectClass, ed)
+	end
 end
 
 function ENT:Draw()

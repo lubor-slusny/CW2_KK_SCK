@@ -82,6 +82,14 @@ CustomizableWeaponry_KK.ins2.quickGrenade.models.n77 = {
 	a_throw = "throw"
 }
 
+CustomizableWeaponry_KK.ins2.quickGrenade.models.anm14 = {
+	id = "anm14",
+	vm = "models/weapons/v_anm14.mdl",
+	wm = "models/weapons/w_anm14.mdl",
+	a_pinpull = "pullbackhighbake",
+	a_throw = "bakethrow"
+}
+
 CustomizableWeaponry_KK.ins2.quickGrenade.types = {}
 
 local function add(tab)
@@ -93,17 +101,19 @@ add({text = "FLASH", ammo = "Flash Grenades", class = "cw_kk_ins2_projectile_m84
 add({text = "SMOKE", ammo = "Smoke Grenades", class = "cw_kk_ins2_projectile_m18", default = "m18"})
 	
 if CustomizableWeaponry_KK.HOME then
-	CustomizableWeaponry_KK.ins2.quickGrenade.models.roflkek = {
-		vm = "models/weapons/v_anm14.mdl",
-		wm = "models/props_junk/flare.mdl",
-		a_pinpull = "pullbackhighbake",
-		a_throw = "bakethrow"
-	}
+	-- CustomizableWeaponry_KK.ins2.quickGrenade.models.roflkek = {
+		-- vm = "models/weapons/v_anm14.mdl",
+		-- wm = "models/props_junk/flare.mdl",
+		-- a_pinpull = "pullbackhighbake",
+		-- a_throw = "bakethrow"
+	-- }
 
 	-- add({text = "BUG", /*ammo = "9x19MM", */class = "npc_grenade_bugbait", default = "n77"})
 	-- add({text = "HL2", /*ammo = "Frag Grenades", */class = "npc_grenade_frag", default = "m18"})
 	-- add({text = "EP1", /*ammo = "Frag Grenades", */class = "kk_flare", default = "roflkek"})
 	-- add({text = "N69", ammo = "Frag Grenades", class = "cw_kk_ins2_projectile_n69", default = "n69"})
+
+	add({text = "FLAME", ammo = "Incendiary", class = "cw_kk_ins2_projectile_anm14", default = "anm14"})
 end
 
 function CustomizableWeaponry_KK.ins2.quickGrenade:getAmmo(wep)
@@ -448,7 +458,8 @@ end
 
 if CLIENT then
 	local cats = CustomizableWeaponry_KK.ins2.quickGrenade.types
-	
+	local count = table.Count
+
 	local function cw_kk_cyclefrag(ply)
 		if !IsValid(ply) then return end
 		

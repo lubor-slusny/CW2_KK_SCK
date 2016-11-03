@@ -23,12 +23,12 @@ pk_pills.register("kk_ins2_f1",{
 	},
 	diesOnExplode=true,
 	die=function(ply,ent)
-		local explode = ents.Create("env_explosion")
-		explode:SetPos(ent:GetPos())
-		explode:Spawn()
-		explode:SetOwner(ply)
-		explode:SetKeyValue("iMagnitude","100")
-		explode:Fire("Explode",0,0)
+		local fx = ents.Create("cw_kk_ins2_particles")
+		fx:processProjectile(ent)
+		fx._initClass = "cw_kk_ins2_projectile_frag"
+		fx:Spawn()
+		
+		util.BlastDamage(ent, ply, ent:GetPos(), 384, 100)
 	end,
 })
 
@@ -53,11 +53,11 @@ pk_pills.register("kk_ins2_m67",{
 	},
 	diesOnExplode=true,
 	die=function(ply,ent)
-		local explode = ents.Create("env_explosion")
-		explode:SetPos(ent:GetPos())
-		explode:Spawn()
-		explode:SetOwner(ply)
-		explode:SetKeyValue("iMagnitude","100")
-		explode:Fire("Explode",0,0)
+		local fx = ents.Create("cw_kk_ins2_particles")
+		fx:processProjectile(ent)
+		fx._initClass = "cw_kk_ins2_projectile_frag"
+		fx:Spawn()
+		
+		util.BlastDamage(ent, ply, ent:GetPos(), 384, 100)
 	end,
 })

@@ -1,5 +1,7 @@
 
 local function shells(self)
+	if SERVER then return end
+	
 	local vm = self.CW_VM
 	local b = vm:GetBodygroup(self._beltBGID)
 	local s = vm:GetBodygroup(self._shellsBGID)
@@ -10,16 +12,22 @@ local function shells(self)
 end
 
 local function bigone(self)
+	if SERVER then return end
+	
 	if !CustomizableWeaponry_KK.HOME then return end
 	-- self:shellEventRev2()
 end
 
 local function toclip(...)
+	if SERVER then return end
+	
 	CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToClip(...)
 	CustomizableWeaponry_KK.ins2.bulletBgs.shellsToClip(...)
 end
 
 local function toreserve(...)
+	if SERVER then return end
+	
 	CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve(...)
 	CustomizableWeaponry_KK.ins2.bulletBgs.shellsToReserve(...)
 end

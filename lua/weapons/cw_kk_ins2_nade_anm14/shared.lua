@@ -65,7 +65,7 @@ SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
 SWEP.Primary.ClipSize		= -1
 SWEP.Primary.DefaultClip	= -1
 SWEP.Primary.Automatic		= false
-SWEP.Primary.Ammo			= "Incediary"
+SWEP.Primary.Ammo			= "Incendiary"
 
 SWEP.fuseTime = 1.8
 

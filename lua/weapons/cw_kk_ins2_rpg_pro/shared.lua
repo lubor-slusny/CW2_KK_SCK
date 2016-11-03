@@ -13,7 +13,7 @@ if CLIENT then
 	SWEP.AttachmentModelsVM = {
 		["nade"] = {model = "models/weapons/w_at4_projectile.mdl", bone = "Weapon", pos = Vector(0.028, 0.087, 18.68), angle = Angle(-90, 90, 0), size = Vector(0.75, 0.75, 0.75), active = true},
 		["fx_light"] = {model = "models/maxofs2d/cube_tool.mdl", pos = Vector(), angle = Angle(), size = Vector(0.01, 0.01, 0.01), attachment = "lighter", active = true, nodraw = true},
-		["fx_rag"] = {model = "models/maxofs2d/cube_tool.mdl", pos = Vector(-0.67614, 0.05519, -0.63427), angle = Angle(), size = Vector(0.01, 0.01, 0.01), attachment = "rag", active = true, nodraw = true},
+		["fx_rag"] = {model = "models/maxofs2d/cube_tool.mdl", pos = Vector(-0.6761, 0.0552, -0.6343), angle = Angle(0, 180, 0), size = Vector(0.01, 0.01, 0.01), attachment = "rag", nodraw = true, active = true},
 	}
 	
 	SWEP.HUD_MagText = "0 > "

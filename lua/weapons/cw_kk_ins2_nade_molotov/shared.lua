@@ -73,7 +73,7 @@ SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
 SWEP.Primary.ClipSize		= -1
 SWEP.Primary.DefaultClip	= -1
 SWEP.Primary.Automatic		= false
-SWEP.Primary.Ammo			= "Incediary"
+SWEP.Primary.Ammo			= "Incendiary"
 
 SWEP.fuseTime = 0
 SWEP.timeToThrow = 1.5
@@ -86,6 +86,28 @@ SWEP.maxVelDelayShort = 2
 SWEP.canCook = false // this one detonates on impact
 
 if CLIENT then
+	local pwn
+	
+	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_nade_molotov", function(wep, welement)
+		pwn = wep.Owner
+		
+		if IsValid(pwn) and pwn == LocalPlayer() and not pwn:ShouldDrawLocalPlayer() then
+			welement:StopParticles()
+			welement.particlesStarted = false
+			return
+		end
+		
+		if wep.dt.PinPulled then
+			if not welement.particlesStarted then
+				ParticleEffectAttach("molotov_trail", PATTACH_POINT_FOLLOW, welement, 1)
+				welement.particlesStarted = true
+			end
+		else
+			welement:StopParticles()
+			welement.particlesStarted = false
+		end
+	end)
+	
 	local m
 	local muz = {}
 	

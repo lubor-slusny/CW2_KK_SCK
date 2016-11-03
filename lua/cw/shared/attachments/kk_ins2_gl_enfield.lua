@@ -21,9 +21,8 @@ if CLIENT then
 
 	local nadeTypes = CustomizableWeaponry.grenadeTypes.registered
 	
-	function att:elementRender()
-	
-	end
+	-- function att:elementRender()	
+	-- end
 end
 
 local function resetGL(self)

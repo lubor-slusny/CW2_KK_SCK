@@ -1,5 +1,7 @@
 
-local function shell(wep) 
+local function shell(wep)
+	if SERVER then return end
+	
 	wep:shellEvent() 
 end
 

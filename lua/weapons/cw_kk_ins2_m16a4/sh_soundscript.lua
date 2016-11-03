@@ -1,5 +1,7 @@
 
 local function m203(wep)
+	if SERVER then return end
+	
 	wep:shellEvent203()
 end
 

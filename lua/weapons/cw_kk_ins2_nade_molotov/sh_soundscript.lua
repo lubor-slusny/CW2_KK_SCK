@@ -46,10 +46,14 @@ local function rag(wep)
 end
 
 local function ragSkin(wep)
+	if SERVER then return end
+	
 	wep.CW_VM:SetSkin(1)
 end
 
 local function refreshRag(wep)
+	if SERVER then return end
+	
 	wep.CW_VM:SetSkin(0)
 end
 

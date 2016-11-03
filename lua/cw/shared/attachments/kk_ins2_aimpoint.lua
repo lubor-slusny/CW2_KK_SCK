@@ -36,11 +36,11 @@ if CLIENT then
 		CustomizableWeaponry_KK.ins2.stencilSight:elementRenderColorable(self, att)
 	end
 	
-	function att:attachFunc()
-	end
+	-- function att:attachFunc()
+	-- end
 	
-	function att:detachFunc()
-	end
+	-- function att:detachFunc()
+	-- end
 end
 
 CustomizableWeaponry:registerAttachment(att)

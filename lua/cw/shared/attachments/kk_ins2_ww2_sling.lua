@@ -14,15 +14,14 @@ if CLIENT then
 		[1] = {t = "Boosts deploy speed of weapon that you switch to.", c = CustomizableWeaponry.textColors.VPOSITIVE},
 	}
 	
-	function att:elementRender()
-	end
+	-- function att:elementRender()
+	-- end
 	
-	function att:attachFunc()
-	end
+	-- function att:attachFunc()
+	-- end
 	
-	function att:detachFunc()
-	end
-	
+	-- function att:detachFunc()
+	-- end
 end
 
 function att:holsterEnd(swWep)

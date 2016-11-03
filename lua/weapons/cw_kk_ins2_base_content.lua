@@ -163,7 +163,7 @@ end
 	CustomizableWeaponry:registerAmmo("25MM Flare", "25MM Flares", 0, 0)
 	CustomizableWeaponry:registerAmmo("C4", "C4 explosives", 0, 0)
 	CustomizableWeaponry:registerAmmo("IED", "Improvised explosives", 0, 0)
-	CustomizableWeaponry:registerAmmo("Incediary", "Incendiary explosives", 0, 0)
+	CustomizableWeaponry:registerAmmo("Incendiary", "Incendiary explosives", 0, 0)
 	
 // FIREMODES
 

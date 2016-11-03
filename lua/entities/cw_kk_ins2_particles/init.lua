@@ -3,28 +3,34 @@ AddCSLuaFile("shared.lua")
 include("shared.lua")
 
 function ENT:processProjectile(ent)
-	self._sourceEnt = ent
+	self._initPos = ent:GetPos()
+	self._initAng = ent:GetAngles()
+	self._initClass = ent:GetClass()
+	
+	self._followEnt = 
+		self.db[self._initClass] and
+		self.db[self._initClass].followProjectile and
+		ent
 end
 
 function ENT:Initialize()
+	if not self._initClass then 
+		return
+	end
+	
 	self:DrawShadow(false)
 	self:PhysicsInit(SOLID_NONE)
 	self:SetMoveType(MOVETYPE_NONE)
 	self:SetSolid(SOLID_NONE)
 	self:SetCollisionGroup(COLLISION_GROUP_NONE)
 
-	local ent = self._sourceEnt
+	self:SetPos(self._initPos)
+	self:SetAngles(self._initAng)
 	
-	self:SetPos(ent:GetPos())
-	self:SetAngles(ent:GetAngles())
-	
-	local class = ent:GetClass()
-	local tweak = self._dbStr2int[class]
+	local tweak = self._dbStr2int[self._initClass] or 0
 	self:SetProjectileClass(tweak)
 	
-	if self.db[class].followProjectile then
-		self.followedProjectile = self._sourceEnt
-	end
+	self.followedProjectile = self._followEnt
 	
 	SafeRemoveEntityDelayed(self, 30)
 end

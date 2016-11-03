@@ -37,8 +37,8 @@ if CLIENT then
 	end
 end
 
-function att:attachFunc()
-end
+-- function att:attachFunc()
+-- end
 
 function att:detachFunc()
 	self.dt.INS2GLActive = false

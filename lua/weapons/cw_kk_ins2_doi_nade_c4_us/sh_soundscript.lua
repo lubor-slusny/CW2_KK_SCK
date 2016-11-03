@@ -14,6 +14,8 @@ local function pcf(wep)
 end
 
 local function soundLoop(wep)
+	if SERVER then return end
+	
 	if wep.soundLoop then wep.soundLoop:Stop() end
 	
 	-- sound.PlayFile("CW_KK_INS2_DOI_C4_US_FUSELOOP", "3d", function(sound, ...)

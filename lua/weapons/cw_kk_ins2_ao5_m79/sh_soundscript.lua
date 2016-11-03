@@ -2,6 +2,8 @@
 local down = Vector(0,0,-10)
 
 local function shell(wep)
+	if SERVER then return end
+	
 	local att = wep.CW_VM:GetAttachment(2)
 	local dir = att.Ang:Forward()
 	local pos = att.Pos + dir * 10

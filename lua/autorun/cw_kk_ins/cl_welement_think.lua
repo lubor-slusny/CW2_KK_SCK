@@ -1,12 +1,23 @@
 
 if CLIENT then
 	CustomizableWeaponry_KK.ins2.welementThink = CustomizableWeaponry_KK.ins2.welementThink or {}
+	CustomizableWeaponry_KK.ins2.welementThink.IsValid = function() return true end
 
-	function CustomizableWeaponry_KK.ins2.welementThink:process(wep)
+	function CustomizableWeaponry_KK.ins2.welementThink:addWeapon(wep)
+		self._active = self._active or {}
+		
+		table.insert(self._active, wep)
+	end
+	
+	function CustomizableWeaponry_KK.ins2.welementThink:_processWeapon(wep)
+		if not IsValid(wep) then
+			return false
+		end
+			
 		if wep.AttachmentModelsWM then 
 			for k,v in pairs(wep.AttachmentModelsWM) do
 				local f = self._funcs[k]
-				if v.active and f then
+				if f and v.active then
 					f(wep, v.ent)
 				end
 			end
@@ -16,15 +27,19 @@ if CLIENT then
 		if f then
 			f(wep, wep.WMEnt)
 		end
+		
+		return true
 	end
 
-	hook.Add("Think", "CW_KK_INS2_WElementThink", function()
-		for _,wep in pairs(ents.GetAll()) do
-			if wep.CW20Weapon then
-				CustomizableWeaponry_KK.ins2.welementThink:process(wep)
-			end
+	function CustomizableWeaponry_KK.ins2.welementThink:think()
+		if not self._active then return end
+		
+		for k,wep in pairs(self._active) do
+			self._active[k] = self:_processWeapon(wep) and wep or nil
 		end
-	end)
+	end
+	
+	hook.Add("Think", CustomizableWeaponry_KK.ins2.welementThink, CustomizableWeaponry_KK.ins2.welementThink.think)
 
 	CustomizableWeaponry_KK.ins2.welementThink.templates = {
 		bipod = function(wep, welement)
@@ -61,16 +76,17 @@ if CLIENT then
 	
 	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_nade_anm14", "grenade")
 	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_nade_f1", "grenade")
+	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_nade_hl2", "grenade")
 	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_nade_m18", "grenade")
 	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_nade_m67", "grenade")
 	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_nade_m84", "grenade")
-	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_frag_gb", "grenade")
-	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_frag_gb_n69", "grenade")
-	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_frag_gb_n76", "grenade")
-	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_frag_gb_n77", "grenade")
-	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_frag_us", "grenade")
-	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_c4_de", "grenade")
-	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_c4_us", "grenade")
+	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_nade_c4_de", "grenade")
+	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_nade_c4_us", "grenade")
+	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_nade_mk2", "grenade")
+	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_nade_n36", "grenade")
+	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_nade_n69", "grenade")
+	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_nade_n76", "grenade")
+	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_nade_n77", "grenade")
 	
 	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_nade_c4", "rcex")
 	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_nade_ied", "rcex")
