@@ -11,6 +11,8 @@ if CLIENT then
 	SWEP.PrintName = "Stielhandsmoke"
 	SWEP.CSMuzzleFlashes = true
 	
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_nebelhandgranate")
+	
 	SWEP.IconLetter = "O"
 	
 	SWEP.AttachmentModelsVM = {}

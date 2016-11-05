@@ -10,8 +10,7 @@ if CLIENT then
 	SWEP.DrawCrosshair = false
 	SWEP.PrintName = "M3A1 Grease Gun"
 	
-	SWEP.IconLetter = "q"
-	
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_m3greasegun")
 	
 	SWEP.Shell = "KK_INS2_45apc"
 	SWEP.ShellDelay = 0.13

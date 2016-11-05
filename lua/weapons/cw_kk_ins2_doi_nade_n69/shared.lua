@@ -11,6 +11,8 @@ if CLIENT then
 	SWEP.PrintName = "N.69 Frag. Grenade"
 	SWEP.CSMuzzleFlashes = true
 	
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_no69")
+	
 	SWEP.IconLetter = "O"
 	
 	SWEP.AttachmentModelsVM = {}

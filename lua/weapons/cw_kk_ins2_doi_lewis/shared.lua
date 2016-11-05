@@ -12,8 +12,7 @@ if CLIENT then
 	SWEP.DrawCrosshair = false
 	SWEP.PrintName = "Lewis"
 	
-	SWEP.IconLetter = "w"
-	
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_lewis")
 	
 	SWEP.Shell = "KK_INS2_762x54"
 	SWEP.ShellDelay = 0.1

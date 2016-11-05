@@ -1,7 +1,5 @@
 if not CustomizableWeaponry then return end
 
-local spawnable = file.Exists("models/weapons/aof/v_machete.mdl", "GAME") and file.Exists("models/weapons/aof/w_machete.mdl", "GAME")
-
 if CLIENT then
 	SWEP.DrawCrosshair = false
 	SWEP.PrintName = "Machete"

@@ -9,8 +9,7 @@ if CLIENT then
 	
 	SWEP.ViewModelMovementScale = 1.15
 	
-	SWEP.IconLetter = "C"
-	
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/underbarrel_gp25_he")
 	
 	SWEP.MuzzleAttachmentName = "muzzle_gl"
 	SWEP.NoShells = true

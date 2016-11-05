@@ -13,9 +13,7 @@ if CLIENT then
 	SWEP.PrintName = "Welrod"
 	SWEP.CSMuzzleFlashes = true
 	
-	SWEP.IconLetter = "f"
-	
-	
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_welrod")
 	
 	SWEP.NoShells = true
 	SWEP.Shell = "KK_INS2_9x19"

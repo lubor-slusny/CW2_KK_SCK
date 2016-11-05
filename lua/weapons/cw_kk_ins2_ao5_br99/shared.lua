@@ -4,8 +4,6 @@ AddCSLuaFile()
 AddCSLuaFile("sh_soundscript.lua")
 include("sh_soundscript.lua")
 
-local spawnable = file.Exists("models/weapons/v_br99.mdl", "GAME") and file.Exists("models/weapons/w_br99.mdl", "GAME")
-
 SWEP.magType = "arMag"
 
 if CLIENT then
@@ -14,8 +12,7 @@ if CLIENT then
 	SWEP.CSMuzzleFlashes = true
 	SWEP.ViewModelMovementScale = 1.15
 	
-	SWEP.IconLetter = "w"
-	
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_br99")
 	
 	SWEP.Shell = "KK_INS2_12guage"
 	SWEP.ShellDelay = 0.06

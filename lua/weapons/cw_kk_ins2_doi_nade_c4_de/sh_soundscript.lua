@@ -2,7 +2,9 @@
 local function pcf(wep)
 	if SERVER then return end
 	
-	local vm = wep.AttachmentModelsVM.pcf.ent
+	if wep.Owner:ShouldDrawLocalPlayer() then return end
+	
+	local vm = wep.AttachmentModelsVM.fx_rag.ent
 	
 	ParticleEffectAttach("weapon_compB_fuse", PATTACH_POINT_FOLLOW, vm, 1)
 	

@@ -15,7 +15,7 @@ if CLIENT then
 	
 	SWEP.ViewModelMovementScale = 1.15
 	
-	SWEP.IconLetter = "b"
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_akm")
 	
 	SWEP.Shell = "KK_INS2_762x39"
 	

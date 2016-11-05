@@ -9,7 +9,8 @@ if CLIENT then
 	SWEP.PrintName = "HL2 M18"
 	SWEP.CSMuzzleFlashes = true
 	
-	SWEP.IconLetter = "P"
+	SWEP.SelectFont = "CW_SelectIcons2"
+	SWEP.IconLetter = "k"
 	
 	SWEP.AttachmentModelsVM = {}
 	
@@ -79,6 +80,13 @@ SWEP.timeToThrowCook = 1.3
 
 SWEP.timeToThrowShort = 0.9
 
+SWEP.projectileTrailParticles = "npc_grenade_frag"
+PrecacheParticleSystem(SWEP.projectileTrailParticles)
+
+if CLIENT then
+	-- CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_nade_hl2", "grenadewtrail")
+end
+	
 local v = Vector(0, 0, 150)
 
 function SWEP:applyThrowVelocity(grenade)

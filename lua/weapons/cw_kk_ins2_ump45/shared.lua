@@ -13,8 +13,7 @@ if CLIENT then
 	SWEP.PrintName = "HK UMP .45"
 	SWEP.CSMuzzleFlashes = true
 	
-	SWEP.IconLetter = "q"
-	
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_ump45")
 	
 	SWEP.Shell = "KK_INS2_45apc"
 	

@@ -14,8 +14,7 @@ if CLIENT then
 	SWEP.CSMuzzleFlashes = true
 	SWEP.ViewModelMovementScale = 1.15
 	
-	SWEP.IconLetter = "i"
-	
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_m1carbine")
 	
 	SWEP.Shell = "KK_INS2_762x33"
 	SWEP.ShellDelay = 0.06

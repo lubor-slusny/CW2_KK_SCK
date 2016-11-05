@@ -14,8 +14,6 @@ if CLIENT then
 	
 	SWEP.IconLetter = "i"
 	
-	
-
 	SWEP.NoShells = true
 	SWEP.Shell = "KK_INS2_12guage"
 	-- SWEP.ShellDelay = 13/30

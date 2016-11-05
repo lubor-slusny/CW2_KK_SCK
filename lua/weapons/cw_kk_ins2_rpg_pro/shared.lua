@@ -8,12 +8,21 @@ if CLIENT then
 	SWEP.DrawCrosshair = false
 	SWEP.PrintName = "Professional Russian"
 	
-	SWEP.IconLetter = "C"
+	-- SWEP.IconLetter = "C"
+	
+	-- SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_rpg7")
+	
+	SWEP.SelectFont = "CW_SelectIcons2"
+	SWEP.IconLetter = "x"
 	
 	SWEP.AttachmentModelsVM = {
 		["nade"] = {model = "models/weapons/w_at4_projectile.mdl", bone = "Weapon", pos = Vector(0.028, 0.087, 18.68), angle = Angle(-90, 90, 0), size = Vector(0.75, 0.75, 0.75), active = true},
 		["fx_light"] = {model = "models/maxofs2d/cube_tool.mdl", pos = Vector(), angle = Angle(), size = Vector(0.01, 0.01, 0.01), attachment = "lighter", active = true, nodraw = true},
 		["fx_rag"] = {model = "models/maxofs2d/cube_tool.mdl", pos = Vector(-0.6761, 0.0552, -0.6343), angle = Angle(0, 180, 0), size = Vector(0.01, 0.01, 0.01), attachment = "rag", nodraw = true, active = true},
+	}
+	
+	SWEP.AttachmentModelsWM = {
+		["kk_ins2_rpg_pro_trail"] = {model = "models/maxofs2d/cube_tool.mdl", pos = Vector(-1, 0, 0), angle = Angle(180, 0, 0), size = Vector(0.075, 0.075, 0.075), attachment = "rear", nodraw = true, active = true},
 	}
 	
 	SWEP.HUD_MagText = "0 > "
@@ -139,8 +148,12 @@ if CLIENT then
 	end
 end
 
+SWEP.projectileTrailParticles = "weapon_compB_fuse"
+
 if CLIENT then
-	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_rpg_pro", function(wep,welement)
+	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_rpg_pro", function(wep, welement)
 		welement:SetBodygroup(0, wep.dt.PinPulled and 1 or 0)
 	end)
+	
+	CustomizableWeaponry_KK.ins2.welementThink:add("kk_ins2_rpg_pro_trail", "grenadewtrail")
 end

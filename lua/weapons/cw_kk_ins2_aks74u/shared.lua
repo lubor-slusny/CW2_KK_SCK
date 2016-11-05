@@ -13,8 +13,7 @@ if CLIENT then
 	SWEP.PrintName = "AKS74U"
 	SWEP.CSMuzzleFlashes = true
 	
-	SWEP.IconLetter = "b"
-	
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_aks74u")
 	
 	SWEP.Shell = "KK_INS2_545x39"
 	SWEP.ShellDelay = 0.06

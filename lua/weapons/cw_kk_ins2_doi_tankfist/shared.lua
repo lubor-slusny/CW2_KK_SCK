@@ -10,9 +10,7 @@ if CLIENT then
 	SWEP.DrawCrosshair = false
 	SWEP.PrintName = "Panzerfaust"
 	
-	SWEP.SelectFont = "CW_SelectIcons2"
-	SWEP.IconLetter = "i"
-	
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_panzerfaust")
 	
 	-- SWEP.RearEffectw = true
 	SWEP.NoShells = true

@@ -12,7 +12,7 @@ if CLIENT then
 	SWEP.PrintName = "Molotov`s Drink"
 	SWEP.CSMuzzleFlashes = true
 	
-	SWEP.IconLetter = "O"
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_molotov")
 	
 	SWEP.AttachmentModelsVM = {
 		["fx_light"] = {model = "models/maxofs2d/cube_tool.mdl", pos = Vector(), angle = Angle(), size = Vector(0.01, 0.01, 0.01), attachment = "lighter", active = true, nodraw = true},
@@ -85,29 +85,9 @@ SWEP.maxVelDelayShort = 2
 
 SWEP.canCook = false // this one detonates on impact
 
+SWEP.projectileTrailParticles = "molotov_trail"
+
 if CLIENT then
-	local pwn
-	
-	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_nade_molotov", function(wep, welement)
-		pwn = wep.Owner
-		
-		if IsValid(pwn) and pwn == LocalPlayer() and not pwn:ShouldDrawLocalPlayer() then
-			welement:StopParticles()
-			welement.particlesStarted = false
-			return
-		end
-		
-		if wep.dt.PinPulled then
-			if not welement.particlesStarted then
-				ParticleEffectAttach("molotov_trail", PATTACH_POINT_FOLLOW, welement, 1)
-				welement.particlesStarted = true
-			end
-		else
-			welement:StopParticles()
-			welement.particlesStarted = false
-		end
-	end)
-	
 	local m
 	local muz = {}
 	

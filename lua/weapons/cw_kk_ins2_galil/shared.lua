@@ -15,8 +15,7 @@ if CLIENT then
 	
 	SWEP.ViewModelMovementScale = 1.15
 	
-	SWEP.IconLetter = "b"
-	
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_galil")
 	
 	SWEP.Shell = "KK_INS2_556x45"
 	SWEP.ShellDelay = 0.06

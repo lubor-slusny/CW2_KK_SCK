@@ -3,6 +3,10 @@ AddCSLuaFile("shared.lua")
 include("shared.lua")
 
 function ENT:processProjectile(ent)
+	if !IsValid(ent) then
+		return
+	end
+	
 	self._initPos = ent:GetPos()
 	self._initAng = ent:GetAngles()
 	self._initClass = ent:GetClass()

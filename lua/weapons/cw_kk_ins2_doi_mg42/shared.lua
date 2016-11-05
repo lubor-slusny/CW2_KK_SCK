@@ -13,9 +13,7 @@ if CLIENT then
 	SWEP.PrintName = "MG-42"
 	SWEP.ViewModelMovementScale = 1.15
 	
-	SWEP.IconLetter = "w"
-	
-	
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_mg42")
 	
 	SWEP.NoShells = true
 	

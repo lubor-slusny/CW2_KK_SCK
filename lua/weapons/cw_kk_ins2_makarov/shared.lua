@@ -13,8 +13,7 @@ if CLIENT then
 	SWEP.PrintName = "Makarov"
 	SWEP.CSMuzzleFlashes = true
 	
-	SWEP.IconLetter = "f"
-	
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_makarov")
 	
 	SWEP.Shell = "KK_INS2_9x19"
 	SWEP.ShellDelay = 0.06

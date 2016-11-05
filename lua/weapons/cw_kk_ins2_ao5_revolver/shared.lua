@@ -4,15 +4,12 @@ AddCSLuaFile()
 AddCSLuaFile("sh_soundscript.lua")
 include("sh_soundscript.lua")
 
-local spawnable = file.Exists("models/weapons/v_snub.mdl", "GAME") and file.Exists("models/weapons/w_snub.mdl", "GAME")
-
 if CLIENT then
 	SWEP.DrawCrosshair = false
 	SWEP.PrintName = "Snap"
 	SWEP.CSMuzzleFlashes = true
 	
-	SWEP.IconLetter = "f"
-	
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_snub")
 	
 	SWEP.Shell = "KK_INS2_762x33"
 	SWEP.NoShells = true

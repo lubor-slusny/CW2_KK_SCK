@@ -10,9 +10,7 @@ if CLIENT then
 	SWEP.DrawCrosshair = false
 	SWEP.PrintName = "RPzB 54"
 	
-	SWEP.SelectFont = "CW_SelectIcons2"
-	SWEP.IconLetter = "i"
-	
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_panzerschreck")
 	
 	SWEP.RearEffectw = true
 	SWEP.NoShells = true

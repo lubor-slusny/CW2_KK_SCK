@@ -11,8 +11,7 @@ if CLIENT then
 	SWEP.PrintName = "Webley Mk4"
 	SWEP.CSMuzzleFlashes = true
 	
-	SWEP.IconLetter = "f"
-	
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_webley")
 	
 	SWEP.Shell = "KK_INS2_762x33"
 	SWEP.NoShells = true

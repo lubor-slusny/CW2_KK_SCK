@@ -11,7 +11,7 @@ if CLIENT then
 	SWEP.PrintName = "Binoculars US"
 	SWEP.CSMuzzleFlashes = true
 	
-	SWEP.IconLetter = "f"
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_binoculars_american")
 	
 	SWEP.AttachmentModelsVM = {}
 	SWEP.AttachmentModelsWM = {}

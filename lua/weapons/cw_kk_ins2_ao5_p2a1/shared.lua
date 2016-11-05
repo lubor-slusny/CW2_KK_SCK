@@ -1,7 +1,5 @@
 if not CustomizableWeaponry then return end
 
-local spawnable = file.Exists("models/weapons/aof/v_flashgun.mdl", "GAME") and file.Exists("models/weapons/aof/w_flashgun.mdl", "GAME")
-
 AddCSLuaFile()
 AddCSLuaFile("sh_soundscript.lua")
 include("sh_soundscript.lua")
@@ -12,9 +10,7 @@ if CLIENT then
 	SWEP.CSMuzzleFlashes = true
 	SWEP.ViewModelMovementScale = 1.15
 	
-	SWEP.SelectFont = "HL2MPTypeDeath"
-	SWEP.IconLetter = "7"
-	
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_flashgun")
 	
 	SWEP.NoShells = true
 	SWEP.Shell = "KK_INS2_12guage"

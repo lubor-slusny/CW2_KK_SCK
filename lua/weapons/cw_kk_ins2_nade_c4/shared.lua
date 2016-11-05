@@ -11,7 +11,7 @@ if CLIENT then
 	SWEP.PrintName = "C4"
 	SWEP.CSMuzzleFlashes = true
 	
-	SWEP.IconLetter = "I"
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_c4_clicker")
 	
 	SWEP.AttachmentModelsVM = {
 		-- ["element_name"] = {model = "models/weapons/stattrack.mdl", bone = "SECEXP", pos = Vector(-0.64, -0.969, 0.021), angle = Angle(90, 0, 0), size = Vector(0.5, 0.5, 0.5)}

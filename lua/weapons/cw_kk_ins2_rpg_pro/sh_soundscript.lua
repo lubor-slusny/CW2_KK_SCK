@@ -22,6 +22,8 @@ end
 local function lighter(wep)
 	if SERVER then return end
 	
+	if wep.Owner:ShouldDrawLocalPlayer() then return end
+	
 	local vm = wep.AttachmentModelsVM.fx_light.ent
 	
 	ParticleEffectAttach(wep.particleLighter, PATTACH_POINT_FOLLOW, vm, 1)
@@ -37,6 +39,8 @@ end
 
 local function rag(wep)
 	if SERVER then return end
+	
+	if wep.Owner:ShouldDrawLocalPlayer() then return end
 	
 	local vm = wep.AttachmentModelsVM.fx_rag.ent
 	

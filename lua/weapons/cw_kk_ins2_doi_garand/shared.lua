@@ -12,8 +12,7 @@ if CLIENT then
 	SWEP.DrawCrosshair = false
 	SWEP.PrintName = "M1 Garand"
 	
-	SWEP.IconLetter = "n"
-	
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_m1garand")
 	
 	SWEP.NoShells = true
 	

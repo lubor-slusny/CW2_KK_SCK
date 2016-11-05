@@ -8,9 +8,7 @@ if CLIENT then
 	SWEP.DrawCrosshair = false
 	SWEP.PrintName = "RPG7"
 	
-	SWEP.SelectFont = "CW_SelectIcons2"
-	SWEP.IconLetter = "i"
-	
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_rpg7")
 	
 	SWEP.RearEffectw = true
 	SWEP.NoShells = true

@@ -10,9 +10,7 @@ if CLIENT then
 	SWEP.DrawCrosshair = false
 	SWEP.PrintName = "M9A1 'zooka"
 	
-	SWEP.SelectFont = "CW_SelectIcons2"
-	SWEP.IconLetter = "i"
-	
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_bazooka")
 	
 	SWEP.RearEffectw = true
 	SWEP.NoShells = true

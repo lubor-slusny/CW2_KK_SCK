@@ -11,10 +11,10 @@ if CLIENT then
 	SWEP.PrintName = "C4 US"
 	SWEP.CSMuzzleFlashes = true
 	
-	SWEP.IconLetter = "O"
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_tnt")
 	
 	SWEP.AttachmentModelsVM = {
-		["pcf"] = {model = "models/maxofs2d/cube_tool.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(0.01, 0.01, 0.01), attachment = "tail", bodygroups = {[1] = 1,}, active = true, nodraw = true},
+		["fx_rag"] = {model = "models/maxofs2d/cube_tool.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(0.01, 0.01, 0.01), attachment = "tail", bodygroups = {[1] = 1,}, active = true, nodraw = true},
 	}
 	
 	SWEP.AttachmentModelsWM = {}
@@ -103,12 +103,14 @@ SWEP.canPlant = true
 SWEP.PlantPos = Vector(1.5, 0, 0)
 SWEP.PlantAng = Angle()
 
+SWEP.projectileTrailParticles = "weapon_compB_fuse"
+
 if CLIENT then
 	function SWEP:updateOtherParts()
 		if self._pcfStop and self.Sequence != self._pcfStop then
-			self.AttachmentModelsVM.pcf.ent:StopParticles()
-			-- self.AttachmentModelsVM.pcf.ent:StopLoopingSound(self._soundStop)
-			-- self.AttachmentModelsVM.pcf.ent:StopSound("CW_KK_INS2_DOI_C4_US_FUSELOOP")
+			self.AttachmentModelsVM.fx_rag.ent:StopParticles()
+			-- self.AttachmentModelsVM.fx_rag.ent:StopLoopingSound(self._soundStop)
+			-- self.AttachmentModelsVM.fx_rag.ent:StopSound("CW_KK_INS2_DOI_C4_US_FUSELOOP")
 			-- self.CW_VM:StopParticles()
 			
 			self._pcfStop = nil
@@ -123,7 +125,7 @@ if CLIENT then
 				end)
 			end
 		else
-			-- local pos = self.AttachmentModelsVM.pcf.ent:GetPos()
+			-- local pos = self.AttachmentModelsVM.fx_rag.ent:GetPos()
 			-- local ed = EffectData()
 			-- ed:SetOrigin(pos)
 			-- ed:SetScale(0.01)

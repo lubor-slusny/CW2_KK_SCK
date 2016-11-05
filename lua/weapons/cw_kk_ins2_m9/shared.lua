@@ -13,8 +13,7 @@ if CLIENT then
 	SWEP.PrintName = "Beretta M9"
 	SWEP.CSMuzzleFlashes = true
 	
-	SWEP.IconLetter = "f"
-	
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_m9")
 	
 	SWEP.Shell = "KK_INS2_9x19"
 	SWEP.ShellDelay = 0.06

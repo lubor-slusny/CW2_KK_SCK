@@ -9,7 +9,7 @@ if CLIENT then
 	SWEP.DrawCrosshair = false
 	SWEP.PrintName = "ANM14 Incendiary"
 	
-	SWEP.IconLetter = "O"
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_anm14")
 	
 	SWEP.AttachmentModelsVM = {}
 end

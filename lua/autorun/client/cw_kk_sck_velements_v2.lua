@@ -1545,7 +1545,7 @@ function TOOL:updatePanel()
 								end
 								
 								// active by default
-								local origData =  weapons.GetStored(WEAPON:GetClass())[t][key]
+								local origData = weapons.GetStored(WEAPON:GetClass())[t] and weapons.GetStored(WEAPON:GetClass())[t][key]
 								local activeByDef
 								
 								if origData then

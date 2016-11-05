@@ -11,8 +11,7 @@ if CLIENT then
 	SWEP.PrintName = "Mauser C96 Carbine"
 	SWEP.CSMuzzleFlashes = true
 	
-	SWEP.IconLetter = "f"
-	
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_c96carbine")
 	
 	SWEP.Shell = "KK_INS2_9x19"
 	SWEP.ShellDelay = 0.06

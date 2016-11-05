@@ -10,9 +10,7 @@ if CLIENT then
 	SWEP.DrawCrosshair = false
 	SWEP.PrintName = "AT4"
 	
-	SWEP.SelectFont = "CW_SelectIcons2"
-	SWEP.IconLetter = "i"
-	
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_at4")
 	
 	SWEP.RearEffectw = true
 	SWEP.NoShells = true

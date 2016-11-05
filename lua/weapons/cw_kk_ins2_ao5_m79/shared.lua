@@ -4,17 +4,13 @@ AddCSLuaFile()
 AddCSLuaFile("sh_soundscript.lua")
 include("sh_soundscript.lua")
 
-local spawnable = file.Exists("models/weapons/aof/v_m79.mdl", "GAME") and file.Exists("models/weapons/aof/w_m79.mdl", "GAME")
-
 if CLIENT then
 	SWEP.DrawCrosshair = false
 	SWEP.PrintName = "M79"
 	SWEP.CSMuzzleFlashes = true
 	SWEP.ViewModelMovementScale = 1.15
 	
-	SWEP.SelectFont = "HL2MPTypeDeath"
-	SWEP.IconLetter = "7"
-	
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_m79")
 	
 	SWEP.NoShells = true
 	SWEP.Shell = "KK_INS2_40mm"

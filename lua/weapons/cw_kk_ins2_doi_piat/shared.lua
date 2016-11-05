@@ -10,8 +10,7 @@ if CLIENT then
 	SWEP.DrawCrosshair = false
 	SWEP.PrintName = "PIAT"
 	
-	SWEP.SelectFont = "CW_SelectIcons2"
-	SWEP.IconLetter = "i"
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_piat")
 	
 	SWEP.MuzzleEffect = false
 	-- SWEP.RearEffectw = true

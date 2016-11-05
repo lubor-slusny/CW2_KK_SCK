@@ -9,7 +9,7 @@ if CLIENT then
 	SWEP.PrintName = "IED"
 	SWEP.CSMuzzleFlashes = true
 	
-	SWEP.IconLetter = "I"
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_c4_ied")
 	
 	SWEP.AttachmentModelsVM = {}
 	

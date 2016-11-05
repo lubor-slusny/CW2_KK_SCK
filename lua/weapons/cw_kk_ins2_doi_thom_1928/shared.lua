@@ -12,8 +12,7 @@ if CLIENT then
 	SWEP.DrawCrosshair = false
 	SWEP.PrintName = "M1928A1 Thompson"
 	
-	SWEP.IconLetter = "q"
-	
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_thompson_m1928a1")
 	
 	SWEP.Shell = "KK_INS2_45apc"
 	SWEP.ShellDelay = 0.13

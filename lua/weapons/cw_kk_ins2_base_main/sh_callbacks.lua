@@ -62,9 +62,6 @@ CustomizableWeaponry.callbacks:addNew("initialize", "KK_INS2_BASE", function(wep
 		if wep.setupSoundTableLoops then
 			wep:setupSoundTableLoops() // sh_anims.lua
 		end
-		
-		// so it doenst have to browse all existing sweps
-		CustomizableWeaponry_KK.ins2.welementThink:addWeapon(wep)
 	end
 	
 	// Ive never really used ammo crate before so here s quickfix for explosives
@@ -153,6 +150,16 @@ CustomizableWeaponry.callbacks:addNew("postAttachAttachment", "KK_INS2_BASE", fu
 		wep:setElementActive(att.name .. "_rail", true)
 	end
 	
+	if CLIENT then
+		if att.SelectIconOverride then
+			if not wep.SelectIcon_Orig then
+				wep.SelectIcon_Orig = wep.SelectIcon
+			end
+			
+			wep.SelectIcon = att.SelectIconOverride
+		end
+	end
+	
 	if SERVER then
 		wep:_KK_INS2_NWAttach(att)
 	end
@@ -184,6 +191,12 @@ CustomizableWeaponry.callbacks:addNew("postDetachAttachment", "KK_INS2_BASE", fu
 		
 		wep:setElementActive(att.name, false)
 		wep:setElementActive(att.name .. "_rail", false)
+	end
+	
+	if CLIENT then
+		if att.SelectIconOverride then
+			wep.SelectIcon = wep.SelectIcon_Orig
+		end
 	end
 	
 	if SERVER then

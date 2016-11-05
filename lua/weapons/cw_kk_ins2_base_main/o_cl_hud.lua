@@ -394,3 +394,13 @@ function SWEP:drawCustomHUD()
 		end
 	end
 end
+
+function SWEP:DrawWeaponSelection(x, y, wide, tall, alpha)
+	if self.SelectIcon then
+		surface.SetDrawColor(255, 255, 255, 255)
+		surface.SetTexture(self.SelectIcon)
+		surface.DrawTexturedRect(x + tall * 0.2, y + tall / 4, tall, tall / 2)
+	else
+		draw.SimpleText(self.IconLetter, self.SelectFont, x + wide / 2, y + tall * 0.2, Color(255, 210, 0, alpha), TEXT_ALIGN_CENTER)
+	end
+end

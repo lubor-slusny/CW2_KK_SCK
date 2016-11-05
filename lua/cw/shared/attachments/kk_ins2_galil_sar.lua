@@ -22,6 +22,8 @@ att.origWM = "models/weapons/w_galil.mdl"
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
 	att.description = {}
+	
+	att.SelectIconOverride = surface.GetTextureID("vgui/inventory/weapon_galil_sar")
 end
 
 function att:attachFunc()

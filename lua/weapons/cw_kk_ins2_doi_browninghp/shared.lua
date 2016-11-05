@@ -13,8 +13,7 @@ if CLIENT then
 	SWEP.PrintName = "Browning HP"
 	SWEP.CSMuzzleFlashes = true
 	
-	SWEP.IconLetter = "f"
-	
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_browninghp")
 	
 	SWEP.Shell = "KK_INS2_9x19"
 	SWEP.ShellDelay = 0.06
@@ -100,7 +99,7 @@ SWEP.Instructions	= ""
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_browninghp.mdl"
-SWEP.WorldModel		= "models/weapons/w_p38.mdl"
+SWEP.WorldModel		= "models/weapons/w_browninghp.mdl"
 
 SWEP.WMPos = Vector(4.5, 1, -3.5)
 SWEP.WMAng = Vector(-8, 0, 180)

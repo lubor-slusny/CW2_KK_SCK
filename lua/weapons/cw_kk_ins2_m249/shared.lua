@@ -14,8 +14,7 @@ if CLIENT then
 	SWEP.CSMuzzleFlashes = true
 	SWEP.ViewModelMovementScale = 1.15
 	
-	SWEP.IconLetter = "w"
-	
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_m249")
 	
 	SWEP.NoShells = true
 	

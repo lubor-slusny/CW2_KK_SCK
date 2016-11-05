@@ -13,8 +13,7 @@ if CLIENT then
 	SWEP.DrawCrosshair = false
 	SWEP.PrintName = "Flame DE"
 	
-	SWEP.IconLetter = "q"
-	
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_flamethrower_german")
 	
 	SWEP.Shell = "KK_INS2_45apc"
 

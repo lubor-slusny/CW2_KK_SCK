@@ -12,8 +12,7 @@ if CLIENT then
 	SWEP.DrawCrosshair = false
 	SWEP.PrintName = "M1918A2 BAR"
 	
-	SWEP.IconLetter = "n"
-	
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_bar")
 	
 	SWEP.Shell = "KK_INS2_762x54"
 	SWEP.ShellDelay = 0.12

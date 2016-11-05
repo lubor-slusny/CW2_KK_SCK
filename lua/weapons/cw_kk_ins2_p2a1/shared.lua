@@ -12,9 +12,7 @@ if CLIENT then
 	SWEP.CSMuzzleFlashes = true
 	SWEP.ViewModelMovementScale = 1.15
 	
-	SWEP.SelectFont = "HL2MPTypeDeath"
-	SWEP.IconLetter = "7"
-	
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_p2a1")
 	
 	SWEP.NoShells = true
 	SWEP.Shell = "KK_INS2_12guage"
