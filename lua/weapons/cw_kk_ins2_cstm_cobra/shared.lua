@@ -11,8 +11,7 @@ if CLIENT then
 	SWEP.PrintName = "King Cobra"
 	SWEP.CSMuzzleFlashes = true
 	
-	SWEP.IconLetter = "f"
-	
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/cw_kk_ins2_cstm_cobra")
 	
 	SWEP.Shell = "KK_INS2_762x33"
 	SWEP.NoShells = true

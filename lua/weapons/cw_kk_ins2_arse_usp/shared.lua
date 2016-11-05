@@ -13,8 +13,7 @@ if CLIENT then
 	SWEP.PrintName = "USP"
 	SWEP.CSMuzzleFlashes = true
 	
-	SWEP.IconLetter = "f"
-	
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_usp")
 	
 	SWEP.Shell = "KK_INS2_45apc"
 	SWEP.ShellDelay = 0.06
@@ -49,8 +48,8 @@ if CLIENT then
 		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/w_laser_sec.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
-	SWEP.IronsightPos = Vector(-1.859, 0, 0.3468)
-	SWEP.IronsightAng = Vector(0.3062, -0.0054, 0)
+	SWEP.IronsightPos = Vector(-2.5384, 0, 0.8609)
+	SWEP.IronsightAng = Vector(-0.2183, 0.0035, 0)
 
 	SWEP.CustomizationMenuScale = 0.01
 	SWEP.ReloadViewBobEnabled = false

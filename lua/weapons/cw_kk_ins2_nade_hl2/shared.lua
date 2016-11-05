@@ -84,6 +84,7 @@ SWEP.projectileTrailParticles = "npc_grenade_frag"
 PrecacheParticleSystem(SWEP.projectileTrailParticles)
 
 if CLIENT then
+	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_nade_hl2", "grenade")
 	-- CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_nade_hl2", "grenadewtrail")
 end
 	

@@ -62,6 +62,9 @@ CustomizableWeaponry.callbacks:addNew("initialize", "KK_INS2_BASE", function(wep
 		if wep.setupSoundTableLoops then
 			wep:setupSoundTableLoops() // sh_anims.lua
 		end
+		
+		// just so it doesnt iterate over ents.GetAll()
+		CustomizableWeaponry_KK.ins2.welementThink:_addWeapon(wep)
 	end
 	
 	// Ive never really used ammo crate before so here s quickfix for explosives

@@ -20,6 +20,8 @@ if CLIENT then
 		[1] = {t = "Ever played Payday 2?.", c = CustomizableWeaponry.textColors.NEUTRAL},
 		[2] = {t = "Retextures alter stats.", c = CustomizableWeaponry.textColors.VNEGATIVE},
 	}
+	
+	att.SelectIconOverride = surface.GetTextureID("vgui/inventory/cw_kk_ins2_cstm_scar_skin")
 end
 
 function att:attachFunc()

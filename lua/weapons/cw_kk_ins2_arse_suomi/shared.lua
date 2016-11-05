@@ -12,8 +12,7 @@ if CLIENT then
 	SWEP.DrawCrosshair = false
 	SWEP.PrintName = "SUOMI?"
 	
-	SWEP.IconLetter = "q"
-	
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_suomi")
 	
 	SWEP.Shell = "KK_INS2_45apc"
 	SWEP.ShellDelay = 0.13

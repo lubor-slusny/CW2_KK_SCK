@@ -9,10 +9,6 @@ if CLIENT then
 		table.insert(self._active, wep)
 	end
 	
-	CustomizableWeaponry.callbacks:addNew("initialize", "KK_INS2_WEThink", function(wep)
-		CustomizableWeaponry_KK.ins2.welementThink:_addWeapon(wep)
-	end)
-	
 	function CustomizableWeaponry_KK.ins2.welementThink:_processWeapon(wep)
 		if not IsValid(wep) then
 			return false

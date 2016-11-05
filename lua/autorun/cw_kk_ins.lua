@@ -2,7 +2,7 @@ if not CustomizableWeaponry then return end
 
 AddCSLuaFile()
 
-local WS_PACK_REVISION = 7
+local WS_PACK_REVISION = 8
 
 CW_KK_ACTION = 11
 CW_KK_QNADE = 12
