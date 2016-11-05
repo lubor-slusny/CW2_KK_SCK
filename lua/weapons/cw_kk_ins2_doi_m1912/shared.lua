@@ -12,7 +12,7 @@ if CLIENT then
 	SWEP.CSMuzzleFlashes = true
 	SWEP.ViewModelMovementScale = 1.15
 	
-	SWEP.IconLetter = "i"
+	SWEP.IconLetter = "k"
 	
 	SWEP.NoShells = true
 	SWEP.Shell = "KK_INS2_12guage"
