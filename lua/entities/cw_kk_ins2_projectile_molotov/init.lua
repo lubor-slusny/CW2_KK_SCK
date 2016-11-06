@@ -2,6 +2,8 @@ AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("shared.lua")
 include("shared.lua")
 
+ENT.BurnDuration = 30
+
 ENT.ExplodeRadius = 300
 ENT.ExplodeDamage = 10
 
@@ -63,7 +65,11 @@ function ENT:Detonate()
 		fx:processProjectile(self)
 		fx:Spawn()
 		
-		fx:Ignite(30, self.ExplodeRadius)
+		fx:Ignite(self.BurnDuration, self.ExplodeRadius)
+		
+		-- local bn = ents.Create("cw_kk_ins2_burn")
+		-- bn:processProjectile(self)
+		-- bn:Spawn()
 		
 		self:SetNoDraw(true)
 		

@@ -2,6 +2,8 @@ AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("shared.lua")
 include("shared.lua")
 
+ENT.BurnDuration = 25
+
 ENT.ExplodeRadius = 256
 ENT.ExplodeDamage = 0
 
@@ -73,8 +75,12 @@ function ENT:Detonate()
 	local fx = ents.Create("cw_kk_ins2_particles")
 	fx:processProjectile(self)
 	fx:Spawn()
+
+	fx:Ignite(self.BurnDuration, self.ExplodeRadius)
 	
-	fx:Ignite(30, self.ExplodeRadius)
+	-- local bn = ents.Create("cw_kk_ins2_burn")
+	-- bn:processProjectile(self)
+	-- bn:Spawn()
 	
 	SafeRemoveEntityDelayed(self, 30)
 end

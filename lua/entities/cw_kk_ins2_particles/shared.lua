@@ -66,6 +66,8 @@ CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_N69_ENT_DETONATE_D2", {"weapon
 CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_N69_ENT_DETONATE_WATER", {"weapons/no69/water/no69_water_detonate_01.wav", "weapons/no69/water/no69_water_detonate_02.wav", "weapons/no69/water/no69_water_detonate_03.wav"})
 CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_N69_ENT_DETONATE_WATER_D1", {"weapons/no69/water/no69_water_detonate_dist_01.wav", "weapons/no69/water/no69_water_detonate_dist_02.wav", "weapons/no69/water/no69_water_detonate_dist_03.wav"})
 
+CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_N76_ENT_DETONATE", "weapons/no76/no76_burn.wav")
+
 CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_N77_ENT_DETONATE", "weapons/no77/no77_detonate_smoke_near_01.wav")
 
 CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_M6A1_ENT_DETONATE", {"weapons/bazooka/bazooka_detonate_01.wav", "weapons/bazooka/bazooka_detonate_02.wav", "weapons/bazooka/bazooka_detonate_03.wav"})
@@ -381,7 +383,7 @@ ENT.db = {
 	cw_kk_ins2_projectile_n76 = {
 		followProjectile = true,
 		effectClass = "cw_kk_ins2_explosion_smoke",
-		explosionSound0 = "CW_KK_INS2_DOI_N77_ENT_DETONATE",
+		explosionSound0 = "CW_KK_INS2_DOI_N76_ENT_DETONATE",
 		explosionSound1 = "",
 		explosionSound2 = "",
 		explosionSoundW0 = "",
@@ -393,7 +395,6 @@ ENT.db = {
 	},
 	
 	cw_kk_ins2_projectile_n77 = {
-		followProjectile = true,
 		effectClass = "cw_kk_ins2_explosion_smoke",
 		explosionSound0 = "CW_KK_INS2_DOI_N77_ENT_DETONATE",
 		explosionSound1 = "",

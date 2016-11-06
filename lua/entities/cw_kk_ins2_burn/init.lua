@@ -9,19 +9,16 @@ function ENT:processProjectile(ent)
 	
 	self._initPos = ent:GetPos()
 	self._initAng = ent:GetAngles()
-	self._initClass = ent:GetClass()
-	
-	self._followEnt = 
-		self.db[self._initClass] and
-		self.db[self._initClass].followProjectile and
-		ent
+	self._initDuration = ent.BurnDuration
+	self._initRange = ent.ExplodeRadius
 end
 
 function ENT:Initialize()
-	if not self._initClass then 
-		return
-	end
-	
+	self._initPos = self._initPos or Vector()
+	self._initAng = self._initAng or Angle()
+	self._initDuration = self._initDuration or 30
+	self._initRange = self._initRange or 300
+
 	self:SetModel("models/weapons/flare.mdl")
 	
 	self:DrawShadow(false)
@@ -33,24 +30,15 @@ function ENT:Initialize()
 	self:SetPos(self._initPos)
 	self:SetAngles(self._initAng)
 	
-	local tweak = self._dbStr2int[self._initClass] or 0
-	self:SetProjectileClass(tweak)
+	self:Ignite(self._initDuration, self._initRange)
 	
-	self.followedProjectile = self._followEnt
-	
-	SafeRemoveEntityDelayed(self, self.db[self._initClass].effectDuration or 30)
+	SafeRemoveEntityDelayed(self, self._initDuration or 30)
 end
 
 function ENT:Use(activator, caller)
 	return false
 end
 
-local offset = Vector(0,0,10)
-local angle = Angle()
-
 function ENT:Think()
-	if IsValid(self.followedProjectile) then
-		self:SetPos(self.followedProjectile:GetPos() + offset)
-		self:SetAngles(angle)
-	end
+	self:StopParticles()
 end

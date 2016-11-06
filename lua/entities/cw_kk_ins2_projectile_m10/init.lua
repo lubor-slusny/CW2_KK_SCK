@@ -2,8 +2,10 @@ AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("shared.lua")
 include("shared.lua")
 
-function ENT:Think()
-end
+ENT.BurnDuration = 20
+
+ENT.ExplodeRadius = 300
+ENT.ExplodeDamage = 50
 
 function ENT:Use(activator, caller)
 	return false
@@ -16,6 +18,7 @@ end
 local vel, len
 
 function ENT:PhysicsCollide(data, physobj)
+	self.destroyPhys = true
 	self:selfDestruct()
 end
 
@@ -26,13 +29,32 @@ function ENT:selfDestruct()
 	
 	self.ded = true
 	
-	local smokeScreen = ents.Create("cw_smokescreen_impact")
-	smokeScreen:SetPos(self:GetPos())
-	smokeScreen:Spawn()
-	
-	local fx = ents.Create("cw_kk_ins2_particles")
-	fx:processProjectile(self)
-	fx:Spawn()
+	if self:WaterLevel() == 0 then 
+		local smokeScreen = ents.Create("cw_smokescreen_impact")
+		smokeScreen:SetPos(self:GetPos())
+		smokeScreen:Spawn()
+		
+		local fx = ents.Create("cw_kk_ins2_particles")
+		fx:processProjectile(self)
+		fx:Spawn()
+		
+		if self:WaterLevel() == 0 then
+			fx:Ignite(self.BurnDuration, self.ExplodeRadius)
+		
+			-- local bn = ents.Create("cw_kk_ins2_burn")
+			-- bn:processProjectile(self)
+			-- bn:Spawn()
+		end
+		
+		self:SetNoDraw(true)
+	end
 	
 	SafeRemoveEntityDelayed(self, 30)
+end
+
+function ENT:Think()
+	if self.destroyPhys then
+		self.destroyPhys = false
+		self:PhysicsDestroy()
+	end
 end

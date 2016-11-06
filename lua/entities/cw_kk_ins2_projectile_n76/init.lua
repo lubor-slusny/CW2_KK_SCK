@@ -2,8 +2,10 @@ AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("shared.lua")
 include("shared.lua")
 
-ENT.ExplodeRadius = 384
-ENT.ExplodeDamage = 100
+ENT.BurnDuration = 20
+
+ENT.ExplodeRadius = 300
+ENT.ExplodeDamage = 20
 ENT.Model = "models/weapons/w_eq_smokegrenade_thrown.mdl"
 
 local phys, ef
@@ -35,6 +37,7 @@ end
 local vel, len, CT
 
 function ENT:PhysicsCollide(data, physobj)
+	self.destroyPhys = true
 	self:Kaboomboom()
 end
 
@@ -42,22 +45,39 @@ function ENT:Fuse(t)
 	// muhehe
 end
 
-PrecacheParticleSystem("doi_WPgrenade_explosion")
-PrecacheParticleSystem("doi_grenade_explosion")
-PrecacheParticleSystem("doi_frag_explosion")
-PrecacheParticleSystem("doi_compB_explosion")
-PrecacheParticleSystem("skybox_gunrun")
-
 function ENT:Kaboomboom()
-	local hitPos = self:GetPos()
+	if self.wentBoomAlready then
+		return
+	end
 	
-	local smokeScreen = ents.Create("cw_smokescreen_impact")
-	smokeScreen:SetPos(hitPos)
-	smokeScreen:Spawn()
+	self.wentBoomAlready = true
 	
-	local fx = ents.Create("cw_kk_ins2_particles")
-	fx:processProjectile(self)
-	fx:Spawn()
+	if self:WaterLevel() == 0 then
+		local hitPos = self:GetPos()
+		
+		local smokeScreen = ents.Create("cw_smokescreen_impact")
+		smokeScreen:SetPos(hitPos)
+		smokeScreen:Spawn()
+		
+		local fx = ents.Create("cw_kk_ins2_particles")
+		fx:processProjectile(self)
+		fx:Spawn()
+		
+		fx:Ignite(self.BurnDuration, self.ExplodeRadius)
+		
+		-- local bn = ents.Create("cw_kk_ins2_burn")
+		-- bn:processProjectile(self)
+		-- bn:Spawn()
+	end
+	
+	self:SetNoDraw(true)
+	
+	SafeRemoveEntityDelayed(self, 30)
+end
 
-	SafeRemoveEntity(self)
+function ENT:Think()
+	if self.destroyPhys then
+		self.destroyPhys = false
+		self:PhysicsDestroy()
+	end
 end
