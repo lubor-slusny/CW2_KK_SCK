@@ -429,20 +429,20 @@ if SERVER then
 		if not wep:canFireWeapon(1) then return end
 		
 		if wep.KKINS2Wep then
-			if wep.KKINS2Nade then
-				wep:PrimaryAttack()
-				return
-			end
+			-- if wep.KKINS2Nade then
+				-- wep:PrimaryAttack()
+				-- return
+			-- end
 			
 			if CustomizableWeaponry_KK.ins2.quickGrenade:canThrow(wep) then
 				CustomizableWeaponry_KK.ins2.quickGrenade:throw(wep, true)
 				SendUserMessage("CW_KK_INS2_THROWGRENADE", ply)
 			end
 		else
-			if wep.Base == "cw_grenade_base" then
-				wep:PrimaryAttack()
-				return
-			end
+			-- if wep.Base == "cw_grenade_base" then
+				-- wep:PrimaryAttack()
+				-- return
+			-- end
 			
 			if CustomizableWeaponry.quickGrenade.canThrow(wep) then
 				CustomizableWeaponry.quickGrenade.throw(wep, true)

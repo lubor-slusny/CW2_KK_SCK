@@ -28,7 +28,8 @@ if CLIENT then
 	SWEP.HUD_MagText = "BREECH: "
 end
 
-SWEP.MuzzleEffect = "ins_weapon_m203"
+-- SWEP.MuzzleEffect = "ins_weapon_m203"
+SWEP.MuzzleEffect = "muzzleflash_flaregun"
 SWEP.MuzzleEffectWorld = "ins_weapon_m203"
 
 SWEP.Chamberable = false

@@ -2,8 +2,8 @@ AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("shared.lua")
 include("shared.lua")
 
-ENT.ExplodeRadius = 384
-ENT.ExplodeDamage = 100
+ENT.ExplodeRadius = 256
+ENT.ExplodeDamage = 0
 
 ENT.Model = "models/weapons/w_molotov.mdl"
 
@@ -74,6 +74,8 @@ function ENT:Detonate()
 	fx:processProjectile(self)
 	fx:Spawn()
 	
+	fx:Ignite(30, self.ExplodeRadius)
+	
 	SafeRemoveEntityDelayed(self, 30)
 end
 
@@ -83,7 +85,7 @@ function ENT:Think()
 	end
 	
 	if self.resetOwner then
-		self:SetOwner()
 		self.resetOwner = false
+		self:SetOwner()
 	end
 end

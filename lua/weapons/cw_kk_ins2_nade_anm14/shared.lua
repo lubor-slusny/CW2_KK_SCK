@@ -1,5 +1,4 @@
 if not CustomizableWeaponry then return end
-if not CustomizableWeaponry_KK.HOME then return end
 
 AddCSLuaFile()
 AddCSLuaFile("sh_soundscript.lua")

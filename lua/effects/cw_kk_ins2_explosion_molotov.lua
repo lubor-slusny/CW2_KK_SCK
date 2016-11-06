@@ -26,10 +26,28 @@ function EFFECT:Init(fx)
 		
 		sound.Play(tweakData.explosionSoundW0, pos, 180)
 	end
+	
+	self.ent = ent
 end
 
 function EFFECT:Think()
-	//2doo add dlight?
+	ent = self.ent
+	
+	if IsValid(ent) then
+		dlight = DynamicLight(ent:EntIndex())
+		
+		dlight.r = 255
+		dlight.g = 100
+		dlight.b = 50
+		dlight.style = math.pow(6,math.random(0,1))
+		dlight.Brightness = 1
+		dlight.Pos = ent:GetPos()
+		dlight.Size = 256
+		dlight.Decay = 256
+		dlight.DieTime = CurTime() + FrameTime()
+		
+		return true
+	end
 	
 	return false
 end

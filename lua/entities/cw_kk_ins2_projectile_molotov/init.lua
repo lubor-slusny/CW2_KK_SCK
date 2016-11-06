@@ -2,8 +2,8 @@ AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("shared.lua")
 include("shared.lua")
 
-ENT.ExplodeRadius = 384
-ENT.ExplodeDamage = 100
+ENT.ExplodeRadius = 300
+ENT.ExplodeDamage = 10
 
 ENT.Model = "models/weapons/w_molotov.mdl"
 
@@ -43,6 +43,10 @@ function ENT:Fuse(t)
 	//muhehe
 end
 
+local dn = Vector(0,0, -64000)
+local td = {mask = MASK_NPCWORLDSTATIC}
+local tr, t
+
 function ENT:Detonate()
 	if self.wentBoomAlready then
 		return 
@@ -52,15 +56,31 @@ function ENT:Detonate()
 	
 	self:StopParticles()
 	
+	t = 60
+	
 	if self:WaterLevel() == 0 then
 		local fx = ents.Create("cw_kk_ins2_particles")
 		fx:processProjectile(self)
 		fx:Spawn()
 		
-		SafeRemoveEntity(self)
-	else
-		SafeRemoveEntityDelayed(self, 60)
+		fx:Ignite(30, self.ExplodeRadius)
+		
+		self:SetNoDraw(true)
+		
+		td.start = self:GetPos()
+		td.endpos = self:GetPos() + dn
+		td.filter = self
+
+		tr = util.TraceLine(td)
+		
+		if tr.Hit then
+			self:SetPos(tr.HitPos)
+		end
+		
+		t = 2
 	end
+	
+	SafeRemoveEntityDelayed(self, t)
 end
 
 function ENT:Think()

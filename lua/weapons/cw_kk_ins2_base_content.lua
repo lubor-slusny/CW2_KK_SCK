@@ -413,11 +413,14 @@ if CLIENT then
 	language.Add("cw_kk_ins2_projectile_rpg_2", "PG-7VM grenade")
 	language.Add("cw_kk_ins2_projectile_flare", "25MM Flare")
 	
-	language.Add("cw_kk_ins2_projectile_c4", "Active C4 charge")
-	language.Add("cw_kk_ins2_projectile_ied", "Active IED")
-	language.Add("cw_kk_ins2_projectile_frag", "Frag. Grenade")
-	language.Add("cw_kk_ins2_projectile_m84", "M84 Stun Grenade")
-	language.Add("cw_kk_ins2_projectile_m18", "M18 Smoke Grenade")
+	language.Add("cw_kk_ins2_projectile_c4", "Thrown C4 charge")
+	language.Add("cw_kk_ins2_projectile_ied", "Thrown IED")
+	language.Add("cw_kk_ins2_projectile_frag", "Thrown Frag Grenade")
+	language.Add("cw_kk_ins2_projectile_m84", "Thrown Stun Grenade")
+	language.Add("cw_kk_ins2_projectile_m18", "Thrown Smoke Grenade")
+	
+	language.Add("cw_kk_ins2_projectile_anm14", "Thrown Thermate")
+	language.Add("cw_kk_ins2_projectile_molotov", "Thrown Molotov")
 end
 
 // MAG SYSTEM

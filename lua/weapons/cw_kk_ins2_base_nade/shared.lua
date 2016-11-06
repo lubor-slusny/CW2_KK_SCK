@@ -163,17 +163,9 @@ if SERVER then
 				self.lastOwner:RemoveAmmo(1, self.Primary.Ammo)
 					
 					if self.dt.PinPulled then
-						local grenade = self:createProjectile()
-						
-						if IsValid(grenade) then	
-							grenade:SetPos(self:GetPos())
-							grenade:SetAngles(self:GetAngles())
-							
-							local phy = grenade and grenade:GetPhysicsObject()
-							if phy then 
-								phy:SetVelocity(self:GetVelocity())
-							end
-						end
+						self.onRemovePos = self:GetPos()
+						self.onRemoveAng = self:GetAngles()
+						self.onRemoveVel = self:GetVelocity()
 						
 						SafeRemoveEntity(self)
 					end
@@ -184,6 +176,28 @@ if SERVER then
 		
 		SafeRemoveEntity(self)
 	end	
+end
+
+//-----------------------------------------------------------------------------
+// OnRemove spawns live grenade if pin was pulled before removing (martyrdom)
+//-----------------------------------------------------------------------------
+
+if SERVER then
+	function SWEP:OnRemove()
+		if self.dt.PinPulled then
+			local grenade = self:createProjectile()
+			
+			if IsValid(grenade) then	
+				grenade:SetPos(self.onRemovePos or self:GetPos())
+				grenade:SetAngles(self.onRemoveAng or self:GetAngles())
+				
+				local phy = grenade:GetPhysicsObject()
+				if phy then 
+					phy:SetVelocity(self.onRemoveVel or self:GetVelocity())
+				end
+			end
+		end
+	end
 end
 
 //-----------------------------------------------------------------------------

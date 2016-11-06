@@ -18,9 +18,13 @@ CustomizableWeaponry:addFireSound("CW_KK_INS2_M84_ENT_DETONATE", "weapons/m84/m8
 CustomizableWeaponry:addFireSound("CW_KK_INS2_M84_ENT_DETONATE_D1", "weapons/m84/m84_detonate_dist.wav")
 CustomizableWeaponry:addFireSound("CW_KK_INS2_M84_ENT_DETONATE_D2", "weapons/m84/m84_detonate_far_dist.wav")
 
-CustomizableWeaponry:addFireSound("CW_KK_INS2_ANM14_ENT_DETONATE", "weapons/anm14/an_m14_detonate.wav")
+-- CustomizableWeaponry:addFireSound("CW_KK_INS2_ANM14_ENT_DETONATE", "weapons/anm14/an_m14_detonate.wav")
+CustomizableWeaponry:addFireSound("CW_KK_INS2_ANM14_ENT_DETONATE", "weapons/anm14/an_m14_burn.wav")
 
-CustomizableWeaponry:addFireSound("CW_KK_INS2_MOLOTOV_ENT_DETONATE", "weapons/molotov/molotov_detonate.wav")
+-- CustomizableWeaponry:addFireSound("CW_KK_INS2_MOLOTOV_ENT_DETONATE", "weapons/molotov/molotov_detonate.wav")
+CustomizableWeaponry:addFireSound("CW_KK_INS2_MOLOTOV_ENT_DETONATE", "weapons/molotov/molotov_burn.wav")
+-- CustomizableWeaponry:addFireSound("CW_KK_INS2_MOLOTOV_ENT_DETONATE_D1", "weapons/molotov/molotov_burn_loop.wav")
+-- CustomizableWeaponry:addFireSound("CW_KK_INS2_MOLOTOV_ENT_DETONATE_D2", "weapons/molotov/molotov_burn_loop_end.wav")
 
 CustomizableWeaponry:addFireSound("CW_KK_INS2_M18_ENT_DETONATE", "weapons/m18/m18_detonate.wav")
 
@@ -230,6 +234,7 @@ ENT.db = {
 	},
 	
 	cw_kk_ins2_projectile_molotov = {
+		followProjectile = true,
 		effectClass = "cw_kk_ins2_explosion_molotov",
 		explosionSound0 = "CW_KK_INS2_MOLOTOV_ENT_DETONATE",
 		explosionSound1 = "",
@@ -237,9 +242,21 @@ ENT.db = {
 		explosionSoundW0 = "",
 		explosionSoundW1 = "",
 		explosionParticles = {
-			"ins_molotov_explosion",
-			-- "doi_smoke_artillery",
 			-- "doi_wpgrenade_explosion",
+			-- "doi_smoke_artillery",
+			-- "ins_molotov_explosion",
+			
+			"ins_molotov_smoke",
+			"ins_molotov_flame_b",
+			"ins_molotov_flamewave",
+			"ins_molotov_burst_b",
+			"ins_molotov_burst_glass",
+			"ins_molotov_trailers",
+			"ins_molotov_burst_flame",
+			"ins_molotov_burst",
+			"ins_molotov_trails",
+			// "ins_molotov_glow",
+			"ins_molotov_flash",
 		},
 		explosionParticlesWater = {
 			"ins_molotov_explosion",
@@ -263,7 +280,7 @@ ENT.db = {
 			"ins_thermite_flame_c",
 			"ins_thermite_sparks_b",
 			"ins_thermite_burst",
-			-- "ins_thermite_glow",
+			// "ins_thermite_glow",
 			"ins_thermite_flame_sparks",
 			
 		},

@@ -101,6 +101,9 @@ if CLIENT then
 	language.Add("cw_kk_ins2_projectile_n76", "No. 76 WP Grenade")
 	language.Add("cw_kk_ins2_projectile_n77", "No. 77 Smoke Grenade")
 	
+	language.Add("cw_kk_ins2_projectile_ww2_c4_de", "Thrown Satchel Charge")
+	language.Add("cw_kk_ins2_projectile_ww2_c4_us", "Thrown Satchel Charge")
+	
 	killicon.AddFont("cw_kk_ins2_projectile_n69",	"CW_KillIcons", "O", killCol)
 	killicon.AddFont("cw_kk_ins2_projectile_n76",	"CW_KillIcons", "P", killCol)
 	killicon.AddFont("cw_kk_ins2_projectile_n77",	"CW_KillIcons", "P", killCol)

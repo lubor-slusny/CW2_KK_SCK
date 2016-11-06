@@ -22,6 +22,8 @@ function ENT:Initialize()
 		return
 	end
 	
+	self:SetModel("models/weapons/flare.mdl")
+	
 	self:DrawShadow(false)
 	self:PhysicsInit(SOLID_NONE)
 	self:SetMoveType(MOVETYPE_NONE)
