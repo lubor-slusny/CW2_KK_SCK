@@ -274,7 +274,7 @@ end
 // doBoltAction sets delays and plays bolt animation on shotguns/rifles
 //-----------------------------------------------------------------------------
 
-SWEP.boltAction_isShot = false // internal bool
+SWEP.boltAction_isShot = false
 
 local prefix, suffix, anim, curDelay
 

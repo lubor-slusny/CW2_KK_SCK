@@ -169,7 +169,7 @@ SWEP.Attachments = {
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
-if CustomizableWeaponry_KK.ins2.isContentMounted(SWEP) then
+if CustomizableWeaponry_KK.ins2.ws then
 	table.insert(SWEP.Attachments, 3, {header = "Package", offset = {-400, 0}, atts = {"kk_ins2_rpk_sopmod"}})
 end
 

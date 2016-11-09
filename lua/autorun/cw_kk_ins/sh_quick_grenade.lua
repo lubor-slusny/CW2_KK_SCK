@@ -275,6 +275,10 @@ function CustomizableWeaponry_KK.ins2.quickGrenade:throw(wep, IFTP)
 						nade:Fire("sETtIMER", 3)
 					end
 					
+					CustomizableWeaponry.actionSequence.new(wep, 0, nil, function()
+						hook.Call("GrenadeThrown", nil, wep, grenade)
+					end)
+					
 					// consume owners ammo
 					local suppressAmmoUsage = CustomizableWeaponry.callbacks.processCategory(wep, "shouldSuppressAmmoUsage")
 					
@@ -375,6 +379,10 @@ function CustomizableWeaponry_KK.ins2.quickGrenade:throw(wep, IFTP)
 						
 						nade:Fire("sETtIMER", 3)
 					end
+					
+					CustomizableWeaponry.actionSequence.new(wep, 0, nil, function()
+						hook.Call("GrenadeThrown", nil, wep, grenade)
+					end)
 					
 					// consume owners ammo
 					local suppressAmmoUsage = CustomizableWeaponry.callbacks.processCategory(wep, "shouldSuppressAmmoUsage")

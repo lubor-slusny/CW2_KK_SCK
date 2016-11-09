@@ -201,14 +201,6 @@ if SERVER then
 end
 
 //-----------------------------------------------------------------------------
-// this does not work
-//-----------------------------------------------------------------------------
-
-function SWEP:ShouldDropOnDie()
-	return self.dt.PinPulled
-end
-
-//-----------------------------------------------------------------------------
 // SetupDataTables edited to initialize dt.PinPulled
 //-----------------------------------------------------------------------------
 
@@ -331,6 +323,10 @@ function SWEP:IndividualThink()
 						if IsValid(grenade) then
 							self:applyThrowVelocity(grenade)
 						end
+						
+						CustomizableWeaponry.actionSequence.new(self, 0, nil, function()
+							hook.Call("GrenadeThrown", nil, self, grenade)
+						end)
 					end
 					
 					if not CustomizableWeaponry.callbacks.processCategory(wep, "shouldSuppressAmmoUsage") then
@@ -418,6 +414,10 @@ function SWEP:IndividualThink()
 					
 						self._grenadePlanted = true
 					end
+					
+					CustomizableWeaponry.actionSequence.new(self, 0, nil, function()
+						hook.Call("GrenadePlanted", nil, self, grenade)
+					end)
 				end
 				
 				local suppressAmmoUsage = CustomizableWeaponry.callbacks.processCategory(self, "shouldSuppressAmmoUsage")
@@ -491,17 +491,10 @@ function SWEP:_attack(key)
 		return
 	end
 	
-	self.dt.PinPulled = true
-	self.animPlayed = false
-	self.keyReleased = false
-	
-	self._curKeyPress = keyPress[key]
-	
 	CT = CurTime()
 	
 	local nw, tr = self:isNearWall()
 	self.plantTime = nil
-	self.attackStartTime = CT
 	self._doingShortThrow = false
 	
 	if nw and self.canPlant then							// if wep allows planting and we re near-wall then plant
@@ -533,7 +526,6 @@ function SWEP:_attack(key)
 			self._maxVelocityTime = CT + self.maxVelDelayShort
 		else													// otherwise u shud have used the other key
 			if self.Owner:KeyDown(IN_USE) then
-				self.dt.PinPulled = false
 				return
 			end
 			
@@ -574,6 +566,12 @@ function SWEP:_attack(key)
 			self._maxVelocityTime = CT + self.maxVelDelay
 		end
 	end
+	
+	self.dt.PinPulled = true
+	self.animPlayed = false
+	self.keyReleased = false
+	
+	self._curKeyPress = keyPress[key]
 end
 
 //-----------------------------------------------------------------------------
