@@ -7,20 +7,20 @@ include("sh_soundscript.lua")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "Stielhandflare"
+	SWEP.PrintName = "Flare"
 	
 	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/cw_kk_ins2_nade_kk")
 	
 	SWEP.AttachmentModelsVM = {
-		["nade"] = {model = "models/props_junk/flare.mdl", pos = Vector(0, 0, -2.2346), angle = Angle(0, -55, 180), size = Vector(0.4, 0.4, 0.4), bone = "Weapon", active = true},
-		["cap"] = {model = "models/weapons/w_flare_projectile.mdl", pos = Vector(0.2212, 0.0722, -0.3167), angle = Angle(90, 0, 0), size = Vector(6, 2, 2), bone = "grenade_cap", active = true},
+		["fuse"] = {model = "models/weapons/v_cw_kk_ins2_m213.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
+		["nade"] = {model = "models/props_junk/flare.mdl", pos = Vector(0, 0, -0.4017), angle = Angle(0, -5.9132, 0), size = Vector(0.5, 0.5, 0.5), bone = "Weapon_M84", active = true},
 	}
 	
 	SWEP.AttachmentModelsWM = {}
 	
-	SWEP.HUD_3D2DOffset = Vector(-1, 3, 0)
-	SWEP.HUD_3D2DOffsetMenu = Vector(-8, 6, 0)
-	SWEP.CustomizationMenuScale = 0.006
+	SWEP.MoveType = 2
+	SWEP.ViewModelMovementScale = 0.8
+	SWEP.DisableSprintViewSimulation = true
 end
 
 SWEP.CanRestOnObjects = false
@@ -36,13 +36,13 @@ SWEP.Animations = {
 	pull_short = "pullbacklow",
 	throw_short = "lowthrow",
 	
-	base_idle = "idle",
-	base_pickup = "draw",
-	base_draw = "draw",
-	base_holster = "holster",
-	base_sprint = "sprint",
-	base_safe = "down",
-	base_crawl = "crawl",
+	base_pickup = "base_draw",
+	base_draw = "base_draw",
+	base_idle = "base_idle",
+	base_holster = "base_holster",
+	base_sprint = "base_sprint",
+	base_safe = "base_down",
+	base_crawl = "base_crawl",
 }
 
 SWEP.SpeedDec = 5
@@ -62,7 +62,7 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/v_nebelhandgranate.mdl"
+SWEP.ViewModel		= "models/weapons/v_m84.mdl"
 SWEP.WorldModel		= "models/props_junk/flare.mdl"
 
 SWEP.WMPos = Vector(3.891, 2.295, -1.765)
@@ -77,25 +77,17 @@ SWEP.Primary.DefaultClip	= -1
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "25MM Flare"
 
-SWEP.canCook = false
+SWEP.canCook = true
 
 SWEP.HolsterTime = 0.6
 
-SWEP.fuseTime = 0
+SWEP.fuseTime = 30
 
-SWEP.timeToThrow = 1.2
-SWEP.spawnTime = 0.95
-SWEP.swapTime = 1.4
-SWEP.maxVelDelay = 1.5
+SWEP.timeToThrow = 0.9
 
-SWEP.spoonTime = 44/35.2
-SWEP.timeToThrowCook = 1.5
-SWEP.maxVelDelayCook = 1.8
+SWEP.timeToThrowCook = 1.3
 
-SWEP.timeToThrowShort = 1.2
-SWEP.spawnTimeShort = 0.65
-SWEP.swapTimeShort = 1.3
-SWEP.maxVelDelayShort = 1.5
+SWEP.timeToThrowShort = 0.9
 
 if CLIENT then
 	local nodraw = "models/weapons/attachments/cw_kk_ins2_shared/nodraw"
