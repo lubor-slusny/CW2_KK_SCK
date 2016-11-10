@@ -12,11 +12,13 @@ if CLIENT then
 	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/cw_kk_ins2_nade_kk")
 	
 	SWEP.AttachmentModelsVM = {
-		["fuse"] = {model = "models/weapons/v_cw_kk_ins2_m213.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
+		["fuze"] = {model = "models/weapons/v_cw_kk_ins2_m213.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
 		["nade"] = {model = "models/props_junk/flare.mdl", pos = Vector(0, 0, -0.4017), angle = Angle(0, -5.9132, 0), size = Vector(0.5, 0.5, 0.5), bone = "Weapon_M84", active = true},
 	}
 	
-	SWEP.AttachmentModelsWM = {}
+	SWEP.AttachmentModelsWM = {
+		["flare_fuze"] = {model = "models/weapons/v_cw_kk_ins2_m213.mdl", pos = Vector(-23.0194, -3.093, -8.5511), angle = Angle(-0.0477, 5.0981, -102.3934), size = Vector(2, 2, 2), attachment = "fuse", active = true},
+	}
 	
 	SWEP.MoveType = 2
 	SWEP.ViewModelMovementScale = 0.8
@@ -65,7 +67,7 @@ SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_m84.mdl"
 SWEP.WorldModel		= "models/props_junk/flare.mdl"
 
-SWEP.WMPos = Vector(3.891, 2.295, -1.765)
+SWEP.WMPos = Vector(2.391, 1.295, 1)
 SWEP.WMAng = Angle(-28.962, 155.365, 180)
 
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
@@ -77,11 +79,11 @@ SWEP.Primary.DefaultClip	= -1
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "25MM Flare"
 
-SWEP.canCook = true
+SWEP.canCook = false
 
 SWEP.HolsterTime = 0.6
 
-SWEP.fuseTime = 30
+SWEP.fuseTime = 0
 
 SWEP.timeToThrow = 0.9
 
@@ -90,6 +92,10 @@ SWEP.timeToThrowCook = 1.3
 SWEP.timeToThrowShort = 0.9
 
 if CLIENT then
+	CustomizableWeaponry_KK.ins2.welementThink:add("flare_fuze", function(wep, welement)
+		welement:SetBodygroup(1, wep.dt.PinPulled and 1 or 0)
+	end)
+
 	local nodraw = "models/weapons/attachments/cw_kk_ins2_shared/nodraw"
 	
 	function SWEP:IndividualInitialize()

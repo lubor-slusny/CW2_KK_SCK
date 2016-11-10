@@ -99,6 +99,7 @@ end
 add({text = "FRAG", ammo = "Frag Grenades", class = "cw_kk_ins2_projectile_frag"})
 add({text = "FLASH", ammo = "Flash Grenades", class = "cw_kk_ins2_projectile_m84", default = "m84"})
 add({text = "SMOKE", ammo = "Smoke Grenades", class = "cw_kk_ins2_projectile_m18", default = "m18"})
+add({text = "FLAME", ammo = "Incendiary", class = "cw_kk_ins2_projectile_anm14", default = "anm14"})
 	
 if CustomizableWeaponry_KK.HOME then
 	-- CustomizableWeaponry_KK.ins2.quickGrenade.models.roflkek = {
@@ -112,8 +113,6 @@ if CustomizableWeaponry_KK.HOME then
 	-- add({text = "HL2", /*ammo = "Frag Grenades", */class = "npc_grenade_frag", default = "m18"})
 	-- add({text = "EP1", /*ammo = "Frag Grenades", */class = "kk_flare", default = "roflkek"})
 	-- add({text = "N69", ammo = "Frag Grenades", class = "cw_kk_ins2_projectile_n69", default = "n69"})
-
-	add({text = "FLAME", ammo = "Incendiary", class = "cw_kk_ins2_projectile_anm14", default = "anm14"})
 end
 
 function CustomizableWeaponry_KK.ins2.quickGrenade:getAmmo(wep)
@@ -276,7 +275,7 @@ function CustomizableWeaponry_KK.ins2.quickGrenade:throw(wep, IFTP)
 					end
 					
 					CustomizableWeaponry.actionSequence.new(wep, 0, nil, function()
-						hook.Call("GrenadeThrown", nil, wep, grenade)
+						hook.Call("GrenadeThrown", nil, wep, nade)
 					end)
 					
 					// consume owners ammo
@@ -381,7 +380,7 @@ function CustomizableWeaponry_KK.ins2.quickGrenade:throw(wep, IFTP)
 					end
 					
 					CustomizableWeaponry.actionSequence.new(wep, 0, nil, function()
-						hook.Call("GrenadeThrown", nil, wep, grenade)
+						hook.Call("GrenadeThrown", nil, wep, nade)
 					end)
 					
 					// consume owners ammo
