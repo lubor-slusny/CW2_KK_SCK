@@ -205,7 +205,10 @@ if CLIENT then
 	function SWEP:_drawViewModel()
 		self.CW_VM:FrameAdvance(FrameTime())
 		self.CW_VM:SetupBones()
-		self.CW_VM:DrawModel()
+		
+		if not self._CWVMOverride then
+			self.CW_VM:DrawModel()
+		end
 		
 		self.CW_KK_HANDS:SetPos(self.CW_VM:GetPos())
 		self.CW_KK_HANDS:DrawModel()

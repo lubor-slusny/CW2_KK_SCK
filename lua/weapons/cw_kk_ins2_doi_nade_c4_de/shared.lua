@@ -28,6 +28,8 @@ if CLIENT then
 	SWEP.CustomizationMenuScale = 0.0055
 end
 
+SWEP.Attachments = CustomizableWeaponry_KK.ins2.slowGrenadeMenu
+
 SWEP.CanRestOnObjects = false
 SWEP.projectileClass = "cw_kk_ins2_projectile_ww2_c4_de"
 

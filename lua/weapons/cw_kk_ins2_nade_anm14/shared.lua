@@ -13,6 +13,8 @@ if CLIENT then
 	SWEP.AttachmentModelsVM = {}
 end
 
+SWEP.Attachments = CustomizableWeaponry_KK.ins2.slowGrenadeMenu
+
 SWEP.CanRestOnObjects = false
 SWEP.projectileClass = "cw_kk_ins2_projectile_anm14"
 

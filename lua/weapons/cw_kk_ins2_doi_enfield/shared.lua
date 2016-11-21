@@ -93,8 +93,10 @@ SWEP.Animations = {
 	base_safe_aim = "iron_down",
 	base_safe_empty = "base_down_empty",
 	base_safe_empty_aim = "iron_down_empty",
-	base_melee = "base_melee",
-	base_melee_empty = "base_melee_empty",
+	-- base_melee = "base_melee",
+	base_melee = "base_melee_end",
+	-- base_melee_empty = "base_melee_empty",
+	base_melee_empty = "base_melee_end_empty",
 	base_crawl = "base_crawl",
 	base_crawl_empty = "base_crawl_empty",
 
@@ -126,8 +128,10 @@ SWEP.Animations = {
 	gl_off_safe_aim = "iron_down",
 	gl_off_safe_empty = "base_down_empty",
 	gl_off_safe_empty_aim = "iron_down_empty",
-	gl_off_melee = "base_melee",
-	gl_off_melee_empty = "base_melee_empty",
+	-- gl_off_melee = "base_melee",
+	gl_off_melee = "base_melee_end",
+	-- gl_off_melee_empty = "base_melee_empty",
+	gl_off_melee_empty = "base_melee_end_empty",
 	gl_off_crawl = "base_crawl",
 	gl_off_crawl_empty = "base_crawl_empty",
 	
@@ -186,6 +190,7 @@ SWEP.WMAng = Vector(-10, 0, 180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2gb
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.ww2gb
+SWEP.CW_KK_40MM_MDL = "models/weapons/w_grenade_enfield.mdl"
 
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)

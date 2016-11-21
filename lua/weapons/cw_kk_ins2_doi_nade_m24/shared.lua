@@ -15,7 +15,10 @@ if CLIENT then
 	
 	SWEP.IconLetter = "O"
 	
-	SWEP.AttachmentModelsVM = {}
+	SWEP.AttachmentModelsVM = {
+		["kk_ins2_ww2_nade_jackit"] = {model = "models/weapons/v_splintering_stielhandgranate.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, hideVM = true},
+	}
+	
 	SWEP.AttachmentModelsWM = {}
 	
 	SWEP.MoveType = 2
@@ -26,6 +29,10 @@ if CLIENT then
 	SWEP.HUD_3D2DOffsetMenu = Vector(-8, 6, 0)
 	SWEP.CustomizationMenuScale = 0.006
 end
+
+SWEP.Attachments = {
+	{header = "Clothing", offset = {0, 0}, atts = {"kk_ins2_ww2_nade_jackit"}}
+}
 
 SWEP.CanRestOnObjects = false
 SWEP.projectileClass = "cw_kk_ins2_projectile_frag"

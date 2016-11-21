@@ -34,7 +34,8 @@ SWEP.AimingEnabled = false
 SWEP.CanCustomize = true
 SWEP.AccuracyEnabled = false
 
-SWEP.Attachments = {{header = "CSGO", offset = {1000, -500}, atts = {"kk_counter"}, dependencies = {aintgonnahappen = true}}}
+-- SWEP.Attachments = CustomizableWeaponry_KK.ins2.slowGrenadeMenu
+
 SWEP.Sounds = {}
 
 SWEP.Slot = 1
@@ -269,6 +270,7 @@ function SWEP:Reload() end
 //-----------------------------------------------------------------------------
 
 local SP = game.SinglePlayer()
+local hasShortMenu
 
 function SWEP:IndividualThink()
 	// for OnDrop func
@@ -276,7 +278,11 @@ function SWEP:IndividualThink()
 	
 	// for lulz
 	if CLIENT then
-		self.CustomizationTab = self.CustomizationTabOverride
+		hasShortMenu = self.Attachments and self.Attachments[1] and self.Attachments[1].nadestuff
+		
+		if hasShortMenu or (self.CustomizationTab == 2) then
+			self.CustomizationTab = self.CustomizationTabOverride
+		end
 	end
 	
 	// for 0-to-1-ammo draw-anim

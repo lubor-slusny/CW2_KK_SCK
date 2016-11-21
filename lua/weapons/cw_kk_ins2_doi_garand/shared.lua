@@ -36,7 +36,8 @@ if CLIENT then
 		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_iron_garand_s.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/a_garand_bayonet.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
-		
+		["kk_ins2_gl_enfield"] = {model = "models/weapons/upgrades/a_springfield_gl.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+
 		["kk_ins2_scope_m82"] = {model = "models/weapons/upgrades/a_optic_garand.mdl", pos = Vector(), angle = Angle(), size = Vector(0.075, 0.075, 0.075), merge = true},
 	}
 	
@@ -54,6 +55,9 @@ if CLIENT then
 	SWEP.KKINS2ScopeM82Pos = Vector(-1.3779, -3.5, 0.7695)
 	SWEP.KKINS2ScopeM82Ang = Vector()
 
+	SWEP.M203Pos = Vector(-2.7463, 0, 5.4451)
+	SWEP.M203Ang = Vector(-9.1139, 0.0581, 0)
+
 	SWEP.CustomizationMenuScale = 0.019
 end
 
@@ -64,7 +68,7 @@ SWEP.SightBGs = {main = 0, foldsight = 0}
 
 SWEP.Attachments = {
 	{header = "Sight", offset = {700, -200}, atts = {"bg_foldsight", "kk_ins2_scope_m82"}},
-	{header = "Barrel", offset = {-300, -200}, atts = {"kk_ins2_ww2_knife"}},
+	{header = "Barrel", offset = {-300, -200}, atts = {"kk_ins2_ww2_knife", "kk_ins2_gl_enfield"}},
 	{header = "Stock", offset = {1100, 300}, atts = {"kk_ins2_ww2_sling"}},
 	["+reload"] = {header = "Ammo", offset = {100, 300}, atts = {"am_magnum", "am_matchgrade"}}
 }
@@ -96,8 +100,60 @@ SWEP.Animations = {
 	base_crawl = "base_crawl",
 	base_crawl_empty = "base_crawl_empty",
 	
-	base_melee = "base_melee",
-	base_melee_empty = "base_melee_empty",
+	-- base_melee = "base_melee",
+	base_melee = "base_melee_end",
+	-- base_melee_empty = "base_melee_empty",
+	base_melee_empty = "base_melee_end_empty",
+	
+	gl_off_pickup = "base_ready",
+	gl_off_draw = "base_draw",
+	gl_off_draw_empty = "base_draw_empty",
+	gl_off_fire = {"base_fire_1","base_fire_2"},
+	gl_off_fire_aim = {"iron_fire_1", "iron_fire_2", "iron_fire_3"},
+	gl_off_fire_last = "base_fire_last",
+	gl_off_fire_last_aim = "iron_fire_last",
+	gl_off_fire_empty = "base_dryfire",
+	gl_off_fire_empty_aim = "iron_dryfire",
+	gl_off_reload = "base_reloadfull",
+	gl_off_reload_empty = "base_reloadempty",
+	gl_off_idle = "base_idle",
+	gl_off_idle_empty = "empty_idle",
+	gl_off_holster = "base_holster",
+	gl_off_holster_empty = "base_holster_empty",
+	gl_off_sprint = "base_sprint",
+	gl_off_sprint_empty = "base_sprint_empty",
+	gl_off_safe = "base_down",
+	gl_off_safe_empty = "base_down_empty",
+	gl_off_safe_aim = "iron_down",
+	gl_off_safe_empty_aim = "iron_down_empty",
+	gl_off_crawl = "base_crawl",
+	gl_off_crawl_empty = "base_crawl_empty",
+	
+	gl_on_pickup = "base_ready",
+	gl_on_draw = "glsetup_draw",
+	gl_on_draw_empty = "glsetup_draw_empty",
+	gl_on_fire = "glsetup_fire",
+	gl_on_fire_aim = "glsetup_iron_fire",
+	gl_on_fire_empty = "glsetup_dryfire",
+	gl_on_fire_empty_aim = "glsetup_iron_dryfire",
+	gl_on_reload = "glsetup_reload",
+	gl_on_idle = "glsetup",
+	gl_on_idle_empty = "glsetup_idle_empty",
+	gl_on_holster = "glsetup_holster",
+	gl_on_holster_empty = "glsetup_holster_empty",
+	gl_on_sprint = "glsetup_sprint",
+	gl_on_sprint_empty = "glsetup_sprint_empty",
+	gl_on_safe = "glsetup_down",
+	gl_on_safe_empty = "glsetup_down_empty",
+	gl_on_safe_aim = "glsetup_iron_down",
+	gl_on_safe_empty_aim = "glsetup_iron_down_empty",
+	gl_on_crawl = "glsetup_crawl",
+	gl_on_crawl_empty = "glsetup_crawl_empty",
+	
+	gl_turn_on_full = "glsetup_in",
+	gl_turn_on = "glsetup_in_empty",
+	gl_turn_off = "glsetup_out",
+	gl_turn_off_empty = "glsetup_out_empty",
 }
 
 SWEP.SpeedDec = 40
@@ -125,6 +181,7 @@ SWEP.WMAng = Vector(-10, 0, 180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2us
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.ww2us
+SWEP.CW_KK_40MM_MDL = "models/weapons/w_grenade_springfield.mdl"
 
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
@@ -149,11 +206,12 @@ SWEP.Shots = 1
 SWEP.Damage = 59
 
 SWEP.FirstDeployTime = 2
-SWEP.DeployTime = 0.7
-SWEP.HolsterTime = 0.5
+SWEP.DeployTime = 1.2
+SWEP.HolsterTime = 0.85
 
 SWEP.Chamberable = false
 SWEP.KK_INS2_EmptyIdle = true
+SWEP.KK_INS2_EmptyIdleGL = true
 
 SWEP.WeaponLength = 22
 
@@ -162,6 +220,13 @@ SWEP.MuzzleVelocity = 853
 SWEP.ReloadTimes = {
 	base_reloadfull = {4, 5.13, KK_INS2_REVOLVER_SPEED_UNLOAD, 1.1},
 	base_reloadempty = {2.2, 3.33},
+	
+	glsetup_reload = {2, 3.1},
+	
+	glsetup_in = {6.2, 7.6}, 
+	glsetup_in_empty = {6.2, 7.6}, 
+	glsetup_out = {1.6, 7},
+	glsetup_out_empty = {2.75, 5.2},
 }
 
 SWEP.freezeBeltOnStart = {

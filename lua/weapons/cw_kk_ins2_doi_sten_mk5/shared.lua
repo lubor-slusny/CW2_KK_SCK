@@ -83,8 +83,10 @@ SWEP.Animations = {
 	base_safe_empty_aim = "iron_down_empty",
 	base_crawl = "base_crawl",
 	base_crawl_empty = "base_crawl_empty",
-	base_melee = "base_melee",
-	base_melee_empty = "base_melee_empty",
+	-- base_melee = "base_melee",
+	base_melee = "base_melee_end",
+	-- base_melee_empty = "base_melee_empty",
+	base_melee_empty = "base_melee_end_empty",
 	
 	-- foregrip_pickup = "foregrip_ready",
 	-- foregrip_draw = "foregrip_draw",

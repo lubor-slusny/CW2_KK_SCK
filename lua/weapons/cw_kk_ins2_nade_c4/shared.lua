@@ -25,6 +25,8 @@ if CLIENT then
 	SWEP.CustomizationMenuScale = 0.006
 end
 
+SWEP.Attachments = CustomizableWeaponry_KK.ins2.slowGrenadeMenu
+
 SWEP.Animations = {
 	pullpin = "base_pullback",
 	throw = "base_throw",

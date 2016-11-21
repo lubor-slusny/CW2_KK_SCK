@@ -20,7 +20,7 @@ if CLIENT then
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_iron_thompson_s.mdl", pos = Vector(), angle = Angle(), size = Vector(0.5, 0.5, 0.5), merge = true, active = true},
 		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_iron_thompson_l.mdl", pos = Vector(), angle = Angle(), size = Vector(0.5, 0.5, 0.5), merge = true},
-		["modbody"] = {model = "models/weapons/v_cw_kk_doi_1928.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["modbody"] = {model = "models/weapons/v_cw_kk_doi_1928.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true},
 		
 		["kk_ins2_ww2_knife"] = {model = "models/weapons/v_brassknuckles.mdl", pos = Vector(-2.3145, -0.7286, 11.7285), angle = Angle(-49.8959, 22.8366, 26.1512), size = Vector(1, 1, 1), bone = "R Hand", nodraw = true},
 		
@@ -243,35 +243,7 @@ if CLIENT then
 	function SWEP:updateStandardParts()
 		self:setElementActive("handguard", !self.ActiveAttachments.kk_ins2_vertgrip)
 		self:setElementActive("kk_ins2_mag_thom_20", !(self.ActiveAttachments.kk_ins2_mag_thom_30 or self.ActiveAttachments.kk_ins2_mag_thom_50))
-	end
-	
-	local nodraw = "models/weapons/attachments/cw_kk_ins2_shared/nodraw"
-	local active, vm
-	
-	function SWEP:updateOtherParts()
-		active = self.ActiveAttachments.bg_foldsight
-		self.AttachmentModelsVM.modbody.active = active
 		
-		vm = self.CW_VM
-		
-		if active then
-			if vm:GetModel() == self.ViewModel then
-				if !vm._n then
-					vm:SetSubMaterial(0, nodraw)
-					vm._n = true
-				end
-			else
-				if vm._n then
-					vm:SetSubMaterial(0)
-					vm._n = false
-				end
-			end
-		else
-			if vm._n then
-				vm:SetSubMaterial(0)
-				vm._n = false
-			end
-		end
+		self.AttachmentModelsVM.modbody.active = self.ActiveAttachments.bg_foldsight
 	end
 end
-

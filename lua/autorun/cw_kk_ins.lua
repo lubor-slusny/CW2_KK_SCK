@@ -26,6 +26,8 @@ CustomizableWeaponry_KK.ins2.magnifierDependencies.kk_ins2_aimpoint = true
 CustomizableWeaponry_KK.ins2.magnifierDependencies.kk_ins2_cstm_eotechxps = true
 CustomizableWeaponry_KK.ins2.magnifierDependencies.kk_ins2_cstm_compm4s = true
 
+CustomizableWeaponry_KK.ins2.slowGrenadeMenu = {{header = "CSGO", offset = {1000, -500}, atts = {"kk_counter"}, dependencies = {aintgonnahappen = true}, nadestuff = true}}
+
 local SP = game.SinglePlayer()
 
 local baseContentOK = true

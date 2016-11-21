@@ -20,7 +20,9 @@ if CLIENT then
 		[2] = {t = "Narrow scope reduces awareness.", c = CustomizableWeaponry.textColors.NEGATIVE},
 		[3] = {t = "Can be disorienting at close range.", c = CustomizableWeaponry.textColors.NEGATIVE}
 	}
-
+	
+	att.SelectIconOverride = surface.GetTextureID("vgui/inventory/weapon_g43_sniper")
+	
 	local path = "models/weapons/optics/zf4_crosshair"
 	
 	att.zoomTextures = {

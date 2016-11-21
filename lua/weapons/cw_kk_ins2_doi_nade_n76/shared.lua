@@ -25,6 +25,8 @@ if CLIENT then
 	SWEP.HUD_3D2DBone = 58
 end
 
+SWEP.Attachments = CustomizableWeaponry_KK.ins2.slowGrenadeMenu
+
 SWEP.CanRestOnObjects = false
 SWEP.projectileClass = "cw_kk_ins2_projectile_n76"
 

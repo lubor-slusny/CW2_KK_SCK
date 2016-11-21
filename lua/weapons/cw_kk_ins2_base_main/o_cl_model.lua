@@ -113,7 +113,10 @@ local cvSVM = GetConVar("cw_kk_ins2_shell_vm")
 function SWEP:_drawViewModel()
 	self.CW_VM:FrameAdvance(FrameTime())
 	self.CW_VM:SetupBones()
-	self.CW_VM:DrawModel()
+	
+	if not self._CWVMOverride then
+		self.CW_VM:DrawModel()
+	end
 	
 	local CT = CurTime()
 	
@@ -123,7 +126,7 @@ function SWEP:_drawViewModel()
 		self.CW_KK_HANDS:SetParent(self.CW_VM)
 		self.CW_KK_HANDS:DrawModel()
 	end
-			
+	
 	if cvSVM:GetInt() == 1 then
 		self:drawVMShells()
 	end
@@ -320,6 +323,8 @@ local cvarFixScopes = CreateClientConVar("cw_kk_ins2_scopelightingfix", 1, true,
 local active, pos, ang, m, vma, model, doRecompute
 
 function SWEP:drawAttachments()
+	self._CWVMOverride = false
+	
 	if not self.AttachmentModelsVM then
 		return false
 	end
@@ -331,14 +336,14 @@ function SWEP:drawAttachments()
 			active = v.active
 		-- end
 		
+		self._CWVMOverride = self._CWVMOverride or (v.active and v.hideVM)
+		
 		doRecompute = cvarFixScopes:GetInt() == 1 and scopes[k]
 			
 		if v.ent and active then
-			if v.merge then					// this was an attempt to unfuck lighting on certain velements
-				if doRecompute then
-					pos = EyePos()			// css rig now seem to be working fine witout it 
-					ang = EyeAngles()		// aimpoint2x was always messed up
-				end
+			if v.merge then
+				pos = EyePos()
+				ang = EyeAngles()
 			elseif v._attachment then
 				vma = self.CW_VM:GetAttachment(v._attachment)
 				pos = vma.Pos
@@ -349,21 +354,17 @@ function SWEP:drawAttachments()
 				ang = m:GetAngles()
 			end
 			
-			if not v.merge or doRecompute then
-				pos = pos + ang:Forward() * v.pos.x + ang:Right() * v.pos.y + ang:Up() * v.pos.z
-				
-				ang:RotateAroundAxis(ang:Up(), v.angle.y)
-				ang:RotateAroundAxis(ang:Right(), v.angle.p)
-				ang:RotateAroundAxis(ang:Forward(), v.angle.r)
-			end
+			pos = pos + ang:Forward() * v.pos.x + ang:Right() * v.pos.y + ang:Up() * v.pos.z
+			
+			ang:RotateAroundAxis(ang:Up(), v.angle.y)
+			ang:RotateAroundAxis(ang:Right(), v.angle.p)
+			ang:RotateAroundAxis(ang:Forward(), v.angle.r)
 			
 			model = v.ent
 			
-			if not v.merge then
-				model:SetPos(pos)
-				model:SetAngles(ang)
-			end
-			
+			model:SetPos(pos)
+			model:SetAngles(ang)
+		
 			if v.animated then
 				model:FrameAdvance(FrameTime())
 				model:SetupBones()

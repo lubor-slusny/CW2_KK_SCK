@@ -17,6 +17,8 @@ if CLIENT then
 	SWEP.DisableSprintViewSimulation = true
 end
 
+SWEP.Attachments = CustomizableWeaponry_KK.ins2.slowGrenadeMenu
+
 SWEP.CanRestOnObjects = false
 SWEP.projectileClass = "cw_kk_ins2_projectile_m18"
 

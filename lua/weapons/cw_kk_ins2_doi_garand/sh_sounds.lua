@@ -4,6 +4,9 @@ CustomizableWeaponry:addReloadSound("CW_KK_INS2_DOI_GARAND_BOLTBACK", "weapons/g
 CustomizableWeaponry:addReloadSound("CW_KK_INS2_DOI_GARAND_BOLTRELEASE", "weapons/garand/handling/garand_boltrelease.wav")
 CustomizableWeaponry:addReloadSound("CW_KK_INS2_DOI_GARAND_EMPTY", "weapons/garand/handling/garand_empty.wav")
 CustomizableWeaponry:addReloadSound("CW_KK_INS2_DOI_GARAND_FETCHMAG", "weapons/garand/handling/garand_fetchmag.wav")
+CustomizableWeaponry:addReloadSound("CW_KK_INS2_DOI_GARAND_GL_LOAD1", "weapons/garand/handling/garand_gl_load1.wav")
+CustomizableWeaponry:addReloadSound("CW_KK_INS2_DOI_GARAND_GL_LOAD2", "weapons/garand/handling/garand_gl_load2.wav")
+CustomizableWeaponry:addReloadSound("CW_KK_INS2_DOI_GARAND_GL_REMOVE", "weapons/garand/handling/garand_gl_remove.wav")
 CustomizableWeaponry:addReloadSound("CW_KK_INS2_DOI_GARAND_MAGHIT", "weapons/garand/handling/garand_maghit.wav")
 CustomizableWeaponry:addReloadSound("CW_KK_INS2_DOI_GARAND_MAGIN", "weapons/garand/handling/garand_magin.wav")
 CustomizableWeaponry:addReloadSound("CW_KK_INS2_DOI_GARAND_MAGOUT", "weapons/garand/handling/garand_magout.wav")
@@ -16,3 +19,4 @@ CustomizableWeaponry:addReloadSound("CW_KK_INS2_DOI_GARAND_PING", {
 	"weapons/garand/handling/garand_ping_05.wav"
 })
 CustomizableWeaponry:addReloadSound("CW_KK_INS2_DOI_GARAND_RATTLE", "weapons/garand/handling/garand_rattle.wav")
+CustomizableWeaponry:addReloadSound("CW_KK_INS2_DOI_GARAND_SHOULDER", "weapons/garand/handling/garand_shoulder.wav")
