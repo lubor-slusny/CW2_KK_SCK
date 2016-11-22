@@ -25,7 +25,7 @@ if CLIENT then
 	
 	SWEP.ShellViewAngleAlign = {Forward = 0, Right = 0, Up = -25}
 	
-	SWEP.AttachmentModelsVM = {	
+	SWEP.AttachmentModelsVM = {		
 		["kk_ins2_suppressor_sec"] = {model = "models/weapons/upgrades/a_suppressor_sec.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	
 		["kk_ins2_bipod"] = {model = "models/weapons/upgrades/a_bipod_scar.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
@@ -53,6 +53,8 @@ if CLIENT then
 		["kk_ins2_cstm_acog"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_acog_m.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, retSizeMult = 0.85},
 		["kk_ins2_cstm_barska"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_barska.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},		
 		["kk_ins2_cstm_eotechxps"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_eotechxps.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		
+		["kk_ins2_cstm_scar_skin"] = {model = "models/weapons/v_cw_kk_ins2_cstm_scar_tan.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true},
 	}
 	
 	SWEP.AttachmentModelsWM = {

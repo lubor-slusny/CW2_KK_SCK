@@ -593,7 +593,7 @@ function SWEP:scaleMovement(val, mod)
 		end
 	end
 	
-	if self.ActiveAttachments.kk_ins2_ww2_knife then
+	if self.ActiveAttachments.kk_ins2_ww2_knife or self.ActiveAttachments.kk_ins2_ww2_knife_fat then
 		if self:isRunning() then
 			scale = 0
 		end

@@ -28,6 +28,8 @@ if CLIENT then
 	SWEP.HUD_MagText = "0 > "
 end
 
+SWEP.Attachments = CustomizableWeaponry_KK.ins2.slowGrenadeMenu
+
 SWEP.CanRestOnObjects = false
 
 SWEP.Animations = {

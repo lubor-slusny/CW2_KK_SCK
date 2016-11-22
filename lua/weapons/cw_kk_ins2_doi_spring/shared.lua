@@ -29,7 +29,7 @@ if CLIENT then
 		["kk_ins2_ww2_stripper"] = {model = "models/weapons/upgrades/a_springfield_stripper_clip.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/a_garand_bayonet.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_gl_enfield"] = {model = "models/weapons/upgrades/a_springfield_gl.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_gl_m7"] = {model = "models/weapons/upgrades/a_springfield_gl.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 
 		["kk_ins2_scope_m73"] = {model = "models/weapons/upgrades/a_optic_springfield.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_scope_u8x"] = {model = "models/weapons/upgrades/a_optic_springfield_7x.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
@@ -70,7 +70,7 @@ SWEP.Attachments = {
 		"kk_ins2_ww2_stripper"] = true
 	}},
 	
-	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_ww2_knife", "kk_ins2_gl_enfield"}},
+	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_ww2_knife", "kk_ins2_gl_m7"}},
 	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
 	
 	{header = "Clip", offset = {200, 0}, atts = {"kk_ins2_ww2_stripper"}, exclusions = {
@@ -245,6 +245,7 @@ SWEP.ReticleInactivityPostFire = SWEP.FireDelay + 0.2
 SWEP.GlobalDelayOnShoot = SWEP.FireDelay
 
 SWEP.KK_INS2_EmptyIdle = true
+SWEP.KK_INS2_EmptyIdleGL = true
 SWEP.WeaponLength = 38
 
 SWEP.MuzzleVelocity = 854

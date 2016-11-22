@@ -12,13 +12,13 @@ if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
 	att.description = {}
 	
-	function att:attachFunc()
-		self.CW_VM:SetSubMaterial(0, "models/weapons/fal/blvck.mdl")
-	end
+	-- function att:attachFunc()
+		-- self.CW_VM:SetSubMaterial(0, "models/weapons/fal/blvck.mdl")
+	-- end
 
-	function att:detachFunc()
-		self.CW_VM:SetSubMaterial(0)
-	end	
+	-- function att:detachFunc()
+		-- self.CW_VM:SetSubMaterial(0)
+	-- end	
 end
 
 CustomizableWeaponry:registerAttachment(att)
@@ -37,13 +37,13 @@ if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
 	att.description = {}
 	
-	function att:attachFunc()
-		self.CW_VM:SetSubMaterial(0, "models/weapons/fal/dosh.mdl")
-	end
+	-- function att:attachFunc()
+		-- self.CW_VM:SetSubMaterial(0, "models/weapons/fal/dosh.mdl")
+	-- end
 
-	function att:detachFunc()
-		self.CW_VM:SetSubMaterial(0)
-	end	
+	-- function att:detachFunc()
+		-- self.CW_VM:SetSubMaterial(0)
+	-- end	
 end
 
 CustomizableWeaponry:registerAttachment(att)

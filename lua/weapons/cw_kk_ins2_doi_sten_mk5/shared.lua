@@ -28,6 +28,7 @@ if CLIENT then
 		["std_barrel"] = {model = "models/weapons/upgrades/a_stenmk5_barrel_standard.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		["kk_ins2_suppressor_sterling"] = {model = "models/weapons/upgrades/a_stenmk5_silencer.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/a_enfield_bayonet.mdl", pos = Vector(-2.2399, 41.1901, 0), angle = Angle(0, -90, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_ww2_knife_fat"] = {model = "models/weapons/upgrades/a_enfield_bayonet_spike.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["std_stock"] = {model = "models/weapons/upgrades/a_stenmk5_stock_standard.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 	}
@@ -38,6 +39,7 @@ if CLIENT then
 		["std_barrel"] = {model = "models/weapons/upgrades/w_barrel_standard_mk5.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
 		["kk_ins2_suppressor_sterling"] = {model = "models/weapons/upgrades/w_silencer_sten.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/w_enfield_bayonet.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_ww2_knife_fat"] = {model = "models/weapons/upgrades/w_enfield_bayonet_spike.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
 	SWEP.IronsightPos = Vector(-2.6076, 0, 2.0204)
@@ -52,7 +54,7 @@ SWEP.MuzzleEffectWorld = "muzzleflash_sten_3p"
 SWEP.StockBGs = {main = 0, regular = 0, heavy = 0, sturdy = 0}
 
 SWEP.Attachments = {
-	{header = "Barrel", offset = {-300, -600}, atts = {"kk_ins2_suppressor_sterling", "kk_ins2_ww2_knife"}},
+	{header = "Barrel", offset = {-300, -600}, atts = {"kk_ins2_ww2_knife", "kk_ins2_ww2_knife_fat", "kk_ins2_suppressor_sterling"}},
 	-- {header = "Under", offset = {-500, 0}, atts = {"kk_ins2_vertgrip"}},
 	-- {header = "Stock", offset = {1000, 0}, atts = {"bg_ar15sturdystock"}},
 	["+reload"] = {header = "Ammo", offset = {0, 400}, atts = {"am_magnum", "am_matchgrade"}}

@@ -25,21 +25,21 @@ if CLIENT then
 end
 
 function att:attachFunc()
-	self.ViewModel = att.activeVM
+	-- self.ViewModel = att.activeVM
 	self.WorldModel = att.activeWM
 	
-	if CLIENT then
-		self.CW_VM:SetModel(self.ViewModel)
-	end
+	-- if CLIENT then
+		-- self.CW_VM:SetModel(self.ViewModel)
+	-- end
 end
 
 function att:detachFunc()
-	self.ViewModel = att.origVM
+	-- self.ViewModel = att.origVM
 	self.WorldModel = att.origWM
 	
-	if CLIENT then
-		self.CW_VM:SetModel(self.ViewModel)
-	end
+	-- if CLIENT then
+		-- self.CW_VM:SetModel(self.ViewModel)
+	-- end
 end
 
 CustomizableWeaponry:registerAttachment(att)

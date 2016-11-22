@@ -190,7 +190,7 @@ function CustomizableWeaponry_KK.ins2.quickKnife:attack(wep)
 	local category
 	
 	// this will make adding hands (DOI Thompson) fun
-	if wep.ActiveAttachments.kk_ins2_ww2_knife then			
+	if wep.ActiveAttachments.kk_ins2_ww2_knife or wep.ActiveAttachments.kk_ins2_ww2_knife_fat then			
 		if CLIENT then
 			wep:meleeAnimFunc()
 		end
