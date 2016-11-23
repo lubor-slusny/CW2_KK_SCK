@@ -348,7 +348,7 @@ if CLIENT then
 	function CustomizableWeaponry_KK.ins2.welementDrop:receive(len, ply)
 		local wep = net.ReadString()
 		-- local drop = net.ReadEntity()	// gives null entity on DS, what a life
-		local drop = ents.GetByIndex(net.ReadInt(uintSize))
+		local drop = net.ReadInt(uintSize)
 		local usedWEs = net.ReadTable()
 		
 		self.data[drop] = {
@@ -389,14 +389,16 @@ if CLIENT then
 			return
 		end
 		
-		for drop,dropData in pairs(self.data) do
+		for dropId,dropData in pairs(self.data) do
+			local drop = ents.GetByIndex(dropId)
+			
 			if !IsValid(drop) then 
 				continue
 			end
 			
 			if dropData.remove or dropData.timeout < CurTime() then
-				self.used[drop] = self.data[drop]
-				self.data[drop] = nil
+				self.used[dropId] = self.data[dropId]
+				self.data[dropId] = nil
 				return
 			end
 			

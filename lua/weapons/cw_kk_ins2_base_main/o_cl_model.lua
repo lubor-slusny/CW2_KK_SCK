@@ -565,13 +565,13 @@ function SWEP:drawAttachmentsWorld(parent)
 					pos = parent:GetPos()
 					ang = parent:GetAngles()
 				elseif v.attachment then
-					-- vma = parent:GetAttachment(parent:LookupAttachment(v.attachment)) // fuck savings
-					vma = parent:GetAttachment(v._attachment)
+					vma = parent:GetAttachment(parent:LookupAttachment(v.attachment)) // fuck savings
+					-- vma = parent:GetAttachment(v._attachment)
 					pos = vma.Pos
 					ang = vma.Ang
 				elseif v.bone then
-					-- m = parent:GetBoneMatrix(parent:LookupBone(v.bone)) // especially when bones doesnt seem to get set up when you dont spawn weapon on the ground first
-					m = parent:GetBoneMatrix(v._bone)
+					m = parent:GetBoneMatrix(parent:LookupBone(v.bone)) // especially when bones doesnt seem to get set up when you dont spawn weapon on the ground first
+					-- m = parent:GetBoneMatrix(v._bone)
 					
 					pos = m:GetTranslation()
 					ang = m:GetAngles()
