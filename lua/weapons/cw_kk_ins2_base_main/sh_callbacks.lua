@@ -320,14 +320,22 @@ CustomizableWeaponry_KK.ins2.welementDrop = CustomizableWeaponry_KK.ins2.welemen
 CustomizableWeaponry_KK.ins2.welementDrop.nwstring = "CW_KK_INS2_wepDrop"
 function CustomizableWeaponry_KK.ins2.welementDrop:IsValid() return true end
 
+local uintSize = 16
+
 if SERVER then
 	util.AddNetworkString(CustomizableWeaponry_KK.ins2.welementDrop.nwstring)
 	
 	function CustomizableWeaponry_KK.ins2.welementDrop:send(wep, drop)
+		local class = wep:GetClass()
+		local ActiveWElements = wep.ActiveWElements
+		local dropId = drop:EntIndex()
+		
 		net.Start(self.nwstring)
-		net.WriteString(wep:GetClass())
-		net.WriteEntity(drop)
-		net.WriteTable(wep.ActiveWElements or {})
+		net.WriteString(class)
+		-- net.WriteEntity(drop)
+		net.WriteUInt(dropId, uintSize)
+		
+		net.WriteTable(ActiveWElements or {})
 		net.Broadcast()
 	end
 
@@ -339,7 +347,8 @@ end
 if CLIENT then
 	function CustomizableWeaponry_KK.ins2.welementDrop:receive(len, ply)
 		local wep = net.ReadString()
-		local drop = net.ReadEntity()	// gives null entity on DS, what a life
+		-- local drop = net.ReadEntity()	// gives null entity on DS, what a life
+		local drop = ents.GetByIndex(net.ReadInt(uintSize))
 		local usedWEs = net.ReadTable()
 		
 		self.data[drop] = {

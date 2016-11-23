@@ -283,7 +283,7 @@ function SWEP:setupAttachmentModels()
 end
 
 //-----------------------------------------------------------------------------
-// drawAttachments edited to support custom attach points
+// drawAttachments edited to support custom attach points and lighting recomp.
 //-----------------------------------------------------------------------------
 
 local nFront, nRight, nTop = Vector(1,0,0), Vector(0,1,0), Vector(0,0,1)
@@ -399,8 +399,18 @@ end
 // - 3rd person 3D2D HUD
 //-----------------------------------------------------------------------------
 
-local GetBonePosition = debug.getregistry().Entity.GetBonePosition
-local LookupBone = debug.getregistry().Entity.LookupBone
+local _reg = debug.getregistry()
+local _ent = _reg and _reg.Entity
+
+local EntGetBoneMatrix = _ent and _ent.GetBoneMatrix
+local EntGetBonePosition = _ent and _ent.GetBonePosition
+local EntLookupBone = _ent and _ent.LookupBone
+
+local _ang = _reg and _reg.Angle
+local AngRotateAroundAxis = _ang.RotateAroundAxis
+local AngUp = _ang.Up
+local AngRight = _ang.Right
+local AngForward = _ang.Forward
 
 function SWEP:DrawWorldModel()
 	if self.dt.Safe then
@@ -421,40 +431,35 @@ function SWEP:DrawWorldModel()
 			end
 		end
 	end
-	
-	pos, ang = self:GetPos(), self:GetAngles()
-	
+
 	if IsValid(self.Owner) then
-		self:DrawShadow(false)
-		-- self:RemoveEffects(EF_BONEMERGE) // probably needs to be called on server
+		pos, ang = EntGetBonePosition(self.Owner, EntLookupBone(self.Owner, "ValveBiped.Bip01_R_Hand"))
 		
-		pos, ang = GetBonePosition(self.Owner, LookupBone(self.Owner, "ValveBiped.Bip01_R_Hand"))
-		
-		pos = (pos + ang:Forward() * self.WMPos.x + ang:Right() * self.WMPos.y + ang:Up() * self.WMPos.z)
-		ang:RotateAroundAxis(ang:Up(), self.WMAng.y)
-		ang:RotateAroundAxis(ang:Right(), self.WMAng.x)
-		ang:RotateAroundAxis(ang:Forward(), self.WMAng.z)
-	
-		-- self:SetPos(pos)			
-		-- self:SetAngles(ang)
+		pos = (
+			pos + 
+			AngForward(ang) * self.WMPos.x + 
+			AngRight(ang) * self.WMPos.y + 
+			AngUp(ang) * self.WMPos.z
+		)
+			
+		AngRotateAroundAxis(ang, AngUp(ang), self.WMAng.y)
+		AngRotateAroundAxis(ang, AngRight(ang), self.WMAng.x)
+		AngRotateAroundAxis(ang, AngForward(ang), self.WMAng.z)
+	else
+		pos, ang = self:GetPos(), self:GetAngles()	
 	end
 	
 	if !IsValid(self.WMEnt) then
 		return
 	end
 	
-	self.WMEnt:SetPos(pos)			// kept for cw_muzzleflash effect 	
-	self.WMEnt:SetAngles(ang)		// even if I keep calling RemoveBoneMerge - get:attachment still returns crotchpos
+	self.WMEnt:SetPos(pos)
+	self.WMEnt:SetAngles(ang)
 	
-	-- if !self.DrawCustomWM then
-		-- self:RemoveEffects(EF_BONEMERGE)
-		-- self:DrawModel()
-		-- self:drawAttachmentsWorld(self)
-	-- else
-		self.WMEnt:DrawModel()
-		self.WMEnt:DrawShadow(true)
-		self:drawAttachmentsWorld(self.WMEnt)
-	-- end
+	self.WMEnt:DrawShadow(true)
+	self.WMEnt:DrawModel()
+	
+	self:drawAttachmentsWorld(self.WMEnt)
 	
 	self.HUD_3D2DScale = self.HUD_3D2DScale * 1.5
 	self.CustomizationMenuScale = self.CustomizationMenuScale * 1.5
@@ -503,6 +508,31 @@ function SWEP:setupAttachmentWModels()
 				v:SetSkin(v.skin)
 			end
 			
+			// im gonna assume here that self/parent/whatever and WMEnt use the same model
+			
+			if v.merge then
+				v.ent:SetParent(self)
+				v.ent:AddEffects(EF_BONEMERGE)
+			end
+			
+			if v.attachment then
+				v._attachment = self:LookupAttachment(v.attachment)
+			end
+			
+			if v.bone then
+				v._bone = self:LookupBone(v.bone)
+			end
+			
+			for i,mat in pairs(v.ent:GetMaterials()) do
+				if CustomizableWeaponry_KK.ins2.nodrawMat[mat] then
+					v.ent:SetSubMaterial(i - 1, "models/weapons/attachments/cw_kk_ins2_shared/nodraw")
+				end
+			end
+			
+			if v.material then 
+				v.ent:SetMaterial(v.material)
+			end
+			
 			v.ent:SetupBones()
 		end
 	end
@@ -512,7 +542,11 @@ end
 // draw attachment world models (WElements) 
 //-----------------------------------------------------------------------------
 
-function SWEP:drawAttachmentsWorld(parent)	
+function SWEP:drawAttachmentsWorld(parent)
+	if !IsValid(parent) then
+		return
+	end
+	
 	if self.AttachmentModelsWM then
 		-- if self.AttachmentModelsVM then
 			-- for k,v in pairs(self.AttachmentModelsVM) do
@@ -528,15 +562,17 @@ function SWEP:drawAttachmentsWorld(parent)
 				
 				if v.merge then
 					model:SetParent(parent)
-					model:AddEffects(EF_BONEMERGE)
 					pos = parent:GetPos()
 					ang = parent:GetAngles()
 				elseif v.attachment then
-					vma = parent:GetAttachment(parent:LookupAttachment(v.attachment)) // fuck savings
+					-- vma = parent:GetAttachment(parent:LookupAttachment(v.attachment)) // fuck savings
+					vma = parent:GetAttachment(v._attachment)
 					pos = vma.Pos
 					ang = vma.Ang
 				elseif v.bone then
-					m = parent:GetBoneMatrix(parent:LookupBone(v.bone)) // especially when bones doesnt seem to get set up when you dont spawn weapon on the ground first
+					-- m = parent:GetBoneMatrix(parent:LookupBone(v.bone)) // especially when bones doesnt seem to get set up when you dont spawn weapon on the ground first
+					m = parent:GetBoneMatrix(v._bone)
+					
 					pos = m:GetTranslation()
 					ang = m:GetAngles()
 				end
