@@ -39,6 +39,14 @@ if CLIENT then
 		["kk_ins2_gl_m7"] = {model = "models/weapons/upgrades/a_springfield_gl.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 
 		["kk_ins2_scope_m82"] = {model = "models/weapons/upgrades/a_optic_garand.mdl", pos = Vector(), angle = Angle(), size = Vector(0.075, 0.075, 0.075), merge = true},
+		
+		-- ["kk_was_here_lol"] = {model = "models/weapons/upgrades/a_modkit_m1a1.mdl", pos = Vector(2.3473, -14.2344, 3.829), angle = Angle(0, -90, 0), size = Vector(1, 1, 1), bone = "Weapon", active = true},
+		
+		["modbody"] = {model = "models/weapons/v_cw_kk_doi_garand.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true},
+		
+		["wood"] = {model = "models/weapons/upgrades/a_standard_garand.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, rel = "modbody"},
+		["raul"] = {model = "models/weapons/upgrades/a_modkit_m1a1.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, rel = "modbody"},
+		["kk_ins2_eotech"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_barska_xl.mdl", pos = Vector(0, 0, 7.95), angle = Angle(90, 90, 0), size = Vector(1, 1, 1), attachment = "optic"},
 	}
 	
 	SWEP.AttachmentModelsWM = {
@@ -55,8 +63,14 @@ if CLIENT then
 	SWEP.KKINS2ScopeM82Pos = Vector(-1.3779, -3.5, 0.7695)
 	SWEP.KKINS2ScopeM82Ang = Vector()
 
+	SWEP.KKINS2EoTechPos = Vector(-2.444, -2, -0.1278)
+	SWEP.KKINS2EoTechAng = Vector(0.0096, 0.0097, 0)
+
 	SWEP.M203Pos = Vector(-2.7463, 0, 5.4451)
 	SWEP.M203Ang = Vector(-9.1139, 0.0581, 0)
+
+	SWEP.M203Pos = Vector(-2.7362, -3, 3.7136)
+	SWEP.M203Ang = Vector(-8.5227, 0.0134, 0)
 
 	SWEP.CustomizationMenuScale = 0.019
 end
@@ -67,10 +81,20 @@ SWEP.MuzzleEffectWorld = "muzzleflash_garand_3p"
 SWEP.SightBGs = {main = 0, foldsight = 0}
 
 SWEP.Attachments = {
-	{header = "Sight", offset = {700, -200}, atts = {"bg_foldsight", "kk_ins2_scope_m82"}},
+	{header = "Sight", offset = {700, -200}, atts = {"bg_foldsight", "kk_ins2_eotech", "kk_ins2_scope_m82"}},
 	{header = "Barrel", offset = {-300, -200}, atts = {"kk_ins2_ww2_knife", "kk_ins2_gl_m7"}},
 	{header = "Stock", offset = {1100, 300}, atts = {"kk_ins2_ww2_sling"}},
 	["+reload"] = {header = "Ammo", offset = {100, 300}, atts = {"am_magnum", "am_matchgrade"}}
+}
+
+SWEP.AttachmentDependencies = {
+	["kk_ins2_cstm_cmore"] = {}, 
+	["kk_ins2_cstm_barska"] = {}, 
+	["kk_ins2_cstm_eotechxps"] = {}, 
+	["kk_ins2_cstm_microt1"] = {}, 
+	["kk_ins2_cstm_compm4s"] = {}, 
+	["kk_ins2_cstm_acog"] = {}, 
+	["kk_ins2_cstm_susat"] = {}, 
 }
 
 SWEP.Animations = {

@@ -82,7 +82,7 @@ if CLIENT then
 		
 		if set != currentRigs[self] then
 			if IsValid(self.CW_KK_HANDS) then
-				self.CW_KK_HANDS:SetModel(CustomizableWeaponry_KK.ins2.hands[set])
+				self.CW_KK_HANDS:SetModel(CustomizableWeaponry_KK.ins2.hands[set][1])
 			end
 		end
 		

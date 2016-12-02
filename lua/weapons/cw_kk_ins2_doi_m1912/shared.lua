@@ -12,7 +12,7 @@ if CLIENT then
 	SWEP.CSMuzzleFlashes = true
 	SWEP.ViewModelMovementScale = 1.15
 	
-	SWEP.IconLetter = "k"
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/cw_kk_ins2_doi_m1912")
 	
 	SWEP.NoShells = true
 	SWEP.Shell = "KK_INS2_12guage"

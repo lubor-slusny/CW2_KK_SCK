@@ -1326,6 +1326,36 @@ function TOOL:updatePanel()
 							
 							elementSettingPanelHeight = elementSettingPanelHeight + 34
 							
+							local settParentPanel = vgui.Create("DPanel", elementSettingPanel)
+								
+								local label
+								label = vgui.Create("DLabel", settParentPanel)
+								label:SetText("Parent Override:")
+								label:SetDark(true)
+								label:Dock(LEFT)
+								label:DockMargin(8,0,0,0)
+								label:SizeToContents()
+								
+								local entry
+								entry = vgui.Create("DTextEntry", settParentPanel)
+								entry:Dock(FILL)
+								entry:DockMargin(8,0,8,0)
+								
+								entry:SetValue(curData.rel or "")
+								
+								function entry:OnChange()
+									local f = self:GetValue()
+									
+									curData.rel = f
+								end
+								
+							settParentPanel:Dock(TOP)
+							settParentPanel:DockMargin(0,8,0,0)
+							settParentPanel:SetPaintBackground(false)
+							settParentPanel:SizeToContents()
+							
+							elementSettingPanelHeight = elementSettingPanelHeight + 34
+							
 							local settNoDrawPanel = vgui.Create("DPanel", elementSettingPanel)
 							
 								local cbox, label

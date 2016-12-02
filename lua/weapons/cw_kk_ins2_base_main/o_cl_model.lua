@@ -248,10 +248,11 @@ function SWEP:setupAttachmentModels()
 			
 			v.ent:SetupBones()
 		
-			if v.merge then
-				v.ent:SetParent(self.CW_VM)
-				v.ent:AddEffects(EF_BONEMERGE)
-			end
+			-- if v.merge then
+				-- v.ent:SetParent(self.CW_VM)
+				-- v.ent:AddEffects(EF_BONEMERGE)
+				-- v.ent:AddEffects(EF_BONEMERGE_FASTCULL)
+			-- end
 			
 			if v.attachment then
 				v._attachment = self.CW_VM:LookupAttachment(v.attachment)
@@ -276,6 +277,19 @@ function SWEP:setupAttachmentModels()
 				-- v.ent:SetCollisionBounds(Vector(-2,-1,-0), Vector(2,1,2))
 				-- v.ent:SetRenderBounds(Vector(-2,-1,-0), Vector(2,1,2))
 			-- end
+		end
+	end
+	
+	for k, v in pairs(self.AttachmentModelsVM) do
+		if v.merge then
+			if v.rel and self.AttachmentModelsVM[rel] then
+				v.ent:SetParent(self.AttachmentModelsVM[rel].ent)
+			else
+				v.ent:SetParent(self.CW_VM)
+			end
+			
+			v.ent:AddEffects(EF_BONEMERGE)
+			v.ent:AddEffects(EF_BONEMERGE_FASTCULL)
 		end
 	end
 	
@@ -320,7 +334,7 @@ end
 
 local cvarFixScopes = CreateClientConVar("cw_kk_ins2_scopelightingfix", 1, true, false)
 
-local active, pos, ang, m, vma, model, doRecompute
+local active, pos, ang, m, vma, model, doRecompute, parent
 
 function SWEP:drawAttachments()
 	self._CWVMOverride = false
@@ -339,17 +353,25 @@ function SWEP:drawAttachments()
 		self._CWVMOverride = self._CWVMOverride or (v.active and v.hideVM)
 		
 		doRecompute = cvarFixScopes:GetInt() == 1 and scopes[k]
-			
+		
 		if v.ent and active then
+			if v.rel and self.AttachmentModelsVM[v.rel] then
+				parent = self.AttachmentModelsVM[v.rel].ent
+			else
+				parent = self.CW_VM
+			end
+			
 			if v.merge then
-				pos = EyePos()
-				ang = EyeAngles()
+				v.ent:SetParent(parent)
+				-- v.ent:AddEffects(EF_BONEMERGE_FASTCULL)
+				pos = parent:GetPos()
+				ang = parent:GetAngles()
 			elseif v._attachment then
-				vma = self.CW_VM:GetAttachment(v._attachment)
+				vma = parent:GetAttachment(v._attachment)
 				pos = vma.Pos
 				ang = vma.Ang
 			elseif v._bone then
-				m = self.CW_VM:GetBoneMatrix(v._bone)
+				m = parent:GetBoneMatrix(v._bone)
 				pos = m:GetTranslation()
 				ang = m:GetAngles()
 			end

@@ -178,17 +178,28 @@ if CLIENT then
 		table.insert(sslabeltxt, "^^ [KK INS2] custom physmaterial")
 	end
 	
+	local rigs = CustomizableWeaponry_KK.ins2.hands
+	
 	CustomizableWeaponry_KK.panels.ins2 = function(panel)
 		panel:AddControl("Label", {Text = "INS2 Pack:"}):DockMargin(0, 0, 8, 0)
 		
 		// rigs
-		panel:AddControl("Slider", {
+		local rslider = panel:AddControl("Slider", {
 			Label = "Rig:",
 			Type = "Integer",
 			Min = "1",
-			Max = #CustomizableWeaponry_KK.ins2.hands,
+			Max = #rigs,
 			Command = "cw_kk_ins2_rig"
-		}):DockMargin(8, 0, 8, 0)
+		})
+		
+		rslider:DockMargin(8, 0, 8, 0)
+		
+		local rlabel = panel:AddControl("Label", {Text = "meh"})
+		rlabel:DockMargin(8, 0, 8, 16)
+		
+		function rslider:OnValueChanged(v)
+			rlabel:SetText("^^ " .. (rigs[math.Clamp(math.Round(v or 1), 1, #rigs)][2] or "meh"))
+		end
 		
 		// shell sound function
 		local ssslider = panel:AddControl("Slider", {
