@@ -178,12 +178,12 @@ if CLIENT then
 		table.insert(sslabeltxt, "^^ [KK INS2] custom physmaterial")
 	end
 	
-	local rigs = CustomizableWeaponry_KK.ins2.hands
-	
 	CustomizableWeaponry_KK.panels.ins2 = function(panel)
 		panel:AddControl("Label", {Text = "INS2 Pack:"}):DockMargin(0, 0, 8, 0)
 		
 		// rigs
+		local rigs = CustomizableWeaponry_KK.ins2.hands
+	
 		local rslider = panel:AddControl("Slider", {
 			Label = "Rig:",
 			Type = "Integer",

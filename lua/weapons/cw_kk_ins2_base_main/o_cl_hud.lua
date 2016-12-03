@@ -400,11 +400,16 @@ local mod = 50
 
 function SWEP:DrawWeaponSelection(x, y, wide, tall, alpha)
 	if self.SelectIcon then
-		surface.SetDrawColor(255, 255, 255, alpha)
 		surface.SetTexture(self.SelectIcon)
 		
 		wide = wide - mod
-		surface.DrawTexturedRect(x + (mod / 2), y + (mod / 4) + (wide / 8), wide, (wide / 2))
+		
+		x = x + (mod / 2)
+		y = y + (mod / 4) + (wide / 8)
+		
+		surface.SetDrawColor(255, 255, 255, alpha)
+		
+		surface.DrawTexturedRect(x, y, wide, (wide / 2))
 	else
 		simpleTextColor.a = alpha
 		draw.SimpleText(self.IconLetter, self.SelectFont, x + wide / 2, y + tall * 0.2, simpleTextColor, TEXT_ALIGN_CENTER)

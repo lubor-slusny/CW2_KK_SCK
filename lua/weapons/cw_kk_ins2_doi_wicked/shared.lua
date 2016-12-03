@@ -15,7 +15,7 @@ if CLIENT then
 	
 	SWEP.ViewModelMovementScale = 1.15
 	
-	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_m1919")
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_vickers")
 	
 	SWEP.MuzzleAttachmentName = "muzzle"
 	

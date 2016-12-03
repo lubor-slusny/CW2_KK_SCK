@@ -93,10 +93,10 @@ SWEP.Animations = {
 	base_safe_aim = "iron_down",
 	base_safe_empty = "base_down_empty",
 	base_safe_empty_aim = "iron_down_empty",
-	-- base_melee = "base_melee",
-	base_melee = "base_melee_end",
-	-- base_melee_empty = "base_melee_empty",
-	base_melee_empty = "base_melee_end_empty",
+	base_melee = "base_melee",
+	-- base_melee = "base_melee_end",
+	base_melee_empty = "base_melee_empty",
+	-- base_melee_empty = "base_melee_end_empty",
 	base_crawl = "base_crawl",
 	base_crawl_empty = "base_crawl_empty",
 
@@ -129,9 +129,9 @@ SWEP.Animations = {
 	gl_off_safe_empty = "base_down_empty",
 	gl_off_safe_empty_aim = "iron_down_empty",
 	-- gl_off_melee = "base_melee",
-	gl_off_melee = "base_melee_end",
+	-- gl_off_melee = "base_melee_end",
 	-- gl_off_melee_empty = "base_melee_empty",
-	gl_off_melee_empty = "base_melee_end_empty",
+	-- gl_off_melee_empty = "base_melee_end_empty",
 	gl_off_crawl = "base_crawl",
 	gl_off_crawl_empty = "base_crawl_empty",
 	
@@ -182,7 +182,8 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/v_enfield.mdl"
+-- SWEP.ViewModel		= "models/weapons/v_enfield.mdl"
+SWEP.ViewModel		= "models/weapons/v_cw_kk_doi_enfield.mdl"
 SWEP.WorldModel		= "models/weapons/w_enfield.mdl"
 
 SWEP.WMPos = Vector(14, 0.5, -3)

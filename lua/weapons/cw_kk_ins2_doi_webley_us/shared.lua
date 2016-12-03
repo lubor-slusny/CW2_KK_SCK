@@ -11,21 +11,18 @@ if CLIENT then
 	SWEP.PrintName = "SW 1917"
 	SWEP.CSMuzzleFlashes = true
 	
-	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_webley")
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_sw1917")
 	
 	SWEP.Shell = "KK_INS2_762x33"
 	SWEP.NoShells = true
 	SWEP.ShellScale = 1
 	SWEP.ShellEjectVelocity = 50
 	
-	SWEP.AttachmentModelsVM = {
-		["kk_ins2_revolver_mag"] = {model = "models/weapons/upgrades/a_speedloader_webley.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
-	}
-
+	SWEP.AttachmentModelsVM = {}
 	SWEP.AttachmentModelsWM = {}
 
-	SWEP.IronsightPos = Vector(-1.9479, 0, 0.9354)
-	SWEP.IronsightAng = Vector(-1.6877, 0.0755, 6.6626)
+	SWEP.IronsightPos = Vector(-2.7774, 0, 1.3158)
+	SWEP.IronsightAng = Vector(-1.6686, 0.0659, 6.2251)
 
 	SWEP.CustomizationMenuScale = 0.01
 
@@ -39,34 +36,38 @@ SWEP.MuzzleEffect = "muzzleflash_1911_1p"
 SWEP.MuzzleEffectWorld = "muzzleflash_sten_3p"
 
 SWEP.Attachments = {
-	{header = "Reload Aid", offset = {500, -400}, atts = {"kk_ins2_revolver_mag"}},
 	["+reload"] = {header = "Ammo", offset = {500, 150}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
 SWEP.Animations = {
-	draw = {"base_ready", "base_ready_rare"},
-	
 	base_reload_start = "base_reload_start",
-	base_reload_start_empty = "base_reload_start",
+	base_reload_start_empty = "base_reload_start_empty",
 	base_insert = "base_reload_insert",
 	base_reload_end = "base_reload_end",
 	base_reload_end_empty = "base_reload_end",
 	base_idle = "base_reload_end",	
 	
-	base_pickup = {"base_ready", "base_ready_rare"},
+	base_pickup = "base_ready",
 	base_draw = "base_draw",
-	base_fire = {"base_fire", "base_fire2", "base_fire3"},
-	base_fire_aim = {"iron_fire_1","iron_fire_2"},
+	base_draw_empty = "base_draw_empty",
+	base_fire = {"base_fire", "base_fire2"},
+	base_fire_aim = "iron_fire_1",
+	base_fire_last = "base_fire_last",
+	base_fire_last_aim = "iron_fire_last",
 	base_fire_empty = "base_dryfire",
 	base_fire_empty_aim = "iron_dryfire",
-	base_reload = "base_reload_speed",
-	base_reload_empty = "base_reload_speed",
 	base_idle = "base_idle",
+	base_idle_empty = "empty_idle",
 	base_holster = "base_holster",
+	base_holster_empty = "base_holster_empty",
 	base_sprint = "base_sprint",
+	base_sprint_empty = "base_sprint_empty",
 	base_safe = "base_down",
 	base_safe_aim = "iron_down",
+	base_safe_empty = "base_down_empty",
+	base_safe_empty_aim = "iron_down_empty",
 	base_crawl = "base_crawl",
+	base_crawl_empty = "base_crawl_empty",
 }
 
 SWEP.SpeedDec = 10
@@ -103,7 +104,7 @@ SWEP.Primary.DefaultClip	= 6
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= ".380/200"
 
-SWEP.FireDelay = 60/380
+SWEP.FireDelay = 1.25
 SWEP.FireSound = "CW_KK_INS2_DOI_WEBLEY_FIRE"
 SWEP.Recoil = 2.86
 
@@ -123,14 +124,15 @@ SWEP.HolsterTime = 0.4
 SWEP.CanRestOnObjects = false
 SWEP.Chamberable = false
 SWEP.WeaponLength = 16
+SWEP.KK_INS2_EmptyIdle = true
 
 SWEP.MuzzleVelocity = 190
 
 SWEP.ReloadTimes = {
-	base_reload_start = {24/35, 1.37, KK_INS2_REVOLVER_SLOW_UNLOAD},
-	base_reload_insert = {0, 1.02},
-	base_reload_end = {1.42, 1.42},
-	base_reload_speed = {1.8, 3.5, KK_INS2_REVOLVER_SPEED_UNLOAD, 22/33},
+	base_reload_start = {1.5, 2.2, KK_INS2_REVOLVER_SLOW_UNLOAD},
+	base_reload_start_empty = {2.2, 2.9, KK_INS2_REVOLVER_SLOW_UNLOAD},
+	base_reload_insert = {0, 0.95},
+	base_reload_end = {2, 2},
 }
 
 function SWEP:IndividualInitialize()
