@@ -24,7 +24,15 @@ if CLIENT then
 	SWEP.Shell = "KK_INS2_762x54"
 	SWEP.ShellEjectVelocity = 50
 	
-	SWEP.AttachmentModelsVM = {}
+	SWEP.AttachmentModelsVM = {
+		["kk_ins2_lam"] = {model = "models/weapons/attachments/a_laser_sterling.mdl", pos = Vector(2.4741, -3.8255, 2.5795), angle = Angle(0, -90, 0), size = Vector(1.25, 1.25, 1.25), bone = "Weapon"},
+		["kk_ins2_flashlight"] = {model = "models/weapons/attachments/a_flashlight_sterling.mdl", pos = Vector(2.4741, -3.8255, 2.5795), angle = Angle(0, -90, 0), size = Vector(1.25, 1.25, 1.25), bone = "Weapon"},
+		["kk_ins2_anpeq15"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_anpeq_ring.mdl", pos = Vector(2.4741, -3.8255, 2.5795), angle = Angle(0, -90, 0), size = Vector(1.25, 1.25, 1.25), bone = "Weapon"},
+	}
+	
+	SWEP.LaserAngAdjustBase = Angle(6,-4,0)
+	SWEP.LaserAngAdjustBipod = Angle(0,0,0)
+	
 	SWEP.AttachmentModelsWM = {}
 	
 	SWEP.IronsightPos = Vector(-2.4284, -4, 1.611)
@@ -37,6 +45,7 @@ SWEP.MuzzleEffect = "muzzleflash_m1919_1p"
 SWEP.MuzzleEffectWorld = "muzzleflash_bar_3p"
 
 SWEP.Attachments = {
+	{header = "Lasers", offset = {-500, -100}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}},
 	["+reload"] = {header = "Ammo", offset = {900, 300}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
@@ -46,21 +55,21 @@ SWEP.Animations = {
 	base_fire = {"base_fire", "base_fire2"},
 	base_fire_aim = {"base_fire","base_fire2"},
 	base_fire_empty = "base_dryfire",
-	base_fire_empty_aim = "iron_dryfire",
+	base_fire_empty_aim = "base_dryfire",
 	base_reload = "base_reload",
-	base_reload_empty = "base_reload_empty",
+	base_reload_empty = "base_reloadempty",
 	base_idle = "base_idle",
 	base_holster = "base_holster",
 	base_sprint = "base_sprint",
 	base_safe = "base_down",
-	base_safe_aim = "iron_down",
+	base_safe_aim = "base_down",
 	base_crawl = "base_crawl",
 	
 	bipod_in = "deployed_in",
 	bipod_fire = {"deployed_fire_1","deployed_fire_2"},
 	bipod_fire_aim = "deployed_iron_fire_1",
-	bipod_fire_empty = "deployed_dryfire",
-	bipod_fire_empty_aim = "deployed_iron_dryfire",
+	bipod_fire_empty = "base_dryfire",
+	bipod_fire_empty_aim = "base_dryfire",
 	bipod_reload = "deployed_reload",
 	bipod_reload_empty = "deployed_reload_empty",
 	bipod_out = "deployed_out",
@@ -127,9 +136,25 @@ SWEP.WeaponLength = 24
 SWEP.MuzzleVelocity = 850
 
 SWEP.ReloadTimes = {
-	base_reload = {5.65, 7.61},
-	base_reload_empty = {4.82, 8.88},
+	base_reload = {7.3, 10},
+	base_reloadempty = {7.3, 10},
 	
-	deployed_reload = {5.5, 7.33},
-	deployed_reload_empty = {4.7, 8.58},
+	deployed_reload = {5.8, 8.1},
+	deployed_reload_empty = {5.8, 8.1},
 }
+
+if CLIENT then
+	function SWEP:IndividualThink_INS2()
+		self.LaserAngAdjust = self.dt.BipodDeployed and self.LaserAngAdjustBipod or self.LaserAngAdjustBase
+	end
+
+	local pos, ang
+	
+	CustomizableWeaponry.callbacks:addNew("adjustViewmodelPosition", "KK_DOI_VICKERS", function(wep, TargetPos, TargetAng)
+		if wep:GetClass() != "cw_kk_ins2_doi_wicked" then return end
+		if wep.dt.BipodDeployed then return end
+		if !wep:isAiming() then return end
+		
+		return wep.AlternativePos, wep.AlternativeAng
+	end)
+end

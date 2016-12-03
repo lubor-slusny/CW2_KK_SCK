@@ -8,7 +8,7 @@ include("sh_soundscript.lua")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "SW 1917"
+	SWEP.PrintName = "SW M1917"
 	SWEP.CSMuzzleFlashes = true
 	
 	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_sw1917")
@@ -22,7 +22,7 @@ if CLIENT then
 	SWEP.AttachmentModelsWM = {}
 
 	SWEP.IronsightPos = Vector(-2.7774, 0, 1.3158)
-	SWEP.IronsightAng = Vector(-1.6686, 0.0659, 6.2251)
+	SWEP.IronsightAng = Vector(-1.6686, 0.0659, 6)
 
 	SWEP.CustomizationMenuScale = 0.01
 
@@ -102,7 +102,7 @@ SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
 SWEP.Primary.ClipSize		= 6
 SWEP.Primary.DefaultClip	= 6
 SWEP.Primary.Automatic		= false
-SWEP.Primary.Ammo			= ".380/200"
+SWEP.Primary.Ammo			= ".45 ACP"
 
 SWEP.FireDelay = 1.25
 SWEP.FireSound = "CW_KK_INS2_DOI_WEBLEY_FIRE"
@@ -115,11 +115,11 @@ SWEP.MaxSpreadInc = 0.06
 SWEP.SpreadPerShot = 0.02
 SWEP.SpreadCooldown = 0.25
 SWEP.Shots = 1
-SWEP.Damage = 28
+SWEP.Damage = 30
 
-SWEP.FirstDeployTime = 1.7
-SWEP.DeployTime = 0.4
-SWEP.HolsterTime = 0.4
+SWEP.FirstDeployTime = 0.5
+SWEP.DeployTime = 0.5
+SWEP.HolsterTime = 0.5
 
 SWEP.CanRestOnObjects = false
 SWEP.Chamberable = false
