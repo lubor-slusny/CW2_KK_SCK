@@ -75,15 +75,15 @@ SWEP.AimViewModelFOV = 30
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_panzerschreck.mdl"
-SWEP.WorldModel		= "models/weapons/w_panzerschreck.mdl"
+SWEP.WorldModel		= "models/weapons/w_cw_kk_doi_shrek.mdl"
 
 -- SWEP.DrawCustomWM = true
--- SWEP.WMPos = Vector(5, 0, -1.5)
--- SWEP.WMAng = Vector(8, 180, -180)
+SWEP.WMPos = Vector(5, 0, -1.5)
+SWEP.WMAng = Vector(8, 180, -180)
 -- SWEP.WMPos = Vector(10, 0.5, -8)
 -- SWEP.WMAng = Vector(8, 180, 0)
-SWEP.WMPos = Vector(8, 0.5, -6)
-SWEP.WMAng = Vector(8, 180, 0)
+-- SWEP.WMPos = Vector(8, 0.5, -6)
+-- SWEP.WMAng = Vector(8, 180, 0)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2de
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.ww2de
@@ -123,18 +123,18 @@ SWEP.ReloadTimes = {
 	base_reload = {4.4, 6.43},
 }
 
-if CLIENT then
-	local bone
-	local position = Vector(4.5, 0, 0)
+-- if CLIENT then
+	-- local bone
+	-- local position = Vector(4.5, 0, 0)
 	
-	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_tankshrek", function(wep, welement)
-		welement:SetBodygroup(1, (wep:Clip1() == 1) and 0 or 1)
+	-- CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_tankshrek", function(wep, welement)
+		-- welement:SetBodygroup(1, (wep:Clip1() == 1) and 0 or 1)
 		
-		if not bone then
-			welement:SetupBones()
-			bone = welement:LookupBone("Panzer_LOD1_LOD1")
-		else
-			welement:ManipulateBonePosition(bone, position)
-		end
-	end)
-end
+		-- if not bone then
+			-- welement:SetupBones()
+			-- bone = welement:LookupBone("Panzer_LOD1_LOD1")
+		-- else
+			-- welement:ManipulateBonePosition(bone, position)
+		-- end
+	-- end)
+-- end

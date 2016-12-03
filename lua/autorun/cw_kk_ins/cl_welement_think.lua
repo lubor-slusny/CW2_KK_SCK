@@ -95,7 +95,7 @@ if CLIENT then
 	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_rpg", "launcher")
 	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_piat", "launcher")
 	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_tankfist", "launcher")
-	-- CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_tankshrek", "launcher")
+	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_tankshrek", "launcher")
 	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_zooka", "launcher")
 	
 	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_nade_anm14", "grenade")
