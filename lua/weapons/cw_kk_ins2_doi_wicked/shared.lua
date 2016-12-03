@@ -10,7 +10,7 @@ SWEP.magType = "lmgBox"
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "Vicked Sick"
+	SWEP.PrintName = "[Beta] Vicked Sick"
 	SWEP.CSMuzzleFlashes = true
 	
 	SWEP.ViewModelMovementScale = 1.15
@@ -30,13 +30,16 @@ if CLIENT then
 		["kk_ins2_anpeq15"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_anpeq_ring.mdl", pos = Vector(2.4741, -3.8255, 2.5795), angle = Angle(0, -90, 0), size = Vector(1.25, 1.25, 1.25), bone = "Weapon"},
 	}
 	
-	SWEP.LaserAngAdjustBase = Angle(6,-4,0)
-	SWEP.LaserAngAdjustBipod = Angle(0,0,0)
+	-- SWEP.LaserAngAdjustBase = Angle(6,-4,0)
+	-- SWEP.LaserAngAdjustBipod = Angle(0,0,0)
 	
 	SWEP.AttachmentModelsWM = {}
 	
 	SWEP.IronsightPos = Vector(-2.4284, -4, 1.611)
 	SWEP.IronsightAng = Vector(0.3849, 0.4773, 0)
+
+	SWEP.AlternativePos = Vector(0, 0, 0)
+	SWEP.AlternativeAng = Vector(-4.7469, -2.8829, 0)
 
 	SWEP.CustomizationMenuScale = 0.018
 end
@@ -144,9 +147,9 @@ SWEP.ReloadTimes = {
 }
 
 if CLIENT then
-	function SWEP:IndividualThink_INS2()
-		self.LaserAngAdjust = self.dt.BipodDeployed and self.LaserAngAdjustBipod or self.LaserAngAdjustBase
-	end
+	-- function SWEP:IndividualThink_INS2()
+		-- self.LaserAngAdjust = self.dt.BipodDeployed and self.LaserAngAdjustBipod or self.LaserAngAdjustBase
+	-- end
 
 	local pos, ang
 	

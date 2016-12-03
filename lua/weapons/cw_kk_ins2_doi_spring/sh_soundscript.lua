@@ -139,4 +139,97 @@ SWEP.Sounds = {
 	base_melee_empty = {
 		{time = 1/30, sound = "CW_KK_INS2_DOI_MELEE"},
 	},
+	
+	// adsfigbakdnbfagbfasmdlkb
+	
+	glsetup_in = {
+		{time = 17/33.5, sound = "CW_KK_INS2_DOI_SPRING_RATTLE"},
+		{time = 54/33.5, sound = "CW_KK_INS2_DOI_SPRING_GL_LOAD1"},
+		{time = 63/33.5, sound = "CW_KK_INS2_DOI_SPRING_GL_LOAD2"},
+		{time = 97/33.5, sound = "CW_KK_INS2_DOI_SPRING_RATTLE"},
+		{time = 110/33.5, sound = "CW_KK_INS2_DOI_SPRING_SHOULDER"},
+	},
+
+	glsetup_out = {
+		{time = 12/33.5, sound = "CW_KK_INS2_DOI_SPRING_RATTLE"},
+		{time = 36/33.5, sound = "CW_KK_INS2_DOI_SPRING_GL_REMOVE"},
+		{time = 81/33.5, sound = "CW_KK_INS2_DOI_SPRING_RATTLE"},
+		{time = 108/33.5, sound = "CW_KK_INS2_DOI_SPRING_SHOULDER"},
+	},
+
+	glsetup_out_empty = {
+		// { event AE_CL_CREATE_PARTICLE_BRASS 21 ""},
+		{time = 13/30.5, sound = "CW_KK_INS2_DOI_SPRING_BOLTRELEASE"},
+		{time = 19/30.5, sound = "CW_KK_INS2_DOI_SPRING_BOLTBACK"},
+		{time = 26/30.5, sound = "CW_KK_INS2_DOI_SPRING_BOLTFORWARD"},
+		{time = 33/30.5, sound = "CW_KK_INS2_DOI_SPRING_BOLTLATCH"},
+	},
+
+	glsetup_draw = {
+		{time = 0/32, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
+	},
+
+	glsetup_draw_empty = {
+		{time = 0/33.5, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
+		{time = 36/33.5, sound = "CW_KK_INS2_DOI_SPRING_GL_LOAD1"},
+		{time = 49/33.5, sound = "CW_KK_INS2_DOI_SPRING_GL_LOAD2"},
+		{time = 102/33.5, sound = "CW_KK_INS2_DOI_SPRING_BOLTRELEASE"},
+		{time = 110/33.5, sound = "CW_KK_INS2_DOI_SPRING_BOLTBACK"},
+		{time = 120/33.5, sound = "CW_KK_INS2_DOI_SPRING_BOLTFORWARD"},
+		{time = 129/33.5, sound = "CW_KK_INS2_DOI_SPRING_BOLTLATCH"},
+		// { event AE_CL_CREATE_PARTICLE_BRASS 112 ""},
+		// { event 46 52 ""},
+		{time = 145/33.5, sound = "CW_KK_INS2_DOI_SPRING_RATTLE"},
+		{time = 156/33.5, sound = "CW_KK_INS2_DOI_SPRING_SHOULDER"},
+	},
+
+	glsetup_holster = {
+		{time = 0/31.5, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
+	},
+
+	glsetup_crawl = {
+		{time = 0/30, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
+		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
+	},
+
+	-- glsetup_fire = {
+		-- // { event AE_MUZZLEFLASH 0 ""},
+		-- // fps 32
+	-- },
+
+	glsetup_dryfire = {
+		{time = 0/30, sound = "CW_KK_INS2_DOI_SPRING_EMPTY"},
+	},
+
+	glsetup_reload = {
+		{time = 17/33.5, sound = "CW_KK_INS2_DOI_SPRING_RATTLE"},
+		{time = 54/33.5, sound = "CW_KK_INS2_DOI_SPRING_GL_LOAD1"},
+		{time = 63/33.5, sound = "CW_KK_INS2_DOI_SPRING_GL_LOAD2"},
+		{time = 119/33.5, sound = "CW_KK_INS2_DOI_SPRING_BOLTRELEASE"},
+		{time = 124/33.5, sound = "CW_KK_INS2_DOI_SPRING_BOLTBACK"},
+		{time = 135/33.5, sound = "CW_KK_INS2_DOI_SPRING_BOLTFORWARD"},
+		{time = 143/33.5, sound = "CW_KK_INS2_DOI_SPRING_BOLTLATCH"},
+		// { event AE_CL_CREATE_PARTICLE_BRASS 125 ""},
+		// { event 46 139 ""},
+		{time = 164/33.5, sound = "CW_KK_INS2_DOI_SPRING_RATTLE"},
+		{time = 168/33.5, sound = "CW_KK_INS2_DOI_SPRING_SHOULDER"},
+	},
+
+	-- glsetup_iron_fire = {
+		-- // { event AE_MUZZLEFLASH 0 ""},
+		-- // fps 32
+	-- },
+
+	glsetup_iron_dryfire = {
+		{time = 0/30, sound = "CW_KK_INS2_DOI_SPRING_EMPTY"},
+	},
+
+	glsetup_holster_empty = {
+		{time = 0/31, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
+	},
+
+	glsetup_crawl_empty = {
+		{time = 0/30, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
+		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
+	},
 }

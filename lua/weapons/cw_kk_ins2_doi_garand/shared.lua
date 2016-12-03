@@ -81,20 +81,10 @@ SWEP.MuzzleEffectWorld = "muzzleflash_garand_3p"
 SWEP.SightBGs = {main = 0, foldsight = 0}
 
 SWEP.Attachments = {
-	{header = "Sight", offset = {700, -200}, atts = {"bg_foldsight", "kk_ins2_eotech", "kk_ins2_scope_m82"}},
+	{header = "Sight", offset = {700, -200}, atts = {"bg_foldsight",/* "kk_ins2_eotech",*/ "kk_ins2_scope_m82"}},
 	{header = "Barrel", offset = {-300, -200}, atts = {"kk_ins2_ww2_knife", "kk_ins2_gl_m7"}},
 	{header = "Stock", offset = {1100, 300}, atts = {"kk_ins2_ww2_sling"}},
 	["+reload"] = {header = "Ammo", offset = {100, 300}, atts = {"am_magnum", "am_matchgrade"}}
-}
-
-SWEP.AttachmentDependencies = {
-	["kk_ins2_cstm_cmore"] = {}, 
-	["kk_ins2_cstm_barska"] = {}, 
-	["kk_ins2_cstm_eotechxps"] = {}, 
-	["kk_ins2_cstm_microt1"] = {}, 
-	["kk_ins2_cstm_compm4s"] = {}, 
-	["kk_ins2_cstm_acog"] = {}, 
-	["kk_ins2_cstm_susat"] = {}, 
 }
 
 SWEP.Animations = {
