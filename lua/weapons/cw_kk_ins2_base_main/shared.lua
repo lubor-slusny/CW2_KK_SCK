@@ -243,6 +243,8 @@ function SWEP:IndividualThink()
 	end
 	
 	if CLIENT then
+		self.ViewModelMovementScale = 0
+		
 		fa = cvarFA:GetInt()
 		fa = (fa == 1) and cvarFAAC:SetInt(fa)
 		-- self.NoFreeAim = self:isAiming()

@@ -123,13 +123,15 @@ if CLIENT then
 		self._KK_INS2_wasSafe = isSafe
 	end
 	
+	local sth = CreateClientConVar("cw_kk_ins2_sprint", 0, true, false)
+	
 	function SWEP:sprintAnimFunc()
-		if self.Slot == 2 or self.Slot == 3 then
+		if sth:GetInt() == 0 and (self.Slot == 2 or self.Slot == 3) then
 			anim = "safe"
 			rate = 1
 		else
 			anim = "sprint"
-			rate = self.SprintAnimSpeed
+			rate = 1 // self.SprintAnimSpeed
 		end
 		
 		prefix = self:getForegripMode()
