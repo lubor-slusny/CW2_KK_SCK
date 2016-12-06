@@ -42,8 +42,8 @@ if CLIENT then
 	SWEP.IronsightPos = Vector(-2.4773, -3, 1.2686)
 	SWEP.IronsightAng = Vector(0, 0.0355, 0)
 
-	SWEP.FoldSightPos = Vector(-2.4838, -3, 1.1628)
-	SWEP.FoldSightAng = Vector(0.2625, 0.0079, 0)
+	SWEP.FoldSightPos = Vector(-2.4768, -3, 1.1628)
+	SWEP.FoldSightAng = Vector(0.2625, 0.0213, 0)
 
 	SWEP.CustomizationMenuScale = 0.016
 end
@@ -117,7 +117,7 @@ SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= ".30 Carbine"
 
 SWEP.FireDelay = 60/600
-SWEP.FireSound = "CW_KK_INS2_DOI_M1_FIRE"
+SWEP.FireSound = "CW_KK_INS2_DOI_M1A1_FIRE"
 SWEP.Recoil = 0.99
 
 SWEP.HipSpread = 0.045

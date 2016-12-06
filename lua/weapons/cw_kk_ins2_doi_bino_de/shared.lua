@@ -29,7 +29,9 @@ end
 SWEP.CanRestOnObjects = false
 SWEP.WeaponLength = 16
 
-SWEP.Attachments = {}
+SWEP.Attachments = {
+	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
+}
 
 SWEP.Animations = {
 	base_pickup = "base_draw",

@@ -77,8 +77,8 @@ if CLIENT then
 		["kk_ins2_cstm_eotechxps"] = {model = "models/weapons/attachments/w_cw_kk_ins2_cstm_eotechxps.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
-	SWEP.IronsightPos = Vector(-1.6794, -1, 1.1959)
-	SWEP.IronsightAng = Vector(-0.109, 0.0333, 0)
+	SWEP.IronsightPos = Vector(-1.6765, -1, 1.1959)
+	SWEP.IronsightAng = Vector(-0.1277, 0.0333, 9.6136)
 
 	SWEP.KKINS2KobraPos = Vector(-1.5109, -2, 0.2348)
 	SWEP.KKINS2KobraAng = Vector()

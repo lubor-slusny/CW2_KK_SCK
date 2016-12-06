@@ -54,6 +54,7 @@ SWEP.WeaponLength = 44
 
 SWEP.Attachments = {
 	{header = "Ammo", offset = {600, -200}, atts = {"kk_ins2_ammo_m10"}},
+	{header = "Stock", offset = {600, 200}, atts = {"kk_ins2_ww2_sling"}},
 }
 
 SWEP.Animations = {

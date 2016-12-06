@@ -65,6 +65,9 @@ CustomizableWeaponry.callbacks:addNew("initialize", "KK_INS2_BASE", function(wep
 		
 		// just so it doesnt iterate over ents.GetAll()
 		CustomizableWeaponry_KK.ins2.welementThink:_addWeapon(wep)
+		
+		// ins2 viewbob
+		wep._vmCamAttach = wep.CW_VM:LookupAttachment("camera")
 	end
 	
 	// Ive never really used ammo crate before so here s quickfix for explosives

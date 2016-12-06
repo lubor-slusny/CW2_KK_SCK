@@ -643,13 +643,13 @@ end
 function SWEP:scaleMovement(val, mod)
 	local scale = self.ViewModelMovementScale
 	
-	if self.Slot != 2 and self.Slot != 3 then
+	-- if self.Slot != 2 and self.Slot != 3 then
 		if self.Sequence:find("sprint") then
 			scale = self.ViewModelMovementScale_sprint
 		else
 			scale = self.ViewModelMovementScale_base
 		end
-	end
+	-- end
 	
 	if self.ActiveAttachments.kk_ins2_ww2_knife or self.ActiveAttachments.kk_ins2_ww2_knife_fat then
 		if self:isRunning() then

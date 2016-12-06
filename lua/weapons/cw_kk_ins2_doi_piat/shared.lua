@@ -33,7 +33,7 @@ if CLIENT then
 	SWEP.ViewModelMovementScale_sprint = 0.6
 	SWEP.DisableSprintViewSimulation = true
 	
-	SWEP.CustomizationMenuScale = 0.01
+	SWEP.CustomizationMenuScale = 0.013
 	SWEP.HUD_MagText = "TUBE: "
 end
 
@@ -41,6 +41,7 @@ SWEP.Chamberable = false
 SWEP.WeaponLength = 44
 
 SWEP.Attachments = {
+	{header = "Stock", offset = {400, -200}, atts = {"kk_ins2_ww2_sling"}},
 }
 
 SWEP.KK_INS2_EmptyIdle = true

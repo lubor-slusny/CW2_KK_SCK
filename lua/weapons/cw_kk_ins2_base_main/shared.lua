@@ -13,6 +13,7 @@ AddCSLuaFile("o_cl_hud.lua")
 AddCSLuaFile("o_cl_model.lua")
 AddCSLuaFile("o_sh_attacks.lua")
 AddCSLuaFile("o_sh_m203.lua")
+AddCSLuaFile("o_sh_stats.lua")
 AddCSLuaFile("o_sh_think.lua")
 AddCSLuaFile("o_shared.lua")
 
@@ -24,6 +25,7 @@ include("sh_nwext.lua")
 
 include("o_sh_attacks.lua")
 include("o_sh_m203.lua")
+include("o_sh_stats.lua")
 include("o_sh_think.lua")
 include("o_shared.lua")
 

@@ -4,8 +4,8 @@ att.displayNameShort = "Sling"
 att.displayName = "Weapon Sling"
 
 att.statModifiers = {
-	DrawSpeedMult = 0.3,
-	HolsterSpeed = 0.3,
+	DrawSpeedMult = 0.5,
+	HolsterSpeedMult = 0.5,
 }
 
 if CLIENT then
@@ -23,13 +23,5 @@ if CLIENT then
 	-- function att:detachFunc()
 	-- end
 end
-
-function att:holsterEnd(swWep)
-	if self.ActiveAttachments[att.name] then
-		swWep.oneTimeDeploySpeed = att.statModifiers.DrawSpeedMult
-	end
-end
-
-CustomizableWeaponry.callbacks:addNew("holsterEnd", "KK_INS2_WW2_SLING", att.holsterEnd)
 
 CustomizableWeaponry:registerAttachment(att)

@@ -35,7 +35,9 @@ SWEP.MuzzleEffectWorld = "ins_weapon_rpg_frontblast"
 SWEP.Chamberable = false
 SWEP.WeaponLength = 44
 
-SWEP.Attachments = {}
+SWEP.Attachments = {
+	{header = "Stock", offset = {600, 0}, atts = {"kk_ins2_ww2_sling"}},
+}
 
 SWEP.Animations = {
 	base_insert = "base_reload",
