@@ -189,7 +189,6 @@ SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_cw_kk_ins2_rpg.mdl"
 SWEP.WorldModel		= "models/weapons/w_rpg7.mdl"
 
-SWEP.DrawCustomWM = true
 SWEP.WMPos = Vector(7, 1, -2)
 SWEP.WMAng = Vector(-10, 0, 180)
 

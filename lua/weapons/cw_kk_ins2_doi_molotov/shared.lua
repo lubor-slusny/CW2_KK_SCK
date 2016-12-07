@@ -8,26 +8,24 @@ include("sh_soundscript.lua")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "Panzerfaust"
+	SWEP.PrintName = "[Beta] AJNE USE SHAJZE"
 	
-	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_panzerfaust")
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_flamethrower_eintoss46_german")
 	
-	-- SWEP.RearEffectw = true
 	SWEP.NoShells = true
 	
 	SWEP.AttachmentModelsVM = {}
 	SWEP.AttachmentModelsWM = {}
 	
-	SWEP.IronsightPos = Vector(-2.6525, -2, 0.2846)
-	SWEP.IronsightAng = Vector(0.0752, 0, 7)
+	SWEP.IronsightPos = Vector(-2.6808, 0, 1.7394)
+	SWEP.IronsightAng = Vector(0, 0, 0)
 
 	SWEP.SprintAnimSpeed = 1
 	SWEP.ViewModelMovementScale_sprint = 0.6
 	SWEP.DisableSprintViewSimulation = true
 	
 	SWEP.CustomizationMenuScale = 0.01
-	SWEP.HUD_MagText = "TUBE: "
-	SWEP.MuzzleAttachmentName = "glmuzzle"
+	SWEP.HUD_MagText = "LOAD: "
 end
 
 SWEP.MuzzleEffect = "ins_weapon_m203"
@@ -40,15 +38,12 @@ SWEP.Attachments = {
 	{header = "Stock", offset = {400, -200}, atts = {"kk_ins2_ww2_sling"}},
 }
 
-SWEP.KK_INS2_EmptyIdle = true
-
 SWEP.Animations = {
-	at4_reload_start = "base_holster_empty",
+	at4_reload_start = "base_holster",
 	at4_reload_end = "base_ready",
 	
 	base_pickup = "base_ready",
 	base_draw = "base_draw",
-	base_draw_empty = "base_draw_empty",
 	base_fire = "base_fire",
 	base_fire_aim = "iron_fire",
 	base_fire_last = "base_fire",
@@ -56,17 +51,11 @@ SWEP.Animations = {
 	base_fire_empty = "base_dryfire",
 	base_fire_empty_aim = "iron_dryfire",
 	base_idle = "base_idle",
-	base_idle_empty = "base_idle_empty",
 	base_holster = "base_holster",
-	base_holster_empty = "base_holster_empty",
 	base_sprint = "base_sprint",
-	base_sprint_empty = "base_sprint_empty",
 	base_safe = "base_down",
 	base_safe_aim = "iron_down",
-	base_safe_empty = "base_down_empty",
-	base_safe_empty_aim = "iron_down_empty",
 	base_crawl = "base_crawl",
-	base_crawl_empty = "base_crawl_empty",
 }
 
 SWEP.SpeedDec = 15
@@ -75,7 +64,7 @@ SWEP.Slot = 4
 SWEP.SlotPos = 0
 SWEP.NormalHoldType = "rpg"
 SWEP.RunHoldType = "passive"
-SWEP.FireModes = {"single"}
+SWEP.FireModes = {"auto"}
 SWEP.Base = "cw_kk_ins2_base"
 SWEP.Category = "CW 2.0 KK INS2 DOI"
 
@@ -86,7 +75,7 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/v_panzerfaust.mdl"
+SWEP.ViewModel		= "models/weapons/v_flame_eintoss46.mdl"
 SWEP.WorldModel		= "models/weapons/w_panzerfaust.mdl"
 
 SWEP.WMPos = Vector(6.035, -1.5, -1)
@@ -101,11 +90,11 @@ SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
 SWEP.Primary.ClipSize		= 1
 SWEP.Primary.DefaultClip	= 1
 SWEP.Primary.Automatic		= true
-SWEP.Primary.Ammo			= "Panzerfaust"
+SWEP.Primary.Ammo			= "Incendiary"
 
-SWEP.FireDelay = 0.5
-SWEP.FireSound = "CW_KK_INS2_DOI_DOI_TANKFIST_FIRE"
-SWEP.Recoil = 0.5
+SWEP.FireDelay = 0
+SWEP.FireSound = "CW_KK_INS2_DOI_FLAME_DE_FIRE_START"
+SWEP.Recoil = 0
 
 SWEP.HipSpread = 0.05
 SWEP.AimSpread = 0.005
@@ -117,18 +106,18 @@ SWEP.Shots = 1
 SWEP.Damage = 100
 
 SWEP.MuzzleVelocity = 45
-SWEP.projectileClass = "cw_kk_ins2_projectile_pf60"
+SWEP.projectileClass = "cw_kk_ins2_projectile_molotov"
 SWEP.hipBulletDelay = 0
 
-SWEP.FirstDeployTime = 3.4
-SWEP.DeployTime = 1
-SWEP.HolsterTime = 0.8
+SWEP.FirstDeployTime = 1.3
+SWEP.DeployTime = 1.3
+SWEP.HolsterTime = 0.7
 
 // terrible hax FTW
 
 SWEP.ReloadSpeed = 1
-SWEP.ReloadTime = 2.5
-SWEP.ReloadHalt = 4.5
+SWEP.ReloadTime = 1.5
+SWEP.ReloadHalt = 2.5
 
 function SWEP:SetupDataTables()
 	self:NetworkVar("Int", 0, "State")

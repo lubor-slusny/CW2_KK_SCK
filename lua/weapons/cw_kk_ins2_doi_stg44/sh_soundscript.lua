@@ -29,19 +29,19 @@ SWEP.Sounds = {
 	},
 
 	base_reload = {
-		{time = 12/30, sound = "CW_KK_INS2_DOI_STG44_MAGRELEASE"},
-		{time = 14/30, sound = "CW_KK_INS2_DOI_STG44_MAGOUT"},
-		{time = 61/30, sound = "CW_KK_INS2_DOI_STG44_MAGIN"},
-		// reload time = 63 ""},
+		{time = 15/30, sound = "CW_KK_INS2_DOI_STG44_MAGRELEASE"},
+		{time = 18/30, sound = "CW_KK_INS2_DOI_STG44_MAGOUT"},
+		{time = 62/30, sound = "CW_KK_INS2_DOI_STG44_MAGIN"},
+		// reload time = 64 ""},
 	},
 
 	base_reloadempty = {
-		{time = 12/30, sound = "CW_KK_INS2_DOI_STG44_MAGRELEASE"},
-		{time = 14/30, sound = "CW_KK_INS2_DOI_STG44_MAGOUT"},
-		{time = 61/30, sound = "CW_KK_INS2_DOI_STG44_MAGIN"},
-		// reload time = 63 ""},
-		{time = 88/30, sound = "CW_KK_INS2_DOI_STG44_BOLTBACK"},
-		{time = 96/30, sound = "CW_KK_INS2_DOI_STG44_BOLTRELEASE"},
+		{time = 22/31.8, sound = "CW_KK_INS2_DOI_STG44_MAGRELEASE"},
+		{time = 24/31.8, sound = "CW_KK_INS2_DOI_STG44_MAGOUT"},
+		{time = 74/31.8, sound = "CW_KK_INS2_DOI_STG44_MAGIN"},
+		// reload time = 76 ""},
+		{time = 108/31.8, sound = "CW_KK_INS2_DOI_STG44_BOLTBACK"},
+		{time = 118/31.8, sound = "CW_KK_INS2_DOI_STG44_BOLTRELEASE"},
 	},
 
 	iron_dryfire = {

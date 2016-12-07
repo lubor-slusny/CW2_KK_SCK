@@ -99,7 +99,6 @@ SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_bazooka.mdl"
 SWEP.WorldModel		= "models/weapons/w_bazooka.mdl"
 
-SWEP.DrawCustomWM = true
 SWEP.WMPos = Vector(-5, 0, -0.5)
 SWEP.WMAng = Vector(8, 180, -180)
 

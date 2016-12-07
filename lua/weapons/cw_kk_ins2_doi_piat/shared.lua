@@ -93,7 +93,6 @@ SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_piat.mdl"
 SWEP.WorldModel		= "models/weapons/w_piat.mdl"
 
-SWEP.DrawCustomWM = true
 SWEP.WMPos = Vector(10, 1, -4.5)
 SWEP.WMAng = Vector(-4, 0, -180)
 

@@ -13,7 +13,7 @@ if CLIENT then
 	
 	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_sw1917")
 	
-	SWEP.Shell = "KK_INS2_762x33"
+	SWEP.Shell = "KK_INS2_45apc"
 	SWEP.NoShells = true
 	SWEP.ShellScale = 1
 	SWEP.ShellEjectVelocity = 50

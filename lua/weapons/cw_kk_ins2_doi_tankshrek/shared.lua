@@ -79,7 +79,6 @@ SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_panzerschreck.mdl"
 SWEP.WorldModel		= "models/weapons/w_cw_kk_doi_shrek.mdl"
 
--- SWEP.DrawCustomWM = true
 SWEP.WMPos = Vector(5, 0, -1.5)
 SWEP.WMAng = Vector(8, 180, -180)
 -- SWEP.WMPos = Vector(10, 0.5, -8)
