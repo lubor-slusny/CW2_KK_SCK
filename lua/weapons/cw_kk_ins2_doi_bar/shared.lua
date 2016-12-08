@@ -119,11 +119,9 @@ SWEP.Primary.DefaultClip	= 20
 SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= ".30-06"
 
-SWEP.Secondary.Automatic	= false
-
-SWEP.FireDelay = 60/650
 SWEP.FireDelayFast = 60/650
 SWEP.FireDelaySlow = 60/450
+SWEP.FireDelay = SWEP.FireDelayFast
 SWEP.FireSound = "CW_KK_INS2_DOI_BAR_FIRE"
 SWEP.Recoil = 1.5
 

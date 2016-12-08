@@ -8,7 +8,7 @@ include("sh_soundscript.lua")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "[Beta] AJNE USE SHAJZE"
+	SWEP.PrintName = "[Beta] Molotov Launcher"
 	
 	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_flamethrower_eintoss46_german")
 	

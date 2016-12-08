@@ -54,7 +54,7 @@ SWEP.NormalHoldType = "grenade"
 SWEP.RunHoldType = "normal"
 SWEP.FireModes = {"semi"}
 SWEP.Base = "cw_kk_ins2_base_nade"
-SWEP.Category = "CW 2.0 KK INS2 DOI"
+SWEP.Category = "CW 2.0 KK INS2 EXT"
 
 SWEP.Author			= "Spy"
 SWEP.Contact		= ""

@@ -109,7 +109,7 @@ SWEP.NormalHoldType = "revolver"
 SWEP.RunHoldType = "normal"
 SWEP.FireModes = {"semi"}
 SWEP.Base = "cw_kk_ins2_base"
-SWEP.Category = "CW 2.0 KK INS2 WS"
+SWEP.Category = "CW 2.0 KK INS2 EXT"
 
 SWEP.Author			= "Spy"
 SWEP.Contact		= ""

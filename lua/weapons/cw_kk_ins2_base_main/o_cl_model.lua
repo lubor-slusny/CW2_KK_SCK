@@ -640,16 +640,26 @@ end
 // scaleMovement edited to use sprint state dependent base values 
 //-----------------------------------------------------------------------------
 
+local sth = CreateClientConVar("cw_kk_ins2_sprint", 0, true, false)
+
 function SWEP:scaleMovement(val, mod)
 	local scale = self.ViewModelMovementScale
 	
-	-- if self.Slot != 2 and self.Slot != 3 then
+	if sth:GetInt() == 1 then
+		if self.Sequence:find("sprint") then
+			return 0
+		else
+			return val * self.ViewModelMovementScale_base * mod
+		end
+	end
+	
+	if self.Slot != 2 and self.Slot != 3 then
 		if self.Sequence:find("sprint") then
 			scale = self.ViewModelMovementScale_sprint
 		else
 			scale = self.ViewModelMovementScale_base
 		end
-	-- end
+	end
 	
 	if self.ActiveAttachments.kk_ins2_ww2_knife or self.ActiveAttachments.kk_ins2_ww2_knife_fat then
 		if self:isRunning() then

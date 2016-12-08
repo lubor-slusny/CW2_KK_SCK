@@ -226,7 +226,8 @@ function SWEP:IndividualThink_INS2() end
 
 local cvarFA = GetConVar("cw_freeaim")
 local cvarFAAC = GetConVar("cw_freeaim_autocenter")
-
+local cvarSprint = CreateClientConVar("cw_kk_ins2_sprint", 0, true, false)
+	
 local shouldDrawCrosshair, fa
 
 function SWEP:IndividualThink()
@@ -243,7 +244,7 @@ function SWEP:IndividualThink()
 	end
 	
 	if CLIENT then
-		self.ViewModelMovementScale = 0
+		self.ViewModelMovementScale = self:scaleMovement(1, 1)
 		
 		fa = cvarFA:GetInt()
 		fa = (fa == 1) and cvarFAAC:SetInt(fa)

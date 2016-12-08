@@ -139,7 +139,7 @@ SWEP.NormalHoldType = "ar2"
 SWEP.RunHoldType = "passive"
 SWEP.FireModes = {"auto"}
 SWEP.Base = "cw_kk_ins2_base"
-SWEP.Category = "CW 2.0 KK INS2 WS"
+SWEP.Category = "CW 2.0 KK INS2 EXT"
 
 SWEP.Author			= "Spy"
 SWEP.Contact		= ""
