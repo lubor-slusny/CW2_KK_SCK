@@ -15,7 +15,10 @@ if CLIENT then
 	SWEP.NoShells = true
 	
 	SWEP.AttachmentModelsVM = {}
-	SWEP.AttachmentModelsWM = {}
+	
+	SWEP.AttachmentModelsWM = {
+		["whorehead"] = {model = "models/weapons/w_molotov.mdl", pos = Vector(1.1313, -0.0273, -0.4484), angle = Angle(99.0829, 13.4942, 0), size = Vector(1, 1, 1), attachment = "muzzle", active = true},
+	}
 	
 	SWEP.IronsightPos = Vector(-2.6808, 0, 1.7394)
 	SWEP.IronsightAng = Vector(0, 0, 0)
@@ -105,7 +108,9 @@ SWEP.SpreadCooldown = 0.8
 SWEP.Shots = 1
 SWEP.Damage = 100
 
-SWEP.MuzzleVelocity = 45
+SWEP.projectileRotation = Angle(90, 0, 0)
+
+SWEP.MuzzleVelocity = 15
 SWEP.projectileClass = "cw_kk_ins2_projectile_molotov"
 SWEP.hipBulletDelay = 0
 
@@ -163,3 +168,10 @@ end
 SWEP.reticleInactivityCallbacksRaw = {
 	at4_reload_start = 0.1
 }
+
+if CLIENT then
+	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_molotov", function(wep, welement)
+		welement:SetBodygroup(1, 1)
+		wep.AttachmentModelsWM.whorehead.active = (wep:Clip1() == 1)
+	end)
+end

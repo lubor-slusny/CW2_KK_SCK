@@ -19,9 +19,6 @@ SWEP.Sounds = {
 
 	base_ready = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-		{time = 35/31, sound = "CW_KK_INS2_DOI_DOI_TANKFIST_PINOUT"},
-		{time = 68/31, sound = "CW_KK_INS2_DOI_DOI_TANKFIST_SIGHTUP"},
-		{time = 95/31, sound = "CW_KK_INS2_DOI_DOI_TANKFIST_SHOULDER"},
 	},
 
 	iron_dryfire = {
