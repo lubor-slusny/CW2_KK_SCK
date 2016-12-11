@@ -61,7 +61,7 @@ SWEP.MuzzleEffectWorld = "muzzleflash_thompson_3p"
 
 SWEP.Attachments = {
 	{header = "Sight", offset = {400, -500}, atts = {"bg_foldsight"}},
-	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_ww2_knife"}},
+	-- {header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_ww2_knife"}},
 	{header = "Under", offset = {-500, 0}, atts = {"kk_ins2_vertgrip"}},
 	{header = "Magazine", offset = {-50, 500}, atts = {"kk_ins2_mag_thom_30", "kk_ins2_mag_thom_50"}},
 	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},

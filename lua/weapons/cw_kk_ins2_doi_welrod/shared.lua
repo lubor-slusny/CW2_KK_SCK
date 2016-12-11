@@ -22,7 +22,10 @@ if CLIENT then
 	SWEP.ShellViewAngleAlign = {Forward = 0, Right = 0, Up = 180}
 	SWEP.ShellWorldAngleAlign = {Forward = 90, Right = 0, Up = 0}
 	
-	SWEP.AttachmentModelsVM = {}
+	SWEP.AttachmentModelsVM = {
+		["kk_ins2_fnfal_skin2"] = {model = "models/weapons/v_welrod.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, material = "models/weapons/welrod/dosh.mdl"},
+	}
+	
 	SWEP.AttachmentModelsWM = {}
 	
 	SWEP.IronsightPos = Vector(-2.2947, 0, 0.8344)
@@ -37,7 +40,8 @@ SWEP.MuzzleEffect = "muzzleflash_suppressed_1p"
 SWEP.MuzzleEffectWorld = "muzzleflash_suppressed_1p"
 
 SWEP.Attachments = {
-	["+reload"] = {header = "Ammo", offset = {500, 150}, atts = {"am_magnum", "am_matchgrade"}}
+	{header = "Flavor", offset = {500, 0}, atts = {"kk_ins2_fnfal_skin2"}},
+	["+reload"] = {header = "Ammo", offset = {500, 400}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
 SWEP.Animations = {

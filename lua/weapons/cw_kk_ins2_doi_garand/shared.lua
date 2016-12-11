@@ -113,11 +113,10 @@ SWEP.Animations = {
 	base_safe_empty_aim = "iron_down_empty",
 	base_crawl = "base_crawl",
 	base_crawl_empty = "base_crawl_empty",
-	
-	-- base_melee = "base_melee",
-	base_melee = "base_melee_end",
-	-- base_melee_empty = "base_melee_empty",
-	base_melee_empty = "base_melee_end_empty",
+	base_melee = "base_melee_bash",
+	base_melee_empty = "base_melee_bash_empty",
+	base_stab = "base_melee_end",
+	base_stab_empty = "base_melee_end_empty",
 	
 	gl_off_pickup = "base_ready",
 	gl_off_draw = "base_draw",
@@ -142,6 +141,8 @@ SWEP.Animations = {
 	gl_off_safe_empty_aim = "iron_down_empty",
 	gl_off_crawl = "base_crawl",
 	gl_off_crawl_empty = "base_crawl_empty",
+	gl_off_melee = "base_melee_bash",
+	gl_off_melee_empty = "base_melee_bash_empty",
 	
 	gl_on_pickup = "base_ready",
 	gl_on_draw = "glsetup_draw",

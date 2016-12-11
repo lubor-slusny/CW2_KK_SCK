@@ -92,6 +92,7 @@ CustomizableWeaponry_KK.ins2.quickKnife.categories.knife = {
 	dmgAddRnd = 10,
 	dmgTime = 0.37,
 	npcForceMult = 2000,
+	doVPunch = true,
 }
 
 CustomizableWeaponry_KK.ins2.quickKnife.categories.bayonet = {
@@ -103,7 +104,18 @@ CustomizableWeaponry_KK.ins2.quickKnife.categories.bayonet = {
 	npcForceMult = 1500,
 }
 
+CustomizableWeaponry_KK.ins2.quickKnife.categories.bash = {
+	td = {mins = Vector(-6, -6, -6), maxs = Vector(6, 6, 6)},
+	range = 60,
+	dmgBase = 20,
+	dmgAddRnd = 10,
+	dmgTime = 0.4,
+	npcForceMult = 2000,
+}
+
 if SERVER then
+	local punch = Angle(0, 0, 0)
+
 	function CustomizableWeaponry_KK.ins2.quickKnife:_createDamage(wep, category)
 		// Ill just count on wep and wep.Owner being Valid here 
 	
@@ -157,12 +169,19 @@ if SERVER then
 					end
 				end
 				
-				wep.Owner:ViewPunch(Angle(math.Rand(-5, -4), math.Rand(-2, 2), math.Rand(-1, 1)))
+				punch.p = math.Rand(-5, -4)
+				punch.y = math.Rand(-2, 2)
+				punch.r = math.Rand(-1, 1)
 			else
-				wep.Owner:ViewPunch(Angle(math.Rand(-5, -4), math.Rand(-2, 2), math.Rand(-1, 1)))
+				punch.p = math.Rand(-5, -4)
+				punch.y = math.Rand(-2, 2)
+				punch.r = math.Rand(-1, 1)
 			end
+			
+			if setup.doVPunch then
+				wep.Owner:ViewPunch(punch)
+			end	
 		end)
-		
 	end
 end
 
@@ -192,7 +211,7 @@ function CustomizableWeaponry_KK.ins2.quickKnife:attack(wep)
 	// this will make adding hands (DOI Thompson) fun
 	if wep.ActiveAttachments.kk_ins2_ww2_knife or wep.ActiveAttachments.kk_ins2_ww2_knife_fat then			
 		if CLIENT then
-			wep:meleeAnimFunc()
+			wep:bayonetAnimFunc()
 		end
 		
 		wep:setGlobalDelay(0.8)
@@ -200,6 +219,16 @@ function CustomizableWeaponry_KK.ins2.quickKnife:attack(wep)
 		wep.meleeAttackDelay = CT + 0.8
 		
 		category = "bayonet"
+	elseif wep.Animations[wep:getForegripMode() .. "melee"] then			
+		if CLIENT then
+			wep:meleeAnimFunc()
+		end
+		
+		wep:setGlobalDelay(0.8)
+		wep:SetNextPrimaryFire(CT + 0.8)
+		wep.meleeAttackDelay = CT + 0.8
+		
+		category = "bash"
 	else
 		wep:setGlobalDelay(1.2)
 		wep:SetNextPrimaryFire(CT + 1.2)

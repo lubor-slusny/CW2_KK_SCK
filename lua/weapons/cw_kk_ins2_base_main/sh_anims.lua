@@ -353,10 +353,6 @@ function SWEP:drawAnimFunc()
 end
 
 function SWEP:meleeAnimFunc()
-	if self.KKINS2Nade then		// I believe grenades wont have bayonets any time soon
-		return 
-	end
-	
 	cycle = 0
 	rate = 1
 	prefix = self:getForegripMode()
@@ -375,6 +371,25 @@ function SWEP:meleeAnimFunc()
 	end
 	
 	self:sendWeaponAnim(prefix .. "melee" .. suffix, rate, cycle)
+end
+
+function SWEP:bayonetAnimFunc()
+	if self.KKINS2Nade then		// I believe grenades wont have bayonets any time soon
+		return 
+	end
+	
+	cycle = 0
+	rate = 1
+	prefix = self:getForegripMode()
+	suffix = ""
+
+	clip = self:Clip1()
+	
+	if clip == 0 and self.KK_INS2_EmptyIdle then
+		suffix = "_empty" .. self._KK_INS2_customEmptySuffix
+	end
+	
+	self:sendWeaponAnim(prefix .. "stab" .. suffix, rate, cycle)
 end //*/
 	
 function SWEP:fireAnimFunc()

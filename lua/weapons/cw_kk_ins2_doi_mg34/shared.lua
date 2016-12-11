@@ -62,6 +62,7 @@ SWEP.Animations = {
 	base_firemode = "base_fireselect",
 	base_firemode_aim = "iron_fireselect",
 	base_crawl = "base_crawl",
+	base_melee = "base_melee_bash",
 	
 	bipod_in = "deployed_in",
 	bipod_fire = {"deployed_fire_1","deployed_fire_2"},
