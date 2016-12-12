@@ -114,7 +114,7 @@ CustomizableWeaponry_KK.ins2.quickKnife.categories.bash = {
 	dmgBase = 20,
 	dmgAddRnd = 10,
 	dmgTime = 0,
-	npcForceMult = 3000,
+	npcForceMult = 2000,
 	hitFleshSound = "CW_KK_INS2_DOI_BRASS_HITPLY",
 	hitWorldSound = "CW_KK_INS2_DOI_BRASS_HITWORLD",
 }

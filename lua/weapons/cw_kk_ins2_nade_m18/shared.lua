@@ -12,6 +12,7 @@ if CLIENT then
 	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_m18")
 	
 	SWEP.AttachmentModelsVM = {}
+	SWEP.AttachmentModelsWM = {}
 	
 	SWEP.ViewModelMovementScale = 0.8
 	SWEP.DisableSprintViewSimulation = true

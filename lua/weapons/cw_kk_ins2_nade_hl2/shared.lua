@@ -13,6 +13,7 @@ if CLIENT then
 	SWEP.IconLetter = "k"
 	
 	SWEP.AttachmentModelsVM = {}
+	SWEP.AttachmentModelsWM = {}
 	
 	SWEP.ViewModelMovementScale = 0.8
 	SWEP.DisableSprintViewSimulation = true

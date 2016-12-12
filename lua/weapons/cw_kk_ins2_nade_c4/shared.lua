@@ -17,6 +17,8 @@ if CLIENT then
 		-- ["element_name"] = {model = "models/weapons/stattrack.mdl", bone = "SECEXP", pos = Vector(-0.64, -0.969, 0.021), angle = Angle(90, 0, 0), size = Vector(0.5, 0.5, 0.5)}
 	}
 	
+	SWEP.AttachmentModelsWM = {}
+	
 	SWEP.MoveType = 2
 	SWEP.ViewModelMovementScale = 0.8
 	SWEP.DisableSprintViewSimulation = true

@@ -18,6 +18,8 @@ if CLIENT then
 		["fx_rag"] = {model = "models/maxofs2d/cube_tool.mdl", pos = Vector(-0.67614, 0.05519, -0.63427), angle = Angle(), size = Vector(0.01, 0.01, 0.01), attachment = "rag", active = true, nodraw = true},
 	}
 	
+	SWEP.AttachmentModelsWM = {}
+	
 	SWEP.MoveType = 2
 	SWEP.ViewModelMovementScale = 0.8
 	SWEP.DisableSprintViewSimulation = true

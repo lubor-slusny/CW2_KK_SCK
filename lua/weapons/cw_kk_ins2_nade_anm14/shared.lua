@@ -11,6 +11,8 @@ if CLIENT then
 	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_anm14")
 	
 	SWEP.AttachmentModelsVM = {}
+	SWEP.AttachmentModelsWM = {}
+	
 end
 
 SWEP.Attachments = CustomizableWeaponry_KK.ins2.slowGrenadeMenu

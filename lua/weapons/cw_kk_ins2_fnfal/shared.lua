@@ -286,28 +286,3 @@ if CLIENT then
 		end
 	end)
 end
-
-if CLIENT then
-	local droppedFals = {}
-	
-	hook.Add("Think", "CW_KK_INS2_FNFAL_DROP_SKIN", function()
-		for k,v in pairs(ents.GetAll()) do
-			if !IsValid(v) then continue end
-			if v:GetClass() != "cw_dropped_weapon" then continue end
-			if v:GetWepClass() != "cw_kk_ins2_fnfal" then continue end
-			if droppedFals[v] then continue end
-			
-			local t = v:getAttachments()
-			
-			if t then
-				if table.HasValue(t, "kk_ins2_fnfal_skin") then
-					v:SetSubMaterial(0, "models/weapons/fal/w_blvck.mdl")
-				elseif table.HasValue(t, "kk_ins2_fnfal_skin2") then
-					v:SetSubMaterial(0, "models/weapons/fal/w_dosh.mdl")
-				end
-				
-				droppedFals[v] = true
-			end
-		end
-	end)
-end

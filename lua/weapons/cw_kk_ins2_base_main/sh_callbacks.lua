@@ -267,7 +267,6 @@ end
 if CLIENT then
 	local White, Black = Color(255, 255, 255, 255), Color(0, 0, 0, 255)
 	local cwhud24 = "CW_HUD24"
-	local Deploy, UnDeploy = surface.GetTextureID("cw2/gui/bipod_deploy"), surface.GetTextureID("cw2/gui/bipod_undeploy")
 	
 	local td = {}
 	
@@ -278,9 +277,11 @@ if CLIENT then
 		
 		local tr = util.TraceLine(td)
 		
-		local x, y = ScrW() / 2, ScrH() / 2 + 70
+		local x, y = ScrW() / 2, ScrH() / 2 + 40
 		
 		if tr.Hit and IsValid(tr.Entity) and tr.Entity.KKIN2RCEprojetile then
+			draw.ShadowText("[	]", cwhud24, ScrW() / 2, ScrH() / 2, White, Black, 2, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
+			
 			local ent = tr.Entity
 			
 			if IsValid(ent.dt.Detonator) and ent.dt.Detonator.Owner == wep.Owner then
@@ -306,6 +307,7 @@ if CLIENT then
 			return
 		end
 
+		draw.ShadowText("[	]", cwhud24, ScrW() / 2, ScrH() / 2, White, Black, 2, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 		draw.ShadowText("[PRIMARY - PLANT]", cwhud24, x, y, White, Black, 2, TEXT_ALIGN_CENTER, TEXT_ALIGN_CENTER)
 		
 		return
@@ -335,8 +337,8 @@ if SERVER then
 		
 		net.Start(self.nwstring)
 		net.WriteString(class)
-		-- net.WriteEntity(drop)
 		net.WriteUInt(dropId, uintSize)
+		net.WriteUInt(wep:Clip1(), uintSize)
 		
 		net.WriteTable(ActiveWElements or {})
 		net.Broadcast()
@@ -350,12 +352,13 @@ end
 if CLIENT then
 	function CustomizableWeaponry_KK.ins2.welementDrop:receive(len, ply)
 		local wep = net.ReadString()
-		-- local drop = net.ReadEntity()	// gives null entity on DS, what a life
 		local drop = net.ReadInt(uintSize)
+		local clip = net.ReadInt(uintSize)
 		local usedWEs = net.ReadTable()
 		
 		self.data[drop] = {
 			wep = wep,
+			clip = clip,
 			usedWEs = usedWEs,
 			timeout = CurTime() + 20 // still doesnt save you from horrors of Dedicated Server
 		}
@@ -405,48 +408,69 @@ if CLIENT then
 				return
 			end
 			
-			local storedWEs = weapons.GetStored(dropData.wep).AttachmentModelsWM
-			
-			if not storedWEs then
-				continue
-			end
-			
 			dropData.remove = true
 			
 			drop.AttachmentModelsWM = {}
 			
-			// copy active-by-default welements 
-			for k,v in pairs(storedWEs) do
-				if v.active then
-					drop.AttachmentModelsWM[k] = copyTable(v)
-				end
-			end
+			local storedWEs = weapons.GetStored(dropData.wep).AttachmentModelsWM
 			
-			// copy welements of used attachments
-			for k,v in pairs(dropData.usedWEs) do
-				if v then
-					drop.AttachmentModelsWM[k] = drop.AttachmentModelsWM[k] or copyTable(storedWEs[k])
-				end
-				
-				if drop.AttachmentModelsWM[k] then
-					if v then
-						drop.AttachmentModelsWM[k].active = v
-					else
-						drop.AttachmentModelsWM[k] = nil // remove active-by-default if they were disabled post spawn
+			if storedWEs then
+				// copy active-by-default welements 
+				for k,v in pairs(storedWEs) do
+					if v.active then
+						drop.AttachmentModelsWM[k] = copyTable(v)
 					end
 				end
+				
+				// copy welements of used attachments
+				for k,v in pairs(dropData.usedWEs) do
+					if v then
+						drop.AttachmentModelsWM[k] = drop.AttachmentModelsWM[k] or copyTable(storedWEs[k])
+					end
+					
+					if drop.AttachmentModelsWM[k] then
+						if v then
+							drop.AttachmentModelsWM[k].active = v
+						else
+							drop.AttachmentModelsWM[k] = nil // remove active-by-default if they were disabled post spawn
+						end
+					end
+				end
+				
+				drop.createManagedCModel = basebase.createManagedCModel
+				base.setupAttachmentWModels(drop)
+				
+				local drawAtts = base.drawAttachmentsWorld
+				local drawRest = drop.Draw
+				
+				function drop:Draw()
+					drawAtts(self, self)
+					drawRest(self)
+				end
 			end
 			
-			drop.createManagedCModel = basebase.createManagedCModel
-			base.setupAttachmentWModels(drop)
+			// and one more for bodygroups nad shit
 			
-			local drawAtts = base.drawAttachmentsWorld
-			local drawRest = drop.Draw
+			local welementThinkCapsule = {
+				WMEnt = drop,
+				ActiveAttachments = {},
+				AttachmentModelsWM = drop.AttachmentModelsWM,
+				dt = drop.dt,
+				IsValid = function() return IsValid(drop) end,
+				GetClass = function() return drop:GetWepClass() end,
+				Clip1 = function() return dropData.clip end,
+			}
 			
-			function drop:Draw()
-				drawAtts(self, self)
-				drawRest(self)
-			end
+			CustomizableWeaponry_KK.ins2.welementThink:_addWeapon(welementThinkCapsule)
+			
+			timer.Simple(1, function()
+				if !IsValid(drop) then return end
+				if not drop:getAttachments() then return end
+				
+				for _,k in pairs(drop:getAttachments()) do
+					welementThinkCapsule.ActiveAttachments[k] = true
+				end
+			end)
 		end
 	end
 
@@ -457,16 +481,16 @@ end
 // Prone Mod recoil mod
 //-----------------------------------------------------------------------------
 
-CustomizableWeaponry.callbacks:addNew("calculateRecoil", "KK_INS2_BASE", function(wep, mod)
-	if !wep.KKINS2Wep then return end
+-- CustomizableWeaponry.callbacks:addNew("calculateRecoil", "KK_INS2_BASE", function(wep, mod)
+	-- if !wep.KKINS2Wep then return end
 	
-	return wep:IsOwnerProne() and mod * 0.6 or mod
-end)
+	-- return wep:IsOwnerProne() and mod * 0.6 or mod
+-- end)
 
-if CLIENT then
-	CustomizableWeaponry.callbacks:addNew("disableInteractionMenu", "KK_INS2_BASE", function(wep, mod)
-		if !wep.KKINS2Wep then return end
+-- if CLIENT then
+	-- CustomizableWeaponry.callbacks:addNew("disableInteractionMenu", "KK_INS2_BASE", function(wep, mod)
+		-- if !wep.KKINS2Wep then return end
 		
-		return wep:IsOwnerCrawling()
-	end)
-end
+		-- return wep:IsOwnerCrawling()
+	-- end)
+-- end

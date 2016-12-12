@@ -126,8 +126,16 @@ SWEP.ReloadTime = 1.5
 SWEP.ReloadHalt = 2.5
 
 SWEP.ReloadTimes = {
-	base_melee = {0.3, 1.1},
+	base_melee = {0.3, 1},
 }
+
+function SWEP:getAnimTimes(idk)
+	if idk == "base_melee" then
+		return 0.3, 1
+	end
+	
+	return self.ReloadTime, self.ReloadHalt
+end
 
 function SWEP:SetupDataTables()
 	self:NetworkVar("Int", 0, "State")
