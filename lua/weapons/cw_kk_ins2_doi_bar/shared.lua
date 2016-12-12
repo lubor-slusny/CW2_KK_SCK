@@ -156,6 +156,8 @@ SWEP.ReloadTimes = {
 	
 	deployed_reload = {3.54, 4.42},
 	deployed_reload_empty = {4.9, 5.79},
+	
+	base_melee_bash = {0.5, 1.6},
 }
 
 function SWEP:IndividualThink_INS2()

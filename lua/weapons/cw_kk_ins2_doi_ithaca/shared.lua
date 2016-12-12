@@ -133,4 +133,6 @@ SWEP.ReloadTimes = {
 	base_reload_insert = {15/42, 0.88},
 	base_reload_end = {0.66, 0.66},
 	base_reload_end_empty = {0.66, 0.66},
+	
+	base_melee_bash = {0.3, 1},
 }

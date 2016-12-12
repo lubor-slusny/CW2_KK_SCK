@@ -142,6 +142,8 @@ SWEP.ReloadTimes = {
 	base_ready_phosphorus = {4.7, 6.87},
 	base_reload = {4.4, 6.43},
 	base_reload_phosphorus = {4.4, 6.43},
+	
+	base_melee = {0.3, 1.4},
 }
 
 SWEP.reloadProgressAnimsRaw = {

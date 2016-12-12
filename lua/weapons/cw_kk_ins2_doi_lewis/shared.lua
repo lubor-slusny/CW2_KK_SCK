@@ -143,4 +143,6 @@ SWEP.ReloadTimes = {
 	
 	deployed_reload = {170/35.5, 6.34},
 	deployed_reload_empty = {158/35.5, 7.21},
+	
+	base_melee_bash = {0.5, 1.7},
 }

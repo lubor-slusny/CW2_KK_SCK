@@ -144,4 +144,7 @@ SWEP.MuzzleVelocity = 335
 SWEP.ReloadTimes = {
 	base_reload = {60/31.5, 2.6},
 	base_reloadempty = {60/31.5, 3.2},
+	
+	base_melee_bash = {0.3, 0.8},
+	empty_melee_bash = {0.3, 0.8},
 }

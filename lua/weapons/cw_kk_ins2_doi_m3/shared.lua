@@ -134,6 +134,9 @@ SWEP.MuzzleVelocity = 280
 SWEP.ReloadTimes = {
 	base_reload = {2.4, 3.35},
 	base_reloadempty = {2.4, 4.75},
+	
+	base_melee_bash = {0.3, 0.9},
+	empty_melee_bash = {0.3, 0.9},
 }
 
 if CLIENT then 

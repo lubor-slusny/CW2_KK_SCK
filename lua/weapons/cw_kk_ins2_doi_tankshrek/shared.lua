@@ -123,6 +123,8 @@ SWEP.ironFireAnimStartCycle = 0.28
 
 SWEP.ReloadTimes = {
 	base_reload = {4.4, 6.43},
+	
+	base_melee = {0.3, 1.5},
 }
 
 -- if CLIENT then

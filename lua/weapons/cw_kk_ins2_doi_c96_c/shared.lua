@@ -149,6 +149,9 @@ SWEP.ReloadTimes = {
 	base_reloadempty = {2.5, 4.53},
 	base_reload_ext = {2.5, 3.14},
 	base_reloadempty_ext = {2.5, 4.53},
+	
+	base_melee_bash = {0.3, 0.8},
+	base_melee_bash_empty = {0.3, 0.8},
 }
 
 if CLIENT then

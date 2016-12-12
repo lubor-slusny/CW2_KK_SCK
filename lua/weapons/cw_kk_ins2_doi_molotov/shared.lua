@@ -125,6 +125,10 @@ SWEP.ReloadSpeed = 1
 SWEP.ReloadTime = 1.5
 SWEP.ReloadHalt = 2.5
 
+SWEP.ReloadTimes = {
+	base_melee = {0.3, 1.1},
+}
+
 function SWEP:SetupDataTables()
 	self:NetworkVar("Int", 0, "State")
 	self:NetworkVar("Int", 1, "Shots")
@@ -134,10 +138,6 @@ function SWEP:SetupDataTables()
 	self:NetworkVar("Bool", 1, "Safe")
 	self:NetworkVar("Bool", 2, "BipodDeployed")
 	self:NetworkVar("Angle", 0, "ViewOffset")
-end
-
-function SWEP:getAnimTimes()
-	return self.ReloadTime, self.ReloadHalt
 end
 
 function SWEP:reloadAnimFunc(lm)
@@ -151,7 +151,7 @@ function SWEP:reloadAnimFunc(lm)
 		self:sendWeaponAnim("at4_reload_end", self.ReloadSpeed, 0)
 	end)
 	
-	return self:getAnimTimes()
+	return self.ReloadTime, self.ReloadHalt
 end //*/
 
 function SWEP:getReloadProgress()

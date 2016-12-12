@@ -87,12 +87,14 @@ CustomizableWeaponry_KK.ins2.quickKnife.categories = {}
 
 CustomizableWeaponry_KK.ins2.quickKnife.categories.knife = {
 	td = {mins = Vector(-6, -6, -6), maxs = Vector(6, 6, 6)},
-	range = 60,
+	range = 75,
 	dmgBase = 30,
 	dmgAddRnd = 10,
 	dmgTime = 0.37,
 	npcForceMult = 2000,
 	doVPunch = true,
+	hitFleshSound = "CW_KK_INS2_KNIFE",
+	hitWorldSound = "CW_KK_INS2_KNIFE",
 }
 
 CustomizableWeaponry_KK.ins2.quickKnife.categories.bayonet = {
@@ -102,6 +104,8 @@ CustomizableWeaponry_KK.ins2.quickKnife.categories.bayonet = {
 	dmgAddRnd = 10,
 	dmgTime = 0,
 	npcForceMult = 1500,
+	hitFleshSound = "CW_KK_INS2_KNIFE",
+	hitWorldSound = "CW_KK_INS2_KNIFE",
 }
 
 CustomizableWeaponry_KK.ins2.quickKnife.categories.bash = {
@@ -109,8 +113,10 @@ CustomizableWeaponry_KK.ins2.quickKnife.categories.bash = {
 	range = 60,
 	dmgBase = 20,
 	dmgAddRnd = 10,
-	dmgTime = 0.4,
-	npcForceMult = 2000,
+	dmgTime = 0,
+	npcForceMult = 3000,
+	hitFleshSound = "CW_KK_INS2_DOI_BRASS_HITPLY",
+	hitWorldSound = "CW_KK_INS2_DOI_BRASS_HITWORLD",
 }
 
 if SERVER then
@@ -137,8 +143,6 @@ if SERVER then
 			tr = util.TraceHull(td)
 		
 			if tr.Hit then
-				wep.Owner:EmitSound("CW_KK_INS2_KNIFE")
-				
 				local ent = tr.Entity
 				
 				if IsValid(ent) then
@@ -167,6 +171,10 @@ if SERVER then
 					if string.find(ent:GetClass(), "breakable") then
 						ent:Fire("Break")
 					end
+				
+					wep.Owner:EmitSound(setup.hitFleshSound)
+				else
+					wep.Owner:EmitSound(setup.hitWorldSound)
 				end
 				
 				punch.p = math.Rand(-5, -4)
@@ -224,9 +232,13 @@ function CustomizableWeaponry_KK.ins2.quickKnife:attack(wep)
 			wep:meleeAnimFunc()
 		end
 		
-		wep:setGlobalDelay(0.8)
-		wep:SetNextPrimaryFire(CT + 0.8)
-		wep.meleeAttackDelay = CT + 0.8
+		local time, halt = wep:getAnimTimes(wep:getForegripMode() .. "melee")
+		
+		CustomizableWeaponry_KK.ins2.quickKnife.categories.bash.dmgTime = time
+		
+		wep:setGlobalDelay(halt)
+		wep:SetNextPrimaryFire(CT + halt)
+		wep.meleeAttackDelay = CT + halt
 		
 		category = "bash"
 	else

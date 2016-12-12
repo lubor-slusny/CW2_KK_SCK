@@ -18,7 +18,7 @@ if CLIENT then
 	SWEP.Shell = "KK_INS2_45apc"
 	SWEP.ShellDelay = 0.06
 	
-	SWEP.ShellViewAngleAlign = {Forward = -90, Right = 0, Up = 0}
+	SWEP.ShellViewAngleAlign = {Forward = 180, Right = 0, Up = -30}
 	
 	SWEP.AttachmentModelsVM = {}
 	SWEP.AttachmentModelsWM = {}
@@ -132,6 +132,9 @@ SWEP.ReloadTimes = {
 	base_reloadempty = {1.9, 3.3},
 	base_reload_extmag = {1.9, 2.6},
 	base_reloadempty_extmag = {1.9, 3.3},
+	
+	base_melee_bash = {0.3, 0.8},
+	empty_melee_bash = {0.3, 0.8},
 }
 
 if CLIENT then 

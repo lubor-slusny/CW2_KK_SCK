@@ -266,6 +266,9 @@ SWEP.ReloadTimes = {
 	glsetup_in = {2.1, 3.6},	
 	glsetup_out = {1.6, 3.7},
 	glsetup_out_empty = {1.7, 1.7},
+	
+	base_melee_bash = {0.3, 0.9},
+	base_melee_bash_empty = {0.3, 0.9},
 }
 
 if CLIENT then

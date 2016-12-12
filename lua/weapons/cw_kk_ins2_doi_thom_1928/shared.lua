@@ -233,10 +233,16 @@ SWEP.ReloadTimes = {
 	base_reloadempty = {3.88, 4.76},
 	base_reload_drum = {4.3, 5.48},
 	base_reloadempty_drum = {5.82, 6.92},
+	
 	foregrip_reload = {2.55, 3.33},
 	foregrip_reloadempty = {3.88, 4.76},
 	foregrip_reload_drum = {4.3, 5.48},
 	foregrip_reloadempty_drum = {5.82, 6.92},
+	
+	base_melee = {0.2, 0.9},
+	base_melee_empty_drum = {0.2, 0.9},
+	foregrip_melee = {0.2, 0.9},
+	foregrip_melee_empty_drum = {0.2, 0.9},
 }
 
 if CLIENT then 

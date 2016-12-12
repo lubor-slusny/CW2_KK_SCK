@@ -370,7 +370,11 @@ function SWEP:meleeAnimFunc()
 		end
 	end
 	
-	self:sendWeaponAnim(prefix .. "melee" .. suffix, rate, cycle)
+	anim = prefix .. "melee" .. suffix
+	
+	self:sendWeaponAnim(anim, rate, cycle)
+	
+	return self:getAnimTimes(anim)
 end
 
 function SWEP:bayonetAnimFunc()

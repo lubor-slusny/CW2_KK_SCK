@@ -125,7 +125,10 @@ SWEP.KK_INS2_EmptyIdle = true
 
 SWEP.ReloadTimes = {
 	base_reload = {2.2, 2.95},
-	base_reloadempty = {3.2, 4.55}
+	base_reloadempty = {3.2, 4.55},
+	
+	base_melee_bash = {0.3, 0.9},
+	empty_melee_bash = {0.3, 0.9},
 }
 
 SWEP.MuzzleVelocity = 400

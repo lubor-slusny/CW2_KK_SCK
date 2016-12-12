@@ -242,6 +242,9 @@ SWEP.ReloadTimes = {
 	glsetup_in_empty = {6.2, 7.6}, 
 	glsetup_out = {1.6, 7},
 	glsetup_out_empty = {2.75, 5.2},
+	
+	base_melee_bash = {0.3, 0.9},
+	base_melee_bash_empty = {0.3, 0.9},
 }
 
 SWEP.freezeBeltOnStart = {
