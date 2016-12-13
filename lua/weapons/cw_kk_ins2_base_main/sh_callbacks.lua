@@ -66,7 +66,7 @@ CustomizableWeaponry.callbacks:addNew("initialize", "KK_INS2_BASE", function(wep
 		// just so it doesnt iterate over ents.GetAll()
 		CustomizableWeaponry_KK.ins2.welementThink:_addWeapon(wep)
 		
-		// ins2 viewbob
+		// doi viewbob
 		wep._vmCamAttach = wep.CW_VM:LookupAttachment("camera")
 	end
 	
@@ -449,9 +449,9 @@ if CLIENT then
 				end
 			end
 			
-			// and one more for bodygroups nad shit
+			// and one more for bodygroups and shit
 			
-			local welementThinkCapsule = {
+			local welementThinkWrapper = {
 				WMEnt = drop,
 				ActiveAttachments = {},
 				AttachmentModelsWM = drop.AttachmentModelsWM,
@@ -461,14 +461,14 @@ if CLIENT then
 				Clip1 = function() return dropData.clip end,
 			}
 			
-			CustomizableWeaponry_KK.ins2.welementThink:_addWeapon(welementThinkCapsule)
+			CustomizableWeaponry_KK.ins2.welementThink:_addWeapon(welementThinkWrapper)
 			
 			timer.Simple(1, function()
 				if !IsValid(drop) then return end
 				if not drop:getAttachments() then return end
 				
 				for _,k in pairs(drop:getAttachments()) do
-					welementThinkCapsule.ActiveAttachments[k] = true
+					welementThinkWrapper.ActiveAttachments[k] = true
 				end
 			end)
 		end

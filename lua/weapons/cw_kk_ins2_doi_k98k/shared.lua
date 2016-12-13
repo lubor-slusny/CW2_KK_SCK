@@ -98,12 +98,12 @@ SWEP.Animations = {
 	base_safe_aim = "iron_down",
 	base_safe_empty = "base_down_empty",
 	base_safe_empty_aim = "iron_down_empty",
-	base_stab = "base_melee",
-	-- base_melee = "base_melee_end",
-	base_stab_empty = "base_melee_empty",
-	-- base_melee_empty = "base_melee_end_empty",
 	base_crawl = "base_crawl",
 	base_crawl_empty = "base_crawl_empty",
+	base_melee = "base_melee_bash",
+	base_melee_empty = "base_melee_bash_empty",
+	base_stab = "base_melee",
+	base_stab_empty = "base_melee_empty",
 	
 	gl_off_pickup = "gl_ready",
 	gl_off_draw = "gl_draw",
@@ -179,8 +179,8 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
--- SWEP.ViewModel		= "models/weapons/v_kar98k.mdl"
-SWEP.ViewModel		= "models/weapons/v_cw_kk_doi_k98.mdl"
+SWEP.ViewModel		= "models/weapons/v_kar98k.mdl"
+-- SWEP.ViewModel		= "models/weapons/v_cw_kk_doi_k98.mdl"
 SWEP.WorldModel		= "models/weapons/w_kar98k.mdl"
 
 SWEP.WMPos = Vector(14, 0.5, -3)
@@ -256,4 +256,7 @@ SWEP.ReloadTimes = {
 	glsetup_in_empty = {5.4, 6.6},	
 	glsetup_out = {2, 5},
 	glsetup_out_empty = {2.2, 2.2},
+	
+	base_melee_bash = {0.3, 0.9},
+	base_melee_bash_empty = {0.3, 0.9},
 }

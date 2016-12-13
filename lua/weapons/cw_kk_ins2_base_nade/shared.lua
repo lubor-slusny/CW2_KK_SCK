@@ -84,6 +84,7 @@ SWEP.ReloadHalt = 0
 SWEP.ReloadHalt_Empty = 0
 
 SWEP.AddSafeMode = false
+SWEP.disableDropping = false
 
 SWEP.FirstDeployTime = 0.6
 SWEP.DeployTime = 0.6
@@ -299,6 +300,10 @@ function SWEP:IndividualThink()
 	
 	-- weapons.GetStored("cw_kk_ins2_base").IndividualThink(self)
 	weapons.GetStored("cw_kk_ins2_base_main").IndividualThink(self)
+
+	if !self.dt.PinPulled then
+		self.disableDropping = self.disableDropping_Orig
+	end
 	
 	if SP and CLIENT then 
 		return
@@ -569,6 +574,7 @@ function SWEP:_attack(key)
 	end
 	
 	self.dt.PinPulled = true
+	self.disableDropping = true
 	self.animPlayed = false
 	self.keyReleased = false
 	

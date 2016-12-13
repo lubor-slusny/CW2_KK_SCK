@@ -67,6 +67,7 @@ SWEP.Animations = {
 	base_safe = "base_down",
 	base_safe_aim = "base_down",
 	base_crawl = "base_crawl",
+	base_melee = "base_melee_bash",
 	
 	bipod_in = "deployed_in",
 	bipod_fire = {"deployed_fire_1","deployed_fire_2"},
@@ -144,6 +145,8 @@ SWEP.ReloadTimes = {
 	
 	deployed_reload = {5.8, 8.1},
 	deployed_reload_empty = {5.8, 8.1},
+	
+	base_melee_bash = {0.6, 2},
 }
 
 if CLIENT then

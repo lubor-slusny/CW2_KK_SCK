@@ -18,7 +18,10 @@ if CLIENT then
 	SWEP.ShellScale = 1
 	SWEP.ShellEjectVelocity = 50
 	
-	SWEP.AttachmentModelsVM = {}
+	SWEP.AttachmentModelsVM = {
+		["kk_ins2_revolver_mag"] = {model = "models/weapons/upgrades/a_clips_sw1917	.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+	}
+	
 	SWEP.AttachmentModelsWM = {}
 
 	SWEP.IronsightPos = Vector(-2.7774, 0, 1.3158)
@@ -36,6 +39,7 @@ SWEP.MuzzleEffect = "muzzleflash_1911_1p"
 SWEP.MuzzleEffectWorld = "muzzleflash_sten_3p"
 
 SWEP.Attachments = {
+	{header = "Reload Aid", offset = {500, -400}, atts = {"kk_ins2_revolver_mag"}},
 	["+reload"] = {header = "Ammo", offset = {500, 150}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
@@ -46,6 +50,9 @@ SWEP.Animations = {
 	base_reload_end = "base_reload_end",
 	base_reload_end_empty = "base_reload_end",
 	base_idle = "base_reload_end",	
+	
+	base_reload = "base_reload_clip",
+	base_reload_empty = "base_reload_clip_empty",
 	
 	base_pickup = "base_ready",
 	base_draw = "base_draw",
@@ -68,6 +75,8 @@ SWEP.Animations = {
 	base_safe_empty_aim = "iron_down_empty",
 	base_crawl = "base_crawl",
 	base_crawl_empty = "base_crawl_empty",
+	base_melee = "base_melee_bash",
+	base_melee_empty = "base_melee_bash_empty",
 }
 
 SWEP.SpeedDec = 10
@@ -133,6 +142,12 @@ SWEP.ReloadTimes = {
 	base_reload_start_empty = {2.2, 2.9, KK_INS2_REVOLVER_SLOW_UNLOAD},
 	base_reload_insert = {0, 0.95},
 	base_reload_end = {2, 2},
+	
+	base_reload_clip = {1.7, 5.4, KK_INS2_REVOLVER_SPEED_UNLOAD, 4},
+	base_reload_clip_empty = {1.7, 6, KK_INS2_REVOLVER_SPEED_UNLOAD, 4},
+	
+	base_melee_bash = {0.3, 0.8},
+	base_melee_bash_empty = {0.3, 0.8},
 }
 
 function SWEP:IndividualInitialize()

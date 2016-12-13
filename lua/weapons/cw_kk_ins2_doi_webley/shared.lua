@@ -67,6 +67,7 @@ SWEP.Animations = {
 	base_safe = "base_down",
 	base_safe_aim = "iron_down",
 	base_crawl = "base_crawl",
+	base_melee = "base_melee_bash",
 }
 
 SWEP.SpeedDec = 10
@@ -131,6 +132,8 @@ SWEP.ReloadTimes = {
 	base_reload_insert = {0, 1.02},
 	base_reload_end = {1.42, 1.42},
 	base_reload_speed = {1.8, 3.5, KK_INS2_REVOLVER_SPEED_UNLOAD, 22/33},
+	
+	base_melee_bash = {0.3, 0.8},
 }
 
 function SWEP:IndividualInitialize()

@@ -67,6 +67,8 @@ SWEP.Animations = {
 	base_safe_empty_aim = "iron_down_empty",
 	base_crawl = "base_crawl",
 	base_crawl_empty = "base_crawl_empty",
+	base_melee = "base_melee_bash",
+	base_melee_empty = "base_melee_bash_empty",
 }
 
 SWEP.SpeedDec = 15
@@ -130,6 +132,18 @@ SWEP.ReloadSpeed = 1
 SWEP.ReloadTime = 2.5
 SWEP.ReloadHalt = 4.5
 
+SWEP.ReloadTimes = {
+	base_melee = {0.3, 1},
+}
+
+function SWEP:getAnimTimes(idk)
+	if idk == "base_melee" then
+		return 0.3, 1
+	end
+	
+	return self.ReloadTime, self.ReloadHalt
+end
+
 function SWEP:SetupDataTables()
 	self:NetworkVar("Int", 0, "State")
 	self:NetworkVar("Int", 1, "Shots")
@@ -139,10 +153,6 @@ function SWEP:SetupDataTables()
 	self:NetworkVar("Bool", 1, "Safe")
 	self:NetworkVar("Bool", 2, "BipodDeployed")
 	self:NetworkVar("Angle", 0, "ViewOffset")
-end
-
-function SWEP:getAnimTimes()
-	return self.ReloadTime, self.ReloadHalt
 end
 
 function SWEP:reloadAnimFunc(lm)

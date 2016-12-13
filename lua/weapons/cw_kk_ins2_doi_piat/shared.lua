@@ -70,6 +70,8 @@ SWEP.Animations = {
 	base_safe_empty_aim = "iron_down_empty",
 	base_crawl = "base_crawl",
 	base_crawl_empty = "empty_crawl",
+	base_melee = "base_melee",
+	base_melee_empty = "empty_melee",
 }
 
 SWEP.SpeedDec = 15
@@ -130,4 +132,7 @@ SWEP.HolsterTime = 1.4
 
 SWEP.ReloadTimes = {
 	base_reload = {2.7, 4.4},
+	
+	base_melee = {0.3, 1.4},
+	empty_melee = {0.3, 1.4},
 }

@@ -29,6 +29,10 @@ if CLIENT then
 end
 
 local function resetGL(self)
+	if CLIENT then
+		self.CW_VM:SetModel(self.ViewModel)
+	end
+	
 	if self.M203Chamber then
 		if SERVER then
 			self.Owner:GiveAmmo(1, "40MM", true)
@@ -40,10 +44,18 @@ local function resetGL(self)
 end
 
 function att:attachFunc()
+	if CLIENT then
+		self.ViewModel = "models/weapons/v_cw_kk_doi_k98.mdl"
+	end
+	
 	resetGL(self)
 end
 
 function att:detachFunc()
+	if CLIENT then
+		self.ViewModel = "models/weapons/v_kar98k.mdl"
+	end
+	
 	resetGL(self)
 end
 

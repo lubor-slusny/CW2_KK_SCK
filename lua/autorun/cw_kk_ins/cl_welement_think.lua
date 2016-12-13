@@ -7,8 +7,6 @@ if CLIENT then
 		self._active = self._active or {}
 		
 		table.insert(self._active, wep)
-		
-		-- print("CustomizableWeaponry_KK.ins2.welementThink:_addWeapon", wep:GetClass())
 	end
 	
 	function CustomizableWeaponry_KK.ins2.welementThink:_processWeapon(wep)

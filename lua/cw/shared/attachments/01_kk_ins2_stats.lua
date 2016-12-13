@@ -84,3 +84,6 @@
 		CustomizableWeaponry.textColors.NEGATIVE, 
 		CustomizableWeaponry.textColors.POSITIVE
 	)
+
+	CustomizableWeaponry.originalValue:add("disableDropping", false, false)
+	
