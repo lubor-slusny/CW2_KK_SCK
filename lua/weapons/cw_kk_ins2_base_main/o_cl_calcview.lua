@@ -206,7 +206,7 @@ function SWEP:CalcView(ply, pos, ang, fov)
 		self.FOVTarget = LerpCW20(FT * 10, self.FOVTarget, 0)
 	end	
 	
-	local mod = (89 - math.abs(ang.p)) / 89
+	local mod = math.abs((89 - math.abs(ang.p)) / 89)
 	
 	if self._vmCamAttach > 0 then
 		local vm = self.CW_VM

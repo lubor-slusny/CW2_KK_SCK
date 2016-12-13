@@ -19,7 +19,7 @@ if CLIENT then
 	SWEP.ShellEjectVelocity = 50
 	
 	SWEP.AttachmentModelsVM = {
-		["kk_ins2_revolver_mag"] = {model = "models/weapons/upgrades/a_clips_sw1917	.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_revolver_mag"] = {model = "models/weapons/upgrades/a_clips_sw1917.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
 	SWEP.AttachmentModelsWM = {}

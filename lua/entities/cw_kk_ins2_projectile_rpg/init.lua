@@ -17,13 +17,13 @@ function ENT:Think()
 	elseif CT > self.ArmTime then
 		self.dt.State = self.States.armed
 		
-		self:SearchNDestroy()
+		-- self:SearchNDestroy()
 		
 		local phys = self:GetPhysicsObject()
 				
 		if IsValid(phys) then
 			
-			if not self.ArmDir or self.safetyBypass then 
+			if not self.ArmDir or self.safetyBypass then
 				self.ArmDir = phys:GetVelocity()
 			end
 		
