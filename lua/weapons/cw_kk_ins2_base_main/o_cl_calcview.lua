@@ -217,28 +217,28 @@ function SWEP:CalcView(ply, pos, ang, fov)
 		if att then
 			ang = ang + (att.Ang - vmAng) * mod
 		end
-	else
+	-- else
 		-- if self.ReloadViewBobEnabled then
-			if not self:isReticleActive() and self.Cycle <= 0.9 then
-				att = self.Owner:GetAttachment(1)
+			-- if not self:isReticleActive() and self.Cycle <= 0.9 then
+				-- att = self.Owner:GetAttachment(1)
 				
-				if att then
-					ang = ang * 1
+				-- if att then
+					-- ang = ang * 1
 					
-					self.LerpBackSpeed = 1
-					curang = LerpAngle(FT * 10, curang, (ang - att.Ang) * 0.1)
-				else
-					self.LerpBackSpeed = math.Approach(self.LerpBackSpeed, 10, FT * 50)
-					curang = LerpAngle(FT * self.LerpBackSpeed, curang, Ang0)
-				end
-			else
-				self.LerpBackSpeed = math.Approach(self.LerpBackSpeed, 10, FT * 50)
-				curang = LerpAngle(FT * self.LerpBackSpeed, curang, Ang0)
-			end
+					-- self.LerpBackSpeed = 1
+					-- curang = LerpAngle(FT * 10, curang, (ang - att.Ang) * 0.1)
+				-- else
+					-- self.LerpBackSpeed = math.Approach(self.LerpBackSpeed, 10, FT * 50)
+					-- curang = LerpAngle(FT * self.LerpBackSpeed, curang, Ang0)
+				-- end
+			-- else
+				-- self.LerpBackSpeed = math.Approach(self.LerpBackSpeed, 10, FT * 50)
+				-- curang = LerpAngle(FT * self.LerpBackSpeed, curang, Ang0)
+			-- end
 			
-			RotateAroundAxis(ang, Right(ang), curang.p * self.RVBPitchMod * mod)
-			RotateAroundAxis(ang, Up(ang), curang.r * self.RVBYawMod * mod)
-			RotateAroundAxis(ang, Forward(ang), (curang.p + curang.r) * 0.15 * self.RVBRollMod * mod)
+			-- RotateAroundAxis(ang, Right(ang), curang.p * self.RVBPitchMod * mod)
+			-- RotateAroundAxis(ang, Up(ang), curang.r * self.RVBYawMod * mod)
+			-- RotateAroundAxis(ang, Forward(ang), (curang.p + curang.r) * 0.15 * self.RVBRollMod * mod)
 		-- end
 	end
 	

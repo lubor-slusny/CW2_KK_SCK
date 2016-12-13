@@ -137,7 +137,7 @@ SWEP.ReloadTimes = {
 }
 
 function SWEP:getAnimTimes(idk)
-	if idk == "base_melee" then
+	if idk and string.find(idk, "base_melee") then
 		return 0.3, 1
 	end
 	

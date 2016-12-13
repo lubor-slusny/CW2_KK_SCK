@@ -216,7 +216,6 @@ function CustomizableWeaponry_KK.ins2.quickKnife:attack(wep)
 	
 	local category
 	
-	// this will make adding hands (DOI Thompson) fun
 	if wep.ActiveAttachments.kk_ins2_ww2_knife or wep.ActiveAttachments.kk_ins2_ww2_knife_fat then			
 		if CLIENT then
 			wep:bayonetAnimFunc()
@@ -228,11 +227,26 @@ function CustomizableWeaponry_KK.ins2.quickKnife:attack(wep)
 		
 		category = "bayonet"
 	elseif wep.Animations[wep:getForegripMode() .. "melee"] then			
-		if CLIENT then
-			wep:meleeAnimFunc()
+		local prefix = wep:getForegripMode()
+		local suffix = ""
+		
+		if wep.dt.INS2GLActive then
+			if !wep.M203Chamber and wep.KK_INS2_EmptyIdleGL then
+				suffix = "_empty" .. wep._KK_INS2_customEmptySuffix
+			end
+		else
+			if wep:Clip1() == 0 and wep.KK_INS2_EmptyIdle then
+				suffix = "_empty" .. wep._KK_INS2_customEmptySuffix
+			end
 		end
 		
-		local time, halt = wep:getAnimTimes(wep:getForegripMode() .. "melee")
+		local anim = prefix .. "melee" .. suffix
+		
+		if CLIENT then
+			wep:sendWeaponAnim(anim, 1, 0)
+		end
+		
+		local time, halt = wep:getAnimTimes(anim)
 		
 		CustomizableWeaponry_KK.ins2.quickKnife.categories.bash.dmgTime = time
 		

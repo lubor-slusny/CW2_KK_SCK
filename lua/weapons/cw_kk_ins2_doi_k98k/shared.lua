@@ -102,8 +102,8 @@ SWEP.Animations = {
 	base_crawl_empty = "base_crawl_empty",
 	base_melee = "base_melee_bash",
 	base_melee_empty = "base_melee_bash_empty",
-	base_stab = "base_melee",
-	base_stab_empty = "base_melee_empty",
+	base_stab = "base_melee_end",
+	base_stab_empty = "base_melee_end_empty",
 	
 	gl_off_pickup = "gl_ready",
 	gl_off_draw = "gl_draw",

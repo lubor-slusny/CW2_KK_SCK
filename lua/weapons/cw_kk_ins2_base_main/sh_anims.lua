@@ -353,28 +353,26 @@ function SWEP:drawAnimFunc()
 end
 
 function SWEP:meleeAnimFunc()
-	cycle = 0
-	rate = 1
-	prefix = self:getForegripMode()
-	suffix = ""
+	-- cycle = 0
+	-- rate = 1
+	-- prefix = self:getForegripMode()
+	-- suffix = ""
 
-	clip = self:Clip1()
+	-- clip = self:Clip1()
 	
-	if self.dt.INS2GLActive then
-		if !self.M203Chamber and self.KK_INS2_EmptyIdleGL then
-			suffix = "_empty" .. self._KK_INS2_customEmptySuffix
-		end
-	else
-		if clip == 0 and self.KK_INS2_EmptyIdle then
-			suffix = "_empty" .. self._KK_INS2_customEmptySuffix
-		end
-	end
+	-- if self.dt.INS2GLActive then
+		-- if !self.M203Chamber and self.KK_INS2_EmptyIdleGL then
+			-- suffix = "_empty" .. self._KK_INS2_customEmptySuffix
+		-- end
+	-- else
+		-- if clip == 0 and self.KK_INS2_EmptyIdle then
+			-- suffix = "_empty" .. self._KK_INS2_customEmptySuffix
+		-- end
+	-- end
 	
-	anim = prefix .. "melee" .. suffix
+	-- anim = prefix .. "melee" .. suffix
 	
-	self:sendWeaponAnim(anim, rate, cycle)
-	
-	return self:getAnimTimes(anim)
+	-- self:sendWeaponAnim(anim, rate, cycle)
 end
 
 function SWEP:bayonetAnimFunc()
