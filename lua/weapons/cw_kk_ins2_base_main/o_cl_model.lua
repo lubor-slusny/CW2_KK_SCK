@@ -662,8 +662,10 @@ function SWEP:scaleMovement(val, mod)
 	end
 	
 	if self.ActiveAttachments.kk_ins2_ww2_knife or self.ActiveAttachments.kk_ins2_ww2_knife_fat then
-		if self:isRunning() then
-			scale = 0
+		if self.Sequence:find("sprint") then
+			scale = self.ViewModelMovementScale_base / 4
+		else
+			scale = self.ViewModelMovementScale_base
 		end
 	end
 	

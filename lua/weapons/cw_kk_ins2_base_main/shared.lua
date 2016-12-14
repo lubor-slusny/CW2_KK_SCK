@@ -112,7 +112,7 @@ if CLIENT then
 	SWEP.FOVPerShot = 0
 	
 	SWEP.SprintAnimSpeed = 1.1
-	SWEP.ViewModelMovementScale_sprint = 0
+	SWEP.ViewModelMovementScale_sprint = 0.6
 	SWEP.ViewModelMovementScale_base = 1
 	
 	SWEP.CW_KK_HANDS_MDL = "models/weapons/v_hands_vip.mdl"

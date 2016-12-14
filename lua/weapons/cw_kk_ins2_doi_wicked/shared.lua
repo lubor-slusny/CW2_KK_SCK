@@ -55,28 +55,42 @@ SWEP.Attachments = {
 SWEP.Animations = {
 	base_pickup = "base_ready",
 	base_draw = "base_draw",
-	base_fire = {"base_fire", "base_fire2"},
-	base_fire_aim = {"base_fire","base_fire2"},
+	base_draw_empty = "base_draw",
+	base_fire = {"base_fire_1", "base_fire_2"},
+	base_fire_aim = {"iron_fire_1", "iron_fire_2"},
+	base_fire_last = "base_fire_last",
+	base_fire_last_aim = "base_fire_last",
 	base_fire_empty = "base_dryfire",
-	base_fire_empty_aim = "base_dryfire",
+	base_fire_empty_aim = "iron_dryfire",
 	base_reload = "base_reload",
 	base_reload_empty = "base_reloadempty",
 	base_idle = "base_idle",
+	base_idle_empty = "base_idle_empty",
 	base_holster = "base_holster",
+	base_holster_empty = "base_holster",
 	base_sprint = "base_sprint",
+	base_sprint_empty = "base_sprint",
 	base_safe = "base_down",
 	base_safe_aim = "base_down",
+	base_safe_empty = "base_down",
+	base_safe_empty_aim = "base_down",
 	base_crawl = "base_crawl",
+	base_crawl_empty = "base_crawl",
 	base_melee = "base_melee_bash",
+	base_melee_empty = "base_melee_bash",
 	
 	bipod_in = "deployed_in",
+	bipod_in_empty = "deployed_in",
 	bipod_fire = {"deployed_fire_1","deployed_fire_2"},
-	bipod_fire_aim = "deployed_iron_fire_1",
-	bipod_fire_empty = "base_dryfire",
-	bipod_fire_empty_aim = "base_dryfire",
+	bipod_fire_aim = {"deployed_iron_fire_1", "deployed_iron_fire_2"},
+	bipod_fire_last = "deployed_fire_last",
+	bipod_fire_last_aim = "deployed_iron_fire_last",
+	bipod_fire_empty = "deployed_dryfire",
+	bipod_fire_empty_aim = "deployed_iron_dryfire",
 	bipod_reload = "deployed_reload",
 	bipod_reload_empty = "deployed_reload_empty",
 	bipod_out = "deployed_out",
+	bipod_out_empty = "deployed_out",
 }
 
 SWEP.SpeedDec = 30
@@ -135,6 +149,7 @@ SWEP.BipodUndeployTime = 1.73
 
 SWEP.Chamberable = false
 SWEP.BipodInstalled = true
+SWEP.KK_INS2_EmptyIdle = true
 SWEP.WeaponLength = 24
 
 SWEP.MuzzleVelocity = 850

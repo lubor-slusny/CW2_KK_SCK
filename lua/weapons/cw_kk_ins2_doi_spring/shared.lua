@@ -21,6 +21,8 @@ if CLIENT then
 	SWEP.BackupSights = {}
 	
 	SWEP.AttachmentModelsVM = {
+		["kek"] = {model = "models/weapons/v_springfield.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true, hideVM = true},
+		
 		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_iron_springfield.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
 		
 		["bolt_scope"] = {model = "models/weapons/upgrades/a_bolt_springfield.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
@@ -43,6 +45,21 @@ if CLIENT then
 		["kk_ins2_scope_m73"] = {model = "models/weapons/upgrades/w_optic_springfield.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_scope_u8x"] = {model = "models/weapons/upgrades/w_optic_springfield.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
+	
+	SWEP.ForegripOverridePos = {
+		none = {
+			["a_underbarrel"] = {pos = Vector(), angle = Angle()},
+			["gl_base"] = {pos = Vector(), angle = Angle()},
+		},
+		
+		gl = {
+			["A_Underbarrel"] = {pos = Vector(1.6, 0.5, 0), angle = Angle(-90, -90, 0)},
+			["gl_base"] = {pos = Vector(-7.5, 4.55, 0.3), angle = Angle()},
+		}
+	}
+	
+	SWEP.ForegripParent = "none"
+	SWEP.ForegripOverride = true
 	
 	SWEP.IronsightPos = Vector(-2.5643, -3, 1.3156)
 	SWEP.IronsightAng = Vector(-0.03, 0.03, 0)
