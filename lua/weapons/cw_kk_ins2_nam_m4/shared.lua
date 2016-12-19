@@ -138,7 +138,7 @@ SWEP.HolsterTime = 0.5
 
 SWEP.WeaponLength = 20
 
-SWEP.MuzzleVelocity = 788
+SWEP.MuzzleVelocity = 808
 
 SWEP.ReloadTimes = {
 	base_reload = {2.3, 3}, 

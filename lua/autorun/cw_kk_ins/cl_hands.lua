@@ -24,5 +24,10 @@ if CLIENT then
 		{"models/weapons/v_hands_short_ger.mdl", "[DOI] DE Short"},
 		{"models/weapons/v_hands_ger_gloves.mdl", "[DOI] DE Gloved"},
 		{"models/weapons/v_hands_ger_gloves_paratrooper.mdl", "[DOI] DE Para"},
+		
+		{"models/weapons/v_nam_hands_us.mdl", "[B2K] US"},
+		{"models/weapons/v_hands_short_us_nam.mdl", "[B2K] US Short"},
+		{"models/weapons/v_hands_short_us_black.mdl", "[B2K] US Black"},
+		{"models/weapons/v_hands_nva.mdl", "[B2K] NVA"},
 	}
 end

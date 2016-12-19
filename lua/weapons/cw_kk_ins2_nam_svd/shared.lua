@@ -123,7 +123,7 @@ SWEP.Primary.DefaultClip	= 10
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "7.62x54MMR"
 
-SWEP.FireDelay = 60/400
+SWEP.FireDelay = 60/300
 SWEP.FireSound = "CW_KK_INS2_MOSIN_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_MOSIN_FIRE_SUPPRESSED"
 SWEP.Recoil = 2.5
@@ -150,7 +150,7 @@ SWEP.KK_INS2_EmptyIdle = true
 
 SWEP.WeaponLength = 38
 
-SWEP.MuzzleVelocity = 865
+SWEP.MuzzleVelocity = 830
 
 SWEP.ReloadTimes = {
 	base_reload = {2.55, 3.2},

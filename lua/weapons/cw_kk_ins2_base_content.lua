@@ -150,6 +150,9 @@ end
 	CustomizableWeaponry:registerAmmo("7.92x57MM", "7.92x57MM Mauser Rounds", 7.92, 57)
 	CustomizableWeaponry:registerAmmo("7.92x33MM", "7.92x33MM Kurz Rounds", 7.92, 33)
 	
+	CustomizableWeaponry:registerAmmo(".32 ACP", "7.65x17MMSR Browning Rounds", 7.65, 17)
+	CustomizableWeaponry:registerAmmo("7.62x25MM", "7.62x25MM Tokarev Rounds", 7.62, 25)
+	
 	-- CustomizableWeaponry:registerAmmo(".30-06 Springfield", ".30-06 Springfield Rounds", 7.62, 63.3)
 	-- CustomizableWeaponry:registerAmmo("7.92x57MM Mauser", "7.92x57MM Mauser Rounds", 7.92, 57)
 	-- CustomizableWeaponry:registerAmmo("7.92x33MM Kurz", "7.92x33MM Kurz Rounds", 7.92, 33)

@@ -99,9 +99,9 @@ SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
 SWEP.Primary.ClipSize		= 20
 SWEP.Primary.DefaultClip	= 20
 SWEP.Primary.Automatic		= true
-SWEP.Primary.Ammo			= "9x19MM"
+SWEP.Primary.Ammo			= ".32 ACP"
 
-SWEP.FireDelay = 60/900
+SWEP.FireDelay = 60/850
 SWEP.FireSound = "CW_KK_INS2_MP5K_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_MP5K_FIRE_SUPPRESSED"
 SWEP.Recoil = 0.7
@@ -121,7 +121,7 @@ SWEP.HolsterTime = 0.5
 
 SWEP.KK_INS2_EmptyIdle = true
 
-SWEP.MuzzleVelocity = 375
+SWEP.MuzzleVelocity = 320
 
 SWEP.ReloadTimes = {
 	base_reload = {2.4, 3},
