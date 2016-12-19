@@ -21,6 +21,9 @@ if CLIENT then
 	
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_scope_zf4"] = {model = "models/weapons/upgrades/a_optic_zf4.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		
+		["scope_ext"] = {model = "models/weapons/upgrades/a_clothwrap_g43.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		
 	}
 
 	SWEP.AttachmentModelsWM = {
@@ -150,3 +153,9 @@ SWEP.ReloadTimes = {
 	
 	base_melee_bash = {0.3, 0.9},
 }
+
+if CLIENT then
+	function SWEP:updateStandardParts()
+		self:setElementActive("scope_ext", self.ActiveAttachments.kk_ins2_scope_zf4)
+	end
+end

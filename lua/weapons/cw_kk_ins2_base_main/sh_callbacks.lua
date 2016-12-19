@@ -226,7 +226,6 @@ if CLIENT then
 	CustomizableWeaponry.callbacks:addNew("adjustViewmodelPosition", "KK_INS2_BASE", function(wep, TargetPos, TargetAng)
 		if !wep.KKINS2Wep then return end
 		
-		
 		if kkAction[wep.dt.State] and not wep.KKINS2Potato then
 			return wep.SwimPos, wep.SwimAng
 		end

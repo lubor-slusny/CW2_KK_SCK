@@ -410,7 +410,7 @@ end
 // edited for customized grenade launcher behavior
 //-----------------------------------------------------------------------------
 
-local anim, reloadTime, reloadHalt, flag, unloadTime
+local anim, reloadTime, reloadHalt, flag, unloadTime, _
 
 function SWEP:toggleGLMode(IFTP)
 	if self._currentGrenadeLauncher.ww2GrenadeLauncher then
@@ -484,11 +484,13 @@ function SWEP:toggleGLMode(IFTP)
 		end
 		
 		if (SERVER and SP) or (CLIENT and MP and IFTP) then
-			self:sendWeaponAnim(anim, 1.5, 0)
+			self:sendWeaponAnim(anim, 1, 0)
 		end
 		
-		self:delayEverything(0.6)
-		self:setGlobalDelay(0.6)
+		_, reloadHalt, _, _ = self:getAnimTimes(anim)
+		
+		self:delayEverything(reloadHalt)
+		self:setGlobalDelay(reloadHalt)
 	end
 end
 

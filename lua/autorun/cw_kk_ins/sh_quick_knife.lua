@@ -248,6 +248,8 @@ function CustomizableWeaponry_KK.ins2.quickKnife:attack(wep)
 		
 		local time, halt = wep:getAnimTimes(anim)
 		
+		halt = 3 * halt / 5
+		
 		CustomizableWeaponry_KK.ins2.quickKnife.categories.bash.dmgTime = time
 		
 		wep:setGlobalDelay(halt)

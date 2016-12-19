@@ -720,11 +720,17 @@ if CLIENT then
 		for animName, _ in pairs(self.reloadProgressAnimsRaw) do
 			local seqName = self.Animations[animName]
 			
-			if not seqName or !isstring(seqName) then 
+			if not seqName then 
 				continue 
 			end
 			
-			self.reloadProgressAnims[seqName] = (self.ReloadTimes and self.ReloadTimes[seqName]) and self.ReloadTimes[seqName][2]
+			if istable(seqName) then
+				for _, seqName in pairs(seqName) do
+					self.reloadProgressAnims[seqName] = (self.ReloadTimes and self.ReloadTimes[seqName]) and self.ReloadTimes[seqName][2]
+				end
+			else
+				self.reloadProgressAnims[seqName] = (self.ReloadTimes and self.ReloadTimes[seqName]) and self.ReloadTimes[seqName][2]
+			end
 		end
 	end
 end

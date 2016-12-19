@@ -17,11 +17,19 @@ if CLIENT then
 	SWEP.Shell = "KK_INS2_762x33"
 	SWEP.ShellDelay = 0.06
 	
-	SWEP.AttachmentModelsVM = {}
-	SWEP.AttachmentModelsWM = {}
+	SWEP.AttachmentModelsVM = {
+		["kk_ins2_scope_zf4"] = {model = "models/weapons/upgrades/a_optic_zf4.mdl", pos = Vector(0.0161, -4.2041, 5.964), angle = Angle(0, -90, 0), size = Vector(1.2, 1.2, 1.2), bone = "STG44"},
+	}
+	
+	SWEP.AttachmentModelsWM = {
+		["kk_ins2_scope_zf4"] = {model = "models/weapons/upgrades/w_scope_g43.mdl", pos = Vector(5.218, -1.0885, 7.1822), angle = Angle(3.6414, -3.9709, 0), size = Vector(1.1, 1.1, 1.1), bone = "R Hand"},
+	}
 	
 	SWEP.IronsightPos = Vector(-2.316, -2, 0.5705)
 	SWEP.IronsightAng = Vector(0.2536, 0.0368, 0)
+
+	SWEP.KKINS2ScopeZF4Pos = Vector(-2.3215, -3, -0.1577)
+	SWEP.KKINS2ScopeZF4Ang = Vector(0, 0.0186, 0)
 
 	SWEP.CustomizationMenuScale = 0.02
 end
@@ -30,6 +38,7 @@ SWEP.MuzzleEffect = "muzzleflash_stg44_1p"
 SWEP.MuzzleEffectWorld = "muzzleflash_stg44_3p"
 
 SWEP.Attachments = {
+	{header = "Sight", offset = {500, -500}, atts = {"kk_ins2_scope_zf4"}},
 	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
 	["+reload"] = {header = "Ammo", offset = {500, 300}, atts = {"am_magnum", "am_matchgrade"}}
 }

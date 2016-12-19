@@ -19,8 +19,9 @@ if CLIENT then
 	SWEP.Shell = "KK_INS2_762x33"
 	
 	SWEP.AttachmentModelsVM = {
-		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_standard_m1a1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
-		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_modkit_m1a1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		-- ["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_standard_m1a1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
+		-- ["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_modkit_m1a1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_optic_raul"] = {model = "models/weapons/upgrades/a_modkit_m1a1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
 		
 		["kk_ins2_mag_m1a1_15"] = {model = "models/weapons/upgrades/a_magazine_m1a1_15.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
 		["kk_ins2_mag_m1a1_30"] = {model = "models/weapons/upgrades/a_magazine_m1a1_30.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
@@ -50,8 +51,9 @@ if CLIENT then
 	}
 	
 	SWEP.AttachmentModelsWM = {
-		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/w_standard_m1a1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
-		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/w_modkit_m1a1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
+		-- ["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/w_standard_m1a1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
+		-- ["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/w_modkit_m1a1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_optic_raul"] = {model = "models/weapons/upgrades/w_modkit_m1a1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
 		
 		["kk_ins2_mag_m1a1_15"] = {model = "models/weapons/upgrades/w_magazine_m1a1_15.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
 		["kk_ins2_mag_m1a1_30"] = {model = "models/weapons/upgrades/w_magazine_m1a1_30.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},

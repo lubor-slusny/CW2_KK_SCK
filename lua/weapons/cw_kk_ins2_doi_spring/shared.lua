@@ -21,7 +21,9 @@ if CLIENT then
 	SWEP.BackupSights = {}
 	
 	SWEP.AttachmentModelsVM = {
-		["kek"] = {model = "models/weapons/v_springfield.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true, hideVM = true},
+		-- ["kek"] = {model = "models/weapons/v_springfield.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true, hideVM = true},
+		
+		["scope_ext"] = {model = "models/weapons/upgrades/a_clothwrap_springfield.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_iron_springfield.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
 		
@@ -293,5 +295,7 @@ if CLIENT then
 		local scope = self:getActiveAttachmentInCategory(1) != nil
 		self:setElementActive("bolt_iron", !scope)
 		self:setElementActive("bolt_scope", scope)
+		
+		self:setElementActive("scope_ext", self.ActiveAttachments.kk_ins2_scope_m73)
 	end
 end

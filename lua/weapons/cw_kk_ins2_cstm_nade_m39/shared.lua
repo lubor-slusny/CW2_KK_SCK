@@ -20,6 +20,8 @@ if CLIENT then
 	SWEP.MoveType = 2
 	SWEP.ViewModelMovementScale = 0.8
 	SWEP.DisableSprintViewSimulation = true
+	
+	SWEP.HUD_3D2DBone = 53
 end
 
 SWEP.Attachments = CustomizableWeaponry_KK.ins2.slowGrenadeMenu

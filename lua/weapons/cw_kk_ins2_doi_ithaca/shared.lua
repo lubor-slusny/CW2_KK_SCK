@@ -20,8 +20,13 @@ if CLIENT then
 	
 	SWEP.ShellViewAngleAlign = {Forward = 90, Right = 0, Up = 0}
 	
-	SWEP.AttachmentModelsVM = {}
-	SWEP.AttachmentModelsWM = {}
+	SWEP.AttachmentModelsVM = {
+		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/a_ithaca_bayonet.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+	}
+	
+	SWEP.AttachmentModelsWM = {
+		-- ["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/w_kar98k_bayonet.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+	}
 	
 	SWEP.IronsightPos = Vector(-2.0952, -2.5, 1.2975)
 	SWEP.IronsightAng = Vector(0.2605, -0.0341, 0)
@@ -33,6 +38,7 @@ SWEP.MuzzleEffect = "muzzleflash_ithica_1p"
 SWEP.MuzzleEffectWorld = "muzzleflash_ithica_3p"
 
 SWEP.Attachments = {
+	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_ww2_knife"}},
 	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_slugrounds", "am_flechetterounds"}}
 }
@@ -54,10 +60,12 @@ SWEP.Animations = {
 	base_idle = "base_idle",
 	base_holster = "base_holster",
 	base_sprint = "base_sprint",
+	base_sprint_knife = "base_sprint_bayonet",
 	base_safe = "base_down",
 	base_safe_aim = "iron_down",
 	base_crawl = "base_crawl",
 	base_melee = "base_melee_bash",
+	base_stab = "base_melee_end",
 }
 
 SWEP.SpeedDec = 15
