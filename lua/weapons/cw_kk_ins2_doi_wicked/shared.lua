@@ -25,8 +25,8 @@ if CLIENT then
 	SWEP.ShellEjectVelocity = 50
 	
 	SWEP.AttachmentModelsVM = {
-		["kk_ins2_lam"] = {model = "models/weapons/attachments/a_laser_sterling.mdl", pos = Vector(2.4741, -3.8255, 2.5795), angle = Angle(0, -90, 0), size = Vector(1.25, 1.25, 1.25), bone = "Weapon"},
-		["kk_ins2_flashlight"] = {model = "models/weapons/attachments/a_flashlight_sterling.mdl", pos = Vector(2.4741, -3.8255, 2.5795), angle = Angle(0, -90, 0), size = Vector(1.25, 1.25, 1.25), bone = "Weapon"},
+		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_sterling.mdl", pos = Vector(2.4741, -3.8255, 2.5795), angle = Angle(0, -90, 0), size = Vector(1.25, 1.25, 1.25), bone = "Weapon"},
+		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_sterling.mdl", pos = Vector(2.4741, -3.8255, 2.5795), angle = Angle(0, -90, 0), size = Vector(1.25, 1.25, 1.25), bone = "Weapon"},
 		["kk_ins2_anpeq15"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_anpeq_ring.mdl", pos = Vector(2.4741, -3.8255, 2.5795), angle = Angle(0, -90, 0), size = Vector(1.25, 1.25, 1.25), bone = "Weapon"},
 	}
 	
@@ -35,8 +35,8 @@ if CLIENT then
 	
 	SWEP.AttachmentModelsWM = {}
 	
-	SWEP.IronsightPos = Vector(-2.4284, -4, 1.611)
-	SWEP.IronsightAng = Vector(0.3849, 0.4773, 0)
+	SWEP.IronsightPos = Vector(-0.0034, 0, -0.0059)
+	SWEP.IronsightAng = Vector(0, 0.0431, 0)
 
 	SWEP.AlternativePos = Vector(0, 0, 0)
 	SWEP.AlternativeAng = Vector(-4.7469, -2.8829, 0)
@@ -89,6 +89,10 @@ SWEP.Animations = {
 	bipod_fire_empty_aim = "deployed_iron_dryfire",
 	bipod_reload = "deployed_reload",
 	bipod_reload_empty = "deployed_reload_empty",
+	bipod_idle = "deployed_idle",
+	bipod_idle_aim = "deployed_iron_idle",
+	bipod_idle_empty = "deployed_idle_empty",
+	bipod_idle_empty_aim = "deployed_iron_idle_empty",
 	bipod_out = "deployed_out",
 	bipod_out_empty = "deployed_out",
 }
@@ -111,9 +115,9 @@ SWEP.Instructions	= ""
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_vickers.mdl"
-SWEP.WorldModel		= "models/weapons/w_m1919.mdl"
+SWEP.WorldModel		= "models/weapons/w_vickers.mdl"
 
-SWEP.WMPos = Vector(15.986, 0.921, -6.038)
+SWEP.WMPos = Vector(13, 0.921, -4.5)
 SWEP.WMAng = Vector(-10, 0, 180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2gb

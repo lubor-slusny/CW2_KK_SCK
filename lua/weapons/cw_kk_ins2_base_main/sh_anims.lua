@@ -220,57 +220,6 @@ if CLIENT then
 		
 		self:sendWeaponAnim(prefix .. anim .. suffix, 1, 0)
 	end
-		
-	function SWEP:idleAnimFunc()		
-		prefix = self:getForegripMode()
-		suffix = ""
-		anim = "idle"
-		rate = -1
-		-- cycle = 0.45
-		cycle = 0
-		
-		if self.KKINS2Melee then
-			rate = 1
-		elseif self.KKINS2Nade then
-			rate = 1
-			if self.Owner:GetAmmoCount(self.Primary.Ammo) < 1 then
-				anim = "holster"
-				cycle = 1
-			end
-		else
-			anim = "idle" // only idle anims are for base_ prefix, it used to use draw anim for others anyway
-			-- anim = "holster"
-		end
-		
-		if self:IsOwnerCrawling() then
-			anim = "crawl"
-		end
-		
-		clip = self:Clip1()
-		
-		if self.dt.INS2GLActive then
-			if !self.M203Chamber and self.KK_INS2_EmptyIdleGL then
-				suffix = "_empty" .. self._KK_INS2_customEmptySuffix
-			end
-		else
-			if clip == 0 and self.KK_INS2_EmptyIdle then
-				suffix = "_empty" .. self._KK_INS2_customEmptySuffix
-			end
-		end
-		
-		-- if self.dt.State == CW_CUSTOMIZE then
-			-- cycle = 1
-		-- end
-		
-		-- if self:isAiming() then
-			-- rate = 2
-			-- cycle = 0.5
-		-- end
-		
-		self:sendWeaponAnim(prefix .. anim .. suffix, rate, cycle)
-		
-		self:removeCurSoundTable()
-	end
 	
 	function SWEP:proneAnimFunc()
 		prefix = self:getForegripMode()
@@ -299,6 +248,61 @@ if CLIENT then
 		
 		self:sendWeaponAnim(prefix .. anim .. suffix, rate, cycle)
 	end
+end
+
+function SWEP:idleAnimFunc()		
+	prefix = self:getForegripMode()
+	suffix = ""
+	anim = "idle"
+	rate = -1
+	-- cycle = 0.45
+	cycle = 0
+	
+	if self.KKINS2Melee then
+		rate = 1
+	elseif self.KKINS2Nade then
+		rate = 1
+		if self.Owner:GetAmmoCount(self.Primary.Ammo) < 1 then
+			anim = "holster"
+			cycle = 1
+		end
+	else
+		anim = "idle" // only idle anims are for base_ prefix, it used to use draw anim for others anyway
+		-- anim = "holster"
+	end
+	
+	if self:IsOwnerCrawling() then
+		anim = "crawl"
+	end
+	
+	clip = self:Clip1()
+	
+	if self.dt.INS2GLActive then
+		if !self.M203Chamber and self.KK_INS2_EmptyIdleGL then
+			suffix = "_empty" .. self._KK_INS2_customEmptySuffix
+		end
+	else
+		if clip == 0 and self.KK_INS2_EmptyIdle then
+			suffix = "_empty" .. self._KK_INS2_customEmptySuffix
+		end
+	end
+	
+	-- if self.dt.State == CW_CUSTOMIZE then
+		-- cycle = 1
+	-- end
+	
+	-- if self:isAiming() then
+		-- rate = 2
+		-- cycle = 0.5
+	-- end
+	
+	if self:isAiming() and self.Animations[prefix .. anim .. suffix .. "_aim"] then
+		suffix = suffix .. "_aim"
+	end
+	
+	self:sendWeaponAnim(prefix .. anim .. suffix, rate, cycle)
+	
+	self:removeCurSoundTable()
 end
 
 function SWEP:pickupAnimFunc(mode)

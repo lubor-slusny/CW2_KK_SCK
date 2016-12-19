@@ -37,6 +37,9 @@ if CLIENT then
 	SWEP.MinZoom = 60
 	SWEP.ZoomAmount = 70
 	SWEP.MaxZoom = 80
+	
+	SWEP.CustomizePos = Vector()
+	SWEP.CustomizeAng = Vector()
 end
 
 function SWEP:Reload() end
@@ -115,5 +118,33 @@ function SWEP:PrimaryAttack()
 		end)
 		
 		self.Owner._kkNextAirStrike = CT + 8
+	end
+end
+
+function SWEP:IndividualThink()
+	if CLIENT then
+		self.CustomizationTab = 1
+	end
+	
+	weapons.GetStored("cw_kk_ins2_base_main").IndividualThink(self)
+end
+
+if CLIENT then
+	local att
+	local muz = {}
+
+	function SWEP:getMuzzlePosition()
+		if self.Owner:ShouldDrawLocalPlayer() then
+			muz.Pos = self.WMEnt:GetPos()
+			muz.Ang = EyeAngles()
+			return muz
+		end
+		
+		muz.Pos = self.Owner:EyePos()
+		muz.Ang = self.Owner:EyeAngles()
+		
+		muz.Pos = muz.Pos + muz.Ang:Forward() * 20 + muz.Ang:Right() * -5
+		
+		return muz
 	end
 end

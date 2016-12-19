@@ -9,7 +9,7 @@ Made mainly for easier reload sound script set up
 ]]--
 
 local dst = draw.SimpleText
-CreateClientConVar("cvmt_enabled", 0, true, true)
+CreateClientConVar("cvmt_enabled", 0, false, true)
 CreateClientConVar("cvmt_animlist", 0, true, true)
 CreateClientConVar("cvmt_animlist_numbers", 0, true, true)
 

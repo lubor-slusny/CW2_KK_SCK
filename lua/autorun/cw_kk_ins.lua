@@ -99,6 +99,8 @@ for _,f in pairs({
 	arseContentOK = arseContentOK and file.Exists(f, "GAME")
 end
 
+local namContentOK = true
+
 local subs
 local sub = string.sub
 local starts = string.StartWith
@@ -110,6 +112,7 @@ function CustomizableWeaponry_KK.ins2:isContentMounted()
 		["cw_kk_ins2_doi"] = (doigameContentOK),
 		["cw_kk_ins2_ao5"] = (baseContentOK and ao5ContentOK),
 		["cw_kk_ins2_arse"] = (baseContentOK and arseContentOK and CustomizableWeaponry_KK.HOME),
+		["cw_kk_ins2_nam"] = (baseContentOK and namContentOK and CustomizableWeaponry_KK.HOME),
 	}
 	
 	local class = sub(self.Folder, 9)
@@ -278,6 +281,12 @@ if CLIENT then
 		panel:AddControl("CheckBox", {
 			Label = "Fix shadows + break phong on RT Scopes.", 
 			Command = "cw_kk_ins2_scopelightingfix"
+		}):DockMargin(8, 8, 8, 0)
+		
+		// sprint anims vs sprint codeims
+		panel:AddControl("CheckBox", {
+			Label = "Use model sprint anims instead of coded movement.", 
+			Command = "cw_kk_ins2_sprint"
 		}):DockMargin(8, 8, 8, 0)
 		
 		if not CustomizableWeaponry_KK.HOME then return end

@@ -28,6 +28,10 @@ if CLIENT then
 	
 	SWEP.IronsightPos = Vector(-2.5787, -4, 0.4627)
 	SWEP.IronsightAng = Vector(0.6831, 0.0034, 9)
+	
+	SWEP.IronsightPos = Vector(-2.5787, -4, 0.4627)
+	SWEP.IronsightAng = Vector(0.6845, 0.0387, 9)
+
 end
 
 SWEP.MuzzleEffect = "muzzleflash_stg44_1p"
@@ -83,6 +87,10 @@ SWEP.Animations = {
 	bipod_fire_empty_aim = "deployed_iron_dryfire",
 	bipod_reload = "deployed_reload",
 	bipod_reload_empty = "deployed_reload_empty",
+	bipod_idle = "deployed_idle",
+	bipod_idle_empty = "deployed_idle_empty",
+	bipod_idle_aim = "deployed_iron_idle",
+	bipod_idle_empty_aim = "deployed_iron_idle_empty",
 	bipod_firemode = "deployed_fireselect",
 	bipod_firemode_empty = "deployed_iron_fireselect_empty",
 	bipod_firemode_aim = "deployed_iron_fireselect",
@@ -138,8 +146,8 @@ SWEP.SpreadCooldown = 0.17
 SWEP.Shots = 1
 SWEP.Damage = 59
 
-SWEP.BipodDeployTime = 0.91
-SWEP.BipodUndeployTime = 1.16
+SWEP.BipodDeployTime = 1.7
+SWEP.BipodUndeployTime = 2
 
 SWEP.FirstDeployTime = 0.7
 SWEP.DeployTime = 0.7

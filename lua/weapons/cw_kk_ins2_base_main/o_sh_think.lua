@@ -47,6 +47,7 @@ function SWEP:Think()
 					self.dt.State = CW_IDLE
 					self:SetNextSecondaryFire(CT + 0.2)
 					self:EmitSound("CW_LOWERAIM")
+					self:idleAnimFunc()
 				end
 			end
 		end

@@ -21,7 +21,7 @@ if CLIENT then
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_iron_enfield.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
 		
-		["scope_ext"] = {model = "models/weapons/upgrades/a_clothwrap_enfield.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["sleeve"] = {model = "models/weapons/upgrades/a_clothwrap_enfield.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_ww2_stripper"] = {model = "models/weapons/upgrades/a_enfield_stripper_clip.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
@@ -302,6 +302,6 @@ end
 
 if CLIENT then
 	function SWEP:updateStandardParts()
-		self:setElementActive("scope_ext", self.ActiveAttachments.kk_ins2_scope_enfield)
+		self:setElementActive("sleeve", self.ActiveAttachments.kk_ins2_scope_enfield)
 	end
 end

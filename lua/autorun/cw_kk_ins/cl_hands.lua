@@ -10,24 +10,33 @@ if CLIENT then
 		{"models/weapons/v_hands_vip.mdl", "[INS] Very Individual Player"},
 		
 		{"models/weapons/v_cw_kk_ins2_hands_css.mdl", "[CSS] shared"},
-		
-		{"models/weapons/v_hands_brit.mdl", "[DOI] GB Sleeve"},
-		{"models/weapons/v_hands_short_brit.mdl", "[DOI] GB Short"},
-		{"models/weapons/v_hands_cw_gloves.mdl", "[DOI] GB Gloved"},
-		
-		{"models/weapons/v_hands_us.mdl", "[DOI] US Sleeve"},
-		{"models/weapons/v_hands_short_us.mdl", "[DOI] US Short"},
-		{"models/weapons/v_hands_us_glove.mdl", "[DOI] US Gloved"},
-		{"models/weapons/v_hands_us_glove_airborne.mdl", "[DOI] US Para"},
-		
-		{"models/weapons/v_hands_ger.mdl", "[DOI] DE Sleeve"},
-		{"models/weapons/v_hands_short_ger.mdl", "[DOI] DE Short"},
-		{"models/weapons/v_hands_ger_gloves.mdl", "[DOI] DE Gloved"},
-		{"models/weapons/v_hands_ger_gloves_paratrooper.mdl", "[DOI] DE Para"},
-		
-		{"models/weapons/v_nam_hands_us.mdl", "[B2K] US"},
-		{"models/weapons/v_hands_short_us_nam.mdl", "[B2K] US Short"},
-		{"models/weapons/v_hands_short_us_black.mdl", "[B2K] US Black"},
-		{"models/weapons/v_hands_nva.mdl", "[B2K] NVA"},
 	}
+	
+	local function add(tab)
+		table.insert(CustomizableWeaponry_KK.ins2.hands, tab)
+	end
+	
+	if CustomizableWeaponry_KK.ins2.isContentMounted({Folder = "weapons/cw_kk_ins2_doi_"}) then
+		add({"models/weapons/v_hands_brit.mdl", "[DOI] GB Sleeve"})
+		add({"models/weapons/v_hands_short_brit.mdl", "[DOI] GB Short"})
+		
+		add({"models/weapons/v_hands_us.mdl", "[DOI] US Sleeve"})
+		add({"models/weapons/v_hands_short_us.mdl", "[DOI] US Short"})
+		add({"models/weapons/v_hands_us_glove.mdl", "[DOI] US Gloved"})
+		add({"models/weapons/v_hands_us_glove_airborne.mdl", "[DOI] US Para"})
+		
+		add({"models/weapons/v_hands_ger.mdl", "[DOI] DE Sleeve"})
+		add({"models/weapons/v_hands_short_ger.mdl", "[DOI] DE Short"})
+		add({"models/weapons/v_hands_ger_gloves.mdl", "[DOI] DE Gloved"})
+		add({"models/weapons/v_hands_ger_gloves_paratrooper.mdl", "[DOI] DE Para"})
+		add({"models/weapons/v_hands_ger_wehrmacht.mdl", "[DOI] DE Wehr"})
+		add({"models/weapons/v_hands_ger_gloves_wehrmacht.mdl", "[DOI] DE Wehr Gloved"})
+	end
+	
+	if CustomizableWeaponry_KK.ins2.isContentMounted({Folder = "weapons/cw_kk_ins2_nam_"}) then
+		add({"models/weapons/v_nam_hands_us.mdl", "[B2K] US"})
+		add({"models/weapons/v_hands_short_us_nam.mdl", "[B2K] US Short"})
+		add({"models/weapons/v_hands_short_us_black.mdl", "[B2K] US Black"})
+		add({"models/weapons/v_hands_nva.mdl", "[B2K] NVA"})
+	end
 end
