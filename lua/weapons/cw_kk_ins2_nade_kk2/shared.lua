@@ -72,8 +72,8 @@ SWEP.WorldModel		= "models/props_junk/flare.mdl"
 SWEP.WMPos = Vector(2.391, 1.295, 1)
 SWEP.WMAng = Angle(-28.962, 155.365, 180)
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted2(SWEP)
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted2(SWEP)
 SWEP.AdminOnly		= true
 
 SWEP.Primary.ClipSize		= -1

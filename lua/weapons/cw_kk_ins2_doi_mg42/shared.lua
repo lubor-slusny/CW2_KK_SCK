@@ -100,8 +100,8 @@ SWEP.WMAng = Vector(-5, 0, 180)
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2de
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.ww2de
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted2(SWEP)
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted2(SWEP)
 
 SWEP.Primary.ClipSize		= 250
 SWEP.Primary.DefaultClip	= 250

@@ -227,8 +227,8 @@ SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.f1
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.gurkha
 SWEP.CW_KK_40MM_MDL = "models/weapons/upgrades/a_projectile_gp25.mdl"
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted2(SWEP)
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted2(SWEP)
 
 SWEP.Primary.ClipSize		= 30
 SWEP.Primary.DefaultClip	= 30

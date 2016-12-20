@@ -105,21 +105,21 @@ local subs
 local sub = string.sub
 local starts = string.StartWith
 
-function CustomizableWeaponry_KK.ins2:isContentMounted()
+function CustomizableWeaponry_KK.ins2:isContentMounted2()
 	subs = subs or {
-		["cw_kk_ins2_cstm"] = (baseContentOK and (CustomizableWeaponry_KK.ins2.ws == WS_PACK_REVISION)),
-		["cw_kk_ins2_ww2"] = false,
-		["cw_kk_ins2_doi"] = (doigameContentOK),
-		["cw_kk_ins2_ao5"] = (baseContentOK and ao5ContentOK),
-		["cw_kk_ins2_arse"] = (baseContentOK and arseContentOK and CustomizableWeaponry_KK.HOME),
-		["cw_kk_ins2_nam"] = (baseContentOK and namContentOK and CustomizableWeaponry_KK.HOME),
+		["cw_kk_ins2_cstm"] = function() return (baseContentOK and (CustomizableWeaponry_KK.ins2.ws == WS_PACK_REVISION)) end,
+		["cw_kk_ins2_ww2"] = function() return false end,
+		["cw_kk_ins2_doi"] = function() return (doigameContentOK) end,
+		["cw_kk_ins2_ao5"] = function() return (baseContentOK and ao5ContentOK) end,
+		["cw_kk_ins2_arse"] = function() return (baseContentOK and arseContentOK and CustomizableWeaponry_KK.HOME) end,
+		["cw_kk_ins2_nam"] = function() return (baseContentOK and namContentOK and CustomizableWeaponry_KK.HOME) end,
 	}
 	
 	local class = sub(self.Folder, 9)
 	
-	for k,v in pairs(subs) do
+	for k,f in pairs(subs) do
 		if starts(class, k) then
-			return v
+			return f()
 		end
 	end
 	
@@ -410,6 +410,7 @@ if CLIENT then
 	CustomizableWeaponry_KK.ins2.nodrawMat["models/weapons/optics/kar98k_crosshair"] = true
 	CustomizableWeaponry_KK.ins2.nodrawMat["models/weapons/optics/weaver_crosshair"] = true
 	CustomizableWeaponry_KK.ins2.nodrawMat["models/weapons/optics/zf4_crosshair"] = true
+	CustomizableWeaponry_KK.ins2.nodrawMat["models/weapons/optics/fg42_crosshair"] = true
 	
 	CustomizableWeaponry_KK.ins2.nodrawMat["models/weapons/l85a2/susat_reticle"] = true
 	

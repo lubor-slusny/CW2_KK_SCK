@@ -18,6 +18,11 @@ if CLIENT then
 	SWEP.ShellDelay = 0.12
 	
 	SWEP.AttachmentModelsVM = {
+		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_iron_fg42_default.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
+		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_iron_fg42_down.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		
+		["kk_ins2_scope_zf41"] = {model = "models/weapons/upgrades/a_optic_fg42.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		
 		["knife_fold"] = {model = "models/weapons/upgrades/a_fg42_bayonet_default.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
 		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/a_fg42_bayonet.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
@@ -32,12 +37,16 @@ if CLIENT then
 	SWEP.IronsightPos = Vector(-2.5787, -4, 0.4627)
 	SWEP.IronsightAng = Vector(0.6845, 0.0387, 9)
 
+	SWEP.KKINS2ScopeZF41Pos = Vector(-2.5892, -3, 0.4942)
+	SWEP.KKINS2ScopeZF41Ang = Vector(0, 0, 9)
+
 end
 
 SWEP.MuzzleEffect = "muzzleflash_stg44_1p"
 SWEP.MuzzleEffectWorld = "muzzleflash_stg44_3p"
 
 SWEP.Attachments = {
+	{header = "Sight", offset = {500, -500}, atts = {"kk_ins2_scope_zf41"}},
 	{header = "Barrel", offset = {-300, -200}, atts = {"kk_ins2_ww2_knife"}},
 	-- {header = "Under", offset = {-500, 0}, atts = {"kk_ins2_bipod"}},
 	{header = "Stock", offset = {700, -200}, atts = {"kk_ins2_ww2_sling"}},
@@ -66,6 +75,8 @@ SWEP.Animations = {
 	base_firemode_empty_aim = "iron_fireselect_empty",
 	base_sprint = "base_sprint",
 	base_sprint_empty = "base_sprint_empty",
+	base_sprint_knife = "base_sprint_bayonet",
+	base_sprint_knife_empty = "base_sprint_bayonet_empty",
 	base_safe = "base_down",
 	base_safe_empty = "base_down_empty",
 	base_safe_aim = "iron_down",
@@ -125,8 +136,8 @@ SWEP.WMAng = Vector(-15, 2.743, 180)
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2de
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.ww2de
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted(SWEP)
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted2(SWEP)
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted2(SWEP)
 
 SWEP.Primary.ClipSize		= 20
 SWEP.Primary.DefaultClip	= 20
