@@ -153,7 +153,7 @@ SWEP.BipodUndeployTime = 1.73
 
 SWEP.Chamberable = false
 SWEP.BipodInstalled = true
-SWEP.KK_INS2_EmptyIdle = true
+SWEP.KK_INS2_EmptyIdle = false
 SWEP.WeaponLength = 24
 
 SWEP.MuzzleVelocity = 850
@@ -174,12 +174,19 @@ if CLIENT then
 	-- end
 
 	local pos, ang
+	local z = Vector(0,0,-2)
+	local zz = Vector(1,0,0)
 	
 	CustomizableWeaponry.callbacks:addNew("adjustViewmodelPosition", "KK_DOI_VICKERS", function(wep, TargetPos, TargetAng)
 		if wep:GetClass() != "cw_kk_ins2_doi_wicked" then return end
-		if wep.dt.BipodDeployed then return end
-		if !wep:isAiming() then return end
-		
-		return wep.AlternativePos, wep.AlternativeAng
+		if wep.dt.BipodDeployed then
+			if wep:isAiming() then return end
+			
+			return z, zz
+		else
+			if !wep:isAiming() then return end
+			
+			return wep.AlternativePos, wep.AlternativeAng
+		end
 	end)
 end

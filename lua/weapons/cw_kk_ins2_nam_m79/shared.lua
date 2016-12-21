@@ -17,6 +17,7 @@ if CLIENT then
 	
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_m79_sling.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["muzzle"] = {model = "models/maxofs2d/cube_tool.mdl", pos = Vector(21.3825, 0.0088, -0.496), angle = Angle(0, 0, 0), size = Vector(0.01, 0.01, 0.01), attachment = "muzzle", bodygroups = {[1] = 1,}, active = true, nodraw = true},
 	}
 	
 	SWEP.AttachmentModelsWM = {}
@@ -116,3 +117,20 @@ SWEP.ReloadTimes = {
 	base_reload2 = {3.2, 4.6},
 	base_reload3 = {3.2, 4.6},
 }
+
+if CLIENT then
+	local att
+	local muz = {}
+
+	function SWEP:getMuzzlePosition()
+		if self.Owner:ShouldDrawLocalPlayer() then
+			muz.Pos = self.WMEnt:GetAttachment(1).Pos
+			muz.Ang = EyeAngles()
+			return muz
+		end
+		
+		muz.Pos = self.AttachmentModelsVM.muzzle.ent:GetPos()
+		muz.Ang = self.AttachmentModelsVM.muzzle.ent:GetAngles()
+		return muz
+	end
+end

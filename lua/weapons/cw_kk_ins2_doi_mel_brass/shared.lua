@@ -16,8 +16,8 @@ if CLIENT then
 end
 
 SWEP.Animations = {
-	base_pickup = "ready",
-	base_draw = "draw",
+	base_pickup = "ready_1",
+	base_draw = "draw_2",
 	base_fire = {"swing1", "swing2", "swing3"},
 	base_idle = "idle",
 	base_holster = "holster",

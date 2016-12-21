@@ -19,6 +19,8 @@ if CLIENT then
 	SWEP.Shell = "KK_INS2_556x45"
 	SWEP.ShellDelay = 0.06
 
+	SWEP.ShellViewAngleAlign = {Forward = 0, Right = 0, Up = -70}
+	
 	SWEP.Shell2ViewAngleAlign = {Forward = 0, Right = -90, Up = 0}
 	SWEP.Shell2WorldAngleAlign = {Forward = 0, Right = -90, Up = 0}
 	

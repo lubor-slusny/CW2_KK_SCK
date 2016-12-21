@@ -25,12 +25,12 @@ if CLIENT then
 	}
 	
 	SWEP.AttachmentModelsWM = {
-		-- ["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/w_kar98k_bayonet.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/w_ithaca_bayonet.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
 	SWEP.IronsightPos = Vector(-2.0952, -2.5, 1.2975)
 	SWEP.IronsightAng = Vector(0.2605, -0.0341, 0)
-
+	
 	SWEP.CustomizationMenuScale = 0.015
 end
 
@@ -88,7 +88,7 @@ SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_ithaca.mdl"
 SWEP.WorldModel		= "models/weapons/w_ithaca.mdl"
 
-SWEP.WMPos = Vector(5, 0.5, -1.8)
+SWEP.WMPos = Vector(12, 0.5, -2.8)
 SWEP.WMAng = Vector(-15, 3, 180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2gb

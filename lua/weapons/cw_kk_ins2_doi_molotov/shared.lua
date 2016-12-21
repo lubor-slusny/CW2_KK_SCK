@@ -17,7 +17,7 @@ if CLIENT then
 	SWEP.AttachmentModelsVM = {}
 	
 	SWEP.AttachmentModelsWM = {
-		["whorehead"] = {model = "models/weapons/w_molotov.mdl", pos = Vector(1.1313, -0.0273, -0.4484), angle = Angle(99.0829, 13.4942, 0), size = Vector(1, 1, 1), attachment = "muzzle", active = true},
+		-- ["whorehead"] = {model = "models/weapons/w_molotov.mdl", pos = Vector(1.1313, -0.0273, -0.4484), angle = Angle(99.0829, 13.4942, 0), size = Vector(1, 1, 1), attachment = "muzzle", active = true},
 	}
 	
 	SWEP.IronsightPos = Vector(-2.6808, 0, 1.7394)
@@ -66,7 +66,7 @@ SWEP.SpeedDec = 15
 
 SWEP.Slot = 4
 SWEP.SlotPos = 0
-SWEP.NormalHoldType = "rpg"
+SWEP.NormalHoldType = "smg"
 SWEP.RunHoldType = "passive"
 SWEP.FireModes = {"auto"}
 SWEP.Base = "cw_kk_ins2_base"
@@ -80,10 +80,13 @@ SWEP.Instructions	= ""
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_flame_eintoss46.mdl"
-SWEP.WorldModel		= "models/weapons/w_panzerfaust.mdl"
+SWEP.WorldModel		= "models/weapons/w_eintoss46.mdl"
 
-SWEP.WMPos = Vector(6.035, -1.5, -1)
-SWEP.WMAng = Vector(12, 180, -180)
+-- SWEP.WMPos = Vector(6.035, -1.5, -1)
+-- SWEP.WMAng = Vector(12, 180, -180)
+
+SWEP.WMPos = Vector(6.5, 1.5, -2)
+SWEP.WMAng = Vector(-15, 0, -180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2de
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.ww2de
@@ -178,9 +181,9 @@ SWEP.reticleInactivityCallbacksRaw = {
 	at4_reload_start = 0.1
 }
 
-if CLIENT then
-	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_molotov", function(wep, welement)
-		welement:SetBodygroup(1, 1)
-		wep.AttachmentModelsWM.whorehead.active = (wep:Clip1() == 1)
-	end)
-end
+-- if CLIENT then
+	-- CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_molotov", function(wep, welement)
+		-- welement:SetBodygroup(1, 1)
+		-- wep.AttachmentModelsWM.whorehead.active = (wep:Clip1() == 1)
+	-- end)
+-- end

@@ -305,6 +305,12 @@ function SWEP:idleAnimFunc()
 	self:removeCurSoundTable()
 end
 
+function SWEP:aimIdleAnimFunc()
+	if self.Animations[self:getForegripMode() .. "idle_aim"] then
+		self:idleAnimFunc()
+	end
+end
+
 function SWEP:pickupAnimFunc(mode)
 	mode = mode or self:getForegripMode()
 	anim = "pickup"

@@ -228,14 +228,14 @@ function SWEP:SecondaryAttack()
 		self.dt.State = CW_AIMING
 		
 		if self:filterPrediction() then
-			self:idleAnimFunc()
+			self:aimIdleAnimFunc()
 			self:EmitSound("CW_TAKEAIM")
 		end
 	else
 		self.dt.State = CW_IDLE
 		
 		if self:filterPrediction() then
-			self:idleAnimFunc()
+			self:aimIdleAnimFunc()
 			self:EmitSound("CW_LOWERAIM")
 		end
 	end
