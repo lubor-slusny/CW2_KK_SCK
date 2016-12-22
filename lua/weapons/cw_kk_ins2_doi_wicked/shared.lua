@@ -132,7 +132,7 @@ SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= ".303 British"
 
 SWEP.FireDelay = 60/500
-SWEP.FireSound = "CW_KK_INS2_DOI_BROWNING_FIRE"
+SWEP.FireSound = "CW_KK_INS2_DOI_VICKERS_FIRE"
 SWEP.Recoil = 1.1
 
 SWEP.HipSpread = 0.065
@@ -173,16 +173,15 @@ if CLIENT then
 		-- self.LaserAngAdjust = self.dt.BipodDeployed and self.LaserAngAdjustBipod or self.LaserAngAdjustBase
 	-- end
 
-	local pos, ang
-	local z = Vector(0,0,-2)
-	local zz = Vector(1,0,0)
+	local pos = Vector(0,0,-2)
+	local ang = Vector(1,0,0)
 	
 	CustomizableWeaponry.callbacks:addNew("adjustViewmodelPosition", "KK_DOI_VICKERS", function(wep, TargetPos, TargetAng)
 		if wep:GetClass() != "cw_kk_ins2_doi_wicked" then return end
 		if wep.dt.BipodDeployed then
 			if wep:isAiming() then return end
 			
-			return z, zz
+			return pos, ang
 		else
 			if !wep:isAiming() then return end
 			

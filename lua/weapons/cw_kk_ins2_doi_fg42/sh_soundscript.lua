@@ -37,10 +37,10 @@ SWEP.Sounds = {
 		{time = 35/31.8, sound = "CW_KK_INS2_DOI_FG42_MAGRELEASE"},
 		{time = 40/31.8, sound = "CW_KK_INS2_DOI_FG42_MAGOUT"},
 		{time = 50/31.8, sound = "CW_KK_INS2_DOI_FG42_FETCHMAG"},
-		{time = 98/31.8, sound = "CW_KK_INS2_DOI_FG42_MAGIN"},
-		{time = 110/31.8, sound = "CW_KK_INS2_DOI_FG42_MAGHIT"},
-		// { event 46 112 ""},
-		{time = 136/31.8, sound = "CW_KK_INS2_DOI_FG42_RATTLE"},
+		{time = 107/31.8, sound = "CW_KK_INS2_DOI_FG42_MAGIN"},
+		{time = 117/31.8, sound = "CW_KK_INS2_DOI_FG42_MAGHIT"},
+		// { event 46 118 ""},
+		{time = 142/31.8, sound = "CW_KK_INS2_DOI_FG42_RATTLE"},
 	},
 
 	base_reloadempty = {
@@ -48,10 +48,10 @@ SWEP.Sounds = {
 		{time = 88/31.8, sound = "CW_KK_INS2_DOI_FG42_MAGRELEASE"},
 		{time = 93/31.8, sound = "CW_KK_INS2_DOI_FG42_MAGOUT"},
 		{time = 103/31.8, sound = "CW_KK_INS2_DOI_FG42_FETCHMAG"},
-		{time = 150/31.8, sound = "CW_KK_INS2_DOI_FG42_MAGIN"},
-		{time = 166/31.8, sound = "CW_KK_INS2_DOI_FG42_MAGHIT"},
-		// { event 46 168 ""},
-		{time = 191/31.8, sound = "CW_KK_INS2_DOI_FG42_RATTLE"},
+		{time = 160/31.8, sound = "CW_KK_INS2_DOI_FG42_MAGIN"},
+		{time = 173/31.8, sound = "CW_KK_INS2_DOI_FG42_MAGHIT"},
+		// { event 46 174 ""},
+		{time = 199/31.8, sound = "CW_KK_INS2_DOI_FG42_RATTLE"},
 	},
 
 	iron_dryfire = {

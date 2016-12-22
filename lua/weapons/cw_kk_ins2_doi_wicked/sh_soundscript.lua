@@ -1,164 +1,156 @@
 
-local function shell(wep) 
-	if SERVER then return end
-	
-	wep:shellEvent() 
-end
-
-local function link(wep)
-end
-
 SWEP.Sounds = {
 	base_ready = {
-		{time = 0, sound = "CW_KK_INS2_DOI_BROWNING_FOLEY"},
-		{time = 30/34.2, sound = "CW_KK_INS2_DOI_BROWNING_BOLTBACK"},
-		{time = 42/34.2, sound = "CW_KK_INS2_DOI_BROWNING_BOLTRELEASE"},
-		{time = 65/34.2, sound = "CW_KK_INS2_DOI_BROWNING_RATTLE"},
+		{time = 0/31, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
 	},
 
 	base_draw = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
+		{time = 0/31, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
 	},
 
 	base_holster = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
+		{time = 0/34, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
 	},
 
 	base_crawl = {
-		{time = 15/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
-		{time = 38/30, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
+		{time = 0/27, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
+		{time = 22/27, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
 	},
 
-	base_fire_1 = {
-		{time = 0, sound = "", callback = link},
-		{time = 0.02, sound = "", callback = shell},
-	},
+	-- base_fire_1 = {
+		-- // { event AE_MUZZLEFLASH 0 ""},
+		-- // { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
+	-- },
 
-	base_fire_2 = {
-		{time = 0, sound = "", callback = link},
-		{time = 0.02, sound = "", callback = shell},
-	},
+	-- base_fire_2 = {
+		-- // { event AE_MUZZLEFLASH 0 ""},
+		-- // { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
+	-- },
 
-	base_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_DOI_BROWNING_EMPTY"},
-	},
+	-- base_dryfire = {
+		-- {time = 0/30, sound = "CW_KK_INS2_DOI_VICKERS_EMPTY"},
+	-- },
 
 	base_reload = {
-		{time = 18/34.8, sound = "CW_KK_INS2_DOI_BROWNING_FOLEY"},
-		{time = 35/34.8, sound = "CW_KK_INS2_DOI_BROWNING_LIDOPEN"},
-		{time = 75/34.8, sound = "CW_KK_INS2_DOI_BROWNING_LINKRATTLE"},
-		{time = 81/34.8, sound = "CW_KK_INS2_DOI_BROWNING_FETCHMAG"},
-		{time = 110/34.8, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
-		{time = 140/34.8, sound = "CW_KK_INS2_DOI_BROWNING_BELTJINGLE"},
-		{time = 150/34.8, sound = "CW_KK_INS2_DOI_BROWNING_BELTALIGN"},
-		{time = 197/34.8, sound = "CW_KK_INS2_DOI_BROWNING_LIDCLOSE"},
-		{time = 230/34.8, sound = "CW_KK_INS2_DOI_BROWNING_RATTLE"},
-		{time = 264/34.8, sound = "CW_KK_INS2_DOI_BROWNING_SHOULDER"},
+		// { event 46 115 ""},
+		// { event AE_WPN_RELOAD_OFFSCREEN 40 ""},
+		{time = 40/31.2, sound = "CW_KK_INS2_DOI_VICKERS_FETCHMAG"},
+		{time = 90/31.2, sound = "CW_KK_INS2_DOI_VICKERS_BELTALIGN"},
+		{time = 107/31.2, sound = "CW_KK_INS2_DOI_VICKERS_BELTJINGLE"},
+		{time = 127/31.2, sound = "CW_KK_INS2_DOI_VICKERS_BELTDROP"},
+		{time = 148/31.2, sound = "CW_KK_INS2_DOI_VICKERS_BELTPULL"},
+		{time = 190/31.2, sound = "CW_KK_INS2_DOI_VICKERS_BOLTBACK"},
+		{time = 202/31.2, sound = "CW_KK_INS2_DOI_VICKERS_BOLTRELEASE"},
+		{time = 218/31.2, sound = "CW_KK_INS2_DOI_VICKERS_BOLTBACK"},
+		{time = 227/31.2, sound = "CW_KK_INS2_DOI_VICKERS_BOLTRELEASE"},
+		{time = 279/31.2, sound = "CW_KK_INS2_DOI_VICKERS_SHOULDER"},
 	},
 
-	base_reload_empty = {
-		{time = 18/34.8, sound = "CW_KK_INS2_DOI_BROWNING_FOLEY"},
-		{time = 35/34.8, sound = "CW_KK_INS2_DOI_BROWNING_LIDOPEN"},
-		{time = 70/34.8, sound = "CW_KK_INS2_DOI_BROWNING_FETCHMAG"},
-		{time = 100/34.8, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
-		{time = 110/34.8, sound = "CW_KK_INS2_DOI_BROWNING_BELTJINGLE"},
-		{time = 120/34.8, sound = "CW_KK_INS2_DOI_BROWNING_BELTALIGN"},
-		{time = 160/34.8, sound = "CW_KK_INS2_DOI_BROWNING_LIDCLOSE"},
-		{time = 200/34.8, sound = "CW_KK_INS2_DOI_BROWNING_RATTLE"},
-		{time = 210/34.8, sound = "CW_KK_INS2_DOI_BROWNING_FOLEY"},
-		{time = 234/34.8, sound = "CW_KK_INS2_DOI_BROWNING_BOLTBACK"},
-		{time = 245/34.8, sound = "CW_KK_INS2_DOI_BROWNING_BOLTRELEASE"},
-		{time = 272/34.8, sound = "CW_KK_INS2_DOI_BROWNING_RATTLE"},
-		{time = 294/34.8, sound = "CW_KK_INS2_DOI_BROWNING_SHOULDER"},
+	base_reloadempty = {
+		// { event 46 115 ""},
+		// { event AE_WPN_RELOAD_OFFSCREEN 40 ""},
+		{time = 40/34.2, sound = "CW_KK_INS2_DOI_VICKERS_FETCHMAG"},
+		{time = 90/34.2, sound = "CW_KK_INS2_DOI_VICKERS_BELTALIGN"},
+		{time = 107/34.2, sound = "CW_KK_INS2_DOI_VICKERS_BELTJINGLE"},
+		{time = 127/34.2, sound = "CW_KK_INS2_DOI_VICKERS_BELTDROP"},
+		{time = 148/34.2, sound = "CW_KK_INS2_DOI_VICKERS_BELTPULL"},
+		{time = 190/34.2, sound = "CW_KK_INS2_DOI_VICKERS_BOLTBACK"},
+		{time = 202/34.2, sound = "CW_KK_INS2_DOI_VICKERS_BOLTRELEASE"},
+		{time = 218/34.2, sound = "CW_KK_INS2_DOI_VICKERS_BOLTBACK"},
+		{time = 227/34.2, sound = "CW_KK_INS2_DOI_VICKERS_BOLTRELEASE"},
+		{time = 279/34.2, sound = "CW_KK_INS2_DOI_VICKERS_SHOULDER"},
 	},
 
-	iron_fire_1 = {
-		{time = 0, sound = "", callback = link},
-		{time = 0.02, sound = "", callback = shell},
+	base_melee_bash = {
+		{time = 10/31, sound = "CW_KK_INS2_DOI_MELEE"},
+		// { event AE_WPN_READY 55 ""},
 	},
 
-	iron_fire_2 = {
-		{time = 0, sound = "", callback = link},
-		{time = 0.02, sound = "", callback = shell},
-	},
+	-- iron_fire_1 = {
+		-- // { event AE_MUZZLEFLASH 0 ""},
+		-- // { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
+	-- },
+
+	-- iron_fire_2 = {
+		-- // { event AE_MUZZLEFLASH 0 ""},
+		-- // { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
+	-- },
 
 	iron_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_DOI_BROWNING_EMPTY"},
+		{time = 0/30, sound = "CW_KK_INS2_DOI_VICKERS_EMPTY"},
 	},
 
 	deployed_in = {
-		{time = 1/32.5, sound = "CW_KK_INS2_DOI_BROWNING_FOLEY"},
-		{time = 19/32.5, sound = "CW_KK_INS2_DOI_BROWNING_BipodGroundHit"},
-		{time = 32/32.5, sound = "CW_KK_INS2_DOI_BROWNING_BELTJINGLE"},
-		{time = 46/32.5, sound = "CW_KK_INS2_DOI_BROWNING_RATTLE"},
-		{time = 65/32.5, sound = "CW_KK_INS2_DOI_BROWNING_SHOULDER"},
+		{time = 28/36, sound = "CW_KK_INS2_DOI_VICKERS_DEPLOYGROUNDHIT"},
+		-- // { event AE_WPN_READY 53 ""},
+		-- // fps 36
 	},
 
-	deployed_out = {
-		{time = 1/33, sound = "CW_KK_INS2_DOI_BROWNING_FOLEY"},
-		{time = 15/33, sound = "CW_KK_INS2_DOI_BROWNING_BELTJINGLE"},
-		{time = 22/33, sound = "CW_KK_INS2_DOI_BROWNING_RATTLE"},
-		{time = 39/33, sound = "CW_KK_INS2_DOI_BROWNING_SHOULDER"},
-	},
+	-- deployed_out = {
+		-- // { event AE_WPN_READY 45 ""},
+		-- // fps 36
+	-- },
 
-	deployed_fire_1 = {
-		{time = 0, sound = "", callback = link},
-		{time = 0.02, sound = "", callback = shell},
-	},
+	-- deployed_fire_1 = {
+		-- // { event AE_MUZZLEFLASH 0 "M249 MUZZLE"},
+		-- // { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
+	-- },
 
-	deployed_fire_2 = {
-		{time = 0, sound = "", callback = link},
-		{time = 0.02, sound = "", callback = shell},
-	},
+	-- deployed_fire_2 = {
+		-- // { event AE_MUZZLEFLASH 0 "M249 MUZZLE"},
+		-- // { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
+	-- },
 
 	deployed_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_DOI_BROWNING_EMPTY"},
+		{time = 0/30, sound = "CW_KK_INS2_DOI_VICKERS_EMPTY"},
 	},
 
 	deployed_reload = {
-		{time = 18/36, sound = "CW_KK_INS2_DOI_BROWNING_FOLEY"},
-		{time = 35/36, sound = "CW_KK_INS2_DOI_BROWNING_LIDOPEN"},
-		{time = 75/36, sound = "CW_KK_INS2_DOI_BROWNING_LINKRATTLE"},
-		{time = 81/36, sound = "CW_KK_INS2_DOI_BROWNING_FETCHMAG"},
-		{time = 110/36, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
-		{time = 140/36, sound = "CW_KK_INS2_DOI_BROWNING_BELTJINGLE"},
-		{time = 150/36, sound = "CW_KK_INS2_DOI_BROWNING_BELTALIGN"},
-		{time = 197/36, sound = "CW_KK_INS2_DOI_BROWNING_LIDCLOSE"},
-		{time = 222/36, sound = "CW_KK_INS2_DOI_BROWNING_RATTLE"},
-		{time = 249/36, sound = "CW_KK_INS2_DOI_BROWNING_SHOULDER"},
+		// { event 46 115 ""},
+		// { event AE_WPN_RELOAD_OFFSCREEN 40 ""},
+		// { event AE_WPN_READY 227 ""},
+		{time = 40/30, sound = "CW_KK_INS2_DOI_VICKERS_FETCHMAG"},
+		{time = 65/30, sound = "CW_KK_INS2_DOI_VICKERS_BELTALIGN"},
+		{time = 81/30, sound = "CW_KK_INS2_DOI_VICKERS_BELTJINGLE"},
+		{time = 96/30, sound = "CW_KK_INS2_DOI_VICKERS_BELTDROP"},
+		{time = 140/30, sound = "CW_KK_INS2_DOI_VICKERS_BOLTBACK"},
+		{time = 151/30, sound = "CW_KK_INS2_DOI_VICKERS_BOLTRELEASE"},
+		{time = 166/30, sound = "CW_KK_INS2_DOI_VICKERS_BOLTBACK"},
+		{time = 176/30, sound = "CW_KK_INS2_DOI_VICKERS_BOLTRELEASE"},
+		{time = 226/30, sound = "CW_KK_INS2_DOI_VICKERS_SHOULDER"},
 	},
 
 	deployed_reload_empty = {
-		{time = 18/36, sound = "CW_KK_INS2_DOI_BROWNING_FOLEY"},
-		{time = 35/36, sound = "CW_KK_INS2_DOI_BROWNING_LIDOPEN"},
-		{time = 70/36, sound = "CW_KK_INS2_DOI_BROWNING_FETCHMAG"},
-		{time = 100/36, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
-		{time = 110/36, sound = "CW_KK_INS2_DOI_BROWNING_BELTJINGLE"},
-		{time = 120/36, sound = "CW_KK_INS2_DOI_BROWNING_BELTALIGN"},
-		{time = 160/36, sound = "CW_KK_INS2_DOI_BROWNING_LIDCLOSE"},
-		{time = 194/36, sound = "CW_KK_INS2_DOI_BROWNING_RATTLE"},
-		{time = 210/36, sound = "CW_KK_INS2_DOI_BROWNING_FOLEY"},
-		{time = 234/36, sound = "CW_KK_INS2_DOI_BROWNING_BOLTBACK"},
-		{time = 245/36, sound = "CW_KK_INS2_DOI_BROWNING_BOLTRELEASE"},
-		{time = 283/36, sound = "CW_KK_INS2_DOI_BROWNING_RATTLE"},
-		{time = 293/36, sound = "CW_KK_INS2_DOI_BROWNING_SHOULDER"},
+		// { event 46 115 ""},
+		// { event AE_WPN_RELOAD_OFFSCREEN 40 ""},
+		// { event AE_WPN_READY 227 ""},
+		{time = 40/33, sound = "CW_KK_INS2_DOI_VICKERS_FETCHMAG"},
+		{time = 65/33, sound = "CW_KK_INS2_DOI_VICKERS_BELTALIGN"},
+		{time = 81/33, sound = "CW_KK_INS2_DOI_VICKERS_BELTJINGLE"},
+		{time = 96/33, sound = "CW_KK_INS2_DOI_VICKERS_BELTDROP"},
+		{time = 140/33, sound = "CW_KK_INS2_DOI_VICKERS_BOLTBACK"},
+		{time = 151/33, sound = "CW_KK_INS2_DOI_VICKERS_BOLTRELEASE"},
+		{time = 166/33, sound = "CW_KK_INS2_DOI_VICKERS_BOLTBACK"},
+		{time = 176/33, sound = "CW_KK_INS2_DOI_VICKERS_BOLTRELEASE"},
+		{time = 226/33, sound = "CW_KK_INS2_DOI_VICKERS_SHOULDER"},
 	},
 
-	deployed_iron_idle = {
-		{time = 0, sound = "Universal_IronIdle"},
-	},
+	-- deployed_iron_fire_1 = {
+		-- // { event AE_MUZZLEFLASH 0 "M249 MUZZLE"},
+		-- // { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
+	-- },
 
-	deployed_iron_fire_1 = {
-		{time = 0, sound = "", callback = link},
-		{time = 0.02, sound = "", callback = shell},
-	},
+	-- deployed_iron_fire_2 = {
+		-- // { event AE_MUZZLEFLASH 0 "M249 MUZZLE"},
+		-- // { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
+	-- },
 
-	deployed_iron_fire_2 = {
-		{time = 0, sound = "", callback = link},
-		{time = 0.02, sound = "", callback = shell},
-	},
+	-- deployed_iron_fire_last = {
+		-- // { event AE_MUZZLEFLASH 0 "M249 MUZZLE"},
+		-- // { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
+	-- },
 
 	deployed_iron_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_DOI_BROWNING_EMPTY"},
+		{time = 0/32, sound = "CW_KK_INS2_DOI_VICKERS_EMPTY"},
 	},
 }

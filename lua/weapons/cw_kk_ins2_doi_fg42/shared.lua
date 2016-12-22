@@ -28,7 +28,13 @@ if CLIENT then
 	}
 	
 	SWEP.AttachmentModelsWM = {
-		["kk_ins2_bipod"] = {model = "models/weapons/upgrades/w_bipod_bar.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
+		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/w_fg42_irons.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
+		-- ["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_iron_fg42_down.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		
+		["kk_ins2_scope_zf41"] = {model = "models/weapons/upgrades/w_fg42_scope.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		
+		["knife_fold"] = {model = "models/weapons/upgrades/w_fg42_bayonet_default.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
+		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/w_fg42_bayonet_deployed.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
 	SWEP.IronsightPos = Vector(-2.5787, -4, 0.4627)
@@ -117,7 +123,7 @@ SWEP.Slot = 3
 SWEP.SlotPos = 0
 SWEP.NormalHoldType = "ar2"
 SWEP.RunHoldType = "passive"
-SWEP.FireModes = {"auto", "semi"}
+SWEP.FireModes = {"semi", "auto"}
 SWEP.Base = "cw_kk_ins2_base"
 SWEP.Category = "CW 2.0 KK INS2 DOI"
 
@@ -129,10 +135,10 @@ SWEP.Instructions	= ""
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_fg42.mdl"
-SWEP.WorldModel		= "models/weapons/w_bar.mdl"
+SWEP.WorldModel		= "models/weapons/w_fg42.mdl"
 
-SWEP.WMPos = Vector(18.197, 0, -3)
-SWEP.WMAng = Vector(-15, 2.743, 180)
+SWEP.WMPos = Vector(11, 1.5, -1.5)
+SWEP.WMAng = Vector(-10, 2.743, 180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2de
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.ww2de
@@ -142,7 +148,7 @@ SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted2(SWEP)
 
 SWEP.Primary.ClipSize		= 20
 SWEP.Primary.DefaultClip	= 20
-SWEP.Primary.Automatic		= true
+SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "7.92x57MM"
 
 SWEP.FireDelay = 60/900
@@ -174,11 +180,11 @@ SWEP.KK_INS2_EmptyIdle = true
 SWEP.MuzzleVelocity = 740
 
 SWEP.ReloadTimes = {
-	base_reload = {3.5, 5},
-	base_reloadempty = {5.3, 6.8},
+	base_reload = {118/31.8, 5.3},
+	base_reloadempty = {174/31.8, 7},
 	
-	deployed_reload = {3.9, 5.7},
-	deployed_reload_empty = {5.8, 7.5},
+	deployed_reload = {112/30, 5.7},
+	deployed_reload_empty = {168/30, 7.5},
 	
 	base_melee_bash = {0.3, 1},
 	base_melee_bash_empty = {0.3, 1},
@@ -188,4 +194,18 @@ if CLIENT then
 	function SWEP:updateStandardParts()
 		self:setElementActive("knife_fold", !self.ActiveAttachments.kk_ins2_ww2_knife)
 	end
+	
+	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_fg42", "bipod")
+	
+	local pos = Vector(0,0,-0.5)
+	local ang = Vector(1,0,0)
+	
+	CustomizableWeaponry.callbacks:addNew("adjustViewmodelPosition", "KK_DOI_FG42", function(wep, TargetPos, TargetAng)
+		if wep:GetClass() != "cw_kk_ins2_doi_fg42" then return end
+		if wep.dt.BipodDeployed then
+			if wep:isAiming() then return end
+			
+			return TargetPos + pos, TargetAng + ang
+		end
+	end)
 end
