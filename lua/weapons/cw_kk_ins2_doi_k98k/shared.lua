@@ -34,6 +34,8 @@ if CLIENT then
 		
 		["kk_ins2_gl_ggg"] = {model = "models/weapons/upgrades/a_kar98k_gl.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 
+		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_k98.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+
 		["kk_ins2_scope_k98"] = {model = "models/weapons/upgrades/a_optic_kar98k.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 

@@ -8,7 +8,7 @@ include("sh_soundscript.lua")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "[Beta] Molotov Launcher"
+	SWEP.PrintName = "ETFW 46"
 	
 	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_flamethrower_eintoss46_german")
 	
@@ -115,7 +115,7 @@ SWEP.Damage = 100
 SWEP.projectileRotation = Angle(90, 0, 0)
 
 SWEP.MuzzleVelocity = 15
-SWEP.projectileClass = "cw_kk_ins2_projectile_molotov"
+SWEP.projectileClass = "cw_kk_ins2_projectile_molotov_doi"
 SWEP.hipBulletDelay = 0
 
 SWEP.FirstDeployTime = 1.3

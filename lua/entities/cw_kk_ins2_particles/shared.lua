@@ -471,6 +471,36 @@ ENT.db = {
 			"ins_Water_explosion"
 		}
 	},
+	
+	cw_kk_ins2_projectile_molotov_doi = {
+		followProjectile = true,
+		effectClass = "cw_kk_ins2_explosion_molotov",
+		explosionSound0 = "CW_KK_INS2_ANM14_ENT_DETONATE",
+		explosionSound1 = "",
+		explosionSound2 = "",
+		explosionSoundW0 = "",
+		explosionSoundW1 = "",
+		explosionParticles = {
+			-- "doi_wpgrenade_explosion",
+			-- "doi_smoke_artillery",
+			-- "ins_molotov_explosion",
+			
+			"ins_molotov_smoke",
+			"ins_molotov_flame_b",
+			"ins_molotov_flamewave",
+			"ins_molotov_burst_b",
+			"ins_molotov_burst_glass",
+			"ins_molotov_trailers",
+			"ins_molotov_burst_flame",
+			"ins_molotov_burst",
+			"ins_molotov_trails",
+			// "ins_molotov_glow",
+			"ins_molotov_flash",
+		},
+		explosionParticlesWater = {
+			"ins_molotov_explosion",
+		}
+	},
 }
 
 ENT.db.cw_kk_ins2_projectile_rpg = ENT.db.cw_kk_ins2_projectile_at4

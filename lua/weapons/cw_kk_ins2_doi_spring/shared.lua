@@ -35,6 +35,8 @@ if CLIENT then
 		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/a_garand_bayonet.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_gl_m7"] = {model = "models/weapons/upgrades/a_springfield_gl.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 
+		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_springfield.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+
 		["kk_ins2_scope_m73"] = {model = "models/weapons/upgrades/a_optic_springfield.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_scope_u8x"] = {model = "models/weapons/upgrades/a_optic_springfield_7x.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}

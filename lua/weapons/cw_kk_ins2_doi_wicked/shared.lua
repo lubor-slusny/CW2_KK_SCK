@@ -10,7 +10,7 @@ SWEP.magType = "lmgBox"
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "[Beta] Vicked Sick"
+	SWEP.PrintName = "Vickers"
 	SWEP.CSMuzzleFlashes = true
 	
 	SWEP.ViewModelMovementScale = 1.15
