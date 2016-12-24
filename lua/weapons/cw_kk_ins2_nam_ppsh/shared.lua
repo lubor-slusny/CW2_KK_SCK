@@ -45,10 +45,17 @@ SWEP.MuzzleEffect = "muzzleflash_mp40_1p_core"
 SWEP.MuzzleEffectWorld = "muzzleflash_mp40_3rd"
 
 SWEP.Attachments = {
-	{header = "Magazine", offset = {-400, 0}, atts = {"kk_ins2_mag_ppsh_71"}},
-	{header = "Stock", offset = {600, 0}, atts = {"kk_ins2_ww2_sling"}},
-	["+reload"] = {header = "Ammo", offset = {-200, 400}, atts = {"am_magnum", "am_matchgrade"}}
+	{header = "Magazine", offset = {-300, -200}, atts = {"kk_ins2_mag_ppsh_71"}},
+	{header = "Stock", offset = {600, -200}, atts = {"kk_ins2_ww2_sling"}},
+	["+reload"] = {header = "Ammo", offset = {-300, 300}, atts = {"am_magnum", "am_matchgrade"}}
 }
+
+-- SWEP.Attachments = {
+	-- {header = "Sight", offset = {700, -200}, atts = {"kk_ins2_scope_zf41"}},
+	-- {header = "Barrel", offset = {-200, -200}, atts = {"kk_ins2_ww2_knife"}},
+	-- {header = "Stock", offset = {700, 300}, atts = {"kk_ins2_ww2_sling"}},
+	-- ["+reload"] = {header = "Ammo", offset = {-200, 300}, atts = {"am_magnum", "am_matchgrade"}}
+-- }
 
 SWEP.Animations = {
 	base_pickup = "base_ready",
