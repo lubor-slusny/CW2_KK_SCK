@@ -311,7 +311,7 @@ function SWEP:CalcView(ply, pos, ang, fov)
 	fov = math.Clamp(fov - self.CurFOVMod - self.BreathFOVModifier, 5, 90)
 	
 	if self.Owner then
-		if self.ViewbobEnabled then
+		if self.ViewbobEnabled and self._vmCamAttach < 1 then
 			ws = self.Owner:GetWalkSpeed()
 			vel = Length(GetVelocity(self.Owner))
 			

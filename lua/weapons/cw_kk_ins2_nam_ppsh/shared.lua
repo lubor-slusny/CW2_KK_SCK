@@ -29,7 +29,12 @@ if CLIENT then
 		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/v_ppshsling.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
-	SWEP.AttachmentModelsWM = {}
+	SWEP.AttachmentModelsWM = {
+		["std_mag"] = {model = "models/weapons/upgrades/w_ppshmag.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
+		["kk_ins2_mag_ppsh_71"] = {model = "models/weapons/upgrades/w_ppshdrum.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		
+		-- ["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/w_ppshsling.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+	}
 	
 	SWEP.IronsightPos = Vector(-1.8171, -2, 0.8168)
 	SWEP.IronsightAng = Vector(-0.3968, 0.0228, 0)
@@ -95,7 +100,7 @@ SWEP.Instructions	= ""
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_ppsh.mdl"
-SWEP.WorldModel		= "models/weapons/w_cw_kk_ins2_mp40.mdl"
+SWEP.WorldModel		= "models/weapons/w_ppsh.mdl"
 
 SWEP.WMPos = Vector(5.176, 0.889, -1.417)
 SWEP.WMAng = Vector(-10, 0, 180)

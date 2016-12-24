@@ -6,6 +6,8 @@ AddCSLuaFile("sh_soundscript.lua")
 include("sh_sounds.lua")
 include("sh_soundscript.lua")
 
+SWEP.TSGlass = Material("models/weapons/nam/optics/lense_rt")
+
 if CLIENT then
 	SWEP.DrawCrosshair = false
 	SWEP.PrintName = "M40"
@@ -115,7 +117,7 @@ SWEP.Instructions	= ""
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_nam_m40.mdl"
-SWEP.WorldModel		= "models/weapons/w_m40.mdl"
+SWEP.WorldModel		= "models/weapons/w_nam_m40.mdl"
 
 SWEP.WMPos = Vector(4.919, 0.822, -1.236)
 SWEP.WMAng = Vector(-10, 0, 180)

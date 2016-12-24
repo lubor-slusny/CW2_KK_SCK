@@ -1,7 +1,9 @@
 if not CustomizableWeaponry then return end
 
 AddCSLuaFile()
+AddCSLuaFile("sh_sounds.lua")
 AddCSLuaFile("sh_soundscript.lua")
+include("sh_sounds.lua")
 include("sh_soundscript.lua")
 
 if CLIENT then
@@ -71,7 +73,7 @@ SWEP.Instructions	= ""
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_nam_m79.mdl"
-SWEP.WorldModel		= "models/weapons/w_m16.mdl"
+SWEP.WorldModel		= "models/weapons/w_m79.mdl"
 
 SWEP.WMPos = Vector(5.243, 1.562, -1.657)
 SWEP.WMAng = Vector(-15, 1, 180)
