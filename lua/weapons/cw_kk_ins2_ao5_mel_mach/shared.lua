@@ -36,8 +36,8 @@ SWEP.WorldModel		= "models/weapons/aof/w_machete.mdl"
 SWEP.WMPos = Vector(3.812, 1.544, -2.83)
 SWEP.WMAng = Vector(99.385, -22.739, 18.048)
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted2(SWEP)
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted2(SWEP)
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted3(SWEP)
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted3(SWEP)
 
 SWEP.FirstDeployTime = 0.6
 SWEP.DeployTime = 0.6

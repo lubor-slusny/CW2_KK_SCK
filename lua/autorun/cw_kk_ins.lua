@@ -116,7 +116,7 @@ local subs
 local sub = string.sub
 local starts = string.StartWith
 
-function CustomizableWeaponry_KK.ins2:isContentMounted2()
+function CustomizableWeaponry_KK.ins2:isContentMounted3()
 	subs = subs or {
 		["cw_kk_ins2_cstm"] = function() return (baseContentOK and (CustomizableWeaponry_KK.ins2.ws == WS_PACK_REVISION)) end,
 		["cw_kk_ins2_ww2"] = function() return false end,

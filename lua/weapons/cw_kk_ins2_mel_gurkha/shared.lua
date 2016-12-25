@@ -41,8 +41,8 @@ SWEP.WMAng = Vector(99.385, -22.739, 18.048)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.f1
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted2(SWEP)
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted2(SWEP)
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted3(SWEP)
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted3(SWEP)
 
 SWEP.Sounds = {
 	draw = {
