@@ -1,0 +1,1 @@
+-- CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_BHP_FIRE", "weapons/browninghp/browning_hp_fp.wav", 1, 105, CHAN_STATIC)

@@ -174,7 +174,7 @@ SWEP.Damage = 39
 
 SWEP.FirstDeployTime = 3.3
 SWEP.DeployTime = 0.7
-SWEP.HolsterTime = 0.5
+SWEP.HolsterTime = 0.7
 
 SWEP.WeaponLength = 24
 

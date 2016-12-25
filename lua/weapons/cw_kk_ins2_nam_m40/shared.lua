@@ -146,7 +146,7 @@ SWEP.Damage = 66
 
 SWEP.FirstDeployTime = 3
 SWEP.DeployTime = 0.7
-SWEP.HolsterTime = 0.5
+SWEP.HolsterTime = 0.7
 
 SWEP.BipodDeployTime = 1.15
 SWEP.BipodUndeployTime = 1.15

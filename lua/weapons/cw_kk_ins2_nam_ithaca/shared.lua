@@ -95,9 +95,6 @@ SWEP.WorldModel		= "models/weapons/w_nam_ithaca37.mdl"
 SWEP.WMPos = Vector(5, 0.5, -1.8)
 SWEP.WMAng = Vector(-15, 3, 180)
 
-SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2gb
-SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.ww2gb
-
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted2(SWEP)
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted2(SWEP)
 
@@ -106,8 +103,8 @@ SWEP.Primary.DefaultClip	= 7
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "12 Gauge"
 
-SWEP.FireDelay = 0.3
-SWEP.FireSound = "CW_KK_INS2_DOI_ITHC_FIRE"
+SWEP.FireDelay = 0.2
+SWEP.FireSound = "CW_KK_INS2_TOZ_FIRE"
 SWEP.Recoil = 2
 
 SWEP.HipSpread = 0.04
@@ -120,9 +117,9 @@ SWEP.SpreadCooldown = 0.85
 SWEP.Shots = 12
 SWEP.Damage = 11
 
-SWEP.FirstDeployTime = 2.2
-SWEP.DeployTime = 0.8
-SWEP.HolsterTime = 0.6
+SWEP.FirstDeployTime = 1.8
+SWEP.DeployTime = 0.7
+SWEP.HolsterTime = 0.7
 
 SWEP.Chamberable = true
 SWEP.SnapToIdlePostReload = false
@@ -140,10 +137,10 @@ SWEP.ReloadTimes = {
 	iron_fire_cock_1 = {7/35, 0.4},
 	iron_fire_cock_2 = {7/35, 0.4},
 	
-	base_reload_start = {0.6, 0.7},
-	base_reload_start_empty = {1.8, 2.2, KK_INS2_SHOTGUN_LOAD_FIRST},
-	base_reload_insert = {0.5, 0.93},
-	base_reload_insert2 = {0.5, 0.93},
+	base_reload_start = {0.65, 0.65},
+	base_reload_start_empty = {1.3, 2.2, KK_INS2_SHOTGUN_LOAD_FIRST},
+	base_reload_insert = {0.45, 0.93},
+	base_reload_insert2 = {0.45, 0.93},
 	base_reload_end = {0.6, 0.6},
 	base_reload_end_empty = {0.6, 0.6},
 }

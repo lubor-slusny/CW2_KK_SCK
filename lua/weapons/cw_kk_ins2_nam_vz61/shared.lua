@@ -93,6 +93,9 @@ SWEP.WorldModel		= "models/weapons/w_vz61.mdl"
 SWEP.WMPos = Vector(5.471, 0.967, -1.344)
 SWEP.WMAng = Vector(-10, 0, 180)
 
+SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.f1
+SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.gurkha
+
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted2(SWEP)
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted2(SWEP)
 
@@ -115,7 +118,7 @@ SWEP.SpreadCooldown = 0.13
 SWEP.Shots = 1
 SWEP.Damage = 25
 
-SWEP.FirstDeployTime = 1.2
+SWEP.FirstDeployTime = 1.4
 SWEP.DeployTime = 0.6
 SWEP.HolsterTime = 0.5
 

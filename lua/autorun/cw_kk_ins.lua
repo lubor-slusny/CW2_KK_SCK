@@ -101,6 +101,17 @@ end
 
 local namContentOK = true
 
+for _,f in pairs({
+		"models/weapons/v_nam_geballteladung.mdl",
+		"models/weapons/v_nam_ithaca37.mdl",
+		"models/weapons/v_nam_m26a2.mdl",
+		"models/weapons/v_nam_m79.mdl",
+		"models/weapons/v_nam_tokarev.mdl",
+	}) do
+	
+	namContentOK = namContentOK and file.Exists(f, "GAME")
+end
+
 local subs
 local sub = string.sub
 local starts = string.StartWith
@@ -112,7 +123,7 @@ function CustomizableWeaponry_KK.ins2:isContentMounted2()
 		["cw_kk_ins2_doi"] = function() return (doigameContentOK) end,
 		["cw_kk_ins2_ao5"] = function() return (baseContentOK and ao5ContentOK) end,
 		["cw_kk_ins2_arse"] = function() return (baseContentOK and arseContentOK and CustomizableWeaponry_KK.HOME) end,
-		["cw_kk_ins2_nam"] = function() return (baseContentOK and namContentOK and CustomizableWeaponry_KK.HOME) end,
+		["cw_kk_ins2_nam"] = function() return (baseContentOK and namContentOK) end,
 	}
 	
 	local class = sub(self.Folder, 9)

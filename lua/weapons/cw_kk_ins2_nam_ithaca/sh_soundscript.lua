@@ -40,6 +40,7 @@ SWEP.Sounds = {
 	base_fire_cock_1 = {
 		// { event AE_CL_CREATE_PARTICLE_BRASS 3 ""},
 		{time = 2/28, sound = "CW_KK_INS2_M590_PUMPBACK"},
+		{time = 3/28, sound = "", callback = shell},
 		{time = 6/28, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
 		// { event AE_WPN_COCK 5 ""},
 	},
@@ -47,6 +48,7 @@ SWEP.Sounds = {
 	base_fire_cock_2 = {
 		// { event AE_CL_CREATE_PARTICLE_BRASS 3 ""},
 		{time = 2/28, sound = "CW_KK_INS2_M590_PUMPBACK"},
+		{time = 3/28, sound = "", callback = shell},
 		{time = 6/28, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
 		// { event AE_WPN_COCK 5 ""},
 	},
@@ -66,6 +68,7 @@ SWEP.Sounds = {
 	base_reload_start_empty = {
 		{time = 2/30, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
 		{time = 5/30, sound = "CW_KK_INS2_M590_PUMPBACK"},
+		{time = 7/30, sound = "", callback = shell},
 		// { event AE_CL_CREATE_PARTICLE_BRASS 7 ""},
 		{time = 33/30, sound = "CW_KK_INS2_M590_SHELLINSERTSINGLE"},
 		{time = 53/30, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
@@ -101,6 +104,7 @@ SWEP.Sounds = {
 	iron_fire_cock_1 = {
 		// { event AE_CL_CREATE_PARTICLE_BRASS 6 ""},
 		{time = 4/29, sound = "CW_KK_INS2_M590_PUMPBACK"},
+		{time = 6/29, sound = "", callback = shell},
 		{time = 8/29, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
 		// { event AE_WPN_COCK 11 ""},
 	},
@@ -108,6 +112,7 @@ SWEP.Sounds = {
 	iron_fire_cock_2 = {
 		// { event AE_CL_CREATE_PARTICLE_BRASS 6 ""},
 		{time = 4/29, sound = "CW_KK_INS2_M590_PUMPBACK"},
+		{time = 6/29, sound = "", callback = shell},
 		{time = 8/29, sound = "CW_KK_INS2_M590_PUMPFORWARD"},
 		// { event AE_WPN_COCK 11 ""},
 	},

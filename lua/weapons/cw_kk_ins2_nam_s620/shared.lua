@@ -21,11 +21,15 @@ if CLIENT then
 	SWEP.ShellViewAngleAlign = {Forward = 0, Right = 0, Up = 0}
 	
 	SWEP.AttachmentModelsVM = {
-		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/a_ithaca_bayonet.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_suppressor_shotgun"] = {model = "models/weapons/upgrades/a_suppressor_12ga.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		
+		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/a_foregrip_ins2.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), attachment = "Foregrip"},
 	}
 	
 	SWEP.AttachmentModelsWM = {
-		-- ["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/w_kar98k_bayonet.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_suppressor_shotgun"] = {model = "models/weapons/upgrades/w_sil_pistol.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		
+		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/w_ins_foregrip.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
 	SWEP.IronsightPos = Vector(-2.0257, -2.5, 0.962)
@@ -38,6 +42,8 @@ SWEP.MuzzleEffect = "muzzleflash_ithica_1p"
 SWEP.MuzzleEffectWorld = "muzzleflash_ithica_3p"
 
 SWEP.Attachments = {
+	{header = "Barrel", offset = {-200, -450}, atts = {"kk_ins2_suppressor_shotgun"}},
+	{header = "Under", offset = {-400, 0}, atts = {"kk_ins2_vertgrip"}},
 	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_slugrounds", "am_flechetterounds"}}
 }
@@ -63,6 +69,26 @@ SWEP.Animations = {
 	base_safe = "base_down",
 	base_safe_aim = "iron_down",
 	base_crawl = "base_crawl",
+	
+	foregrip_pickup = "foregrip_ready",
+	foregrip_draw = "foregrip_draw",
+	foregrip_fire = {"foregrip_fire_1", "foregrip_fire_2"},
+	foregrip_fire_aim = {"foregrip_iron_fire_1", "foregrip_iron_fire_2"},
+	foregrip_fire_empty = "foregrip_dryfire",
+	foregrip_fire_empty_aim = "foregrip_iron_dryfire",
+	foregrip_bolt = {"foregrip_fire_cock_1", "foregrip_fire_cock_2"},
+	foregrip_bolt_aim = {"foregrip_iron_fire_cock_1", "foregrip_iron_fire_cock_2"},
+	foregrip_reload_start = "foregrip_reload_start",
+	foregrip_reload_start_empty = "foregrip_reload_start_empty",
+	foregrip_insert = "foregrip_reload_insert",
+	foregrip_reload_end = "foregrip_reload_end",
+	foregrip_reload_end_empty = "foregrip_reload_end_empty",
+	foregrip_idle = "foregrip_holster",
+	foregrip_holster = "foregrip_holster",
+	foregrip_sprint = "foregrip_sprint",
+	foregrip_safe = "foregrip_down",
+	foregrip_safe_aim = "foregrip_iron_down",
+	foregrip_crawl = "foregrip_crawl",
 }
 
 SWEP.SpeedDec = 15
@@ -88,9 +114,6 @@ SWEP.WorldModel		= "models/weapons/w_nam_stevens620.mdl"
 SWEP.WMPos = Vector(5, 0.5, -1.8)
 SWEP.WMAng = Vector(-15, 3, 180)
 
-SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2gb
-SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.ww2gb
-
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted2(SWEP)
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted2(SWEP)
 
@@ -100,7 +123,8 @@ SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "12 Gauge"
 
 SWEP.FireDelay = 0.3
-SWEP.FireSound = "CW_KK_INS2_DOI_ITHC_FIRE"
+SWEP.FireSound = "CW_KK_INS2_TOZ_FIRE"
+SWEP.FireSoundSuppressed = "CW_KK_INS2_TOZ_FIRE_SUPPRESSED"
 SWEP.Recoil = 2
 
 SWEP.HipSpread = 0.04
@@ -114,7 +138,7 @@ SWEP.Shots = 12
 SWEP.Damage = 11
 
 SWEP.FirstDeployTime = 2.2
-SWEP.DeployTime = 0.8
+SWEP.DeployTime = 0.7
 SWEP.HolsterTime = 0.6
 
 SWEP.Chamberable = true
@@ -128,16 +152,25 @@ SWEP.WeaponLength = 18
 SWEP.MuzzleVelocity = 381
 
 SWEP.ReloadTimes = {
-	base_fire_cock_1 = {7/35, 0.7},
-	base_fire_cock_2 = {7/35, 0.7},
-	iron_fire_cock_1 = {7/35, 0.7},
-	iron_fire_cock_2 = {7/35, 0.7},
+	base_fire_cock_1 = {2/24, 0.7},
+	base_fire_cock_2 = {2/24, 0.7},
+	iron_fire_cock_1 = {4/35, 0.7},
+	iron_fire_cock_2 = {4/35, 0.7},
 	
 	base_reload_start = {0.6, 0.6},
-	base_reload_start_empty = {1.9, 2.59, KK_INS2_SHOTGUN_LOAD_FIRST},
-	base_reload_insert = {15/42, 0.88},
-	base_reload_end = {0.66, 0.66},
-	base_reload_end_empty = {0.66, 0.66},
+	base_reload_start_empty = {2.25, 2.89, KK_INS2_SHOTGUN_LOAD_FIRST},
+	base_reload_insert = {15/36, 0.72},
+	base_reload_end = {0.6, 0.6},
+	base_reload_end_empty = {0.6, 0.6},
 	
-	base_melee_bash = {0.3, 1},
+	foregrip_fire_cock_1 = {2/24, 0.5},
+	foregrip_fire_cock_2 = {2/24, 0.5},
+	foregrip_iron_fire_cock_1 = {3/35, 0.5},
+	foregrip_iron_fire_cock_2 = {3/35, 0.5},
+	
+	foregrip_reload_start = {0.6, 0.6},
+	foregrip_reload_start_empty = {2.25, 2.89, KK_INS2_SHOTGUN_LOAD_FIRST},
+	foregrip_reload_insert = {16/36, 0.72},
+	foregrip_reload_end = {0.6, 0.6},
+	foregrip_reload_end_empty = {0.6, 0.6},
 }

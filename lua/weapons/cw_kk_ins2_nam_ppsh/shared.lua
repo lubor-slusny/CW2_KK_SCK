@@ -137,9 +137,9 @@ SWEP.SpreadCooldown = 0.13
 SWEP.Shots = 1
 SWEP.Damage = 25
 
-SWEP.FirstDeployTime = 1.7
-SWEP.DeployTime = 0.6
-SWEP.HolsterTime = 0.5
+SWEP.FirstDeployTime = 1.6
+SWEP.DeployTime = 0.7
+SWEP.HolsterTime = 0.7
 
 SWEP.Chamberable = false
 

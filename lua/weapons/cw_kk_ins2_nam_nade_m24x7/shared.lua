@@ -35,7 +35,7 @@ end
 SWEP.Attachments = CustomizableWeaponry_KK.ins2.slowGrenadeMenu
 
 SWEP.CanRestOnObjects = false
-SWEP.projectileClass = "cw_kk_ins2_projectile_frag"
+SWEP.projectileClass = "cw_kk_ins2_projectile_ww2_c4_de"
 
 SWEP.Animations = {
 	pullpin = "pullbackhigh",

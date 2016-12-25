@@ -29,11 +29,19 @@ if CLIENT then
 	SWEP.AttachmentModelsVM = {
 		["std_mag"] = {model = "models/weapons/upgrades/a_magazine_m607_20.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true}, 
 		["kk_ins2_mag_m1a1_30"] = {model = "models/weapons/upgrades/a_magazine_m607_30.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true}, 
+		
+		["kk_ins2_suppressor_ins"] = {model = "models/weapons/upgrades/a_suppressor_ins.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		
+		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/a_foregrip_ins.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), attachment = "Foregrip"},
 	}
 
 	SWEP.AttachmentModelsWM = {
 		["std_mag"] = {model = "models/weapons/upgrades/w_magazine_m607_20.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
 		["kk_ins2_mag_m1a1_30"] = {model = "models/weapons/upgrades/w_magazine_m607_30.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		
+		["kk_ins2_suppressor_ins"] = {model = "models/weapons/upgrades/w_sil_ins1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		
+		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/w_ins_foregrip.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
 	SWEP.IronsightPos = Vector(-2.4916, -3, 0.629)
@@ -46,7 +54,8 @@ SWEP.MuzzleEffect = "muzzleflash_m16_1p_core"
 SWEP.MuzzleEffectWorld = "muzzleflash_m16_3rd"
 
 SWEP.Attachments = {
-	-- {header = "Under", offset = {-500, 0}, atts = {"kk_ins2_vertgrip"}},
+	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_suppressor_ins"}},
+	{header = "Under", offset = {-500, 0}, atts = {"kk_ins2_vertgrip"}},
 	{header = "Magazine", offset = {-50, 500}, atts = {"kk_ins2_mag_m1a1_30"}},
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_magnum", "am_matchgrade"}}
 }
@@ -132,22 +141,24 @@ SWEP.SpreadCooldown = 0.13
 SWEP.Shots = 1
 SWEP.Damage = 39
 
-SWEP.FirstDeployTime = 2.25
+SWEP.FirstDeployTime = 1.5
 SWEP.DeployTime = 0.7
-SWEP.HolsterTime = 0.5
+SWEP.HolsterTime = 0.6
 
 SWEP.WeaponLength = 20
 
 SWEP.MuzzleVelocity = 808
 
 SWEP.ReloadTimes = {
-	base_reload = {2.3, 3}, 
-	base_reloadempty = {2.9, 4.6}, 
-	base_reload_ext = {2.3, 3}, 
-	base_reloadempty_ext = {2.9, 4.6}, 
+	base_reload = {2.3, 3},
+	base_reloadempty = {2.9, 4.6},
+	base_reload_ext = {2.3, 3},
+	base_reloadempty_ext = {2.9, 4.6},
 	
-	foregrip_reload = {81/30, 3.8}, 
-	foregrip_reloadempty = {86/30, 4.5}, 
+	foregrip_reload = {2.3, 3},
+	foregrip_reloadempty = {2.9, 4.6},
+	foregrip_reload_ext = {2.3, 3},
+	foregrip_reloadempty_ext = {2.9, 4.6},
 }
 
 if CLIENT then

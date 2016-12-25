@@ -6,6 +6,10 @@ AddCSLuaFile("sh_soundscript.lua")
 include("sh_sounds.lua")
 include("sh_soundscript.lua")
 
+SWEP.TSGlass = Material("models/weapons/nam/optics/lense_rt")
+
+SWEP.magType = "brMag"
+
 if CLIENT then
 	SWEP.DrawCrosshair = false
 	SWEP.PrintName = "SVD"
@@ -26,10 +30,20 @@ if CLIENT then
 	}
 	
 	SWEP.AttachmentModelsVM = {
+		["kk_ins2_pbs1"] = {model = "models/weapons/upgrades/a_suppressor_ak.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+	
+		["kk_ins2_bipod"] = {model = "models/weapons/upgrades/a_bipod_sks.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/a_foregrip_ins.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), attachment = "Foregrip"},
+		
 		["kk_ins2_scope_mosin"] = {model = "models/weapons/upgrades/a_pso1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 
 	SWEP.AttachmentModelsWM = {
+		["kk_ins2_pbs1"] = {model = "models/weapons/upgrades/w_sil_ins1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		
+		["kk_ins2_bipod"] = {model = "models/weapons/upgrades/w_bipod_mosin.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/w_ins_foregrip.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		
 		["kk_ins2_scope_mosin"] = {model = "models/weapons/upgrades/w_pso1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
@@ -47,6 +61,8 @@ SWEP.MuzzleEffectWorld = "muzzleflash_sks_3rd"
 
 SWEP.Attachments = {
 	{header = "Sight", offset = {500, -450}, atts = {"kk_ins2_scope_mosin"}},
+	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_pbs1"}},
+	{header = "Under", offset = {-500, 0}, atts = {"kk_ins2_bipod", "kk_ins2_vertgrip"}},
 	["+reload"] = {header = "Ammo", offset = {1100, 500}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
@@ -75,18 +91,43 @@ SWEP.Animations = {
 	base_crawl = "base_crawl",
 	base_crawl_empty = "empty_crawl",
 	
-	-- bipod_in = "deployed_in",
-	-- bipod_in_empty = "deployed_empty_in",
-	-- bipod_fire = "deployed_fire",
-	-- bipod_fire_aim = "deployed_iron_fire",
+	foregrip_pickup = "foregrip_ready",
+	foregrip_draw = "foregrip_draw",
+	foregrip_draw_empty = "foregrip_empty_draw",
+	foregrip_fire = "foregrip_fire",
+	foregrip_fire_aim = "foregrip_iron_fire_b",
+	foregrip_fire_last = "foregrip_firelast",
+	foregrip_fire_last_aim = "foregrip_iron_firelast_b",
+	foregrip_fire_empty = "foregrip_dryfire",
+	foregrip_fire_empty_aim = "foregrip_iron_dryfire_b",
+	foregrip_reload = "foregrip_reload",
+	foregrip_reload_empty = "foregrip_reloadempty",
+	foregrip_idle = "foregrip_holster",
+	foregrip_idle_empty = "foregrip_empty_idle",
+	foregrip_holster = "foregrip_holster",
+	foregrip_holster_empty = "foregrip_empty_holster",
+	foregrip_sprint = "foregrip_sprint",
+	foregrip_sprint_empty = "foregrip_empty_sprint",
+	foregrip_safe = "foregrip_down",
+	foregrip_safe_aim = "foregrip_iron_down",
+	foregrip_safe_empty = "foregrip_empty_down",
+	foregrip_safe_empty_aim = "foregrip_empty_iron_down",
+	foregrip_crawl = "foregrip_crawl",
+	foregrip_crawl_empty = "foregrip_empty_crawl",
+	
+	bipod_in = "deployed_in",
+	bipod_in_empty = "deployed_empty_in",
+	bipod_fire = "deployed_fire",
+	bipod_fire_aim = "deployed_iron_fire",
 	-- bipod_fire_last = "deployed_firelast",
-	-- bipod_fire_last_aim = "deployed_iron_fire_last",
-	-- bipod_fire_empty = "deployed_dryfire",
-	-- bipod_fire_empty_aim = "deployed_iron_dryfire",
-	-- bipod_reload = "deployed_reload",
-	-- bipod_reload_empty = "deployed_reloadempty",
-	-- bipod_out = "deployed_out",
-	-- bipod_out_empty = "deployed_empty_out",
+	bipod_fire_last = "deployed_iron_fire_last",
+	bipod_fire_last_aim = "deployed_iron_fire_last",
+	bipod_fire_empty = "deployed_dryfire",
+	bipod_fire_empty_aim = "deployed_iron_dryfire",
+	bipod_reload = "deployed_reload",
+	bipod_reload_empty = "deployed_reloadempty",
+	bipod_out = "deployed_out",
+	bipod_out_empty = "deployed_empty_out",
 }
 
 SWEP.SpeedDec = 40
@@ -139,7 +180,7 @@ SWEP.Damage = 63
 
 SWEP.FirstDeployTime = 1.7
 SWEP.DeployTime = 0.7
-SWEP.HolsterTime = 0.5
+SWEP.HolsterTime = 0.8
 
 SWEP.BipodDeployTime = 1.15
 SWEP.BipodUndeployTime = 1.15
