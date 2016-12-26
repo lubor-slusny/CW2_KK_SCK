@@ -6,48 +6,38 @@ AddCSLuaFile("sh_soundscript.lua")
 include("sh_sounds.lua")
 include("sh_soundscript.lua")
 
-SWEP.TSGlass = Material("models/weapons/nam/optics/lense_rt")
-
-SWEP.magType = "brMag"
+SWEP.magType = "arMag"
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "SVD"
+	SWEP.PrintName = "SVT 40"
 	SWEP.CSMuzzleFlashes = true
 	SWEP.ViewModelMovementScale = 1.15
 	
-	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_nam_svd")
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_nam_svt40")
 	
-	SWEP.Shell = "KK_INS2_762x54"
-	-- SWEP.NoShells = true
-	SWEP.ShellDelay = 0
-	
-	SWEP.BackupSights = {
-		["kk_ins2_elcan"] = {
-			Vector(-2.8208, -12, -1.1186),
-			Vector(-0.4986, 0, 0)
-		},
-	}
+	SWEP.Shell = "KK_INS2_762x39"
+	SWEP.ShellDelay = 0.03
 	
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_bipod"] = {model = "models/weapons/upgrades/a_bipod_sks.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/a_foregrip_ins.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), attachment = "Foregrip"},
 		
-		["kk_ins2_scope_mosin"] = {model = "models/weapons/upgrades/a_pso1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_scope_mosin"] = {model = "models/weapons/upgrades/a_optic_svt40_m.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 
 	SWEP.AttachmentModelsWM = {
 		["kk_ins2_bipod"] = {model = "models/weapons/upgrades/w_bipod_mosin.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/w_ins_foregrip.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
-		
-		["kk_ins2_scope_mosin"] = {model = "models/weapons/upgrades/w_pso1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+	
+		["kk_ins2_scope_mosin"] = {model = "models/weapons/upgrades/w_scope_svt.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
-	SWEP.IronsightPos = Vector(-2.0166, -2, 0.5294)
-	SWEP.IronsightAng = Vector(0.0934, -0.0015, 0)
-	
-	SWEP.KKINS2ScopeMosinPos = Vector(-1.9652, -1, -0.0041)
-	SWEP.KKINS2ScopeMosinAng = Vector(0, 0, 0)
+	SWEP.IronsightPos = Vector(-2.6741, -2, 1.6372)
+	SWEP.IronsightAng = Vector(0.1, 0.05, 0)
+
+	SWEP.KKINS2ScopeMosinPos = Vector(-2.6586, 2, 0.9511)
+	SWEP.KKINS2ScopeMosinAng = Vector()
 
 	SWEP.CustomizationMenuScale = 0.017
 end
@@ -56,9 +46,13 @@ SWEP.MuzzleEffect = "muzzleflash_sks_1p_core"
 SWEP.MuzzleEffectWorld = "muzzleflash_sks_3rd"
 
 SWEP.Attachments = {
-	{header = "Sight", offset = {500, -450}, atts = {"kk_ins2_scope_mosin"}},
+	{header = "Sight", offset = {400, -500}, atts = {"kk_ins2_scope_mosin"}},
+	-- {header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_pbs1"}},
 	{header = "Under", offset = {-500, 0}, atts = {"kk_ins2_bipod", "kk_ins2_vertgrip"}},
-	["+reload"] = {header = "Ammo", offset = {1100, 500}, atts = {"am_magnum", "am_matchgrade"}}
+	-- {header = "Lasers", offset = {125, 300}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}},
+	-- {header = "More Sight", offset = {1000, -50}, atts = {"kk_ins2_magnifier"}, dependencies = CustomizableWeaponry_KK.ins2.magnifierDependencies},
+	-- ["+use"] = {header = "Sight Contract", offset = {400, -50}, atts = {"kk_ins2_sights_cstm"}},
+	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
 SWEP.Animations = {
@@ -113,16 +107,16 @@ SWEP.Animations = {
 	bipod_in = "deployed_in",
 	bipod_in_empty = "deployed_empty_in",
 	bipod_fire = "deployed_fire",
+	bipod_fire_last = "deployed_firelast",
+	bipod_fire_empty = {"deployed_dryfire","deployed_empty_dryfire"},
 	bipod_fire_aim = "deployed_iron_fire",
-	-- bipod_fire_last = "deployed_firelast",
-	bipod_fire_last = "deployed_iron_fire_last",
 	bipod_fire_last_aim = "deployed_iron_fire_last",
-	bipod_fire_empty = "deployed_dryfire",
 	bipod_fire_empty_aim = "deployed_iron_dryfire",
 	bipod_reload = "deployed_reload",
 	bipod_reload_empty = "deployed_reloadempty",
 	bipod_out = "deployed_out",
 	bipod_out_empty = "deployed_empty_out",
+	
 }
 
 SWEP.SpeedDec = 40
@@ -142,10 +136,10 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/v_nam_svd.mdl"
-SWEP.WorldModel		= "models/weapons/w_nam_svd.mdl"
+SWEP.ViewModel		= "models/weapons/v_nam_svt40.mdl"
+SWEP.WorldModel		= "models/weapons/w_nam_svt40.mdl"
 
-SWEP.WMPos = Vector(6.136, 0.786, -1.713)
+SWEP.WMPos = Vector(3, 1.009, 0)
 SWEP.WMAng = Vector(-10, 0, 180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.f1
@@ -154,47 +148,49 @@ SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.gurkha
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted3(SWEP)
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted3(SWEP)
 
-SWEP.Primary.ClipSize		= 10
-SWEP.Primary.DefaultClip	= 10
+SWEP.Primary.ClipSize		= 20
+SWEP.Primary.DefaultClip	= 20
 SWEP.Primary.Automatic		= false
-SWEP.Primary.Ammo			= "7.62x54MMR"
+SWEP.Primary.Ammo			= "7.62x39MM"
 
-SWEP.FireDelay = 60/300
-SWEP.FireSound = "CW_KK_INS2_MOSIN_FIRE"
-SWEP.FireSoundSuppressed = "CW_KK_INS2_MOSIN_FIRE_SUPPRESSED"
-SWEP.Recoil = 2.5
+SWEP.FireDelay = 60/600
+SWEP.FireSound = "CW_KK_INS2_SKS_FIRE"
+SWEP.FireSoundSuppressed = "CW_KK_INS2_SKS_FIRE_SUPPRESSED"
+SWEP.Recoil = 1.08
 
-SWEP.HipSpread = 0.075
-SWEP.AimSpread = 0.001
-SWEP.VelocitySensitivity = 2.5
-SWEP.MaxSpreadInc = 0.2
-SWEP.SpreadPerShot = 0.01
-SWEP.SpreadCooldown = 2
+SWEP.HipSpread = 0.043
+SWEP.AimSpread = 0.005
+SWEP.VelocitySensitivity = 1.6
+SWEP.MaxSpreadInc = 0.05
+SWEP.SpreadPerShot = 0.007
+SWEP.SpreadCooldown = 0.13
 SWEP.Shots = 1
-SWEP.Damage = 63
+SWEP.Damage = 42
 
-SWEP.FirstDeployTime = 1.7
+SWEP.FirstDeployTime = 1.5
 SWEP.DeployTime = 0.7
-SWEP.HolsterTime = 0.8
+SWEP.HolsterTime = 0.5
+
+SWEP.RecoilToSpread = 0.8
 
 SWEP.BipodDeployTime = 1.15
 SWEP.BipodUndeployTime = 1.15
 
 SWEP.SnapToIdlePostReload = false
 
+SWEP.WeaponLength = 22
+
 SWEP.KK_INS2_EmptyIdle = true
 
-SWEP.WeaponLength = 38
-
-SWEP.MuzzleVelocity = 830
+SWEP.MuzzleVelocity = 735
 
 SWEP.ReloadTimes = {
-	base_reload = {2.55, 3.2},
-	base_reloadempty = {2.85, 4.5},
+	base_reload = {2.3, 3.3},
+	base_reloadempty = {2.3, 4.6},
 	
-	foregrip_reload = {2.55, 3.2},
-	foregrip_reloadempty = {2.85, 4.5},
+	foregrip_reload = {2.3, 3.3},
+	foregrip_reloadempty = {2.3, 4.6},
 	
-	deployed_reload = {2.55, 3.2},
-	deployed_reloadempty = {2.85, 4.5},
+	deployed_reload = {2.3, 3.3},
+	deployed_reloadempty = {2.3, 4.6},
 }

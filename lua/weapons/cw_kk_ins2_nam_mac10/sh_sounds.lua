@@ -1,0 +1,1 @@
+-- CustomizableWeaponry:addFireSound("CW_KK_INS2_MP40_FIRE", "weapons/mp40/mp40_fp.wav", 1, 105, CHAN_STATIC)
