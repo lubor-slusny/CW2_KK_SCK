@@ -8,7 +8,7 @@ include("sh_soundscript.lua")
 
 SWEP.magType = "arMag"
 
-SWEP.TSGlass = Material("models/weapons/nam/optics/lense_rt")
+SWEP.TSGlass = Material("models/weapons/nam/optics/pu/lense_rt")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
@@ -36,11 +36,11 @@ if CLIENT then
 		["kk_ins2_scope_mosin"] = {model = "models/weapons/upgrades/w_optic_pu_sks.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
-	SWEP.IronsightPos = Vector(-2.6741, -2, 1.6372)
-	SWEP.IronsightAng = Vector(0.1, 0.05, 0)
+	SWEP.IronsightPos = Vector(-1.3824, -2, 0.9608)
+	SWEP.IronsightAng = Vector(0.1564, 0.0462, 0)
 
-	SWEP.KKINS2ScopeMosinPos = Vector(-2.6586, 2, 0.9511)
-	SWEP.KKINS2ScopeMosinAng = Vector()
+	SWEP.KKINS2ScopeMosinPos = Vector(-1.3349, 1, 0.2709)
+	SWEP.KKINS2ScopeMosinAng = Vector(0, 0, 0)
 
 	SWEP.CustomizationMenuScale = 0.017
 end
@@ -100,7 +100,7 @@ SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_nam_sks.mdl"
 SWEP.WorldModel		= "models/weapons/w_nam_sks.mdl"
 
-SWEP.WMPos = Vector(3, 1.009, 0)
+SWEP.WMPos = Vector(15, 1.009, -3)
 SWEP.WMAng = Vector(-10, 0, 180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.f1
@@ -109,8 +109,8 @@ SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.gurkha
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted3(SWEP)
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted3(SWEP)
 
-SWEP.Primary.ClipSize		= 20
-SWEP.Primary.DefaultClip	= 20
+SWEP.Primary.ClipSize		= 10
+SWEP.Primary.DefaultClip	= 10
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "7.62x39MM"
 
@@ -128,9 +128,9 @@ SWEP.SpreadCooldown = 0.13
 SWEP.Shots = 1
 SWEP.Damage = 42
 
-SWEP.FirstDeployTime = 1.5
+SWEP.FirstDeployTime = 1.3
 SWEP.DeployTime = 0.7
-SWEP.HolsterTime = 0.5
+SWEP.HolsterTime = 0.6
 
 SWEP.RecoilToSpread = 0.8
 
@@ -142,6 +142,7 @@ SWEP.SnapToIdlePostReload = false
 SWEP.WeaponLength = 22
 
 SWEP.KK_INS2_EmptyIdle = true
+-- SWEP.Chamberable = false
 
 SWEP.MuzzleVelocity = 735
 

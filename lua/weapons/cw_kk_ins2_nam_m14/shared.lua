@@ -183,7 +183,7 @@ SWEP.Primary.DefaultClip	= 20
 SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= "7.62x51MM"
 
-SWEP.FireDelay = 60/725
+SWEP.FireDelay = 60/750
 SWEP.FireSound = "CW_KK_INS2_M14_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_M14_FIRE_SUPPRESSED"
 SWEP.Recoil = 1.6
@@ -197,9 +197,9 @@ SWEP.SpreadCooldown = 0.12
 SWEP.Shots = 1
 SWEP.Damage = 64
 
-SWEP.FirstDeployTime = 1.5
+SWEP.FirstDeployTime = 1.7
 SWEP.DeployTime = 0.7
-SWEP.HolsterTime = 0.5
+SWEP.HolsterTime = 0.6
 
 SWEP.SnapToIdlePostReload = false
 
@@ -207,7 +207,7 @@ SWEP.WeaponLength = 28
 
 SWEP.KK_INS2_EmptyIdle = true
 
-SWEP.MuzzleVelocity = 853
+SWEP.MuzzleVelocity = 850
 
 SWEP.ReloadTimes = {
 	base_reload = {2.7, 3.4},

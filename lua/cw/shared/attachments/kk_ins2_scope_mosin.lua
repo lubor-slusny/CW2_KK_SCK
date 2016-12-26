@@ -36,7 +36,8 @@ if CLIENT then
 		if self:isAiming() then 
 			scopeEnt:SetSequence(2)
 		else
-			scopeEnt:SetSequence(1)
+			-- scopeEnt:SetSequence(1)
+			scopeEnt:SetSequence(2)
 		end
 		
 		CustomizableWeaponry_KK.ins2.rtSight:renderTarget(self, att)

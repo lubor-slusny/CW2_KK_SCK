@@ -136,9 +136,3 @@ SWEP.ReloadTimes = {
 	base_reload = {2.85, 3.8},
 	base_reloadempty = {3, 4.6},
 }
-
-if CLIENT then
-	function SWEP:updateStandardParts()
-	
-	end
-end

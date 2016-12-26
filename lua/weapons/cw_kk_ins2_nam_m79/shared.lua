@@ -75,8 +75,8 @@ SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_nam_m79.mdl"
 SWEP.WorldModel		= "models/weapons/w_m79.mdl"
 
-SWEP.WMPos = Vector(5.243, 1.562, -1.657)
-SWEP.WMAng = Vector(-15, 1, 180)
+SWEP.WMPos = Vector(3.243, 1, 0)
+SWEP.WMAng = Vector(15, 179, 180)
 
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted3(SWEP)
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted3(SWEP)

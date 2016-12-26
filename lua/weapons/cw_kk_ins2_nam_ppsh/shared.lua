@@ -41,8 +41,8 @@ if CLIENT then
 
 end
 
-SWEP.MuzzleEffect = "muzzleflash_mp40_1p_core"
-SWEP.MuzzleEffectWorld = "muzzleflash_mp40_3rd"
+SWEP.MuzzleEffect = "muzzleflash_mp5_1p_core"
+SWEP.MuzzleEffectWorld = "muzzleflash_mp5_3rd"
 
 SWEP.Attachments = {
 	{header = "Magazine", offset = {-300, -200}, atts = {"kk_ins2_mag_ppsh_71"}},
@@ -124,8 +124,7 @@ SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= "7.62x25MM"
 
 SWEP.FireDelay = 60/1000
-SWEP.FireSound = "CW_KK_INS2_MP40_FIRE"
-SWEP.FireSoundSuppressed = "CW_KK_INS2_MP40_FIRE_SUPPRESSED"
+SWEP.FireSound = "CW_KK_INS2_MP5K_FIRE"
 SWEP.Recoil = 0.77
 
 SWEP.HipSpread = 0.035

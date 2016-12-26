@@ -33,11 +33,11 @@ if CLIENT then
 		["kk_ins2_scope_mosin"] = {model = "models/weapons/upgrades/w_scope_svt.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
-	SWEP.IronsightPos = Vector(-2.6741, -2, 1.6372)
-	SWEP.IronsightAng = Vector(0.1, 0.05, 0)
-
-	SWEP.KKINS2ScopeMosinPos = Vector(-2.6586, 2, 0.9511)
-	SWEP.KKINS2ScopeMosinAng = Vector()
+	SWEP.IronsightPos = Vector(-2.2386, -2, 1.6034)
+	SWEP.IronsightAng = Vector(0.0305, 0.003, 0)
+	
+	SWEP.KKINS2ScopeMosinPos = Vector(-2.2171, 0, 0.8822)
+	SWEP.KKINS2ScopeMosinAng = Vector(0, 0, 0)
 
 	SWEP.CustomizationMenuScale = 0.017
 end
@@ -148,28 +148,28 @@ SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.gurkha
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted3(SWEP)
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted3(SWEP)
 
-SWEP.Primary.ClipSize		= 20
-SWEP.Primary.DefaultClip	= 20
+SWEP.Primary.ClipSize		= 10
+SWEP.Primary.DefaultClip	= 10
 SWEP.Primary.Automatic		= false
-SWEP.Primary.Ammo			= "7.62x39MM"
+SWEP.Primary.Ammo			= "7.62x54MMR"
 
 SWEP.FireDelay = 60/600
-SWEP.FireSound = "CW_KK_INS2_SKS_FIRE"
-SWEP.FireSoundSuppressed = "CW_KK_INS2_SKS_FIRE_SUPPRESSED"
+SWEP.FireSound = "CW_KK_INS2_MOSIN_FIRE"
+SWEP.FireSoundSuppressed = "CW_KK_INS2_MOSIN_FIRE_SUPPRESSED"
 SWEP.Recoil = 1.08
 
-SWEP.HipSpread = 0.043
-SWEP.AimSpread = 0.005
-SWEP.VelocitySensitivity = 1.6
-SWEP.MaxSpreadInc = 0.05
-SWEP.SpreadPerShot = 0.007
-SWEP.SpreadCooldown = 0.13
+SWEP.HipSpread = 0.075
+SWEP.AimSpread = 0.001
+SWEP.VelocitySensitivity = 2.5
+SWEP.MaxSpreadInc = 0.2
+SWEP.SpreadPerShot = 0.01
+SWEP.SpreadCooldown = 2
 SWEP.Shots = 1
-SWEP.Damage = 42
+SWEP.Damage = 63
 
 SWEP.FirstDeployTime = 1.5
 SWEP.DeployTime = 0.7
-SWEP.HolsterTime = 0.5
+SWEP.HolsterTime = 0.7
 
 SWEP.RecoilToSpread = 0.8
 
@@ -182,7 +182,7 @@ SWEP.WeaponLength = 22
 
 SWEP.KK_INS2_EmptyIdle = true
 
-SWEP.MuzzleVelocity = 735
+SWEP.MuzzleVelocity = 840
 
 SWEP.ReloadTimes = {
 	base_reload = {2.3, 3.3},

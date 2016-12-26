@@ -22,80 +22,21 @@ if CLIENT then
 	SWEP.ShellViewAngleAlign = {Forward = 0, Right = 0, Up = 180}
 	SWEP.ShellWorldAngleAlign = {Forward = 0, Right = 0, Up = 180}
 	
-	SWEP.AttachmentModelsVM = {
-		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_modkit_04.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
-		
+	SWEP.AttachmentModelsVM = {	
 		["kk_ins2_suppressor_ins"] = {model = "models/weapons/upgrades/a_suppressor_ins.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
-		
-		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_band.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_band.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_anpeq15"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_anpeq_band_l.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
-
-		["kk_ins2_magnifier"] = {model = "models/weapons/upgrades/a_optic_aimp2x_m.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, retSizeMult = 0.85},
-		
-		["kk_ins2_aimpoint"] = {model = "models/weapons/upgrades/a_optic_aimpoint_m.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, retSizeMult = 0.85},
-		["kk_ins2_elcan"] = {model = "models/weapons/upgrades/a_optic_elcan_m.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, retSizeMult = 0.85},
-		["kk_ins2_eotech"] = {model = "models/weapons/upgrades/a_optic_eotech_m.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, retSizeMult = 0.85},
-		["kk_ins2_kobra"] = {model = "models/weapons/upgrades/a_optic_kobra.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_po4"] = {model = "models/weapons/upgrades/a_optic_po4x24_m.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, retSizeMult = 0.85},
-		
-		["kk_ins2_cstm_cmore"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_cmore_m.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, retSizeMult = 0.85},
-		["kk_ins2_cstm_compm4s"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_compm4s_m.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, retSizeMult = 0.85},
-		["kk_ins2_cstm_microt1"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_microt1_m.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, retSizeMult = 0.85},
-		["kk_ins2_cstm_acog"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_acog_m.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, retSizeMult = 0.85},
-		["kk_ins2_cstm_barska"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_barska_m.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, retSizeMult = 0.85},
-		["kk_ins2_cstm_eotechxps"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_eotechxps_m.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, retSizeMult = 0.85},
 	}
 	
 	SWEP.AttachmentModelsWM = {
-		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/w_modkit_4.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
-		
 		["kk_ins2_suppressor_ins"] = {model = "models/weapons/upgrades/w_sil_ins1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
-
-		["kk_ins2_lam"] = {model = "models/weapons/upgrades/w_laser_ins.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/w_laser_ins.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
-		
-		["kk_ins2_magnifier"] = {model = "models/weapons/upgrades/w_magaim.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
-		
-		["kk_ins2_aimpoint"] = {model = "models/weapons/upgrades/w_aimpoint.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_elcan"] = {model = "models/weapons/upgrades/w_elcan.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_eotech"] = {model = "models/weapons/upgrades/w_eotech.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_kobra"] = {model = "models/weapons/upgrades/w_kobra.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_po4"] = {model = "models/weapons/upgrades/w_po.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
-		
-		["kk_ins2_cstm_cmore"] = {model = "models/weapons/attachments/w_cw_kk_ins2_cstm_cmore.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_cstm_compm4s"] = {model = "models/weapons/upgrades/w_aimpoint.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_cstm_microt1"] = {model = "models/weapons/upgrades/w_aimpoint.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_cstm_acog"] = {model = "models/weapons/attachments/w_cw_kk_ins2_cstm_acog.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_cstm_barska"] = {model = "models/weapons/upgrades/w_eotech.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_cstm_eotechxps"] = {model = "models/weapons/attachments/w_cw_kk_ins2_cstm_eotechxps.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
-	SWEP.IronsightPos = Vector(-2.505, -2, 0.68)
-	SWEP.IronsightAng = Vector(0, 0.05, 0)
-	
-	SWEP.KKINS2EoTechPos = Vector(-2.5102, -2, -0.2916)
-	SWEP.KKINS2EoTechAng = Vector()
-
-	SWEP.KKINS2AimpointPos = Vector(-2.505, -2, -0.2748)
-	SWEP.KKINS2AimpointAng = Vector()
-
-	SWEP.KKINS2KobraPos = Vector(-2.5103, -2, -0.3096)
-	SWEP.KKINS2KobraAng = Vector()
-
-	SWEP.KKINS2PO4Pos = Vector(-2.4542, -3, -0.1948)
-	SWEP.KKINS2PO4Ang = Vector()
-
-	SWEP.KKINS2MagnifierPos = Vector(-2.5024, -3, -0.2802)
-	SWEP.KKINS2MagnifierAng = Vector()
-
-	SWEP.KKINS2ElcanPos = Vector(-2.5041, -3, -0.5503)
-	SWEP.KKINS2ElcanAng = Vector()
+	SWEP.IronsightPos = Vector(-2.1541, -2, 0.6321)
+	SWEP.IronsightAng = Vector(0, 0.0578, 0)
 
 end
 
-SWEP.MuzzleEffect = "muzzleflash_mp40_1p_core"
-SWEP.MuzzleEffectWorld = "muzzleflash_mp40_3rd"
+SWEP.MuzzleEffect = "muzzleflash_mp5_1p_core"
+SWEP.MuzzleEffectWorld = "muzzleflash_mp5_3rd"
 
 SWEP.Attachments = {
 	{header = "Barrel", offset = {-300, -500}, atts = {"kk_ins2_suppressor_ins"}},
@@ -118,6 +59,10 @@ SWEP.Animations = {
 	base_idle_empty = "empty_idle",
 	base_holster = "base_holster",
 	base_holster_empty = "empty_holster",
+	base_firemode = "base_fireselect",
+	base_firemode_empty = "base_fireselect_empty",
+	base_firemode_aim = "iron_fireselect",
+	base_firemode_empty_aim = "iron_fireselect_empty",
 	base_sprint = "base_sprint",
 	base_sprint_empty = "empty_sprint",
 	base_safe = "base_down",
@@ -132,9 +77,9 @@ SWEP.SpeedDec = 15
 
 SWEP.Slot = 2
 SWEP.SlotPos = 0
-SWEP.NormalHoldType = "ar2"
+SWEP.NormalHoldType = "pistol"
 SWEP.RunHoldType = "passive"
-SWEP.FireModes = {"auto"}
+SWEP.FireModes = {"auto", "semi"}
 SWEP.Base = "cw_kk_ins2_base"
 SWEP.Category = "CW 2.0 KK INS2 B2K"
 
@@ -162,9 +107,9 @@ SWEP.Primary.DefaultClip	= 32
 SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= "9x19MM"
 
-SWEP.FireDelay = 60/550
-SWEP.FireSound = "CW_KK_INS2_MP40_FIRE"
-SWEP.FireSoundSuppressed = "CW_KK_INS2_MP40_FIRE_SUPPRESSED"
+SWEP.FireDelay = 60/1250
+SWEP.FireSound = "CW_KK_INS2_MP5K_FIRE"
+SWEP.FireSoundSuppressed = "CW_KK_INS2_MP5K_FIRE_SUPPRESSED"
 SWEP.Recoil = 0.77
 
 SWEP.HipSpread = 0.035
@@ -176,19 +121,19 @@ SWEP.SpreadCooldown = 0.13
 SWEP.Shots = 1
 SWEP.Damage = 25
 
-SWEP.FirstDeployTime = 1.7
-SWEP.DeployTime = 0.6
-SWEP.HolsterTime = 0.5
+SWEP.FirstDeployTime = 2
+SWEP.DeployTime = 0.7
+SWEP.HolsterTime = 0.6
 
 SWEP.Chamberable = false
 
 SWEP.WeaponLength = 16 // this things gotta b longer than MP5k
 
-SWEP.KK_INS2_EmptyIdle = true
+SWEP.KK_INS2_EmptyIdle = false
 
 SWEP.ReloadTimes = {
 	base_reload = {2.2, 2.95},
 	base_reloadempty = {3.2, 4.55}
 }
 
-SWEP.MuzzleVelocity = 400
+SWEP.MuzzleVelocity = 366

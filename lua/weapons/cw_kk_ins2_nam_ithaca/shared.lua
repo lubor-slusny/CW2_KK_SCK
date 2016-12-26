@@ -39,8 +39,8 @@ if CLIENT then
 	SWEP.CustomizationMenuScale = 0.015
 end
 
-SWEP.MuzzleEffect = "muzzleflash_ithica_1p"
-SWEP.MuzzleEffectWorld = "muzzleflash_ithica_3p"
+SWEP.MuzzleEffect = "muzzleflash_m590_1p_core"
+SWEP.MuzzleEffectWorld = "muzzleflash_m590_3rd"
 
 SWEP.Attachments = {
 	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_ww2_knife"}},
@@ -98,13 +98,13 @@ SWEP.WMAng = Vector(-15, 3, 180)
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted3(SWEP)
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted3(SWEP)
 
-SWEP.Primary.ClipSize		= 6
-SWEP.Primary.DefaultClip	= 7
+SWEP.Primary.ClipSize		= 5
+SWEP.Primary.DefaultClip	= 6
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "12 Gauge"
 
 SWEP.FireDelay = 0.2
-SWEP.FireSound = "CW_KK_INS2_TOZ_FIRE"
+SWEP.FireSound = "CW_KK_INS2_M590_FIRE"
 SWEP.Recoil = 2
 
 SWEP.HipSpread = 0.04

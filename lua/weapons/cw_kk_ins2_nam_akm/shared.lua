@@ -32,7 +32,7 @@ if CLIENT then
 		
 		["kk_ins2_pbs5"] = {model = "models/weapons/upgrades/a_suppressor_aks.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/a_woodgrips_ak74.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/a_foregrip_ins.mdl", pos = Vector(0, 0, -0.2752), angle = Angle(0, -90, 0), size = Vector(0.5, 0.5, 0.5), attachment = "Foregrip"},
 		["kk_ins2_gl_gp25"] = {model = "models/weapons/upgrades/a_gl_gp25.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_magnifier"] = {model = "models/weapons/upgrades/a_optic_aimp2x.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
@@ -58,7 +58,7 @@ if CLIENT then
 		
 		["kk_ins2_pbs5"] = {model = "models/weapons/upgrades/w_sil_ins1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/w_foregrip_wood_2.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/w_ins_foregrip.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_gl_gp25"] = {model = "models/weapons/upgrades/w_gp25.mdl", attachment = "gl", pos = Vector(-10.75,0.2,0), angle = Angle(0, 0, -90), size = Vector(1, 1, 1)},
 		
 		["kk_ins2_magnifier"] = {model = "models/weapons/upgrades/w_magaim.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
@@ -101,13 +101,13 @@ if CLIENT then
 	SWEP.CustomizationMenuScale = 0.016
 end
 
-SWEP.MuzzleEffect = "muzzleflash_ak74_1p_core"
-SWEP.MuzzleEffectWorld = "muzzleflash_ak74_3rd"
+SWEP.MuzzleEffect = "muzzleflash_akm_1p_core"
+SWEP.MuzzleEffectWorld = "muzzleflash_akm_3rd"
 
 SWEP.Attachments = {
 	{header = "Sight", offset = {400, -450}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_po4", "kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_microt1", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"}},
 	{header = "Barrel", offset = {-100, -450}, atts = {"kk_ins2_pbs5"}},
-	{header = "Under", offset = {-400, 0}, atts = {"kk_ins2_gl_gp25"}},
+	{header = "Under", offset = {-400, 0}, atts = {"kk_ins2_vertgrip", "kk_ins2_gl_gp25"}},
 	{header = "More Sight", offset = {1000, 0}, atts = {"kk_ins2_magnifier"}, dependencies = CustomizableWeaponry_KK.ins2.magnifierDependencies},
 	["+use"] = {header = "Sight Contract", offset = {400, -0}, atts = {"kk_ins2_sights_cstm"}},
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_magnum", "am_matchgrade"}}
@@ -136,7 +136,7 @@ SWEP.Animations = {
 	foregrip_fire = "foregrip_fire",
 	foregrip_fire_aim = "foregrip_iron_fire",
 	foregrip_fire_empty = "foregrip_dryfire",
-	foregrip_fire_empty_aim = "foergrip_iron_dryfire", // like srsly?
+	foregrip_fire_empty_aim = "foregrip_iron_dryfire",
 	foregrip_reload = "foregrip_reload",
 	foregrip_reload_empty = "foregrip_reloadempty",
 	foregrip_idle = "foregrip_holster",
@@ -217,9 +217,9 @@ SWEP.Primary.DefaultClip	= 30
 SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= "7.62x39MM"
 
-SWEP.FireDelay = 60/650
-SWEP.FireSound = "CW_KK_INS2_AK74_FIRE"
-SWEP.FireSoundSuppressed = "CW_KK_INS2_AK74_FIRE_SUPPRESSED"
+SWEP.FireDelay = 60/600
+SWEP.FireSound = "CW_KK_INS2_AKM_FIRE"
+SWEP.FireSoundSuppressed = "CW_KK_INS2_AKM_FIRE_SUPPRESSED"
 SWEP.Recoil = 1.2
 
 SWEP.HipSpread = 0.043
@@ -231,16 +231,16 @@ SWEP.SpreadCooldown = 0.13
 SWEP.Shots = 1
 SWEP.Damage = 40
 
+SWEP.FirstDeployTime = 2
 SWEP.DeployTime = 0.7
-SWEP.HolsterTime = 0.5
+SWEP.HolsterTime = 0.6
 
-SWEP.FirstDeployTime = 2.1
 SWEP.WeaponLength = 22
 
-SWEP.MuzzleVelocity = 890
+SWEP.MuzzleVelocity = 715
 
 SWEP.ReloadTimes = {
-	base_reload = {2.2, 3.15},
+	base_reload = {2.2, 3.2},
 	base_reloadempty = {2.2, 4.35},
 	
 	foregrip_reload = {2.2, 3.15},
@@ -254,9 +254,3 @@ SWEP.ReloadTimes = {
 	
 	glsetup_reload = {1.75, 2.67}
 }
-
-if CLIENT then
-	function SWEP:updateStandardParts()
-		self:setElementActive("handguardStandard", !self.ActiveAttachments.kk_ins2_vertgrip)
-	end
-end
