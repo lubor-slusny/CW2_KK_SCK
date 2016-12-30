@@ -6,6 +6,8 @@ AddCSLuaFile("sh_soundscript.lua")
 include("sh_sounds.lua")
 include("sh_soundscript.lua")
 
+SWEP.TSGlass = Material("models/weapons/nam/m16a1/lense_rt")
+
 SWEP.magType = "arMag"
 
 if CLIENT then
@@ -27,19 +29,31 @@ if CLIENT then
 	SWEP.AttachmentModelsVM = {
 		["cover_long"] = {model = "models/weapons/upgrades/a_standard_m16a1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
 		
-		["kk_ins2_suppressor_sec"] = {model = "models/weapons/upgrades/a_suppressor_sec.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_mag_m1a1_15"] = {model = "models/weapons/upgrades/a_magazine_m16_20.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
+		["kk_ins2_mag_m1a1_30"] = {model = "models/weapons/upgrades/a_magazine_m16_30.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+
+		["kk_ins2_suppressor_sec"] = {model = "models/weapons/upgrades/a_suppressor_m16.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_bipod"] = {model = "models/weapons/upgrades/a_bipod_m16a1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_gl_m203"] = {model = "models/weapons/upgrades/a_m16a1_m203.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_m16a1_sling.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		
+		["kk_ins2_elcan"] = {model = "models/weapons/upgrades/a_optics_m16a1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
 	SWEP.AttachmentModelsWM = {
 		["cover_long"] = {model = "models/weapons/upgrades/w_standard_m16a1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
 		
+		["kk_ins2_mag_m1a1_15"] = {model = "models/weapons/upgrades/w_magazine_m16_20.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
+		["kk_ins2_mag_m1a1_30"] = {model = "models/weapons/upgrades/w_magazine_m16_30.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		
+		["kk_ins2_suppressor_sec"] = {model = "models/weapons/upgrades/w_suppressor_m16.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		
 		["kk_ins2_bipod"] = {model = "models/weapons/upgrades/w_bipod_m16a1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_gl_m203"] = {model = "models/weapons/upgrades/w_m16a1_m203.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		
+		["kk_ins2_elcan"] = {model = "models/weapons/upgrades/w_optics_m16a1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
 	SWEP.IronsightPos = Vector(-1.0637, -2, -0.0176)
@@ -48,6 +62,9 @@ if CLIENT then
 	SWEP.M203Pos = Vector(-1.5805, -5, -0.4545)
 	SWEP.M203Ang = Vector(-0.0041, -1.7264, -2.205)
 
+	SWEP.KKINS2ElcanPos = Vector(-1.0662, -2, -0.6937)
+	SWEP.KKINS2ElcanAng = Vector(0, 0, 0)
+
 	SWEP.CustomizationMenuScale = 0.013
 end
 
@@ -55,8 +72,11 @@ SWEP.MuzzleEffect = "muzzleflash_m16_1p_core"
 SWEP.MuzzleEffectWorld = "muzzleflash_m16_3rd"
 
 SWEP.Attachments = {
+	{header = "Sight", offset = {500, -500}, atts = {"kk_ins2_elcan"}},
+	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_suppressor_sec", "kk_ins2_hoovy"}},
 	{header = "Under", offset = {-500, 0}, atts = {"kk_ins2_bipod", "kk_ins2_gl_m203"}},
 	{header = "Stock", offset = {600, 0}, atts = {"kk_ins2_ww2_sling"}},
+	{header = "Magazine", offset = {-200, 600}, atts = {"kk_ins2_mag_m1a1_30"}},
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
@@ -69,6 +89,8 @@ SWEP.Animations = {
 	base_fire_empty_aim = "iron_dryfire",
 	base_reload = "base_reload",
 	base_reload_empty = {"base_reloadempty", "base_reloadempty2", "base_reloadempty3"},
+	base_reload_mm = "base_reload_extended",
+	base_reload_empty_mm = "base_reloadempty_extended",
 	base_idle = "base_idle",
 	base_holster = "base_holster",
 	base_firemode = "base_fireselect",
@@ -86,6 +108,8 @@ SWEP.Animations = {
 	gl_off_fire_empty_aim = "gl_iron_dryfire",
 	gl_off_reload = "gl_reload",
 	gl_off_reload_empty = "gl_reloadempty",
+	gl_off_reload_mm = "gl_reload",
+	gl_off_reload_empty_mm = "gl_reloadempty",
 	gl_off_idle = "gl_holster",
 	gl_off_holster = "gl_holster",
 	gl_off_firemode = "gl_fireselect",
@@ -117,6 +141,8 @@ SWEP.Animations = {
 	bipod_fire_empty_aim = "deployed_iron_dryfire",
 	bipod_reload = "deployed_reload_half",
 	bipod_reload_empty = {"deployed_reload_empty", "deployed_reload_empty2"},
+	bipod_reload_mm = "deployed_reload_half",
+	bipod_reload_empty_mm = {"deployed_reload_empty", "deployed_reload_empty2"},
 	bipod_firemode = "deployed_fireselect",
 	bipod_firemode_aim = "deployed_iron_fireselect",
 	
@@ -133,7 +159,7 @@ SWEP.Slot = 3
 SWEP.SlotPos = 0
 SWEP.NormalHoldType = "ar2"
 SWEP.RunHoldType = "passive"
-SWEP.FireModes = {"3burst", "semi"}
+SWEP.FireModes = {"auto", "semi"}
 SWEP.Base = "cw_kk_ins2_base"
 SWEP.Category = "CW 2.0 KK INS2 B2K"
 
@@ -188,6 +214,9 @@ SWEP.ReloadTimes = {
 	base_reloadempty2 = {4, 5.65},
 	base_reloadempty3 = {4, 5.65},
 	
+	base_reload_extended = {4, 4.8},
+	base_reloadempty_extended = {4, 5.65},
+	
 	gl_reload = {4, 4.8},
 	gl_reloadempty = {4, 5.65},
 	
@@ -204,5 +233,6 @@ SWEP.ReloadTimes = {
 if CLIENT then 
 	function SWEP:updateStandardParts()
 		self:setElementActive("cover_long", !self.ActiveAttachments.kk_ins2_gl_m203)
+		self:setElementActive("kk_ins2_mag_m1a1_15", !self.ActiveAttachments.kk_ins2_mag_m1a1_30)
 	end
 end

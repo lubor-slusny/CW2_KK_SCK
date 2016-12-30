@@ -17,20 +17,12 @@ if CLIENT then
 	
 	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_nam_akm")
 	
-	SWEP.Shell = "KK_INS2_545x39"
-	SWEP.ShellDelay = 0.06
-	
-	SWEP.BackupSights = {
-		["kk_ins2_elcan"] = {
-			Vector(-2.3004, -3, -1.4735),
-			Vector(-0.5597, 0, 0)
-		},
-	}
+	SWEP.Shell = "KK_INS2_762x39"
 	
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_modkit_06.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_pbs5"] = {model = "models/weapons/upgrades/a_suppressor_aks.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_pbs1"] = {model = "models/weapons/upgrades/a_suppressor_ak.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/a_foregrip_ins.mdl", pos = Vector(0, 0, -0.2752), angle = Angle(0, -90, 0), size = Vector(0.5, 0.5, 0.5), attachment = "Foregrip"},
 		["kk_ins2_gl_gp25"] = {model = "models/weapons/upgrades/a_gl_gp25.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
@@ -56,7 +48,7 @@ if CLIENT then
 	SWEP.AttachmentModelsWM = {
 		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/w_modkit_6.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_pbs5"] = {model = "models/weapons/upgrades/w_sil_ins1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_pbs1"] = {model = "models/weapons/upgrades/w_sil_ins1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/w_ins_foregrip.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_gl_gp25"] = {model = "models/weapons/upgrades/w_gp25.mdl", attachment = "gl", pos = Vector(-10.75,0.2,0), angle = Angle(0, 0, -90), size = Vector(1, 1, 1)},
@@ -98,6 +90,9 @@ if CLIENT then
 	SWEP.KKINS2PO4Pos = Vector(-2.25, -1, -0.4062)
 	SWEP.KKINS2PO4Ang = Vector(0, 0, 0)
 
+	SWEP.M203Pos = Vector(-1.0535, 0, 0.8312)
+	SWEP.M203Ang = Vector(0.935, 0, 0)
+
 	SWEP.CustomizationMenuScale = 0.016
 end
 
@@ -106,7 +101,7 @@ SWEP.MuzzleEffectWorld = "muzzleflash_akm_3rd"
 
 SWEP.Attachments = {
 	{header = "Sight", offset = {400, -450}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_po4", "kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_microt1", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"}},
-	{header = "Barrel", offset = {-100, -450}, atts = {"kk_ins2_pbs5"}},
+	{header = "Barrel", offset = {-100, -450}, atts = {"kk_ins2_pbs1"}},
 	{header = "Under", offset = {-400, 0}, atts = {"kk_ins2_vertgrip", "kk_ins2_gl_gp25"}},
 	{header = "More Sight", offset = {1000, 0}, atts = {"kk_ins2_magnifier"}, dependencies = CustomizableWeaponry_KK.ins2.magnifierDependencies},
 	["+use"] = {header = "Sight Contract", offset = {400, -0}, atts = {"kk_ins2_sights_cstm"}},
