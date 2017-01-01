@@ -1,5 +1,5 @@
-if not CustomizableWeaponry_KK.HOME then return end
-if CustomizableWeaponry_KK.HOME then return end
+
+if true then return end // layZ to type {} over and over again
 
 AddCSLuaFile()
 

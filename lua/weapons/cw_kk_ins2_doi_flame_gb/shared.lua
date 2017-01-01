@@ -23,7 +23,6 @@ if CLIENT then
 
 	SWEP.IronsightPos = Vector(-2.2377, -2, 1.0456)
 	SWEP.IronsightAng = Vector(0.1611, 0.0052, 0)
-
 end
 
 SWEP.WeaponLength = 16
