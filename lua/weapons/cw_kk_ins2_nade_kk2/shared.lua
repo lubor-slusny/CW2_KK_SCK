@@ -76,9 +76,6 @@ SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted3(SWEP)
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted3(SWEP)
 SWEP.AdminOnly		= true
 
-SWEP.Primary.ClipSize		= -1
-SWEP.Primary.DefaultClip	= -1
-SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "25MM Flare"
 
 SWEP.canCook = false

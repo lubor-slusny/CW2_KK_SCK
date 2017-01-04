@@ -63,7 +63,7 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/v_no77.mdl"
+SWEP.ViewModel		= "models/weapons/v_no79.mdl"
 SWEP.WorldModel		= "models/weapons/w_no77.mdl"
 
 SWEP.WMPos = Vector(3.891, 2.295, -1.765)
@@ -74,9 +74,6 @@ SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.ww2gb
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted3(SWEP)
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted3(SWEP)
 
-SWEP.Primary.ClipSize		= -1
-SWEP.Primary.DefaultClip	= -1
-SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "Smoke Grenades"
 
 SWEP.fuseTime = 0

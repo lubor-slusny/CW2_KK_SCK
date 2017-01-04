@@ -18,9 +18,28 @@ if CLIENT then
 	SWEP.AttachmentModelsVM = {}
 	SWEP.AttachmentModelsWM = {}
 
-	SWEP.IronsightPos = Vector()
-	SWEP.IronsightAng = Vector()
+	SWEP.IronsightPos = Vector(-3.7099, -2, -2.0889)
+	SWEP.IronsightAng = Vector(0.8465, -1.9697, 0)
 
+	SWEP.ForegripOverridePos = {
+		none = {
+			["sight_rear_u"] = {pos = Vector(), angle = Angle()},
+			["sight_rear_r"] = {pos = Vector(), angle = Angle()},
+			["sight_rear_l"] = {pos = Vector(), angle = Angle()},
+			["sight_rear_d"] = {pos = Vector(), angle = Angle()}
+		},
+		
+		iron = {
+			["sight_rear_u"] = {pos = Vector(0, 0.3, 0), angle = Angle()},
+			["sight_rear_r"] = {pos = Vector(-0.3, 0, 0), angle = Angle()},
+			["sight_rear_l"] = {pos = Vector(0.3, 0, 0), angle = Angle()},
+			["sight_rear_d"] = {pos = Vector(0, -0.3, 0), angle = Angle()}
+		}
+	}
+	
+	SWEP.ForegripParent = "none"
+	SWEP.ForegripOverride = true
+	
 	SWEP.ViewModelMovementScale_sprint = 0.5
 	SWEP.CustomizationMenuScale = 0.01
 	SWEP.HUD_MagText = "TUBE: "
@@ -90,7 +109,7 @@ SWEP.SpreadCooldown = 0.8
 SWEP.Shots = 1
 SWEP.Damage = 100
 
-SWEP.MuzzleVelocity = 285
+SWEP.MuzzleVelocity = 145
 SWEP.projectileClass = "cw_kk_ins2_projectile_at4"
 SWEP.hipBulletDelay = 0.3
 
@@ -105,7 +124,7 @@ SWEP.WeaponLength = 40
 
 // terrible hax FTW
 
-SWEP.ironFireAnimStartCycle = 0.25
+SWEP.ironFireAnimStartCycle = 0.35
 
 SWEP.ReloadSpeed = 1
 SWEP.ReloadTime = 3.5
@@ -155,3 +174,9 @@ end
 SWEP.reticleInactivityCallbacksRaw = {
 	at4_reload_start = 0.1
 }
+
+if CLIENT then
+	function SWEP:updateOtherParts()
+		self.ForegripParent = self:isAiming() and "iron" or "none"
+	end
+end

@@ -206,8 +206,6 @@ function SWEP:CalcView(ply, pos, ang, fov)
 		self.FOVTarget = LerpCW20(FT * 10, self.FOVTarget, 0)
 	end	
 	
-	local mod = math.abs((89 - math.abs(ang.p)) / 89)
-	
 	if self._vmCamAttach > 0 then
 		local vm = self.CW_VM
 		local vmAng = vm:GetAngles()
@@ -215,55 +213,12 @@ function SWEP:CalcView(ply, pos, ang, fov)
 		att = vm:GetAttachment(self._vmCamAttach)
 		
 		if att then
-			ang = ang + (att.Ang - vmAng) * mod
+			local mod = math.abs((89 - math.abs(ang.p)) / 89)
+			
+			ang = LerpAngle(1, ang, ang + (att.Ang - vmAng) * mod)
+			-- ang = LerpCW20(1, ang, ang + (att.Ang - vmAng) * mod)
 		end
-	-- else
-		-- if self.ReloadViewBobEnabled then
-			-- if not self:isReticleActive() and self.Cycle <= 0.9 then
-				-- att = self.Owner:GetAttachment(1)
-				
-				-- if att then
-					-- ang = ang * 1
-					
-					-- self.LerpBackSpeed = 1
-					-- curang = LerpAngle(FT * 10, curang, (ang - att.Ang) * 0.1)
-				-- else
-					-- self.LerpBackSpeed = math.Approach(self.LerpBackSpeed, 10, FT * 50)
-					-- curang = LerpAngle(FT * self.LerpBackSpeed, curang, Ang0)
-				-- end
-			-- else
-				-- self.LerpBackSpeed = math.Approach(self.LerpBackSpeed, 10, FT * 50)
-				-- curang = LerpAngle(FT * self.LerpBackSpeed, curang, Ang0)
-			-- end
-			
-			-- RotateAroundAxis(ang, Right(ang), curang.p * self.RVBPitchMod * mod)
-			-- RotateAroundAxis(ang, Up(ang), curang.r * self.RVBYawMod * mod)
-			-- RotateAroundAxis(ang, Forward(ang), (curang.p + curang.r) * 0.15 * self.RVBRollMod * mod)
-		-- end
 	end
-	
-	-- if self.ReloadViewBobEnabled then
-		-- if self.IsReloading and self.Cycle <= 0.9 then
-			-- att = self.Owner:GetAttachment(1)
-			
-			-- if att then
-				-- ang = ang * 1
-				
-				-- self.LerpBackSpeed = 1
-				-- curang = LerpAngle(FT * 10, curang, (ang - att.Ang) * 0.1)
-			-- else
-				-- self.LerpBackSpeed = math.Approach(self.LerpBackSpeed, 10, FT * 50)
-				-- curang = LerpAngle(FT * self.LerpBackSpeed, curang, Ang0)
-			-- end
-		-- else
-			-- self.LerpBackSpeed = math.Approach(self.LerpBackSpeed, 10, FT * 50)
-			-- curang = LerpAngle(FT * self.LerpBackSpeed, curang, Ang0)
-		-- end
-
-		-- RotateAroundAxis(ang, Right(ang), curang.p * self.RVBPitchMod)
-		-- RotateAroundAxis(ang, Up(ang), curang.r * self.RVBYawMod)
-		-- RotateAroundAxis(ang, Forward(ang), (curang.p + curang.r) * 0.15 * self.RVBRollMod)
-	-- end
 	
 	if self.dt.State == CW_AIMING then
 		if self.dt.M203Active and self.M203Chamber and not CustomizableWeaponry.grenadeTypes:canUseProperSights(self.Grenade40MM) then

@@ -30,17 +30,17 @@ CustomizableWeaponry_KK.ins2.quickKnife.models.ninjato = {
 
 CustomizableWeaponry_KK.ins2.quickKnife.models.ww2de = {
 	vm = "models/weapons/v_k98kbayonet.mdl",
-	a_attack = "hitcenter1"
+	a_attack = "slash_1"
 }
 
 CustomizableWeaponry_KK.ins2.quickKnife.models.ww2us = {
-	vm = "models/weapons/v_garand_bayonet.mdl",
+	vm = "models/weapons/v_cw_kk_doi_kabar.mdl",
 	a_attack = "hitcenter1"
 }
 
 CustomizableWeaponry_KK.ins2.quickKnife.models.ww2gb = {
 	vm = "models/weapons/v_garand_bayonet.mdl",
-	a_attack = "hitcenter1"
+	a_attack = "slash_1"
 }
 
 function CustomizableWeaponry_KK.ins2.quickKnife:canAttack(wep)

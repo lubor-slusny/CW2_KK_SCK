@@ -64,6 +64,8 @@ function SWEP:PrimaryAttack()
 		return
 	end
 	
+	if CLIENT then return end
+	
 	td.filter = self.Owner
 	td.start = td.filter:GetShootPos()
 	td.endpos = td.start + td.filter:GetAimVector() * 64000

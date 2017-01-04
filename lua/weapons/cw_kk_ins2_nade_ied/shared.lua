@@ -83,9 +83,6 @@ SWEP.WMAng = Angle(-28.962, 155.365, 180)
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted3(SWEP)
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted3(SWEP)
 
-SWEP.Primary.ClipSize		= 0
-SWEP.Primary.DefaultClip	= 0
-SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "IED"
 
 SWEP.HipSpread = 0.045

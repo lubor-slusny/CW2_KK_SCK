@@ -61,10 +61,13 @@ SWEP.AdminSpawnable		= false
 
 SWEP.Primary.ClipSize		= -1
 SWEP.Primary.DefaultClip	= -1
-SWEP.Primary.Automatic		= false
+SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= ""
 
-SWEP.HoldToAim				= false
+SWEP.Secondary.ClipSize		= -1
+SWEP.Secondary.DefaultClip	= -1
+SWEP.Secondary.Automatic	= true
+SWEP.Secondary.Ammo			= ""
 
 SWEP.FireDelay = 0
 SWEP.Recoil = 3

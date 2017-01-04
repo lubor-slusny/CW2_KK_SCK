@@ -137,6 +137,6 @@ if CLIENT then
 	function SWEP:updateOtherParts()
 		local active = self.ActiveAttachments
 	
-		self.AttachmentModelsVM.kk_ins2_mag_makarov_8.active = !active.kk_ins2_mag_makarov_15
+		-- self.AttachmentModelsVM.kk_ins2_mag_makarov_8.active = !active.kk_ins2_mag_makarov_15
 	end
 end
