@@ -385,9 +385,12 @@ if CLIENT then
 end
 
 if CLIENT then
-	local cvEp = CreateClientConVar("cw_kk_add_epilepsy", 0, true, false)
+	CustomizableWeaponry_KK.ins2.rigTime = 0.15
+	
+	local cvEp = CreateClientConVar("_cw_kk_add_epilepsy", 0, true, false)
 	
 	local onceStarted
+	local nextRig
 	
 	hook.Add("RenderScene", "CW20_KK_Epilepsy-ator", function()
 		if (cvEp:GetInt() == 0) and not onceStarted then return end
@@ -405,6 +408,14 @@ if CLIENT then
 					)	
 				end
 			end
+		end
+		
+		if !nextRig or (nextRig < CurTime()) then
+			local rigs = CustomizableWeaponry_KK.ins2.hands
+			
+			RunConsoleCommand("cw_kk_ins2_rig", math.random(#rigs) + 1)
+			
+			nextRig = CurTime() + CustomizableWeaponry_KK.ins2.rigTime
 		end
 	end)
 end

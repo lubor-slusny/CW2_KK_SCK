@@ -414,25 +414,33 @@ if CLIENT then
 			local storedWEs = weapons.GetStored(dropData.wep).AttachmentModelsWM
 			
 			if storedWEs then
-				// copy active-by-default welements 
-				for k,v in pairs(storedWEs) do
-					if v.active then
-						drop.AttachmentModelsWM[k] = copyTable(v)
-					end
-				end
+				-- // copy active-by-default welements 
+				-- for k,v in pairs(storedWEs) do
+					-- if v.active then
+						-- drop.AttachmentModelsWM[k] = copyTable(v)
+					-- end
+				-- end
 				
-				// copy welements of used attachments
-				for k,v in pairs(dropData.usedWEs) do
-					if v then
-						drop.AttachmentModelsWM[k] = drop.AttachmentModelsWM[k] or copyTable(storedWEs[k])
-					end
+				-- // copy welements of used attachments
+				-- for k,v in pairs(dropData.usedWEs) do
+					-- if v then
+						-- drop.AttachmentModelsWM[k] = drop.AttachmentModelsWM[k] or copyTable(storedWEs[k])
+					-- end
 					
-					if drop.AttachmentModelsWM[k] then
-						if v then
-							drop.AttachmentModelsWM[k].active = v
-						else
-							drop.AttachmentModelsWM[k] = nil // remove active-by-default if they were disabled post spawn
-						end
+					-- if drop.AttachmentModelsWM[k] then
+						-- if v then
+							-- drop.AttachmentModelsWM[k].active = v
+						-- else
+							-- drop.AttachmentModelsWM[k] = nil // remove active-by-default if they were disabled post spawn
+						-- end
+					-- end
+				-- end
+				
+				// only copy used stuff
+				for k,v in pairs(storedWEs) do
+					if (dropData.usedWEs[k] == true) or (dropData.usedWEs[k] == nil and v.active) then
+						drop.AttachmentModelsWM[k] = copyTable(v)
+						drop.AttachmentModelsWM[k].active = true
 					end
 				end
 				
@@ -458,10 +466,12 @@ if CLIENT then
 				IsValid = function() return IsValid(drop) end,
 				GetClass = function() return drop:GetWepClass() end,
 				Clip1 = function() return dropData.clip end,
+				isWrapper = true,
 			}
 			
 			CustomizableWeaponry_KK.ins2.welementThink:_addWeapon(welementThinkWrapper)
 			
+			// 2doo: without timer
 			timer.Simple(1, function()
 				if !IsValid(drop) then return end
 				if not drop:getAttachments() then return end

@@ -317,7 +317,7 @@ if CLIENT then
 	killicon.AddFont("cw_kk_ins2_m1a1_para",		"CW_KillIcons", "o", killCol)
 	killicon.AddFont("cw_kk_ins2_m4a1",				"CW_KillIcons", "w", killCol)
 	-- killicon.AddFont("cw_kk_ins2_m14",				"CW_KillIcons", "i", white)
-	killicon.AddFont("cw_kk_ins2_m14",				"CW_HUD22", "M14 EBR", white)
+	killicon.AddFont("cw_kk_ins2_m14",				"CW_HUD22", "[M14 EBR]", white)
 	killicon.AddFont("cw_kk_ins2_m16a4",			"CW_KillIcons", "w", killCol)
 	killicon.AddFont("cw_kk_ins2_m40a1",			"CW_KillIcons", "r", killCol)
 	killicon.AddFont("cw_kk_ins2_m249",				"CW_KillIcons", "z", killCol)

@@ -6,7 +6,8 @@ end
 if CLIENT then
 	local old_rt, old_x, old_y, ang, light
 	local iLens = surface.GetTextureID("cw2/gui/lense")
-	local iMatLens = Material("cw2/gui/lense")
+	-- local iMatLens = Material("cw2/gui/lense")
+	local iMatLens = Material("models/weapons/attachments/cw_kk_ins2_shared/fake")
 	local alpha = 0.5
 	
 	local cd = {}
@@ -89,6 +90,13 @@ if CLIENT then
 			cam.Start3D(mdlAttRear.Pos, ang)
 				if cvDrawVM:GetInt() == 1 then
 					wep.CW_VM:DrawModel()
+					
+					-- wep:drawAttachments()
+					-- wep.AttachmentModelsVM.kk_ins2_optic_iron.ent:DrawModel()
+					
+					-- for _,e in pairs(wep.AttachmentModelsVM) do
+						-- e.ent:Draw()
+					-- end
 				end
 				
 				oldStencilChk = wep._KK_INS2_stencilsDisableLaser
@@ -123,9 +131,12 @@ if CLIENT then
 				
 				light = render.ComputeLighting(wep.Owner:GetShootPos(), ang)
 
-				surface.SetDrawColor(150 * light[1], 150 * light[2], 150 * light[3], 255 * alpha)
-				surface.SetTexture(iLens)
-				surface.DrawTexturedRectRotated(rtSize / 2, rtSize / 2, rtSize, rtSize, 90)
+				-- surface.SetDrawColor(150 * light[1], 150 * light[2], 150 * light[3], 255 * alpha)
+				-- surface.SetTexture(iLens)
+				-- surface.DrawTexturedRectRotated(rtSize / 2, rtSize / 2, rtSize, rtSize, 90)
+				
+				surface.SetDrawColor(0, 0, 0, 255 * alpha)
+				surface.DrawRect(0, 0, rtSize, rtSize, 90)
 			cam.End2D()
 			
 		render.SetViewPort(0, 0, old_x, old_y)
