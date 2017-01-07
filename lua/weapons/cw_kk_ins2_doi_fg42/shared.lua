@@ -43,7 +43,7 @@ if CLIENT then
 	SWEP.IronsightPos = Vector(-2.5787, -4, 0.4627)
 	SWEP.IronsightAng = Vector(0.6845, 0.0387, 9)
 
-	SWEP.KKINS2ScopeZF41Pos = Vector(-2.5892, -3, 0.4942)
+	SWEP.KKINS2ScopeZF41Pos = Vector(-2.5892, -3.5, 0.4942)
 	SWEP.KKINS2ScopeZF41Ang = Vector(0, 0, 9)
 
 	SWEP.CustomizationMenuScale = 0.019

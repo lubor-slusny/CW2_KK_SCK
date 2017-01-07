@@ -123,7 +123,7 @@ SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "12 Gauge"
 
 SWEP.FireDelay = 0.3
-SWEP.FireSound = "CW_KK_INS2_TOZ_FIRE"
+SWEP.FireSound = "CW_KK_INS2_NAM_S620_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_TOZ_FIRE_SUPPRESSED"
 SWEP.Recoil = 2
 

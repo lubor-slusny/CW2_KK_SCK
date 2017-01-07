@@ -88,7 +88,7 @@ SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "40MM"
 
 SWEP.FireDelay = 0.4
-SWEP.FireSound = "CW_KK_INS2_M203_FIRE"
+SWEP.FireSound = "CW_KK_INS2_NAM_M79_FIRE"
 SWEP.Recoil = 3
 
 SWEP.HipSpread = 0.05

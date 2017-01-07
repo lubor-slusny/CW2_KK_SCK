@@ -104,7 +104,7 @@ SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "12 Gauge"
 
 SWEP.FireDelay = 0.2
-SWEP.FireSound = "CW_KK_INS2_M590_FIRE"
+SWEP.FireSound = "CW_KK_INS2_NAM_ITHC_FIRE"
 SWEP.Recoil = 2
 
 SWEP.HipSpread = 0.04

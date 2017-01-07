@@ -105,7 +105,7 @@ SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= ".32 ACP"
 
 SWEP.FireDelay = 60/850
-SWEP.FireSound = "CW_KK_INS2_MP5K_FIRE"
+SWEP.FireSound = "CW_KK_INS2_NAM_VZ61_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_MP5K_FIRE_SUPPRESSED"
 SWEP.Recoil = 0.7
 

@@ -1,1 +1,1 @@
--- CustomizableWeaponry:addFireSound("CW_KK_INS2_M14_FIRE", "weapons/m14/m14_fp.wav", 1, 105, CHAN_STATIC)
+CustomizableWeaponry:addFireSound("CW_KK_INS2_NAM_M60_FIRE", "weapons/nam/m249/m249_fp.wav", 1, 105, CHAN_STATIC)

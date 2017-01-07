@@ -103,7 +103,7 @@ SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "9x18MM"
 
 SWEP.FireDelay = 0.1
-SWEP.FireSound = "CW_KK_INS2_MAKAROV_FIRE"
+SWEP.FireSound = "CW_KK_INS2_NAM_NAMBU_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_MAKAROV_FIRE_SUPPRESSED"
 SWEP.Recoil = 0.7
 

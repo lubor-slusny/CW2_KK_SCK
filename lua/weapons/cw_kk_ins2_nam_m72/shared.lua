@@ -97,7 +97,7 @@ SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= "AT4 Launcher"
 
 SWEP.FireDelay = 0.5
-SWEP.FireSound = "CW_KK_INS2_AT4_FIRE"
+SWEP.FireSound = "CW_KK_INS2_NAM_M72_FIRE"
 
 SWEP.Recoil = 0.5
 SWEP.HipSpread = 0.05

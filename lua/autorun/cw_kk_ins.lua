@@ -437,5 +437,12 @@ if CLIENT then
 	
 	CustomizableWeaponry_KK.ins2.nodrawMat["models/weapons/l85a2/susat_reticle"] = true
 	
+	CustomizableWeaponry_KK.ins2.nodrawMat["models/weapons/nam/svd/po4x_reticule"] = true
+	CustomizableWeaponry_KK.ins2.nodrawMat["models/weapons/nam/m16a1/colt_scope_reticule"] = true
+	CustomizableWeaponry_KK.ins2.nodrawMat["models/weapons/nam/optics/pu/po4x_reticule"] = true
+	CustomizableWeaponry_KK.ins2.nodrawMat["models/weapons/nam/optics/elcan_reticule"] = true
+	
+	-- CustomizableWeaponry_KK.ins2.nodrawMat[""] = true
+	
 	-- CustomizableWeaponry_KK.ins2.nodrawMat["models/weapons/attachments/cw_kk_ins2_cstm_eotechxps/4x_reticule"] = true
 end

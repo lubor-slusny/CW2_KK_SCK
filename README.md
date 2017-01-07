@@ -46,5 +46,7 @@ Content sources:
 	- http://store.steampowered.com/app/362890/
 - cs:s hands re-rigged for ins2 animations
 	- http://steamcommunity.com/sharedfiles/filedetails/?id=566129441
-- DOI models:
+- DOI models, textures:
 	- http://steamcommunity.com/app/447820
+- Enfield rear sight flipped up:
+	- http://steamcommunity.com/sharedfiles/filedetails/?id=834559042

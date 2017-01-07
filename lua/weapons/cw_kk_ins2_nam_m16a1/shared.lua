@@ -21,7 +21,7 @@ if CLIENT then
 	SWEP.Shell = "KK_INS2_556x45"
 	SWEP.ShellDelay = 0.06
 
-	SWEP.ShellViewAngleAlign = {Forward = 0, Right = 0, Up = -70}
+	SWEP.ShellViewAngleAlign = {Forward = 0, Right = 0, Up = -40}
 	
 	SWEP.Shell2ViewAngleAlign = {Forward = 0, Right = -90, Up = 0}
 	SWEP.Shell2WorldAngleAlign = {Forward = 0, Right = -90, Up = 0}
@@ -39,7 +39,7 @@ if CLIENT then
 		
 		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_m16a1_sling.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_elcan"] = {model = "models/weapons/upgrades/a_optics_m16a1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_scope_nam_colt"] = {model = "models/weapons/upgrades/a_optics_m16a1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
 	SWEP.AttachmentModelsWM = {
@@ -53,7 +53,7 @@ if CLIENT then
 		["kk_ins2_bipod"] = {model = "models/weapons/upgrades/w_bipod_m16a1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_gl_m203"] = {model = "models/weapons/upgrades/w_m16a1_m203.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_elcan"] = {model = "models/weapons/upgrades/w_optics_m16a1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_scope_nam_colt"] = {model = "models/weapons/upgrades/w_optics_m16a1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
 	SWEP.IronsightPos = Vector(-1.0637, -2, -0.0176)
@@ -62,8 +62,8 @@ if CLIENT then
 	SWEP.M203Pos = Vector(-1.5805, -5, -0.4545)
 	SWEP.M203Ang = Vector(-0.0041, -1.7264, -2.205)
 
-	SWEP.KKINS2ElcanPos = Vector(-1.0662, -2, -0.6937)
-	SWEP.KKINS2ElcanAng = Vector(0, 0, 0)
+	SWEP.KKINS2NAMColtPos = Vector(-1.0662, -2, -0.6937)
+	SWEP.KKINS2NAMColtAng = Vector(0, 0, 0)
 
 	SWEP.CustomizationMenuScale = 0.013
 end
@@ -72,7 +72,7 @@ SWEP.MuzzleEffect = "muzzleflash_m16_1p_core"
 SWEP.MuzzleEffectWorld = "muzzleflash_m16_3rd"
 
 SWEP.Attachments = {
-	{header = "Sight", offset = {500, -500}, atts = {"kk_ins2_elcan"}},
+	{header = "Sight", offset = {500, -500}, atts = {"kk_ins2_scope_nam_colt"}},
 	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_suppressor_sec", "kk_ins2_hoovy"}},
 	{header = "Under", offset = {-500, 0}, atts = {"kk_ins2_bipod", "kk_ins2_gl_m203"}},
 	{header = "Stock", offset = {600, 0}, atts = {"kk_ins2_ww2_sling"}},
@@ -185,7 +185,7 @@ SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= "5.56x45MM"
 
 SWEP.FireDelay = 60/700
-SWEP.FireSound = "CW_KK_INS2_M16A4_FIRE"
+SWEP.FireSound = "CW_KK_INS2_NAM_M16A1_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_M16A4_FIRE_SUPPRESSED"
 SWEP.Recoil = 1.1025
 

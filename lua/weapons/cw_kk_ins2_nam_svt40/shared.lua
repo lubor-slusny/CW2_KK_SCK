@@ -154,7 +154,7 @@ SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "7.62x54MMR"
 
 SWEP.FireDelay = 60/600
-SWEP.FireSound = "CW_KK_INS2_MOSIN_FIRE"
+SWEP.FireSound = "CW_KK_INS2_NAM_SVT40_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_MOSIN_FIRE_SUPPRESSED"
 SWEP.Recoil = 1.08
 

@@ -29,7 +29,7 @@ if CLIENT then
 		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_sec_shotgun.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_anpeq15"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_anpeq_shotgun.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	
-		["kk_ins2_scope_m40"] = {model = "models/weapons/upgrades/a_redfield_m40.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_scope_nam_red"] = {model = "models/weapons/upgrades/a_redfield_m40.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 
 	SWEP.AttachmentModelsWM = {
@@ -40,14 +40,14 @@ if CLIENT then
 		["kk_ins2_lam"] = {model = "models/weapons/upgrades/w_laser_sec.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/w_laser_sec.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 
-		["kk_ins2_scope_m40"] = {model = "models/weapons/upgrades/w_scope_m40.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_scope_nam_red"] = {model = "models/weapons/upgrades/w_scope_m40.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
 	SWEP.IronsightPos = Vector()
 	SWEP.IronsightAng = Vector()
 
-	SWEP.KKINS2ScopeM40Pos = Vector(-2.4678, 0, 0.1654)
-	SWEP.KKINS2ScopeM40Ang = Vector()
+	SWEP.KKINS2NAMRedfieldPos = Vector(-2.4678, 0, 0.1654)
+	SWEP.KKINS2NAMRedfieldAng = Vector()
 
 	SWEP.CustomizationMenuScale = 0.022
 end
@@ -56,7 +56,7 @@ SWEP.MuzzleEffect = "muzzleflash_m14_1p_core"
 SWEP.MuzzleEffectWorld = "muzzleflash_m14_3rd"
 
 SWEP.Attachments = {
-	{header = "Sight", offset = {500, -450}, atts = {"kk_ins2_scope_m40"}},
+	{header = "Sight", offset = {500, -450}, atts = {"kk_ins2_scope_nam_red"}},
 	{header = "Barrel", offset = {-100, -450}, atts = {"kk_ins2_suppressor_sec"}},
 	{header = "Under", offset = {-400, 0}, atts = {"kk_ins2_bipod"}},
 	{header = "Lasers", offset = {225, 400}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}},
@@ -131,7 +131,7 @@ SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "7.62x51MM"
 
 SWEP.FireDelay = 0.3
-SWEP.FireSound = "CW_KK_INS2_M40A1_FIRE"
+SWEP.FireSound = "CW_KK_INS2_NAM_M40_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_M40A1_FIRE_SUPPRESSED"
 SWEP.Recoil = 2.5
 

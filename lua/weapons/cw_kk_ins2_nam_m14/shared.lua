@@ -38,7 +38,7 @@ if CLIENT then
 		["kk_ins2_eotech"] = {model = "models/weapons/upgrades/a_optic_eotech.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_kobra"] = {model = "models/weapons/upgrades/a_optic_kobra_l.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, retSizeMult = 1.2},
 		["kk_ins2_po4"] = {model = "models/weapons/upgrades/a_optic_po4x24_m.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, retSizeMult = 0.85},
-		["kk_ins2_scope_m40"] = {model = "models/weapons/upgrades/a_redfield_scope.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_scope_nam_red"] = {model = "models/weapons/upgrades/a_redfield_scope.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_scope_m82"] = {model = "models/weapons/upgrades/a_m14_scope.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	
 		["kk_ins2_cstm_cmore"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_cmore.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
@@ -65,7 +65,7 @@ if CLIENT then
 		["kk_ins2_eotech"] = {model = "models/weapons/upgrades/w_eotech.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_kobra"] = {model = "models/weapons/upgrades/w_kobra.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_po4"] = {model = "models/weapons/upgrades/w_po.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_scope_m40"] = {model = "models/weapons/upgrades/w_nam_redfield.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_scope_nam_red"] = {model = "models/weapons/upgrades/w_nam_redfield.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_scope_m82"] = {model = "models/weapons/upgrades/w_m14_scope.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_cstm_cmore"] = {model = "models/weapons/attachments/w_cw_kk_ins2_cstm_cmore.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
@@ -82,31 +82,8 @@ if CLIENT then
 	SWEP.KKINS2ScopeM82Pos = Vector(-1.5156, -1, -0.2874)
 	SWEP.KKINS2ScopeM82Ang = Vector(0, 0, 0)
 
-	SWEP.KKINS2ScopeM40Pos = Vector(-1.5148, 0, -0.2855)
-	SWEP.KKINS2ScopeM40Ang = Vector(0, 0, 0)
-
-	
-	
-	-- SWEP.KKINS2KobraPos = Vector(-2.4883, -6, -0.2561)
-	-- SWEP.KKINS2KobraAng = Vector()
-
-	-- SWEP.KKINS2EoTechPos = Vector(-2.4914, -6, -0.1398)
-	-- SWEP.KKINS2EoTechAng = Vector()
-
-	-- SWEP.KKINS2AimpointPos = Vector(-2.4909, -6, -0.1525)
-	-- SWEP.KKINS2AimpointAng = Vector()
-
-	-- SWEP.KKINS2ElcanPos = Vector(-2.4863, -9, -0.2524)
-	-- SWEP.KKINS2ElcanAng = Vector()
-
-	-- SWEP.KKINS2PO4Pos = Vector(-2.4367, -8, 0.1056)
-	-- SWEP.KKINS2PO4Ang = Vector()
-
-	-- SWEP.KKINS2ScopeM40Pos = Vector(-2.4972, -5, -0.2697)
-	-- SWEP.KKINS2ScopeM40Ang = Vector()
-
-	-- SWEP.KKINS2MagnifierPos = Vector(-2.4834, -6, -0.1578)
-	-- SWEP.KKINS2MagnifierAng = Vector()
+	SWEP.KKINS2NAMRedfieldPos = Vector(-1.5148, 0, -0.2855)
+	SWEP.KKINS2NAMRedfieldAng = Vector(0, 0, 0)
 
 	SWEP.CustomizationMenuScale = 0.019
 end
@@ -116,7 +93,7 @@ SWEP.MuzzleEffectWorld = "muzzleflash_m14_3rd"
 
 SWEP.Attachments = {
 	-- {header = "Sight", offset = {400, -500}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_po4", "kk_ins2_scope_m40", "kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_microt1", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"}},
-	{header = "Sight", offset = {400, -500}, atts = {"kk_ins2_scope_m82", "kk_ins2_scope_m40"}},
+	{header = "Sight", offset = {400, -500}, atts = {"kk_ins2_scope_m82", "kk_ins2_scope_nam_red"}},
 	{header = "More Sight", offset = {1000, -50}, atts = {"kk_ins2_magnifier"}, dependencies = CustomizableWeaponry_KK.ins2.magnifierDependencies},
 	-- ["+use"] = {header = "Sight Contract", offset = {400, -50}, atts = {"kk_ins2_sights_cstm"}},
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_magnum", "am_matchgrade"}}
@@ -184,7 +161,7 @@ SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= "7.62x51MM"
 
 SWEP.FireDelay = 60/750
-SWEP.FireSound = "CW_KK_INS2_M14_FIRE"
+SWEP.FireSound = "CW_KK_INS2_NAM_M14_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_M14_FIRE_SUPPRESSED"
 SWEP.Recoil = 1.6
 

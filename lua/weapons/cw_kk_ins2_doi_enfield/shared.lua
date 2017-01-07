@@ -20,6 +20,7 @@ if CLIENT then
 		
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_iron_enfield.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
+		["bg_foldsight"] = {model = "models/weapons/attachments/v_iron_enfield_up.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["sleeve"] = {model = "models/weapons/upgrades/a_clothwrap_enfield.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
@@ -46,6 +47,9 @@ if CLIENT then
 	SWEP.IronsightPos = Vector(-2.5678, -3, 1.5173)
 	SWEP.IronsightAng = Vector(-0.1284, 0, 0)
 
+	SWEP.FoldSightPos = Vector(-2.5618, -3, 1.5173)
+	SWEP.FoldSightAng = Vector(-0.1284, 0.0305, 0)
+
 	SWEP.KKINS2ScopeEnfieldPos = Vector(-2.5738, -1.5, 0.8389)
 	SWEP.KKINS2ScopeEnfieldAng = Vector()
 
@@ -55,15 +59,21 @@ if CLIENT then
 	SWEP.CustomizationMenuScale = 0.018
 end
 
+SWEP.SightBGs = {main = 0, foldsight = 0}
+
 SWEP.MuzzleEffect = "muzzleflash_garand_1p"
 SWEP.MuzzleEffectWorld = "muzzleflash_garand_3p"
 
 SWEP.Attachments = {
-	{header = "Sight", offset = {500, -500}, atts = {"kk_ins2_scope_enfield"}, exclusions = {["kk_ins2_ww2_stripper"] = true}},
+	{header = "Sight", offset = {500, -500}, atts = {"bg_foldsight", "kk_ins2_scope_enfield"}},
 	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_ww2_knife", "kk_ins2_ww2_knife_fat", "kk_ins2_gl_enfield"}},
 	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
 	{header = "Clip", offset = {200, 0}, atts = {"kk_ins2_ww2_stripper"}, exclusions = {["kk_ins2_scope_enfield"] = true}},
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_magnum", "am_matchgrade"}}
+}
+
+SWEP.AttachmentExclusions = {
+	["kk_ins2_scope_enfield"] = {"kk_ins2_ww2_stripper"}
 }
 
 SWEP.Animations = {

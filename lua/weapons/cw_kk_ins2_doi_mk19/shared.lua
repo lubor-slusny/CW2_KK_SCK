@@ -19,7 +19,7 @@ if CLIENT then
 	
 	SWEP.MuzzleAttachmentName = "muzzle"
 	
-	SWEP.NoShells = true
+	-- SWEP.NoShells = true
 	
 	SWEP.Shell = "KK_INS2_40mm"
 	SWEP.ShellEjectVelocity = 50

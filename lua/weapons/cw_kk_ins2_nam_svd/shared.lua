@@ -33,21 +33,21 @@ if CLIENT then
 		["kk_ins2_bipod"] = {model = "models/weapons/upgrades/a_bipod_sks.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/a_foregrip_ins.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), attachment = "Foregrip"},
 		
-		["kk_ins2_scope_mosin"] = {model = "models/weapons/upgrades/a_pso1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_scope_nam_pso"] = {model = "models/weapons/upgrades/a_pso1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 
 	SWEP.AttachmentModelsWM = {
 		["kk_ins2_bipod"] = {model = "models/weapons/upgrades/w_bipod_mosin.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/w_ins_foregrip.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_scope_mosin"] = {model = "models/weapons/upgrades/w_pso1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_scope_nam_pso"] = {model = "models/weapons/upgrades/w_pso1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
 	SWEP.IronsightPos = Vector(-2.0166, -2, 0.5294)
 	SWEP.IronsightAng = Vector(0.0934, -0.0015, 0)
 	
-	SWEP.KKINS2ScopeMosinPos = Vector(-1.9652, -1, -0.0041)
-	SWEP.KKINS2ScopeMosinAng = Vector(0, 0, 0)
+	SWEP.KKINS2NAMPSOPos = Vector(-1.9652, -1, -0.0041)
+	SWEP.KKINS2NAMPSOAng = Vector(0, 0, 0)
 
 	SWEP.CustomizationMenuScale = 0.017
 end
@@ -56,7 +56,7 @@ SWEP.MuzzleEffect = "muzzleflash_sks_1p_core"
 SWEP.MuzzleEffectWorld = "muzzleflash_sks_3rd"
 
 SWEP.Attachments = {
-	{header = "Sight", offset = {500, -450}, atts = {"kk_ins2_scope_mosin"}},
+	{header = "Sight", offset = {500, -450}, atts = {"kk_ins2_scope_nam_pso"}},
 	{header = "Under", offset = {-500, 0}, atts = {"kk_ins2_bipod", "kk_ins2_vertgrip"}},
 	["+reload"] = {header = "Ammo", offset = {1100, 500}, atts = {"am_magnum", "am_matchgrade"}}
 }
@@ -160,7 +160,7 @@ SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "7.62x54MMR"
 
 SWEP.FireDelay = 60/300
-SWEP.FireSound = "CW_KK_INS2_MOSIN_FIRE"
+SWEP.FireSound = "CW_KK_INS2_NAM_SVD_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_MOSIN_FIRE_SUPPRESSED"
 SWEP.Recoil = 2.5
 
