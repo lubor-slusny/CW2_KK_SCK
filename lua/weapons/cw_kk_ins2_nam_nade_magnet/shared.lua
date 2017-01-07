@@ -8,7 +8,7 @@ include("sh_soundscript.lua")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "AT nade M39 fuse"
+	SWEP.PrintName = "BZE39-fused AT nade"
 	SWEP.CSMuzzleFlashes = true
 	
 	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_hafthohlladung")
@@ -35,22 +35,24 @@ SWEP.CanRestOnObjects = false
 SWEP.projectileClass = "cw_kk_ins2_projectile_ww2_c4_de"
 
 SWEP.Animations = {
-	pullpin = "pullbackhigh",
-	throw = "throw",
+	plant = "base_plant",
 	
-	pull_cook = "pullbackhighbake",
-	throw_cook = "bakethrow",
+	pullpin = "base_pullback",
+	throw = "base_throw",
 	
-	pull_short = "pullbacklow",
-	throw_short = "lowthrow",
+	pull_cook = "secondary_pullback",
+	throw_cook = "secondary_throw",
 	
-	base_pickup = "draw",
-	base_draw = "draw",
-	base_idle = "idle",
-	base_holster = "holster",
-	base_sprint = "sprint",
-	base_safe = "down",
-	base_crawl = "crawl",
+	pull_short = "low_pullback",
+	throw_short = "low_throw",
+	
+	base_pickup = "base_draw",
+	base_draw = "base_draw",
+	base_idle = "base_idle",
+	base_holster = "base_holster",
+	base_sprint = "base_sprint",
+	base_safe = "base_down",
+	base_crawl = "base_crawl",
 }
 	
 SWEP.SpeedDec = 5
@@ -85,7 +87,7 @@ SWEP.Primary.Ammo			= "Frag Grenades"
 
 SWEP.HolsterTime = 0.6
 
-SWEP.fuseTime = 5
+SWEP.fuseTime = 7.5
 
 SWEP.timeToThrow = 1.2
 SWEP.spawnTime = 0.95
@@ -100,3 +102,10 @@ SWEP.timeToThrowShort = 1.2
 SWEP.spawnTimeShort = 0.65
 SWEP.swapTimeShort = 1.3
 SWEP.maxVelDelayShort = 1.5
+
+SWEP.canCook = false
+SWEP.canPlant = true
+
+SWEP.spoonTimePlant = 0.75
+SWEP.spawnTimePlant = 0.8
+SWEP.swapTimePlant = 1.35

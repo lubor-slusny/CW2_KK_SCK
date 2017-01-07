@@ -27,11 +27,8 @@ SWEP.CanRestOnObjects = false
 SWEP.projectileClass = "cw_kk_ins2_projectile_m18"
 
 SWEP.Animations = {
-	pullpin = "pullbackhigh",
-	throw = "throw",
-	
-	pull_cook = "pullbackhighbake",
-	throw_cook = "bakethrow",
+	pull_cook = "pullbackhigh",
+	throw_cook = "throw",
 	
 	pull_short = "pullbacklow",
 	throw_short = "lowthrow",
@@ -72,19 +69,18 @@ SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted3(SWEP)
 
 SWEP.Primary.Ammo			= "Smoke Grenades"
 
-SWEP.fuseTime = 4
+SWEP.fuseTime = 2
 
-SWEP.timeToThrow = 0.9
+SWEP.spoonTime = 0.85
+SWEP.timeToThrowCook = 0.9
+SWEP.maxVelDelayCook = 1.6
 
-SWEP.timeToThrowCook = 1.3
+SWEP.spoonTimeShort = 0.85
+SWEP.timeToThrowShort = 1.2
+SWEP.maxVelDelayShort = 1.6
 
-SWEP.timeToThrowShort = 0.9
+SWEP.mustCook = true
 
 if CLIENT then
-	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_cstm_nade_rdgm", "grenade")
-	
-	function SWEP:updateOtherParts()
-		-- self.ForegripOverride = (string.find(self.Sequence, "throw") != nil) // nope
-		self.ForegripParent = (string.find(self.Sequence, "throw") != nil) and "throwfix" or "none"
-	end
+	-- CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_cstm_nade_rdgm", "grenade")
 end

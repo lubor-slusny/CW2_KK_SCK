@@ -298,6 +298,6 @@ if CLIENT then
 		self:setElementActive("bolt_iron", !scope)
 		self:setElementActive("bolt_scope", scope)
 		
-		-- self:setElementActive("sleeve", self.ActiveAttachments.kk_ins2_scope_m73)
+		self:setElementActive("sleeve", self.ActiveAttachments.kk_ins2_scope_m73)
 	end
 end
