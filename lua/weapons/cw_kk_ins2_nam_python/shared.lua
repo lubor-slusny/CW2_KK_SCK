@@ -48,7 +48,7 @@ SWEP.MuzzleEffectWorld = "muzzleflash_m9_3rd"
 SWEP.BarrelBGs = {main = 0, regular = 0, long = 0, short = 0}
 
 SWEP.Attachments = {
-	{header = "Lasers", offset = {-400, -400}, atts = {"bg_regularbarrel", "bg_longbarrelmr96"}},
+	{header = "Barrel", offset = {-400, -400}, atts = {"bg_regularbarrel", "bg_longbarrelmr96"}},
 	{header = "Reload Aid", offset = {500, -400}, atts = {"kk_ins2_revolver_mag"}},
 	["+reload"] = {header = "Ammo", offset = {500, 150}, atts = {"am_magnum", "am_matchgrade"}}
 }

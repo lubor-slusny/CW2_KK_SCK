@@ -25,8 +25,8 @@ if CLIENT then
 
 	SWEP.AttachmentModelsWM = {}
 	
-	SWEP.IronsightPos = Vector(-1.9038, 0, 0.46)
-	SWEP.IronsightAng = Vector(0.2, 0.07, 0)
+	SWEP.IronsightPos = Vector(-1.9122, 0, 0.5199)
+	SWEP.IronsightAng = Vector(0.0411, 0, 0)
 
 	SWEP.CustomizationMenuScale = 0.01
 	SWEP.ReloadViewBobEnabled = false

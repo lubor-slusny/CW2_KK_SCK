@@ -15,8 +15,10 @@ if CLIENT then
 	SWEP.AttachmentModelsWM = {}
 	
 	SWEP.MoveType = 2
-	SWEP.ViewModelMovementScale = 0.8
 	SWEP.DisableSprintViewSimulation = true
+	
+	SWEP.HUD_3D2DOffset = Vector(0, 0, 0)
+	SWEP.ViewModelMovementScale = 0.8
 	
 	SWEP.HUD_3D2DBone = 54
 end
@@ -69,7 +71,7 @@ SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted3(SWEP)
 
 SWEP.Primary.Ammo			= "Smoke Grenades"
 
-SWEP.fuseTime = 2
+SWEP.fuseTime = 3.5
 
 SWEP.spoonTime = 0.85
 SWEP.timeToThrowCook = 0.9

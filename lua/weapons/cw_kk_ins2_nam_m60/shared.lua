@@ -136,12 +136,33 @@ SWEP.BipodInstalled = true
 SWEP.MuzzleVelocity = 853
 
 SWEP.ReloadTimes = {
-	base_reload = {2.7, 3.4},
-	base_reloadempty = {2.7, 5},
+	base_reload = {9, 10.4},
+	base_reload_half = {10, 11.4},
+	base_reload_empty = {10.9, 12.3},
 	
-	foregrip_reload = {2.7, 3.4},
-	foregrip_reloadempty = {2.7, 5},
-	
-	deployed_reload_half = {2.3, 3.2},
-	deployed_reload_empty = {2.3, 4.5},
+	deployed_reload = {8.3, 9.5},
+	deployed_reload_half = {9.2, 10.5},
+	deployed_reload_empty = {10, 11.3},
 }
+
+SWEP.reloadProgressAnimsRaw = {
+	base_reload_close = true,
+	bipod_reload_close = true
+}
+
+SWEP.reticleInactivityCallbacksRaw = {
+	["base_reload_close"] = 0.1,
+	["bipod_reload_close"] = 0.1,
+}
+
+function SWEP:overrideReloadAnim(prefix, suffix)
+	local clip = self:Clip1()
+	
+	if clip > 15 then
+		return prefix .. "reload" .. suffix
+	elseif clip > 0 then
+		return prefix .. "reload_close" .. suffix
+	end
+	
+	return prefix .. "reload_empty" .. suffix
+end

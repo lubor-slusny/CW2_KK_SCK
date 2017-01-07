@@ -22,11 +22,11 @@ if CLIENT then
 	SWEP.ViewModelMovementScale = 0.8
 	SWEP.DisableSprintViewSimulation = true
 	
-	SWEP.HUD_3D2DOffset = Vector(-1, 3, 0)
-	SWEP.HUD_3D2DOffsetMenu = Vector(-8, 6, 0)
+	SWEP.HUD_3D2DOffset = Vector(3, -5, 0)
+	SWEP.HUD_3D2DOffsetMenu = Vector(-1, -3, 0)
 	SWEP.CustomizationMenuScale = 0.006
 	
-	SWEP.HUD_3D2DBone = 54
+	SWEP.HUD_3D2DBone = 53
 end
 
 SWEP.Attachments = CustomizableWeaponry_KK.ins2.slowGrenadeMenu
