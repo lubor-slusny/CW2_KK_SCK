@@ -1,56 +1,55 @@
 
 SWEP.Sounds = {
-	draw = {
-		{time = 0/30, sound = "CW_KK_INS2_UNIVERSAL_GRENADE_DRAW"},
+	base_plant = {
+		{time = 6/30, sound = "CW_KK_INS2_C4_ARMMOVEMENT"},
+		{time = 13/30, sound = "CW_KK_INS2_C4_PLANTPLACE"},
+		{time = 22/30, sound = "CW_KK_INS2_M67_PINPULL"},
+		// { event 3005 22 ""},
 	},
 
-	holster = {
-		{time = 0/30, sound = "CW_KK_INS2_UNIVERSAL_GRENADE_HOLSTER"},
+	base_draw = {
+		{time = 0/30, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
 	},
 
-	crawl = {
-		{time = 10/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
-		{time = 20/30, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
+	base_holster = {
+		{time = 0/30, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
 	},
 
-	pullbackhigh = {
-		{time = 15/32, sound = "CW_KK_INS2_DOI_NADE_M24_CAPOFF"},
-		{time = 44/32, sound = "CW_KK_INS2_DOI_NADE_M24_ARMDRAW"},
-		// { event 3900 52 ""},
+	base_crawl = {
+		{time = 9/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
+		{time = 19/30, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
 	},
 
-	pullbackhighbake = {
-		{time = 15/35.2, sound = "CW_KK_INS2_DOI_NADE_M24_CAPOFF"},
-		{time = 44/35.2, sound = "CW_KK_INS2_DOI_NADE_M24_ROPEPULL"},
-		{time = 55/35.2, sound = "CW_KK_INS2_DOI_NADE_M24_ARMDRAW"},
-		// { event 3900 66 ""},
+	base_pullback = {
+		{time = 6/30, sound = "CW_KK_INS2_M67_ARMDRAW"},
+		// { event 3900 14 ""},
 	},
 
-	pullbacklow = {
-		{time = 15/32, sound = "CW_KK_INS2_DOI_NADE_M24_CAPOFF"},
-		{time = 39/32, sound = "CW_KK_INS2_DOI_NADE_M24_ARMDRAW"},
-		// { event 3900 49 ""},
+	secondary_pullback = {
+		{time = 6/30, sound = "CW_KK_INS2_M67_ARMDRAW"},
+		// { event 3900 14 ""},
 	},
 
-	throw = {
-		{time = 14/33.5, sound = "CW_KK_INS2_DOI_NADE_M24_ROPEPULL"},
-		{time = 30/33.5, sound = "CW_KK_INS2_DOI_NADE_M24_THROW"},
-		// { event 3005 31 ""},
+	low_pullback = {
+		{time = 6/30, sound = "CW_KK_INS2_M67_ARMDRAW"},
+		// { event 3900 14 ""},
 	},
 
-	throwback = {
-		{time = 14/30, sound = "CW_KK_INS2_DOI_NADE_M24_ARMDRAW"},
-		// { event 3900 25 ""},
+	base_throw = {
+		{time = 5/33, sound = "CW_KK_INS2_M67_PINPULL"},
+		{time = 33/33, sound = "CW_KK_INS2_C4_THROW"},
+		// { event 3005 35 ""},
 	},
 
-	bakethrow = {
-		{time = 6/31.5, sound = "CW_KK_INS2_DOI_NADE_M24_THROW"},
-		// { event 3013 6 ""},
+	secondary_throw = {
+		{time = 5/33, sound = "CW_KK_INS2_M67_PINPULL"},
+		{time = 6/33, sound = "CW_KK_INS2_C4_THROW"},
+		// { event 3005 8 ""},
 	},
 
-	lowthrow = {
-		{time = 10/31.5, sound = "CW_KK_INS2_DOI_NADE_M24_ROPEPULL"},
-		{time = 23/31.5, sound = "CW_KK_INS2_DOI_NADE_M24_THROW"},
-		// { event 3016 24 ""},
+	low_throw = {
+		{time = 5/30, sound = "CW_KK_INS2_M67_PINPULL"},
+		{time = 33/30, sound = "CW_KK_INS2_C4_THROW"},
+		// { event 3005 35 ""},
 	},
 }
