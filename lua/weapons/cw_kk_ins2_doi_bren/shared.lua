@@ -20,7 +20,10 @@ if CLIENT then
 	SWEP.ShellViewAngleAlign = {Forward = 90, Right = 0, Up = 0}
 	SWEP.ShellWorldAngleAlign = {Forward = 0, Right = 0, Up = 180}
 	
-	SWEP.AttachmentModelsVM = {}
+	SWEP.AttachmentModelsVM = {
+		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_bren.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+	}
+	
 	SWEP.AttachmentModelsWM = {}
 	
 	SWEP.IronsightPos = Vector(-2.0786, -3, 2.3467)

@@ -24,6 +24,8 @@ if CLIENT then
 		["kk_ins2_c96_barrel_lng"] = {model = "models/weapons/upgrades/a_barrel_c96_long.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), merge = true},
 		
 		["bg_ar15sturdystock"] = {model = "models/weapons/upgrades/a_stock_c96.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		
+		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_c96.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
 	SWEP.AttachmentModelsWM = {}

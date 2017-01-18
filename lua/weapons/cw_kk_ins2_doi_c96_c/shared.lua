@@ -23,6 +23,8 @@ if CLIENT then
 		
 		["kk_ins2_mag_c96_20"] = {model = "models/weapons/upgrades/a_magazine_c96_20.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		["kk_ins2_mag_c96_40"] = {model = "models/weapons/upgrades/a_magazine_c96_40.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), merge = true},
+		
+		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_c96.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
 	SWEP.AttachmentModelsWM = {
@@ -37,7 +39,7 @@ if CLIENT then
 	SWEP.IronsightPos = Vector(-2.3259, -2, 1.0722)
 	SWEP.IronsightAng = Vector(0.9476, 0.0439, 0)
 
-	SWEP.CustomizationMenuScale = 0.01
+	SWEP.CustomizationMenuScale = 0.011
 	SWEP.ReloadViewBobEnabled = false
 	SWEP.DisableSprintViewSimulation = true
 end
@@ -47,9 +49,10 @@ SWEP.MuzzleEffectWorld = "muzzleflash_mp40_3p"
 
 SWEP.Attachments = {
 	-- {header = "Lasers", offset = {500, -400}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_m6x"}},
-	{header = "Barrel", offset = {-500, -400}, atts = {"kk_ins2_c96_barrel_lng"}},
-	{header = "Magazine", offset = {-500, 150}, atts = {"kk_ins2_mag_c96_40"}},
-	["+reload"] = {header = "Ammo", offset = {500, 50}, atts = {"am_magnum", "am_matchgrade"}}
+	{header = "Barrel", offset = {-400, -300}, atts = {"kk_ins2_c96_barrel_lng"}},
+	{header = "Magazine", offset = {-400, 200}, atts = {"kk_ins2_mag_c96_40"}},
+	{header = "Stock", offset = {500, -300}, atts = {"kk_ins2_ww2_sling"}},
+	["+reload"] = {header = "Ammo", offset = {500, 200}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
 SWEP.Animations = {

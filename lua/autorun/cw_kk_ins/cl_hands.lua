@@ -24,6 +24,7 @@ if CLIENT then
 		add({"models/weapons/v_hands_short_us.mdl", "[DOI] US Short"})
 		add({"models/weapons/v_hands_us_glove.mdl", "[DOI] US Gloved"})
 		add({"models/weapons/v_hands_us_glove_airborne.mdl", "[DOI] US Para"})
+		add({"models/weapons/v_hands_us_buffalo.mdl", "[DOI] US Buff"})
 		
 		add({"models/weapons/v_hands_ger.mdl", "[DOI] DE Sleeve"})
 		add({"models/weapons/v_hands_short_ger.mdl", "[DOI] DE Short"})

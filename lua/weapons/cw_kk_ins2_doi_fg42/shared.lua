@@ -25,6 +25,8 @@ if CLIENT then
 		
 		["knife_fold"] = {model = "models/weapons/upgrades/a_fg42_bayonet_default.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
 		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/a_fg42_bayonet.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		
+		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_fg42.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
 	SWEP.AttachmentModelsWM = {
