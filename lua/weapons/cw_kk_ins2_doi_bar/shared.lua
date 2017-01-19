@@ -18,6 +18,8 @@ if CLIENT then
 	SWEP.ShellDelay = 0.12
 	
 	SWEP.AttachmentModelsVM = {
+		["slingpin"] = {model = "models/weapons/v_cw_kk_doi_bar_kk.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
+		
 		["kk_ins2_bipod"] = {model = "models/weapons/upgrades/a_bipod_bar.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_bar.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
@@ -165,3 +167,10 @@ SWEP.ReloadTimes = {
 function SWEP:IndividualThink_INS2()
 	self.FireDelay = (self.FireMode == "barslow") and self.FireDelaySlow or self.FireDelayFast
 end
+
+if CLIENT then
+	function SWEP:updateStandardParts()
+		self.AttachmentModelsVM.slingpin.ent:SetBodygroup(1,self.ActiveAttachments.kk_ins2_ww2_sling and 1 or 0)
+	end
+end
+	
