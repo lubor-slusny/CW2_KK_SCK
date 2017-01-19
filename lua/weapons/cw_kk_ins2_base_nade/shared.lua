@@ -325,18 +325,10 @@ function SWEP:IndividualThink()
 					self.keyReleased = true
 				end
 				
+				self.animPlayed = true
+				
 				if CT > self.entityTime then
-					if SERVER then
-						local grenade = self:createProjectile()
-						
-						if IsValid(grenade) then
-							self:applyThrowVelocity(grenade)
-						end
-						
-						CustomizableWeaponry.actionSequence.new(self, 0, nil, function()
-							hook.Call("GrenadeThrown", nil, self, grenade)
-						end)
-					end
+					self.dt.PinPulled = false
 					
 					if not CustomizableWeaponry.callbacks.processCategory(wep, "shouldSuppressAmmoUsage") then
 						self.Owner:RemoveAmmo(1, self.Primary.Ammo)
@@ -358,18 +350,23 @@ function SWEP:IndividualThink()
 						end
 					end)
 					
-					self.dt.PinPulled = false
+					if SERVER then
+						local grenade = self:createProjectile()
+						
+						if IsValid(grenade) then
+							self:applyThrowVelocity(grenade)
+						end
+						
+						hook.Call("GrenadeThrown", nil, self, grenade)
+					end
 				end
-				
-				self.animPlayed = true
 			else
 				if self.cookTime and (self.cookTime + self.fuseTime) < CT then
+					self.dt.PinPulled = false
+					self.animPlayed = true
+					
 					self:SetNextPrimaryFire(CT + 1)
 					self:SetNextSecondaryFire(CT + 1)
-					
-					if SERVER then
-						self:overCook()
-					end
 					
 					if not CustomizableWeaponry.callbacks.processCategory(wep, "shouldSuppressAmmoUsage") then
 						self.Owner:RemoveAmmo(1, self.Primary.Ammo)
@@ -386,8 +383,9 @@ function SWEP:IndividualThink()
 						end
 					end)
 					
-					self.dt.PinPulled = false
-					self.animPlayed = true
+					if SERVER then
+						self:overCook()
+					end
 				end
 			end
 		end
@@ -396,6 +394,8 @@ function SWEP:IndividualThink()
 			local nw, tr = self:isNearWall()
 			
 			if nw and not self._grenadePlanted then
+				self._grenadePlanted = true
+				
 				if SERVER then
 					local grenade = self:createProjectile()
 					
@@ -420,13 +420,9 @@ function SWEP:IndividualThink()
 						else
 							constraint.Weld(tr.Entity, grenade, tr.PhysicsBone, 0, 0, true, false)
 						end
-					
-						self._grenadePlanted = true
 					end
 					
-					CustomizableWeaponry.actionSequence.new(self, 0, nil, function()
-						hook.Call("GrenadePlanted", nil, self, grenade)
-					end)
+					hook.Call("GrenadePlanted", nil, self, grenade)
 				end
 				
 				local suppressAmmoUsage = CustomizableWeaponry.callbacks.processCategory(self, "shouldSuppressAmmoUsage")
@@ -436,13 +432,13 @@ function SWEP:IndividualThink()
 			end
 			
 			if self._curSwapTime < CT then
+				self.dt.PinPulled = false
+				
 				if self.Owner:GetAmmoCount(self.Primary.Ammo) <= 0 and not self.KKINS2RCE then
 					self.Owner:ConCommand("lastinv")
 				else
 					self:drawAnimFunc()
 				end
-				
-				self.dt.PinPulled = false
 			end
 		end
 	end

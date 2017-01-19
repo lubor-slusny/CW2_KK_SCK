@@ -40,17 +40,19 @@ if CLIENT then
 		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/a_garand_bayonet.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_gl_m7"] = {model = "models/weapons/upgrades/a_springfield_gl.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 
-		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_garand.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		-- ["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_garand.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 
 		["kk_ins2_scope_m82"] = {model = "models/weapons/upgrades/a_optic_garand.mdl", pos = Vector(), angle = Angle(), size = Vector(0.075, 0.075, 0.075), merge = true},
 		
 		-- ["kk_was_here_lol"] = {model = "models/weapons/upgrades/a_modkit_m1a1.mdl", pos = Vector(2.3473, -14.2344, 3.829), angle = Angle(0, -90, 0), size = Vector(1, 1, 1), bone = "Weapon", active = true},
 		
-		["modbody"] = {model = "models/weapons/v_cw_kk_doi_garand.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true},
+		-- ["modbody"] = {model = "models/weapons/v_cw_kk_doi_garand.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true},
+		-- ["wood"] = {model = "models/weapons/upgrades/a_standard_garand.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, rel = "modbody"},
+		-- ["raul"] = {model = "models/weapons/upgrades/a_modkit_m1a1.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, rel = "modbody"},
+		-- ["kk_ins2_eotech"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_barska_xl.mdl", pos = Vector(0, 0, 7.95), angle = Angle(90, 90, 0), size = Vector(1, 1, 1), attachment = "optic"},
 		
-		["wood"] = {model = "models/weapons/upgrades/a_standard_garand.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, rel = "modbody"},
-		["raul"] = {model = "models/weapons/upgrades/a_modkit_m1a1.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, rel = "modbody"},
-		["kk_ins2_eotech"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_barska_xl.mdl", pos = Vector(0, 0, 7.95), angle = Angle(90, 90, 0), size = Vector(1, 1, 1), attachment = "optic"},
+		["ani_body"] = {model = "models/weapons/v_garand.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
+		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_garand.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body"},
 	}
 	
 	SWEP.AttachmentModelsWM = {
@@ -192,7 +194,7 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/v_garand.mdl"
+SWEP.ViewModel		= "models/weapons/kk_doi/v_garand.mdl"
 SWEP.WorldModel		= "models/weapons/w_garand.mdl"
 
 SWEP.WMPos = Vector(14.986, 0.921, -3.038)

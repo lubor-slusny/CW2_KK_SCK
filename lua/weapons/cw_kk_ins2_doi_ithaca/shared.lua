@@ -23,7 +23,10 @@ if CLIENT then
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/a_ithaca_bayonet.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_ithaca.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		-- ["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_ithaca.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		
+		["ani_body"] = {model = "models/weapons/v_ithaca.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
+		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_ithaca.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body"},
 	}
 	
 	SWEP.AttachmentModelsWM = {
@@ -87,7 +90,7 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/v_ithaca.mdl"
+SWEP.ViewModel		= "models/weapons/kk_doi/v_ithaca.mdl"
 SWEP.WorldModel		= "models/weapons/w_ithaca.mdl"
 
 SWEP.WMPos = Vector(12, 0.5, -2.8)

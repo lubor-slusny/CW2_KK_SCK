@@ -183,7 +183,7 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/v_kar98k.mdl"
+SWEP.ViewModel		= "models/weapons/kk_doi/v_kar98k.mdl"
 -- SWEP.ViewModel		= "models/weapons/v_cw_kk_doi_k98.mdl"
 SWEP.WorldModel		= "models/weapons/w_kar98k.mdl"
 

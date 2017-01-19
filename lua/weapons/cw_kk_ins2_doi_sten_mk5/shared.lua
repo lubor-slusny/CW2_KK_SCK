@@ -55,7 +55,7 @@ SWEP.StockBGs = {main = 0, regular = 0, heavy = 0, sturdy = 0}
 
 SWEP.Attachments = {
 	{header = "Barrel", offset = {-300, -600}, atts = {"kk_ins2_ww2_knife", "kk_ins2_ww2_knife_fat", "kk_ins2_suppressor_sterling"}},
-	-- {header = "Under", offset = {-500, 0}, atts = {"kk_ins2_vertgrip"}},
+	{header = "Under", offset = {-500, 0}, atts = {"kk_ins2_ww2_sling"}},
 	-- {header = "Stock", offset = {1000, 0}, atts = {"bg_ar15sturdystock"}},
 	["+reload"] = {header = "Ammo", offset = {0, 400}, atts = {"am_magnum", "am_matchgrade"}}
 }
@@ -134,7 +134,7 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/v_sten_mk5.mdl"
+SWEP.ViewModel		= "models/weapons/kk_doi/v_sten_mk5.mdl"
 SWEP.WorldModel		= "models/weapons/w_sten_mk5.mdl"
 
 SWEP.WMPos = Vector(10, -1, -5)

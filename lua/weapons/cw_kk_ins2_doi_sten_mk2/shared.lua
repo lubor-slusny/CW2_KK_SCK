@@ -24,13 +24,18 @@ if CLIENT then
 	
 	SWEP.AttachmentModelsVM = {
 		-- ["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/a_sten_foregrip.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/a_sten_foregrip.mdl", bone = "Weapon", pos = Vector(2.4687, -2.8842, -11.6320), angle = Angle(90, -90, 0), size = Vector(1, 1, 1)},
+		-- ["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/a_sten_foregrip.mdl", bone = "Weapon", pos = Vector(2.4687, -2.8842, -11.6320), angle = Angle(90, -90, 0), size = Vector(1, 1, 1)},
 		
-		["std_barrel"] = {model = "models/weapons/upgrades/a_stenmk2_barrel_standard.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
-		["kk_ins2_suppressor_sterling"] = {model = "models/weapons/upgrades/a_stenmk2_silencer.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["std_barrel"] = {model = "models/weapons/upgrades/a_stenmk2_barrel_standard.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
+		["kk_ins2_suppressor_sterling"] = {model = "models/weapons/upgrades/a_stenmk2_silencer.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
-		["std_stock"] = {model = "models/weapons/upgrades/a_stenmk2_stock_standard.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
-		["bg_ar15sturdystock"] = {model = "models/weapons/upgrades/a_stenmk2_stock_alt.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		["std_stock"] = {model = "models/weapons/upgrades/a_stenmk2_stock_standard.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
+		["bg_ar15sturdystock"] = {model = "models/weapons/upgrades/a_stenmk2_stock_alt.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		
+		-- ["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_stenmk2.mdl", pos = Vector(-0.4333, -8.8925, 5.7938), angle = Angle(0, -90, 0), size = Vector(1, 1, 1), bone = "Weapon"},
+		
+		["ani_body"] = {model = "models/weapons/v_sten_mk2.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
+		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_stenmk2.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body"},
 	}
 	
 	SWEP.AttachmentModelsWM = {
@@ -56,7 +61,7 @@ SWEP.StockBGs = {main = 0, regular = 0, heavy = 0, sturdy = 0}
 
 SWEP.Attachments = {
 	{header = "Barrel", offset = {-300, -600}, atts = {"kk_ins2_suppressor_sterling"}},
-	-- {header = "Under", offset = {-500, 0}, atts = {"kk_ins2_vertgrip"}},
+	{header = "Under", offset = {-500, 0}, atts = {"kk_ins2_ww2_sling"}},
 	{header = "Stock", offset = {1000, 0}, atts = {"bg_ar15sturdystock"}},
 	["+reload"] = {header = "Ammo", offset = {0, 400}, atts = {"am_magnum", "am_matchgrade"}}
 }
@@ -130,7 +135,7 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/v_sten_mk2.mdl"
+SWEP.ViewModel		= "models/weapons/kk_doi/v_sten_mk2.mdl"
 SWEP.WorldModel		= "models/weapons/w_sten.mdl"
 
 SWEP.WMPos = Vector(9, -1, -4)

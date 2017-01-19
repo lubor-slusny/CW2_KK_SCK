@@ -18,7 +18,7 @@ if CLIENT then
 	SWEP.ShellDelay = 0.12
 	
 	SWEP.AttachmentModelsVM = {
-		["slingpin"] = {model = "models/weapons/v_cw_kk_doi_fg42_kk.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
+		-- ["slingpin"] = {model = "models/weapons/v_cw_kk_doi_fg42_kk.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
 		
 		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_iron_fg42_default.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
 		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_iron_fg42_down.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
@@ -28,7 +28,10 @@ if CLIENT then
 		["knife_fold"] = {model = "models/weapons/upgrades/a_fg42_bayonet_default.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
 		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/a_fg42_bayonet.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_fg42.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		-- ["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_fg42.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		
+		["ani_body"] = {model = "models/weapons/v_fg42.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
+		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_fg42.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body"},
 	}
 	
 	SWEP.AttachmentModelsWM = {
@@ -138,7 +141,7 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/v_fg42.mdl"
+SWEP.ViewModel		= "models/weapons/kk_doi/v_fg42.mdl"
 SWEP.WorldModel		= "models/weapons/w_fg42.mdl"
 
 SWEP.WMPos = Vector(11, 1.5, -1.5)
@@ -196,7 +199,7 @@ SWEP.ReloadTimes = {
 
 if CLIENT then
 	function SWEP:updateStandardParts()
-		self.AttachmentModelsVM.slingpin.ent:SetBodygroup(1,self.ActiveAttachments.kk_ins2_ww2_sling and 1 or 0)
+		-- self.AttachmentModelsVM.slingpin.ent:SetBodygroup(1,self.ActiveAttachments.kk_ins2_ww2_sling and 1 or 0)
 	
 		self:setElementActive("knife_fold", !self.ActiveAttachments.kk_ins2_ww2_knife)
 	end

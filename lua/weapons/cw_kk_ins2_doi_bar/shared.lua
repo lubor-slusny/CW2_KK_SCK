@@ -18,11 +18,14 @@ if CLIENT then
 	SWEP.ShellDelay = 0.12
 	
 	SWEP.AttachmentModelsVM = {
-		["slingpin"] = {model = "models/weapons/v_cw_kk_doi_bar_kk.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
+		-- ["slingpin"] = {model = "models/weapons/v_cw_kk_doi_bar_kk.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
 		
 		["kk_ins2_bipod"] = {model = "models/weapons/upgrades/a_bipod_bar.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_bar.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		-- ["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_bar.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		
+		["ani_body"] = {model = "models/weapons/v_bar.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
+		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_bar.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body"},
 	}
 	
 	SWEP.AttachmentModelsWM = {
@@ -108,7 +111,7 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/v_bar.mdl"
+SWEP.ViewModel		= "models/weapons/kk_doi/v_bar.mdl"
 SWEP.WorldModel		= "models/weapons/w_bar.mdl"
 
 SWEP.WMPos = Vector(18.197, 0, -3)
@@ -168,9 +171,9 @@ function SWEP:IndividualThink_INS2()
 	self.FireDelay = (self.FireMode == "barslow") and self.FireDelaySlow or self.FireDelayFast
 end
 
-if CLIENT then
-	function SWEP:updateStandardParts()
-		self.AttachmentModelsVM.slingpin.ent:SetBodygroup(1,self.ActiveAttachments.kk_ins2_ww2_sling and 1 or 0)
-	end
-end
+-- if CLIENT then
+	-- function SWEP:updateStandardParts()
+		-- self.AttachmentModelsVM.slingpin.ent:SetBodygroup(1,self.ActiveAttachments.kk_ins2_ww2_sling and 1 or 0)
+	-- end
+-- end
 	

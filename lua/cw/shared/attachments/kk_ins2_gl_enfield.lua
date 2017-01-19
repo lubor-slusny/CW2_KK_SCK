@@ -51,7 +51,7 @@ end
 
 function att:detachFunc()
 	if CLIENT then
-		self.ViewModel = "models/weapons/v_enfield.mdl"
+		self.ViewModel = "models/weapons/kk_doi/v_enfield.mdl"
 	end
 	
 	resetGL(self)

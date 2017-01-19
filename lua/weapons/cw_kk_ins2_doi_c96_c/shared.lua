@@ -18,7 +18,7 @@ if CLIENT then
 	SWEP.ShellWorldAngleAlign = {Forward = 90, Right = 0, Up = 0}
 	
 	SWEP.AttachmentModelsVM = {
-		["slingpin"] = {model = "models/weapons/v_cw_kk_doi_c96_c_kk.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
+		-- ["slingpin"] = {model = "models/weapons/v_cw_kk_doi_c96_c_kk.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
 		
 		["kk_ins2_c96_barrel_std"] = {model = "models/weapons/upgrades/a_barrel_c96_short.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		["kk_ins2_c96_barrel_lng"] = {model = "models/weapons/upgrades/a_barrel_c96_long.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), merge = true},
@@ -26,7 +26,10 @@ if CLIENT then
 		["kk_ins2_mag_c96_20"] = {model = "models/weapons/upgrades/a_magazine_c96_20.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		["kk_ins2_mag_c96_40"] = {model = "models/weapons/upgrades/a_magazine_c96_40.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_c96.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		-- ["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_c96.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		
+		["ani_body"] = {model = "models/weapons/v_c96_carbine.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
+		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_c96.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body"},
 	}
 	
 	SWEP.AttachmentModelsWM = {
@@ -108,7 +111,7 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/v_c96_carbine.mdl"
+SWEP.ViewModel		= "models/weapons/kk_doi/v_c96_carbine.mdl"
 SWEP.WorldModel		= "models/weapons/w_c96_carbine.mdl"
 
 SWEP.WMPos = Vector(5, 1, -1)
@@ -161,7 +164,7 @@ SWEP.ReloadTimes = {
 
 if CLIENT then
 	function SWEP:updateStandardParts()
-		self.AttachmentModelsVM.slingpin.ent:SetBodygroup(1,self.ActiveAttachments.kk_ins2_ww2_sling and 1 or 0)
+		-- self.AttachmentModelsVM.slingpin.ent:SetBodygroup(1,self.ActiveAttachments.kk_ins2_ww2_sling and 1 or 0)
 		
 		self:setElementActive("kk_ins2_c96_barrel_std", !self.ActiveAttachments.kk_ins2_c96_barrel_lng)
 		self:setElementActive("kk_ins2_mag_c96_20", !self.ActiveAttachments.kk_ins2_mag_c96_40)
