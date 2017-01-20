@@ -125,6 +125,7 @@ SWEP.Animations = {
 	gl_on_fire_empty = "glsetup_dryfire",
 	gl_on_fire_empty_aim = "glsetup_iron_dryfire",
 	gl_on_reload = "glsetup_reload",
+	gl_on_reload_mm = "glsetup_reload",
 	gl_on_idle = "glsetup",
 	gl_on_holster = "glsetup_holster",
 	gl_on_sprint = "glsetup_sprint",

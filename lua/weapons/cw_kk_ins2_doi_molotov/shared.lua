@@ -14,7 +14,9 @@ if CLIENT then
 	
 	SWEP.NoShells = true
 	
-	SWEP.AttachmentModelsVM = {}
+	SWEP.AttachmentModelsVM = {
+		
+	}
 	
 	SWEP.AttachmentModelsWM = {
 		-- ["whorehead"] = {model = "models/weapons/w_molotov.mdl", pos = Vector(1.1313, -0.0273, -0.4484), angle = Angle(99.0829, 13.4942, 0), size = Vector(1, 1, 1), attachment = "muzzle", active = true},

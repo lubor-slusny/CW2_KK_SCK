@@ -2,6 +2,7 @@
 CustomizableWeaponry_KK.ins2.bulletBgs = CustomizableWeaponry_KK.ins2.bulletBgs or {}
 	
 local MP = !game.SinglePlayer()
+local mathClamp = math.Clamp
 	
 if CLIENT then
 	CustomizableWeaponry_KK.ins2.bulletBgs._getReserve = function(wep)
@@ -15,76 +16,63 @@ if CLIENT then
 		end
 		
 		if wep.ActiveAttachments.kk_ins2_ww2_stripper then
-			out = math.Clamp(out, 0, wep.Primary.ClipSize) // srsly, get teh dam mag system
-			out = math.Clamp(out - clip, 0, wep.Primary.ClipSize)
+			out = mathClamp(out, 0, wep.Primary.ClipSize) // srsly, get teh dam mag system
+			out = mathClamp(out - clip, 0, wep.Primary.ClipSize)
 		end
 		
 		return out
 	end
 	
-	local _getReserve = CustomizableWeaponry_KK.ins2.bulletBgs._getReserve
+	local getAmmoReserve = CustomizableWeaponry_KK.ins2.bulletBgs._getReserve
 	
-	// main think
-	CustomizableWeaponry_KK.ins2.bulletBgs.think = function(wep)
-		local clip = wep:Clip1()
-		
-		local setBG = clip
-		
-		if wep._bulletsToClip then
-			wep._bulletsToClip = false
-		else
-			local prefix = wep:getForegripMode()
-		
-			if wep.freezeBeltOnStart and wep.freezeBeltOnStart[wep.Sequence] then
-				if not wep._loadingNewBelt then
-					return
-				end
-			end
-		
-			if wep.Sequence == wep.Animations[prefix .. "reload_start_empty"] then
-				return
-			end
-			
-			if wep.Sequence == wep.Animations[prefix .. "reload_start"] then
-				return
-			end
-			
-			if wep.Sequence == wep.Animations[prefix .. "insert"] then
-				return
-			end
-			
-			local ammo = _getReserve(wep)
-			
-			local cycle = wep.CW_VM:GetCycle()
-			
-			if wep._loadingNewBelt != wep.Sequence or cycle >= 1 or (wep.Owner:ShouldDrawLocalPlayer() and cycle <= 0) then
-				wep._loadingNewBelt = false
-			end
-			
-			setBG = wep._loadingNewBelt and ammo or clip
-		end
-		
-		setBG = math.Clamp(setBG, 0, wep._beltBGMax)
-		
-		wep:setBodygroup(wep._beltBGID, setBG)
-	end
+	// _beltBGID, _beltBGMax, _shellsBGID, _shellsBGMax
 	
 	// big guns
-	CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve = function(wep)
-		wep._loadingNewBelt = wep.Sequence
+	CustomizableWeaponry_KK.ins2.bulletBgs.pauseBelt = function(wep)
+		wep._pauseBeltUpdates = wep.Sequence
 	end
 	
-	CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToClip = function(wep)
-		wep._bulletsToClip = true
+	CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve = function(wep)
+		wep:setBodygroup(wep._beltBGID, mathClamp(getAmmoReserve(wep), 0, wep._beltBGMax))
+	end
+	
+	CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip = function(wep)
+		wep:setBodygroup(wep._beltBGID, mathClamp(wep:Clip1(), 0, wep._beltBGMax))
+	end
+	
+	CustomizableWeaponry_KK.ins2.bulletBgs.beltToClipM1 = function(wep)
+		wep:setBodygroup(wep._beltBGID, mathClamp(wep:Clip1() - 1, 0, wep._beltBGMax))
 	end
 	
 	// revolvers
 	CustomizableWeaponry_KK.ins2.bulletBgs.shellsToReserve = function(wep)
-		local ammo = _getReserve(wep)
-		wep:setBodygroup(wep._shellsBGID, math.Clamp(ammo, 0, wep._shellsBGMax))
+		wep:setBodygroup(wep._shellsBGID, mathClamp(getAmmoReserve(wep), 0, wep._shellsBGMax))
 	end
 	
 	CustomizableWeaponry_KK.ins2.bulletBgs.shellsToClip = function(wep)
-		wep:setBodygroup(wep._shellsBGID, math.Clamp(wep:Clip1(), 0, wep._shellsBGMax))
+		wep:setBodygroup(wep._shellsBGID, mathClamp(wep:Clip1(), 0, wep._shellsBGMax))
+	end
+	
+	CustomizableWeaponry_KK.ins2.bulletBgs.shellsToClipP1 = function(wep)
+		wep:setBodygroup(wep._shellsBGID, mathClamp(wep:Clip1() + 1, 0, wep._shellsBGMax))
+	end
+	
+	// main think
+	CustomizableWeaponry_KK.ins2.bulletBgs.think = function(wep)
+		local cycle = wep.CW_VM:GetCycle()
+		
+		// kek I dont have to make new table for this
+		if wep.reloadProgressAnims and wep.reloadProgressAnims[wep.Sequence] and cycle < 1 then
+			return
+		end
+		
+		// shotgun reload start/insert/end transition problem
+		if wep._pauseBeltUpdates != wep.Sequence or cycle >= 1 or (wep.Owner:ShouldDrawLocalPlayer() and cycle <= 0) then
+			wep._pauseBeltUpdates = false
+		end
+		
+		if !wep._pauseBeltUpdates then
+			CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip(wep)
+		end
 	end
 end

@@ -77,7 +77,7 @@ SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted3(SWEP)
 SWEP.Primary.Ammo			= "Frag Grenades"
 
 SWEP.canCook = false
-SWEP.fuseTime = 4
+SWEP.fuseTime = 0
 
 SWEP.timeToThrow = 0.9
 

@@ -47,6 +47,9 @@ if CLIENT then
 	SWEP.IronsightPos = Vector(-2.4916, -3, 0.629)
 	SWEP.IronsightAng = Vector(-0.223, 0.0476, 0)
 
+	SWEP.IronsightPos = Vector(-2.1213, -2, 0.6682)
+	SWEP.IronsightAng = Vector(-0.2515, 0.0363, 0)
+
 	SWEP.CustomizationMenuScale = 0.014
 end
 
@@ -54,8 +57,8 @@ SWEP.MuzzleEffect = "muzzleflash_m16_1p_core"
 SWEP.MuzzleEffectWorld = "muzzleflash_m16_3rd"
 
 SWEP.Attachments = {
-	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_suppressor_ins"}},
-	{header = "Under", offset = {-500, 0}, atts = {"kk_ins2_vertgrip"}},
+	-- {header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_suppressor_ins"}},
+	-- {header = "Under", offset = {-500, 0}, atts = {"kk_ins2_vertgrip"}},
 	{header = "Magazine", offset = {-50, 500}, atts = {"kk_ins2_mag_m1a1_30"}},
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_magnum", "am_matchgrade"}}
 }
@@ -64,7 +67,7 @@ SWEP.Animations = {
 	base_pickup = "base_ready", 
 	base_draw = "base_draw", 
 	base_fire = "base_fire", 
-	base_fire_aim = "iron_fire",
+	base_fire_aim = {"iron_fire_1", "iron_fire_2", "iron_fire_3", "iron_fire_4"},
 	base_fire_empty = "base_dryfire", 
 	base_fire_empty_aim = "iron_dryfire", 
 	base_reload = "base_reload", 
@@ -73,27 +76,12 @@ SWEP.Animations = {
 	base_reload_empty_mm = "base_reloadempty_ext",
 	base_idle = "base_idle", 
 	base_holster = "base_holster", 
+	base_firemode = "base_fireselect",
+	base_firemode_aim = "iron_fireselect",
 	base_sprint = "base_sprint", 
 	base_safe = "base_down", 
 	base_safe_aim = "iron_down", 
-	base_crawl = "base_crawl", 
-	
-	foregrip_pickup = "foregrip_ready", 
-	foregrip_draw = "foregrip_draw", 
-	foregrip_fire = "foregrip_fire", 
-	foregrip_fire_aim = "foregrip_iron_fire",
-	foregrip_fire_empty = "foregrip_dryfire", 
-	foregrip_fire_empty_aim = "foregrip_iron_dryfire", 
-	foregrip_reload = "foregrip_reload", 
-	foregrip_reload_empty = "foregrip_reloadempty", 
-	foregrip_reload_mm = "foregrip_reload_ext", 
-	foregrip_reload_empty_mm = "foregrip_reloadempty_ext", 
-	foregrip_idle = "foregrip_holster", 
-	foregrip_holster = "foregrip_holster", 
-	foregrip_sprint = "foregrip_sprint", 
-	foregrip_safe = "foregrip_down", 
-	foregrip_safe_aim = "foregrip_iron_down", 
-	foregrip_crawl = "foregrip_crawl", 
+	base_crawl = "base_crawl",
 }
 
 SWEP.SpeedDec = 30
@@ -102,7 +90,7 @@ SWEP.Slot = 3
 SWEP.SlotPos = 0
 SWEP.NormalHoldType = "ar2"
 SWEP.RunHoldType = "passive"
-SWEP.FireModes = {"auto"}
+SWEP.FireModes = {"auto", "semi"}
 SWEP.Base = "cw_kk_ins2_base"
 SWEP.Category = "CW 2.0 KK INS2 B2K"
 

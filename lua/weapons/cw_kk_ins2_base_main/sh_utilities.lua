@@ -92,9 +92,9 @@ end
 
 //-----------------------------------------------------------------------------
 // updateBelt on first call
-// - checks CW_VM for bodygroups called "belt" or "shells"
+// - checks CW_VM for bodygroups called "belt", "clip" and "shells"
 // - replaces itself with blank function or belt bodygroup handler
-// shells bodygroup is handled using sound table callbacks
+// - shells bodygroup is handled using sound table callbacks
 //-----------------------------------------------------------------------------
 
 if CLIENT then
@@ -102,21 +102,29 @@ if CLIENT then
 	
 	function SWEP:updateBelt()
 		local vm = self.CW_VM
-		local id = vm:FindBodygroupByName("bELt")
 		
-		if id < 0 then
-			self.updateBelt = blank
-		else
-			self._beltBGID = id
-			self._beltBGMax = vm:GetBodygroupCount(id) - 1
-			self.updateBelt = CustomizableWeaponry_KK.ins2.bulletBgs.think
+		for _, name in pairs({"bELt", "CliP"}) do
+			local id = vm:FindBodygroupByName(name)
+			
+			if id < 0 then
+				self.updateBelt = blank
+			else
+				self._beltBGID = id
+				self._beltBGMax = vm:GetBodygroupCount(id) - 1
+				self.updateBelt = CustomizableWeaponry_KK.ins2.bulletBgs.think
+				break
+			end
 		end
 		
-		id = vm:FindBodygroupByName("shELls")
-		
-		if id > -1 then
-			self._shellsBGID = id
-			self._shellsBGMax = vm:GetBodygroupCount(id) - 1
+		for _, name in pairs({"shELls"}) do
+			local id = vm:FindBodygroupByName(name)
+			
+			if id > -1 then
+				self._shellsBGID = id
+				self._shellsBGMax = vm:GetBodygroupCount(id) - 1
+				
+				break
+			end
 		end
 	end
 end

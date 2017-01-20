@@ -83,6 +83,6 @@ SWEP.maxVelDelayShort = 1.6
 
 SWEP.mustCook = true
 
-if CLIENT then
-	-- CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_cstm_nade_rdgm", "grenade")
-end
+-- if CLIENT then
+	-- CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_nam_nade_rdg1", "grenade")
+-- end

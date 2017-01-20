@@ -80,3 +80,7 @@ SWEP.timeToThrow = 0.9
 SWEP.timeToThrowCook = 1.3
 
 SWEP.timeToThrowShort = 0.9
+
+if CLIENT then
+	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_nam_nade_rgd5", "grenade")
+end

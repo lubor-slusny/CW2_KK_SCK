@@ -174,7 +174,7 @@ if CLIENT then
 	local ang = Vector(1,0,0)
 	
 	CustomizableWeaponry.callbacks:addNew("adjustViewmodelPosition", "KK_INS2_MK19", function(wep, TargetPos, TargetAng)
-		if wep:GetClass() != "cw_kk_ins2_mk19" then return end
+		if wep:GetClass() != "cw_kk_ins2_doi_mk19" then return end
 		if wep.dt.BipodDeployed then
 			if wep:isAiming() then return end
 			

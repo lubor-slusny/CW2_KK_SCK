@@ -27,13 +27,15 @@ SWEP.Sounds = {
 		-- // { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
 	-- },
 
-	-- base_dryfire = {
-		-- {time = 0/30, sound = "CW_KK_INS2_DOI_VICKERS_EMPTY"},
-	-- },
+	base_dryfire = {
+		{time = 0/30, sound = "CW_KK_INS2_DOI_VICKERS_EMPTY"},
+	},
 
 	base_reload = {
 		// { event 46 115 ""},
 		// { event AE_WPN_RELOAD_OFFSCREEN 40 ""},
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
+		{time = 32/31.2, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
 		{time = 40/31.2, sound = "CW_KK_INS2_DOI_VICKERS_FETCHMAG"},
 		{time = 90/31.2, sound = "CW_KK_INS2_DOI_VICKERS_BELTALIGN"},
 		{time = 107/31.2, sound = "CW_KK_INS2_DOI_VICKERS_BELTJINGLE"},
@@ -49,6 +51,8 @@ SWEP.Sounds = {
 	base_reloadempty = {
 		// { event 46 115 ""},
 		// { event AE_WPN_RELOAD_OFFSCREEN 40 ""},
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
+		{time = 35/34.2, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
 		{time = 40/34.2, sound = "CW_KK_INS2_DOI_VICKERS_FETCHMAG"},
 		{time = 90/34.2, sound = "CW_KK_INS2_DOI_VICKERS_BELTALIGN"},
 		{time = 107/34.2, sound = "CW_KK_INS2_DOI_VICKERS_BELTJINGLE"},
@@ -109,6 +113,8 @@ SWEP.Sounds = {
 		// { event 46 115 ""},
 		// { event AE_WPN_RELOAD_OFFSCREEN 40 ""},
 		// { event AE_WPN_READY 227 ""},
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
+		{time = 30/30, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
 		{time = 40/30, sound = "CW_KK_INS2_DOI_VICKERS_FETCHMAG"},
 		{time = 65/30, sound = "CW_KK_INS2_DOI_VICKERS_BELTALIGN"},
 		{time = 81/30, sound = "CW_KK_INS2_DOI_VICKERS_BELTJINGLE"},
@@ -124,6 +130,8 @@ SWEP.Sounds = {
 		// { event 46 115 ""},
 		// { event AE_WPN_RELOAD_OFFSCREEN 40 ""},
 		// { event AE_WPN_READY 227 ""},
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
+		{time = 33/33, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
 		{time = 40/33, sound = "CW_KK_INS2_DOI_VICKERS_FETCHMAG"},
 		{time = 65/33, sound = "CW_KK_INS2_DOI_VICKERS_BELTALIGN"},
 		{time = 81/33, sound = "CW_KK_INS2_DOI_VICKERS_BELTJINGLE"},

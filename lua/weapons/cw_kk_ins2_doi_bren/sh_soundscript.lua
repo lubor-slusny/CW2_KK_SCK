@@ -26,10 +26,11 @@ SWEP.Sounds = {
 	},
 
 	base_reload = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 30/33.5, sound = "CW_KK_INS2_DOI_BREN_MAGRELEASE"},
 		{time = 41/33.5, sound = "CW_KK_INS2_DOI_BREN_MAGOUT"},
 		{time = 50/33.5, sound = "CW_KK_INS2_DOI_BREN_FETCHMAG"},
-		{time = 60/33.5, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
+		{time = 60/33.5, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
 		-- { event 46 132 ""},
 		{time = 117/33.5, sound = "CW_KK_INS2_DOI_BREN_MAGIN"},
 		{time = 132/33.5, sound = "CW_KK_INS2_DOI_BREN_MAGHIT"},
@@ -38,13 +39,14 @@ SWEP.Sounds = {
 	},
 
 	base_reload_empty = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 33/33.5, sound = "CW_KK_INS2_DOI_BREN_BOLTBACK"},
 		{time = 44/33.5, sound = "CW_KK_INS2_DOI_BREN_BOLTRELEASE"},
 		{time = 63/33.5, sound = "CW_KK_INS2_DOI_BREN_RATTLE"},
 		{time = 93/33.5, sound = "CW_KK_INS2_DOI_BREN_MAGRELEASE"},
 		{time = 106/33.5, sound = "CW_KK_INS2_DOI_BREN_MAGOUT"},
 		{time = 110/33.5, sound = "CW_KK_INS2_DOI_BREN_FETCHMAG"},
-		{time = 120/33.5, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
+		{time = 120/33.5, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
 		-- { event 46 197 ""},
 		{time = 179/33.5, sound = "CW_KK_INS2_DOI_BREN_MAGIN"},
 		{time = 193/33.5, sound = "CW_KK_INS2_DOI_BREN_MAGHIT"},
@@ -72,10 +74,11 @@ SWEP.Sounds = {
 	},
 
 	deployed_reload = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 30/34, sound = "CW_KK_INS2_DOI_BREN_MAGRELEASE"},
 		{time = 41/34, sound = "CW_KK_INS2_DOI_BREN_MAGOUT"},
 		{time = 50/34, sound = "CW_KK_INS2_DOI_BREN_FETCHMAG"},
-		{time = 60/34, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
+		{time = 60/34, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
 		-- { event 46 132 ""},
 		{time = 117/34, sound = "CW_KK_INS2_DOI_BREN_MAGIN"},
 		{time = 132/34, sound = "CW_KK_INS2_DOI_BREN_MAGHIT"},
@@ -84,12 +87,13 @@ SWEP.Sounds = {
 	},
 
 	deployed_reload_empty = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 33/34, sound = "CW_KK_INS2_DOI_BREN_BOLTBACK"},
 		{time = 44/34, sound = "CW_KK_INS2_DOI_BREN_BOLTRELEASE"},
 		{time = 93/34, sound = "CW_KK_INS2_DOI_BREN_MAGRELEASE"},
 		{time = 106/34, sound = "CW_KK_INS2_DOI_BREN_MAGOUT"},
 		{time = 110/34, sound = "CW_KK_INS2_DOI_BREN_FETCHMAG"},
-		{time = 120/34, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
+		{time = 120/34, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
 		-- { event 46 197 ""},
 		{time = 179/34, sound = "CW_KK_INS2_DOI_BREN_MAGIN"},
 		{time = 193/34, sound = "CW_KK_INS2_DOI_BREN_MAGHIT"},
