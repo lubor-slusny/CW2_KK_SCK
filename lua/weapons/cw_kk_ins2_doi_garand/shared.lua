@@ -75,8 +75,8 @@ if CLIENT then
 	SWEP.M203Pos = Vector(-2.7463, 0, 5.4451)
 	SWEP.M203Ang = Vector(-9.1139, 0.0581, 0)
 
-	SWEP.M203Pos = Vector(-2.7362, -3, 3.7136)
-	SWEP.M203Ang = Vector(-8.5227, 0.0134, 0)
+	-- SWEP.M203Pos = Vector(-2.7362, -3, 3.7136)
+	-- SWEP.M203Ang = Vector(-8.5227, 0.0134, 0)
 
 	SWEP.CustomizationMenuScale = 0.019
 end

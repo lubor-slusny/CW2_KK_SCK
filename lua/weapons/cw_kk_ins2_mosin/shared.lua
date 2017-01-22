@@ -242,15 +242,15 @@ SWEP.WeaponLength = 38
 SWEP.MuzzleVelocity = 865
 
 SWEP.ReloadTimes = {
-	base_fire_end = {15/30, 1.5},
-	iron_fire_end = {17/28.5, 1.7},
+	base_fire_end = {14/30, 1.5},
+	iron_fire_end = {19/28.5, 1.7},
 	
 	reload_start = {15/30, 0.865, KK_INS2_SHOTGUN_UNLOAD_ONE},
 	reload_insert = {14/30, 0.8},
 	reload_end = {0.9, 0.9},
 	
-	deployed_fire_end = {15/30, 1.8},
-	iron_fire_deployed_end = {15/34, 1.5},
+	deployed_fire_end = {21/30, 1.8},
+	iron_fire_deployed_end = {19/34, 1.5},
 	
 	deployed_reload_start = {15/30, 0.8, KK_INS2_SHOTGUN_UNLOAD_ONE},
 	deployed_reload_insert = {12/30, 0.8},

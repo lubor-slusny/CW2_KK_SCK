@@ -223,6 +223,8 @@ if CLIENT then
 		[CW_KK_QKNIFE] = true,
 	}
 
+	local v0 = Vector()
+	
 	CustomizableWeaponry.callbacks:addNew("adjustViewmodelPosition", "KK_INS2_BASE", function(wep, TargetPos, TargetAng)
 		if !wep.KKINS2Wep then return end
 		
@@ -254,7 +256,11 @@ if CLIENT then
 		
 		// grenade launcher have sights so lets use it for all nade types
 		if wep.dt.INS2GLActive and wep:isAiming() then
-			return wep.M203Pos, wep.M203Ang
+			if wep:canAimGL() then
+				return wep.M203Pos, wep.M203Ang
+			else
+				return v0, v0
+			end
 		end
 	end)
 end

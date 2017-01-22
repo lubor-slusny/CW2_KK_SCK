@@ -45,6 +45,13 @@ function CustomizableWeaponry_KK.ins2.rpgs.fireShared(wep, IFTP, legit)
 			nade:Spawn()
 			nade:Activate()
 			
+			// cw2 m203 rounds model tweak
+			if wep.projectileClass == "cw_40mm_explosive" then
+				nade:SetModel(wep.CW_KK_40MM_MDL)
+				nade:PhysicsDestroy()
+				nade:PhysicsInit(SOLID_VPHYSICS)
+			end
+			
 			nade:SetOwner(wep.Owner)
 			
 			if not legit then

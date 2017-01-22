@@ -206,7 +206,7 @@ function SWEP:shellEvent2()
 end
 
 local m203 = CustomizableWeaponry.shells:getShell("KK_INS2_40mm")
-local down = Vector(0,0,10)
+local down = Vector(0,0,-10)
 
 function SWEP:shellEvent203()
 	if self.Owner:ShouldDrawLocalPlayer() then

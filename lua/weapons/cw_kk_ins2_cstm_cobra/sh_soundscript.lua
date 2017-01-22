@@ -21,14 +21,14 @@ end
 local function toclip(...)
 	if SERVER then return end
 	
-	CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToClip(...)
+	CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip(...)
 	CustomizableWeaponry_KK.ins2.bulletBgs.shellsToClip(...)
 end
 
 local function toreserve(...)
 	if SERVER then return end
 	
-	CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve(...)
+	CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve(...)
 	CustomizableWeaponry_KK.ins2.bulletBgs.shellsToReserve(...)
 end
 

@@ -87,8 +87,8 @@ SWEP.Sounds = {
 
 	deployed_fire_end = {
 		{time = 7/30, sound = "CW_KK_INS2_M40A1_BOLTRELEASE"},
-		{time = 12/30, sound = "", callback = shell},
 		{time = 13/30, sound = "CW_KK_INS2_M40A1_BOLTBACK"},
+		{time = 18/30, sound = "", callback = shell},
 		{time = 24/30, sound = "CW_KK_INS2_M40A1_BOLTFORWARD"},
 		// pumpedrdy @ 26 ""},
 		{time = 28/30, sound = "CW_KK_INS2_M40A1_BOLTLATCH"},
@@ -117,7 +117,7 @@ SWEP.Sounds = {
 	deployed_iron_fire_end = {
 		{time = 7/34, sound = "CW_KK_INS2_M40A1_BOLTRELEASE"},
 		{time = 13/34, sound = "CW_KK_INS2_M40A1_BOLTBACK"},
-		{time = 15/34, sound = "", callback = shell},
+		{time = 16/34, sound = "", callback = shell},
 		{time = 24/34, sound = "CW_KK_INS2_M40A1_BOLTFORWARD"},
 		// pumpedrdy @ 26 ""},
 		{time = 28/34, sound = "CW_KK_INS2_M40A1_BOLTLATCH"},

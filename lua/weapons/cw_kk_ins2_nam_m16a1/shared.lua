@@ -237,3 +237,9 @@ if CLIENT then
 		self:setElementActive("kk_ins2_mag_m1a1_15", !self.ActiveAttachments.kk_ins2_mag_m1a1_30)
 	end
 end
+
+if CLIENT then
+	function SWEP:canAimGL()
+		return !self.ActiveAttachments.kk_ins2_scope_nam_colt
+	end
+end

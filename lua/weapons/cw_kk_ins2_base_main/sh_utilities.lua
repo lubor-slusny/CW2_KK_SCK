@@ -242,3 +242,14 @@ end
 function SWEP:getGLAttName()
 	return (self._currentGrenadeLauncher and self._currentGrenadeLauncher.displayNameShort) or "No grenade launcher attached."
 end
+
+//-----------------------------------------------------------------------------
+// canAimGL is called from adjustViewmodelPosition to allow/prevent use of 
+// wep.M203Pos and wep.M203Ang aim-positions
+//-----------------------------------------------------------------------------
+
+if CLIENT then
+	function SWEP:canAimGL()
+		return true
+	end
+end

@@ -18,14 +18,7 @@ if CLIENT then
 	
 	SWEP.Shell = "KK_INS2_556x45"
 	SWEP.ShellDelay = 0.06
-	
-	SWEP.BackupSights = {
-		["kk_ins2_elcan"] = {
-			Vector(-2.5337, 0, -0.6528), 
-			Vector(-0.4573, 0, 0)
-		}
-	}
-	
+		
 	SWEP.AttachmentModelsVM = {
 		["std_mag"] = {model = "models/weapons/upgrades/a_magazine_m607_20.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true}, 
 		["kk_ins2_mag_m1a1_30"] = {model = "models/weapons/upgrades/a_magazine_m607_30.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true}, 
@@ -44,11 +37,11 @@ if CLIENT then
 		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/w_ins_foregrip.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
-	SWEP.IronsightPos = Vector(-2.4916, -3, 0.629)
-	SWEP.IronsightAng = Vector(-0.223, 0.0476, 0)
+	-- SWEP.IronsightPos = Vector(-2.4916, -3, 0.629)
+	-- SWEP.IronsightAng = Vector(-0.223, 0.0476, 0)
 
-	SWEP.IronsightPos = Vector(-2.1213, -2, 0.6682)
-	SWEP.IronsightAng = Vector(-0.2515, 0.0363, 0)
+	SWEP.IronsightPos = Vector(-2.1216, -5, 0.6372)
+	SWEP.IronsightAng = Vector(-0.1894, 0.0392, 0)
 
 	SWEP.CustomizationMenuScale = 0.014
 end
@@ -129,9 +122,9 @@ SWEP.SpreadCooldown = 0.13
 SWEP.Shots = 1
 SWEP.Damage = 39
 
-SWEP.FirstDeployTime = 1.5
+SWEP.FirstDeployTime = 2.6
 SWEP.DeployTime = 0.7
-SWEP.HolsterTime = 0.6
+SWEP.HolsterTime = 0.7
 
 SWEP.WeaponLength = 20
 
