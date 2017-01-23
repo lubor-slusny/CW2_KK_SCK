@@ -31,6 +31,11 @@ if CLIENT then
 		["kk_ins2_ww2_knife_fat"] = {model = "models/weapons/upgrades/a_enfield_bayonet_spike.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["std_stock"] = {model = "models/weapons/upgrades/a_stenmk5_stock_standard.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
+		
+		-- ["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_stenmk5.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		
+		["ani_body"] = {model = "models/weapons/v_sten_mk5.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
+		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_stenmk5.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body"},
 	}
 	
 	SWEP.AttachmentModelsWM = {

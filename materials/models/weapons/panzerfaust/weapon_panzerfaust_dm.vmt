@@ -1,5 +1,5 @@
 "VertexLitGeneric"
-//"VertexLitGeneric"
+//"SurfaceGGX"
 {
 	"$basetexture"			"models\weapons\panzerfaust\weapon_panzerfaust_dm"
 	"$bumpmap"			"models\weapons\panzerfaust\weapon_panzerfaust_nm"

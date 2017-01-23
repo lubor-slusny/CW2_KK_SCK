@@ -1,25 +1,16 @@
 "VertexLitGeneric"
 {
-	//"$basetexture"			"models\weapons\enfield\weapon_enfield_dm2"
-	//"$bumpmap"			"models\weapons\enfield\weapon_enfield_nm2"
-	//"$phongexponenttexture"		"models\weapons\enfield\weapon_enfield_exp2"
-	
 	"$basetexture"			"models\weapons\enfield\weapon_enfield_dm"
 	"$bumpmap"			"models\weapons\enfield\weapon_enfield_nm"
-	"$phongexponenttexture"		"models\weapons\enfield\weapon_enfield_exp"
-
-	"$roughnessmultiplier"		"1"
 
 	"$phong"  			"1"
-	"$phongexponent" 		"36"
-	"$phongboost" 			"0.3"
+	"$phongexponent" 		"46"
+	"$phongboost" 			".5"
 	"$phongfresnelranges" 		"[2 4 6]"
 	"$phongtint" 			"[0.6 0.8 1]"
 	"$phongalbedotint" 		"1"	
 
-	"$envmapfresnel"			"0.5"
-
 	"$envmap" 			"env_cubemap"
 	"$normalmapalphaenvmapmask" 	"1"
-	"$envmaptint"			"[0.01 0.01 0.01]"
+	"$envmaptint"			"[0.1 0.1 0.1]"
 }
