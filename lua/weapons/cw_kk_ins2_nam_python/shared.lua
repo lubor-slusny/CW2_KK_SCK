@@ -69,6 +69,7 @@ SWEP.Animations = {
 	base_reload = {"base_reload_speed", "base_reload_speed2", "base_reload_speed3", "base_reload_speed4"},
 	base_reload_empty = {"base_reload_speed", "base_reload_speed2", "base_reload_speed3", "base_reload_speed4"},
 	base_idle = "base_idle",
+	base_idle_aim = "base_idle",
 	base_holster = "base_holster",
 	base_sprint = {"base_sprint", "base_sprint2", "base_sprint3"},
 	base_safe = "base_down",

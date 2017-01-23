@@ -47,11 +47,12 @@ SWEP.Sounds = {
 	},
 
 	base_reload = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 18/34.8, sound = "CW_KK_INS2_DOI_BROWNING_FOLEY"},
 		{time = 35/34.8, sound = "CW_KK_INS2_DOI_BROWNING_LIDOPEN"},
 		{time = 75/34.8, sound = "CW_KK_INS2_DOI_BROWNING_LINKRATTLE"},
 		{time = 81/34.8, sound = "CW_KK_INS2_DOI_BROWNING_FETCHMAG"},
-		{time = 110/34.8, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
+		{time = 110/34.8, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
 		{time = 140/34.8, sound = "CW_KK_INS2_DOI_BROWNING_BELTJINGLE"},
 		{time = 150/34.8, sound = "CW_KK_INS2_DOI_BROWNING_BELTALIGN"},
 		{time = 197/34.8, sound = "CW_KK_INS2_DOI_BROWNING_LIDCLOSE"},
@@ -60,10 +61,11 @@ SWEP.Sounds = {
 	},
 
 	base_reload_empty = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 18/34.8, sound = "CW_KK_INS2_DOI_BROWNING_FOLEY"},
 		{time = 35/34.8, sound = "CW_KK_INS2_DOI_BROWNING_LIDOPEN"},
 		{time = 70/34.8, sound = "CW_KK_INS2_DOI_BROWNING_FETCHMAG"},
-		{time = 100/34.8, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
+		{time = 100/34.8, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
 		{time = 110/34.8, sound = "CW_KK_INS2_DOI_BROWNING_BELTJINGLE"},
 		{time = 120/34.8, sound = "CW_KK_INS2_DOI_BROWNING_BELTALIGN"},
 		{time = 160/34.8, sound = "CW_KK_INS2_DOI_BROWNING_LIDCLOSE"},
@@ -119,11 +121,12 @@ SWEP.Sounds = {
 	},
 
 	deployed_reload = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 18/36, sound = "CW_KK_INS2_DOI_BROWNING_FOLEY"},
 		{time = 35/36, sound = "CW_KK_INS2_DOI_BROWNING_LIDOPEN"},
 		{time = 75/36, sound = "CW_KK_INS2_DOI_BROWNING_LINKRATTLE"},
 		{time = 81/36, sound = "CW_KK_INS2_DOI_BROWNING_FETCHMAG"},
-		{time = 110/36, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
+		{time = 110/36, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
 		{time = 140/36, sound = "CW_KK_INS2_DOI_BROWNING_BELTJINGLE"},
 		{time = 150/36, sound = "CW_KK_INS2_DOI_BROWNING_BELTALIGN"},
 		{time = 197/36, sound = "CW_KK_INS2_DOI_BROWNING_LIDCLOSE"},
@@ -132,10 +135,11 @@ SWEP.Sounds = {
 	},
 
 	deployed_reload_empty = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 18/36, sound = "CW_KK_INS2_DOI_BROWNING_FOLEY"},
 		{time = 35/36, sound = "CW_KK_INS2_DOI_BROWNING_LIDOPEN"},
 		{time = 70/36, sound = "CW_KK_INS2_DOI_BROWNING_FETCHMAG"},
-		{time = 100/36, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
+		{time = 100/36, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
 		{time = 110/36, sound = "CW_KK_INS2_DOI_BROWNING_BELTJINGLE"},
 		{time = 120/36, sound = "CW_KK_INS2_DOI_BROWNING_BELTALIGN"},
 		{time = 160/36, sound = "CW_KK_INS2_DOI_BROWNING_LIDCLOSE"},

@@ -2,6 +2,9 @@
 SWEP.Sounds = {
 	base_ready = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
+		{time = 33/31, sound = "CW_KK_INS2_DOI_LEWIS_BOLTBACK"},
+		{time = 62/31, sound = "CW_KK_INS2_DOI_LEWIS_RATTLE"},
+		{time = 88/31, sound = "CW_KK_INS2_DOI_LEWIS_SHOULDERWEAPON"},
 	},
 
 	base_draw = {
@@ -40,10 +43,11 @@ SWEP.Sounds = {
 	},
 
 	base_reload = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 26/34.5, sound = "CW_KK_INS2_DOI_LEWIS_MAGRELEASE"},
 		{time = 40/34.5, sound = "CW_KK_INS2_DOI_LEWIS_MAGOUTFULL"},
 		{time = 53/34.5, sound = "CW_KK_INS2_DOI_LEWIS_FETCHMAG"},
-		{time = 83/34.5, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
+		{time = 83/34.5, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
 		{time = 134/34.5, sound = "CW_KK_INS2_DOI_LEWIS_MAGFIDDLE"},
 		{time = 140/34.5, sound = "CW_KK_INS2_DOI_LEWIS_MAGIN"},
 		{time = 169/34.5, sound = "CW_KK_INS2_DOI_LEWIS_MAGHIT"},
@@ -53,10 +57,11 @@ SWEP.Sounds = {
 	},
 
 	base_reloadempty = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 26/34.5, sound = "CW_KK_INS2_DOI_LEWIS_MAGRELEASE"},
 		{time = 40/34.5, sound = "lewis_Magout"},
 		{time = 53/34.5, sound = "CW_KK_INS2_DOI_LEWIS_FETCHMAG"},
-		{time = 83/34.5, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
+		{time = 83/34.5, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
 		{time = 119/34.5, sound = "CW_KK_INS2_DOI_LEWIS_MAGFIDDLE"},
 		{time = 127/34.5, sound = "CW_KK_INS2_DOI_LEWIS_MAGIN"},
 		{time = 157/34.5, sound = "CW_KK_INS2_DOI_LEWIS_MAGHIT"},
@@ -102,14 +107,14 @@ SWEP.Sounds = {
 	},
 
 	deployed_in = {
-		{time = 19/32.5, sound = "CW_KK_INS2_DOI_LEWIS_DEPLOYGROUNDHIT"},
-		{time = 40/32.5, sound = "CW_KK_INS2_DOI_LEWIS_RATTLE"},
-		{time = 50/32.5, sound = "CW_KK_INS2_DOI_LEWIS_SHOULDERWEAPON"},
+		{time = 19/36, sound = "CW_KK_INS2_DOI_LEWIS_DEPLOYGROUNDHIT"},
+		{time = 40/36, sound = "CW_KK_INS2_DOI_LEWIS_RATTLE"},
+		{time = 50/36, sound = "CW_KK_INS2_DOI_LEWIS_SHOULDERWEAPON"},
 	},
 
 	deployed_out = {
-		{time = 20/33, sound = "CW_KK_INS2_DOI_LEWIS_RATTLE"},
-		{time = 39/33, sound = "CW_KK_INS2_DOI_LEWIS_SHOULDERWEAPON"},
+		{time = 20/36, sound = "CW_KK_INS2_DOI_LEWIS_RATTLE"},
+		{time = 39/36, sound = "CW_KK_INS2_DOI_LEWIS_SHOULDERWEAPON"},
 	},
 
 	-- deployed_fire_1 = {
@@ -135,10 +140,11 @@ SWEP.Sounds = {
 	},
 
 	deployed_reload = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 26/35.5, sound = "CW_KK_INS2_DOI_LEWIS_MAGRELEASE"},
 		{time = 40/35.5, sound = "CW_KK_INS2_DOI_LEWIS_MAGOUTFULL"},
 		{time = 53/35.5, sound = "CW_KK_INS2_DOI_LEWIS_FETCHMAG"},
-		{time = 83/35.5, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
+		{time = 83/35.5, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
 		{time = 134/35.5, sound = "CW_KK_INS2_DOI_LEWIS_MAGFIDDLE"},
 		{time = 140/35.5, sound = "CW_KK_INS2_DOI_LEWIS_MAGIN"},
 		{time = 169/35.5, sound = "CW_KK_INS2_DOI_LEWIS_MAGHIT"},
@@ -148,10 +154,11 @@ SWEP.Sounds = {
 	},
 
 	deployed_reload_empty = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 26/35.5, sound = "CW_KK_INS2_DOI_LEWIS_MAGRELEASE"},
 		{time = 40/35.5, sound = "lewis_Magout"},
 		{time = 53/35.5, sound = "CW_KK_INS2_DOI_LEWIS_FETCHMAG"},
-		{time = 83/35.5, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
+		{time = 83/35.5, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
 		{time = 119/35.5, sound = "CW_KK_INS2_DOI_LEWIS_MAGFIDDLE"},
 		{time = 127/35.5, sound = "CW_KK_INS2_DOI_LEWIS_MAGIN"},
 		{time = 157/35.5, sound = "CW_KK_INS2_DOI_LEWIS_MAGHIT"},

@@ -131,15 +131,10 @@ SWEP.WeaponLength = 20
 SWEP.MuzzleVelocity = 808
 
 SWEP.ReloadTimes = {
-	base_reload = {2.3, 3},
-	base_reloadempty = {2.9, 4.6},
-	base_reload_ext = {2.3, 3},
-	base_reloadempty_ext = {2.9, 4.6},
-	
-	foregrip_reload = {2.3, 3},
-	foregrip_reloadempty = {2.9, 4.6},
-	foregrip_reload_ext = {2.3, 3},
-	foregrip_reloadempty_ext = {2.9, 4.6},
+	base_reload = {84/30, 4.1},
+	base_reloadempty = {84/30, 4.8},
+	base_reload_ext = {84/30, 4.2},
+	base_reloadempty_ext = {84/30, 4.9},
 }
 
 if CLIENT then

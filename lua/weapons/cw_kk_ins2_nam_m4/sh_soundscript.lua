@@ -2,9 +2,10 @@
 SWEP.Sounds = {
 	base_ready = {
 		{time = 0/30, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-		{time = 9/30, sound = "CW_KK_INS2_M4A1_BOLTBACK"},
-		{time = 17/30, sound = "CW_KK_INS2_M4A1_BOLTRELEASE"},
-		{time = 35/30, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
+		{time = 19/30, sound = "CW_KK_INS2_M4A1_BOLTBACK"},
+		{time = 25/30, sound = "CW_KK_INS2_M4A1_BOLTRELEASE"},
+		{time = 42/30, sound = "CW_KK_INS2_M4A1_HIT"},
+		{time = 53/30, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
 	},
 
 	base_draw = {
@@ -26,39 +27,51 @@ SWEP.Sounds = {
 	-- },
 
 	base_dryfire = {
-		{time = 1/30, sound = "CW_KK_INS2_M1A1_EMPTY"},
+		{time = 1/30, sound = "CW_KK_INS2_M4A1_EMPTY"},
+	},
+
+	base_fireselect = {
+		{time = 10/30, sound = "CW_KK_INS2_M4A1_FIRESELECT"},
 	},
 
 	base_reload = {
 		{time = 13/30, sound = "CW_KK_INS2_M4A1_MAGRELEASE"},
-		{time = 15/30, sound = "CW_KK_INS2_M4A1_MAGOUT"},
-		{time = 60/30, sound = "CW_KK_INS2_M4A1_MAGIN"},
-		// { event 46 68 ""},
+		{time = 18/30, sound = "CW_KK_INS2_M4A1_MAGOUT"},
+		{time = 71/30, sound = "CW_KK_INS2_M4A1_MAGIN"},
+		{time = 84/30, sound = "CW_KK_INS2_M4A1_HIT"},
+		{time = 102/30, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
+		{time = 114/30, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
 	},
 
 	base_reloadempty = {
 		{time = 13/30, sound = "CW_KK_INS2_M4A1_MAGRELEASE"},
-		{time = 15/30, sound = "CW_KK_INS2_M4A1_MAGOUT"},
-		{time = 66/30, sound = "CW_KK_INS2_M4A1_MAGIN"},
-		{time = 85/30, sound = "CW_KK_INS2_M4A1_HIT"},
-		// { event 46 85 ""},
-		{time = 111/30, sound = "CW_KK_INS2_M4A1_BOLTRELEASE"},
+		{time = 18/30, sound = "CW_KK_INS2_M4A1_MAGOUT"},
+		{time = 71/30, sound = "CW_KK_INS2_M4A1_MAGIN"},
+		{time = 84/30, sound = "CW_KK_INS2_M4A1_HIT"},
+		{time = 109/30, sound = "CW_KK_INS2_M4A1_BOLTBACK"},
+		{time = 115/30, sound = "CW_KK_INS2_M4A1_BOLTRELEASE"},
+		{time = 124/30, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
+		{time = 134/30, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
 	},
 
 	base_reload_ext = {
 		{time = 13/30, sound = "CW_KK_INS2_M4A1_MAGRELEASE"},
-		{time = 15/30, sound = "CW_KK_INS2_M4A1_MAGOUT"},
-		{time = 60/30, sound = "CW_KK_INS2_M4A1_MAGIN"},
-		// { event 46 68 ""},
+		{time = 18/30, sound = "CW_KK_INS2_M4A1_MAGOUT"},
+		{time = 71/30, sound = "CW_KK_INS2_M4A1_MAGIN"},
+		{time = 84/30, sound = "CW_KK_INS2_M4A1_HIT"},
+		{time = 102/30, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
+		{time = 114/30, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
 	},
 
 	base_reloadempty_ext = {
 		{time = 13/30, sound = "CW_KK_INS2_M4A1_MAGRELEASE"},
-		{time = 15/30, sound = "CW_KK_INS2_M4A1_MAGOUT"},
-		{time = 66/30, sound = "CW_KK_INS2_M4A1_MAGIN"},
-		{time = 85/30, sound = "CW_KK_INS2_M4A1_HIT"},
-		// { event 46 85 ""},
-		{time = 111/30, sound = "CW_KK_INS2_M4A1_BOLTRELEASE"},
+		{time = 18/30, sound = "CW_KK_INS2_M4A1_MAGOUT"},
+		{time = 71/30, sound = "CW_KK_INS2_M4A1_MAGIN"},
+		{time = 84/30, sound = "CW_KK_INS2_M4A1_HIT"},
+		{time = 109/30, sound = "CW_KK_INS2_M4A1_BOLTBACK"},
+		{time = 115/30, sound = "CW_KK_INS2_M4A1_BOLTRELEASE"},
+		{time = 124/30, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
+		{time = 134/30, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
 	},
 
 	-- iron_fire = {
@@ -67,76 +80,10 @@ SWEP.Sounds = {
 	-- },
 
 	iron_dryfire = {
-		{time = 1/30, sound = "CW_KK_INS2_M1A1_EMPTY"},
+		{time = 0/30, sound = "CW_KK_INS2_M4A1_EMPTY"},
 	},
 
-	foregrip_ready = {
-		{time = 0/30, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-		{time = 9/30, sound = "CW_KK_INS2_M4A1_BOLTBACK"},
-		{time = 17/30, sound = "CW_KK_INS2_M4A1_BOLTRELEASE"},
-		{time = 35/30, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
-	},
-
-	foregrip_draw = {
-		{time = 0/30, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-	},
-
-	foregrip_holster = {
-		{time = 0/30, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
-	},
-
-	foregrip_crawl = {
-		{time = 0/30, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
-		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
-	},
-
-	-- foregrip_fire = {
-		-- // { event AE_MUZZLEFLASH 0 ""},
-		-- // { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
-
-	foregrip_dryfire = {
-		{time = 1/30, sound = "CW_KK_INS2_M1A1_EMPTY"},
-	},
-
-	foregrip_reload = {
-		{time = 13/30, sound = "CW_KK_INS2_M4A1_MAGRELEASE"},
-		{time = 15/30, sound = "CW_KK_INS2_M4A1_MAGOUT"},
-		{time = 60/30, sound = "CW_KK_INS2_M4A1_MAGIN"},
-		// { event 46 68 ""},
-	},
-
-	foregrip_reloadempty = {
-		{time = 13/30, sound = "CW_KK_INS2_M4A1_MAGRELEASE"},
-		{time = 15/30, sound = "CW_KK_INS2_M4A1_MAGOUT"},
-		{time = 66/30, sound = "CW_KK_INS2_M4A1_MAGIN"},
-		{time = 85/30, sound = "CW_KK_INS2_M4A1_HIT"},
-		// { event 46 85 ""},
-		{time = 111/30, sound = "CW_KK_INS2_M4A1_BOLTRELEASE"},
-	},
-
-	foregrip_reload_ext = {
-		{time = 13/30, sound = "CW_KK_INS2_M4A1_MAGRELEASE"},
-		{time = 15/30, sound = "CW_KK_INS2_M4A1_MAGOUT"},
-		{time = 60/30, sound = "CW_KK_INS2_M4A1_MAGIN"},
-		// { event 46 68 ""},
-	},
-
-	foregrip_reloadempty_ext = {
-		{time = 13/30, sound = "CW_KK_INS2_M4A1_MAGRELEASE"},
-		{time = 15/30, sound = "CW_KK_INS2_M4A1_MAGOUT"},
-		{time = 66/30, sound = "CW_KK_INS2_M4A1_MAGIN"},
-		{time = 85/30, sound = "CW_KK_INS2_M4A1_HIT"},
-		// { event 46 85 ""},
-		{time = 111/30, sound = "CW_KK_INS2_M4A1_BOLTRELEASE"},
-	},
-
-	-- foregrip_iron_fire = {
-		-- // { event AE_MUZZLEFLASH 0 ""},
-		-- // { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
-
-	foregrip_iron_dryfire = {
-		{time = 0/30, sound = "CW_KK_INS2_M1A1_EMPTY"},
+	iron_fireselect = {
+		{time = 0/30, sound = "CW_KK_INS2_M4A1_FIRESELECT"},
 	},
 }

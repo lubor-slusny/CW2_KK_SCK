@@ -40,9 +40,10 @@ SWEP.Sounds = {
 	},
 
 	base_reload = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 17/30, sound = "CW_KK_INS2_M4A1_MAGRELEASE"},
 		{time = 22/30, sound = "CW_KK_INS2_M4A1_MAGOUT"},
-		{time = 35/30, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
+		{time = 35/30, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
 		{time = 68/30, sound = "CW_KK_INS2_M4A1_MAGIN"},
 		{time = 84/30, sound = "CW_KK_INS2_M4A1_HIT"},
 		-- { event 46 85 ""},
@@ -51,9 +52,10 @@ SWEP.Sounds = {
 	},
 
 	base_reloadempty = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 17/30, sound = "CW_KK_INS2_M4A1_MAGRELEASE"},
 		{time = 22/30, sound = "CW_KK_INS2_M4A1_MAGOUT"},
-		{time = 35/30, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
+		{time = 35/30, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
 		{time = 73/30, sound = "CW_KK_INS2_M4A1_MAGIN"},
 		-- { event 46 77 ""},
 		-- { event AE_WPN_RELOAD_OFFSCREEN 35 ""},
@@ -182,9 +184,10 @@ SWEP.Sounds = {
 	},
 
 	foregrip_reload = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 17/30, sound = "CW_KK_INS2_M4A1_MAGRELEASE"},
 		{time = 22/30, sound = "CW_KK_INS2_M4A1_MAGOUT"},
-		{time = 35/30, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
+		{time = 35/30, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
 		{time = 68/30, sound = "CW_KK_INS2_M4A1_MAGIN"},
 		{time = 84/30, sound = "CW_KK_INS2_M4A1_HIT"},
 		-- { event 46 85 ""},
@@ -193,9 +196,10 @@ SWEP.Sounds = {
 	},
 
 	foregrip_reloadempty = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 17/30, sound = "CW_KK_INS2_M4A1_MAGRELEASE"},
 		{time = 22/30, sound = "CW_KK_INS2_M4A1_MAGOUT"},
-		{time = 35/30, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
+		{time = 35/30, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
 		{time = 73/30, sound = "CW_KK_INS2_M4A1_MAGIN"},
 		-- { event 46 77 ""},
 		-- { event AE_WPN_RELOAD_OFFSCREEN 35 ""},
@@ -238,9 +242,10 @@ SWEP.Sounds = {
 	},
 
 	gl_reload = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 17/30, sound = "CW_KK_INS2_M4A1_MAGRELEASE"},
 		{time = 22/30, sound = "CW_KK_INS2_M4A1_MAGOUT"},
-		{time = 35/30, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
+		{time = 35/30, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
 		{time = 68/30, sound = "CW_KK_INS2_M4A1_MAGIN"},
 		{time = 84/30, sound = "CW_KK_INS2_M4A1_HIT"},
 		-- { event 46 85 ""},
@@ -249,9 +254,10 @@ SWEP.Sounds = {
 	},
 
 	gl_reloadempty = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 17/30, sound = "CW_KK_INS2_M4A1_MAGRELEASE"},
 		{time = 22/30, sound = "CW_KK_INS2_M4A1_MAGOUT"},
-		{time = 35/30, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
+		{time = 35/30, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
 		{time = 73/30, sound = "CW_KK_INS2_M4A1_MAGIN"},
 		-- { event 46 77 ""},
 		-- { event AE_WPN_RELOAD_OFFSCREEN 35 ""},

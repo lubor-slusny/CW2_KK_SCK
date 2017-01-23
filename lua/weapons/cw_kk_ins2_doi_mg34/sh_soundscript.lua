@@ -51,11 +51,12 @@ SWEP.Sounds = {
 	},
 
 	base_reload = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 30/34.5, sound = "CW_KK_INS2_DOI_MG34_COVEROPEN"},
 		{time = 78/34.5, sound = "CW_KK_INS2_DOI_MG34_MAGOUT"},
 		{time = 83/34.5, sound = "CW_KK_INS2_DOI_MG34_MAGOUTRATTLE"},
 		{time = 115/34.5, sound = "CW_KK_INS2_DOI_MG34_FETCHMAG"},
-		{time = 130/34.5, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
+		{time = 130/34.5, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
 		{time = 158/34.5, sound = "CW_KK_INS2_DOI_MG34_MAGIN"},
 		{time = 168/34.5, sound = "CW_KK_INS2_DOI_MG34_MAGHIT"},
 		{time = 198/34.5, sound = "CW_KK_INS2_DOI_MG34_BELTALIGN"},
@@ -67,11 +68,12 @@ SWEP.Sounds = {
 	},
 
 	base_reload_half = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 30/34.5, sound = "CW_KK_INS2_DOI_MG34_COVEROPEN"},
 		{time = 78/34.5, sound = "CW_KK_INS2_DOI_MG34_MAGOUT"},
 		{time = 83/34.5, sound = "CW_KK_INS2_DOI_MG34_MAGOUTRATTLE"},
 		{time = 115/34.5, sound = "CW_KK_INS2_DOI_MG34_FETCHMAG"},
-		{time = 130/34.5, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
+		{time = 130/34.5, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
 		{time = 158/34.5, sound = "CW_KK_INS2_DOI_MG34_MAGIN"},
 		{time = 168/34.5, sound = "CW_KK_INS2_DOI_MG34_MAGHIT"},
 		{time = 198/34.5, sound = "CW_KK_INS2_DOI_MG34_BELTALIGN"},
@@ -83,6 +85,7 @@ SWEP.Sounds = {
 	},
 
 	base_reload_empty = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 30/34.5, sound = "CW_KK_INS2_DOI_MG34_COVEROPEN"},
 		{time = 68/34.5, sound = "CW_KK_INS2_DOI_MG34_BOLTBACK"},
 		{time = 76/34.5, sound = "CW_KK_INS2_DOI_MG34_BOLTRELEASE"},
@@ -90,7 +93,7 @@ SWEP.Sounds = {
 		{time = 132/34.5, sound = "CW_KK_INS2_DOI_MG34_MAGOUT"},
 		{time = 136/34.5, sound = "CW_KK_INS2_DOI_MG34_MAGOUTRATTLE"},
 		{time = 150/34.5, sound = "CW_KK_INS2_DOI_MG34_FETCHMAG"},
-		{time = 160/34.5, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
+		{time = 160/34.5, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
 		{time = 213/34.5, sound = "CW_KK_INS2_DOI_MG34_MAGIN"},
 		{time = 222/34.5, sound = "CW_KK_INS2_DOI_MG34_MAGHIT"},
 		{time = 252/34.5, sound = "CW_KK_INS2_DOI_MG34_BELTALIGN"},
@@ -149,11 +152,12 @@ SWEP.Sounds = {
 	},
 
 	deployed_reload = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 30/34.5, sound = "CW_KK_INS2_DOI_MG34_COVEROPEN"},
 		{time = 78/34.5, sound = "CW_KK_INS2_DOI_MG34_MAGOUT"},
 		{time = 83/34.5, sound = "CW_KK_INS2_DOI_MG34_MAGOUTRATTLE"},
 		{time = 115/34.5, sound = "CW_KK_INS2_DOI_MG34_FETCHMAG"},
-		{time = 130/34.5, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
+		{time = 130/34.5, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
 		{time = 158/34.5, sound = "CW_KK_INS2_DOI_MG34_MAGIN"},
 		{time = 168/34.5, sound = "CW_KK_INS2_DOI_MG34_MAGHIT"},
 		{time = 198/34.5, sound = "CW_KK_INS2_DOI_MG34_BELTALIGN"},
@@ -165,11 +169,12 @@ SWEP.Sounds = {
 	},
 
 	deployed_reload_half = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 30/34.5, sound = "CW_KK_INS2_DOI_MG34_COVEROPEN"},
 		{time = 78/34.5, sound = "CW_KK_INS2_DOI_MG34_MAGOUT"},
 		{time = 83/34.5, sound = "CW_KK_INS2_DOI_MG34_MAGOUTRATTLE"},
 		{time = 115/34.5, sound = "CW_KK_INS2_DOI_MG34_FETCHMAG"},
-		{time = 130/34.5, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
+		{time = 130/34.5, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
 		{time = 158/34.5, sound = "CW_KK_INS2_DOI_MG34_MAGIN"},
 		{time = 168/34.5, sound = "CW_KK_INS2_DOI_MG34_MAGHIT"},
 		{time = 198/34.5, sound = "CW_KK_INS2_DOI_MG34_BELTALIGN"},
@@ -181,6 +186,7 @@ SWEP.Sounds = {
 	},
 
 	deployed_reload_empty = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 30/34.5, sound = "CW_KK_INS2_DOI_MG34_COVEROPEN"},
 		{time = 68/34.5, sound = "CW_KK_INS2_DOI_MG34_BOLTBACK"},
 		{time = 76/34.5, sound = "CW_KK_INS2_DOI_MG34_BOLTRELEASE"},
@@ -188,7 +194,7 @@ SWEP.Sounds = {
 		{time = 132/34.5, sound = "CW_KK_INS2_DOI_MG34_MAGOUT"},
 		{time = 136/34.5, sound = "CW_KK_INS2_DOI_MG34_MAGOUTRATTLE"},
 		{time = 150/34.5, sound = "CW_KK_INS2_DOI_MG34_FETCHMAG"},
-		{time = 160/34.5, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
+		{time = 160/34.5, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
 		{time = 213/34.5, sound = "CW_KK_INS2_DOI_MG34_MAGIN"},
 		{time = 222/34.5, sound = "CW_KK_INS2_DOI_MG34_MAGHIT"},
 		{time = 252/34.5, sound = "CW_KK_INS2_DOI_MG34_BELTALIGN"},

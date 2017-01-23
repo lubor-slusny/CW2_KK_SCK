@@ -44,9 +44,10 @@ SWEP.Sounds = {
 	},
 
 	base_reload = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 15/30, sound = "CW_KK_INS2_DOI_P08_MAGRELEASE"},
 		{time = 20/30, sound = "CW_KK_INS2_DOI_P08_MAGOUT"},
-		{time = 40/30, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
+		{time = 40/30, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
 		{time = 57/30, sound = "CW_KK_INS2_DOI_P08_MAGIN"},
 		{time = 63/30, sound = "CW_KK_INS2_DOI_P08_MAGHIT"},
 		// { event 46 66 ""},
@@ -54,9 +55,10 @@ SWEP.Sounds = {
 	},
 
 	base_reloadempty = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 15/30, sound = "CW_KK_INS2_DOI_P08_MAGRELEASE"},
 		{time = 20/30, sound = "CW_KK_INS2_DOI_P08_MAGOUT"},
-		{time = 40/30, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
+		{time = 40/30, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
 		{time = 57/30, sound = "CW_KK_INS2_DOI_P08_MAGIN"},
 		{time = 63/30, sound = "CW_KK_INS2_DOI_P08_MAGHIT"},
 		// { event 46 66 ""},

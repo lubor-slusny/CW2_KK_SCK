@@ -208,16 +208,22 @@ function SWEP:CalcView(ply, pos, ang, fov)
 	
 	if self._vmCamAttach > 0 then
 		local vm = self.CW_VM
-		local vmAng = vm:GetAngles()
 		
-		att = vm:GetAttachment(self._vmCamAttach)
+		// yea this one IS better
+		local CAMERA = vm:GetAttachment(self._vmCamAttach).Ang
+		local modelAng = vm:GetAngles()
 		
-		if att then
-			local mod = math.abs((89 - math.abs(ang.p)) / 89)
-			
-			ang = LerpAngle(1, ang, ang + (att.Ang - vmAng) * mod)
-			-- ang = LerpCW20(1, ang, ang + (att.Ang - vmAng) * mod)
+		local factor = math.abs(ang.p)
+		local intensity = 2
+		
+		if factor >= 60 then
+			factor = factor - 60
+			intensity = math.Clamp(1 - math.abs(factor / 15), 0, 1)
 		end
+		
+		local bobAngDiff = math.NormalizeAngles((modelAng - CAMERA)) * 0.5 * intensity
+		
+		ang = ang - bobAngDiff
 	end
 	
 	if self.dt.State == CW_AIMING then

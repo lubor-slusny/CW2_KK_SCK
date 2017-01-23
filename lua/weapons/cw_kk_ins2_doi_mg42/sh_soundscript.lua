@@ -47,11 +47,12 @@ SWEP.Sounds = {
 	},
 
 	base_reload = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 18/33.5, sound = "CW_KK_INS2_DOI_MG42_FOLEY"},
 		{time = 35/33.5, sound = "CW_KK_INS2_DOI_MG42_LIDOPEN"},
 		{time = 75/33.5, sound = "CW_KK_INS2_DOI_MG42_LINKRATTLE"},
 		{time = 81/33.5, sound = "CW_KK_INS2_DOI_MG42_FETCHMAG"},
-		{time = 110/33.5, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
+		{time = 110/33.5, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
 		// reload time = 110 ""},
 		{time = 140/33.5, sound = "CW_KK_INS2_DOI_MG42_BELTJINGLE"},
 		{time = 150/33.5, sound = "CW_KK_INS2_DOI_MG42_BELTALIGN"},
@@ -61,13 +62,14 @@ SWEP.Sounds = {
 	},
 
 	base_reload_empty = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 1/33.5, sound = "CW_KK_INS2_DOI_MG42_FOLEY"},
 		{time = 33/33.5, sound = "CW_KK_INS2_DOI_MG42_BOLTBACK"},
 		{time = 43/33.5, sound = "CW_KK_INS2_DOI_MG42_BOLTRELEASE"},
 		{time = 67/33.5, sound = "CW_KK_INS2_DOI_MG42_RATTLE"},
 		{time = 95/33.5, sound = "CW_KK_INS2_DOI_MG42_LIDOPEN"},
 		{time = 100/33.5, sound = "CW_KK_INS2_DOI_MG42_FETCHMAG"},
-		{time = 150/33.5, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
+		{time = 150/33.5, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
 		{time = 164/33.5, sound = "CW_KK_INS2_DOI_MG42_BELTJINGLE"},
 		{time = 176/33.5, sound = "CW_KK_INS2_DOI_MG42_BELTALIGN"},
 		// reload time = 150 ""},
@@ -118,11 +120,12 @@ SWEP.Sounds = {
 	},
 
 	deployed_reload = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 13/34.5, sound = "CW_KK_INS2_DOI_MG42_FOLEY"},
 		{time = 35/34.5, sound = "CW_KK_INS2_DOI_MG42_LIDOPEN"},
 		{time = 75/34.5, sound = "CW_KK_INS2_DOI_MG42_LINKRATTLE"},
 		{time = 81/34.5, sound = "CW_KK_INS2_DOI_MG42_FETCHMAG"},
-		{time = 110/33.5, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
+		{time = 110/33.5, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
 		// reload time = 110 ""},
 		{time = 140/34.5, sound = "CW_KK_INS2_DOI_MG42_BELTJINGLE"},
 		{time = 150/34.5, sound = "CW_KK_INS2_DOI_MG42_BELTALIGN"},
@@ -132,13 +135,14 @@ SWEP.Sounds = {
 	},
 
 	deployed_reload_empty = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 13/33.5, sound = "CW_KK_INS2_DOI_MG42_FOLEY"},
 		{time = 33/33.5, sound = "CW_KK_INS2_DOI_MG42_BOLTBACK"},
 		{time = 43/33.5, sound = "CW_KK_INS2_DOI_MG42_BOLTRELEASE"},
 		{time = 67/33.5, sound = "CW_KK_INS2_DOI_MG42_RATTLE"},
 		{time = 95/33.5, sound = "CW_KK_INS2_DOI_MG42_LIDOPEN"},
 		{time = 100/33.5, sound = "CW_KK_INS2_DOI_MG42_FETCHMAG"},
-		{time = 150/33.5, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
+		{time = 150/33.5, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
 		{time = 164/33.5, sound = "CW_KK_INS2_DOI_MG42_BELTJINGLE"},
 		{time = 176/33.5, sound = "CW_KK_INS2_DOI_MG42_BELTALIGN"},
 		// reload time = 150 ""},
