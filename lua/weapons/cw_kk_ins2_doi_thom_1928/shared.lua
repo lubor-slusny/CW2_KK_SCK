@@ -22,7 +22,7 @@ if CLIENT then
 		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_iron_thompson_l.mdl", pos = Vector(), angle = Angle(), size = Vector(0.5, 0.5, 0.5), merge = true},
 		["modbody"] = {model = "models/weapons/v_cw_kk_doi_1928.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true},
 		
-		["kk_ins2_ww2_knife"] = {model = "models/weapons/v_brassknuckles.mdl", pos = Vector(-2.3145, -0.7286, 11.7285), angle = Angle(-49.8959, 22.8366, 26.1512), size = Vector(1, 1, 1), bone = "R Hand", nodraw = true},
+		-- ["kk_ins2_ww2_knife"] = {model = "models/weapons/v_brassknuckles.mdl", pos = Vector(-2.3145, -0.7286, 11.7285), angle = Angle(-49.8959, 22.8366, 26.1512), size = Vector(1, 1, 1), bone = "R Hand", nodraw = true},
 		
 		["handguard"] = {model = "models/weapons/upgrades/a_thompson_standard.mdl", pos = Vector(), angle = Angle(), size = Vector(0.5, 0.5, 0.5), merge = true, active = true},
 		["kk_ins2_mag_thom_20"] = {model = "models/weapons/upgrades/a_thompson_mag_20.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
@@ -33,6 +33,9 @@ if CLIENT then
 		["kk_ins2_suppressor_sec"] = {model = "models/weapons/upgrades/a_suppressor_sec.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 
 		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/a_thompson_foregrip.mdl", pos = Vector(), angle = Angle(), size = Vector(0.5, 0.5, 0.5), merge = true},
+		
+		["ani_body"] = {model = "models/weapons/v_thompson.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = false, active = true, nodraw = true},
+		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_thompson.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body"},
 	}
 	
 	SWEP.AttachmentModelsWM = {

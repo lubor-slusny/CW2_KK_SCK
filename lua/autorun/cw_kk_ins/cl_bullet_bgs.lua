@@ -59,6 +59,13 @@ if CLIENT then
 	
 	// main think
 	CustomizableWeaponry_KK.ins2.bulletBgs.think = function(wep)
+		if wep.AttachmentModelsVM and wep.AttachmentModelsVM.ani_body then
+			local ent = wep.AttachmentModelsVM.ani_body.ent
+			
+			ent:SetBodygroup(wep._beltBGID or 0, wep.CW_VM:GetBodygroup(wep._beltBGID or 0))
+			ent:SetBodygroup(wep._shellsBGID or 0, wep.CW_VM:GetBodygroup(wep._shellsBGID or 0))
+		end
+		
 		local cycle = wep.CW_VM:GetCycle()
 		
 		// kek I dont have to make new table for this

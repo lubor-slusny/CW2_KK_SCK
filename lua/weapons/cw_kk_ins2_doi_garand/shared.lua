@@ -51,7 +51,7 @@ if CLIENT then
 		-- ["raul"] = {model = "models/weapons/upgrades/a_modkit_m1a1.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, rel = "modbody"},
 		-- ["kk_ins2_eotech"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_barska_xl.mdl", pos = Vector(0, 0, 7.95), angle = Angle(90, 90, 0), size = Vector(1, 1, 1), attachment = "optic"},
 		
-		["ani_body"] = {model = "models/weapons/v_garand.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = false, active = true, nodraw = true},
+		["ani_body"] = {model = "models/weapons/v_garand.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
 		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_garand.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body"},
 	}
 	

@@ -1,4 +1,9 @@
 
+local LocalPlayer = LocalPlayer
+local IsValid = IsValid
+local FrameTime = FrameTime
+local CurTime = CurTime
+
 //-----------------------------------------------------------------------------
 // getMuzzlePosition edited to be usable in third person
 //-----------------------------------------------------------------------------
@@ -114,7 +119,13 @@ function SWEP:_drawViewModel()
 	self.CW_VM:FrameAdvance(FrameTime())
 	self.CW_VM:SetupBones()
 	
-	if not self._CWVMOverride then
+	local overrideVM = false
+	for _,e in pairs(self.AttachmentModelsVM) do
+		overrideVM = overrideVM or (e.active and e.hideVM)
+	end
+	
+	-- if not self._CWVMOverride then
+	if not overrideVM then
 		self.CW_VM:DrawModel()
 	end
 	
@@ -248,7 +259,7 @@ function SWEP:setupAttachmentModels()
 			end
 			
 			v.ent:SetupBones()
-		
+			
 			-- if v.merge then
 				-- v.ent:SetParent(self.CW_VM)
 				-- v.ent:AddEffects(EF_BONEMERGE)
@@ -279,21 +290,22 @@ function SWEP:setupAttachmentModels()
 				-- v.ent:SetRenderBounds(Vector(-2,-1,-0), Vector(2,1,2))
 			-- end
 		end
-	end
-	
-	for k, v in pairs(self.AttachmentModelsVM) do
-		if v.merge then
-			if v.rel and self.AttachmentModelsVM[rel] then
-				v.ent:SetParent(self.AttachmentModelsVM[rel].ent)
-			else
-				v.ent:SetParent(self.CW_VM)
-			end
 			
-			v.ent:AddEffects(EF_BONEMERGE)
-			v.ent:AddEffects(EF_BONEMERGE_FASTCULL)
+		for k, v in pairs(self.AttachmentModelsVM) do
+			if v.merge then
+				if v.rel and self.AttachmentModelsVM[v.rel] then
+					v.ent:SetParent(self.AttachmentModelsVM[v.rel].ent)
+				else
+					v.ent:SetParent(self.CW_VM)
+				end
+				
+				v.ent:AddEffects(EF_BONEMERGE)
+				v.ent:AddEffects(EF_BONEMERGE_FASTCULL)
+				v.ent:SetNoDraw(true)
+			end
 		end
 	end
-	
+
 	self:setupAttachmentWModels()
 end
 
@@ -338,24 +350,14 @@ local cvarFixScopes = CreateClientConVar("cw_kk_ins2_scopelightingfix", 1, true,
 local active, pos, ang, m, vma, model, doRecompute, parent
 
 function SWEP:drawAttachments()
-	self._CWVMOverride = false
-	
 	if not self.AttachmentModelsVM then
 		return false
 	end
 	
 	for k, v in pairs(self.AttachmentModelsVM) do
-		-- if type(v.active) == "function" then
-			-- active = v.active(self)
-		-- else
-			active = v.active
-		-- end
-		
-		self._CWVMOverride = self._CWVMOverride or (v.active and v.hideVM)
-		
 		doRecompute = cvarFixScopes:GetInt() == 1 and scopes[k]
 		
-		if v.ent and active then
+		if v.ent and v.active then
 			if v.rel and self.AttachmentModelsVM[v.rel] then
 				parent = self.AttachmentModelsVM[v.rel].ent
 			else
@@ -363,7 +365,7 @@ function SWEP:drawAttachments()
 			end
 			
 			if v.merge then
-				v.ent:SetParent(parent)
+				-- v.ent:SetParent(parent)
 				-- v.ent:AddEffects(EF_BONEMERGE_FASTCULL)
 				pos = parent:GetPos()
 				ang = parent:GetAngles()
@@ -394,17 +396,11 @@ function SWEP:drawAttachments()
 			end
 			
 			if !v.nodraw then
-			
-				-- model:DrawModel()
-				
 				recomputeLighting(doRecompute and 1 or false, pos, ang)
 				
 				model:DrawModel()
 				
 				recomputeLighting(true or whatever, pos, ang)
-				
-				-- model:DrawModel()
-				
 			end
 		end
 	end

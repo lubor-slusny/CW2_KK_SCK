@@ -16,6 +16,7 @@ if CLIENT then
 	
 	SWEP.Shell = "KK_INS2_762x54"
 	SWEP.ShellDelay = 0.12
+	SWEP.ShellViewAngleAlign = {Forward = 0, Right = 0, Up = -20}
 	
 	SWEP.AttachmentModelsVM = {
 		-- ["slingpin"] = {model = "models/weapons/v_cw_kk_doi_fg42_kk.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
