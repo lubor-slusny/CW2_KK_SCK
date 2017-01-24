@@ -32,8 +32,8 @@ if CLIENT then
 	}
 	
 	SWEP.AttachmentModelsVM = {
-		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_iron_garand_l.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
-		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_iron_garand_s.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		-- ["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_iron_garand_l.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
+		["bg_foldsight"] = {model = "models/weapons/upgrades/a_iron_garand_s.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["sleeve"] = {model = "models/weapons/upgrades/a_clothwrap_garand.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
 		

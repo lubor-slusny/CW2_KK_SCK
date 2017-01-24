@@ -22,7 +22,11 @@ if CLIENT then
 	SWEP.ShellViewAngleAlign = {Forward = 0, Right = 0, Up = 180}
 	SWEP.ShellWorldAngleAlign = {Forward = 0, Right = 0, Up = 180}
 	
-	SWEP.AttachmentModelsVM = {}
+	SWEP.AttachmentModelsVM = {
+		["ani_body"] = {model = "models/weapons/kk_doi/v_mp40-ani.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
+		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_mp40.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body"},
+	}
+	
 	SWEP.AttachmentModelsWM = {}
 	
 	SWEP.IronsightPos = Vector(-2.5062, -2, 0.5482)
@@ -83,7 +87,7 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/v_cw_kk_doi_mp40.mdl"
+SWEP.ViewModel		= "models/weapons/kk_doi/v_mp40.mdl"
 SWEP.WorldModel		= "models/weapons/w_cw_kk_doi_mp40.mdl"
 
 SWEP.WMPos = Vector(5.176, 0.889, -1.417)
