@@ -23,7 +23,7 @@ if CLIENT then
 
 	SWEP.ShellViewAngleAlign = {Forward = 0, Right = 0, Up = -40}
 	
-	SWEP.Shell2ViewAngleAlign = {Forward = 0, Right = -90, Up = 0}
+	SWEP.Shell2ViewAngleAlign = {Forward = 90, Right = 0, Up = 0}
 	SWEP.Shell2WorldAngleAlign = {Forward = 0, Right = -90, Up = 0}
 	
 	SWEP.AttachmentModelsVM = {
@@ -35,7 +35,7 @@ if CLIENT then
 		["kk_ins2_suppressor_sec"] = {model = "models/weapons/upgrades/a_suppressor_m16.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_bipod"] = {model = "models/weapons/upgrades/a_bipod_m16a1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_gl_m203"] = {model = "models/weapons/upgrades/a_m16a1_m203.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_gl_m203"] = {model = "models/weapons/upgrades/a_m16a1_m203.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, /*shellEject = 1*/},
 		
 		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_m16a1_sling.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		

@@ -31,7 +31,7 @@ SWEP.Sounds = {
 	base_fire_end = {
 		{time = 7/30, sound = "CW_KK_INS2_M40A1_BOLTRELEASE"},
 		{time = 13/30, sound = "CW_KK_INS2_M40A1_BOLTBACK"},
-		{time = 15/30, sound = "", callback = shell},
+		{time = 21/30, sound = "", callback = shell},
 		{time = 24/30, sound = "CW_KK_INS2_M40A1_BOLTFORWARD"},
 		// pumpedrdy @ 26 ""},
 		{time = 28/30, sound = "CW_KK_INS2_M40A1_BOLTLATCH"},
@@ -65,7 +65,7 @@ SWEP.Sounds = {
 	iron_fire_end = {
 		{time = 11/28.5, sound = "CW_KK_INS2_M40A1_BOLTRELEASE"},
 		{time = 15/28.5, sound = "CW_KK_INS2_M40A1_BOLTBACK"},
-		{time = 17/28.5, sound = "", callback = shell},
+		{time = 19/28.5, sound = "", callback = shell},
 		{time = 23/28.5, sound = "CW_KK_INS2_M40A1_BOLTFORWARD"},
 		// pumpedrdy @ 27 ""},
 		{time = 27/28.5, sound = "CW_KK_INS2_M40A1_BOLTLATCH"},
@@ -87,8 +87,8 @@ SWEP.Sounds = {
 
 	deployed_fire_end = {
 		{time = 7/30, sound = "CW_KK_INS2_M40A1_BOLTRELEASE"},
-		{time = 12/30, sound = "", callback = shell},
 		{time = 13/30, sound = "CW_KK_INS2_M40A1_BOLTBACK"},
+		{time = 20/30, sound = "", callback = shell},
 		{time = 24/30, sound = "CW_KK_INS2_M40A1_BOLTFORWARD"},
 		// pumpedrdy @ 26 ""},
 		{time = 28/30, sound = "CW_KK_INS2_M40A1_BOLTLATCH"},
@@ -117,7 +117,7 @@ SWEP.Sounds = {
 	deployed_iron_fire_end = {
 		{time = 7/34, sound = "CW_KK_INS2_M40A1_BOLTRELEASE"},
 		{time = 13/34, sound = "CW_KK_INS2_M40A1_BOLTBACK"},
-		{time = 15/34, sound = "", callback = shell},
+		{time = 20/34, sound = "", callback = shell},
 		{time = 24/34, sound = "CW_KK_INS2_M40A1_BOLTFORWARD"},
 		// pumpedrdy @ 26 ""},
 		{time = 28/34, sound = "CW_KK_INS2_M40A1_BOLTLATCH"},

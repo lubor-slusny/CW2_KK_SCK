@@ -67,7 +67,7 @@ SWEP.Sounds = {
 	},
 
 	base_reload_insert = {
-		{time = 2/40, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.shellsToClip},
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.shellsToClipP1},
 		{time = 13/40, sound = "CW_KK_INS2_DOI_WEBLEY_INSERTSINGLE"},
 		// { event 46 0 ""},
 		{time = 26/40, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},

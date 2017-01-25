@@ -1,4 +1,16 @@
 
+local function shell(wep)
+	if SERVER then return end
+	
+	wep:shellEvent()
+end
+
+local function clip(wep) 
+	if SERVER then return end
+	
+	wep:shellEvent2() 
+end
+
 SWEP.Sounds = {
 	base_ready = {
 		{time = 0/30, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
@@ -19,15 +31,17 @@ SWEP.Sounds = {
 		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
 	},
 
-	-- base_fire_1 = {
-		-- // { event AE_MUZZLEFLASH 0 ""},
-		-- // { event AE_CL_CREATE_PARTICLE_BRASS 1 ""},
-	-- },
+	base_fire_1 = {
+		// { event AE_MUZZLEFLASH 0 ""},
+		// { event AE_CL_CREATE_PARTICLE_BRASS 1 ""},
+		{time = 0.09, sound = "", callback = shell},
+	},
 
-	-- base_fire_2 = {
-		-- // { event AE_MUZZLEFLASH 0 ""},
-		-- // { event AE_CL_CREATE_PARTICLE_BRASS 1 ""},
-	-- },
+	base_fire_2 = {
+		// { event AE_MUZZLEFLASH 0 ""},
+		// { event AE_CL_CREATE_PARTICLE_BRASS 1 ""},
+		{time = 0.09, sound = "", callback = shell},
+	},
 
 	base_fire_last = {
 		// { event AE_MUZZLEFLASH 0 ""},
@@ -35,6 +49,8 @@ SWEP.Sounds = {
 		// { event AE_EMIT_SHELL_CLIP 1 ""},
 		// { event AE_VM_GLOBALSOUND 0/30, sound = "garaj_Ping"},
 		{time = 0, sound = "CW_KK_INS2_DOI_GARAND_PING"},
+		{time = 0.06, sound = "", callback = shell},
+		{time = 0.45, sound = "", callback = clip},
 	},
 
 	base_dryfire = {
@@ -50,10 +66,12 @@ SWEP.Sounds = {
 	},
 
 	base_reloadfull = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 18/30, sound = "CW_KK_INS2_DOI_GARAND_MAGRELEASE"},
 		{time = 32/30, sound = "CW_KK_INS2_DOI_GARAND_BOLTBACK"},
 		{time = 35/30, sound = "CW_KK_INS2_DOI_GARAND_MAGOUT"},
 		{time = 50/30, sound = "CW_KK_INS2_DOI_GARAND_FETCHMAG"},
+		{time = 55/30, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
 		// { event 46 113 ""},
 		// { event AE_WPN_RELOAD_OFFSCREEN 80 ""},
 		{time = 100/30, sound = "CW_KK_INS2_DOI_GARAND_MAGIN"},
@@ -63,29 +81,34 @@ SWEP.Sounds = {
 	},
 
 	base_reloadempty = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 1/30, sound = "CW_KK_INS2_DOI_GARAND_FETCHMAG"},
 		// { event 46 60 ""},
 		// { event AE_WPN_RELOAD_OFFSCREEN 28 ""},
+		{time = 28/30, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
 		{time = 45/30, sound = "CW_KK_INS2_DOI_GARAND_MAGIN"},
 		{time = 57/30, sound = "CW_KK_INS2_DOI_GARAND_MAGHIT"},
 		{time = 64/30, sound = "CW_KK_INS2_DOI_GARAND_BOLTRELEASE"},
 		{time = 79/30, sound = "CW_KK_INS2_DOI_GARAND_RATTLE"},
 	},
 
-	-- iron_fire_1 = {
-		-- // { event AE_MUZZLEFLASH 0 ""},
-		-- // { event AE_CL_CREATE_PARTICLE_BRASS 1 ""},
-	-- },
+	iron_fire_1 = {
+		// { event AE_MUZZLEFLASH 0 ""},
+		// { event AE_CL_CREATE_PARTICLE_BRASS 1 ""},
+		{time = 0.09, sound = "", callback = shell},
+	},
 
-	-- iron_fire_2 = {
-		-- // { event AE_MUZZLEFLASH 0 ""},
-		-- // { event AE_CL_CREATE_PARTICLE_BRASS 1 ""},
-	-- },
+	iron_fire_2 = {
+		// { event AE_MUZZLEFLASH 0 ""},
+		// { event AE_CL_CREATE_PARTICLE_BRASS 1 ""},
+		{time = 0.09, sound = "", callback = shell},
+	},
 
-	-- iron_fire_3 = {
-		-- // { event AE_MUZZLEFLASH 0 ""},
-		-- // { event AE_CL_CREATE_PARTICLE_BRASS 1 ""},
-	-- },
+	iron_fire_3 = {
+		// { event AE_MUZZLEFLASH 0 ""},
+		// { event AE_CL_CREATE_PARTICLE_BRASS 1 ""},
+		{time = 0.09, sound = "", callback = shell},
+	},
 
 	iron_fire_last = {
 		// { event AE_MUZZLEFLASH 0 ""},
@@ -93,6 +116,8 @@ SWEP.Sounds = {
 		// { event AE_EMIT_SHELL_CLIP 1 ""},
 		// { event AE_VM_GLOBALSOUND 0/30, sound = "garaj_Ping"},
 		{time = 0, sound = "CW_KK_INS2_DOI_GARAND_PING"},
+		{time = 0.06, sound = "", callback = shell},
+		{time = 0.45, sound = "", callback = clip},
 	},
 
 	iron_dryfire = {
@@ -121,6 +146,7 @@ SWEP.Sounds = {
 	},
 
 	glsetup_in = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 18/33.5, sound = "CW_KK_INS2_DOI_GARAND_MAGRELEASE"},
 		{time = 32/33.5, sound = "CW_KK_INS2_DOI_GARAND_BOLTBACK"},
 		{time = 35/33.5, sound = "CW_KK_INS2_DOI_GARAND_MAGOUT"},
@@ -135,6 +161,7 @@ SWEP.Sounds = {
 	},
 
 	glsetup_in_empty = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 18/33.5, sound = "CW_KK_INS2_DOI_GARAND_MAGRELEASE"},
 		{time = 32/33.5, sound = "CW_KK_INS2_DOI_GARAND_BOLTBACK"},
 		{time = 35/33.5, sound = "CW_KK_INS2_DOI_GARAND_MAGOUT"},
@@ -149,6 +176,7 @@ SWEP.Sounds = {
 	},
 
 	glsetup_out = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 12/33.5, sound = "CW_KK_INS2_DOI_GARAND_RATTLE"},
 		{time = 43/33.5, sound = "CW_KK_INS2_DOI_GARAND_GL_REMOVE"},
 		{time = 96/33.5, sound = "CW_KK_INS2_DOI_GARAND_MAGRELEASE"},
@@ -162,6 +190,7 @@ SWEP.Sounds = {
 	},
 
 	glsetup_out_empty = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 18/30.5, sound = "CW_KK_INS2_DOI_GARAND_MAGRELEASE"},
 		{time = 32/30.5, sound = "CW_KK_INS2_DOI_GARAND_BOLTBACK"},
 		{time = 35/30.5, sound = "CW_KK_INS2_DOI_GARAND_MAGOUT"},
@@ -226,122 +255,5 @@ SWEP.Sounds = {
 	glsetup_crawl_empty = {
 		{time = 0/30, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
 		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
-	},
-}
-
-if true then return end
-
-local function shell(wep)
-	if SERVER then return end
-	
-	wep:shellEvent()
-end
-
-local function clip(wep) 
-	if SERVER then return end
-	
-	wep:shellEvent2() 
-end
-
-SWEP.Sounds = {
-	base_ready = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-		{time = 24/30, sound = "CW_KK_INS2_DOI_GARAND_BOLTRELEASE"},
-		{time = 41/30, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
-	},
-
-	base_draw = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-	},
-
-	base_holster = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
-	},
-
-	base_crawl = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
-		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
-	},
-
-	base_fire_1 = {
-		{time = 0.09, sound = "", callback = shell},
-	},
-
-	base_fire_2 = {
-		{time = 0.09, sound = "", callback = shell},
-	},
-
-	base_fire_last = {
-		{time = 0, sound = "CW_KK_INS2_DOI_GARAND_PING"},
-		{time = 0.06, sound = "", callback = shell},
-		{time = 0.45, sound = "", callback = clip},
-	},
-
-	base_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_DOI_GARAND_EMPTY"},
-	},
-
-	base_melee = {
-		{time = 1/30, sound = "CW_KK_INS2_DOI_MELEE"},
-	},
-
-	base_reloadfull = {
-		{time = 18/30, sound = "CW_KK_INS2_DOI_GARAND_MAGRELEASE"},
-		{time = 32/30, sound = "CW_KK_INS2_DOI_GARAND_BOLTBACK"},
-		{time = 35/30, sound = "CW_KK_INS2_DOI_GARAND_MAGOUT"},
-		{time = 50/30, sound = "CW_KK_INS2_DOI_GARAND_FETCHMAG"},
-		{time = 80/30, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
-		{time = 100/30, sound = "CW_KK_INS2_DOI_GARAND_MAGIN"},
-		{time = 111/30, sound = "CW_KK_INS2_DOI_GARAND_MAGHIT"},
-		{time = 113/30, sound = "CW_KK_INS2_DOI_GARAND_RATTLE"},
-		{time = 118/30, sound = "CW_KK_INS2_DOI_GARAND_BOLTRELEASE"},
-	},
-
-	base_reloadempty = {
-		{time = 1/30, sound = "CW_KK_INS2_DOI_GARAND_FETCHMAG"},
-		{time = 28/30, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
-		{time = 45/30, sound = "CW_KK_INS2_DOI_GARAND_MAGIN"},
-		{time = 57/30, sound = "CW_KK_INS2_DOI_GARAND_MAGHIT"},
-		{time = 64/30, sound = "CW_KK_INS2_DOI_GARAND_BOLTRELEASE"},
-		{time = 79/30, sound = "CW_KK_INS2_DOI_GARAND_RATTLE"},
-	},
-
-	iron_fire_1 = {
-		{time = 0.09, sound = "", callback = shell},
-	},
-
-	iron_fire_2 = {
-		{time = 0.09, sound = "", callback = shell},
-	},
-
-	iron_fire_3 = {
-		{time = 0.09, sound = "", callback = shell},
-	},
-
-	iron_fire_last = {
-		{time = 0, sound = "CW_KK_INS2_DOI_GARAND_PING"},
-		{time = 0.06, sound = "", callback = shell},
-		{time = 0.45, sound = "", callback = clip},
-	},
-
-	iron_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_DOI_GARAND_EMPTY"},
-	},
-
-	base_draw_empty = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-	},
-
-	base_holster_empty = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
-	},
-
-	base_crawl_empty = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
-		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
-	},
-
-	base_melee_empty = {
-		{time = 1/30, sound = "CW_KK_INS2_DOI_MELEE"},
 	},
 }

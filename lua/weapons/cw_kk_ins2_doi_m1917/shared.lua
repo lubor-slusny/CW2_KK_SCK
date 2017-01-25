@@ -140,7 +140,7 @@ SWEP.MuzzleVelocity = 190
 SWEP.ReloadTimes = {
 	base_reload_start = {1.5, 2.2, KK_INS2_REVOLVER_SLOW_UNLOAD},
 	base_reload_start_empty = {2.2, 2.9, KK_INS2_REVOLVER_SLOW_UNLOAD},
-	base_reload_insert = {0, 0.95},
+	base_reload_insert = {0.4, 0.95},
 	base_reload_end = {2, 2},
 	
 	base_reload_clip = {1.7, 5.4, KK_INS2_REVOLVER_SPEED_UNLOAD, 4},

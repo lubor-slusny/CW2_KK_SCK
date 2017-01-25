@@ -1,4 +1,18 @@
 
+local function spawnShells(self)
+	if SERVER then return end
+	
+	local vm = self.CW_VM
+	local b = vm:GetBodygroup(self._beltBGID)
+	local s = vm:GetBodygroup(self._shellsBGID)
+	
+	for _ = 1, (s - b) do 
+		self:shellEventRev()
+	end
+end
+
+		-- {time = 0/30, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.dostuff},
+
 SWEP.Sounds = {
 	base_ready = {
 		{time = 0/30, sound = "CW_KK_INS2_UNIVERSAL_PISTOL_DRAW"},
@@ -35,38 +49,51 @@ SWEP.Sounds = {
 	},
 
 	base_reload_start = {
+		{time = 0/31, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 1/31, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
 		{time = 16/31, sound = "CW_KK_INS2_REVOLVER_OPENCHAMBER"},
 		{time = 39/31, sound = "CW_KK_INS2_REVOLVER_DUMPROUNDS"},
+		{time = 45/31, sound = "", callback = spawnShells},
 		{time = 51/31, sound = "CW_KK_INS2_REVOLVER_DUMPROUNDS"},
+		{time = 55/31, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.shellsToClip},
 		// { event AE_EMIT_SHELL_38 49 ""},
 	},
 
 	base_reload_start2 = {
+		{time = 0/31, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 1/31, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
 		{time = 16/31, sound = "CW_KK_INS2_REVOLVER_OPENCHAMBER"},
 		{time = 39/31, sound = "CW_KK_INS2_REVOLVER_DUMPROUNDS"},
+		{time = 45/31, sound = "", callback = spawnShells},
 		{time = 51/31, sound = "CW_KK_INS2_REVOLVER_DUMPROUNDS"},
+		{time = 55/31, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.shellsToClip},
 		// { event AE_EMIT_SHELL_38 49 ""},
 	},
 
 	base_reload_start3 = {
+		{time = 0/31, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 1/31, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
 		{time = 16/31, sound = "CW_KK_INS2_REVOLVER_OPENCHAMBER"},
 		{time = 39/31, sound = "CW_KK_INS2_REVOLVER_DUMPROUNDS"},
+		{time = 45/31, sound = "", callback = spawnShells},
 		{time = 51/31, sound = "CW_KK_INS2_REVOLVER_DUMPROUNDS"},
+		{time = 55/31, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.shellsToClip},
 		// { event AE_EMIT_SHELL_38 49 ""},
 	},
 
 	base_reload_start4 = {
+		{time = 0/31, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 1/31, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
 		{time = 16/31, sound = "CW_KK_INS2_REVOLVER_OPENCHAMBER"},
 		{time = 39/31, sound = "CW_KK_INS2_REVOLVER_DUMPROUNDS"},
+		{time = 45/31, sound = "", callback = spawnShells},
 		{time = 51/31, sound = "CW_KK_INS2_REVOLVER_DUMPROUNDS"},
+		{time = 55/31, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.shellsToClip},
 		// { event AE_EMIT_SHELL_38 49 ""},
 	},
 
 	base_reload_insert = {
+		{time = 0/31, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bothToClipP1},
 		{time = 8/32, sound = "CW_KK_INS2_REVOLVER_INSERTSINGLE"},
 		// { event 46 0 ""},
 		{time = 28/32, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
@@ -78,45 +105,61 @@ SWEP.Sounds = {
 	},
 
 	base_reload_speed = {
+		{time = 0/31, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 2/31, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
 		{time = 16/31, sound = "CW_KK_INS2_REVOLVER_OPENCHAMBER"},
 		{time = 39/31, sound = "CW_KK_INS2_REVOLVER_DUMPROUNDS"},
+		{time = 45/31, sound = "", callback = spawnShells},
 		{time = 51/31, sound = "CW_KK_INS2_REVOLVER_DUMPROUNDS"},
+		{time = 55/31, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.shellsToClip},
 		// { event AE_EMIT_SHELL_49 57 ""},
 		{time = 88/31, sound = "CW_KK_INS2_REVOLVER_SPEEDLOADERINSERT"},
+		{time = 90/31, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bothToReserve},
 		// { event 46 105 ""},
 		{time = 118/31, sound = "CW_KK_INS2_REVOLVER_CLOSECHAMBER"},
 	},
 
 	base_reload_speed2 = {
+		{time = 0/31, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 2/31, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
 		{time = 16/31, sound = "CW_KK_INS2_REVOLVER_OPENCHAMBER"},
 		{time = 39/31, sound = "CW_KK_INS2_REVOLVER_DUMPROUNDS"},
+		{time = 45/31, sound = "", callback = spawnShells},
 		{time = 51/31, sound = "CW_KK_INS2_REVOLVER_DUMPROUNDS"},
+		{time = 55/31, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.shellsToClip},
 		// { event AE_EMIT_SHELL_49 57 ""},
 		{time = 88/31, sound = "CW_KK_INS2_REVOLVER_SPEEDLOADERINSERT"},
+		{time = 90/31, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bothToReserve},
 		// { event 46 105 ""},
 		{time = 118/31, sound = "CW_KK_INS2_REVOLVER_CLOSECHAMBER"},
 	},
 
 	base_reload_speed3 = {
+		{time = 0/31, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 2/31, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
 		{time = 16/31, sound = "CW_KK_INS2_REVOLVER_OPENCHAMBER"},
 		{time = 39/31, sound = "CW_KK_INS2_REVOLVER_DUMPROUNDS"},
+		{time = 45/31, sound = "", callback = spawnShells},
 		{time = 51/31, sound = "CW_KK_INS2_REVOLVER_DUMPROUNDS"},
+		{time = 55/31, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.shellsToClip},
 		// { event AE_EMIT_SHELL_49 57 ""},
 		{time = 88/31, sound = "CW_KK_INS2_REVOLVER_SPEEDLOADERINSERT"},
+		{time = 90/31, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bothToReserve},
 		// { event 46 105 ""},
 		{time = 118/31, sound = "CW_KK_INS2_REVOLVER_CLOSECHAMBER"},
 	},
 
 	base_reload_speed4 = {
+		{time = 0/31, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 2/31, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
 		{time = 16/31, sound = "CW_KK_INS2_REVOLVER_OPENCHAMBER"},
 		{time = 39/31, sound = "CW_KK_INS2_REVOLVER_DUMPROUNDS"},
+		{time = 45/31, sound = "", callback = spawnShells},
 		{time = 51/31, sound = "CW_KK_INS2_REVOLVER_DUMPROUNDS"},
+		{time = 55/31, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.shellsToClip},
 		// { event AE_EMIT_SHELL_49 57 ""},
 		{time = 88/31, sound = "CW_KK_INS2_REVOLVER_SPEEDLOADERINSERT"},
+		{time = 90/31, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bothToReserve},
 		// { event 46 105 ""},
 		{time = 118/31, sound = "CW_KK_INS2_REVOLVER_CLOSECHAMBER"},
 	},

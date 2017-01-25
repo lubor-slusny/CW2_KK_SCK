@@ -9,6 +9,11 @@ CustomizableWeaponry:addReloadSound("CW_KK_INS2_DOI_M1917_DUMPROUNDS", {
 	"weapons/m1917/handling/m1917_dump_rounds_03.wav"
 })
 CustomizableWeaponry:addReloadSound("CW_KK_INS2_DOI_M1917_EMPTY", "weapons/m1917/handling/m1917_empty.wav")
+CustomizableWeaponry:addReloadSound("CW_KK_INS2_DOI_M1917_MOONCLIP", {
+	"weapons/m1917/handling/m1917_moonclip_insert_01.wav",
+	"weapons/m1917/handling/m1917_moonclip_insert_02.wav",
+	"weapons/m1917/handling/m1917_moonclip_insert_03.wav"
+})
 CustomizableWeaponry:addReloadSound("CW_KK_INS2_DOI_M1917_OPENCHAMBER", "weapons/m1917/handling/m1917_open_chamber.wav")
 CustomizableWeaponry:addReloadSound("CW_KK_INS2_DOI_M1917_INSERTSINGLE", {
 	"weapons/m1917/handling/m1917_round_insert_single_01.wav",
@@ -18,4 +23,3 @@ CustomizableWeaponry:addReloadSound("CW_KK_INS2_DOI_M1917_INSERTSINGLE", {
 	"weapons/m1917/handling/m1917_round_insert_single_05.wav",
 	"weapons/m1917/handling/m1917_round_insert_single_06.wav"
 })
-CustomizableWeaponry:addReloadSound("CW_KK_INS2_DOI_M1917_SPEEDLOADERINSERT", "weapons/m1917/handling/m1917_speed_loader_insert_01.wav")

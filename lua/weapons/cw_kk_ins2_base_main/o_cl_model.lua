@@ -201,31 +201,11 @@ end
 
 //-----------------------------------------------------------------------------
 // setupAttachmentModels edited to support 
-// - custom attach points
+// - custom attach points, bone-merging
 // - globally pre-set sub-material override
 // - individually set material override
 // - WElement init
 //-----------------------------------------------------------------------------
-
--- local scopes = {
-	-- ["kk_ins2_magnifier"] = true,
-	-- ["kk_ins2_elcan"] = true,
-	-- ["kk_ins2_po4"] = true,
-	-- ["kk_ins2_scope_m40"] = true,
-	-- ["kk_ins2_scope_mosin"] = true,
-	
-	-- ["kk_ins2_cstm_susat"] = true,
-	-- ["kk_ins2_cstm_acog"] = true,
-	-- ["kk_ins2_cstm_pgo7"] = true,
-	
-	-- ["kk_ins2_scope_enfield"] = true,
-	-- ["kk_ins2_scope_k98"] = true,
-	-- ["kk_ins2_scope_m73"] = true,
-	-- ["kk_ins2_scope_zf4"] = true,
-	-- ["kk_ins2_scope_zf41"] = true,
-	-- ["kk_ins2_scope_u8x"] = true,
-	-- ["kk_ins2_scope_m82"] = true,
--- }
 
 function SWEP:setupAttachmentModels()
 	if self.AttachmentModelsVM then
@@ -325,7 +305,6 @@ function SWEP:_setupAttachmentModelMerge(v)
 
 		v.ent:AddEffects(EF_BONEMERGE)
 		v.ent:AddEffects(EF_BONEMERGE_FASTCULL)
-		v.ent:SetNoDraw(true)
 	end
 end
 
@@ -368,26 +347,6 @@ end
 local cvarFixScopes = CreateClientConVar("cw_kk_ins2_scopelightingfix", 1, true, false)
 
 local active, pos, ang, m, vma, model, doRecompute, parent
-
--- function SWEP:drawAttachments()
-	-- if not self.AttachmentModelsVM then
-		-- return false
-	-- end
-	
-	-- for k, v in pairs(self.AttachmentModelsVM) do
-		-- doRecompute = cvarFixScopes:GetInt() == 1 and scopes[k]
-		
-		-- if v.ent and v.active then
-			-- self:_drawAttachmentModels(v)
-		-- end
-	-- end
-	
-	-- for k, v in pairs(self.elementRender) do
-		-- v(self)
-	-- end
-	
-	-- return true
--- end
 
 function SWEP:_drawAttachmentModel(v)
 	if not v.ent then 
@@ -432,7 +391,7 @@ function SWEP:_drawAttachmentModel(v)
 	end
 	
 	if !v.nodraw then
-		doRecompute = cvarFixScopes:GetInt() == 1 and v.rLight
+		doRecompute = v.rLight and cvarFixScopes:GetInt() == 1
 		
 		recomputeLighting(doRecompute and 1 or false, pos, ang)
 		

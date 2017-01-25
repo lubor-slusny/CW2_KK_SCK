@@ -35,7 +35,11 @@ if CLIENT then
 		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/a_thompson_foregrip.mdl", pos = Vector(), angle = Angle(), size = Vector(0.5, 0.5, 0.5), merge = true},
 		
 		["ani_body"] = {model = "models/weapons/v_thompson.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, material = "models/weapons/attachments/cw_kk_ins2_shared/nodraw"},
-		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_thompson_m1928a1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body"},
+		["kk_ins2_ww2_sling"] = {models = {
+			{model = "models/weapons/upgrades/a_sling_thompson.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body"},
+			{model = "models/weapons/upgrades/a_sling_thompson_m1928a1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body"},
+			-- {model = "models/weapons/upgrades/a_sling_thompson_m1a1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body"},
+		}},
 	}
 	
 	SWEP.AttachmentModelsWM = {

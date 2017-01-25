@@ -57,6 +57,18 @@ if CLIENT then
 		wep:setBodygroup(wep._shellsBGID, mathClamp(wep:Clip1() + 1, 0, wep._shellsBGMax))
 	end
 	
+	CustomizableWeaponry_KK.ins2.bulletBgs.bothToReserve = function(wep)
+		local r = getAmmoReserve(wep)
+		wep:setBodygroup(wep._beltBGID, mathClamp(r, 0, wep._beltBGMax))
+		wep:setBodygroup(wep._shellsBGID, mathClamp(r, 0, wep._shellsBGMax))
+	end
+	
+	CustomizableWeaponry_KK.ins2.bulletBgs.bothToClipP1 = function(wep)
+		local r = wep:Clip1() + 1
+		wep:setBodygroup(wep._beltBGID, mathClamp(r, 0, wep._beltBGMax))
+		wep:setBodygroup(wep._shellsBGID, mathClamp(r, 0, wep._shellsBGMax))
+	end
+	
 	// main think
 	CustomizableWeaponry_KK.ins2.bulletBgs.think = function(wep)
 		if wep.AttachmentModelsVM and wep.AttachmentModelsVM.ani_body then
@@ -70,6 +82,10 @@ if CLIENT then
 		
 		// kek I dont have to make new table for this
 		if wep.reloadProgressAnims and wep.reloadProgressAnims[wep.Sequence] and cycle < 1 then
+			return
+		end
+		
+		if wep.Sequence == wep.Animations.base_insert then
 			return
 		end
 		

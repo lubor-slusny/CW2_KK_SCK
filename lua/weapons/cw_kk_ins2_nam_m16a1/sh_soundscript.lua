@@ -254,6 +254,7 @@ SWEP.Sounds = {
 	glsetup_reload = {
 		{time = 0/30, sound = "uni_GLBeginReload"},
 		{time = 24/30, sound = "CW_KK_INS2_M203_OPENBARREL"},
+		{time = 29/30, sound = "", callback = m203},
 		{time = 68/30, sound = "CW_KK_INS2_M203_INSERTGRENADE"},
 		// { event AE_EMIT_SHELL_M203 34 ""},
 		-- {time = 43/30, sound = "203_GrenadeDrop"},

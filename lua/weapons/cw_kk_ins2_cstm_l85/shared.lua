@@ -17,6 +17,9 @@ if CLIENT then
 	SWEP.Shell = "KK_INS2_556x45"
 	SWEP.NoShells = true
 	
+	SWEP.Shell2ViewAngleAlign = {Forward = 90, Right = 0, Up = 0}
+	SWEP.Shell2WorldAngleAlign = {Forward = 0, Right = -90, Up = 0}
+	
 	SWEP.BackupSights = {
 		["kk_ins2_elcan"] = {
 			Vector(-2.8482, -2, -0.5355),
@@ -30,7 +33,7 @@ if CLIENT then
 		["kk_ins2_suppressor_sec"] = {model = "models/weapons/upgrades/a_suppressor_sec.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/a_foregrip_sec.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), attachment = "Foregrip"},
-		["kk_ins2_gl_m320"] = {model = "models/weapons/upgrades/a_gl_m320.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_gl_m320"] = {model = "models/weapons/upgrades/a_gl_m320.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, /*shellEject = 3*/},
 		
 		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_rail.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_rail.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},

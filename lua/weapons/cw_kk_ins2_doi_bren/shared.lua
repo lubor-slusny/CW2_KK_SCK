@@ -21,8 +21,6 @@ if CLIENT then
 	SWEP.ShellWorldAngleAlign = {Forward = 0, Right = 0, Up = 180}
 	
 	SWEP.AttachmentModelsVM = {
-		-- ["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_bren.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
-		
 		["ani_body"] = {model = "models/weapons/v_bren.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
 		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_bren.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body"},
 	}

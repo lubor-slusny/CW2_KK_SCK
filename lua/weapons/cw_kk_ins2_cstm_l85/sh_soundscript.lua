@@ -5,6 +5,12 @@ local function shell(wep)
 	wep:shellEvent() 
 end
 
+local function m203(wep)
+	if SERVER then return end
+	
+	wep:shellEvent203()
+end
+
 SWEP.Sounds = {
 	base_ready = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
@@ -345,6 +351,7 @@ SWEP.Sounds = {
 	glsetup_reload = {
 		{time = 0/30, sound = "CW_KK_INS2_GL_BEGINRELOAD"},
 		{time = 21/30, sound = "CW_KK_INS2_M203_OPENBARREL"},
+		{time = 25/30, sound = "", callback = m203},
 		{time = 56/30, sound = "CW_KK_INS2_M203_INSERTGRENADE"},
 		-- { event AE_EMIT_SHELL_M203 30 ""},
 		-- {time = 35/30, sound = "m203_GrenadeDrop"},

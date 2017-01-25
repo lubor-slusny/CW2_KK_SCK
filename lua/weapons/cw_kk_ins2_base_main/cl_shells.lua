@@ -230,12 +230,30 @@ function SWEP:shellEvent203()
 			1
 		)
 	else
-		vm = self.AttachmentModelsVM.kk_ins2_gl_m203.ent
+		local glAtt = self._currentGrenadeLauncher and self._currentGrenadeLauncher.name
+		vm = glAtt and self.AttachmentModelsVM[glAtt] and self.AttachmentModelsVM[glAtt].ent
+		
+		if not vm then
+			return
+		end
 		
 		att = vm:GetAttachment(2)
 		
-		pos = att.Pos
-		ang = att.Ang
+		if att then
+			pos = att.Pos
+			ang = att.Ang
+		else
+			-- local e = self.AttachmentModelsVM[glAtt].shellEject
+			-- local m = e and vm:GetBoneMatrix(e)
+			
+			-- if m then
+				-- pos = m:GetTranslation()
+				-- ang = m:GetAngles()
+			-- else
+				ang = self.Owner:EyeAngles()
+				pos = self.Owner:EyePos() - (15 * ang:Up())
+			-- end
+		end
 		
 		align = self.Shell2ViewAngleAlign
 		ang:RotateAroundAxis(ang:Forward(), align.Forward)

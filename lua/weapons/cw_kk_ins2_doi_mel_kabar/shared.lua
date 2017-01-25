@@ -14,7 +14,7 @@ end
 SWEP.Animations = {
 	base_pickup = "draw",
 	base_draw = "draw",
-	base_fire = {"hitcenter1","hitcenter2"},
+	base_fire = {"slash_1","slash_2"},
 	base_idle = "idle",
 	base_holster = "holster",
 	base_sprint = "sprint",
@@ -34,7 +34,7 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/v_cw_kk_doi_kabar.mdl"
+SWEP.ViewModel		= "models/weapons/kk_doi/v_marinebayonet.mdl"
 SWEP.WorldModel		= "models/weapons/w_marinebayonet.mdl"
 
 SWEP.WMPos = Vector(3.812, 1.544, -2.83)

@@ -18,20 +18,6 @@ local function bigone(self)
 	self:shellEventRev2()
 end
 
-local function toclip(...)
-	if SERVER then return end
-	
-	CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip(...)
-	CustomizableWeaponry_KK.ins2.bulletBgs.shellsToClip(...)
-end
-
-local function toreserve(...)
-	if SERVER then return end
-	
-	CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve(...)
-	CustomizableWeaponry_KK.ins2.bulletBgs.shellsToReserve(...)
-end
-
 SWEP.Sounds = {
 	base_ready = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_PISTOL_DRAW"},
@@ -66,15 +52,16 @@ SWEP.Sounds = {
 	},
 
 	base_reload_start = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 1/33.5, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
 		{time = 24/33.5, sound = "CW_KK_INS2_REVOLVER_OPENCHAMBER"},
 		{time = 51/33.5, sound = "CW_KK_INS2_REVOLVER_DUMPROUNDS"},
 		{time = 54/33.5, sound = "", callback = shells},
-		{time = 58/33.5, sound = "", callback = toclip},
+		{time = 58/33.5, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.shellsToClip},
 	},
 
 	base_reload_insert = {
-		{time = 2/34.6, sound = "", callback = toclip},
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bothToClipP1},
 		{time = 6/34.6, sound = "CW_KK_INS2_REVOLVER_INSERTSINGLE"},
 		{time = 18/34.6, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
 	},
@@ -85,11 +72,13 @@ SWEP.Sounds = {
 	},
 
 	base_reload_speed = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 1/33.5, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
 		{time = 24/33.5, sound = "CW_KK_INS2_REVOLVER_OPENCHAMBER"},
 		{time = 51/33.5, sound = "CW_KK_INS2_REVOLVER_DUMPROUNDS"},
 		{time = 54/33.5, sound = "", callback = shells},
-		{time = 65/33.5, sound = "", callback = toreserve},
+		{time = 60/33.5, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.shellsToClip},
+		{time = 65/33.5, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bothToReserve},
 		{time = 81/33.5, sound = "CW_KK_INS2_REVOLVER_SPEEDLOADERINSERT"},
 		{time = 105/33.5, sound = "", callback = bigone},
 		{time = 113/33.5, sound = "CW_KK_INS2_REVOLVER_CLOSECHAMBER"},
