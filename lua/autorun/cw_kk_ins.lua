@@ -2,7 +2,7 @@ if not CustomizableWeaponry then return end
 
 AddCSLuaFile()
 
-local WS_PACK_REVISION = 8
+local WS_PACK_REVISION = 9
 
 CW_KK_ACTION = 11
 CW_KK_QNADE = 12
@@ -117,14 +117,16 @@ local subs
 local sub = string.sub
 local starts = string.StartWith
 
-function CustomizableWeaponry_KK.ins2:isContentMounted3()
+function CustomizableWeaponry_KK.ins2:isContentMounted4()
 	subs = subs or {
 		["cw_kk_ins2_cstm"] = function() return (baseContentOK and (CustomizableWeaponry_KK.ins2.ws == WS_PACK_REVISION)) end,
 		["cw_kk_ins2_ww2"] = function() return false end,
-		["cw_kk_ins2_doi"] = function() return (doigameContentOK) end,
+		["cw_kk_ins2_doi"] = function() return (doigameContentOK) and (baseContentOK and (CustomizableWeaponry_KK.ins2.ws == WS_PACK_REVISION)) end,
 		["cw_kk_ins2_ao5"] = function() return (baseContentOK and ao5ContentOK) end,
 		["cw_kk_ins2_arse"] = function() return (baseContentOK and arseContentOK and CustomizableWeaponry_KK.HOME) end,
 		["cw_kk_ins2_nam"] = function() return (baseContentOK and namContentOK) end,
+		
+		["doigameContentOK"] = function() return doigameContentOK end
 	}
 	
 	local class = sub(self.Folder, 9)
@@ -339,6 +341,19 @@ if CLIENT then
 					Color(255, 255, 255),
 					"Hi, you seem to be using outdated WS content. Make sure you download updated version from GitHub."
 				)
+				
+				return
+			end
+			
+			if doigameContentOK and (CustomizableWeaponry_KK.ins2.ws == nil or CustomizableWeaponry_KK.ins2.ws < WS_PACK_REVISION) then
+				chat.AddText(
+					Color(200, 157, 96),
+					"[KK INS2 SWEPS] ",
+					Color(255, 255, 255),
+					"Hi, Day Of Infamy sub-pack now requires EXT sub-pack in addition to standalone game. EXT pack installation is covered in guide on addon`s workshop page."
+				)
+				
+				return
 			end
 		end
 	end)

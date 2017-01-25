@@ -70,8 +70,8 @@ SWEP.WMAng = Vector(57.638, 177.912, 180)
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2us
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.ww2us
 
-SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted3(SWEP)
-SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted3(SWEP)
+SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted4(SWEP)
+SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted4(SWEP)
 
 SWEP.FireSound = "CW_KK_INS2_DOI_BINO_US_ATTACK"
 SWEP.ResponseSound = "CW_KK_INS2_DOI_BINO_US_SPAWN"

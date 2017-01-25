@@ -16,7 +16,7 @@ if CLIENT then
 		table.insert(CustomizableWeaponry_KK.ins2.hands, tab)
 	end
 	
-	if CustomizableWeaponry_KK.ins2.isContentMounted3({Folder = "weapons/cw_kk_ins2_doi_"}) then
+	if CustomizableWeaponry_KK.ins2.isContentMounted4({Folder = "weapons/doigameContentOK"}) then
 		add({"models/weapons/v_hands_brit.mdl", "[DOI] GB Sleeve"})
 		add({"models/weapons/v_hands_short_brit.mdl", "[DOI] GB Short"})
 		
@@ -34,7 +34,7 @@ if CLIENT then
 		add({"models/weapons/v_hands_ger_gloves_wehrmacht.mdl", "[DOI] DE Wehr Gloved"})
 	end
 	
-	if CustomizableWeaponry_KK.ins2.isContentMounted3({Folder = "weapons/cw_kk_ins2_nam_"}) then
+	if CustomizableWeaponry_KK.ins2.isContentMounted4({Folder = "weapons/cw_kk_ins2_nam_"}) then
 		add({"models/weapons/v_nam_hands_us.mdl", "[B2K] US"})
 		add({"models/weapons/v_hands_short_us_nam.mdl", "[B2K] US Short"})
 		add({"models/weapons/v_hands_short_us_black.mdl", "[B2K] US Black"})
