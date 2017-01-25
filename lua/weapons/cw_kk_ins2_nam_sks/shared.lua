@@ -26,7 +26,7 @@ if CLIENT then
 		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_band.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_anpeq15"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_anpeq_band.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 
-		["kk_ins2_scope_mosin"] = {model = "models/weapons/upgrades/a_optic_pu_sks.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_scope_mosin"] = {model = "models/weapons/upgrades/a_optic_pu_sks.mdl", rLight = true, pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 
 	SWEP.AttachmentModelsWM = {

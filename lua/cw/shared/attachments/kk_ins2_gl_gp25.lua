@@ -50,7 +50,7 @@ if CLIENT then
 	-- }
 	
 	function att:elementRender()
-		-- att.CW_VM = self.AttachmentModelsVM[att.name].ent
+		att.CW_VM = self.AttachmentModelsVM[att.name].ent
 		
 		if self.Grenade40MM > 2 then
 			att.CW_VM:ManipulateBoneScale(att.CW_VM:LookupBone("GL_Round"), v0)

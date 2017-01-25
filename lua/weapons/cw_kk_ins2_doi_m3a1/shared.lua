@@ -19,10 +19,10 @@ if CLIENT then
 		["kk_ins2_hoovy"] = {model = "models/weapons/upgrades/a_flash_hider_m3.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), merge = true},
 		
 		["paypay2"] = {model = "models/weapons/upgrades/a_stock_extended_m3.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), merge = true, active = true},
-		-- ["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_stock_collapsed_m3.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), merge = true},
+		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_stock_collapsed_m3.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), merge = true},
 		
-		["ani_body"] = {model = "models/weapons/v_m3greasegun.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = false, active = true, nodraw = true},
-		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_m3.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body"},
+		-- ["ani_body"] = {model = "models/weapons/v_m3greasegun.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = false, active = true, nodraw = true},
+		-- ["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_m3.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body"},
 	}
 	
 	SWEP.AttachmentModelsWM = {}
@@ -135,8 +135,8 @@ SWEP.ReloadTimes = {
 	base_reloadempty = {2.4, 5},
 }
 
--- if CLIENT then 
-	-- function SWEP:updateStandardParts()
-		-- self:setElementActive("paypay2", !self.ActiveAttachments.kk_ins2_ww2_sling)
-	-- end
--- end
+if CLIENT then 
+	function SWEP:updateStandardParts()
+		self:setElementActive("paypay2", !self.ActiveAttachments.kk_ins2_ww2_sling)
+	end
+end

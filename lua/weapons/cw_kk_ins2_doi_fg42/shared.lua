@@ -24,7 +24,7 @@ if CLIENT then
 		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_iron_fg42_default.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
 		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_iron_fg42_down.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_scope_zf41"] = {model = "models/weapons/upgrades/a_optic_fg42.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_scope_zf41"] = {model = "models/weapons/upgrades/a_optic_fg42.mdl", rLight = true, pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["knife_fold"] = {model = "models/weapons/upgrades/a_fg42_bayonet_default.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
 		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/a_fg42_bayonet.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},

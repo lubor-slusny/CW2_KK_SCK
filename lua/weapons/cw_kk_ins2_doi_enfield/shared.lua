@@ -32,7 +32,7 @@ if CLIENT then
 		
 		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_enfield.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 
-		["kk_ins2_scope_enfield"] = {model = "models/weapons/upgrades/a_optic_enfield.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_scope_enfield"] = {model = "models/weapons/upgrades/a_optic_enfield.mdl", rLight = true, pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 
 	SWEP.AttachmentModelsWM = {

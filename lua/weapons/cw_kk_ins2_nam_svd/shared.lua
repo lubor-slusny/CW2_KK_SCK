@@ -33,7 +33,7 @@ if CLIENT then
 		["kk_ins2_bipod"] = {model = "models/weapons/upgrades/a_bipod_sks.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/a_foregrip_ins.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), attachment = "Foregrip"},
 		
-		["kk_ins2_scope_nam_pso"] = {model = "models/weapons/upgrades/a_pso1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_scope_nam_pso"] = {model = "models/weapons/upgrades/a_pso1.mdl", rLight = true, pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 
 	SWEP.AttachmentModelsWM = {

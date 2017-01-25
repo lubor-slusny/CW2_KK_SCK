@@ -24,7 +24,7 @@ if CLIENT then
 		-- ["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_stock_collapsed_m3.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), merge = true},
 		
 		["ani_body"] = {model = "models/weapons/v_m3greasegun.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
-		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_m3.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body"},
+		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_m3greasegun.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body"},
 	}
 	
 	SWEP.AttachmentModelsWM = {}

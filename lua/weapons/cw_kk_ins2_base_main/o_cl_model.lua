@@ -207,106 +207,126 @@ end
 // - WElement init
 //-----------------------------------------------------------------------------
 
-local scopes = {
-	["kk_ins2_magnifier"] = true,
-	["kk_ins2_elcan"] = true,
-	["kk_ins2_po4"] = true,
-	["kk_ins2_scope_m40"] = true,
-	["kk_ins2_scope_mosin"] = true,
-		
-	["kk_ins2_cstm_susat"] = true,
-	["kk_ins2_cstm_acog"] = true,
-	["kk_ins2_cstm_pgo7"] = true,
-		
-	["kk_ins2_scope_enfield"] = true,
-	["kk_ins2_scope_k98"] = true,
-	["kk_ins2_scope_m73"] = true,
-	["kk_ins2_scope_zf4"] = true,
-	["kk_ins2_scope_zf41"] = true,
-	["kk_ins2_scope_u8x"] = true,
-	["kk_ins2_scope_m82"] = true,
-}
+-- local scopes = {
+	-- ["kk_ins2_magnifier"] = true,
+	-- ["kk_ins2_elcan"] = true,
+	-- ["kk_ins2_po4"] = true,
+	-- ["kk_ins2_scope_m40"] = true,
+	-- ["kk_ins2_scope_mosin"] = true,
+	
+	-- ["kk_ins2_cstm_susat"] = true,
+	-- ["kk_ins2_cstm_acog"] = true,
+	-- ["kk_ins2_cstm_pgo7"] = true,
+	
+	-- ["kk_ins2_scope_enfield"] = true,
+	-- ["kk_ins2_scope_k98"] = true,
+	-- ["kk_ins2_scope_m73"] = true,
+	-- ["kk_ins2_scope_zf4"] = true,
+	-- ["kk_ins2_scope_zf41"] = true,
+	-- ["kk_ins2_scope_u8x"] = true,
+	-- ["kk_ins2_scope_m82"] = true,
+-- }
 
 function SWEP:setupAttachmentModels()
 	if self.AttachmentModelsVM then
 		for k, v in pairs(self.AttachmentModelsVM) do
-			v.ent = self:createManagedCModel(v.model, RENDERGROUP_BOTH)
-			v.ent:SetNoDraw(true)
-			
-			v.active = v.active or false
-			v.nodraw = v.nodraw or false
-			
-			v.matrix = Matrix()
-			
-			-- v.pos.y = -v.pos.y
-			-- v.matrix:Translate(v.pos)
-			-- v.matrix:Rotate(v.angle)
-				
-			if v.size then
-				v.matrix:Scale(v.size)
-			end
-			
-			v.ent:EnableMatrix("RenderMultiply", v.matrix)
-			
-			if v.bodygroups then
-				for main, sec in pairs(v.bodygroups) do
-					v.ent:SetBodygroup(main, sec)
+			if v.models then
+				for key, data in ipairs(v.models) do
+					self:_setupAttachmentModel(data)
 				end
+			else
+				self:_setupAttachmentModel(v)
 			end
-			
-			if v.skin then
-				v:SetSkin(v.skin)
-			end
-			
-			v.ent:SetupBones()
-			
-			-- if v.merge then
-				-- v.ent:SetParent(self.CW_VM)
-				-- v.ent:AddEffects(EF_BONEMERGE)
-				-- v.ent:AddEffects(EF_BONEMERGE_FASTCULL)
-			-- end
-			
-			if v.attachment then
-				v._attachment = self.CW_VM:LookupAttachment(v.attachment)
-			end
-			
-			if v.bone then
-				v._bone = self.CW_VM:LookupBone(v.bone)
-			end
-			
-			for i,mat in pairs(v.ent:GetMaterials()) do
-				if CustomizableWeaponry_KK.ins2.nodrawMat[mat] then
-					v.ent:SetSubMaterial(i - 1, "models/weapons/attachments/cw_kk_ins2_shared/nodraw")
-				end
-			end
-			
-			if v.material then 
-				v.ent:SetMaterial(v.material)
-			end
-			
-			-- if scopes[k] then
-				-- print("new bounds for", v.ent)
-				-- v.ent:SetCollisionBounds(Vector(-2,-1,-0), Vector(2,1,2))
-				-- v.ent:SetRenderBounds(Vector(-2,-1,-0), Vector(2,1,2))
-			-- end
 		end
 			
 		for k, v in pairs(self.AttachmentModelsVM) do
-			if v.merge then
-				if v.rel and self.AttachmentModelsVM[v.rel] then
-					v.ent:SetParent(self.AttachmentModelsVM[v.rel].ent)
-				else
-					v.ent:SetParent(self.CW_VM)
+			if v.models then
+				for key, data in ipairs(v.models) do
+					self:_setupAttachmentModelMerge(data)
 				end
-				
-				v.ent:AddEffects(EF_BONEMERGE)
-				v.ent:AddEffects(EF_BONEMERGE_FASTCULL)
-				v.ent:SetNoDraw(true)
+			else
+				self:_setupAttachmentModelMerge(v)
 			end
 		end
 	end
 
 	self:setupAttachmentWModels()
+end
+
+function SWEP:_setupAttachmentModel(v)
+	v.ent = self:createManagedCModel(v.model, RENDERGROUP_BOTH)
+	v.ent:SetNoDraw(true)
+	
+	v.active = v.active or false
+	v.nodraw = v.nodraw or false
+	
+	v.matrix = Matrix()
+	
+	-- v.pos.y = -v.pos.y
+	-- v.matrix:Translate(v.pos)
+	-- v.matrix:Rotate(v.angle)
+		
+	if v.size then
+		v.matrix:Scale(v.size)
+	end
+	
+	v.ent:EnableMatrix("RenderMultiply", v.matrix)
+	
+	if v.bodygroups then
+		for main, sec in pairs(v.bodygroups) do
+			v.ent:SetBodygroup(main, sec)
+		end
+	end
+	
+	if v.skin then
+		v:SetSkin(v.skin)
+	end
+	
+	v.ent:SetupBones()
+	
+	-- if v.merge then
+		-- v.ent:SetParent(self.CW_VM)
+		-- v.ent:AddEffects(EF_BONEMERGE)
+		-- v.ent:AddEffects(EF_BONEMERGE_FASTCULL)
+	-- end
+	
+	if v.attachment then
+		v._attachment = self.CW_VM:LookupAttachment(v.attachment)
+	end
+	
+	if v.bone then
+		v._bone = self.CW_VM:LookupBone(v.bone)
+	end
+	
+	for i,mat in pairs(v.ent:GetMaterials()) do
+		if CustomizableWeaponry_KK.ins2.nodrawMat[mat] then
+			v.ent:SetSubMaterial(i - 1, "models/weapons/attachments/cw_kk_ins2_shared/nodraw")
+		end
+	end
+	
+	if v.material then 
+		v.ent:SetMaterial(v.material)
+	end
+	
+	-- if scopes[k] then
+		-- print("new bounds for", v.ent)
+		-- v.ent:SetCollisionBounds(Vector(-2,-1,-0), Vector(2,1,2))
+		-- v.ent:SetRenderBounds(Vector(-2,-1,-0), Vector(2,1,2))
+	-- end
+end
+
+function SWEP:_setupAttachmentModelMerge(v)
+	if v.merge then
+		if v.rel and self.AttachmentModelsVM[v.rel] then
+			v.ent:SetParent(self.AttachmentModelsVM[v.rel].ent)
+		else
+			v.ent:SetParent(self.CW_VM)
+		end
+
+		v.ent:AddEffects(EF_BONEMERGE)
+		v.ent:AddEffects(EF_BONEMERGE_FASTCULL)
+		v.ent:SetNoDraw(true)
+	end
 end
 
 //-----------------------------------------------------------------------------
@@ -349,67 +369,77 @@ local cvarFixScopes = CreateClientConVar("cw_kk_ins2_scopelightingfix", 1, true,
 
 local active, pos, ang, m, vma, model, doRecompute, parent
 
-function SWEP:drawAttachments()
-	if not self.AttachmentModelsVM then
-		return false
-	end
+-- function SWEP:drawAttachments()
+	-- if not self.AttachmentModelsVM then
+		-- return false
+	-- end
 	
-	for k, v in pairs(self.AttachmentModelsVM) do
-		doRecompute = cvarFixScopes:GetInt() == 1 and scopes[k]
+	-- for k, v in pairs(self.AttachmentModelsVM) do
+		-- doRecompute = cvarFixScopes:GetInt() == 1 and scopes[k]
 		
-		if v.ent and v.active then
-			if v.rel and self.AttachmentModelsVM[v.rel] then
-				parent = self.AttachmentModelsVM[v.rel].ent
-			else
-				parent = self.CW_VM
-			end
-			
-			if v.merge then
-				-- v.ent:SetParent(parent)
-				-- v.ent:AddEffects(EF_BONEMERGE_FASTCULL)
-				pos = parent:GetPos()
-				ang = parent:GetAngles()
-			elseif v._attachment then
-				vma = parent:GetAttachment(v._attachment)
-				pos = vma.Pos
-				ang = vma.Ang
-			elseif v._bone then
-				m = parent:GetBoneMatrix(v._bone)
-				pos = m:GetTranslation()
-				ang = m:GetAngles()
-			end
-			
-			pos = pos + ang:Forward() * v.pos.x + ang:Right() * v.pos.y + ang:Up() * v.pos.z
-			
-			ang:RotateAroundAxis(ang:Up(), v.angle.y)
-			ang:RotateAroundAxis(ang:Right(), v.angle.p)
-			ang:RotateAroundAxis(ang:Forward(), v.angle.r)
-			
-			model = v.ent
-			
-			model:SetPos(pos)
-			model:SetAngles(ang)
+		-- if v.ent and v.active then
+			-- self:_drawAttachmentModels(v)
+		-- end
+	-- end
+	
+	-- for k, v in pairs(self.elementRender) do
+		-- v(self)
+	-- end
+	
+	-- return true
+-- end
+
+function SWEP:_drawAttachmentModel(v)
+	if not v.ent then 
+		return
+	end
+	
+	if v.rel and self.AttachmentModelsVM[v.rel] then
+		parent = self.AttachmentModelsVM[v.rel].ent
+	else
+		parent = self.CW_VM
+	end
+	
+	if v.merge then
+		-- v.ent:SetParent(parent)
+		-- v.ent:AddEffects(EF_BONEMERGE_FASTCULL)
+		pos = parent:GetPos()
+		ang = parent:GetAngles()
+	elseif v._attachment then
+		vma = parent:GetAttachment(v._attachment)
+		pos = vma.Pos
+		ang = vma.Ang
+	elseif v._bone then
+		m = parent:GetBoneMatrix(v._bone)
+		pos = m:GetTranslation()
+		ang = m:GetAngles()
+	end
+	
+	pos = pos + ang:Forward() * v.pos.x + ang:Right() * v.pos.y + ang:Up() * v.pos.z
+	
+	ang:RotateAroundAxis(ang:Up(), v.angle.y)
+	ang:RotateAroundAxis(ang:Right(), v.angle.p)
+	ang:RotateAroundAxis(ang:Forward(), v.angle.r)
+	
+	model = v.ent
+	
+	model:SetPos(pos)
+	model:SetAngles(ang)
+
+	if v.animated then
+		model:FrameAdvance(FrameTime())
+		model:SetupBones()
+	end
+	
+	if !v.nodraw then
+		doRecompute = cvarFixScopes:GetInt() == 1 and v.rLight
 		
-			if v.animated then
-				model:FrameAdvance(FrameTime())
-				model:SetupBones()
-			end
-			
-			if !v.nodraw then
-				recomputeLighting(doRecompute and 1 or false, pos, ang)
-				
-				model:DrawModel()
-				
-				recomputeLighting(true or whatever, pos, ang)
-			end
-		end
+		recomputeLighting(doRecompute and 1 or false, pos, ang)
+		
+		model:DrawModel()
+		
+		recomputeLighting(true or whatever, pos, ang)
 	end
-	
-	for k, v in pairs(self.elementRender) do
-		v(self)
-	end
-	
-	return true
 end
 
 //-----------------------------------------------------------------------------

@@ -34,7 +34,7 @@ if CLIENT then
 		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_band.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_anpeq15"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_anpeq_band.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_magnifier"] = {model = "models/weapons/upgrades/a_optic_aimp2x.mdl", bone = "Weapon", pos = Vector(0.059, -3.7, 2.759), angle = Angle(0, -90, 0), size = Vector(1, 1, 1)},
+		["kk_ins2_magnifier"] = {model = "models/weapons/upgrades/a_optic_aimp2x.mdl", rLight = true, bone = "Weapon", pos = Vector(0.059, -3.7, 2.759), angle = Angle(0, -90, 0), size = Vector(1, 1, 1)},
 		
 		["kk_ins2_aimpoint"] = {model = "models/weapons/upgrades/a_optic_aimpoint.mdl", bone = "Weapon", pos = Vector(0.059, -4, 2.759), angle = Angle(0, -90, 0), size = Vector(1, 1, 1)},
 		

@@ -42,7 +42,7 @@ if CLIENT then
 
 		-- ["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_garand.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 
-		["kk_ins2_scope_m82"] = {model = "models/weapons/upgrades/a_optic_garand.mdl", pos = Vector(), angle = Angle(), size = Vector(0.075, 0.075, 0.075), merge = true},
+		["kk_ins2_scope_m82"] = {model = "models/weapons/upgrades/a_optic_garand.mdl", rLight = true, pos = Vector(), angle = Angle(), size = Vector(0.075, 0.075, 0.075), merge = true},
 		
 		-- ["kk_was_here_lol"] = {model = "models/weapons/upgrades/a_modkit_m1a1.mdl", pos = Vector(2.3473, -14.2344, 3.829), angle = Angle(0, -90, 0), size = Vector(1, 1, 1), bone = "Weapon", active = true},
 		
