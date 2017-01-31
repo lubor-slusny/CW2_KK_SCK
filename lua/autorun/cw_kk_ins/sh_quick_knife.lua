@@ -34,8 +34,8 @@ CustomizableWeaponry_KK.ins2.quickKnife.models.ww2de = {
 }
 
 CustomizableWeaponry_KK.ins2.quickKnife.models.ww2us = {
-	vm = "models/weapons/v_cw_kk_doi_kabar.mdl",
-	a_attack = "hitcenter1"
+	vm = "models/weapons/kk_doi/v_marinebayonet.mdl",
+	a_attack = "slash_1"
 }
 
 CustomizableWeaponry_KK.ins2.quickKnife.models.ww2gb = {

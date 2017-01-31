@@ -96,7 +96,7 @@ SWEP.Slot = 3
 SWEP.SlotPos = 0
 SWEP.NormalHoldType = "ar2"
 SWEP.RunHoldType = "passive"
-SWEP.FireModes = {"barfast", "barslow"}
+SWEP.FireModes = {"barslow", "barfast"}
 SWEP.Base = "cw_kk_ins2_base"
 SWEP.Category = "CW 2.0 KK INS2 DOI"
 
@@ -127,7 +127,7 @@ SWEP.Primary.Ammo			= ".30-06"
 
 SWEP.FireDelayFast = 60/650
 SWEP.FireDelaySlow = 60/450
-SWEP.FireDelay = SWEP.FireDelayFast
+SWEP.FireDelay = SWEP.FireDelaySlow
 SWEP.FireSound = "CW_KK_INS2_DOI_BAR_FIRE"
 SWEP.Recoil = 1.5
 

@@ -16,7 +16,7 @@ att.statModifiers = {
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
 	att.description = {
-		[1] = {t = "Provides 7x magnification.", c = CustomizableWeaponry.textColors.POSITIVE},
+		[1] = {t = "Provides 4x magnification.", c = CustomizableWeaponry.textColors.POSITIVE},
 		[2] = {t = "Narrow scope reduces awareness.", c = CustomizableWeaponry.textColors.NEGATIVE},
 		[3] = {t = "Can be disorienting at close range.", c = CustomizableWeaponry.textColors.NEGATIVE}
 	}
@@ -27,7 +27,7 @@ if CLIENT then
 		{tex = surface.GetTextureID(path), offset = {0, 1}},
 	}
 	
-	att._rtFov = 6
+	att._rtFov = 12
 	att._rtReticle = surface.GetTextureID(path)
 	att._reticleMat = Material(path)
 	

@@ -37,6 +37,8 @@ if CLIENT then
 		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_k98.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 
 		["kk_ins2_scope_k98"] = {model = "models/weapons/upgrades/a_optic_kar98k.mdl", rLight = true, pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		
+		["kk_ins2_scope_zf4"] = {model = "models/weapons/upgrades/a_optic_kar98k_4x.mdl", rLight = true, pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 
 	SWEP.AttachmentModelsWM = {
@@ -45,6 +47,8 @@ if CLIENT then
 		["kk_ins2_gl_ggg"] = {model = "models/weapons/upgrades/w_enfield_gl.mdl", pos = Vector(41.9803, -0.1208, 4.8887), angle = Angle(1.7669, -1.2005, 0), size = Vector(1, 1, 1), bone = "R Hand"},
 		
 		["kk_ins2_scope_k98"] = {model = "models/weapons/upgrades/w_optic_kar98k.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		
+		["kk_ins2_scope_zf4"] = {model = "models/weapons/upgrades/w_optic_kar98k.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
 	SWEP.IronsightPos = Vector(-2.5615, -4, 1.588)
@@ -52,6 +56,9 @@ if CLIENT then
 
 	SWEP.KKINS2ScopeK98Pos = Vector(-2.5434, -1.5, 0.3398)
 	SWEP.KKINS2ScopeK98Ang = Vector()
+
+	SWEP.KKINS2ScopeZF4Pos = Vector(-2.5014, -12, 1.0187)
+	SWEP.KKINS2ScopeZF4Ang = Vector(0, 0, 0)
 
 	SWEP.M203Pos = Vector(-0.9306, 0, 3.634)
 	SWEP.M203Ang = Vector(1.9036, 0, 0)
@@ -63,11 +70,15 @@ SWEP.MuzzleEffect = "muzzleflash_k98_1p"
 SWEP.MuzzleEffectWorld = "muzzleflash_k98_3p"
 
 SWEP.Attachments = {
-	{header = "Sight", offset = {500, -500}, atts = {"kk_ins2_scope_k98"}, exclusions = {["kk_ins2_ww2_stripper"] = true}},
+	{header = "Sight", offset = {500, -500}, atts = {"kk_ins2_scope_zf4", "kk_ins2_scope_k98"}},
 	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_ww2_knife", "kk_ins2_gl_ggg"}},
 	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
 	{header = "Clip", offset = {200, 0}, atts = {"kk_ins2_ww2_stripper"}, exclusions = {["kk_ins2_scope_k98"] = true}},
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_magnum", "am_matchgrade"}}
+}
+
+SWEP.AttachmentExclusions = {
+	["kk_ins2_scope_k98"] = {"kk_ins2_ww2_stripper"}
 }
 
 SWEP.Animations = {

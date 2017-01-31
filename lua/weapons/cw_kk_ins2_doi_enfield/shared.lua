@@ -33,6 +33,8 @@ if CLIENT then
 		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_enfield.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 
 		["kk_ins2_scope_enfield"] = {model = "models/weapons/upgrades/a_optic_enfield.mdl", rLight = true, pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		
+		["kk_ins2_scope_u8x"] = {model = "models/weapons/upgrades/a_optic_enfield_7x.mdl", rLight = true, pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 
 	SWEP.AttachmentModelsWM = {
@@ -42,6 +44,8 @@ if CLIENT then
 		["kk_ins2_gl_enfield"] = {model = "models/weapons/upgrades/w_enfield_gl.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_scope_enfield"] = {model = "models/weapons/upgrades/w_optic_enfield.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		
+		["kk_ins2_scope_u8x"] = {model = "models/weapons/upgrades/w_optic_enfield.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
 	SWEP.IronsightPos = Vector(-2.5678, -3, 1.5173)
@@ -52,6 +56,9 @@ if CLIENT then
 
 	SWEP.KKINS2ScopeEnfieldPos = Vector(-2.5738, -1.5, 0.8389)
 	SWEP.KKINS2ScopeEnfieldAng = Vector()
+
+	SWEP.KKINS2ScopeU8XPos = Vector(-2.5649, -2, 1.1647)
+	SWEP.KKINS2ScopeU8XAng = Vector(0, 0, 0)
 
 	SWEP.M203Pos = Vector(-2.71, -6, 1.8053)
 	SWEP.M203Ang = Vector(-4.5019, 0, 0)
@@ -65,15 +72,16 @@ SWEP.MuzzleEffect = "muzzleflash_garand_1p"
 SWEP.MuzzleEffectWorld = "muzzleflash_garand_3p"
 
 SWEP.Attachments = {
-	{header = "Sight", offset = {500, -500}, atts = {"bg_foldsight", "kk_ins2_scope_enfield"}},
+	{header = "Sight", offset = {500, -500}, atts = {"bg_foldsight", "kk_ins2_scope_enfield", "kk_ins2_scope_u8x"}},
 	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_ww2_knife", "kk_ins2_ww2_knife_fat", "kk_ins2_gl_enfield"}},
 	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
-	{header = "Clip", offset = {200, 0}, atts = {"kk_ins2_ww2_stripper"}, exclusions = {["kk_ins2_scope_enfield"] = true}},
+	{header = "Clip", offset = {200, 0}, atts = {"kk_ins2_ww2_stripper"}, exclusions = {["kk_ins2_scope_enfield"] = true, ["kk_ins2_scope_u8x"] = true}},
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
 SWEP.AttachmentExclusions = {
-	["kk_ins2_scope_enfield"] = {"kk_ins2_ww2_stripper"}
+	["kk_ins2_scope_enfield"] = {"kk_ins2_ww2_stripper"},
+	["kk_ins2_scope_u8x"] = {"kk_ins2_ww2_stripper"}
 }
 
 SWEP.Animations = {
@@ -314,6 +322,6 @@ end
 
 if CLIENT then
 	function SWEP:updateStandardParts()
-		self:setElementActive("sleeve", self.ActiveAttachments.kk_ins2_scope_enfield)
+		self:setElementActive("sleeve", self.ActiveAttachments.kk_ins2_scope_enfield or self.ActiveAttachments.kk_ins2_scope_u8x)
 	end
 end
