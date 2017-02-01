@@ -23,6 +23,14 @@ if CLIENT then
 			Vector(-2.5615, -4, 1.588),
 			Vector(0.2652, 0.0073, 0)
 		},
+		["kk_ins2_scope_zf4"] = {
+			Vector(-2.5615, -4, 1.588),
+			Vector(0.2652, 0.0073, 0)
+		},
+		["kk_ins2_scope_zf41"] = {
+			Vector(-2.5615, -4, 1.588),
+			Vector(0.2652, 0.0073, 0)
+		},
 	}
 	
 	SWEP.AttachmentModelsVM = {
@@ -34,11 +42,13 @@ if CLIENT then
 		
 		["kk_ins2_gl_ggg"] = {model = "models/weapons/upgrades/a_kar98k_gl.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 
-		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_k98.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
-
 		["kk_ins2_scope_k98"] = {model = "models/weapons/upgrades/a_optic_kar98k.mdl", rLight = true, pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
+		["ani_body"] = {model = "models/weapons/v_kar98k.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, material = "models/weapons/attachments/cw_kk_ins2_shared/nodraw"},
+		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_k98.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body"},
+		
 		["kk_ins2_scope_zf4"] = {model = "models/weapons/upgrades/a_optic_kar98k_4x.mdl", rLight = true, pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_scope_zf41"] = {model = "models/weapons/upgrades/a_optic_kk_zf41.mdl", rLight = true, pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 
 	SWEP.AttachmentModelsWM = {
@@ -49,6 +59,8 @@ if CLIENT then
 		["kk_ins2_scope_k98"] = {model = "models/weapons/upgrades/w_optic_kar98k.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_scope_zf4"] = {model = "models/weapons/upgrades/w_optic_kar98k.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		
+		["kk_ins2_scope_zf41"] = {model = "models/weapons/upgrades/w_optic_kar98k.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
 	SWEP.IronsightPos = Vector(-2.5615, -4, 1.588)
@@ -57,8 +69,11 @@ if CLIENT then
 	SWEP.KKINS2ScopeK98Pos = Vector(-2.5434, -1.5, 0.3398)
 	SWEP.KKINS2ScopeK98Ang = Vector()
 
-	SWEP.KKINS2ScopeZF4Pos = Vector(-2.5014, -12, 1.0187)
-	SWEP.KKINS2ScopeZF4Ang = Vector(0, 0, 0)
+	SWEP.KKINS2ScopeZF4Pos = Vector(-2.1298, -4, 0.6019)
+	SWEP.KKINS2ScopeZF4Ang = Vector(0.0091, 0.0194, 0)
+
+	SWEP.KKINS2ScopeZF41Pos = Vector(-2.5014, -4, 1.0187)
+	SWEP.KKINS2ScopeZF41Ang = Vector(0, 0, 0)
 
 	SWEP.M203Pos = Vector(-0.9306, 0, 3.634)
 	SWEP.M203Ang = Vector(1.9036, 0, 0)
@@ -70,15 +85,16 @@ SWEP.MuzzleEffect = "muzzleflash_k98_1p"
 SWEP.MuzzleEffectWorld = "muzzleflash_k98_3p"
 
 SWEP.Attachments = {
-	{header = "Sight", offset = {500, -500}, atts = {"kk_ins2_scope_zf4", "kk_ins2_scope_k98"}},
+	{header = "Sight", offset = {500, -500}, atts = {"kk_ins2_scope_zf41", "kk_ins2_scope_zf4", "kk_ins2_scope_k98"}},
 	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_ww2_knife", "kk_ins2_gl_ggg"}},
 	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
-	{header = "Clip", offset = {200, 0}, atts = {"kk_ins2_ww2_stripper"}, exclusions = {["kk_ins2_scope_k98"] = true}},
+	{header = "Clip", offset = {200, 0}, atts = {"kk_ins2_ww2_stripper"}, exclusions = {["kk_ins2_scope_k98"] = true, ["kk_ins2_scope_zf4"] = true}},
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
 SWEP.AttachmentExclusions = {
-	["kk_ins2_scope_k98"] = {"kk_ins2_ww2_stripper"}
+	["kk_ins2_scope_k98"] = {"kk_ins2_ww2_stripper"},
+	["kk_ins2_scope_zf4"] = {"kk_ins2_ww2_stripper"}
 }
 
 SWEP.Animations = {

@@ -31,6 +31,8 @@ if CLIENT then
 	att._rtReticle = surface.GetTextureID(path)
 	att._reticleMat = Material(path)
 	
+	att.zoomDesired = 7
+	
 	function att:drawRenderTarget()
 		local scopeEnt = self.AttachmentModelsVM[att.name].ent // to b tuned
 		if self:isAiming() then 

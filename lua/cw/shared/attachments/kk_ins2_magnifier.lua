@@ -66,6 +66,8 @@ if CLIENT then
 	
 	att._rtFov = 18
 	
+	att.zoomDesired = 2
+	
 	function att:INS2_DrawRenderTarget()
 		if not self.ActiveAttachments[att.name] then return end
 		local currentPrimarySight = self:getPrimarySight()

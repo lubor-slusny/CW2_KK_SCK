@@ -109,7 +109,7 @@ CustomizableWeaponry_KK.ins2.quickKnife.categories.bayonet = {
 }
 
 CustomizableWeaponry_KK.ins2.quickKnife.categories.bash = {
-	td = {mins = Vector(-6, -6, -6), maxs = Vector(6, 6, 6)},
+	td = {mins = Vector(-7, -7, -7), maxs = Vector(7, 7, 7)},
 	range = 60,
 	dmgBase = 20,
 	dmgAddRnd = 10,
@@ -156,6 +156,8 @@ if SERVER then
 					
 					-- local dir = wep.Owner:GetAimVector() - td.start
 					-- d:SetDamageForce((tr.HitPos + dir) * 200)
+					
+					d:SetDamageForce(wep.Owner:GetAimVector() * setup.npcForceMult * 2)
 					d:SetDamageType(DMG_SLASH)
 					d:SetDamagePosition(tr.HitPos)
 					d:SetReportedPosition(td.start)
@@ -165,7 +167,7 @@ if SERVER then
 					if ent:IsNPC() then
 						ang = wep.Owner:GetAngles()
 						ang.p = 0
-						ent:SetVelocity(ang:Forward() * setup.npcForceMult)
+						-- ent:SetVelocity(ang:Forward() * setup.npcForceMult)
 					end
 					
 					if string.find(ent:GetClass(), "breakable") then

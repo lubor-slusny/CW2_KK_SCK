@@ -46,6 +46,8 @@ if CLIENT then
 	
 	local complexTelescopics, rtSize, oldStencilChk
 	
+	local cvFOVDesired = GetConVar("fov_desired")
+	
 	function CustomizableWeaponry_KK.ins2.rtSight:renderTarget(wep, att)
 		if not att then return end
 		if not wep.ActiveAttachments[att.name] then return end
@@ -72,11 +74,29 @@ if CLIENT then
 		
 		rtSize = wep:getRenderTargetSize()
 		
+		-- // fovmods
+
+		-- local curCLFOV = math.Clamp(cvFOVDesired:GetInt() - wep.CurFOVMod, 0, cvFOVDesired:GetInt())
+		-- local fovDiff = math.Clamp(curCLFOV - wep.CurVMFOV, 0, curCLFOV)
+		-- local camOriginDist = wep.Owner:EyePos():Distance(mdlAttRear.Pos) // calculate in drawAttachments 
+		-- local niceZoomSetting = 2 // att.zoomDesired
+		
+		-- wep.rt2 = {
+			-- ["curCLFOV"] = curCLFOV,
+			-- ["fovDiff"] = fovDiff,
+			-- ["camOriginDist"] = camOriginDist,
+		-- }
+
 		cd.w = rtSize
 		cd.h = rtSize
+		
 		cd.fov = att._rtFov
 		cd.angles = ang
 		cd.origin = wep.Owner:GetShootPos()
+		
+		-- cd.fov = fovDiff * 6 * (1 / niceZoomSetting) / camOriginDist
+		-- cd.angles = mdlAttRear.ang
+		-- cd.origin = mdlAttRear.Pos
 
 		old_x, old_y = ScrW(), ScrH()
 		old_rt = render.GetRenderTarget()
@@ -149,6 +169,8 @@ if CLIENT then
 
 	local MP = !game.SinglePlayer()
 	
+	local colBlack = Color(0,255,0)
+	
 	function CustomizableWeaponry_KK.ins2.rtSight:stencil(wep, att)
 		if MP then return end
 		if cvFreeze:GetInt() != 1 then return end
@@ -168,14 +190,14 @@ if CLIENT then
 			render.DrawQuadEasy(retPos, retNorm, 50, 50, colWhite, retAng)
 		cam.IgnoreZ(false)
 		
-		-- // rear
-		-- retPos = mdlAttRear.Pos
-		-- retAng = -90 - mdlAttRear.Ang.z
-		-- retNorm = -mdlAttRear.Ang:Forward()
+		// rear
+		retPos = mdlAttRear.Pos
+		retAng = -90 - mdlAttRear.Ang.z
+		retNorm = -mdlAttRear.Ang:Forward()
 
-		-- cam.IgnoreZ(true)
-			-- render.SetMaterial(iMatFront)
-			-- render.DrawQuadEasy(retPos, retNorm, 0.5, 0.5, colWhite, retAng)
-		-- cam.IgnoreZ(false)
+		cam.IgnoreZ(true)
+			render.SetMaterial(iMatFront)
+			render.DrawQuadEasy(retPos, retNorm, 0.5, 0.5, colBlack, retAng)
+		cam.IgnoreZ(false)
 	end
 end

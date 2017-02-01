@@ -4,7 +4,7 @@ att.displayName = "ZF41 Scope"
 att.displayNameShort = "ZF41"
 att.aimPos = {"KKINS2ScopeZF41Pos", "KKINS2ScopeZF41Ang"}
 att.FOVModifier = 0
-att.AimViewModelFOV = 25
+att.AimViewModelFOV = 15
 att.isSight = true
 
 -- att.colorType = CustomizableWeaponry.colorableParts.COLOR_TYPE_SIGHT
@@ -23,7 +23,7 @@ if CLIENT then
 	
 	-- att.SelectIconOverride = surface.GetTextureID("vgui/inventory/weapon_g43_sniper")
 	
-	local path = "models/weapons/optics/zf4_crosshair"
+	local path = "models/weapons/optics/kar98k_crosshair"
 	
 	att.zoomTextures = {
 		{tex = surface.GetTextureID(path), offset = {0, 1}},
@@ -32,6 +32,8 @@ if CLIENT then
 	att._rtFov = 12
 	att._rtReticle = surface.GetTextureID(path)
 	att._reticleMat = Material(path)
+	
+	att.zoomDesired = 1.5
 	
 	function att:drawRenderTarget()		
 		local scopeEnt = self.AttachmentModelsVM[att.name].ent

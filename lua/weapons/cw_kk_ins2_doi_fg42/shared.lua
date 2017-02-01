@@ -22,7 +22,7 @@ if CLIENT then
 		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_iron_fg42_default.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
 		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_iron_fg42_down.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_scope_zf41"] = {model = "models/weapons/upgrades/a_optic_fg42.mdl", rLight = true, pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_scope_zf4"] = {model = "models/weapons/upgrades/a_optic_fg42.mdl", rLight = true, pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["knife_fold"] = {model = "models/weapons/upgrades/a_fg42_bayonet_default.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
 		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/a_fg42_bayonet.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
@@ -35,7 +35,7 @@ if CLIENT then
 		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/w_fg42_irons.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
 		-- ["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_iron_fg42_down.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_scope_zf41"] = {model = "models/weapons/upgrades/w_fg42_scope.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_scope_zf4"] = {model = "models/weapons/upgrades/w_fg42_scope.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["knife_fold"] = {model = "models/weapons/upgrades/w_fg42_bayonet_default.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
 		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/w_fg42_bayonet_deployed.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
@@ -47,8 +47,8 @@ if CLIENT then
 	SWEP.IronsightPos = Vector(-2.5787, -4, 0.4627)
 	SWEP.IronsightAng = Vector(0.6845, 0.0387, 9)
 
-	SWEP.KKINS2ScopeZF41Pos = Vector(-2.5892, -3.5, 0.4942)
-	SWEP.KKINS2ScopeZF41Ang = Vector(0, 0, 9)
+	SWEP.KKINS2ScopeZF4Pos = Vector(-2.5892, -3.5, 0.4942)
+	SWEP.KKINS2ScopeZF4Ang = Vector(0, 0, 9)
 
 	SWEP.CustomizationMenuScale = 0.019
 end
@@ -57,7 +57,7 @@ SWEP.MuzzleEffect = "muzzleflash_stg44_1p"
 SWEP.MuzzleEffectWorld = "muzzleflash_stg44_3p"
 
 SWEP.Attachments = {
-	{header = "Sight", offset = {700, -200}, atts = {"kk_ins2_scope_zf41"}},
+	{header = "Sight", offset = {700, -200}, atts = {"kk_ins2_scope_zf4"}},
 	{header = "Barrel", offset = {-200, -200}, atts = {"kk_ins2_ww2_knife"}},
 	-- {header = "Under", offset = {-500, 0}, atts = {"kk_ins2_bipod"}},
 	{header = "Stock", offset = {700, 300}, atts = {"kk_ins2_ww2_sling"}},
@@ -167,7 +167,7 @@ SWEP.MaxSpreadInc = 0.06
 SWEP.SpreadPerShot = 0.01
 SWEP.SpreadCooldown = 0.17
 SWEP.Shots = 1
-SWEP.Damage = 59
+SWEP.Damage = 60
 
 SWEP.BipodDeployTime = 1.7
 SWEP.BipodUndeployTime = 2
