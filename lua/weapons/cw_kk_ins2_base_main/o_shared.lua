@@ -526,6 +526,9 @@ function SWEP:finishReloadShotgun()
 				self.ShotgunReloadState = 2
 			end
 		end
+	elseif self.ShotgunReloadState == 3 then
+		// stripp
+		
 	elseif self.ShotgunReloadState == 2 then
 		if CT > self.ReloadDelay then
 			self.ShotgunReloadState = 0

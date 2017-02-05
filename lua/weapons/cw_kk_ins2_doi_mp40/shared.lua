@@ -10,7 +10,7 @@ SWEP.magType = "smgMag"
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "HK MP40"
+	SWEP.PrintName = "MP40"
 	SWEP.CSMuzzleFlashes = true
 	SWEP.ViewModelMovementScale = 1.15
 	

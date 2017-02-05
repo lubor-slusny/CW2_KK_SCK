@@ -5,12 +5,12 @@
 
 	"$phong"  			"1"
 	"$phongexponent" 		"46"
-	"$phongboost" 			".5"
+	"$phongboost" 			".4"
 	"$phongfresnelranges" 		"[2 4 6]"
 	"$phongtint" 			"[0.6 0.8 1]"
 	"$phongalbedotint" 		"1"	
 
 	"$envmap" 			"env_cubemap"
 	"$normalmapalphaenvmapmask" 	"1"
-	"$envmaptint"			"[0.1 0.1 0.1]"
+	"$envmaptint"			"[0.02 0.02 0.02]"
 }

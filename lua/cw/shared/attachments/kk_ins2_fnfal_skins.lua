@@ -5,20 +5,12 @@ att.displayNameShort = "Black"
 att.isBG = true
 
 att.statModifiers = {
-	RecoilMult = -0.2
+	RecoilMult = -0.1
 }
 
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
 	att.description = {}
-	
-	-- function att:attachFunc()
-		-- self.CW_VM:SetSubMaterial(0, "models/weapons/fal/blvck.mdl")
-	-- end
-
-	-- function att:detachFunc()
-		-- self.CW_VM:SetSubMaterial(0)
-	-- end	
 end
 
 CustomizableWeaponry:registerAttachment(att)
@@ -30,20 +22,12 @@ att.displayNameShort = "Green"
 att.isBG = true
 
 att.statModifiers = {
-	RecoilMult = -0.2
+	RecoilMult = -0.15
 }
 
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
 	att.description = {}
-	
-	-- function att:attachFunc()
-		-- self.CW_VM:SetSubMaterial(0, "models/weapons/fal/dosh.mdl")
-	-- end
-
-	-- function att:detachFunc()
-		-- self.CW_VM:SetSubMaterial(0)
-	-- end	
 end
 
 CustomizableWeaponry:registerAttachment(att)
