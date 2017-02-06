@@ -4,7 +4,7 @@ att.displayNameShort = "Pig Stick"
 att.displayName = "Bayonet Stick"
 
 att.statModifiers = {
-	OverallMouseSensMult = -0.1
+	// OverallMouseSensMult = -0.1
 }
 
 if CLIENT then

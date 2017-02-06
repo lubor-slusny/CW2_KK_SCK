@@ -8,7 +8,7 @@ att.AimViewModelFOV = 30
 att.isSight = true
 
 att.statModifiers = {
-	OverallMouseSensMult = -0.1,
+	// OverallMouseSensMult = -0.1,
 	DrawSpeedMult = -0.2
 }
 

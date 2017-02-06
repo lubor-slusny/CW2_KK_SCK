@@ -6,7 +6,7 @@ att.KK_INS2_playIdle = true
 
 att.statModifiers = {
 	VelocitySensitivityMult = -0.3,
-	OverallMouseSensMult = -0.15,
+	// OverallMouseSensMult = -0.15,
 	RecoilMult = -0.2
 }
 

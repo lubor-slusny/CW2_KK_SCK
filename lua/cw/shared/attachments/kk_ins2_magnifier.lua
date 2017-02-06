@@ -37,7 +37,7 @@ att.isSecondarySight = true
 att.AimViewModelFOV = 25
 
 att.statModifiers = {
-	OverallMouseSensMult = -0.07
+	// OverallMouseSensMult = -0.07
 }
 
 if CLIENT then

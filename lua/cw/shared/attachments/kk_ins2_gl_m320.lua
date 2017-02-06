@@ -8,7 +8,7 @@ att.KK_INS2_playIdle = true
 att.statModifiers = {
 	DrawSpeedMult = -0.2,
 	HolsterSpeedMult = -0.2,
-	OverallMouseSensMult = -0.2,
+	// OverallMouseSensMult = -0.2,
 	RecoilMult = -0.1
 }
 

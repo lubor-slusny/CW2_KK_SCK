@@ -6,7 +6,7 @@ att.isSuppressor = true
 att.WeaponLength = 8
 
 att.statModifiers = {
-	OverallMouseSensMult = -0.1,
+	// OverallMouseSensMult = -0.1,
 	RecoilMult = -0.15,
 	-- WeaponLength = 8,
 }

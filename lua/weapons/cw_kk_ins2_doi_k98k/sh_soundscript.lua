@@ -5,13 +5,6 @@ local function shell(wep)
 	wep:shellEvent() 
 end
 
-local function bulletsToClip(wep)	
-	if SERVER then return end
-	
-	-- wep._bulletsToClip = true
-	wep._loadingNewBelt = false
-end
-
 local function blankLoaded(wep)
 	if SERVER then return end
 	
@@ -78,17 +71,14 @@ SWEP.Sounds = {
 	},
 
 	base_reload_empty_clip = {
-		// { event AE_CL_CREATE_PARTICLE_BRASS 29 ""},
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 19/35, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
 		{time = 27/35, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
 		{time = 29/35, sound = "", callback = shell},
-		// { event 46 88 ""},
-		// { event AE_WPN_RELOAD_OFFSCREEN 40 ""},
 		{time = 37/35, sound = "CW_KK_INS2_DOI_K98_FETCHMAG"},
-		{time = 40/35, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
+		{time = 40/35, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
 		{time = 64/35, sound = "CW_KK_INS2_DOI_K98_MAGIN"},
 		{time = 80/35, sound = "CW_KK_INS2_DOI_K98_ROUNDSIN"},
-		{time = 88/35, sound = "", callback = bulletsToClip},
 		{time = 111/35, sound = "CW_KK_INS2_DOI_K98_BOLTFORWARDSTRIPPERCLIP"},
 		{time = 112/35, sound = "CW_KK_INS2_DOI_K98_STRIPPERCLIPEJECT"},
 		{time = 119/35, sound = "CW_KK_INS2_DOI_K98_BOLTLATCH"},
@@ -100,16 +90,16 @@ SWEP.Sounds = {
 		-- // { event 46 88 ""},
 		-- // { event AE_WPN_RELOAD_OFFSCREEN 40 ""},
 		-- {time = 37/35, sound = "CW_KK_INS2_DOI_K98_FETCHMAG"},
-		-- {time = 40/35, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
+		-- {time = 40/35, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
 		-- {time = 64/35, sound = "CW_KK_INS2_DOI_K98_MAGIN"},
 		-- {time = 80/35, sound = "CW_KK_INS2_DOI_K98_ROUNDSIN"},
-		-- {time = 88/35, sound = "", callback = bulletsToClip},
 		-- {time = 111/35, sound = "CW_KK_INS2_DOI_K98_BOLTFORWARDSTRIPPERCLIP"},
 		-- {time = 112/35, sound = "CW_KK_INS2_DOI_K98_STRIPPERCLIPEJECT"},
 		-- {time = 119/35, sound = "CW_KK_INS2_DOI_K98_BOLTLATCH"},
 	-- },
 
 	base_reload_start = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClipM1},
 		{time = 19/35.5, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
 		{time = 27/35.5, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
 	},
@@ -123,7 +113,7 @@ SWEP.Sounds = {
 
 	base_reload_insert = {
 		{time = 14/37.2, sound = "CW_KK_INS2_DOI_K98_BULLETIN"},
-		{time = 21/37.2, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToClip},
+		{time = 21/37.2, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		// { event 46 22 ""},
 	},
 
@@ -183,6 +173,7 @@ SWEP.Sounds = {
 	},
 
 	gl_reload_empty_stripper = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		// { event AE_CL_CREATE_PARTICLE_BRASS 29 ""},
 		{time = 19/35, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
 		{time = 27/35, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
@@ -190,37 +181,39 @@ SWEP.Sounds = {
 		// { event 46 88 ""},
 		// { event AE_WPN_RELOAD_OFFSCREEN 40 ""},
 		{time = 37/35, sound = "CW_KK_INS2_DOI_K98_FETCHMAG"},
-		{time = 40/35, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
+		{time = 40/35, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
 		{time = 64/35, sound = "CW_KK_INS2_DOI_K98_MAGIN"},
 		{time = 80/35, sound = "CW_KK_INS2_DOI_K98_ROUNDSIN"},
-		{time = 88/35, sound = "", callback = bulletsToClip},
 		{time = 111/35, sound = "CW_KK_INS2_DOI_K98_BOLTFORWARDSTRIPPERCLIP"},
 		{time = 112/35, sound = "CW_KK_INS2_DOI_K98_STRIPPERCLIPEJECT"},
 		{time = 119/35, sound = "CW_KK_INS2_DOI_K98_BOLTLATCH"},
 	},
 
 	gl_reload_full_clip = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		// { event AE_CL_CREATE_PARTICLE_BRASS 29 ""},
 		{time = 19/35, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
 		{time = 27/35, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
+		{time = 29/35, sound = "", callback = shell},
 		// { event 46 88 ""},
 		// { event AE_WPN_RELOAD_OFFSCREEN 40 ""},
 		{time = 37/35, sound = "CW_KK_INS2_DOI_K98_FETCHMAG"},
-		{time = 40/35, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToReserve},
+		{time = 40/35, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
 		{time = 64/35, sound = "CW_KK_INS2_DOI_K98_MAGIN"},
 		{time = 80/35, sound = "CW_KK_INS2_DOI_K98_ROUNDSIN"},
-		{time = 88/35, sound = "", callback = bulletsToClip},
 		{time = 111/35, sound = "CW_KK_INS2_DOI_K98_BOLTFORWARDSTRIPPERCLIP"},
 		{time = 112/35, sound = "CW_KK_INS2_DOI_K98_STRIPPERCLIPEJECT"},
 		{time = 119/35, sound = "CW_KK_INS2_DOI_K98_BOLTLATCH"},
 	},
 
 	gl_reload_start = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClipM1},
 		{time = 19/35.5, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
 		{time = 27/35.5, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
 	},
 
 	gl_reload_start_empty = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		// { event AE_CL_CREATE_PARTICLE_BRASS 29 ""},
 		{time = 19/35.5, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
 		{time = 27/35.5, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
@@ -230,7 +223,7 @@ SWEP.Sounds = {
 	gl_reload_insert = {
 		// { event AE_WPN_RELOAD_OFFSCREEN 21 ""},
 		{time = 14/37.2, sound = "CW_KK_INS2_DOI_K98_BULLETIN"},
-		{time = 21/37.2, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.bulletsToClip},
+		{time = 21/37.2, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		// { event 46 22 ""},
 	},
 

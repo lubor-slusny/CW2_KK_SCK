@@ -76,10 +76,10 @@ if CLIENT then
 		
 		-- // fovmods
 
-		-- local curCLFOV = math.Clamp(cvFOVDesired:GetInt() - wep.CurFOVMod, 0, cvFOVDesired:GetInt())
-		-- local fovDiff = math.Clamp(curCLFOV - wep.CurVMFOV, 0, curCLFOV)
-		-- local camOriginDist = wep.Owner:EyePos():Distance(mdlAttRear.Pos) // calculate in drawAttachments 
-		-- local niceZoomSetting = 2 // att.zoomDesired
+		local curCLFOV = math.Clamp(cvFOVDesired:GetInt() - wep.CurFOVMod, 0, cvFOVDesired:GetInt())
+		local fovDiff = math.Clamp(curCLFOV - wep.CurVMFOV, 0, curCLFOV)
+		local camOriginDist = wep.Owner:EyePos():Distance(mdlAttRear.Pos) // calculate in drawAttachments 
+		local niceZoomSetting = 2 // att.zoomDesired
 		
 		-- wep.rt2 = {
 			-- ["curCLFOV"] = curCLFOV,
@@ -95,7 +95,7 @@ if CLIENT then
 		cd.origin = wep.Owner:GetShootPos()
 		
 		-- cd.fov = fovDiff * 6 * (1 / niceZoomSetting) / camOriginDist
-		-- cd.angles = mdlAttRear.ang
+		-- cd.angles = mdlAttRear.Ang
 		-- cd.origin = mdlAttRear.Pos
 
 		old_x, old_y = ScrW(), ScrH()

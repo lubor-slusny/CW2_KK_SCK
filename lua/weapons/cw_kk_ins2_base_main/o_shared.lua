@@ -254,7 +254,7 @@ function SWEP:beginReload()
 
 	self.lastMag = mag
 	
-	if self.dt.INS2GLActive or !self.ShotgunReload then
+	if self.dt.INS2GLActive or (!self.ShotgunReload) then
 		if self.dt.INS2GLActive then
 			anim = "reload"
 		elseif mag == 0 then
@@ -323,6 +323,36 @@ function SWEP:beginReload()
 		self:SetNextPrimaryFire(CT + reloadHalt)
 		self:SetNextSecondaryFire(CT + reloadHalt)
 		self.GlobalDelay = CT + reloadHalt
+	elseif self.ActiveAttachments.kk_ins2_ww2_stripper and ammo >= self.stripperCapacity and mag < 2 then
+		anim = "reload"
+		
+		animPrefix = self:getForegripMode()
+		animSuffix = self._KK_INS2_customReloadSuffix
+		
+		anim = animPrefix .. anim .. animSuffix
+		
+		self:sendWeaponAnim(anim, self.ReloadSpeed, 0)
+		
+		reloadTime, reloadHalt, flag, unloadTime = self:getAnimTimes(anim)
+				
+		if self.lastMag > 0 and flag == KK_INS2_STRIPPERCLIP_UNLOAD_ONE then
+			CustomizableWeaponry.actionSequence.new(self, unloadTime, nil, function()
+				if not self.ReloadDelay then return end	// melee attack interruption
+				
+				self:SetClip1(mag - 1)
+				self.Owner:SetAmmo(ammo + 1, self.Primary.Ammo)
+			end)
+		end
+		
+		reloadTime = reloadTime / self.ReloadSpeed
+		reloadHalt = reloadHalt / self.ReloadSpeed
+		
+		self.ReloadDelay = CT + reloadTime
+		self.ReloadWait = CT + reloadHalt
+		self:SetNextPrimaryFire(CT + reloadHalt)
+		self:SetNextSecondaryFire(CT + reloadHalt)
+		self.GlobalDelay = CT + reloadHalt
+		self.ShotgunReloadState = 3
 	else
 		self.WasEmpty = mag == 0
 		
@@ -527,8 +557,19 @@ function SWEP:finishReloadShotgun()
 			end
 		end
 	elseif self.ShotgunReloadState == 3 then
-		// stripp
-		
+		if CT > self.ReloadDelay then
+			self.ShotgunReloadState = 0
+			self.ReloadDelay = nil
+			
+			if SERVER then	
+				mag, ammo = self:Clip1(), self.Owner:GetAmmoCount(self.Primary.Ammo)
+				
+				local load = math.Clamp(self.stripperCapacity, 0, ammo)
+				
+				self:SetClip1(mag + load)
+				self.Owner:SetAmmo(ammo - load, self.Primary.Ammo)
+			end
+		end
 	elseif self.ShotgunReloadState == 2 then
 		if CT > self.ReloadDelay then
 			self.ShotgunReloadState = 0

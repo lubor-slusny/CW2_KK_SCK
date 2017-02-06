@@ -91,6 +91,8 @@ SWEP.projectileOffsetPosAim = Vector(0, 0, -6)
 SWEP.projectileRotation = Angle(0, 0, 0)
 SWEP.projectileFuse = false // float
 
+SWEP.stripperCapacity = 5
+
 if CLIENT then	
 	SWEP.PosBasedMuz = false
 	

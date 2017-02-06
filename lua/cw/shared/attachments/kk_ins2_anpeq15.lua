@@ -5,7 +5,7 @@ att.displayName = "AN/PEQ-15"
 
 att.statModifiers = {
 	VelocitySensitivityMult = -0.2,
-	OverallMouseSensMult = -0.2,
+	// OverallMouseSensMult = -0.2,
 	HipSpreadMult = -0.2,
 	DrawSpeedMult = -0.1,
 	MaxSpreadIncMult = -0.25

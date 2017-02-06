@@ -4,7 +4,7 @@ att.displayName = "30 round magazine"
 att.displayNameShort = "30 RND"
 
 att.statModifiers = {
-	OverallMouseSensMult = -0.05
+	// OverallMouseSensMult = -0.05
 }
 
 if CLIENT then

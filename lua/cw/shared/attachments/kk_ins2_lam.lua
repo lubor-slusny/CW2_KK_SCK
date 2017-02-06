@@ -8,7 +8,7 @@ att.colorType = CustomizableWeaponry.colorableParts.COLOR_TYPE_BEAM
 
 att.statModifiers = {
 	VelocitySensitivityMult = -0.2,
-	OverallMouseSensMult = -0.15,
+	// OverallMouseSensMult = -0.15,
 	HipSpreadMult = -0.2,
 	DrawSpeedMult = -0.1,
 	MaxSpreadIncMult = -0.25

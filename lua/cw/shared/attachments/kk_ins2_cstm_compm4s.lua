@@ -10,7 +10,7 @@ att.isSight = true
 -- att.colorType = CustomizableWeaponry.colorableParts.COLOR_TYPE_SIGHT
 
 att.statModifiers = {
-	OverallMouseSensMult = -0.07
+	// OverallMouseSensMult = -0.07
 }
 
 if CLIENT then
