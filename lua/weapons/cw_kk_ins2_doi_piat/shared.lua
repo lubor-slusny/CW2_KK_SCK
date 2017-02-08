@@ -41,7 +41,7 @@ SWEP.Chamberable = false
 SWEP.WeaponLength = 44
 
 SWEP.Attachments = {
-	{header = "Stock", offset = {400, -200}, atts = {"kk_ins2_ww2_sling"}},
+	-- {header = "Stock", offset = {400, -200}, atts = {"kk_ins2_ww2_sling"}},
 }
 
 SWEP.KK_INS2_EmptyIdle = true

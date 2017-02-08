@@ -6,7 +6,7 @@ include("sh_soundscript.lua")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "HL2 M18"
+	SWEP.PrintName = "HL2 HE Grenade"
 	SWEP.CSMuzzleFlashes = true
 	
 	SWEP.SelectFont = "CW_SelectIcons2"

@@ -18,21 +18,9 @@ if CLIENT then
 	att.description = {
 		[1] = {t = "Allows the user to fire 40MM rounds.", c = CustomizableWeaponry.textColors.POSITIVE},
 	}
-
-	local v0 = Vector(0.01, 0.01, 0.01)
-	local v1 = Vector(1, 1, 1)
-	
-	local nadeTypes = CustomizableWeaponry.grenadeTypes.registered
-	
-	-- function att:elementRender()	
-	-- end
 end
 
 local function resetGL(self)
-	if CLIENT then
-		self.CW_VM:SetModel(self.ViewModel)
-	end
-	
 	if self.M203Chamber then
 		if SERVER then
 			self.Owner:GiveAmmo(1, "40MM", true)
@@ -44,18 +32,10 @@ local function resetGL(self)
 end
 
 function att:attachFunc()
-	if CLIENT then
-		self.ViewModel = "models/weapons/v_cw_kk_doi_k98.mdl"
-	end
-	
 	resetGL(self)
 end
 
 function att:detachFunc()
-	if CLIENT then
-		self.ViewModel = "models/weapons/kk_doi/v_kar98k.mdl"
-	end
-	
 	resetGL(self)
 end
 

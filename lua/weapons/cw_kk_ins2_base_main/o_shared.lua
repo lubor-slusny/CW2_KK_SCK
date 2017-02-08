@@ -323,7 +323,7 @@ function SWEP:beginReload()
 		self:SetNextPrimaryFire(CT + reloadHalt)
 		self:SetNextSecondaryFire(CT + reloadHalt)
 		self.GlobalDelay = CT + reloadHalt
-	elseif self.ActiveAttachments.kk_ins2_ww2_stripper and ammo >= self.stripperCapacity and mag < 2 then
+	elseif self.ActiveAttachments.kk_ins2_ww2_stripper and ammo >= self.stripperCapacity and (self.Primary.ClipSize + 1 - mag) >= self.stripperCapacity then
 		anim = "reload"
 		
 		animPrefix = self:getForegripMode()

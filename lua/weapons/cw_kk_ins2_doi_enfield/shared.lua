@@ -58,7 +58,7 @@ if CLIENT then
 	SWEP.KKINS2ScopeEnfieldPos = Vector(-2.5738, -1.5, 0.8389)
 	SWEP.KKINS2ScopeEnfieldAng = Vector()
 
-	SWEP.KKINS2ScopeWA5Pos = Vector(-2.5649, -2, 1.1647)
+	SWEP.KKINS2ScopeWA5Pos = Vector(-2.5649, -4, 1.1647)
 	SWEP.KKINS2ScopeWA5Ang = Vector(0, 0, 0)
 
 	SWEP.M203Pos = Vector(-2.71, -6, 1.8053)
@@ -153,6 +153,8 @@ SWEP.Animations = {
 	gl_off_safe_empty_aim = "iron_down_empty",
 	gl_off_crawl = "base_crawl",
 	gl_off_crawl_empty = "base_crawl_empty",
+	gl_off_melee = "base_melee_bash",
+	gl_off_melee_empty = "base_melee_bash_empty",
 	
 	gl_on_draw = "glsetup_draw",
 	gl_on_draw_empty = "glsetup_draw_empty",
@@ -201,8 +203,7 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/kk_doi/v_enfield.mdl"
--- SWEP.ViewModel		= "models/weapons/v_cw_kk_doi_enfield.mdl"
+SWEP.ViewModel		= "models/weapons/v_cw_kk_doi_enfield.mdl"
 SWEP.WorldModel		= "models/weapons/w_enfield.mdl"
 
 SWEP.WMPos = Vector(14, 0.5, -3)

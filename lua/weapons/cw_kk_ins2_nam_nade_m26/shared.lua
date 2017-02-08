@@ -8,7 +8,7 @@ include("sh_soundscript.lua")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "M26 Grenade"
+	SWEP.PrintName = "M26 HE Grenade"
 	SWEP.CSMuzzleFlashes = true
 	
 	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_nam_m26")

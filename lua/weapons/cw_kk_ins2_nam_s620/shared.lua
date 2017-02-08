@@ -42,10 +42,10 @@ SWEP.MuzzleEffect = "muzzleflash_ithica_1p"
 SWEP.MuzzleEffectWorld = "muzzleflash_ithica_3p"
 
 SWEP.Attachments = {
-	{header = "Barrel", offset = {-200, -450}, atts = {"kk_ins2_suppressor_shotgun"}},
-	{header = "Under", offset = {-400, 0}, atts = {"kk_ins2_vertgrip"}},
-	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
-	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_slugrounds", "am_flechetterounds"}}
+	{header = "Barrel", offset = {0, -200}, atts = {"kk_ins2_suppressor_shotgun"}},
+	{header = "Under", offset = {0, 400}, atts = {"kk_ins2_vertgrip"}},
+	-- {header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
+	["+reload"] = {header = "Ammo", offset = {1000, 400}, atts = {"am_slugrounds", "am_flechetterounds"}}
 }
 
 SWEP.Animations = {

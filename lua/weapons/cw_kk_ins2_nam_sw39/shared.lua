@@ -55,8 +55,8 @@ SWEP.Animations = {
 	base_fire_empty_aim = "iron_dryfire",
 	base_reload = "base_reload",
 	base_reload_empty = "base_reloadempty",
-	base_idle = "base_idle",
-	base_idle_empty = "empty_idle",
+	base_idle = "iron_idle",
+	base_idle_empty = "iron_empty",
 	base_holster = "base_holster",
 	base_holster_empty = "empty_holster",
 	base_sprint = "base_sprint",
@@ -133,3 +133,21 @@ SWEP.ReloadTimes = {
 	base_melee_bash = {0.3, 0.8},
 	empty_melee_bash = {0.3, 0.8},
 }
+
+if CLIENT then
+	local v0 = Vector()
+	local v1 = Vector(1,1,1)
+	local bone = 63
+	
+	function SWEP:updateOtherParts()
+		local vm = self.CW_VM
+		local cycle = vm:GetCycle()
+		local activity = self.Sequence
+		
+		if self:Clip1() == 0 and (self.Sequence != self.Animations.base_reload_empty or cycle < 0.3) then
+			vm:ManipulateBoneScale(bone, v0)
+		else
+			vm:ManipulateBoneScale(bone, v1)
+		end
+	end
+end

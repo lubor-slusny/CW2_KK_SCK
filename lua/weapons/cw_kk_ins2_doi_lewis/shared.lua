@@ -21,8 +21,8 @@ if CLIENT then
 	SWEP.ShellWorldAngleAlign = {Forward = 0, Right = 0, Up = 0}
 	
 	SWEP.AttachmentModelsVM = {
-		["ani_body"] = {model = "models/weapons/v_lewis.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
-		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_lewis.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body"},
+		-- ["ani_body"] = {model = "models/weapons/v_lewis.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
+		-- ["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_lewis.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body"},
 	}
 	
 	SWEP.AttachmentModelsWM = {}
@@ -37,7 +37,7 @@ SWEP.MuzzleEffect = "muzzleflash_m1919_1p"
 SWEP.MuzzleEffectWorld = "muzzleflash_bar_3p"
 
 SWEP.Attachments = {
-	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
+	-- {header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
 	["+reload"] = {header = "Ammo", offset = {500, 300}, atts = {"am_magnum", "am_matchgrade"}}
 }
 

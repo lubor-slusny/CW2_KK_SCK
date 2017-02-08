@@ -6,7 +6,7 @@ include("sh_soundscript.lua")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "RDG1 Smoke"
+	SWEP.PrintName = "RDG1 Smoke Grenade"
 	SWEP.CSMuzzleFlashes = true
 	
 	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_nam_rdg1")
@@ -18,6 +18,8 @@ if CLIENT then
 	SWEP.DisableSprintViewSimulation = true
 	
 	SWEP.HUD_3D2DOffset = Vector(0, 0, 0)
+	SWEP.CustomizationMenuScale = 0.006
+	
 	SWEP.ViewModelMovementScale = 0.8
 	
 	SWEP.HUD_3D2DBone = 54

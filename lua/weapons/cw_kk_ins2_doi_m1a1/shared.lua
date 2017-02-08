@@ -42,15 +42,15 @@ if CLIENT then
 		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/w_bayonet_m1a1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
-	SWEP.ForegripOverridePos = {
-		none = {
-			["FoldingStock"] = {pos = Vector(), angle = Angle()},
-		},
+	-- SWEP.ForegripOverridePos = {
+		-- none = {
+			-- ["FoldingStock"] = {pos = Vector(), angle = Angle()},
+		-- },
 		
-		stoq = {
-			["FoldingStock"] = {pos = Vector(), angle = Angle(0, 180, 0)},
-		}
-	}
+		-- stoq = {
+			-- ["FoldingStock"] = {pos = Vector(), angle = Angle(0, 180, 0)},
+		-- }
+	-- }
 	
 	-- SWEP.ForegripParent = "stoq"
 	-- SWEP.ForegripOverride = true

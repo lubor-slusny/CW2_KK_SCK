@@ -31,7 +31,7 @@ SWEP.MuzzleEffect = "muzzleflash_ithica_1p"
 SWEP.MuzzleEffectWorld = "muzzleflash_ithica_3p"
 
 SWEP.Attachments = {
-	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
+	-- {header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_slugrounds", "am_flechetterounds"}}
 }
 

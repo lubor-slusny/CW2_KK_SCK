@@ -152,7 +152,7 @@ CustomizableWeaponry.originalValue:add("projectileClass", false, true)
 	stat.desc = stat.descBase
 
 	local known = {
-		["cw_kk_ins2_projectile_frag"] = "HE FG",
+		["cw_kk_ins2_projectile_frag"] = "HE/FG",
 		["cw_kk_ins2_projectile_c4"] = "RCEx",
 		["cw_kk_ins2_projectile_ied"] = "RCEx",
 		["cw_kk_ins2_projectile_m84"] = "STUN",
@@ -163,20 +163,20 @@ CustomizableWeaponry.originalValue:add("projectileClass", false, true)
 		["npc_grenade_frag"] = "JOKE",
 		["cw_kk_ins2_projectile_ww2_c4_de"] = "HE SC",
 		["cw_kk_ins2_projectile_ww2_c4_us"] = "HE SC",
-		["cw_kk_ins2_projectile_n69"] = "ID FG",
+		["cw_kk_ins2_projectile_n69"] = "ID HE",
 		["cw_kk_ins2_projectile_n76"] = "WP",
 		["cw_kk_ins2_projectile_n77"] = "ID SM",
 	}
 	
 	local long = {
-		["HE FG"] = "High-explosive fragmentation grenade.",
+		["HE/FG"] = "High-explosive or Fragmentation grenade.",
 		["HE SC"] = "High-explosive satchel charge.",
 		["RCEx"] = "Remote-controlled explosive charge.",
 		["STUN"] = "Less-than-lethal stun grenade - \"flashbang\".",
 		["SMOKE"] = "Creates temporary smoke cover in surrounding area.",
 		["JOKE"] = "For admins and staff.",
 		["INCD"] = "Incendiary - sets surrounding area on fire.",
-		["ID FG"] = "Impact-detonated fragmentation grenade.",
+		["ID HE"] = "Impact-detonated high-explosive grenade.",
 		["WP"] = "Self-igniting phosphorus grenade.",
 		["ID SM"] = "Impact-detonated smoke grenade.",
 		["UNKWN"] = "Unknown grenade type."

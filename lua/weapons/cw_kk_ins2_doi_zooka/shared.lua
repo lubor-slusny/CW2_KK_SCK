@@ -23,6 +23,8 @@ if CLIENT then
 	}
 	
 	SWEP.AttachmentModelsVM = {
+		["ani_body"] = {model = "models/weapons/v_bazooka.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
+		
 		["h347"] = {model = "models/weapons/upgrades/a_warhead_bazooka_1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
 		["kk_ins2_ammo_m10"] = {model = "models/weapons/upgrades/a_warhead_bazooka_2.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
@@ -54,7 +56,7 @@ SWEP.WeaponLength = 44
 
 SWEP.Attachments = {
 	{header = "Ammo", offset = {600, -200}, atts = {"kk_ins2_ammo_m10"}},
-	{header = "Stock", offset = {600, 200}, atts = {"kk_ins2_ww2_sling"}},
+	-- {header = "Stock", offset = {600, 200}, atts = {"kk_ins2_ww2_sling"}},
 }
 
 SWEP.Animations = {
@@ -97,7 +99,8 @@ SWEP.Instructions	= ""
 SWEP.AimViewModelFOV = 30
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/kk_doi/v_bazooka.mdl"
+-- SWEP.ViewModel		= "models/weapons/kk_doi/v_bazooka.mdl"
+SWEP.ViewModel		= "models/weapons/v_cw_kk_doi_zooka.mdl"
 SWEP.WorldModel		= "models/weapons/w_bazooka.mdl"
 
 SWEP.WMPos = Vector(-5, 0, -0.5)

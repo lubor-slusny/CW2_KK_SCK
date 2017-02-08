@@ -215,6 +215,7 @@ local function loadSliderZoom(slider)
 	
 	initSliderStorage(id)
 	
+	slider.Wang:SetDecimals(4) // ???
 	slider.Wang:SetZoom(stored[id]:GetFloat())
 end
 

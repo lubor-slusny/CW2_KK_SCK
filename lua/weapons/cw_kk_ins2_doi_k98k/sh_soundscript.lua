@@ -247,6 +247,7 @@ SWEP.Sounds = {
 	},
 
 	glsetup_in = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClipM1},
 		{time = 19/35.5, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
 		{time = 27/35.5, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
 		{time = 66/35.5, sound = "CW_KK_INS2_DOI_K98_BULLETIN", callback = blankLoaded},
@@ -260,6 +261,7 @@ SWEP.Sounds = {
 	},
 
 	glsetup_in_empty = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 19/35.5, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
 		{time = 27/35.5, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
 		// { event AE_CL_CREATE_PARTICLE_BRASS 29 ""},
@@ -275,6 +277,7 @@ SWEP.Sounds = {
 	},
 
 	glsetup_out = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 36/35.5, sound = "CW_KK_INS2_DOI_K98_GLREMOVE"},
 		{time = 112/35.5, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
 		{time = 119/35.5, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
@@ -284,6 +287,7 @@ SWEP.Sounds = {
 	},
 
 	glsetup_out_empty = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 18/35.5, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
 		{time = 26/35.5, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
 		{time = 29/35.5, sound = "", callback = shell},
@@ -311,6 +315,7 @@ SWEP.Sounds = {
 	},
 
 	glsetup_reload = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 19/35.5, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
 		{time = 27/35.5, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
 		{time = 29/35.5, sound = "", callback = shell},
