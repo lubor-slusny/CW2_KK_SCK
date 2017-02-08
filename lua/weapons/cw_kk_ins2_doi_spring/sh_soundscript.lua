@@ -46,6 +46,7 @@ SWEP.Sounds = {
 	},
 
 	base_reload_empty_clip = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 19/33.4, sound = "CW_KK_INS2_DOI_SPRING_BOLTRELEASE"},
 		{time = 27/33.4, sound = "CW_KK_INS2_DOI_SPRING_BOLTBACK"},
 		{time = 29/33.4, sound = "", callback = shell},
@@ -58,16 +59,16 @@ SWEP.Sounds = {
 		{time = 119/33.4, sound = "CW_KK_INS2_DOI_SPRING_BOLTLATCH"},
 	},
 
-	base_reload_full_clip = {
-		{time = 19/33.4, sound = "CW_KK_INS2_DOI_SPRING_BOLTRELEASE"},
-		{time = 27/33.4, sound = "CW_KK_INS2_DOI_SPRING_BOLTBACK"},
-		{time = 37/33.4, sound = "CW_KK_INS2_DOI_SPRING_FETCHMAG"},
-		{time = 64/33.4, sound = "CW_KK_INS2_DOI_SPRING_MAGIN"},
-		{time = 80/33.4, sound = "CW_KK_INS2_DOI_SPRING_ROUNDSIN"},
-		{time = 111/33.4, sound = "CW_KK_INS2_DOI_SPRING_BOLTFORWARDSTRIPPERCLIP"},
-		{time = 112/33.4, sound = "CW_KK_INS2_DOI_SPRING_STRIPPERCLIPEJECT"},
-		{time = 119/33.4, sound = "CW_KK_INS2_DOI_SPRING_BOLTLATCH"},
-	},
+	-- base_reload_full_clip = {
+		-- {time = 19/33.4, sound = "CW_KK_INS2_DOI_SPRING_BOLTRELEASE"},
+		-- {time = 27/33.4, sound = "CW_KK_INS2_DOI_SPRING_BOLTBACK"},
+		-- {time = 37/33.4, sound = "CW_KK_INS2_DOI_SPRING_FETCHMAG"},
+		-- {time = 64/33.4, sound = "CW_KK_INS2_DOI_SPRING_MAGIN"},
+		-- {time = 80/33.4, sound = "CW_KK_INS2_DOI_SPRING_ROUNDSIN"},
+		-- {time = 111/33.4, sound = "CW_KK_INS2_DOI_SPRING_BOLTFORWARDSTRIPPERCLIP"},
+		-- {time = 112/33.4, sound = "CW_KK_INS2_DOI_SPRING_STRIPPERCLIPEJECT"},
+		-- {time = 119/33.4, sound = "CW_KK_INS2_DOI_SPRING_BOLTLATCH"},
+	-- },
 
 	base_reload_start = {
 		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClipM1},
@@ -143,6 +144,7 @@ SWEP.Sounds = {
 	},
 
 	glsetup_out_empty = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		// { event AE_CL_CREATE_PARTICLE_BRASS 21 ""},
 		{time = 13/30.5, sound = "CW_KK_INS2_DOI_SPRING_BOLTRELEASE"},
 		{time = 19/30.5, sound = "CW_KK_INS2_DOI_SPRING_BOLTBACK"},
@@ -155,6 +157,7 @@ SWEP.Sounds = {
 	},
 
 	glsetup_draw_empty = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 0/33.5, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
 		{time = 36/33.5, sound = "CW_KK_INS2_DOI_SPRING_GL_LOAD1"},
 		{time = 49/33.5, sound = "CW_KK_INS2_DOI_SPRING_GL_LOAD2"},
@@ -187,6 +190,7 @@ SWEP.Sounds = {
 	},
 
 	glsetup_reload = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 17/33.5, sound = "CW_KK_INS2_DOI_SPRING_RATTLE"},
 		{time = 54/33.5, sound = "CW_KK_INS2_DOI_SPRING_GL_LOAD1"},
 		{time = 63/33.5, sound = "CW_KK_INS2_DOI_SPRING_GL_LOAD2"},

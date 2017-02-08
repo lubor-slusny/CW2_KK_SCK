@@ -25,6 +25,8 @@ if CLIENT then
 		
 		["ani_body"] = {model = "models/weapons/v_ithaca.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
 		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_ithaca.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body"},
+		
+		["kk_ins2_scope_zf41"] = {model = "models/weapons/upgrades/a_optic_kk_zf41.mdl", rLight = true, pos = Vector(-0.0104, -5.7704, 0.655), angle = Angle(0, -90, 0), size = Vector(1, 1, 1), bone = "Weapon"},
 	}
 	
 	SWEP.AttachmentModelsWM = {
@@ -34,6 +36,9 @@ if CLIENT then
 	SWEP.IronsightPos = Vector(-2.0952, -2.5, 1.2975)
 	SWEP.IronsightAng = Vector(0.2605, -0.0341, 0)
 	
+	SWEP.KKINS2ScopeZF41Pos = Vector(-2.028, 4, 0.8911)
+	SWEP.KKINS2ScopeZF41Ang = Vector(0, 0.0208, 0)
+
 	SWEP.CustomizationMenuScale = 0.015
 end
 
@@ -41,6 +46,7 @@ SWEP.MuzzleEffect = "muzzleflash_ithica_1p"
 SWEP.MuzzleEffectWorld = "muzzleflash_ithica_3p"
 
 SWEP.Attachments = {
+	-- {header = "Sight", offset = {500, -500}, atts = {"kk_ins2_scope_zf41"}},
 	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_ww2_knife"}},
 	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_slugrounds", "am_flechetterounds"}}

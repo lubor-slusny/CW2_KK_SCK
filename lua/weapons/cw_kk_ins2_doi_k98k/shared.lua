@@ -264,7 +264,7 @@ SWEP.ReloadTimes = {
 	base_fire_end = {20/35, 1.2},
 	iron_fire_end = {18/35, 1.4},
 	
-	-- base_reload_full_clip = {88/35, 4.29},
+	base_reload_full_clip = {88/35, 4.29},
 	base_reload_empty_clip = {88/35, 4.29, KK_INS2_STRIPPERCLIP_UNLOAD_ONE, 29/35},
 	base_reload_start = {29/35.5, 1.21, KK_INS2_SHOTGUN_UNLOAD_ONE},
 	base_reload_start_empty = {1.21, 1.21},

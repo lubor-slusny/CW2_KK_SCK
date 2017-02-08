@@ -64,7 +64,7 @@ function SWEP:getAnimTimes(animName)
 		return
 	end
 	
-	return seqTable[1], seqTable[2], seqTable[3], seqTable[4]
+	return seqTable[1], seqTable[2], seqTable[3], seqTable[4], seqTable[5], seqTable[6], seqTable[7], seqTable[8]
 end
 
 //-----------------------------------------------------------------------------

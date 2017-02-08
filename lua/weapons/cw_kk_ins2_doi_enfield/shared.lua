@@ -97,8 +97,6 @@ SWEP.Animations = {
 	base_fire_empty_aim = "iron_dryfire",
 	base_bolt = "base_fire_end",
 	base_bolt_aim = "iron_fire_end",
-	base_reload = "base_reload_full_clip",
-	base_reload_empty = "base_reload_empty_clip",
 	base_reload_start = "base_reload_start",
 	base_reload_start_empty = "base_reload_start_empty",
 	base_insert = "base_reload_insert",
@@ -134,8 +132,6 @@ SWEP.Animations = {
 	gl_off_fire_empty_aim = "iron_dryfire",
 	gl_off_bolt = "base_fire_end",
 	gl_off_bolt_aim = "iron_fire_end",
-	gl_off_reload = "base_reload_full_clip",
-	gl_off_reload_empty = "base_reload_empty_clip",
 	gl_off_reload_start = "base_reload_start",
 	gl_off_reload_start_empty = "base_reload_start_empty",
 	gl_off_insert = "base_reload_insert",
@@ -181,9 +177,17 @@ SWEP.Animations = {
 	gl_turn_off = "glsetup_out",
 	gl_turn_off_empty = "glsetup_out_empty",
 	
-	stripper_reload_1 = "base_reload_clip",
-	stripper_reload_1_empty = "base_reload_full_clip",
-	stripper_reload_2 = "base_reload_empty_clip",
+	-- stripper_reload_1 = "base_reload_clip",
+	-- stripper_reload_1_empty = "base_reload_full_clip",
+	-- stripper_reload_2 = "base_reload_empty_clip",
+	
+	base_reload = "base_reload_clip",
+	base_reload_empty = "base_reload_full_clip",
+	base_reload_empty_2 = "base_reload_empty_clip",
+	
+	gl_off_reload = "base_reload_clip",
+	gl_off_reload_empty = "base_reload_full_clip",
+	gl_off_reload_empty_2 = "base_reload_empty_clip",
 }
 
 SWEP.SpeedDec = 40
@@ -257,7 +261,7 @@ SWEP.ReloadTimes = {
 	
 	base_reload_clip = {90/36, 4.8, KK_INS2_STRIPPERCLIP_UNLOAD_ONE, 29/36},
 	base_reload_full_clip = {90/36, 4.81},
-	base_reload_empty_clip = {176/36, 7.39, KK_INS2_STRIPPERCLIP_UNLOAD_ONE, 29/36},
+	base_reload_empty_clip = {90/36, 7.39, KK_INS2_STRIPPERCLIP_UNLOAD_ONE, 29/36, 176/36},
 	base_reload_start = {29/38.5, 1.12, KK_INS2_SHOTGUN_UNLOAD_ONE},
 	base_reload_start_empty = {1.12, 1.12},
 	base_reload_insert = {20/40.2, 0.92},
@@ -274,48 +278,48 @@ SWEP.ReloadTimes = {
 	base_melee_bash_empty = {0.3, 0.9},
 }
 
-SWEP.reloadProgressAnimsRaw = {
-	stripper_reload_1 = true,
-	stripper_reload_1_empty = true,
-	stripper_reload_2 = true,
-}
+-- SWEP.reloadProgressAnimsRaw = {
+	-- stripper_reload_1 = true,
+	-- stripper_reload_1_empty = true,
+	-- stripper_reload_2 = true,
+-- }
 
-SWEP.reticleInactivityCallbacksRaw = {
-	["stripper_reload_1"] = 0.1,
-	["stripper_reload_1_empty"] = 0.1,
-	["stripper_reload_2"] = 0.1,
-}
+-- SWEP.reticleInactivityCallbacksRaw = {
+	-- ["stripper_reload_1"] = 0.1,
+	-- ["stripper_reload_1_empty"] = 0.1,
+	-- ["stripper_reload_2"] = 0.1,
+-- }
 
-function SWEP:overrideReloadAnim()
-	if self.dt.INS2GLActive then
-		return "gl_on_reload"
-	end
+-- function SWEP:overrideReloadAnim()
+	-- if self.dt.INS2GLActive then
+		-- return "gl_on_reload"
+	-- end
 	
-	local clip = self:Clip1()
+	-- local clip = self:Clip1()
 	
-	clip = clip > 0 and clip - 1 or clip
+	-- clip = clip > 0 and clip - 1 or clip
 	
-	local loadAmmount = self.getFullestMag and self:getFullestMag() or math.Clamp(self.Owner:GetAmmoCount(self.Primary.Ammo), 0, self.Primary.ClipSize)
+	-- local loadAmmount = self.getFullestMag and self:getFullestMag() or math.Clamp(self.Owner:GetAmmoCount(self.Primary.Ammo), 0, self.Primary.ClipSize)
 	
-	if loadAmmount - clip < 6 then 
-		if clip < 1 then
-			return "stripper_reload_1_empty"
-		else
-			return "stripper_reload_1"
-		end
-	end
+	-- if loadAmmount - clip < 6 then 
+		-- if clip < 1 then
+			-- return "stripper_reload_1_empty"
+		-- else
+			-- return "stripper_reload_1"
+		-- end
+	-- end
 	
-	return "stripper_reload_2"
-end
+	-- return "stripper_reload_2"
+-- end
 
-if CLIENT then
-	local one = Vector(1, 1, 1)
-	local zero = Vector()
+-- if CLIENT then
+	-- local one = Vector(1, 1, 1)
+	-- local zero = Vector()
 	
-	function SWEP:updateOtherParts()
-		self.CW_VM:ManipulateBoneScale(80, (self.Sequence == self.Animations.stripper_reload_1_empty) and zero or one)
-	end
-end
+	-- function SWEP:updateOtherParts()
+		-- self.CW_VM:ManipulateBoneScale(80, (self.Sequence == self.Animations.stripper_reload_1_empty) and zero or one)
+	-- end
+-- end
 
 function SWEP:IndividualInitialize()
 	self.magType = "NONE"
@@ -325,5 +329,24 @@ end
 if CLIENT then
 	function SWEP:updateStandardParts()
 		self:setElementActive("sleeve", self.ActiveAttachments.kk_ins2_scope_enfield)
+	end
+end
+
+SWEP.reloadProgressAnimsRaw = {
+	base_reload_empty_2 = true,
+	gl_off_reload_empty_2 = true,
+}
+
+SWEP.reticleInactivityCallbacksRaw = {
+	["base_reload_empty_2"] = 0.1,
+	["gl_off_reload_empty_2"] = 0.1,
+}
+
+if CLIENT then
+	local v0 = Vector()
+	local v1 = Vector(1, 1, 1)
+	
+	function SWEP:updateOtherParts()
+		self.CW_VM:ManipulateBoneScale(80, (self.Sequence == "base_reload_full_clip") and v0 or v1)
 	end
 end

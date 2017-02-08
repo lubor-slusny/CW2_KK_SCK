@@ -324,7 +324,15 @@ function SWEP:beginReload()
 		self:SetNextSecondaryFire(CT + reloadHalt)
 		self.GlobalDelay = CT + reloadHalt
 	elseif self.ActiveAttachments.kk_ins2_ww2_stripper and ammo >= self.stripperCapacity and (self.Primary.ClipSize + 1 - mag) >= self.stripperCapacity then
-		anim = "reload"
+		if mag < 2 then
+			if self.Animations.base_reload_empty_2 and (ammo >= (2 * self.stripperCapacity)) then
+				anim = "reload_empty_2"
+			else
+				anim = "reload_empty"
+			end
+		else
+			anim = "reload"
+		end
 		
 		animPrefix = self:getForegripMode()
 		animSuffix = self._KK_INS2_customReloadSuffix
@@ -333,8 +341,10 @@ function SWEP:beginReload()
 		
 		self:sendWeaponAnim(anim, self.ReloadSpeed, 0)
 		
-		reloadTime, reloadHalt, flag, unloadTime = self:getAnimTimes(anim)
-				
+		local insert1, insert2, insert3
+		
+		insert1, reloadHalt, flag, unloadTime, insert2, insert3 = self:getAnimTimes(anim)
+		
 		if self.lastMag > 0 and flag == KK_INS2_STRIPPERCLIP_UNLOAD_ONE then
 			CustomizableWeaponry.actionSequence.new(self, unloadTime, nil, function()
 				if not self.ReloadDelay then return end	// melee attack interruption
@@ -344,15 +354,22 @@ function SWEP:beginReload()
 			end)
 		end
 		
-		reloadTime = reloadTime / self.ReloadSpeed
+		insert1 = insert1 / self.ReloadSpeed
 		reloadHalt = reloadHalt / self.ReloadSpeed
 		
-		self.ReloadDelay = CT + reloadTime
+		self.ReloadDelay = CT + insert1
 		self.ReloadWait = CT + reloadHalt
 		self:SetNextPrimaryFire(CT + reloadHalt)
 		self:SetNextSecondaryFire(CT + reloadHalt)
 		self.GlobalDelay = CT + reloadHalt
 		self.ShotgunReloadState = 3
+		
+		self.ReloadDelays = {
+			insert1 and (CT + insert1),
+			insert2 and (CT + insert2),
+			insert3 and (CT + insert3),
+		}
+		self.ReloadDelaysCur = 1
 	else
 		self.WasEmpty = mag == 0
 		
@@ -558,8 +575,13 @@ function SWEP:finishReloadShotgun()
 		end
 	elseif self.ShotgunReloadState == 3 then
 		if CT > self.ReloadDelay then
-			self.ShotgunReloadState = 0
-			self.ReloadDelay = nil
+			
+			self.ReloadDelaysCur = self.ReloadDelaysCur + 1
+			self.ReloadDelay = self.ReloadDelays[self.ReloadDelaysCur]
+		
+			if not self.ReloadDelay then
+				self.ShotgunReloadState = 0	
+			end
 			
 			if SERVER then	
 				mag, ammo = self:Clip1(), self.Owner:GetAmmoCount(self.Primary.Ammo)

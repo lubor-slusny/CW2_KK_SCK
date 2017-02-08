@@ -105,6 +105,7 @@ SWEP.Sounds = {
 	},
 
 	base_reload_start_empty = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		// { event AE_CL_CREATE_PARTICLE_BRASS 29 ""},
 		{time = 19/35.5, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
 		{time = 27/35.5, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
