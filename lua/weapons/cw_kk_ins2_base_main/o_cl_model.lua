@@ -61,13 +61,7 @@ function SWEP:createCustomVM(mdl)
 	self.CW_VM:SelectWeightedSequence(ACT_VM_HOLSTER)
 	self.CW_VM:SetCycle(1)
 	
-	self.CW_KK_HANDS = self:createManagedCModel(self.CW_KK_HANDS_MDL, RENDERGROUP_BOTH)
-	self.CW_KK_HANDS:SetNoDraw(true)
-	self.CW_KK_HANDS:SetupBones()
-	
-	self.CW_KK_HANDS:SetParent(self.CW_VM)
-	self.CW_KK_HANDS:AddEffects(EF_BONEMERGE)
-	-- self.CW_KK_HANDS:AddEffects(EF_BONEMERGE_FASTCULL)
+	self:createHandsVM()
 	
 	self.CW_GREN = self:createManagedCModel(self.CW_GREN_TWEAK.vm, RENDERGROUP_BOTH)
 	self.CW_GREN:SetNoDraw(true)
@@ -656,4 +650,18 @@ function SWEP:scaleMovement(val, mod)
 	end
 	
 	return val * scale * mod
+end
+
+//-----------------------------------------------------------------------------
+// createHandsVM detached from createCustomVM
+//-----------------------------------------------------------------------------
+
+function SWEP:createHandsVM()
+	self.CW_KK_HANDS = self:createManagedCModel(self.CW_KK_HANDS_MDL, RENDERGROUP_BOTH)
+	self.CW_KK_HANDS:SetNoDraw(true)
+	self.CW_KK_HANDS:SetupBones()
+	
+	self.CW_KK_HANDS:SetParent(self.CW_VM)
+	self.CW_KK_HANDS:AddEffects(EF_BONEMERGE)
+	-- self.CW_KK_HANDS:AddEffects(EF_BONEMERGE_FASTCULL)
 end
