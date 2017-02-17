@@ -877,3 +877,24 @@ function SWEP:CalculateSpread(vel, dt)
 		self.AddSpreadSpeed = math.Clamp(self.AddSpreadSpeed + 5 * dt, 0, 1)
 	end
 end
+
+//-----------------------------------------------------------------------------
+// setBodygroup
+// - thanks to DOI updates we ve got outbreak of ani_bodies here
+//-----------------------------------------------------------------------------
+
+function SWEP:setBodygroup(main, sub)
+	if SERVER then
+		return
+	end
+
+	if IsValid(self.CW_VM) and self.CW_VM:SetBodygroup(main, sub) then
+	end
+		
+	if self.AttachmentModelsVM and self.AttachmentModelsVM.ani_body then
+		local ent = self.AttachmentModelsVM.ani_body.ent
+		
+		if IsValid(ent) and ent:SetBodygroup(main, sub) then
+		end
+	end
+end

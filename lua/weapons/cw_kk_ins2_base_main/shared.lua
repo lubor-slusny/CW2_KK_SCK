@@ -532,3 +532,19 @@ end
 function SWEP:IsOwnerCrawling()
 	return self:IsOwnerProne() and self.Owner:GetVelocity():Length() > 20
 end
+
+function SWEP:setSkin(main, sub)
+	if SERVER then
+		return
+	end
+
+	if IsValid(self.CW_VM) and self.CW_VM:SetSkin(main, sub) then
+	end
+		
+	if self.AttachmentModelsVM and self.AttachmentModelsVM.ani_body then
+		local ent = self.AttachmentModelsVM.ani_body.ent
+		
+		if IsValid(ent) and ent:SetSkin(main, sub) then
+		end
+	end
+end

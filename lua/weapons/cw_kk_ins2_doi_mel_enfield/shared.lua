@@ -2,12 +2,14 @@ if not CustomizableWeaponry then return end
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "M1 Garand Bayonet"
+	SWEP.PrintName = "Enfield Bayonet"
 	SWEP.CSMuzzleFlashes = true
 	SWEP.ViewModelMovementScale = 1.15
-	
-	SWEP.AttachmentModelsVM = {}
-	
+		
+	SWEP.AttachmentModelsVM = {
+		["ani_body"] = {model = "models/weapons/v_enfield_bayonet.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
+	}
+
 	SWEP.HUD_3D2DBone = 57
 end
 
@@ -21,7 +23,7 @@ SWEP.Animations = {
 	base_crawl = "crawl",
 }
 
-SWEP.NormalHoldType = "knife"
+SWEP.NormalHoldType = "melee2"
 SWEP.RunHoldType = "passive"
 SWEP.FireModes = {"auto"}
 SWEP.Base = "cw_kk_ins2_base_melee"
@@ -35,7 +37,7 @@ SWEP.Instructions	= ""
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/kk_doi/v_garand_bayonet.mdl"
-SWEP.WorldModel		= "models/weapons/w_bayonet_garand.mdl"
+SWEP.WorldModel		= "models/weapons/w_bayonet_enfield.mdl"
 
 SWEP.WMPos = Vector(3.812, 1.544, -2.83)
 SWEP.WMAng = Vector(99.385, -22.739, 18.048)
