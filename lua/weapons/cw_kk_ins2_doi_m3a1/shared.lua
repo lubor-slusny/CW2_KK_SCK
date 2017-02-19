@@ -68,6 +68,8 @@ SWEP.Animations = {
 	base_safe_empty_aim = "iron_empty_down",
 	base_crawl = "base_crawl",
 	base_crawl_empty = "empty_crawl",
+	base_melee = "base_melee_bash",
+	base_melee_empty = "empty_melee_bash",
 }
 
 SWEP.SpeedDec = 15
@@ -133,6 +135,9 @@ SWEP.MuzzleVelocity = 280
 SWEP.ReloadTimes = {
 	base_reload = {2.4, 3.35},
 	base_reloadempty = {2.4, 5},
+	
+	base_melee_bash = {0.3, 0.9},
+	empty_melee_bash = {0.3, 0.9},
 }
 
 -- if CLIENT then 

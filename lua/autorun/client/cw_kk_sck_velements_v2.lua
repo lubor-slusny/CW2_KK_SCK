@@ -1377,6 +1377,28 @@ function TOOL:updatePanel()
 							settNoDrawPanel:SizeToContents()
 							
 							elementSettingPanelHeight = elementSettingPanelHeight + 24
+							
+							local settHideVMPanel = vgui.Create("DPanel", elementSettingPanel)
+							
+								local cbox, label
+								cbox = vgui.Create("DCheckBoxLabel", settHideVMPanel)
+								cbox:SetText("Hide CW_VM when active")
+								cbox:SetTooltip("cube tool")
+								cbox:SetDark(true)
+								cbox:Dock(FILL)
+								
+								cbox:SetValue(curData.hideVM)
+								function cbox:OnChange(val)
+									curData.hideVM = val
+								end
+						
+							settHideVMPanel:SetSize(200,16)
+							settHideVMPanel:Dock(TOP)
+							settHideVMPanel:DockMargin(8,8,0,0)
+							settHideVMPanel:SetPaintBackground(false)
+							settHideVMPanel:SizeToContents()
+							
+							elementSettingPanelHeight = elementSettingPanelHeight + 24
 						end
 						
 						local settAnimatedPanel = vgui.Create("DPanel", elementSettingPanel)

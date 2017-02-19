@@ -15,7 +15,10 @@ if CLIENT then
 	SWEP.RearEffectw = true
 	SWEP.NoShells = true
 	
-	SWEP.AttachmentModelsVM = {}
+	SWEP.AttachmentModelsVM = {
+		-- ["kk_ins2_fnfal_skin2"] = {model = "models/weapons/v_panzerschreck.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, material = "models/weapons/welrod/dosh.mdl"},
+	}
+		
 	SWEP.AttachmentModelsWM = {}
 	
 	SWEP.IronsightPos = Vector(-2.3552, 0, 0.7429)
@@ -36,6 +39,7 @@ SWEP.Chamberable = false
 SWEP.WeaponLength = 44
 
 SWEP.Attachments = {
+	{header = "Flavor", offset = {500, 0}, atts = {"kk_ins2_fnfal_skin2"}},
 	-- {header = "Stock", offset = {600, 0}, atts = {"kk_ins2_ww2_sling"}},
 }
 
