@@ -321,10 +321,13 @@ SWEP.ReloadTimes = {
 	-- end
 -- end
 
-function SWEP:IndividualInitialize()
-	self.magType = "NONE"
-	self.ShotgunReload = true
-end
+-- function SWEP:IndividualInitialize()
+	-- self.magType = "NONE"
+	-- self.ShotgunReload = true
+-- end
+
+SWEP.magType = "NONE"
+SWEP.ShotgunReload = true
 
 if CLIENT then
 	function SWEP:updateStandardParts()

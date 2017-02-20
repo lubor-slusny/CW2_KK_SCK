@@ -324,12 +324,10 @@ function SWEP:beginReload()
 		self:SetNextSecondaryFire(CT + reloadHalt)
 		self.GlobalDelay = CT + reloadHalt
 	elseif self.ActiveAttachments.kk_ins2_ww2_stripper and ammo >= self.stripperCapacity and (self.Primary.ClipSize + 1 - mag) >= self.stripperCapacity then
-		if mag < 2 then
-			if self.Animations.base_reload_empty_2 and (ammo >= (2 * self.stripperCapacity)) then
-				anim = "reload_empty_2"
-			else
-				anim = "reload_empty"
-			end
+		if mag < 2 and self.Animations.base_reload_empty_2 and (ammo >= (2 * self.stripperCapacity)) then
+			anim = "reload_empty_2"
+		elseif mag < 1 then
+			anim = "reload_empty"
 		else
 			anim = "reload"
 		end

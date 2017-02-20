@@ -167,7 +167,7 @@ if SERVER then
 					if ent:IsNPC() then
 						ang = wep.Owner:GetAngles()
 						ang.p = 0
-						-- ent:SetVelocity(ang:Forward() * setup.npcForceMult)
+						ent:SetVelocity(ang:Forward() * setup.npcForceMult)
 					end
 					
 					if string.find(ent:GetClass(), "breakable") then

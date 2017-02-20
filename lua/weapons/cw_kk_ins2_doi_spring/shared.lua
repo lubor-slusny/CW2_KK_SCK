@@ -302,3 +302,9 @@ if CLIENT then
 		self:setElementActive("sleeve", self.ActiveAttachments.kk_ins2_scope_m73)
 	end
 end
+
+if CLIENT then
+	function SWEP:canAimGL()
+		return !(self.ActiveAttachments.kk_ins2_scope_m73 or self.ActiveAttachments.kk_ins2_scope_u8x)
+	end
+end

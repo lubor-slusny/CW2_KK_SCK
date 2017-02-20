@@ -9,7 +9,7 @@ if CLIENT then
 		local out
 		local clip = wep:Clip1()
 		
-		if wep.getFullestMag then
+		if wep.getFullestMag and wep:usesMagazines() then
 			out = math.max(clip, wep:getFullestMag(), -1)
 		else
 			out = wep.Owner:GetAmmoCount(wep.Primary.Ammo) + clip
@@ -90,5 +90,10 @@ if CLIENT then
 		if !wep._pauseBeltUpdates then
 			CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip(wep)
 		end
+	end
+	
+	// enfield
+	CustomizableWeaponry_KK.ins2.bulletBgs.beltToClipPS = function(wep)
+		wep:setBodygroup(wep._beltBGID, mathClamp(wep:Clip1() + wep.stripperCapacity, 0, wep._beltBGMax))
 	end
 end
