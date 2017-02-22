@@ -2,7 +2,7 @@ if not CustomizableWeaponry then return end
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "Kabar 4"
+	SWEP.PrintName = "Fairbairn Knife"
 	SWEP.CSMuzzleFlashes = true
 	SWEP.ViewModelMovementScale = 1.15
 	

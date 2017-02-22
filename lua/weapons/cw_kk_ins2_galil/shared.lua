@@ -10,7 +10,7 @@ SWEP.magType = "arMag"
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "Galil"
+	SWEP.PrintName = "Galil ARM/SAR"
 	SWEP.CSMuzzleFlashes = true
 	
 	SWEP.ViewModelMovementScale = 1.15

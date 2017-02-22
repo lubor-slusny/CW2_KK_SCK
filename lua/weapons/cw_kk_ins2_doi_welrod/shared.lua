@@ -10,7 +10,7 @@ SWEP.magType = "pistolMag"
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "Welrod"
+	SWEP.PrintName = "Welrod Mk2"
 	SWEP.CSMuzzleFlashes = true
 	
 	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_welrod")
@@ -93,10 +93,10 @@ SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.ww2gb
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted4(SWEP)
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted4(SWEP)
 
-SWEP.Primary.ClipSize		= 9
-SWEP.Primary.DefaultClip	= 9
+SWEP.Primary.ClipSize		= 8
+SWEP.Primary.DefaultClip	= 8
 SWEP.Primary.Automatic		= false
-SWEP.Primary.Ammo			= "9x19MM"
+SWEP.Primary.Ammo			= ".32 ACP"
 
 -- SWEP.KK_INS2_BoltAction = 0.1
 SWEP.KK_INS2_EmptyIdle = false
@@ -114,7 +114,7 @@ SWEP.MaxSpreadInc = 0.04
 SWEP.SpreadPerShot = 0.01
 SWEP.SpreadCooldown = 0.17
 SWEP.Shots = 1
-SWEP.Damage = 25
+SWEP.Damage = 26
 
 -- SWEP.FireDelay = 2.2
 SWEP.FireDelay = 0.1

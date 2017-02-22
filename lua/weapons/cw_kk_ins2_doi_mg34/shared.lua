@@ -105,8 +105,8 @@ SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.ww2de
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted4(SWEP)
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted4(SWEP)
 
-SWEP.Primary.ClipSize		= 75
-SWEP.Primary.DefaultClip	= 75
+SWEP.Primary.ClipSize		= 50
+SWEP.Primary.DefaultClip	= 50
 SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= "7.92x57MM"
 

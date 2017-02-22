@@ -10,7 +10,7 @@ SWEP.magType = "arMag"
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "BREN"
+	SWEP.PrintName = "Bren Mk2"
 	
 	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_bren_mk2")
 	
