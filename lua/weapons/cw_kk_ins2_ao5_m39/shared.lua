@@ -8,7 +8,7 @@ SWEP.magType = "brMag"
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "M39"
+	SWEP.PrintName = "M39 EMR"
 	SWEP.CSMuzzleFlashes = true
 	SWEP.ViewModelMovementScale = 1.15
 	

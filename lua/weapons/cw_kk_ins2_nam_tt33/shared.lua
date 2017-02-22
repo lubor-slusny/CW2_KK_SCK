@@ -10,7 +10,7 @@ SWEP.magType = "pistolMag"
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "TT 33"
+	SWEP.PrintName = "TT-33"
 	SWEP.CSMuzzleFlashes = true
 	
 	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_tokarev")

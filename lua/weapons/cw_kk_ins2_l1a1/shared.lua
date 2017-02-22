@@ -10,7 +10,7 @@ SWEP.magType = "brMag"
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "L1A1"
+	SWEP.PrintName = "L1A1 SLR"
 	SWEP.CSMuzzleFlashes = true
 	SWEP.ViewModelMovementScale = 1.15
 	

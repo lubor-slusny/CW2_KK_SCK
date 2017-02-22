@@ -31,11 +31,14 @@ if CLIENT then
 	SWEP.Shell2ViewAngleAlign = {Forward = 0, Right = 0, Up = 90}
 	SWEP.Shell2WorldAngleAlign = {Forward = 0, Right = 0, Up = 90}
 	
-	SWEP.AttachmentModelsVM = {}
+	SWEP.AttachmentModelsVM = {
+		["ani_body"] = {model = "models/weapons/v_m1919.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
+	}
+	
 	SWEP.AttachmentModelsWM = {}
 	
-	SWEP.IronsightPos = Vector(-2.9734, -2, 1.4944)
-	SWEP.IronsightAng = Vector(0.2271, -0.0204, 0)
+	SWEP.IronsightPos = Vector(-2.9629, -2, 1.275)
+	SWEP.IronsightAng = Vector(0, 0.0457, 0)
 
 	SWEP.CustomizationMenuScale = 0.018
 end

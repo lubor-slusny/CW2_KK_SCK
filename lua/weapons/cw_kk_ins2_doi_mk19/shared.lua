@@ -10,7 +10,7 @@ SWEP.magType = "lmgBox"
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "Mk 19"
+	SWEP.PrintName = "Mk19"
 	SWEP.CSMuzzleFlashes = true
 	
 	SWEP.ViewModelMovementScale = 1.15

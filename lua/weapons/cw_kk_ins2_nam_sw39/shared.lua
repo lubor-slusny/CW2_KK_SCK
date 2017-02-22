@@ -10,7 +10,7 @@ SWEP.magType = "pistolMag"
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "SW 39"
+	SWEP.PrintName = "SW M39"
 	SWEP.CSMuzzleFlashes = true
 	
 	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_nam_sw39")

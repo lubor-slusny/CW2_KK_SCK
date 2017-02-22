@@ -10,7 +10,7 @@ SWEP.magType = "arMag"
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "AK74"
+	SWEP.PrintName = "AK-74"
 	SWEP.CSMuzzleFlashes = true
 	
 	SWEP.ViewModelMovementScale = 1.15

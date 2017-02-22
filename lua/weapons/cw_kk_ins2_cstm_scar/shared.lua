@@ -13,7 +13,7 @@ util.PrecacheModel("models/weapons/w_cw_kk_ins2_cstm_scar_tan.mdl")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "SCAR H"
+	SWEP.PrintName = "SCAR-H"
 	SWEP.CSMuzzleFlashes = true
 	SWEP.ViewModelMovementScale = 1.15
 	

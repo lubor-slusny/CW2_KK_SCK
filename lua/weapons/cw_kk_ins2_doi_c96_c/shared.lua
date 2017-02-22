@@ -8,7 +8,7 @@ SWEP.magType = "pistolMag"
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "Mauser C96 Carbine"
+	SWEP.PrintName = "M712 Carbine"
 	SWEP.CSMuzzleFlashes = true
 	
 	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_c96carbine")

@@ -6,7 +6,7 @@ include("sh_sounds.lua")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "RPG7"
+	SWEP.PrintName = "RPG-7"
 	
 	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_rpg7")
 	

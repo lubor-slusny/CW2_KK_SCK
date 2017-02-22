@@ -265,3 +265,9 @@ SWEP.ReloadTimes = {
 	
 	glsetup_reload = {2.95, 3.85},
 }
+
+if CLIENT then
+	function SWEP:canAimGL()
+		return !(self.ActiveAttachments.kk_ins2_po4 or self.ActiveAttachments.kk_ins2_cstm_compm4s or self.ActiveAttachments.kk_ins2_magnifier)
+	end
+end

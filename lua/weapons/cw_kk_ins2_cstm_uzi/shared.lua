@@ -8,8 +8,8 @@ SWEP.magType = "smgMag"
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "IMI UZI"
 	SWEP.CSMuzzleFlashes = true
+	SWEP.PrintName = "Uzi"
 	SWEP.ViewModelMovementScale = 1.15
 	
 	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/cw_kk_ins2_cstm_uzi")
