@@ -44,6 +44,8 @@ if CLIENT then
 		["kk_ins2_cstm_acog"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_acog_m.mdl", rLight = true, pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, retSizeMult = 0.85},
 		["kk_ins2_cstm_barska"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_barska.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_cstm_eotechxps"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_eotechxps.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		
+		["bg_vss_foldable_stock"] = {model = "models/weapons/v_cw_kk_ins2_m14ebr.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true},
 	}
 	
 	SWEP.AttachmentModelsWM = {
@@ -70,7 +72,24 @@ if CLIENT then
 		["kk_ins2_cstm_acog"] = {model = "models/weapons/attachments/w_cw_kk_ins2_cstm_acog.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_cstm_barska"] = {model = "models/weapons/upgrades/w_eotech.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_cstm_eotechxps"] = {model = "models/weapons/attachments/w_cw_kk_ins2_cstm_eotechxps.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		
+		-- ["bg_vss_foldable_stock"] = {model = "models/weapons/w_cw_kk_ins2_m14ebr.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true},
 	}
+
+	SWEP.ForegripOverridePos = {
+		none = {
+			["Bipod_LeftLeg"] = {pos = Vector(), angle = Angle()},
+			["Bipod_RightLeg"] = {pos = Vector(), angle = Angle()},
+		},
+		
+		depd = {
+			["Bipod_LeftLeg"] = {pos = Vector(), angle = Angle(90, 0, 0)},
+			["Bipod_RightLeg"] = {pos = Vector(), angle = Angle(90, 0, 0)},
+		},
+	}
+	
+	SWEP.ForegripParent = "none"
+	SWEP.ForegripOverride = true
 	
 	SWEP.IronsightPos = Vector(-2.48, -2, 0.9)
 	SWEP.IronsightAng = Vector()
@@ -96,8 +115,10 @@ if CLIENT then
 	SWEP.KKINS2MagnifierPos = Vector(-2.4834, -6, -0.1578)
 	SWEP.KKINS2MagnifierAng = Vector()
 
-	SWEP.CustomizationMenuScale = 0.019
+	SWEP.CustomizationMenuScale = 0.017
 end
+
+SWEP.StockBGs = {main = 0, foldable = 0, vss = 0}
 
 SWEP.MuzzleEffect = "muzzleflash_m14_1p_core"
 SWEP.MuzzleEffectWorld = "muzzleflash_m14_3rd"
@@ -108,6 +129,7 @@ SWEP.Attachments = {
 	{header = "Under", offset = {-500, 0}, atts = {"kk_ins2_bipod", "kk_ins2_vertgrip"}},
 	{header = "Lasers", offset = {125, 300}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}},
 	{header = "More Sight", offset = {1000, -50}, atts = {"kk_ins2_magnifier"}, dependencies = CustomizableWeaponry_KK.ins2.magnifierDependencies},
+	{header = "Stock", offset = {-200, 600}, atts = {"bg_vss_foldable_stock"}},
 	["+use"] = {header = "Sight Contract", offset = {400, -50}, atts = {"kk_ins2_sights_cstm"}},
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_magnum", "am_matchgrade"}}
 }
@@ -125,6 +147,7 @@ SWEP.Animations = {
 	base_reload = "base_reload",
 	base_reload_empty = "base_reloadempty",
 	base_idle = "base_idle",
+	-- base_idle = "deployed_idle",
 	base_idle_empty = "base_idle_empty",
 	base_holster = "base_holster",
 	base_holster_empty = "base_holster_empty",
@@ -205,9 +228,10 @@ SWEP.Instructions	= ""
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_m14.mdl"
-SWEP.WorldModel		= "models/weapons/w_cw_kk_ins2_m14.mdl"
+SWEP.WorldModel		= "models/weapons/w_cw_kk_ins2_m14_2.mdl"
+-- SWEP.WorldModel		= "models/weapons/w_cw_kk_ins2_m14ebr.mdl"
 
-SWEP.WMPos = Vector(4.072, 0.924, -0.537)
+SWEP.WMPos = Vector(5.072, 0.924, -0.537)
 SWEP.WMAng = Vector(-10, 0, 180)
 
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted4(SWEP)
@@ -254,3 +278,29 @@ SWEP.ReloadTimes = {
 	deployed_reload_half = {2.3, 3.2},
 	deployed_reload_empty = {2.3, 4.5},
 }
+
+if CLIENT then
+	function SWEP:updateOtherParts()
+		-- self.ForegripParent = self.dt.BipodDeployed and "none" or "depd"
+		-- self.ForegripParent = self.Sequence:find("deployed_") and "none" or "depd"
+	end
+end
+
+if CLIENT then
+	local att = CustomizableWeaponry.registeredAttachmentsSKey["bg_vss_foldable_stock"]
+	
+	local activeWM = "models/weapons/w_cw_kk_ins2_m14ebr.mdl"
+	local origWM = "models/weapons/w_cw_kk_ins2_m14_2.mdl"
+	
+	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_m14", function(wep, welement)
+		if wep.ActiveAttachments[att.name] then
+			if welement:GetModel() != activeWM then
+				welement:SetModel(activeWM)
+			end
+		else
+			if welement:GetModel() != origWM then
+				welement:SetModel(origWM)
+			end
+		end
+	end)
+end

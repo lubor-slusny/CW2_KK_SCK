@@ -376,7 +376,7 @@ end
 
 if CLIENT then
 	CustomizableWeaponry_KK.ins2.welementDrop.data = CustomizableWeaponry_KK.ins2.welementDrop.data or {}
-	CustomizableWeaponry_KK.ins2.welementDrop.used = CustomizableWeaponry_KK.ins2.welementDrop.used or {}
+	-- CustomizableWeaponry_KK.ins2.welementDrop.used = CustomizableWeaponry_KK.ins2.welementDrop.used or {}
 	
 	local function copyTable(tab)
 		if not tab then
@@ -392,9 +392,11 @@ if CLIENT then
 		return out
 	end
 	
+	local basebase, base
+	
 	function CustomizableWeaponry_KK.ins2.welementDrop:Think()
-		local basebase = weapons.GetStored("cw_base")
-		local base = weapons.GetStored("cw_kk_ins2_base_main")
+		basebase = basebase or weapons.GetStored("cw_base")
+		base = base or weapons.GetStored("cw_kk_ins2_base_main")
 		
 		if not basebase or not base then
 			return
@@ -408,41 +410,16 @@ if CLIENT then
 			end
 			
 			if dropData.remove or dropData.timeout < CurTime() then
-				self.used[dropId] = self.data[dropId]
+				-- self.used[dropId] = self.data[dropId]
 				self.data[dropId] = nil
 				return
 			end
 			
-			dropData.remove = true
-			
-			drop.AttachmentModelsWM = {}
-			
-			local storedWEs = weapons.GetStored(dropData.wep).AttachmentModelsWM
-			
-			if storedWEs then
-				-- // copy active-by-default welements 
-				-- for k,v in pairs(storedWEs) do
-					-- if v.active then
-						-- drop.AttachmentModelsWM[k] = copyTable(v)
-					-- end
-				-- end
+			if not dropData._modelsDone then
+				drop.AttachmentModelsWM = {}
 				
-				-- // copy welements of used attachments
-				-- for k,v in pairs(dropData.usedWEs) do
-					-- if v then
-						-- drop.AttachmentModelsWM[k] = drop.AttachmentModelsWM[k] or copyTable(storedWEs[k])
-					-- end
-					
-					-- if drop.AttachmentModelsWM[k] then
-						-- if v then
-							-- drop.AttachmentModelsWM[k].active = v
-						-- else
-							-- drop.AttachmentModelsWM[k] = nil // remove active-by-default if they were disabled post spawn
-						-- end
-					-- end
-				-- end
+				local storedWEs = weapons.GetStored(dropData.wep).AttachmentModelsWM or {}
 				
-				// only copy used stuff
 				for k,v in pairs(storedWEs) do
 					if (dropData.usedWEs[k] == true) or (dropData.usedWEs[k] == nil and v.active) then
 						drop.AttachmentModelsWM[k] = copyTable(v)
@@ -460,32 +437,40 @@ if CLIENT then
 					drawAtts(self, self)
 					drawRest(self)
 				end
+				
+				dropData._modelsDone = true
 			end
 			
-			// and one more for bodygroups and shit
-			
-			local welementThinkWrapper = {
-				WMEnt = drop,
-				ActiveAttachments = {},
-				AttachmentModelsWM = drop.AttachmentModelsWM,
-				dt = drop.dt,
-				IsValid = function() return IsValid(drop) end,
-				GetClass = function() return drop:GetWepClass() end,
-				Clip1 = function() return dropData.clip end,
-				isWrapper = true,
-			}
-			
-			CustomizableWeaponry_KK.ins2.welementThink:_addWeapon(welementThinkWrapper)
-			
-			// 2doo: without timer
-			timer.Simple(1, function()
-				if !IsValid(drop) then return end
-				if not drop:getAttachments() then return end
+			if not dropData._wrapperDone then
+				local dropAttsReceived = drop:getAttachments()
+
+				if not dropAttsReceived then
+					continue
+				end
+				
+				local welementThinkWrapper = {
+					WMEnt = drop,
+					ActiveAttachments = {},
+					AttachmentModelsWM = drop.AttachmentModelsWM,
+					dt = drop.dt,
+					IsValid = function() return IsValid(drop) end,
+					GetClass = function() return drop:GetWepClass() end,
+					Clip1 = function() return dropData.clip end,
+					isWrapper = true,
+				}
 				
 				for _,k in pairs(drop:getAttachments()) do
 					welementThinkWrapper.ActiveAttachments[k] = true
 				end
-			end)
+				
+				CustomizableWeaponry_KK.ins2.welementThink:_addWeapon(welementThinkWrapper)
+				
+				dropData._wrapperDone = true
+			end
+			
+			if dropData._modelsDone and dropData._wrapperDone then
+				dropData.remove = true
+			end
 		end
 	end
 
