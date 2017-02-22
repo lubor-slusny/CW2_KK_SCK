@@ -164,6 +164,8 @@ TOOL.knownElementDataKeys = {
 	["material"] = true, // INS2 material override - same as in SCK/CW1
 	["nodraw"] = true, // deprecated part of INS2 stencil sights
 	["retSizeMult"] = true,	// INS2 stencil sight reticle size multiplier (since all sights come in 3+ sizes)
+	["hideVM"] = true, // hides CW_VM
+	["rLight"] = true, // recomputes lighting of velement
 	
 	["ignoreKKBGO"] = true, // BGO3 crashes my game if combined with CSGO stat attachment proxies
 }
@@ -1383,7 +1385,7 @@ function TOOL:updatePanel()
 								local cbox, label
 								cbox = vgui.Create("DCheckBoxLabel", settHideVMPanel)
 								cbox:SetText("Hide CW_VM when active")
-								cbox:SetTooltip("cube tool")
+								cbox:SetTooltip("for weapon variants")
 								cbox:SetDark(true)
 								cbox:Dock(FILL)
 								
@@ -1397,6 +1399,28 @@ function TOOL:updatePanel()
 							settHideVMPanel:DockMargin(8,8,0,0)
 							settHideVMPanel:SetPaintBackground(false)
 							settHideVMPanel:SizeToContents()
+							
+							elementSettingPanelHeight = elementSettingPanelHeight + 24
+							
+							local settRecomputePanel = vgui.Create("DPanel", elementSettingPanel)
+							
+								local cbox, label
+								cbox = vgui.Create("DCheckBoxLabel", settRecomputePanel)
+								cbox:SetText("Recompute lighting")
+								cbox:SetTooltip("for scopes")
+								cbox:SetDark(true)
+								cbox:Dock(FILL)
+								
+								cbox:SetValue(curData.rLight)
+								function cbox:OnChange(val)
+									curData.rLight = val
+								end
+						
+							settRecomputePanel:SetSize(200,16)
+							settRecomputePanel:Dock(TOP)
+							settRecomputePanel:DockMargin(8,8,0,0)
+							settRecomputePanel:SetPaintBackground(false)
+							settRecomputePanel:SizeToContents()
 							
 							elementSettingPanelHeight = elementSettingPanelHeight + 24
 						end
@@ -1507,7 +1531,7 @@ function TOOL:updatePanel()
 								
 								local out, outputFormat, posFormated, angFormated, sizeFormated, attachFuncID, attachFuncVal, attachFuncCaps, rest
 								
-								outputFormat = "[\"%s\"] = {model = \"%s\", pos = %s, angle = %s, size = %s, %s = %s%s},"
+								outputFormat = "[\"%s\"] = {model = \"%s\"%s, pos = %s, angle = %s, size = %s, %s = %s%s},"
 								
 								local function s(x) return tostring(math.Round(x, 4)) end
 								
@@ -1596,6 +1620,11 @@ function TOOL:updatePanel()
 									rest = rest .. ", animated = true"
 								end
 								
+								// hideVM
+								if data.hideVM then
+									rest = rest .. ", hideVM = true"
+								end
+								
 								// active by default
 								local origData = weapons.GetStored(WEAPON:GetClass())[t] and weapons.GetStored(WEAPON:GetClass())[t][key]
 								local activeByDef
@@ -1615,6 +1644,7 @@ function TOOL:updatePanel()
 									outputFormat,
 									key,
 									data.model,
+									data.rLight and ", rLight = true" or "", // rLight
 									posFormated,
 									angFormated,
 									sizeFormated,

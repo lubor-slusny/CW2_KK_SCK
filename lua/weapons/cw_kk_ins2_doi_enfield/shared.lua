@@ -36,6 +36,8 @@ if CLIENT then
 		["kk_ins2_scope_enfield"] = {model = "models/weapons/upgrades/a_optic_enfield.mdl", rLight = true, pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_scope_wa5"] = {model = "models/weapons/upgrades/a_optic_enfield_7x.mdl", rLight = true, pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		
+		["kk_ins2_scope_m82"] = {model = "models/weapons/upgrades/a_optic_garand.mdl", rLight = true, pos = Vector(-6.8185, -0.963, 0.265), angle = Angle(0, 0, -90), size = Vector(1, 1, 1), bone = "Weapon"},
 	}
 
 	SWEP.AttachmentModelsWM = {
@@ -64,6 +66,9 @@ if CLIENT then
 	SWEP.M203Pos = Vector(-2.71, -6, 1.8053)
 	SWEP.M203Ang = Vector(-4.5019, 0, 0)
 
+	SWEP.KKINS2ScopeM82Pos = Vector(-1.7607, -2, 0.9956)
+	SWEP.KKINS2ScopeM82Ang = Vector(0, 0, 0)
+
 	SWEP.CustomizationMenuScale = 0.018
 end
 
@@ -73,7 +78,7 @@ SWEP.MuzzleEffect = "muzzleflash_garand_1p"
 SWEP.MuzzleEffectWorld = "muzzleflash_garand_3p"
 
 SWEP.Attachments = {
-	{header = "Sight", offset = {500, -500}, atts = {"bg_foldsight", "kk_ins2_scope_enfield", "kk_ins2_scope_wa5"}},
+	{header = "Sight", offset = {500, -500}, atts = {"bg_foldsight", "kk_ins2_scope_m82", "kk_ins2_scope_enfield", "kk_ins2_scope_wa5"}},
 	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_ww2_knife", "kk_ins2_ww2_knife_fat", "kk_ins2_gl_enfield"}},
 	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
 	{header = "Clip", offset = {200, 0}, atts = {"kk_ins2_ww2_stripper"}, exclusions = {["kk_ins2_scope_enfield"] = true, ["kk_ins2_scope_wa5"] = true}},
@@ -331,7 +336,10 @@ SWEP.ShotgunReload = true
 
 if CLIENT then
 	function SWEP:updateStandardParts()
-		self:setElementActive("sleeve", self.ActiveAttachments.kk_ins2_scope_enfield)
+		self:setElementActive("sleeve", 
+			self.ActiveAttachments.kk_ins2_scope_enfield or 
+			self.ActiveAttachments.kk_ins2_scope_m82
+		)
 	end
 end
 

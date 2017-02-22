@@ -459,8 +459,9 @@ end
 
 if CLIENT then
 	SWEP.reticleInactivityCallbacksRaw = {
-		["reload"] = 0.1,			// Actually, reloads anims are only played using
-		["reload_empty"] = 0.1,		// these two. For now.
+		-- ["reload"] = 0.1,			// Actually, reloads anims are only played using
+		-- ["reload_empty"] = 0.1,		// these two. For now.
+		// not anymoor ^^
 		
 		// I really should generate this from table of prefixes|anims|suffixes|suffixes|suffixes lol
 		
@@ -564,8 +565,6 @@ if CLIENT then
 		["throw_short"] = 0.1,
 	}
 
-	local print = chat.AddText
-	
 	// call me from init callback
 	function SWEP:setupReticleInactivityCallbacks()
 		self.animCallbacks = self.animCallbacks or {}
@@ -573,6 +572,10 @@ if CLIENT then
 		local vm = self.CW_VM
 		
 		for animName,add in pairs(self.reticleInactivityCallbacksRaw) do
+			if animName == "BaseClass" then
+				continue
+			end
+			
 			local seqName = self.Animations[animName]
 			
 			if not seqName then 
@@ -593,7 +596,6 @@ if CLIENT then
 			local newFunc
 			
 			newFunc = function(wep)
-				-- print(wep, "		", animName, "		", string.format("%.3f", seqDur))
 				wep.reticleInactivity = UnPredictedCurTime() + seqDur + add
 			end
 			
