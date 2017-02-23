@@ -1,4 +1,3 @@
-
 if not CustomizableWeaponry_KK.HOME then return end // layZ to make original stats
 
 AddCSLuaFile()
@@ -101,4 +100,4 @@ hook.Add("PostReloadToolsMenu", toolName .. "_Remove", function()
 	hook.Remove("Think", toolName .. "_Think")
 end)
 
-RunConsoleCommand("spawnmenu_reload")
+-- RunConsoleCommand("spawnmenu_reload")

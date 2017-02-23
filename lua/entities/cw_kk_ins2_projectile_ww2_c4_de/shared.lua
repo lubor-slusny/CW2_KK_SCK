@@ -1,3 +1,5 @@
+if not CustomizableWeaponry then return end
+
 ENT.Type = "anim"
 ENT.Base = "base_entity"
 ENT.PrintName = "Activated frag grenade"

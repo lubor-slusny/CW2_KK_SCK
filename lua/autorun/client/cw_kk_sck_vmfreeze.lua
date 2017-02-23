@@ -232,4 +232,4 @@ hook.Add("PostReloadToolsMenu", "KKK_SCK_VMFr_Remove", function()
 	hook.Remove("Think", "KK_SCK_VMFr_Think")
 end)
 
-RunConsoleCommand("spawnmenu_reload")
+-- RunConsoleCommand("spawnmenu_reload")

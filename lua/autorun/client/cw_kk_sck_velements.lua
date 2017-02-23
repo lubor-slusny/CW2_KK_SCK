@@ -1360,4 +1360,4 @@ hook.Add("PostReloadToolsMenu", "KK_SCK_VELEMENTS_Remove", function()
 	hook.Remove("Think", "KK_SCK_VELEMENTS_Think")
 end)
 
-RunConsoleCommand("spawnmenu_reload")
+-- RunConsoleCommand("spawnmenu_reload")

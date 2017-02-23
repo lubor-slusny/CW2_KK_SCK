@@ -43,4 +43,4 @@ hook.Add("PostReloadToolsMenu", toolName .. "_Remove", function()
 	hook.Remove("Think", toolName .. "_Think")
 end)
 
-RunConsoleCommand("spawnmenu_reload")
+-- RunConsoleCommand("spawnmenu_reload")

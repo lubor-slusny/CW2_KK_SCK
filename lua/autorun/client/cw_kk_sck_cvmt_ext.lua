@@ -503,4 +503,4 @@ hook.Add("PopulateToolMenu", toolName, function()
 	end)
 end)
 
-RunConsoleCommand("spawnmenu_reload")
+-- RunConsoleCommand("spawnmenu_reload")

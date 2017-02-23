@@ -1789,4 +1789,4 @@ end
 
 hook.Add("PostReloadToolsMenu", TOOL, TOOL.PostReloadToolsMenu)
 
-RunConsoleCommand("spawnmenu_reload")
+-- RunConsoleCommand("spawnmenu_reload")
