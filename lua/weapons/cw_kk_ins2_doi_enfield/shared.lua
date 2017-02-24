@@ -17,7 +17,14 @@ if CLIENT then
 	SWEP.NoShells = true
 	SWEP.Shell = "KK_INS2_762x54"
 	-- SWEP.ShellDelay = 0.7
-		
+	
+	SWEP.BackupSights = {
+		["kk_ins2_scope_m82"] = {
+			Vector(-2.5678, -3, 1.5173),
+			Vector(-0.1284, 0, 0)
+		},
+	}
+	
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_iron_enfield.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
 		["bg_foldsight"] = {model = "models/weapons/attachments/v_iron_enfield_up.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
@@ -38,6 +45,7 @@ if CLIENT then
 		["kk_ins2_scope_wa5"] = {model = "models/weapons/upgrades/a_optic_enfield_7x.mdl", rLight = true, pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_scope_m82"] = {model = "models/weapons/upgrades/a_optic_garand.mdl", rLight = true, pos = Vector(-6.8185, -0.963, 0.265), angle = Angle(0, 0, -90), size = Vector(1, 1, 1), bone = "Weapon"},
+		["kk_ins2_scope_m82_backup"] = {model = "models/weapons/upgrades/a_iron_enfield.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 
 	SWEP.AttachmentModelsWM = {
@@ -337,7 +345,11 @@ SWEP.ShotgunReload = true
 if CLIENT then
 	function SWEP:updateStandardParts()
 		self:setElementActive("sleeve", 
-			self.ActiveAttachments.kk_ins2_scope_enfield or 
+			self.ActiveAttachments.kk_ins2_scope_enfield
+			-- or self.ActiveAttachments.kk_ins2_scope_m82
+		)
+		
+		self:setElementActive("kk_ins2_scope_m82_backup", 
 			self.ActiveAttachments.kk_ins2_scope_m82
 		)
 	end
