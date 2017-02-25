@@ -106,7 +106,8 @@ SWEP.projectileTrailParticles = "weapon_compB_fuse"
 
 if CLIENT then
 	function SWEP:updateOtherParts()
-		if self._pcfStop and self.Sequence != self._pcfStop then
+		local outtaAmmo = self.Owner:GetAmmoCount(self.Primary.Ammo) < 1
+		if (self._pcfStop and self.Sequence != self._pcfStop) or outtaAmmo then
 			self.AttachmentModelsVM.fx_rag.ent:StopParticles()
 			-- self.AttachmentModelsVM.fx_rag.ent:StopLoopingSound(self._soundStop)
 			-- self.AttachmentModelsVM.fx_rag.ent:StopSound("CW_KK_INS2_DOI_C4_US_FUSELOOP")
@@ -129,6 +130,16 @@ if CLIENT then
 			-- ed:SetOrigin(pos)
 			-- ed:SetScale(0.01)
 			-- util.Effect("Sparks", ed)
+		end
+	end
+	
+	function SWEP:OnRemove()
+		self.AttachmentModelsVM.fx_rag.ent:StopParticles()
+		
+		local sound = self.soundLoop
+		
+		if sound then
+			sound:Stop()
 		end
 	end
 end

@@ -381,7 +381,13 @@ function SWEP:PrepareForPickup(drop)
 	end)
 
 	CustomizableWeaponry.actionSequence.new(self, 0, nil, function()
-		CustomizableWeaponry.actionSequence.new(self, self.FirstDeployTime, nil, function()
+		local delay = self.FirstDeployTime
+		
+		if self:Clip1() < 1 and self.KK_INS2_EmptyIdle then
+			delay = self.DeployTime
+		end
+		
+		CustomizableWeaponry.actionSequence.new(self, delay - 0.2, nil, function()
 			self._KK_INS2_PickedUp = true
 		end)
 	end)
@@ -464,7 +470,7 @@ function SWEP:toggleGLMode(IFTP)
 					
 					self:SetClip1(clip - 1)
 					
-					if !CustomizableWeaponry_KK.ins2.discardUnloadedAmmo then
+					if !CustomizableWeaponry_KK.ins2.discardEjectedAmmo then
 						local ammo = self.Owner:GetAmmoCount(self.Primary.Ammo)
 						self.Owner:SetAmmo(ammo + 1, self.Primary.Ammo)
 					end

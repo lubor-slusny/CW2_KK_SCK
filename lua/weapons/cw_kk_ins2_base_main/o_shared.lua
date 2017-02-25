@@ -303,7 +303,7 @@ function SWEP:beginReload()
 					
 					self:SetClip1(mag - 1)
 					
-					if !CustomizableWeaponry_KK.ins2.discardUnloadedAmmo then
+					if !CustomizableWeaponry_KK.ins2.discardEjectedAmmo then
 						self.Owner:SetAmmo(ammo + 1, self.Primary.Ammo)
 					end
 				end)
@@ -315,7 +315,7 @@ function SWEP:beginReload()
 					
 					self:SetClip1(0)
 					
-					if !CustomizableWeaponry_KK.ins2.discardUnloadedAmmo then
+					if !CustomizableWeaponry_KK.ins2.discardEjectedAmmo then
 						self.Owner:SetAmmo(ammo + mag, self.Primary.Ammo)
 					end
 				end)
@@ -355,7 +355,7 @@ function SWEP:beginReload()
 				
 				self:SetClip1(mag - 1)
 				
-				if !CustomizableWeaponry_KK.ins2.discardUnloadedAmmo then
+				if !CustomizableWeaponry_KK.ins2.discardEjectedAmmo then
 					self.Owner:SetAmmo(ammo + 1, self.Primary.Ammo)
 				end
 			end)
@@ -421,7 +421,7 @@ function SWEP:beginReload()
 					
 					self:SetClip1(mag - 1)
 					
-					if !CustomizableWeaponry_KK.ins2.discardUnloadedAmmo then
+					if !CustomizableWeaponry_KK.ins2.discardEjectedAmmo then
 						self.Owner:SetAmmo(ammo + 1, self.Primary.Ammo)
 					end
 				end)
@@ -433,7 +433,7 @@ function SWEP:beginReload()
 					
 					self:SetClip1(0)
 					
-					if !CustomizableWeaponry_KK.ins2.discardUnloadedAmmo then
+					if !CustomizableWeaponry_KK.ins2.discardEjectedAmmo then
 						self.Owner:SetAmmo(ammo + mag, self.Primary.Ammo)
 					end
 					

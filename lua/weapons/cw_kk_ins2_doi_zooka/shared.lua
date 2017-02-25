@@ -59,26 +59,38 @@ SWEP.Attachments = {
 	-- {header = "Stock", offset = {600, 200}, atts = {"kk_ins2_ww2_sling"}},
 }
 
+SWEP.KK_INS2_EmptyIdle = true
+
 SWEP.Animations = {
 	base_insert = "base_reload",
 	
 	base_pickup = "base_ready",
 	base_pickup_mm = "base_ready_phosphorus",
 	base_draw = "base_draw",
+	base_draw_empty = "base_draw",
 	base_fire = "base_fire",
 	base_fire_aim = "iron_fire",
+	base_fire_last = "base_fire",
+	base_fire_last_aim = "iron_fire",
 	base_fire_empty = "base_dryfire",
 	base_fire_empty_aim = "iron_dryfire",
 	base_reload = "base_reload",
 	base_reload_empty = "base_reload",
 	base_reload_empty_mm = "base_reload_phosphorus",
 	base_idle = "base_idle",
+	base_idle_empty = "base_idle",
 	base_holster = "base_holster",
+	base_holster_empty = "base_holster",
 	base_sprint = "base_sprint",
+	base_sprint_empty = "base_sprint",
 	base_safe = "base_down",
 	base_safe_aim = "iron_down",
+	base_safe_empty = "base_down",
+	base_safe_empty_aim = "iron_down",
 	base_crawl = "base_crawl",
+	base_crawl_empty = "base_crawl",
 	base_melee = "base_melee",
+	base_melee_empty = "base_melee",
 }
 
 SWEP.SpeedDec = 15

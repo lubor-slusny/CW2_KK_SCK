@@ -313,15 +313,22 @@ end
 
 function SWEP:pickupAnimFunc(mode)
 	mode = mode or self:getForegripMode()
-	anim = "pickup"
-	suffix = self._KK_INS2_customPickupSuffix
+	clip = self:Clip1()
+	
+	if clip == 0 and self.KK_INS2_EmptyIdle then
+		anim = "draw_empty"
+		suffix = ""
+	else
+		anim = "pickup"
+		suffix = self._KK_INS2_customPickupSuffix
+	end
 	
 	if SERVER then
 		self:sendWeaponAnim(mode .. anim .. suffix, self.DrawSpeed, 0)
 	end
 	
 	if CLIENT then
-		if self.Sequence != self.Animations[mode .. anim] then
+		if self.Sequence != self.Animations[mode .. anim] or self.CW_VM:GetCycle() > 0.99 then
 			self:sendWeaponAnim(mode .. anim .. suffix, self.DrawSpeed, 0)
 		end
 	end
@@ -419,7 +426,10 @@ function SWEP:fireAnimFunc()
 	
 	if self:isAiming() then
 		suffix = suffix .. "_aim"
-		cycle = self.ironFireAnimStartCycle
+		
+		if clip > 0 then
+			cycle = self.ironFireAnimStartCycle
+		end
 	end
 	
 	self:sendWeaponAnim(prefix .. "fire" .. suffix, rate, cycle)

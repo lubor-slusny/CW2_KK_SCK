@@ -99,7 +99,7 @@ SWEP.Animations = {
 
 SWEP.SpeedDec = 30
 
-SWEP.Slot = 3
+SWEP.Slot = 4
 SWEP.SlotPos = 0
 SWEP.NormalHoldType = "ar2"
 SWEP.RunHoldType = "passive"
@@ -143,7 +143,7 @@ SWEP.SpreadCooldown = 0.15
 SWEP.Shots = 1
 SWEP.Damage = 60
 
-SWEP.FirstDeployTime = 3.1
+SWEP.FirstDeployTime = 1.5
 SWEP.DeployTime = 0.9
 SWEP.HolsterTime = 0.6
 
