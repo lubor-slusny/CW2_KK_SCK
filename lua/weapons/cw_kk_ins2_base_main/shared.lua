@@ -355,7 +355,7 @@ end
 // PrepareForPickup prepares first deploy animation to be played
 //-----------------------------------------------------------------------------
 
-SWEP._KK_INS2_PickedUp = true
+SWEP._KK_INS2_PickedUp = !SP
 
 local prefix, suffix
 
@@ -380,8 +380,10 @@ function SWEP:PrepareForPickup(drop)
 		end
 	end)
 
-	CustomizableWeaponry.actionSequence.new(self, self.FirstDeployTime, nil, function()
-		self._KK_INS2_PickedUp = true
+	CustomizableWeaponry.actionSequence.new(self, 0, nil, function()
+		CustomizableWeaponry.actionSequence.new(self, self.FirstDeployTime, nil, function()
+			self._KK_INS2_PickedUp = true
+		end)
 	end)
 	
 	if SERVER then
@@ -461,7 +463,11 @@ function SWEP:toggleGLMode(IFTP)
 					if not self.ReloadDelay then return end	// melee attack interruption
 					
 					self:SetClip1(clip - 1)
-					self.Owner:SetAmmo(self.Owner:GetAmmoCount(self.Primary.Ammo) + 1, self.Primary.Ammo)
+					
+					if !CustomizableWeaponry_KK.ins2.discardUnloadedAmmo then
+						local ammo = self.Owner:GetAmmoCount(self.Primary.Ammo)
+						self.Owner:SetAmmo(ammo + 1, self.Primary.Ammo)
+					end
 					
 					self.dt.INS2GLActive = true
 				end)

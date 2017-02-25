@@ -302,7 +302,10 @@ function SWEP:beginReload()
 					if not self.ReloadDelay then return end	// melee attack interruption
 					
 					self:SetClip1(mag - 1)
-					self.Owner:SetAmmo(ammo + 1, self.Primary.Ammo)
+					
+					if !CustomizableWeaponry_KK.ins2.discardUnloadedAmmo then
+						self.Owner:SetAmmo(ammo + 1, self.Primary.Ammo)
+					end
 				end)
 			end
 			
@@ -311,7 +314,10 @@ function SWEP:beginReload()
 					if not self.ReloadDelay then return end	// melee attack interruption
 					
 					self:SetClip1(0)
-					self.Owner:SetAmmo(ammo + mag, self.Primary.Ammo)
+					
+					if !CustomizableWeaponry_KK.ins2.discardUnloadedAmmo then
+						self.Owner:SetAmmo(ammo + mag, self.Primary.Ammo)
+					end
 				end)
 			end
 		end
@@ -348,7 +354,10 @@ function SWEP:beginReload()
 				if not self.ReloadDelay then return end	// melee attack interruption
 				
 				self:SetClip1(mag - 1)
-				self.Owner:SetAmmo(ammo + 1, self.Primary.Ammo)
+				
+				if !CustomizableWeaponry_KK.ins2.discardUnloadedAmmo then
+					self.Owner:SetAmmo(ammo + 1, self.Primary.Ammo)
+				end
 			end)
 		end
 		
@@ -411,7 +420,10 @@ function SWEP:beginReload()
 					if self.ShotgunReloadState == 0 then return end	// melee attack interruption
 					
 					self:SetClip1(mag - 1)
-					self.Owner:SetAmmo(ammo + 1, self.Primary.Ammo)
+					
+					if !CustomizableWeaponry_KK.ins2.discardUnloadedAmmo then
+						self.Owner:SetAmmo(ammo + 1, self.Primary.Ammo)
+					end
 				end)
 			end
 			
@@ -420,7 +432,10 @@ function SWEP:beginReload()
 					if self.ShotgunReloadState == 0 then return end // its also possible that its already 2 because user pressed attack button
 					
 					self:SetClip1(0)
-					self.Owner:SetAmmo(ammo + mag, self.Primary.Ammo)
+					
+					if !CustomizableWeaponry_KK.ins2.discardUnloadedAmmo then
+						self.Owner:SetAmmo(ammo + mag, self.Primary.Ammo)
+					end
 					
 					self.ShotgunReloadState = 1
 				end)
@@ -773,6 +788,7 @@ function SWEP:Initialize()
 	self:PrepareForPickup()
 	
 	if CLIENT then
+		self:drawAnimFunc()
 		self:initNWAA()
 		self:initNWWE()
 	end

@@ -18,9 +18,10 @@ KK_INS2_STRIPPERCLIP_UNLOAD_ONE = 3		// [4] = delay before SetClip1(-1)
 CustomizableWeaponry_KK = CustomizableWeaponry_KK or {}
 CustomizableWeaponry_KK.ins2 = CustomizableWeaponry_KK.ins2 or {}
 
-CustomizableWeaponry_KK.ins2.firstDeployEnabled = true
-CustomizableWeaponry_KK.ins2.firstDeploySkip = -1 // -1 dont, n>0 - skip after n seconds of wep waiting in inventory
+CustomizableWeaponry_KK.ins2.firstDeployEnabled = true			// 2do
+CustomizableWeaponry_KK.ins2.firstDeploySkip = -1				// 2do // -1 dont, n>0 - skip after n seconds of wep waiting in inventory
 CustomizableWeaponry_KK.ins2.holsterTransitionsEnabled = true
+CustomizableWeaponry_KK.ins2.discardUnloadedAmmo = false		// 2do
 
 CustomizableWeaponry_KK.ins2.magnifierDependencies = CustomizableWeaponry_KK.ins2.magnifierDependencies or {}
 CustomizableWeaponry_KK.ins2.magnifierDependencies.kk_ins2_aimpoint = true
