@@ -280,6 +280,10 @@ function SWEP:_setupAttachmentModel(v)
 	
 	if v.material then 
 		v.ent:SetMaterial(v.material)
+	elseif v.materials then
+		for i,path in pairs(v.materials) do
+			v.ent:SetSubMaterial(i - 1, path)
+		end
 	end
 	
 	-- if scopes[k] then

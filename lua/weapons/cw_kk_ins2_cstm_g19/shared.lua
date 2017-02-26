@@ -22,23 +22,23 @@ if CLIENT then
 	SWEP.AttachmentModelsVM = {		
 		["kk_ins2_suppressor_pistol"] = {model = "models/weapons/upgrades/a_suppressor_pistol.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), merge = true},
 
-		["kk_ins2_mag_m45_8"] = {model = "models/weapons/upgrades/a_magazikk_makag19_8.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
-		["kk_ins2_mag_m45_15"] = {model = "models/weapons/upgrades/a_magazikk_makag19_15.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_mag_g19_15"] = {model = "models/weapons/upgrades/a_magazikk_makag19_8.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
+		["kk_ins2_mag_g19_22"] = {model = "models/weapons/upgrades/a_magazikk_makag19_15.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laskk_g19.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
-		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashligkk_g19.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_rail.mdl", pos = Vector(0, 3.3, -0.3336), angle = Angle(0, -90, 0), size = Vector(1, 1, 1), bone = "Weapon"},
+		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_rail.mdl", pos = Vector(0, 3.3, -0.3336), angle = Angle(0, -90, 0), size = Vector(1, 1, 1), bone = "Weapon"},
 		["kk_ins2_m6x"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_m6x.mdl", pos = Vector(-0.1169, 1.5466, -1.0772), angle = Angle(0, -90, 0), size = Vector(1, 1, 1), bone = "Weapon"},
 		
-		["s_darq"] = {model = "models/weapons/v_cw_kk_ins2_cstm_g19.mdl", pos = Vector(), angle = Angle(), size = Vector(1), merge = true, hideVM = true, material = "models/weapons/glock/blacker/glock"},
-		["s_ss"] = {model = "models/weapons/v_cw_kk_ins2_cstm_g19.mdl", pos = Vector(), angle = Angle(), size = Vector(1), merge = true, hideVM = true, material = "models/weapons/glock/ss/glock"},
-		["s_tt"] = {model = "models/weapons/v_cw_kk_ins2_cstm_g19.mdl", pos = Vector(), angle = Angle(), size = Vector(1), merge = true, hideVM = true, material = "models/weapons/glock/tt/glock"},
+		["kk_ins2_g19_skin"] = {model = "models/weapons/v_cw_kk_ins2_cstm_g19.mdl", pos = Vector(), angle = Angle(), size = Vector(1), merge = true, hideVM = true, material = "models/weapons/glock/blacker/glock"},
+		["kk_ins2_g19_skin2"] = {model = "models/weapons/v_cw_kk_ins2_cstm_g19.mdl", pos = Vector(), angle = Angle(), size = Vector(1), merge = true, hideVM = true, material = "models/weapons/glock/tt/glock"},
+		["kk_ins2_g19_skin3"] = {model = "models/weapons/v_cw_kk_ins2_cstm_g19.mdl", pos = Vector(), angle = Angle(), size = Vector(1), merge = true, hideVM = true, material = "models/weapons/glock/ss/glock"},
 	}
 
 	SWEP.AttachmentModelsWM = {
 		["kk_ins2_suppressor_pistol"] = {model = "models/weapons/upgrades/w_sil_pistol.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_mag_m45_8"] = {model = "models/weapons/upgrades/w_magazikk_makag19_8.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
-		["kk_ins2_mag_m45_15"] = {model = "models/weapons/upgrades/w_magazikk_makag19_15.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_mag_g19_15"] = {model = "models/weapons/upgrades/w_magazikk_makag19_8.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
+		["kk_ins2_mag_g19_22"] = {model = "models/weapons/upgrades/w_magazikk_makag19_15.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_lam"] = {model = "models/weapons/upgrades/w_laser_sec.mdl", pos = Vector(), angle = Angle(0, 180, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/w_laser_sec.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
@@ -56,10 +56,11 @@ SWEP.MuzzleEffect = "muzzleflash_m9_1p_core"
 SWEP.MuzzleEffectWorld = "muzzleflash_m9_3rd"
 
 SWEP.Attachments = {
-	{header = "Lasers", offset = {500, -400}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_m6x"}},
+	{header = "Texture", offset = {500, -400}, atts = {"kk_ins2_g19_skin", "kk_ins2_g19_skin2", "kk_ins2_g19_skin3"}},
 	{header = "Barrel", offset = {-500, -400}, atts = {"kk_ins2_suppressor_pistol"}},
-	{header = "Magazine", offset = {-500, 150}, atts = {"kk_ins2_mag_m45_15"}},
-	["+reload"] = {header = "Ammo", offset = {500, 150}, atts = {"am_magnum", "am_matchgrade"}}
+	{header = "Lasers", offset = {-500, 150}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_m6x"}},
+	{header = "Magazine", offset = {500, 150}, atts = {"kk_ins2_mag_g19_22"}},
+	-- ["+reload"] = {header = "Ammo", offset = {500, 150}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
 SWEP.Animations = {
@@ -116,7 +117,7 @@ SWEP.WMAng = Vector(-3, -5, 180)
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted4(SWEP)
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted4(SWEP)
 
-SWEP.Primary.ClipSize		= 15 // 19 ext
+SWEP.Primary.ClipSize		= 15 // 22 ext
 SWEP.Primary.DefaultClip	= 15
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "9x19MM"
@@ -128,6 +129,7 @@ SWEP.WeaponLength = 16
 SWEP.FireSound = "CW_KK_INS2_CSTM_G19_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_CSTM_G19_FIRE_SUPPRESSED"
 
+SWEP.FireDelay = 60/600
 SWEP.Recoil = 0.77
 SWEP.HipSpread = 0.034
 SWEP.AimSpread = 0.012
@@ -138,9 +140,7 @@ SWEP.SpreadCooldown = 0.22
 SWEP.Shots = 1
 SWEP.Damage = 24
 
-SWEP.FireDelay = 60/1200
 SWEP.FirstDeployTime = 1.3
-
 SWEP.DeployTime = 0.4
 SWEP.HolsterTime = 0.4
 
@@ -155,6 +155,6 @@ SWEP.ReloadTimes = {
 
 if CLIENT then 
 	function SWEP:updateStandardParts()
-		self:setElementActive("kk_ins2_mag_m45_8", !self.ActiveAttachments.kk_ins2_mag_m45_15)
+		self:setElementActive("kk_ins2_mag_g19_15", !self.ActiveAttachments.kk_ins2_mag_g19_22)
 	end
 end

@@ -16,9 +16,9 @@ if CLIENT then
 	SWEP.NoShells = true
 	
 	SWEP.AttachmentModelsVM = {
-		-- ["kk_ins2_fnfal_skin2"] = {model = "models/weapons/v_panzerschreck.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, material = "models/weapons/welrod/dosh.mdl"},
+		["kk_ins2_fnfal_skin2"] = {model = "models/weapons/v_panzerschreck.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, materials = {[2] = "models/cwkkdoi/shrek/clean.mdl"}},
 	}
-		
+	
 	SWEP.AttachmentModelsWM = {}
 	
 	SWEP.IronsightPos = Vector(-2.3552, 0, 0.7429)
