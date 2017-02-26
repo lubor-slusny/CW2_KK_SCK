@@ -12,7 +12,7 @@ if CLIENT then
 	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/cw_kk_ins2_nade_kk")
 	
 	SWEP.AttachmentModelsVM = {
-		["fuze"] = {model = "models/weapons/v_cw_kk_ins2_m213.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
+		["fuze"] = {model = "models/weapons/v_cw_kk_ins2_m213.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
 		["nade"] = {model = "models/props_junk/flare.mdl", pos = Vector(0, 0, -0.4017), angle = Angle(0, -5.9132, 0), size = Vector(0.5, 0.5, 0.5), bone = "Weapon_M84", active = true},
 	}
 	
@@ -94,13 +94,4 @@ if CLIENT then
 	CustomizableWeaponry_KK.ins2.welementThink:add("flare_fuze", function(wep, welement)
 		welement:SetBodygroup(1, wep.dt.PinPulled and 1 or 0)
 	end)
-
-	local nodraw = "models/weapons/attachments/cw_kk_ins2_shared/nodraw"
-	
-	function SWEP:IndividualInitialize()
-		local vm = self.CW_VM
-		
-		vm:SetSubMaterial(0, nodraw)
-		vm:SetSubMaterial(1, nodraw)
-	end
 end

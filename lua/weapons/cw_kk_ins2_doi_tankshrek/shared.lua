@@ -19,7 +19,9 @@ if CLIENT then
 		["kk_ins2_fnfal_skin2"] = {model = "models/weapons/v_panzerschreck.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, materials = {[2] = "models/cwkkdoi/shrek/clean.mdl"}},
 	}
 	
-	SWEP.AttachmentModelsWM = {}
+	SWEP.AttachmentModelsWM = {
+		["kk_ins2_fnfal_skin2"] = {model = "models/weapons/w_panzerschreck.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, material = "models/cwkkdoi/shrek/clean_w.mdl"},
+	}
 	
 	SWEP.IronsightPos = Vector(-2.3552, 0, 0.7429)
 	SWEP.IronsightAng = Vector(8.4654, -5.1917, 20)

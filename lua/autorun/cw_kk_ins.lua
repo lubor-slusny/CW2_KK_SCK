@@ -437,6 +437,8 @@ if CLIENT then
 end
 
 if CLIENT then
+	CustomizableWeaponry_KK.ins2.nodrawMatPath = "models/weapons/attachments/cw_kk_ins2_shared/nodraw"
+	
 	CustomizableWeaponry_KK.ins2.nodrawMat = CustomizableWeaponry_KK.ins2.nodrawMat or {}
 	-- CustomizableWeaponry_KK.ins2.nodrawMat["models/weapons/optics/4x_reticule"] = true
 	

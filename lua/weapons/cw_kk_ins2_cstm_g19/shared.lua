@@ -42,6 +42,11 @@ if CLIENT then
 		
 		["kk_ins2_lam"] = {model = "models/weapons/upgrades/w_laser_sec.mdl", pos = Vector(), angle = Angle(0, 180, 0), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/w_laser_sec.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_m6x"] = {model = "models/weapons/upgrades/w_laser_sec.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		
+		["kk_ins2_g19_skin"] = {model = "models/weapons/w_cw_kk_ins2_cstm_g19.mdl", pos = Vector(), angle = Angle(), size = Vector(1), merge = true, hideVM = true, material = "models/weapons/glock/blacker/glock"},
+		["kk_ins2_g19_skin2"] = {model = "models/weapons/w_cw_kk_ins2_cstm_g19.mdl", pos = Vector(), angle = Angle(), size = Vector(1), merge = true, hideVM = true, material = "models/weapons/glock/tt/glock"},
+		["kk_ins2_g19_skin3"] = {model = "models/weapons/w_cw_kk_ins2_cstm_g19.mdl", pos = Vector(), angle = Angle(), size = Vector(1), merge = true, hideVM = true, material = "models/weapons/glock/ss/glock"},
 	}
 	
 	SWEP.IronsightPos = Vector(-1.9772, 0, 0.3214)

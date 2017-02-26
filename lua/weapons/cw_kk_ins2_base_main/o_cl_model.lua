@@ -116,9 +116,9 @@ function SWEP:_drawViewModel()
 	local overrideVM = false
 	for _,e in pairs(self.AttachmentModelsVM) do
 		overrideVM = overrideVM or (e.active and e.hideVM)
+		if overrideVM then break end
 	end
 	
-	-- if not self._CWVMOverride then
 	if not overrideVM then
 		self.CW_VM:DrawModel()
 	end
@@ -274,7 +274,7 @@ function SWEP:_setupAttachmentModel(v)
 	
 	for i,mat in pairs(v.ent:GetMaterials()) do
 		if CustomizableWeaponry_KK.ins2.nodrawMat[mat] then
-			v.ent:SetSubMaterial(i - 1, "models/weapons/attachments/cw_kk_ins2_shared/nodraw")
+			v.ent:SetSubMaterial(i - 1, CustomizableWeaponry_KK.ins2.nodrawMatPath)
 		end
 	end
 	
@@ -463,7 +463,16 @@ function SWEP:DrawWorldModel()
 	self.WMEnt:SetAngles(ang)
 	
 	self.WMEnt:DrawShadow(true)
-	self.WMEnt:DrawModel()
+	
+	local overrideVM = false
+	for _,e in pairs(self.AttachmentModelsWM) do
+		overrideVM = overrideVM or (e.active and e.hideVM)
+		if overrideVM then break end
+	end
+	
+	if not overrideVM then
+		self.WMEnt:DrawModel()
+	end
 	
 	self:drawAttachmentsWorld(self.WMEnt)
 	
@@ -531,7 +540,7 @@ function SWEP:setupAttachmentWModels()
 			
 			for i,mat in pairs(v.ent:GetMaterials()) do
 				if CustomizableWeaponry_KK.ins2.nodrawMat[mat] then
-					v.ent:SetSubMaterial(i - 1, "models/weapons/attachments/cw_kk_ins2_shared/nodraw")
+					v.ent:SetSubMaterial(i - 1, CustomizableWeaponry_KK.ins2.nodrawMatPath)
 				end
 			end
 			

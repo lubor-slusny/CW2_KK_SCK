@@ -117,7 +117,7 @@ local function reInitializeElement(data)
 	
 	for i,mat in pairs(data.ent:GetMaterials()) do
 		if CustomizableWeaponry_KK.ins2.nodrawMat[mat] then
-			data.ent:SetSubMaterial(i - 1, "models/weapons/attachments/cw_kk_ins2_shared/nodraw")
+			data.ent:SetSubMaterial(i - 1, CustomizableWeaponry_KK.ins2.nodrawMatPath)
 		end
 	end
 	

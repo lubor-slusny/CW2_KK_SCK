@@ -434,6 +434,16 @@ if CLIENT then
 				local drawAtts = base.drawAttachmentsWorld
 				local drawRest = drop.Draw
 				
+				local overrideVM = false
+				for _,e in pairs(drop.AttachmentModelsWM) do
+					overrideVM = overrideVM or (e.active and e.hideVM)
+					
+					if overrideVM then 
+						drop:SetMaterial(CustomizableWeaponry_KK.ins2.nodrawMatPath)
+						break
+					end
+				end
+
 				function drop:Draw()
 					drawAtts(self, self)
 					drawRest(self)

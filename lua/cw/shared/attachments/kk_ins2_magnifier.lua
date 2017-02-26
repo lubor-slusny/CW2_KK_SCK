@@ -96,7 +96,7 @@ if CLIENT then
 			
 			for i,mat in pairs(scopeEnt:GetMaterials()) do
 				if CustomizableWeaponry_KK.ins2.nodrawMat[mat] then
-					scopeEnt:SetSubMaterial(i - 1, "models/weapons/attachments/cw_kk_ins2_shared/nodraw")
+					scopeEnt:SetSubMaterial(i - 1, CustomizableWeaponry_KK.ins2.nodrawMatPath)
 				else
 					scopeEnt:SetSubMaterial(i - 1)
 				end
