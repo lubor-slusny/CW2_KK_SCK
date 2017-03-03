@@ -24,12 +24,12 @@ if CLIENT then
 	SWEP.Shell = "KK_INS2_762x54"
 	SWEP.ShellEjectVelocity = 50
 	
-	SWEP.Shell2 = "KK_INS2_556x45_link"
+	SWEP.Shell2 = "KK_INS2_30-06_link"
 	SWEP.Shell2Scale = 0.7
 	SWEP.Shell2EjectVelocity = 50
 	SWEP.Shell2ViewAttachmentID = 2
-	SWEP.Shell2ViewAngleAlign = {Forward = 0, Right = 0, Up = 90}
-	SWEP.Shell2WorldAngleAlign = {Forward = 0, Right = 0, Up = 90}
+	SWEP.Shell2ViewAngleAlign = {Forward = 0, Right = 0, Up = 180}
+	SWEP.Shell2WorldAngleAlign = {Forward = 0, Right = 0, Up = 180}
 	
 	SWEP.AttachmentModelsVM = {
 		["ani_body"] = {model = "models/weapons/v_m1919.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},

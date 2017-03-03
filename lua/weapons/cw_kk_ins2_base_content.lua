@@ -173,118 +173,6 @@ end
 	CustomizableWeaponry.firemodes:registerFiremode("single", "SINGLE-SHOT", true, 1, 1)
 	-- CustomizableWeaponry.firemodes:registerFiremode("throw", "THROWABLE", true, 1, 1)
 
-// STATS
-
-if CLIENT then
-	CustomizableWeaponry_KK.ins2.statDisplay = CustomizableWeaponry_KK.ins2.statDisplay or {}
-	CustomizableWeaponry_KK.ins2.statDisplay.tabs = CustomizableWeaponry_KK.ins2.statDisplay.tabs or {}
-	
-	function CustomizableWeaponry_KK.ins2.statDisplay:add()
-		self._added = self._added or {}
-		
-		for k,v in pairs(self.tabs) do
-			if not self._added[k] then
-				self._added[k] = true
-				CustomizableWeaponry.statDisplay:addStat(v)
-			else
-				v.desc = string.Explode("\n", v.desc)
-			end
-		end
-	end
-end
-
-if CLIENT then
-	local stat = CustomizableWeaponry_KK.ins2.statDisplay.tabs.WeaponLength or {}
-	stat.varName = "WeaponLength"
-	stat.display = "WEAPON LENGTH"
-	stat.desc = "Minimal distance allowed between weapon and target.\nMoving closer to your target will holster your weapon.\nSuppressors and barrel modifications affect this stat."
-	stat.reverse = true
-
-	function stat:compare(wep)
-		local var1, var2 = wep[self.varName], wep[self.origVarName]
-
-		if !var1 or !var2 then 
-			return CustomizableWeaponry.textColors.REGULAR 
-		end
-		
-		if var1 < var2 then
-			return CustomizableWeaponry.textColors.POSITIVE
-		elseif var1 > var2 then
-			return CustomizableWeaponry.textColors.NEGATIVE
-		end
-	end
-	
-	local out
-	
-	function stat:textFunc(wep)
-		out = "N/A"
-		
-		if wep.WeaponLength then
-			out = (math.Round(wep.WeaponLength * 0.0254, 2)) .. "M"
-		end
-		
-		return out
-	end
-
-	function stat:origTextFunc(wep)
-		out = "N/A"
-		
-		if wep.WeaponLength_Orig then
-			out = (math.Round(wep.WeaponLength_Orig * 0.0254, 2)) .. "M"
-		end
-		
-		return out
-	end
-
-	CustomizableWeaponry_KK.ins2.statDisplay.tabs.WeaponLength = stat
-end
-
-if CLIENT then	
-	local stat = CustomizableWeaponry_KK.ins2.statDisplay.tabs.HolsterTime or {}
-	stat.varName = "HolsterTime"
-	stat.display = "HOLSTER TIME"
-	stat.desc = "Time it takes in seconds to have the weapon be safely stored in inventory after holstering."
-
-	function stat:compare(wep)
-		local var1, var2 = wep[self.varName], wep[self.origVarName]
-		local mul1, mul2 = wep.HolsterSpeed or 1, wep.HolsterSpeed_Orig or 1
-		
-		if !var1 or !var2 then 
-			return CustomizableWeaponry.textColors.REGULAR 
-		end
-		
-		if var1 * mul1 > var2 * mul2 then
-			return CustomizableWeaponry.textColors.POSITIVE
-		elseif var1 * mul1 < var2 * mul2 then
-			return CustomizableWeaponry.textColors.NEGATIVE
-		end
-	end
-	
-	local out, speed
-	
-	function stat:textFunc(wep)
-		speed = wep.HolsterSpeed or 1
-		out = math.Round(wep.HolsterTime / speed, 2) .. "s"
-		
-		return out
-	end
-
-	function stat:origTextFunc(wep)
-		speed = wep.HolsterSpeed_Orig or 1
-		out = math.Round(wep.HolsterTime_Orig / speed, 2) .. "s"
-		
-		return out
-	end
-
-	CustomizableWeaponry_KK.ins2.statDisplay.tabs.HolsterTime = stat
-end
-	
-
-if CLIENT then
-	// maximum overkill
-	CustomizableWeaponry_KK.ins2.statDisplay:add()
-end	
-
 // KILLS
 
 if CLIENT then
@@ -425,6 +313,118 @@ if CLIENT then
 	language.Add("cw_kk_ins2_projectile_anm14", "Thrown Thermate")
 	language.Add("cw_kk_ins2_projectile_molotov", "Thrown Molotov")
 end
+
+// STATS
+
+if CLIENT then
+	CustomizableWeaponry_KK.ins2.statDisplay = CustomizableWeaponry_KK.ins2.statDisplay or {}
+	CustomizableWeaponry_KK.ins2.statDisplay.tabs = CustomizableWeaponry_KK.ins2.statDisplay.tabs or {}
+	
+	function CustomizableWeaponry_KK.ins2.statDisplay:add()
+		self._added = self._added or {}
+		
+		for k,v in pairs(self.tabs) do
+			if not self._added[k] then
+				self._added[k] = true
+				CustomizableWeaponry.statDisplay:addStat(v)
+			else
+				v.desc = string.Explode("\n", v.desc)
+			end
+		end
+	end
+end
+
+if CLIENT then
+	local stat = CustomizableWeaponry_KK.ins2.statDisplay.tabs.WeaponLength or {}
+	stat.varName = "WeaponLength"
+	stat.display = "WEAPON LENGTH"
+	stat.desc = "Minimal distance allowed between weapon and target.\nMoving closer to your target will holster your weapon.\nSuppressors and barrel modifications affect this stat."
+	stat.reverse = true
+
+	function stat:compare(wep)
+		local var1, var2 = wep[self.varName], wep[self.origVarName]
+
+		if !var1 or !var2 then 
+			return CustomizableWeaponry.textColors.REGULAR 
+		end
+		
+		if var1 < var2 then
+			return CustomizableWeaponry.textColors.POSITIVE
+		elseif var1 > var2 then
+			return CustomizableWeaponry.textColors.NEGATIVE
+		end
+	end
+	
+	local out
+	
+	function stat:textFunc(wep)
+		out = "N/A"
+		
+		if wep.WeaponLength then
+			out = (math.Round(wep.WeaponLength * 0.0254, 2)) .. "M"
+		end
+		
+		return out
+	end
+
+	function stat:origTextFunc(wep)
+		out = "N/A"
+		
+		if wep.WeaponLength_Orig then
+			out = (math.Round(wep.WeaponLength_Orig * 0.0254, 2)) .. "M"
+		end
+		
+		return out
+	end
+
+	CustomizableWeaponry_KK.ins2.statDisplay.tabs.WeaponLength = stat
+end
+
+if CLIENT then	
+	local stat = CustomizableWeaponry_KK.ins2.statDisplay.tabs.HolsterTime or {}
+	stat.varName = "HolsterTime"
+	stat.display = "HOLSTER TIME"
+	stat.desc = "Time it takes in seconds to have the weapon be safely stored in inventory after holstering."
+
+	function stat:compare(wep)
+		local var1, var2 = wep[self.varName], wep[self.origVarName]
+		local mul1, mul2 = wep.HolsterSpeed or 1, wep.HolsterSpeed_Orig or 1
+		
+		if !var1 or !var2 then 
+			return CustomizableWeaponry.textColors.REGULAR 
+		end
+		
+		if var1 * mul1 > var2 * mul2 then
+			return CustomizableWeaponry.textColors.POSITIVE
+		elseif var1 * mul1 < var2 * mul2 then
+			return CustomizableWeaponry.textColors.NEGATIVE
+		end
+	end
+	
+	local out, speed
+	
+	function stat:textFunc(wep)
+		speed = wep.HolsterSpeed or 1
+		out = math.Round(wep.HolsterTime / speed, 2) .. "s"
+		
+		return out
+	end
+
+	function stat:origTextFunc(wep)
+		speed = wep.HolsterSpeed_Orig or 1
+		out = math.Round(wep.HolsterTime_Orig / speed, 2) .. "s"
+		
+		return out
+	end
+
+	CustomizableWeaponry_KK.ins2.statDisplay.tabs.HolsterTime = stat
+end
+	
+
+if CLIENT then
+	// maximum overkill
+	CustomizableWeaponry_KK.ins2.statDisplay:add()
+end	
 
 // MAG SYSTEM
 

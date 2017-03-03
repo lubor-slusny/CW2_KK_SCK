@@ -12,6 +12,11 @@ AddCSLuaFile()
 	CustomizableWeaponry:addRegularSound("CW_KK_INS2_DOI_BAYONET_DRAW", {"weapons/universal/bayonet_draw_01.wav", "weapons/universal/bayonet_draw_02.wav", "weapons/universal/bayonet_draw_03.wav"})
 	CustomizableWeaponry:addRegularSound("CW_KK_INS2_DOI_BAYONET_HOLSTER", {"weapons/universal/bayonet_holster_01.wav", "weapons/universal/bayonet_holster_02.wav", "weapons/universal/bayonet_holster_03.wav"})
 
+// SHELLS
+if CLIENT then
+	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_30-06_link", "models/weapons/shells/30-06_link.mdl", "CW_KK_INS2_SHELL_LINK", Vector(-0.65, -0.5, -0.25), Vector(0.9, 0.55, 0.25))
+end
+
 // AMMO
 	CustomizableWeaponry:registerAmmo(".380/200", "9x20MMR Rounds", 9, 19.7)
 	CustomizableWeaponry:registerAmmo(".303 British", "7.7x56MMR Rounds", 7.7, 56)
