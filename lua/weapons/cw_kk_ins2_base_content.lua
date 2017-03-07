@@ -180,6 +180,7 @@ if CLIENT then
 	local white = Color(255, 255, 255, 150)
 
 	killicon.AddFont("cw_kk_ins2_damage_melee",		"CW_KillIcons", "j", killCol)
+	killicon.AddFont("cw_kk_ins2_damage_phys",		"HL2MPTypeDeath", "9", killCol)
 	
 	killicon.AddFont("cw_kk_ins2_mel_bayonet",		"CW_KillIcons", "j", killCol)
 	killicon.AddFont("cw_kk_ins2_mel_gurkha",		"CW_KillIcons", "j", killCol)
@@ -226,16 +227,20 @@ if CLIENT then
 	killicon.AddFont("cw_kk_ins2_gp25",				"HL2MPTypeDeath", "7", killCol)
 	killicon.AddFont("cw_kk_ins2_rpg_pro",			"CW_KillIcons", "a", killCol)
 	
+	killicon.AddFont("cw_kk_ins2_projectile_anm14",	"CW_KillIcons", "Q", killCol)
 	killicon.AddFont("cw_kk_ins2_projectile_at4",	"HL2MPTypeDeath", "3", killCol)
-	killicon.AddFont("cw_kk_ins2_projectile_flare",	"CW_KillIcons", "a", killCol)
-	killicon.AddFont("cw_kk_ins2_projectile_rpg",	"HL2MPTypeDeath", "3", killCol)
 	killicon.AddFont("cw_kk_ins2_projectile_c4",	"CW_KillIcons", "I", killCol)
-	killicon.AddFont("cw_kk_ins2_projectile_ied",	"CW_KillIcons", "I", killCol)
-	
+	killicon.AddFont("cw_kk_ins2_projectile_flare",	"CW_KillIcons", "a", killCol)
 	killicon.AddFont("cw_kk_ins2_projectile_frag",	"CW_KillIcons", "h", killCol)
+	killicon.AddFont("cw_kk_ins2_projectile_ied",	"CW_KillIcons", "I", killCol)
+	killicon.AddFont("cw_kk_ins2_projectile_m18",	"CW_KillIcons", "Q", killCol)
+	killicon.AddFont("cw_kk_ins2_projectile_m84",	"CW_KillIcons", "P", killCol)
+	killicon.AddFont("cw_kk_ins2_projectile_molotov",	"CW_KillIcons", "Q", killCol)
+	killicon.AddFont("cw_kk_ins2_projectile_rpg",	"HL2MPTypeDeath", "3", killCol)	
 	
 	// ao5
-	killicon.AddFont("cw_kk_ins2_ao5_revolver",		"HL2MPTypeDeath", ".", killCol)
+	-- killicon.AddFont("cw_kk_ins2_ao5_revolver",		"HL2MPTypeDeath", ".", killCol)
+	killicon.AddFont("cw_kk_ins2_ao5_revolver",		"HL2MPTypeDeath", "8", killCol)
 	killicon.AddFont("cw_kk_ins2_ao5_br99",			"CW_KillIcons", "w", killCol)
 	killicon.AddFont("cw_kk_ins2_ao5_m39",			"CW_KillIcons", "i", white)
 	killicon.AddFont("cw_kk_ins2_ao5_m79",			"HL2MPTypeDeath", "7", killCol)
@@ -259,7 +264,7 @@ if CLIENT then
 	killicon.AddFont("cw_kk_ins2_cstm_g36c",		"CW_KillIcons", "o", killCol)
 	killicon.AddFont("cw_kk_ins2_cstm_galil_ace",	"CW_KillIcons", "v", killCol)
 	killicon.AddFont("cw_kk_ins2_cstm_ksg",			"CW_KillIcons", "k", killCol)
-	killicon.AddFont("cw_kk_ins2_cstm_l85",			"CW_KillIcons", "w", killCol)
+	killicon.AddFont("cw_kk_ins2_cstm_l85",			"CW_KillIcons", "e", killCol)
 	killicon.AddFont("cw_kk_ins2_cstm_m14",			"CW_KillIcons", "i", killCol)
 	killicon.AddFont("cw_kk_ins2_cstm_m500",		"CW_KillIcons", "k", killCol)
 	killicon.AddFont("cw_kk_ins2_cstm_scar",		"CW_KillIcons", "i", killCol)

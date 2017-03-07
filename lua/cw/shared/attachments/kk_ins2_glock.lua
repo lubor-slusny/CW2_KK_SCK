@@ -10,7 +10,8 @@ local att = {}
 	}
 	
 	if CLIENT then
-		att.displayIcon = surface.GetTextureID("atts/" .. att.name)
+		-- att.displayIcon = surface.GetTextureID("atts/" .. att.name)
+		att.displayIcon = surface.GetTextureID("atts/kk_dogg")
 		att.description = {}
 	end
 	
@@ -27,7 +28,8 @@ local att = {}
 	}
 
 	if CLIENT then
-		att.displayIcon = surface.GetTextureID("atts/" .. att.name)
+		-- att.displayIcon = surface.GetTextureID("atts/" .. att.name)
+		att.displayIcon = surface.GetTextureID("atts/kk_dogg")
 		att.description = {}
 		att.SelectIconOverride = surface.GetTextureID("vgui/inventory/cw_kk_ins2_cstm_g19_tt")
 	end
@@ -45,7 +47,8 @@ local att = {}
 	}
 
 	if CLIENT then
-		att.displayIcon = surface.GetTextureID("atts/" .. att.name)
+		-- att.displayIcon = surface.GetTextureID("atts/" .. att.name)
+		att.displayIcon = surface.GetTextureID("atts/kk_dogg")
 		att.description = {}
 		att.SelectIconOverride = surface.GetTextureID("vgui/inventory/cw_kk_ins2_cstm_g19_ss")
 	end
@@ -62,7 +65,8 @@ local att = {}
 	}
 
 	if CLIENT then
-		att.displayIcon = surface.GetTextureID("atts/" .. att.name)
+		-- att.displayIcon = surface.GetTextureID("atts/" .. att.name)
+		att.displayIcon = surface.GetTextureID("atts/kk_dogg")
 		att.description = {
 			[1] = {t = "Increases mag size to 22 rounds.", c = CustomizableWeaponry.textColors.POSITIVE}
 		}
