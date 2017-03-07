@@ -15,7 +15,10 @@ if CLIENT then
 	
 	SWEP.IconLetter = "O"
 	
-	SWEP.AttachmentModelsVM = {}
+	SWEP.AttachmentModelsVM = {
+		["ani_body"] = {model = "models/weapons/v_mills.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
+	}
+	
 	SWEP.AttachmentModelsWM = {}
 	
 	SWEP.MoveType = 2

@@ -68,7 +68,7 @@ SWEP.SpeedDec = 15
 
 SWEP.Slot = 2
 SWEP.SlotPos = 0
-SWEP.NormalHoldType = "ar2"
+SWEP.NormalHoldType = "SMG"
 SWEP.RunHoldType = "passive"
 SWEP.FireModes = {"auto"}
 SWEP.Base = "cw_kk_ins2_base"
@@ -84,7 +84,7 @@ SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_nam_mat49.mdl"
 SWEP.WorldModel		= "models/weapons/w_mat49.mdl"
 
-SWEP.WMPos = Vector(5.176, 0.889, -1.417)
+SWEP.WMPos = Vector(3.7, 0.889, -1)
 SWEP.WMAng = Vector(-10, 0, 180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.f1
@@ -127,3 +127,21 @@ SWEP.ReloadTimes = {
 }
 
 SWEP.MuzzleVelocity = 400
+
+if CLIENT then
+	local bone0 = 0
+	local position0 = Vector(-2, -6, 0)
+	local angle0 = Angle(0, 90, 0)
+	
+	local bone1 = 1
+	local position1 = Vector(5, -7, 0)
+	local angle1 = Angle(0, -90, 0)
+	
+	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_nam_mat49", function(wep, welement)
+		welement:ManipulateBonePosition(bone0, position0)
+		welement:ManipulateBoneAngles(bone0, angle0)
+		
+		welement:ManipulateBonePosition(bone1, position1)
+		welement:ManipulateBoneAngles(bone1, angle1)
+	end)
+end

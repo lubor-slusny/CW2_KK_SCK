@@ -465,9 +465,11 @@ function SWEP:DrawWorldModel()
 	self.WMEnt:DrawShadow(true)
 	
 	local overrideVM = false
-	for _,e in pairs(self.AttachmentModelsWM) do
-		overrideVM = overrideVM or (e.active and e.hideVM)
-		if overrideVM then break end
+	if self.AttachmentModelsWM then
+		for _,e in pairs(self.AttachmentModelsWM) do
+			overrideVM = overrideVM or (e.active and e.hideVM)
+			if overrideVM then break end
+		end
 	end
 	
 	if not overrideVM then

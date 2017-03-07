@@ -103,3 +103,19 @@ SWEP.timeToThrowShort = 1.2
 SWEP.spawnTimeShort = 0.65
 SWEP.swapTimeShort = 1.3
 SWEP.maxVelDelayShort = 1.5
+
+if CLIENT then
+	local att = CustomizableWeaponry.registeredAttachmentsSKey["kk_ins2_ww2_nade_jackit"]
+	
+	CustomizableWeaponry_KK.ins2.welementThink:add("cw_kk_ins2_doi_nade_m24", function(wep, welement)
+		if wep.ActiveAttachments[att.name] then
+			if welement:GetModel() != att.activeWM then
+				welement:SetModel(att.activeWM)
+			end
+		else
+			if welement:GetModel() != att.origWM then
+				welement:SetModel(att.origWM)
+			end
+		end
+	end)
+end

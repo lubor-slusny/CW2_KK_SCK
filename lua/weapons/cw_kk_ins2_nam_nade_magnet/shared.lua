@@ -59,7 +59,7 @@ SWEP.SpeedDec = 5
 
 SWEP.Slot = 4
 SWEP.SlotPos = 0
-SWEP.NormalHoldType = "grenade"
+SWEP.NormalHoldType = "slam"
 SWEP.RunHoldType = "normal"
 SWEP.FireModes = {"semi"}
 SWEP.Base = "cw_kk_ins2_base_nade"
@@ -75,8 +75,8 @@ SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_nam_hafthohlladung.mdl"
 SWEP.WorldModel		= "models/weapons/w_hafthohlladung.mdl"
 
-SWEP.WMPos = Vector(3.891, 2.295, -1.765)
-SWEP.WMAng = Angle(-28.962, 155.365, 180)
+SWEP.WMPos = Vector(3.891, 4.5, 7)
+SWEP.WMAng = Angle(-70, 90, 0)
 
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.ww2de
 
