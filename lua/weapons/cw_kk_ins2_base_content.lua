@@ -188,7 +188,7 @@ if CLIENT then
 	killicon.AddFont("cw_kk_ins2_m45",				"CW_KillIcons", "a", killCol)
 	killicon.AddFont("cw_kk_ins2_m1911",			"CW_KillIcons", "a", killCol)
 	killicon.AddFont("cw_kk_ins2_makarov",			"CW_KillIcons", "a", killCol)
-	killicon.AddFont("cw_kk_ins2_revolver",			"CW_KillIcons", "a", killCol)
+	killicon.AddFont("cw_kk_ins2_revolver",			"HL2MPTypeDeath", ".", killCol)
 	
 	killicon.AddFont("cw_kk_ins2_mp5k",				"CW_KillIcons", "x", killCol)
 	killicon.AddFont("cw_kk_ins2_mp40",				"CW_KillIcons", "x", killCol)
@@ -204,7 +204,7 @@ if CLIENT then
 	killicon.AddFont("cw_kk_ins2_m1a1",				"CW_KillIcons", "o", killCol)
 	killicon.AddFont("cw_kk_ins2_m1a1_para",		"CW_KillIcons", "o", killCol)
 	killicon.AddFont("cw_kk_ins2_m4a1",				"CW_KillIcons", "w", killCol)
-	-- killicon.AddFont("cw_kk_ins2_m14",				"CW_KillIcons", "i", white)
+	-- killicon.AddFont("cw_kk_ins2_m14",			"CW_KillIcons", "i", white)
 	killicon.AddFont("cw_kk_ins2_m14",				"CW_HUD22", "[M14 EBR]", white)
 	killicon.AddFont("cw_kk_ins2_m16a4",			"CW_KillIcons", "w", killCol)
 	killicon.AddFont("cw_kk_ins2_m40a1",			"CW_KillIcons", "r", killCol)
@@ -235,7 +235,7 @@ if CLIENT then
 	killicon.AddFont("cw_kk_ins2_projectile_frag",	"CW_KillIcons", "h", killCol)
 	
 	// ao5
-	killicon.AddFont("cw_kk_ins2_ao5_revolver",		"CW_KillIcons", "a", killCol)
+	killicon.AddFont("cw_kk_ins2_ao5_revolver",		"HL2MPTypeDeath", ".", killCol)
 	killicon.AddFont("cw_kk_ins2_ao5_br99",			"CW_KillIcons", "w", killCol)
 	killicon.AddFont("cw_kk_ins2_ao5_m39",			"CW_KillIcons", "i", white)
 	killicon.AddFont("cw_kk_ins2_ao5_m79",			"HL2MPTypeDeath", "7", killCol)
@@ -244,6 +244,7 @@ if CLIENT then
 	killicon.AddFont("cw_kk_ins2_mel_cstm_ninjato",	"CW_KillIcons", "j", killCol)
 	
 	killicon.AddFont("cw_kk_ins2_cstm_cobra",		"HL2MPTypeDeath", ".", killCol)
+	killicon.AddFont("cw_kk_ins2_cstm_g19",			"CW_KillIcons", "c", killCol)
 	killicon.AddFont("cw_kk_ins2_cstm_mateba",		"HL2MPTypeDeath", ".", killCol)
 	
 	killicon.AddFont("cw_kk_ins2_cstm_kriss",		"CW_KillIcons", "x", killCol)
@@ -258,6 +259,7 @@ if CLIENT then
 	killicon.AddFont("cw_kk_ins2_cstm_g36c",		"CW_KillIcons", "o", killCol)
 	killicon.AddFont("cw_kk_ins2_cstm_galil_ace",	"CW_KillIcons", "v", killCol)
 	killicon.AddFont("cw_kk_ins2_cstm_ksg",			"CW_KillIcons", "k", killCol)
+	killicon.AddFont("cw_kk_ins2_cstm_l85",			"CW_KillIcons", "w", killCol)
 	killicon.AddFont("cw_kk_ins2_cstm_m14",			"CW_KillIcons", "i", killCol)
 	killicon.AddFont("cw_kk_ins2_cstm_m500",		"CW_KillIcons", "k", killCol)
 	killicon.AddFont("cw_kk_ins2_cstm_scar",		"CW_KillIcons", "i", killCol)
@@ -293,7 +295,37 @@ if CLIENT then
 	killicon.AddFont("cw_kk_ins2_projectile_m6a1",	"HL2MPTypeDeath", "3", killCol)
 	killicon.AddFont("cw_kk_ins2_projectile_pf60",	"HL2MPTypeDeath", "3", killCol)
 	
-	killicon.AddFont("cw_kk_ins2_projectile_m84",		"CW_KillIcons", "Q", killCol)
+	killicon.AddFont("cw_kk_ins2_projectile_m84",	"CW_KillIcons", "Q", killCol)
+	
+	// NAM pack
+	killicon.AddFont("cw_kk_ins2_nam_mel_ak",		"CW_KillIcons", "j", killCol)
+	
+	killicon.AddFont("cw_kk_ins2_nam_nambu",		"CW_KillIcons", "c", killCol)
+	killicon.AddFont("cw_kk_ins2_nam_python",		"HL2MPTypeDeath", ".", killCol)
+	killicon.AddFont("cw_kk_ins2_nam_sw39",			"CW_KillIcons", "a", killCol)
+	killicon.AddFont("cw_kk_ins2_nam_tt33",			"CW_KillIcons", "a", killCol)
+	
+	killicon.AddFont("cw_kk_ins2_nam_mac10",		"CW_KillIcons", "l", killCol)
+	killicon.AddFont("cw_kk_ins2_nam_mat49",		"CW_KillIcons", "d", killCol)
+	killicon.AddFont("cw_kk_ins2_nam_ppsh",			"CW_KillIcons", "m", killCol)
+	killicon.AddFont("cw_kk_ins2_nam_sterling",		"CW_KillIcons", "x", killCol)
+	killicon.AddFont("cw_kk_ins2_nam_vz61",			"CW_KillIcons", "d", killCol)
+	
+	killicon.AddFont("cw_kk_ins2_nam_akm",			"CW_KillIcons", "b", killCol)
+	killicon.AddFont("cw_kk_ins2_nam_ithaca",		"CW_KillIcons", "k", killCol)
+	killicon.AddFont("cw_kk_ins2_nam_m4",			"CW_KillIcons", "w", killCol)
+	killicon.AddFont("cw_kk_ins2_nam_m14",			"CW_KillIcons", "i", killCol)
+	killicon.AddFont("cw_kk_ins2_nam_m16a1",		"CW_KillIcons", "w", killCol)
+	killicon.AddFont("cw_kk_ins2_nam_m40",			"CW_KillIcons", "r", killCol)
+	killicon.AddFont("cw_kk_ins2_nam_m60",			"CW_KillIcons", "z", killCol)
+	killicon.AddFont("cw_kk_ins2_nam_s620",			"CW_KillIcons", "k", killCol)
+	killicon.AddFont("cw_kk_ins2_nam_sks",			"CW_KillIcons", "i", killCol)
+	killicon.AddFont("cw_kk_ins2_nam_svd",			"CW_KillIcons", "i", killCol)
+	killicon.AddFont("cw_kk_ins2_nam_svt40",		"CW_KillIcons", "i", killCol)
+	killicon.AddFont("cw_kk_ins2_nam_vz58",			"CW_KillIcons", "b", killCol)
+	
+	killicon.AddFont("cw_kk_ins2_nam_m72",			"HL2MPTypeDeath", "3", killCol)
+	killicon.AddFont("cw_kk_ins2_nam_m79",			"HL2MPTypeDeath", "7", killCol)
 end
 
 if CLIENT then
