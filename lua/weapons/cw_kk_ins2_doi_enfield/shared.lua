@@ -89,7 +89,8 @@ SWEP.Attachments = {
 	{header = "Sight", offset = {500, -500}, atts = {"bg_foldsight", "kk_ins2_scope_m82", "kk_ins2_scope_enfield", "kk_ins2_scope_wa5"}},
 	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_ww2_knife", "kk_ins2_ww2_knife_fat", "kk_ins2_gl_enfield"}},
 	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
-	{header = "Clip", offset = {200, 0}, atts = {"kk_ins2_ww2_stripper"}, exclusions = {["kk_ins2_scope_enfield"] = true, ["kk_ins2_scope_wa5"] = true}},
+	{header = "Clip", offset = {300, 0}, atts = {"kk_ins2_ww2_stripper"}, exclusions = {["kk_ins2_scope_enfield"] = true, ["kk_ins2_scope_wa5"] = true}},
+	{header = "Under", offset = {-500, 0}, atts = {"kk_ins2_bs"}},
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
@@ -344,10 +345,10 @@ SWEP.ShotgunReload = true
 
 if CLIENT then
 	function SWEP:updateStandardParts()
-		self:setElementActive("sleeve", 
-			self.ActiveAttachments.kk_ins2_scope_enfield
+		-- self:setElementActive("sleeve", 
+			-- self.ActiveAttachments.kk_ins2_scope_enfield
 			-- or self.ActiveAttachments.kk_ins2_scope_m82
-		)
+		-- )
 		
 		self:setElementActive("kk_ins2_scope_m82_backup", 
 			self.ActiveAttachments.kk_ins2_scope_m82

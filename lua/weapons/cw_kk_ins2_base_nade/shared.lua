@@ -708,6 +708,9 @@ function SWEP:getThrowVelocityMods()
 	local CT = CurTime() - self._curSpawnTime 					// fixes offset caused by delay between start of throw anim and ent creation
 	local mul = math.Clamp((CT - min) / (max - min), 0, 1)
 	
+	local proneUpMul = self:IsOwnerProne() and 0.7 or 1
+	local proneFwMul = self:IsOwnerProne() and 0.5 or 1
+		
 	if self._doingShortThrow then
 		min = self.velocityModForwardMinMaxShort[1]
 		max = self.velocityModForwardMinMaxShort[2]
@@ -716,7 +719,7 @@ function SWEP:getThrowVelocityMods()
 		max = self.velocityModForwardMinMax[2]
 	end
 	
-	local forward = min + mul * (max - min)
+	local forward = min + mul * ((max * proneFwMul) - min)
 	
 	if self._doingShortThrow then
 		min = self.velocityModUpMinMaxShort[1]
@@ -726,7 +729,7 @@ function SWEP:getThrowVelocityMods()
 		max = self.velocityModUpMinMax[2]
 	end
 	
-	local up = min + mul * (max - min)
+	local up = min + mul * ((max * proneUpMul) - min)
 
 	return forward, up
 end

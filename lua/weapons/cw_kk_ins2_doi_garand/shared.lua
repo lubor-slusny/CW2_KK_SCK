@@ -35,7 +35,7 @@ if CLIENT then
 		-- ["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_iron_garand_l.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
 		["bg_foldsight"] = {model = "models/weapons/upgrades/a_iron_garand_s.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
-		["sleeve"] = {model = "models/weapons/upgrades/a_clothwrap_garand.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true},
+		["sleeve"] = {model = "models/weapons/upgrades/a_clothwrap_garand.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/a_garand_bayonet.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		-- ["kk_ins2_gl_m7"] = {model = "models/weapons/upgrades/a_springfield_gl.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
@@ -89,7 +89,8 @@ SWEP.Attachments = {
 	{header = "Sight", offset = {700, -200}, atts = {"bg_foldsight",/* "kk_ins2_eotech",*/ "kk_ins2_scope_m82"}},
 	{header = "Barrel", offset = {-300, -200}, atts = {"kk_ins2_ww2_knife", "kk_ins2_gl_m7"}},
 	{header = "Stock", offset = {1100, 300}, atts = {"kk_ins2_ww2_sling"}},
-	["+reload"] = {header = "Ammo", offset = {100, 300}, atts = {"am_magnum", "am_matchgrade"}}
+	{header = "Under", offset = {-300, 300}, atts = {"kk_ins2_bs"}},
+	["+reload"] = {header = "Ammo", offset = {400, 300}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
 SWEP.Animations = {
@@ -309,8 +310,8 @@ if CLIENT then
 	end
 end
 
-if CLIENT then
-	function SWEP:updateStandardParts()
+-- if CLIENT then
+	-- function SWEP:updateStandardParts()
 		-- self:setElementActive("sleeve", self.ActiveAttachments.kk_ins2_scope_m82)
-	end
-end
+	-- end
+-- end

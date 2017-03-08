@@ -56,7 +56,8 @@ SWEP.Attachments = {
 	-- {header = "Barrel", offset = {-200, -200}, atts = {"kk_ins2_ww2_knife"}},
 	-- {header = "Under", offset = {-500, 0}, atts = {"kk_ins2_bipod"}},
 	{header = "Stock", offset = {700, 300}, atts = {"kk_ins2_ww2_sling"}},
-	["+reload"] = {header = "Ammo", offset = {-200, 300}, atts = {"am_magnum", "am_matchgrade"}}
+	{header = "Under", offset = {-200, 300}, atts = {"kk_ins2_bs"}},
+	["+reload"] = {header = "Ammo", offset = {-200, -200}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
 SWEP.Animations = {
@@ -158,8 +159,8 @@ SWEP.ReloadTimes = {
 	base_melee_bash = {0.3, 0.9},
 }
 
-if CLIENT then
-	function SWEP:updateStandardParts()
+-- if CLIENT then
+	-- function SWEP:updateStandardParts()
 		-- self:setElementActive("sleeve", self.ActiveAttachments.kk_ins2_scope_zf4)
-	end
-end
+	-- end
+-- end

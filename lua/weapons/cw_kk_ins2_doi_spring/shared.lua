@@ -78,7 +78,7 @@ if CLIENT then
 	SWEP.M203Pos = Vector(-2.6856, 0, 5.5299)
 	SWEP.M203Ang = Vector(-8.6177, 0.0383, 0)
 
-	SWEP.CustomizationMenuScale = 0.015
+	SWEP.CustomizationMenuScale = 0.017
 end
 
 SWEP.MuzzleEffect = "muzzleflash_garand_1p"
@@ -95,12 +95,13 @@ SWEP.Attachments = {
 	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_ww2_knife", "kk_ins2_gl_m7"}},
 	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
 	
-	{header = "Clip", offset = {200, 0}, atts = {"kk_ins2_ww2_stripper"}, exclusions = {
+	{header = "Clip", offset = {300, 0}, atts = {"kk_ins2_ww2_stripper"}, exclusions = {
 		["kk_ins2_scope_m73"] = true,
 		["kk_ins2_scope_u8x"] = true
 	}},
 	
-	-- {header = "Under", offset = {-500, 0}, atts = {"kk_ins2_bipod"}},
+	{header = "Under", offset = {-500, 0}, atts = {"kk_ins2_bs"}},
+	
 	-- {header = "Lasers", offset = {125, 200}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}},
 	-- {header = "More Sight", offset = {1200, 0}, atts = {"kk_ins2_magnifier"}, dependencies = CustomizableWeaponry_KK.ins2.magnifierDependencies},
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_magnum", "am_matchgrade"}}
@@ -299,7 +300,10 @@ if CLIENT then
 		self:setElementActive("bolt_iron", !scope)
 		self:setElementActive("bolt_scope", scope)
 		
-		self:setElementActive("sleeve", self.ActiveAttachments.kk_ins2_scope_m73)
+		-- self:setElementActive("sleeve", self.ActiveAttachments.kk_ins2_scope_m73)
+		
+		self.AttachmentModelsVM.sleeve.nodraw =
+			self.ActiveAttachments.kk_ins2_scope_u8x
 	end
 end
 
