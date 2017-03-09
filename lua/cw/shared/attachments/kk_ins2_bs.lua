@@ -1,9 +1,9 @@
 
 CustomizableWeaponry.colorableParts.COLOR_TYPE_KK_OTHER = "KK_BS"
 CustomizableWeaponry.colorableParts.colors[CustomizableWeaponry.colorableParts.COLOR_TYPE_KK_OTHER] = {
-	[1] = {name = "kk_bs_wear",	display = "Wear",			color = Color(255,0,0,255)},
-	[2] = {name = "kk_bs_sleev",	display = "Sleeve",			color = Color(0,255,0,255)},
-	[3] = {name = "kk_bs_sleew",	display = "Wear+Sleeve",	color = Color(0,0,255,255)},
+	[1] = {name = "kk_bs_wear",		display = "Wear",			color = Color(255,0,0,255)},
+	[2] = {name = "kk_bs_sleew",	display = "Wear+Sleeve",	color = Color(0,255,0,255)},
+	[3] = {name = "kk_bs_sleev",	display = "Sleeve",			color = Color(0,0,255,255)},
 }
 
 CustomizableWeaponry.colorableParts.colorText[CustomizableWeaponry.colorableParts.COLOR_TYPE_KK_OTHER] = " (HOLD - change style)"
@@ -50,10 +50,10 @@ if CLIENT then
 			self:setSkin(1)
 			att.setSleeve(self, false)
 		elseif style == 2 then
-			self:setSkin(0)
+			self:setSkin(1)
 			att.setSleeve(self, true)
 		elseif style == 3 then
-			self:setSkin(1)
+			self:setSkin(0)
 			att.setSleeve(self, true)
 		end
 	end
