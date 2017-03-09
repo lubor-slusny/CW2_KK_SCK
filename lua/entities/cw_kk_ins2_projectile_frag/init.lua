@@ -22,15 +22,31 @@ function ENT:Initialize()
 	end
 	
 	self:GetPhysicsObject():SetBuoyancyRatio(0)
+	
+	self.dangerSound = ents.Create("ai_sound")
+	
+	self.dangerSound:SetKeyValue("duration", 10)
+	self.dangerSound:SetKeyValue("soundtype", 8)
+	self.dangerSound:SetKeyValue("volume", 200)
+	
+	self.NextDanger = CurTime()
 end
 
 function ENT:OnRemove()
+	SafeRemoveEntity(self.dangerSound)
 	return false
 end 
 
 local vel, len, CT
 
 function ENT:PhysicsCollide(data, physobj)
+	if IsValid(self.dangerSound) and CurTime() > self.NextDanger then
+		self.dangerSound:SetPos(self:GetPos())
+		self.dangerSound:Fire("EmitAISound", 0)
+		
+		self.NextDanger = CurTime() + 1
+	end
+	
 	if not self:IsHeldPotato() then
 		self.prepareNextPickup = true
 	end
@@ -47,6 +63,7 @@ function ENT:PhysicsCollide(data, physobj)
 		
 		if CT > self.NextImpact then
 			self:EmitSound("CW_KK_INS2_FRAG_ENT_BOUNCE", 75, 100)
+			
 			self.NextImpact = CT + 0.1
 		end
 	end
@@ -73,6 +90,14 @@ function ENT:IsHeldPotato()
 end
 
 function ENT:Think()
+	-- for _,v in pairs(ents.GetAll()) do
+		-- if IsValid(v) and v.IsNPC and v:IsNPC() then
+			-- if v:GetPos():Distance(self:GetPos()) < 400 then
+				-- v:AddEntityRelationship(self, D_FR, 9999)
+			-- end
+		-- end
+	-- end
+	
 	if self.prepareNextPickup then
 		self.prepareNextPickup = false
 		
