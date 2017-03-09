@@ -4,7 +4,7 @@ AddCSLuaFile()
 local PANEL
 local lastFile = ""
 
-local function AllowInput() return true end
+local function AllowInput() return true end // allow? Yes - means no... kek
 local workshopLink = "http://steamcommunity.com/sharedfiles/filedetails/"
 
 local function OnGetFocus(self)
@@ -219,4 +219,4 @@ hook.Add("PopulateToolMenu", toolName, function()
 	end)
 end)
 
-RunConsoleCommand("spawnmenu_reload")
+-- RunConsoleCommand("spawnmenu_reload")
