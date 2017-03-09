@@ -26,6 +26,8 @@ if CLIENT then
 		["kk_ins2_hoovy"] = {model = "models/weapons/upgrades/a_compensator_browninghp.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["bg_ar15sturdystock"] = {model = "models/weapons/upgrades/a_stock_browninghp.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		
+		-- ["ani_body"] = {model = "models/weapons/v_browninghp.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
 	}
 	
 	SWEP.AttachmentModelsWM = {}

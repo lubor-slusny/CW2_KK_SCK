@@ -23,10 +23,14 @@ if CLIENT then
 	SWEP.ShellWorldAngleAlign = {Forward = 90, Right = 0, Up = 0}
 	
 	SWEP.AttachmentModelsVM = {
+		-- ["ani_body"] = {model = "models/weapons/v_welrod.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
+		
 		["kk_ins2_fnfal_skin2"] = {model = "models/weapons/v_welrod.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, material = "models/weapons/welrod/dosh.mdl"},
 	}
 	
-	SWEP.AttachmentModelsWM = {}
+	SWEP.AttachmentModelsWM = {
+		-- ["kk_ins2_fnfal_skin2"] = {model = "models/weapons/w_welrod.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, material = "models/weapons/welrod/dosh.mdl"},
+	}
 	
 	SWEP.IronsightPos = Vector(-2.2947, 0, 0.8344)
 	SWEP.IronsightAng = Vector(-0.0609, 0, 0)

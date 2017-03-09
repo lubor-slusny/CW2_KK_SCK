@@ -1,9 +1,9 @@
 
 CustomizableWeaponry.colorableParts.COLOR_TYPE_KK_OTHER = "KK_BS"
 CustomizableWeaponry.colorableParts.colors[CustomizableWeaponry.colorableParts.COLOR_TYPE_KK_OTHER] = {
-	{name = "kk_bs_wear",	display = "Wear",			color = Color(255,0,0,255)},
-	{name = "kk_bs_sleev",	display = "Sleeve",			color = Color(0,255,0,255)},
-	{name = "kk_bs_sleew",	display = "Wear+Sleeve",	color = Color(0,0,255,255)},
+	[1] = {name = "kk_bs_wear",	display = "Wear",			color = Color(255,0,0,255)},
+	[2] = {name = "kk_bs_sleev",	display = "Sleeve",			color = Color(0,255,0,255)},
+	[3] = {name = "kk_bs_sleew",	display = "Wear+Sleeve",	color = Color(0,0,255,255)},
 }
 
 CustomizableWeaponry.colorableParts.colorText[CustomizableWeaponry.colorableParts.COLOR_TYPE_KK_OTHER] = " (HOLD - change style)"
@@ -16,22 +16,20 @@ end
 local att = {}
 
 att.name = "kk_ins2_bs"
-att.displayName = "BULLSHIT"
-att.displayNameShort = "BS"
+att.displayNameShort = "85"
+att.displayName = "C05M3T1X"
 att.isBG = true
 
 att.colorType = CustomizableWeaponry.colorableParts.COLOR_TYPE_KK_OTHER
 
-att.statModifiers = {
-	RecoilMult = -0.1
-}
+att.statModifiers = {}
 
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/kk_dogg")
 	att.reticle = "cw2/reticles/aim_reticule"
 	att.description = {
-		[1] = {t = "Changes skin or adds camo sleeve.", c = CustomizableWeaponry.textColors.NEUTRAL},
-		[2] = {t = "Only where and when applicable.", c = CustomizableWeaponry.textColors.NEUTRAL},
+		[1] = {t = "Changes skin and/or adds camo sleeve.", c = CustomizableWeaponry.textColors.NEUTRAL},
+		[2] = {t = "^^ Only where and when applicable.", c = CustomizableWeaponry.textColors.NEUTRAL},
 	}
 	
 	function att:setSleeve(val)

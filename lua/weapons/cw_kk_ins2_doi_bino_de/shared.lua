@@ -13,7 +13,10 @@ if CLIENT then
 	
 	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_binoculars_german")
 	
-	SWEP.AttachmentModelsVM = {}
+	SWEP.AttachmentModelsVM = {
+		-- ["ani_body"] = {model = "models/weapons/v_binoculars_german.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
+	}
+	
 	SWEP.AttachmentModelsWM = {}
 	
 	SWEP.IronsightPos = Vector()

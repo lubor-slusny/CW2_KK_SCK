@@ -20,6 +20,8 @@ if CLIENT then
 	
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_revolver_mag"] = {model = "models/weapons/upgrades/a_clips_sw1917.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		
+		-- ["ani_body"] = {model = "models/weapons/v_sw1917.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
 	}
 	
 	SWEP.AttachmentModelsWM = {}

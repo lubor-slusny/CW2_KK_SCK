@@ -7,7 +7,6 @@ include("sh_sounds.lua")
 include("sh_soundscript.lua")
 
 SWEP.magType = "lmgBox"
--- SWEP.magType = "NONE"
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
@@ -29,7 +28,10 @@ if CLIENT then
 	SWEP.Shell2ViewAngleAlign = {Forward = 90, Right = 0, Up = 180}
 	SWEP.Shell2WorldAngleAlign = {Forward = 0, Right = 90, Up = 180}
 	
-	SWEP.AttachmentModelsVM = {}
+	SWEP.AttachmentModelsVM = {
+		-- ["ani_body"] = {model = "models/weapons/v_mg34.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
+	}
+	
 	SWEP.AttachmentModelsWM = {}
 	
 	SWEP.IronsightPos = Vector(-3.0321, -2, 1.772)

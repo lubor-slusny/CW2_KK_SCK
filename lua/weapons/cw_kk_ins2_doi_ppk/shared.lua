@@ -19,7 +19,10 @@ if CLIENT then
 	SWEP.ShellDelay = 0.06
 	SWEP.ShellWorldAngleAlign = {Forward = 90, Right = 0, Up = 0}
 	
-	SWEP.AttachmentModelsVM = {}
+	SWEP.AttachmentModelsVM = {
+		-- ["ani_body"] = {model = "models/weapons/v_ppk.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
+	}
+	
 	SWEP.AttachmentModelsWM = {}
 	
 	SWEP.IronsightPos = Vector(-1.9131, 0, 0.5582)

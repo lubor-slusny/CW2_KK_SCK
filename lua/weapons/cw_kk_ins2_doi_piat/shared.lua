@@ -23,7 +23,10 @@ if CLIENT then
 		},
 	}
 	
-	SWEP.AttachmentModelsVM = {}
+	SWEP.AttachmentModelsVM = {
+		-- ["ani_body"] = {model = "models/weapons/v_piat.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
+	}
+	
 	SWEP.AttachmentModelsWM = {}
 	
 	SWEP.IronsightPos = Vector(-3.5949, 0, 1.4701)
