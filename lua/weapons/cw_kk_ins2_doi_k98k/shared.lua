@@ -85,11 +85,12 @@ SWEP.MuzzleEffect = "muzzleflash_k98_1p"
 SWEP.MuzzleEffectWorld = "muzzleflash_k98_3p"
 
 SWEP.Attachments = {
-	{header = "Sight", offset = {500, -500}, atts = {"kk_ins2_scope_zf41", "kk_ins2_scope_zf4", "kk_ins2_scope_k98"}},
+	{header = "Sight", offset = {600, -500}, atts = {"kk_ins2_scope_zf41", "kk_ins2_scope_zf4", "kk_ins2_scope_k98"}},
 	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_ww2_knife", "kk_ins2_gl_ggg"}},
 	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
 	{header = "Clip", offset = {300, 0}, atts = {"kk_ins2_ww2_stripper"}, exclusions = {["kk_ins2_scope_k98"] = true, ["kk_ins2_scope_zf4"] = true}},
-	{header = "Under", offset = {-500, 0}, atts = {"kk_ins2_bs"}},
+	{header = "Inside", offset = {-400, 0}, atts = {"kk_ins2_ww2_bolt"}},
+	{header = "Flavor", offset = {0, 500}, atts = {"kk_ins2_bs"}},
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_magnum", "am_matchgrade"}}
 }
 

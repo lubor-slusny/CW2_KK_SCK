@@ -16,8 +16,8 @@ if CLIENT then
 	
 	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_flamethrower_british")
 	
-	SWEP.Shell = "KK_INS2_45apc"
-
+	SWEP.NoShells = true
+	
 	SWEP.AttachmentModelsVM = {}
 	SWEP.AttachmentModelsWM = {}
 
@@ -28,7 +28,7 @@ end
 SWEP.WeaponLength = 16
 
 SWEP.Attachments = {
-	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_magnum", "am_matchgrade"}}
+	-- ["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
 SWEP.Chamberable = false
@@ -57,8 +57,8 @@ SWEP.Slot = 4
 SWEP.SlotPos = 0
 SWEP.NormalHoldType = "ar2"
 SWEP.RunHoldType = "passive"
-SWEP.FireModes = {"auto", "semi"}
-SWEP.Base = "cw_kk_ins2_base"
+SWEP.FireModes = {"auto"}
+SWEP.Base = "cw_kk_ins2_base_flame"
 SWEP.Category = "CW 2.0 KK INS2 DOI"
 
 SWEP.Author			= "Spy"
@@ -89,17 +89,9 @@ SWEP.FireDelay = 60/700
 SWEP.FireSound = "CW_KK_INS2_DOI_FLAME_GB_FIRE_START"
 SWEP.Recoil = 0.7
 
-SWEP.HipSpread = 0.04
-SWEP.AimSpread = 0.01
-SWEP.VelocitySensitivity = 1.7
-SWEP.MaxSpreadInc = 0.035
-SWEP.SpreadPerShot = 0.006
-SWEP.SpreadCooldown = 0.15
-SWEP.Shots = 1
-SWEP.Damage = 33
-
-SWEP.FirstDeployTime = 1.9
-SWEP.DeployTime = 0.71
+SWEP.FirstDeployTime = 0.9
+SWEP.DeployTime = 0.9
+SWEP.HolsterTime = 0.8
 
 SWEP.ReloadTimes = {
 	base_ready = {1.9, 1.9},

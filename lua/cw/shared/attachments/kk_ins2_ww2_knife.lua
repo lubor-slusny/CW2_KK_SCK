@@ -13,15 +13,6 @@ if CLIENT then
 		[1] = {t = "bind mouse5 cw_kk_melee", c = CustomizableWeaponry.textColors.NEUTRAL},
 		[2] = {t = "Increases range and damage of melee attack.", c = CustomizableWeaponry.textColors.POSITIVE},
 	}
-	
-	-- function att:elementRender()
-	-- end
-	
-	-- function att:attachFunc()
-	-- end
-	
-	-- function att:detachFunc()
-	-- end
 end
 
 CustomizableWeaponry:registerAttachment(att)

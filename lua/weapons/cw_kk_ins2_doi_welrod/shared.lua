@@ -35,7 +35,7 @@ if CLIENT then
 	SWEP.IronsightPos = Vector(-2.2947, 0, 0.8344)
 	SWEP.IronsightAng = Vector(-0.0609, 0, 0)
 
-	SWEP.CustomizationMenuScale = 0.01
+	SWEP.CustomizationMenuScale = 0.014
 	SWEP.ReloadViewBobEnabled = false
 	SWEP.DisableSprintViewSimulation = true
 end
@@ -44,8 +44,9 @@ SWEP.MuzzleEffect = "muzzleflash_suppressed_1p"
 SWEP.MuzzleEffectWorld = "muzzleflash_suppressed_1p"
 
 SWEP.Attachments = {
-	{header = "Flavor", offset = {500, 0}, atts = {"kk_ins2_fnfal_skin2"}},
-	["+reload"] = {header = "Ammo", offset = {500, 400}, atts = {"am_magnum", "am_matchgrade"}}
+	{header = "Inside", offset = {500, -250}, atts = {"kk_ins2_ww2_bolt"}},
+	{header = "Flavor", offset = {-200, -250}, atts = {"kk_ins2_fnfal_skin2"}},
+	["+reload"] = {header = "Ammo", offset = {500, 200}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
 SWEP.Animations = {

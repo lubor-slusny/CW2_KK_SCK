@@ -11,17 +11,12 @@ att.statModifiers = {
 if CLIENT then
 	att.displayIcon = surface.GetTextureID("atts/" .. att.name)
 	att.description = {
-		[1] = {t = "Boosts deploy speed of weapon that you switch to.", c = CustomizableWeaponry.textColors.VPOSITIVE},
+		-- [1] = {t = "Boosts deploy speed of weapon that you switch to.", c = CustomizableWeaponry.textColors.VPOSITIVE},
 	}
-	
-	-- function att:elementRender()
-	-- end
-	
-	-- function att:attachFunc()
-	-- end
-	
-	-- function att:detachFunc()
-	-- end
 end
 
 CustomizableWeaponry:registerAttachment(att)
+
+-- if CLIENT then
+	-- CustomizableWeaponry:createStatText(att)
+-- end

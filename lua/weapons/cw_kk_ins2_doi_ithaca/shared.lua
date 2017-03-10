@@ -39,7 +39,7 @@ if CLIENT then
 	SWEP.KKINS2ScopeZF41Pos = Vector(-2.028, 4, 0.8911)
 	SWEP.KKINS2ScopeZF41Ang = Vector(0, 0.0208, 0)
 
-	SWEP.CustomizationMenuScale = 0.015
+	SWEP.CustomizationMenuScale = 0.019
 end
 
 SWEP.MuzzleEffect = "muzzleflash_ithica_1p"
@@ -47,9 +47,10 @@ SWEP.MuzzleEffectWorld = "muzzleflash_ithica_3p"
 
 SWEP.Attachments = {
 	-- {header = "Sight", offset = {500, -500}, atts = {"kk_ins2_scope_zf41"}},
-	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_ww2_knife"}},
-	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
-	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_slugrounds", "am_flechetterounds"}}
+	{header = "Stock", offset = {800, -200}, atts = {"kk_ins2_ww2_sling"}},
+	{header = "Barrel", offset = {-200, -200}, atts = {"kk_ins2_ww2_knife"}},
+	{header = "Inside", offset = {-200, 300}, atts = {"kk_ins2_ww2_bolt"}},
+	["+reload"] = {header = "Ammo", offset = {800, 300}, atts = {"am_slugrounds", "am_flechetterounds"}}
 }
 
 SWEP.Animations = {

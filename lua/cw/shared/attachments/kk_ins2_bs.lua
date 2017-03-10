@@ -17,7 +17,7 @@ local att = {}
 
 att.name = "kk_ins2_bs"
 att.displayNameShort = "85"
-att.displayName = "C05M3T1X"
+att.displayName = "C05M371X"
 att.isBG = true
 
 att.colorType = CustomizableWeaponry.colorableParts.COLOR_TYPE_KK_OTHER

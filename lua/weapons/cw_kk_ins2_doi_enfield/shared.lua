@@ -90,7 +90,8 @@ SWEP.Attachments = {
 	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_ww2_knife", "kk_ins2_ww2_knife_fat", "kk_ins2_gl_enfield"}},
 	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
 	{header = "Clip", offset = {300, 0}, atts = {"kk_ins2_ww2_stripper"}, exclusions = {["kk_ins2_scope_enfield"] = true, ["kk_ins2_scope_wa5"] = true}},
-	{header = "Under", offset = {-500, 0}, atts = {"kk_ins2_bs"}},
+	{header = "Inside", offset = {-400, 0}, atts = {"kk_ins2_ww2_bolt"}},
+	{header = "Flavor", offset = {0, 500}, atts = {"kk_ins2_bs"}},
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_magnum", "am_matchgrade"}}
 }
 

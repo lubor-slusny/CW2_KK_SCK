@@ -82,6 +82,7 @@ SWEP.FirstDeployTime = 5
 SWEP.WeaponLength = 20
 
 SWEP.HolsterSpeed = 1
+SWEP.BoltActionSpeed = 1
 
 SWEP.hipBulletDelay = false // float
 SWEP.projectileClass = false // string
@@ -307,14 +308,14 @@ function SWEP:doBoltAction()
 		anim = prefix .. "bolt" .. suffix
 		
 		if SP or IsFirstTimePredicted() then
-			self:sendWeaponAnim(anim, 1, 0)
+			self:sendWeaponAnim(anim, self.BoltActionSpeed, 0)
 		end
 		
 		local time, halt = self:getAnimTimes(anim)
 		
 		local oldMAD = self.meleeAttackDelay or 0
 		
-		CustomizableWeaponry.actionSequence.new(self, time, nil, function()
+		CustomizableWeaponry.actionSequence.new(self, time / self.BoltActionSpeed, nil, function()
 			local newMAD = self.meleeAttackDelay or 0
 			
 			if math.abs(newMAD - oldMAD) < 0.1 then
@@ -322,7 +323,7 @@ function SWEP:doBoltAction()
 			end
 		end)
 		
-		halt = CurTime() + halt
+		halt = CurTime() + (halt / self.BoltActionSpeed)
 		
 		self:SetNextPrimaryFire(halt)
 		self.GlobalDelay = halt

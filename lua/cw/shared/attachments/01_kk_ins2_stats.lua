@@ -75,7 +75,6 @@
 	)
 
 	// in %s
-	CustomizableWeaponry.originalValue:add("HolsterTime", false, false)
 	CustomizableWeaponry.originalValue:add("HolsterSpeed", true, false)
 	CustomizableWeaponry:registerRecognizedStat(
 		"HolsterSpeedMult", 
@@ -87,3 +86,13 @@
 
 	CustomizableWeaponry.originalValue:add("disableDropping", false, false)
 	
+// Bolt
+	CustomizableWeaponry.originalValue:add("BoltActionSpeed", true)
+	CustomizableWeaponry:registerRecognizedStat(
+		"BoltActionSpeedMult", 
+		"Decreases bolt-action speed", 
+		"Increases bolt-action speed", 
+		CustomizableWeaponry.textColors.NEGATIVE, 
+		CustomizableWeaponry.textColors.POSITIVE
+	)
+
