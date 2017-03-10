@@ -2,6 +2,7 @@
 local SP = game.SinglePlayer()
 
 CustomizableWeaponry_KK.ins2.quickKnife = CustomizableWeaponry_KK.ins2.quickKnife or {}
+function CustomizableWeaponry_KK.ins2.quickKnife:IsValid() return true end
 
 hook.Add("InitPostEntity", CustomizableWeaponry_KK.ins2.quickKnife, function()
 	if SERVER then

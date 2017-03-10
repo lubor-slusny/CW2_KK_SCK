@@ -121,14 +121,16 @@ function ENT:Fuse(t)
 							end
 							
 							if obj:IsNPC() then
-								obj:SetCondition(COND_NPC_FREEZE)
+								-- obj:SetCondition(COND_NPC_FREEZE)
+								obj:SetCondition(67)
 								obj:ClearEnemyMemory()
 								obj:SelectWeightedSequence(ACT_COWER)
 								
 								timer.Simple(5, function()
 									if IsValid(obj) then
 										obj:ClearEnemyMemory()
-										obj:SetCondition(COND_NPC_UNFREEZE)
+										-- obj:SetCondition(COND_NPC_UNFREEZE)
+										obj:SetCondition(68)
 									end
 								end)
 							end

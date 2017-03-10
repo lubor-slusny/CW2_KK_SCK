@@ -78,9 +78,9 @@ CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_M6A1_ENT_DETONATE_D2", {"weapo
 CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_M6A1_ENT_DETONATE_WATER", {"weapons/bazooka/water/bazooka_water_detonate_01.wav", "weapons/bazooka/water/bazooka_water_detonate_02.wav", "weapons/bazooka/water/bazooka_water_detonate_03.wav"})
 CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_M6A1_ENT_DETONATE_WATER_D1", {"weapons/bazooka/water/bazooka_water_detonate_dist_01.wav", "weapons/bazooka/water/bazooka_water_detonate_dist_02.wav", "weapons/bazooka/water/bazooka_water_detonate_dist_03.wav"})
 
-CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_M10A1_ENT_DETONATE", {"weapons/bazooka/bazooka_detonate_wp_01.wav", "weapons/bazooka/bazooka_detonate_wp_02.wav", "weapons/bazooka/bazooka_detonate_wp_03.wav"})
-CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_M10A1_ENT_DETONATE_D1", {"weapons/bazooka/bazooka_detonate_wp_dist_01.wav", "weapons/bazooka/bazooka_detonate_wp_dist_02.wav", "weapons/bazooka/bazooka_detonate_wp_dist_03.wav"})
-CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_M10A1_ENT_DETONATE_D2", {"weapons/bazooka/bazooka_detonate_wp_far_dist_01.wav", "weapons/bazooka/bazooka_detonate_wp_far_dist_02.wav", "weapons/bazooka/bazooka_detonate_wp_far_dist_03.wav"})
+CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_M10A1_ENT_DETONATE", {"weapons/bazooka/wp/bazooka_detonate_wp_01.wav", "weapons/bazooka/wp/bazooka_detonate_wp_02.wav", "weapons/bazooka/wp/bazooka_detonate_wp_03.wav"})
+CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_M10A1_ENT_DETONATE_D1", {"weapons/bazooka/wp/bazooka_detonate_wp_dist_01.wav", "weapons/bazooka/wp/bazooka_detonate_wp_dist_02.wav", "weapons/bazooka/wp/bazooka_detonate_wp_dist_03.wav"})
+CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_M10A1_ENT_DETONATE_D2", {"weapons/bazooka/wp/bazooka_detonate_wp_far_dist_01.wav", "weapons/bazooka/wp/bazooka_detonate_wp_far_dist_02.wav", "weapons/bazooka/wp/bazooka_detonate_wp_far_dist_03.wav"})
 
 CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_PANZERFAUST_ENT_DETONATE", {"weapons/panzerfaust/panzerfaust_detonate_01.wav", "weapons/panzerfaust/panzerfaust_detonate_02.wav", "weapons/panzerfaust/panzerfaust_detonate_03.wav"})
 CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_PANZERFAUST_ENT_DETONATE_D1", {"weapons/panzerfaust/panzerfaust_detonate_dist_01.wav", "weapons/panzerfaust/panzerfaust_detonate_dist_02.wav", "weapons/panzerfaust/panzerfaust_detonate_dist_03.wav"})

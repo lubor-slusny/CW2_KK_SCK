@@ -18,8 +18,12 @@ end
 local vel, len
 
 function ENT:PhysicsCollide(data, physobj)
-	self.destroyPhys = true
-	self:selfDestruct()
+	timer.Simple(0, function()
+		if IsValid(self) then
+			self:PhysicsDestroy()
+			self:selfDestruct()
+		end
+	end)
 end
 
 function ENT:selfDestruct()
@@ -50,11 +54,4 @@ function ENT:selfDestruct()
 	end
 	
 	SafeRemoveEntityDelayed(self, 30)
-end
-
-function ENT:Think()
-	if self.destroyPhys then
-		self.destroyPhys = false
-		self:PhysicsDestroy()
-	end
 end

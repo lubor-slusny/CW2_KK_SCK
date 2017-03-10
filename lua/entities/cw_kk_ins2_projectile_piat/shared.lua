@@ -34,6 +34,7 @@ function ENT:Initialize()
 
 		physenv.SetPerformanceSettings(spd)
 	else
+		self.Emitter = ParticleEmitter(self:GetPos())
 		self.LunchTime = CurTime()
 	end
 end

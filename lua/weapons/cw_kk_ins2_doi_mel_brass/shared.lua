@@ -18,7 +18,7 @@ end
 SWEP.Animations = {
 	base_pickup = "ready_1",
 	base_draw = "draw_2",
-	base_fire = {"swing1", "swing2", "swing3"},
+	base_fire = {/*"swing1", */"swing2", "swing3"},
 	base_idle = "idle",
 	base_holster = "holster",
 	base_sprint = "sprint",
@@ -62,12 +62,21 @@ SWEP.HitWorldSound = "CW_KK_INS2_DOI_BRASS_HITWORLD"
 SWEP.DamageOutputDelay = 4/32
 
 SWEP.Sounds = {
-	ready = {
+	ready_1 = {
 		{time = 0/32, sound = "CW_KK_INS2_DOI_BRASS_READY1"},
 		{time = 7/32, sound = "CW_KK_INS2_DOI_BRASS_READY2"},
 	},
 
-	draw = {
+	ready_2 = {
+		{time = 0/32, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
+	},
+
+	draw_1 = {
+		{time = 0/32, sound = "CW_KK_INS2_DOI_BRASS_READY1"},
+		{time = 7/32, sound = "CW_KK_INS2_DOI_BRASS_READY2"},
+	},
+
+	draw_2 = {
 		{time = 0/32, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
 	},
 

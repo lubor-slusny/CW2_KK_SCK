@@ -20,7 +20,7 @@ function ENT:Think()
 		-- self:SearchNDestroy()
 		
 		local phys = self:GetPhysicsObject()
-				
+		
 		if IsValid(phys) then
 			
 			if not self.ArmDir or self.safetyBypass then
@@ -109,31 +109,6 @@ function ENT:selfDestruct()
 	fx:Spawn()
 	
 	SafeRemoveEntity(self)
-end
-
-local choppas = {
-	npc_helicopter = true,
-	npc_combinedropship = true,
-	npc_combinegunship = true,
-}
-
-function ENT:SearchNDestroy()
-	local hit 
-	
-	for k,v in pairs(ents.GetAll()) do
-		if IsValid(v) and v.IsNPC and v:IsNPC() then
-			if choppas[v:GetClass()] then
-				if v:GetPos():Distance(self:GetPos()) < 400 then
-					v:Fire("selfDestruct")
-					hit = true
-				end
-			end
-		end
-	end
-	
-	if hit then 
-		self:selfDestruct()
-	end
 end
 
 function ENT:OnTakeDamage(dmg)

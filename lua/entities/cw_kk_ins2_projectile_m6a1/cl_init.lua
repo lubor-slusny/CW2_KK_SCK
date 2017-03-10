@@ -38,29 +38,3 @@ function ENT:DrawTrailParticle()
 	part:SetLighting(true)
 	part:SetVelocity(VectorRand() * 2)
 end
-
--- local pos, ang
-
--- function ENT:DrawEffect()
-	-- pos = self:GetAttachment(1).Pos
-	-- ang = self:GetAngles()
-	
-	-- ang:RotateAroundAxis(ang:Up(), 180)
-	
-	-- ParticleEffect("muzzleflash_M3", pos, ang, self)
-	-- ParticleEffect("muzzleflash_pistol", pos, ang, self)
--- end
-
--- function ENT:DrawDLight()
-	-- dlight = DynamicLight(self:EntIndex())
-					
-	-- dlight.r = 255 
-	-- dlight.g = 218
-	-- dlight.b = 74
-	-- dlight.style = math.pow(6,math.random(0,1))
-	-- dlight.Brightness = 1
-	-- dlight.Pos = self:GetPos()
-	-- dlight.Size = 512
-	-- dlight.Decay = 8000
-	-- dlight.DieTime = CurTime() + 2
--- end

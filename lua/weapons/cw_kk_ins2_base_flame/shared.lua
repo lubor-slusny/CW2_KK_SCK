@@ -9,6 +9,7 @@ SWEP.MuzzleEffectWorldF = "doi_flamethrower"
 
 SWEP.FlamethrowerRange = 600
 SWEP.FlamethrowerRicochetRange = 200
+local FlamethrowerAfterBurnDuration = 5
 
 PrecacheParticleSystem(SWEP.MuzzleEffectF)
 PrecacheParticleSystem(SWEP.MuzzleEffectWorldF)
@@ -110,8 +111,9 @@ local GetShootPos = reg.Player.GetShootPos
 SWEP.bulletCallback = function(ply, tr, di)
 	if tr.Hit then
 		if IsValid(tr.Entity) then
-			tr.Entity:Ignite(5, 10)
-			tr.Entity.kkIgnition = ply:GetActiveWeapon()
+			tr.Entity.kkDOIFTAttacker = ply
+			tr.Entity.kkDOIFTInflictor = ply:GetActiveWeapon()
+			tr.Entity:Ignite(FlamethrowerAfterBurnDuration, 0)
 		end
 	end
 end

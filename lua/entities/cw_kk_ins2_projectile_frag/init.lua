@@ -72,7 +72,19 @@ end
 function ENT:Fuse(t)
 	local p = self:GetOwner()
 	self.fuser = IsValid(p) and p or self
-	self.kaboomboom = CurTime() + (t or 3)
+	-- self.kaboomboom = CurTime() + (t or 3)
+	
+	timer.Simple((t or 3), function()
+		if IsValid(self) then
+			util.BlastDamage(self, self.fuser, self:GetPos(), self.ExplodeRadius, self.ExplodeDamage)
+			
+			local fx = ents.Create("cw_kk_ins2_particles")
+			fx:processProjectile(self)
+			fx:Spawn()
+			
+			SafeRemoveEntity(self)
+		end
+	end)
 end
 
 function ENT:Use(activator, caller)
@@ -105,15 +117,15 @@ function ENT:Think()
 		self:SetOwner()
 	end
 	
-	if self.kaboomboom and CurTime() > self.kaboomboom then
-		self.kaboomboom = nil
+	-- if self.kaboomboom and CurTime() > self.kaboomboom then
+		-- self.kaboomboom = nil
 		
-		util.BlastDamage(self, self.fuser, self:GetPos(), self.ExplodeRadius, self.ExplodeDamage)
+		-- util.BlastDamage(self, self.fuser, self:GetPos(), self.ExplodeRadius, self.ExplodeDamage)
 		
-		local fx = ents.Create("cw_kk_ins2_particles")
-		fx:processProjectile(self)
-		fx:Spawn()
+		-- local fx = ents.Create("cw_kk_ins2_particles")
+		-- fx:processProjectile(self)
+		-- fx:Spawn()
 		
-		SafeRemoveEntity(self)
-	end
+		-- SafeRemoveEntity(self)
+	-- end
 end

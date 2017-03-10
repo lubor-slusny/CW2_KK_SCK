@@ -5,10 +5,7 @@ include("shared.lua")
 function ENT:Think()
 	self:SetBodygroup(0,1)
 		
-	if self.dt.State == self.States.misfired then 
-		-- if math.random(1,10000) == 1337 then 
-			-- self:selfDestruct()
-		-- end
+	if self.dt.State == self.States.misfired then
 		return 
 	end
 	
@@ -20,8 +17,6 @@ function ENT:Think()
 	elseif CT > self.ArmTime then
 		self.dt.State = self.States.armed
 		
-		self:SearchNDestroy()
-		
 		local phys = self:GetPhysicsObject()
 				
 		if IsValid(phys) then
@@ -30,12 +25,7 @@ function ENT:Think()
 				self.ArmDir = phys:GetVelocity()
 			end
 		
-			-- phys:SetVelocity(self.ArmDir:GetNormalized() * 11574.78) // 294m/s coz some web about how rpg works
-			-- phys:SetVelocity(self.ArmDir:GetNormalized() * -0.1)
-			-- phys:SetVelocity((self.ArmDir:GetNormalized() * 11574.78) + VectorRand() * 10)
 			phys:SetVelocity((self.ArmDir:GetNormalized() * 5787.39) + VectorRand() * 10)
-			-- self:SetLocalAngularVelocity(Angle(90,90,0))
-			-- self:SetVelocity((self.ArmDir:GetNormalized() * 5787.39) + VectorRand() * 10)
 			
 			local ang = self:GetAngles()
 			ang:RotateAroundAxis(ang:Forward(), 10)
@@ -78,7 +68,6 @@ function ENT:PhysicsCollide(data, physobj)
 	end
 	
 	if CurTime() > self.ArmTime then
-		-- if math.random(5) != 2 then
 		if self.safetyBypass and self.missfiredArmTime and (CurTime() < self.missfiredArmTime) then
 			return
 		end
@@ -117,31 +106,6 @@ function ENT:selfDestruct()
 	fx:Spawn()
 	
 	SafeRemoveEntity(self)
-end
-
-local choppas = {
-	npc_helicopter = true,
-	npc_combinedropship = true,
-	npc_combinegunship = true,
-}
-
-function ENT:SearchNDestroy()
-	local hit 
-	
-	for k,v in pairs(ents.GetAll()) do
-		if IsValid(v) and v.IsNPC and v:IsNPC() then
-			if choppas[v:GetClass()] then
-				if v:GetPos():Distance(self:GetPos()) < 400 then
-					v:Fire("selfDestruct")
-					hit = true
-				end
-			end
-		end
-	end
-	
-	if hit then 
-		self:selfDestruct()
-	end
 end
 
 function ENT:OnTakeDamage(dmg)	
