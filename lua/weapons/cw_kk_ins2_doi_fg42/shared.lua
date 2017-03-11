@@ -176,7 +176,7 @@ SWEP.FirstDeployTime = 0.7
 SWEP.DeployTime = 0.7
 SWEP.HolsterTime = 0.6
 
-SWEP.WeaponLength = 28
+SWEP.WeaponLength = 22
 
 SWEP.Chamberable = false
 SWEP.BipodInstalled = true

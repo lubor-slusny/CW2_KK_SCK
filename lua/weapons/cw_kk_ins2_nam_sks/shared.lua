@@ -142,7 +142,7 @@ SWEP.SnapToIdlePostReload = false
 SWEP.WeaponLength = 22
 
 SWEP.KK_INS2_EmptyIdle = true
--- SWEP.Chamberable = false
+SWEP.Chamberable = false
 
 SWEP.MuzzleVelocity = 735
 

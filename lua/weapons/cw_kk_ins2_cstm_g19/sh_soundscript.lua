@@ -27,30 +27,30 @@ SWEP.Sounds = {
 	base_reload = {
 		{time = 0/30, sound = "CW_KK_INS2_CSTM_G19_MAGRELEASE"},
 		{time = 7/30, sound = "CW_KK_INS2_CSTM_G19_MAGOUT"},
-		{time = 35/30, sound = "CW_KK_INS2_CSTM_G19_MAGIN"},
-		{time = 58/30, sound = "CW_KK_INS2_MAKAROV_MAGHIT"},
+		{time = 35/30, sound = "CW_KK_INS2_MAKAROV_MAGIN"},
+		{time = 58/30, sound = "CW_KK_INS2_CSTM_G19_MAGHIT"},
 	},
 
 	base_reloadempty = {
 		{time = 0/30, sound = "CW_KK_INS2_CSTM_G19_MAGRELEASE"},
 		{time = 7/30, sound = "CW_KK_INS2_CSTM_G19_MAGOUT"},
-		{time = 35/30, sound = "CW_KK_INS2_CSTM_G19_MAGIN"},
-		{time = 58/30, sound = "CW_KK_INS2_MAKAROV_MAGHIT"},
+		{time = 35/30, sound = "CW_KK_INS2_MAKAROV_MAGIN"},
+		{time = 58/30, sound = "CW_KK_INS2_CSTM_G19_MAGHIT"},
 		{time = 71/30, sound = "CW_KK_INS2_CSTM_G19_BOLTRELEASE"},
 	},
 
 	base_reload_extmag = {
 		{time = 0/30, sound = "CW_KK_INS2_CSTM_G19_MAGRELEASE"},
 		{time = 7/30, sound = "CW_KK_INS2_CSTM_G19_MAGOUT"},
-		{time = 35/30, sound = "CW_KK_INS2_CSTM_G19_MAGIN"},
-		{time = 58/30, sound = "CW_KK_INS2_MAKAROV_MAGHIT"},
+		{time = 35/30, sound = "CW_KK_INS2_MAKAROV_MAGIN"},
+		{time = 58/30, sound = "CW_KK_INS2_CSTM_G19_MAGHIT"},
 	},
 
 	base_reloadempty_extmag = {
 		{time = 0/30, sound = "CW_KK_INS2_CSTM_G19_MAGRELEASE"},
 		{time = 7/30, sound = "CW_KK_INS2_CSTM_G19_MAGOUT"},
-		{time = 35/30, sound = "CW_KK_INS2_CSTM_G19_MAGIN"},
-		{time = 58/30, sound = "CW_KK_INS2_MAKAROV_MAGHIT"},
+		{time = 35/30, sound = "CW_KK_INS2_MAKAROV_MAGIN"},
+		{time = 58/30, sound = "CW_KK_INS2_CSTM_G19_MAGHIT"},
 		{time = 71/30, sound = "CW_KK_INS2_CSTM_G19_BOLTRELEASE"},
 	},
 

@@ -36,16 +36,16 @@ if CLIENT then
 	SWEP.IronsightPos = Vector(-2.0257, -2.5, 0.962)
 	SWEP.IronsightAng = Vector(0.3882, 0, 0)
 
-	SWEP.CustomizationMenuScale = 0.015
+	SWEP.CustomizationMenuScale = 0.017
 end
 
 SWEP.MuzzleEffect = "muzzleflash_m590_1p_core"
 SWEP.MuzzleEffectWorld = "muzzleflash_m590_3rd"
 
 SWEP.Attachments = {
-	{header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_ww2_knife"}},
-	{header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
-	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_slugrounds", "am_flechetterounds"}}
+	{header = "Stock", offset = {800, -200}, atts = {"kk_ins2_ww2_sling"}},
+	{header = "Barrel", offset = {-200, -200}, atts = {"kk_ins2_ww2_knife"}},
+	["+reload"] = {header = "Ammo", offset = {800, 300}, atts = {"am_slugrounds", "am_flechetterounds"}}
 }
 
 SWEP.Animations = {

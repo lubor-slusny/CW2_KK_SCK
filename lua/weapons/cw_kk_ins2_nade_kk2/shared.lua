@@ -76,7 +76,7 @@ SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted4(SWEP)
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted4(SWEP)
 SWEP.AdminOnly		= true
 
-SWEP.Primary.Ammo			= "25MM Flare"
+SWEP.Primary.Ammo			= "M213 Flare"
 
 SWEP.canCook = false
 

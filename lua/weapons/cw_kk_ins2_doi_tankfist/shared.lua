@@ -34,7 +34,7 @@ SWEP.MuzzleEffect = "ins_weapon_m203"
 SWEP.MuzzleEffectWorld = "ins_weapon_m203"
 
 SWEP.Chamberable = false
-SWEP.WeaponLength = 35
+SWEP.WeaponLength = 15
 
 SWEP.Attachments = {
 	-- {header = "Stock", offset = {400, -200}, atts = {"kk_ins2_ww2_sling"}},

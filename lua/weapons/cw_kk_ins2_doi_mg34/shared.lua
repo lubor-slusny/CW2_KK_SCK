@@ -134,7 +134,7 @@ SWEP.HolsterTime = 0.6
 
 SWEP.Chamberable = false
 SWEP.BipodInstalled = true
-SWEP.WeaponLength = 26
+SWEP.WeaponLength = 30
 
 SWEP.MuzzleVelocity = 765
 

@@ -167,6 +167,7 @@ end
 	CustomizableWeaponry:registerAmmo("C4", "C4 explosives", 0, 0)
 	CustomizableWeaponry:registerAmmo("IED", "Improvised explosives", 0, 0)
 	CustomizableWeaponry:registerAmmo("Incendiary", "Incendiary explosives", 0, 0)
+	CustomizableWeaponry:registerAmmo("M213 Flare", "Emergency Flares", 0, 0)
 	
 // FIREMODES
 
@@ -317,6 +318,7 @@ if CLIENT then
 	killicon.AddFont("cw_kk_ins2_nam_vz61",			"CW_KillIcons", "d", killCol)
 	
 	killicon.AddFont("cw_kk_ins2_nam_akm",			"CW_KillIcons", "b", killCol)
+	killicon.AddFont("cw_kk_ins2_nam_dbs",			"CW_KillIcons", "k", killCol)
 	killicon.AddFont("cw_kk_ins2_nam_ithaca",		"CW_KillIcons", "k", killCol)
 	killicon.AddFont("cw_kk_ins2_nam_m4",			"CW_KillIcons", "w", killCol)
 	killicon.AddFont("cw_kk_ins2_nam_m14",			"CW_KillIcons", "i", killCol)
