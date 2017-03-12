@@ -5,7 +5,7 @@ local PANEL
 local lastFile = ""
 
 local function AllowInput() return true end // allow? Yes - means no... kek
-local workshopLink = "http://steamcommunity.com/sharedfiles/filedetails/"
+local workshopLink = "http://steamcommunity.com/sharedfiles/filedetails/?id="
 
 local function OnGetFocus(self)
 	SetClipboardText(self:GetValue())

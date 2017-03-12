@@ -395,6 +395,11 @@ function SWEP:beginReload()
 		
 		reloadTime, reloadHalt, flag = self:getAnimTimes(anim)
 		
+		if not reloadTime or not reloadHalt then
+			error("] (" .. string.upper(self:GetClass()) .. ") Invalid SWEP.ReloadTimes setup for SWEP.Animations." .. anim)
+			return
+		end
+		
 		self.ReloadFirstShell = self.WasEmpty and flag == KK_INS2_SHOTGUN_LOAD_FIRST
 		self.ReloadingRevolver = flag == KK_INS2_REVOLVER_SLOW_UNLOAD
 		
