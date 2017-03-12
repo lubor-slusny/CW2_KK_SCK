@@ -436,6 +436,11 @@ function SWEP:toggleGLMode(IFTP)
 			
 			reloadTime, reloadHalt = self:getAnimTimes(anim)
 			
+			if not reloadTime or not reloadHalt then
+				error("] (" .. string.upper(self:GetClass()) .. ") Invalid SWEP.ReloadTimes setup for SWEP.Animations." .. anim)
+				return
+			end
+			
 			if self.M203Chamber then
 				local oldMAD = self.meleeAttackDelay or 0
 				
@@ -464,6 +469,11 @@ function SWEP:toggleGLMode(IFTP)
 			end
 			
 			reloadTime, reloadHalt, flag, unloadTime = self:getAnimTimes(anim)
+			
+			if not reloadTime or not reloadHalt then
+				error("] (" .. string.upper(self:GetClass()) .. ") Invalid SWEP.ReloadTimes setup for SWEP.Animations." .. anim)
+				return
+			end
 			
 			self.ReloadDelay = CurTime() + reloadTime
 			
@@ -505,6 +515,11 @@ function SWEP:toggleGLMode(IFTP)
 		end
 		
 		_, reloadHalt, _, _ = self:getAnimTimes(anim)
+		
+		if not reloadHalt then
+			error("] (" .. string.upper(self:GetClass()) .. ") Invalid SWEP.ReloadTimes setup for SWEP.Animations." .. anim)
+			return
+		end
 		
 		self:delayEverything(reloadHalt)
 		self:setGlobalDelay(reloadHalt)
