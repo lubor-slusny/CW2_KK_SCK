@@ -261,7 +261,7 @@ CustomizableWeaponry.originalValue:add("mustCook", false, true)
 	local stat = {}
 	stat.varName = "mustCook"
 	stat.display = "COOK-ONLY"
-	stat.desc = "Does the fuse start with pin-pull."
+	stat.desc = "Does the fuse always start with pin-pull."
 
 	function stat:textFunc(wep)
 		self.desc[2] = wep.mustCook and "Both primary and secondary attacks cook." or nil

@@ -55,6 +55,8 @@ if CLIENT then
 	}
 	
 	SWEP.AttachmentModelsWM = {
+		["sleeve"] = {model = "models/weapons/upgrades/w_clothwrap_garand.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		
 		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/w_garand_bayonet.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_scope_m82"] = {model = "models/weapons/upgrades/w_scope_garand.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 	}

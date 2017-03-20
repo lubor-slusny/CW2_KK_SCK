@@ -6,7 +6,7 @@ CustomizableWeaponry.colorableParts.colors[CustomizableWeaponry.colorableParts.C
 	[3] = {name = "kk_bs_sleev",	display = "Sleeve",			color = Color(0,0,255,255)},
 }
 
-CustomizableWeaponry.colorableParts.colorText[CustomizableWeaponry.colorableParts.COLOR_TYPE_KK_OTHER] = " (HOLD - change style)"
+CustomizableWeaponry.colorableParts.colorText[CustomizableWeaponry.colorableParts.COLOR_TYPE_KK_OTHER] = " (HOLD - cycle styles)"
 CustomizableWeaponry.colorableParts.defaultColors[CustomizableWeaponry.colorableParts.COLOR_TYPE_KK_OTHER] = CustomizableWeaponry.colorableParts.colors[CustomizableWeaponry.colorableParts.COLOR_TYPE_KK_OTHER][1]
 
 for k,v in pairs(CustomizableWeaponry.colorableParts.colors[CustomizableWeaponry.colorableParts.COLOR_TYPE_KK_OTHER]) do
@@ -33,11 +33,10 @@ if CLIENT then
 	}
 	
 	function att:setSleeve(val)
-		if not self.AttachmentModelsVM then return end
-		if not self.AttachmentModelsVM.sleeve then return end
-		
-		self.AttachmentModelsVM.sleeve.active = val
+		self:setElementActive("sleeve", val)
 	end
+	
+	local lastStyle
 	
 	function att:elementRender()
 		if not self.ActiveAttachments[att.name] then
@@ -45,6 +44,12 @@ if CLIENT then
 		end
 		
 		local style = self:getSightColor(att.name).kki
+		
+		if style == lastStyle then
+			return
+		end
+		
+		lastStyle = style
 		
 		if style == 1 then
 			self:setSkin(1)
@@ -61,6 +66,7 @@ if CLIENT then
 	function att:detachFunc()
 		self:setSkin(0)
 		att.setSleeve(self, false)
+		lastStyle = nil
 	end
 end
 

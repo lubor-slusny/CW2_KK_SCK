@@ -109,11 +109,13 @@ local reg = debug.getregistry()
 local GetShootPos = reg.Player.GetShootPos
 
 SWEP.bulletCallback = function(ply, tr, di)
-	if tr.Hit then
-		if IsValid(tr.Entity) then
-			tr.Entity.kkDOIFTAttacker = ply
-			tr.Entity.kkDOIFTInflictor = ply:GetActiveWeapon()
-			tr.Entity:Ignite(FlamethrowerAfterBurnDuration, 0)
+	if SERVER then
+		if tr.Hit then
+			if IsValid(tr.Entity) then
+				tr.Entity.kkDOIFTAttacker = ply
+				tr.Entity.kkDOIFTInflictor = ply:GetActiveWeapon()
+				tr.Entity:Ignite(FlamethrowerAfterBurnDuration, 0)
+			end
 		end
 	end
 end

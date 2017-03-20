@@ -25,7 +25,7 @@ if CLIENT then
 	SWEP.AttachmentModelsVM = {
 		-- ["ani_body"] = {model = "models/weapons/v_welrod.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
 		
-		["kk_ins2_fnfal_skin2"] = {model = "models/weapons/v_welrod.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, material = "models/weapons/welrod/dosh.mdl"},
+		-- ["kk_ins2_fnfal_skin2"] = {model = "models/weapons/v_welrod.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, material = "models/weapons/welrod/dosh.mdl"},
 	}
 	
 	SWEP.AttachmentModelsWM = {
@@ -45,7 +45,7 @@ SWEP.MuzzleEffectWorld = "muzzleflash_suppressed_1p"
 
 SWEP.Attachments = {
 	{header = "Inside", offset = {500, -250}, atts = {"kk_ins2_ww2_bolt"}},
-	{header = "Flavor", offset = {-200, -250}, atts = {"kk_ins2_fnfal_skin2"}},
+	-- {header = "Flavor", offset = {-200, -250}, atts = {"kk_ins2_fnfal_skin2"}},
 	["+reload"] = {header = "Ammo", offset = {500, 200}, atts = {"am_magnum", "am_matchgrade"}}
 }
 

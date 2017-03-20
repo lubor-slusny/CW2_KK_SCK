@@ -30,6 +30,8 @@ if CLIENT then
 
 	SWEP.AttachmentModelsWM = {
 		["kk_ins2_scope_zf4"] = {model = "models/weapons/upgrades/w_scope_g43.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		
+		["sleeve"] = {model = "models/weapons/upgrades/w_clothwrap_g43.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 	}
 	
 	SWEP.BackupSights = {

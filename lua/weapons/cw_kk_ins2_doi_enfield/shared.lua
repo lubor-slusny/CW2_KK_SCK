@@ -52,6 +52,8 @@ if CLIENT then
 		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/w_enfield_bayonet.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_ww2_knife_fat"] = {model = "models/weapons/upgrades/w_enfield_bayonet_spike.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
+		["sleeve"] = {model = "models/weapons/upgrades/w_clothwrap_enfield.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
+		
 		["kk_ins2_gl_enfield"] = {model = "models/weapons/upgrades/w_enfield_gl.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_scope_enfield"] = {model = "models/weapons/upgrades/w_optic_enfield.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
@@ -373,5 +375,9 @@ if CLIENT then
 	
 	function SWEP:updateOtherParts()
 		self.CW_VM:ManipulateBoneScale(80, (self.Sequence == "base_reload_full_clip") and v0 or v1)
+		-- self.CrosshairEnabled = true
+		-- self.FadeCrosshairOnAim = false
 	end
+	
+	
 end

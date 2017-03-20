@@ -54,6 +54,7 @@ SWEP.Animations = {
 	base_safe = "base_down",
 	base_safe_aim = "iron_down",
 	base_crawl = "base_crawl",
+	base_melee = "base_melee_bash",
 }
 
 SWEP.SpeedDec = 15
@@ -115,4 +116,5 @@ SWEP.MuzzleVelocity = 381
 SWEP.ReloadTimes = {
 	base_reload = {2.95, 4.3},
 	base_reloadempty = {4.2, 5.9},
+	base_melee_bash = {0.4, 1.5},
 }
