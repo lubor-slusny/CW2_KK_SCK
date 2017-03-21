@@ -612,11 +612,18 @@ function TOOL:updatePanel()
 						
 							local funcList = vgui.Create("DListView", settMergePanel)
 							funcList:SetMultiSelect(false)
-							funcList:AddColumn("Attach Point Function")
+							funcList:AddColumn("Point of attachment function:")
 							funcList:AddLine("[CW20] Bone on parent entity")
 							
 							if WEAPON.KKINS2Wep then
-								funcList:AddLine("[KKIN2] QC Attachment on parent entity")
+								local ent = TOOL:getParentEnt(t)
+								
+								if table.Count(ent:GetAttachments()) > 0 then
+									funcList:AddLine("[KKIN2] QC Attachment on parent entity")
+								else
+									funcList:AddLine("[DISABLED] No QC Attachments found")
+								end
+								
 								funcList:AddLine("[KKIN2] Bone-Merge to parent entity")
 							end
 							
@@ -649,20 +656,22 @@ function TOOL:updatePanel()
 									curData._attachment = nil
 									curData.bone = ent:GetBoneName(0) // fallback so drawAttachFunc doesnt freakout
 									curData._bone = nil
-									
 								elseif val == 2 then
-									curData.merge = false
-									curData.attachment = ent:GetAttachments()[1].name // lets hope there is at least one compiled to parent model
-									curData._attachment = nil 
-									curData.bone = nil
-									curData._bone = nil
+									local att = ent:GetAttachments()[1]
+									
+									if att then
+										curData.merge = false
+										curData.attachment = att.name // lets hope there is at least one compiled to parent model
+										curData._attachment = nil 
+										curData.bone = nil
+										curData._bone = nil
+									end
 								elseif val == 3 then
 									curData.merge = true // E.Z.
 									curData.attachment = nil
 									curData._attachment = nil
 									curData.bone = nil
 									curData._bone = nil
-									
 								end
 								
 								TOOL:reInitializeElement(curData)
@@ -685,11 +694,12 @@ function TOOL:updatePanel()
 								
 								local ent = TOOL:getParentEnt(t)
 								
-								for i = 0, ent:GetBoneCount() - 1 do
-									box:AddChoice(ent:GetBoneName(i))
+								for i = 0, (ent:GetBoneCount() - 1) do
+									local data = ent:GetBoneName(i)
+									box:AddChoice(string.format("%s [%d]", data, i), data)
 								end
 								
-								function box:OnSelect(i, name) 
+								function box:OnSelect(_, _, name) 
 									curData.bone = name
 									TOOL:reInitializeElement(curData)
 									TOOL:updatePanel()
@@ -707,17 +717,19 @@ function TOOL:updatePanel()
 							
 							local settAttPanel = vgui.Create("DPanel", elementSettingPanel)
 						
+								local ent = TOOL:getParentEnt(t)
+								local entAttachments = ent:GetAttachments()
+								
 								local box = vgui.Create("DComboBox", settAttPanel)
 								box:Dock(FILL)
 								box:SetValue(curData.attachment or "-select attachment-")
 								
-								local ent = TOOL:getParentEnt(t)
-								
-								for k,v in pairs(ent:GetAttachments()) do
-									box:AddChoice(v.name)
+								for i = 1, (table.Count(entAttachments)) do
+									local data = entAttachments[i].name
+									box:AddChoice(string.format("%s [%d]", data, i), data)
 								end
 								
-								function box:OnSelect(i, name) 
+								function box:OnSelect(_, _, name) 
 									curData.attachment = name
 									TOOL:reInitializeElement(curData)
 									TOOL:updatePanel()

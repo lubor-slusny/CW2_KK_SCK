@@ -10,7 +10,7 @@ if CLIENT then
 		-- ["ani_body"] = {model = "models/weapons/v_fairbairn.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
 	}
 	
-	SWEP.HUD_3D2DBone = 57
+	SWEP.HUD_3D2DBone = 41
 end
 
 SWEP.Animations = {

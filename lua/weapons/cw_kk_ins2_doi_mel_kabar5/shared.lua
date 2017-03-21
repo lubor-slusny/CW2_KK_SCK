@@ -6,6 +6,8 @@ if CLIENT then
 	SWEP.CSMuzzleFlashes = true
 	SWEP.ViewModelMovementScale = 1.15
 	
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_hatchet")
+	
 	SWEP.AttachmentModelsVM = {
 		["ani_body"] = {model = "models/weapons/v_hatchet.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
 	}
@@ -54,6 +56,9 @@ SWEP.HolsterTime = 0.6
 SWEP.AttackSound = "CW_KK_INS2_DOI_MELEE"
 SWEP.HitFleshSound = "CW_KK_INS2_DOI_MELEE_HITPLY"
 SWEP.HitWorldSound = "CW_KK_INS2_DOI_MELEE_HITWORLD"
+
+SWEP.DamageBase = 50
+SWEP.DamageRand = 10
 
 SWEP.Sounds = {
 	-- hitcenter1 = {

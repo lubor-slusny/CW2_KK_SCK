@@ -112,6 +112,7 @@ if CLIENT then
 	killicon.Add("cw_kk_ins2_doi_mel_kabar2",			"vgui/hud/weapons/weapon_gravityknife", killCol)
 	killicon.Add("cw_kk_ins2_doi_mel_kabar3",			"vgui/hud/weapons/weapon_stiletto", killCol)
 	killicon.Add("cw_kk_ins2_doi_mel_kabar4",			"vgui/hud/weapons/weapon_fairbairn", killCol)
+	-- killicon.Add("cw_kk_ins2_doi_mel_kabar5",			"vgui/hud/weapons/weapon_hatchet", killCol)
 	killicon.Add("cw_kk_ins2_doi_mel_shovel_de",		"vgui/hud/weapons/weapon_etool", killCol)
 	killicon.Add("cw_kk_ins2_doi_mel_shovel_gb",		"vgui/hud/weapons/weapon_etool_brit", killCol)
 	killicon.Add("cw_kk_ins2_doi_mel_shovel_us",		"vgui/hud/weapons/weapon_etool_us", killCol)

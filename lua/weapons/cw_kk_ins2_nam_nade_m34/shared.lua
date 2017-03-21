@@ -13,6 +13,7 @@ if CLIENT then
 	SWEP.AttachmentModelsVM = {}
 	SWEP.AttachmentModelsWM = {}
 	
+	SWEP.HUD_3D2DBone = 56
 end
 
 SWEP.Attachments = CustomizableWeaponry_KK.ins2.slowGrenadeMenu
