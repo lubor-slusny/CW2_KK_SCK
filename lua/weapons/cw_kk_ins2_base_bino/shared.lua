@@ -145,7 +145,7 @@ if CLIENT then
 		muz.Pos = self.Owner:EyePos()
 		muz.Ang = self.Owner:EyeAngles()
 		
-		muz.Pos = muz.Pos + muz.Ang:Forward() * 20 + muz.Ang:Right() * -5
+		muz.Pos = muz.Pos + muz.Ang:Forward() * 20 + muz.Ang:Right() * 5 + muz.Ang:Up() * -2
 		
 		return muz
 	end

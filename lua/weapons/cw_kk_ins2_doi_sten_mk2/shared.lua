@@ -26,7 +26,7 @@ if CLIENT then
 		-- ["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/a_sten_foregrip.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		-- ["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/a_sten_foregrip.mdl", bone = "Weapon", pos = Vector(2.4687, -2.8842, -11.6320), angle = Angle(90, -90, 0), size = Vector(1, 1, 1)},
 		
-		["std_barrel"] = {model = "models/weapons/upgrades/a_stenmk2_barrel_standard.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
+		["std_barrel"] = {model = "models/weapons/upgrades/a_stenmk2_barrel_standard.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body", active = true},
 		["kk_ins2_suppressor_sterling"] = {model = "models/weapons/upgrades/a_stenmk2_silencer.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["std_stock"] = {model = "models/weapons/upgrades/a_stenmk2_stock_standard.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},

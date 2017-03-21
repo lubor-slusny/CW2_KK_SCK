@@ -696,7 +696,7 @@ function TOOL:updatePanel()
 								
 								for i = 0, (ent:GetBoneCount() - 1) do
 									local data = ent:GetBoneName(i)
-									box:AddChoice(string.format("%s [%d]", data, i), data)
+									box:AddChoice(string.format("[%03d] %s", i, data), data)
 								end
 								
 								function box:OnSelect(_, _, name) 
@@ -726,7 +726,7 @@ function TOOL:updatePanel()
 								
 								for i = 1, (table.Count(entAttachments)) do
 									local data = entAttachments[i].name
-									box:AddChoice(string.format("%s [%d]", data, i), data)
+									box:AddChoice(string.format("[%03d] %s", i, data), data)
 								end
 								
 								function box:OnSelect(_, _, name) 

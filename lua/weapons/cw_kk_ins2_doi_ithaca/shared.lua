@@ -21,6 +21,7 @@ if CLIENT then
 	SWEP.ShellViewAngleAlign = {Forward = 90, Right = 0, Up = 0}
 	
 	SWEP.AttachmentModelsVM = {
+		["knife_fold"] = {model = "models/weapons/upgrades/a_iron_ithaca.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
 		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/a_ithaca_bayonet.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["ani_body"] = {model = "models/weapons/v_ithaca.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
@@ -154,3 +155,11 @@ SWEP.ReloadTimes = {
 	
 	base_melee_bash = {0.3, 1},
 }
+
+if CLIENT then
+	function SWEP:updateStandardParts()
+		self:setElementActive("knife_fold", !self.ActiveAttachments.kk_ins2_ww2_knife)
+	end
+end
+
+	
