@@ -116,10 +116,10 @@ SWEP.Instructions	= ""
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/kk_doi/v_m1a1para.mdl"
-SWEP.WorldModel		= "models/weapons/w_cw_kk_doi_m1.mdl"
+SWEP.WorldModel		= "models/weapons/w_m1a1para.mdl"
 
-SWEP.WMPos = Vector(5.986, 0.921, -0.038)
-SWEP.WMAng = Vector(-10, 0, 180)
+SWEP.WMPos = Vector(5, 0.5, -0.538)
+SWEP.WMAng = Vector(-5, 0, 180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2us
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.ww2us

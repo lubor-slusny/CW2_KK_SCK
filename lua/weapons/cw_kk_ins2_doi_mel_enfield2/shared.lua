@@ -6,6 +6,8 @@ if CLIENT then
 	SWEP.CSMuzzleFlashes = true
 	SWEP.ViewModelMovementScale = 1.15
 		
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_enfield_bayonet")
+	
 	SWEP.AttachmentModelsVM = {
 		["ani_body"] = {model = "models/weapons/v_enfield_bayonet.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
 	}

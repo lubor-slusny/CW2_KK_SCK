@@ -10,6 +10,8 @@ if CLIENT then
 	SWEP.CSMuzzleFlashes = true
 	SWEP.ViewModelMovementScale = 1.15
 	
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_brassknuckles")
+	
 	SWEP.AttachmentModelsVM = {}
 	
 	SWEP.HUD_3D2DBone = 57

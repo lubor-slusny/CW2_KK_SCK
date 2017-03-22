@@ -4,6 +4,8 @@ if CLIENT then
 	SWEP.DrawCrosshair = false
 	SWEP.PrintName = "Shovel GB"
 	
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_etool_brit")
+	
 	SWEP.AttachmentModelsVM = {}
 	
 	SWEP.HUD_3D2DBone = 39

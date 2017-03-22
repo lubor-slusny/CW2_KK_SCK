@@ -25,7 +25,7 @@ SWEP.Animations = {
 	base_crawl = "crawl",
 }
 
-SWEP.NormalHoldType = "knife"
+SWEP.NormalHoldType = "melee"
 SWEP.RunHoldType = "passive"
 SWEP.FireModes = {"auto"}
 SWEP.Base = "cw_kk_ins2_base_melee"
@@ -39,10 +39,10 @@ SWEP.Instructions	= ""
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/kk_doi/v_marinebayonet.mdl"
-SWEP.WorldModel		= "models/weapons/w_marinebayonet.mdl"
+SWEP.WorldModel		= "models/weapons/w_hatchet.mdl"
 
-SWEP.WMPos = Vector(3.812, 1.544, -2.83)
-SWEP.WMAng = Vector(99.385, -22.739, 18.048)
+SWEP.WMPos = Vector(5, 1.544, -9.83)
+SWEP.WMAng = Vector(99.385, -22.739, 8.048)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2us
 
