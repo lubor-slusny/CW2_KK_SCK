@@ -329,14 +329,8 @@ function SWEP:beginReload()
 		self:SetNextPrimaryFire(CT + reloadHalt)
 		self:SetNextSecondaryFire(CT + reloadHalt)
 		self.GlobalDelay = CT + reloadHalt
-	elseif self.ActiveAttachments.kk_ins2_ww2_stripper and ammo >= self.stripperCapacity and (self.Primary.ClipSize + 1 - mag) >= self.stripperCapacity then
-		if mag < 2 and self.Animations.base_reload_empty_2 and (ammo >= (2 * self.stripperCapacity)) then
-			anim = "reload_empty_2"
-		elseif mag < 1 then
-			anim = "reload_empty"
-		else
-			anim = "reload"
-		end
+	elseif self:canDoStripperClipReload(ammo, mag) then
+		anim = self:getStripperClipAnimation(ammo, mag)
 		
 		animPrefix = self:getForegripMode()
 		animSuffix = self._KK_INS2_customReloadSuffix
@@ -357,6 +351,18 @@ function SWEP:beginReload()
 				
 				if !CustomizableWeaponry_KK.ins2.discardEjectedAmmo then
 					self.Owner:SetAmmo(ammo + 1, self.Primary.Ammo)
+				end
+			end)
+		end
+		
+		if flag == KK_INS2_REVOLVER_SPEED_UNLOAD then
+			CustomizableWeaponry.actionSequence.new(self, unloadTime, nil, function()
+				if not self.ReloadDelay then return end	// melee attack interruption
+				
+				self:SetClip1(0)
+				
+				if !CustomizableWeaponry_KK.ins2.discardEjectedAmmo then
+					self.Owner:SetAmmo(ammo + mag, self.Primary.Ammo)
 				end
 			end)
 		end

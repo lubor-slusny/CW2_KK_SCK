@@ -96,4 +96,11 @@ if CLIENT then
 	CustomizableWeaponry_KK.ins2.bulletBgs.beltToClipPS = function(wep)
 		wep:setBodygroup(wep._beltBGID, mathClamp(wep:Clip1() + wep.stripperCapacity, 0, wep._beltBGMax))
 	end
+	
+	// 1917
+	CustomizableWeaponry_KK.ins2.bulletBgs.bothToClip = function(wep)
+		local r = wep:Clip1()
+		wep:setBodygroup(wep._beltBGID, mathClamp(r, 0, wep._beltBGMax))
+		wep:setBodygroup(wep._shellsBGID, mathClamp(r, 0, wep._shellsBGMax))
+	end
 end

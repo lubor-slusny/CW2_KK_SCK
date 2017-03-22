@@ -20,6 +20,7 @@ if CLIENT then
 	
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_revolver_mag"] = {model = "models/weapons/upgrades/a_clips_sw1917.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_ww2_stripper"] = {model = "models/weapons/upgrades/a_clips_sw1917.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		-- ["ani_body"] = {model = "models/weapons/v_sw1917.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
 	}
@@ -41,7 +42,7 @@ SWEP.MuzzleEffect = "muzzleflash_1911_1p"
 SWEP.MuzzleEffectWorld = "muzzleflash_sten_3p"
 
 SWEP.Attachments = {
-	{header = "Reload Aid", offset = {500, -400}, atts = {"kk_ins2_revolver_mag"}},
+	{header = "Reload Aid", offset = {500, -400}, atts = {/*"kk_ins2_revolver_mag", */"kk_ins2_ww2_stripper"}},
 	["+reload"] = {header = "Ammo", offset = {500, 150}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
@@ -65,8 +66,8 @@ SWEP.Animations = {
 	base_fire_last_aim = "iron_fire_last",
 	base_fire_empty = "base_dryfire",
 	base_fire_empty_aim = "iron_dryfire",
-	base_idle = "base_idle",
-	base_idle_empty = "empty_idle",
+	base_idle = "iron_idle",
+	base_idle_empty = "iron_idle_empty",
 	base_holster = "base_holster",
 	base_holster_empty = "base_holster_empty",
 	base_sprint = "base_sprint",
@@ -145,8 +146,8 @@ SWEP.ReloadTimes = {
 	base_reload_insert = {0.4, 0.95},
 	base_reload_end = {2, 2},
 	
-	base_reload_clip = {1.7, 5.4, KK_INS2_REVOLVER_SPEED_UNLOAD, 4},
-	base_reload_clip_empty = {1.7, 6, KK_INS2_REVOLVER_SPEED_UNLOAD, 4},
+	base_reload_clip = {93/32, 5.4, KK_INS2_REVOLVER_SPEED_UNLOAD, 1.7, 121/32},
+	base_reload_clip_empty = {93/32, 6, KK_INS2_REVOLVER_SPEED_UNLOAD, 1.7, 121/32},
 	
 	base_melee_bash = {0.3, 0.8},
 	base_melee_bash_empty = {0.3, 0.8},
@@ -160,4 +161,19 @@ function SWEP:IndividualInitialize()
 		self:setBodygroup(1, self:Clip1())
 		self:setBodygroup(2, self:Clip1())
 	end
+end
+
+SWEP.stripperCapacity = 3
+
+function SWEP:canDoStripperClipReload(ammo, mag)
+	return self:stripperClipsEnabled()
+		and ammo >= self.stripperCapacity * 2
+end
+
+function SWEP:getStripperClipAnimation(ammo, mag)
+	if mag < 1 then
+		return "reload_empty"
+	end
+	
+	return "reload"
 end

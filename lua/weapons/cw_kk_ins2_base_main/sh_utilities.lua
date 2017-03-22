@@ -253,3 +253,37 @@ if CLIENT then
 		return true
 	end
 end
+
+//-----------------------------------------------------------------------------
+// stripperClipsEnabled
+//-----------------------------------------------------------------------------
+
+function SWEP:stripperClipsEnabled()
+	return self.ActiveAttachments.kk_ins2_ww2_stripper
+end
+
+//-----------------------------------------------------------------------------
+// canDoStripperClipReload
+//-----------------------------------------------------------------------------
+
+function SWEP:canDoStripperClipReload(ammo, mag)
+	return self:stripperClipsEnabled()
+		and ammo >= self.stripperCapacity 
+		and (self.Primary.ClipSize + 1 - mag) >= self.stripperCapacity
+end
+
+//-----------------------------------------------------------------------------
+// getStripperClipAnimation
+//-----------------------------------------------------------------------------
+
+function SWEP:getStripperClipAnimation(ammo, mag)
+	if mag < 2 and self.Animations.base_reload_empty_2 and (ammo >= (2 * self.stripperCapacity)) then
+		return "reload_empty_2"
+	end
+	
+	if mag < 1 then
+		return "reload_empty"
+	end
+	
+	return "reload"
+end

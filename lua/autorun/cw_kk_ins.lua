@@ -8,6 +8,7 @@ CW_KK_ACTION = 11
 CW_KK_QNADE = 12
 CW_KK_QKNIFE = 13
 
+KK_INS2_NO_ACTION = 0
 KK_INS2_SHOTGUN_LOAD_FIRST = 1			// [1] = delay before SetClip1(+1)
 KK_INS2_SHOTGUN_UNLOAD_ONE = 2			// [1] = delay before SetClip1(-1)
 KK_INS2_RIFLEGL_UNLOAD_ONE = 3			// [4] = delay before SetClip1(-1)

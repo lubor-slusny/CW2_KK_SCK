@@ -8,7 +8,7 @@ include("sh_soundscript.lua")
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "DBS"
+	SWEP.PrintName = "IZH-43"
 	SWEP.CSMuzzleFlashes = true
 	SWEP.ViewModelMovementScale = 1.15
 	
@@ -115,6 +115,21 @@ SWEP.MuzzleVelocity = 381
 
 SWEP.ReloadTimes = {
 	base_reload = {2.95, 4.3},
-	base_reloadempty = {4.2, 5.9},
+	base_reloadempty = {3.4, 5.9, KK_INS2_NO_ACTION, 0, 4.2},
 	base_melee_bash = {0.4, 1.5},
 }
+
+SWEP.ShotgunReload = true
+SWEP.stripperCapacity = 1
+
+function SWEP:stripperClipsEnabled()
+	return true
+end
+
+function SWEP:getStripperClipAnimation(ammo, mag)
+	if mag < 1 and ammo >= self.Primary.ClipSize then
+		return "reload_empty"
+	end
+	
+	return "reload"
+end
