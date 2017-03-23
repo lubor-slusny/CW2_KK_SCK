@@ -62,6 +62,10 @@ end
 // CycleFiremodes edited to apply different delays depending on animation
 //-----------------------------------------------------------------------------
 
+SWEP.FireModeDelayNormal = 1
+SWEP.FireModeDelayShort = 0.25
+SWEP.FireModeDelayFromSafe = 0.2
+
 function SWEP:CycleFiremodes()
 	if self.dt.INS2GLActive then return end
 	
@@ -84,12 +88,12 @@ function SWEP:CycleFiremodes()
 		end
 	end
 	
-	local delay = 1
+	local delay = self.FireModeDelayNormal
 	
 	if (#self.FireModes < 3) then // why # instead of table.Count?
-		delay = 0.25
+		delay = self.FireModeDelayShort
 	elseif lastFM == "safe" then
-		delay = 0.2
+		delay = self.FireModeDelayFromSafe
 	end
 	
 	if self.FireMode != self.FireModes[t.last] and self.FireModes[t.last] then

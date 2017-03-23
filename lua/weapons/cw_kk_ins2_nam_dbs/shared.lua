@@ -6,6 +6,9 @@ AddCSLuaFile("sh_soundscript.lua")
 include("sh_sounds.lua")
 include("sh_soundscript.lua")
 
+CustomizableWeaponry.firemodes:registerFiremode("dbsfast", "DOUBLE-BARREL", true, 2, 2)
+CustomizableWeaponry.firemodes:registerFiremode("dbsslow", "SINGLE-BARREL", false, 0, 1)
+
 if CLIENT then
 	SWEP.DrawCrosshair = false
 	SWEP.PrintName = "IZH-43"
@@ -63,7 +66,7 @@ SWEP.Slot = 3
 SWEP.SlotPos = 0
 SWEP.NormalHoldType = "ar2"
 SWEP.RunHoldType = "passive"
-SWEP.FireModes = {"semi"}
+SWEP.FireModes = {"dbsslow", "dbsfast"}
 SWEP.Base = "cw_kk_ins2_base"
 SWEP.Category = "CW 2.0 KK INS2 B2K"
 
@@ -88,10 +91,12 @@ SWEP.Primary.DefaultClip	= 2
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= "12 Gauge"
 
-SWEP.FireDelay = 0.1
+SWEP.FireDelaySlow = 0.3
+SWEP.FireDelayFast = 0
+SWEP.FireDelay = SWEP.FireDelaySlow
 SWEP.FireSound = "CW_KK_INS2_M590_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_TOZ_FIRE_SUPPRESSED"
-SWEP.Recoil = 4
+SWEP.Recoil = 3
 
 SWEP.HipSpread = 0.04
 SWEP.AimSpread = 0.01
@@ -103,7 +108,7 @@ SWEP.SpreadCooldown = 0.85
 SWEP.Shots = 12
 SWEP.Damage = 15
 
-SWEP.FirstDeployTime = 2.2
+SWEP.FirstDeployTime = 1.3
 SWEP.DeployTime = 0.7
 SWEP.HolsterTime = 0.6
 
@@ -132,4 +137,22 @@ function SWEP:getStripperClipAnimation(ammo, mag)
 	end
 	
 	return "reload"
+end
+
+SWEP.FireModeDelayNormal = 0
+
+function SWEP:IndividualThink_INS2()
+	self.FireDelay = (self.FireMode == "dbsslow") and self.FireDelaySlow or self.FireDelayFast
+end
+
+function SWEP:updateReloadTimes()
+	-- ReloadStartTime + InsertShellTime = base_reload
+	-- ReloadStartTime + InsertShellTime + InsertShellTime + ReloadFinishWait = base_reloadempty
+	
+	local p, q = self:getAnimTimes("base_reload_empty")
+
+	self.InsertShellTime = q - p
+	self.ReloadStartTime = p - self.InsertShellTime
+	
+	self.ReloadFinishWait = 0
 end

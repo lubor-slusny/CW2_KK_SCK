@@ -6,7 +6,7 @@ if CLIENT then
 	SWEP.CSMuzzleFlashes = true
 	SWEP.ViewModelMovementScale = 1.15
 	
-	-- SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_etool_brit")
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/default_bayonet")
 	
 	SWEP.AttachmentModelsVM = {}
 	
