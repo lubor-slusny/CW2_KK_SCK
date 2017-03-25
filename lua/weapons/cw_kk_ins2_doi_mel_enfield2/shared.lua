@@ -1,4 +1,5 @@
 if not CustomizableWeaponry then return end
+if not CustomizableWeaponry_KK.HOME then return end
 
 if CLIENT then
 	SWEP.DrawCrosshair = false

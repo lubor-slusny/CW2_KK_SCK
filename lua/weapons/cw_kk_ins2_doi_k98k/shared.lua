@@ -56,7 +56,8 @@ if CLIENT then
 		
 		["sleeve"] = {model = "models/weapons/upgrades/w_clothwrap_kar98k.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true},
 		
-		["kk_ins2_gl_ggg"] = {model = "models/weapons/upgrades/w_enfield_gl.mdl", pos = Vector(41.9803, -0.1208, 4.8887), angle = Angle(1.7669, -1.2005, 0), size = Vector(1, 1, 1), bone = "R Hand"},
+		-- ["kk_ins2_gl_ggg"] = {model = "models/weapons/upgrades/w_enfield_gl.mdl", pos = Vector(41.9803, -0.1208, 4.8887), angle = Angle(1.7669, -1.2005, 0), size = Vector(1, 1, 1), bone = "R Hand"},
+		["kk_ins2_gl_ggg"] = {model = "models/weapons/upgrades/w_grenade_kar98k.mdl", pos = Vector(0, 0, 0), angle = Angle(0, -90, 0), size = Vector(1, 1, 1), attachment = "muzzle"},
 		
 		["kk_ins2_scope_k98"] = {model = "models/weapons/upgrades/w_optic_kar98k.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		

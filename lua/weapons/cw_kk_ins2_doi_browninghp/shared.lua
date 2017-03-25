@@ -53,7 +53,7 @@ SWEP.Attachments = {
 	{header = "Sight", offset = {500, -400}, atts = {"bg_foldsight"}},
 	{header = "Barrel", offset = {-500, -400}, atts = {"kk_ins2_hoovy"}},
 	{header = "Stock", offset = {-500, 150}, atts = {"bg_ar15sturdystock"}},
-	["+reload"] = {header = "Ammo", offset = {500, 50}, atts = {"am_magnum", "am_matchgrade"}}
+	["+reload"] = {header = "Ammo", offset = {500, 150}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
 SWEP.Animations = {
