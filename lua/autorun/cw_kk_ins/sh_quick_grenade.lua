@@ -109,7 +109,7 @@ if CustomizableWeaponry_KK.HOME then
 		-- a_throw = "bakethrow"
 	-- }
 
-	-- add({text = "BUG", /*ammo = "9x19MM", */class = "npc_grenade_bugbait", default = "n77"})
+	add({text = "BUG", /*ammo = "9x19MM", */class = "npc_grenade_bugbait", default = "n77"})
 	-- add({text = "HL2", /*ammo = "Frag Grenades", */class = "npc_grenade_frag", default = "m18"})
 	-- add({text = "EP1", /*ammo = "Frag Grenades", */class = "kk_flare", default = "roflkek"})
 	-- add({text = "N69", ammo = "Frag Grenades", class = "cw_kk_ins2_projectile_n69", default = "n69"})

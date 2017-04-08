@@ -74,10 +74,13 @@ end
 if CLIENT then
 	local round, clamp = math.Round, math.Clamp
 	local cvRig = GetConVar("cw_kk_ins2_rig")
+	local cvRigSkin = GetConVar("cw_kk_ins2_rigskin")
 	local currentRigs = {}
 	local set
 	
 	function SWEP:updateHands()
+		self.CW_KK_HANDS:SetSkin(cvRigSkin:GetInt())
+	
 		set = round(clamp(cvRig:GetInt(),1,#CustomizableWeaponry_KK.ins2.hands), 0)
 		
 		if set != currentRigs[self] then
@@ -87,6 +90,12 @@ if CLIENT then
 		end
 		
 		currentRigs[self] = set
+	end
+end
+
+if CLIENT then
+	function SWEP:getRigSkinMax()
+		return IsValid(self.CW_KK_HANDS) and self.CW_KK_HANDS:SkinCount() - 1 or 0
 	end
 end
 

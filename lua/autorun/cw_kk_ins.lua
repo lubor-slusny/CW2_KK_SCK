@@ -177,6 +177,7 @@ end
 
 if CLIENT then
 	CreateClientConVar("cw_kk_ins2_rig", 1, true, true)
+	local cvRigSkin = CreateClientConVar("cw_kk_ins2_rigskin", 0, true, true)
 	CreateClientConVar("cw_kk_ins2_animate_reticle", 0, true, false)
 	CreateClientConVar("cw_kk_ins2_draw_vm_in_rt", 0, true, false)
 	CreateClientConVar("cw_kk_ins2_shell_sound", 3, true, false)
@@ -195,6 +196,27 @@ if CLIENT then
 	
 	if CustomizableWeaponry_KK.HOME then
 		table.insert(sslabeltxt, "^^ [KK INS2] custom physmaterial")
+	end
+	
+	local rigSkinSlider
+	
+	local function updateRigSkinSlider()
+		rigSkinSlider:SetMinMax(0, 0)
+	
+		local ply = LocalPlayer()
+		
+		local wep = ply:GetActiveWeapon()
+		
+		if !IsValid(wep) then 
+			return
+		end
+		
+		if !wep.KKINS2Wep then
+			return
+		end
+		
+		rigSkinSlider:SetMax(wep:getRigSkinMax())
+		rigSkinSlider:SetValue(cvRigSkin:GetInt())
 	end
 	
 	CustomizableWeaponry_KK.panels.ins2 = function(panel)
@@ -216,8 +238,22 @@ if CLIENT then
 		local rlabel = panel:AddControl("Label", {Text = "meh"})
 		rlabel:DockMargin(8, 0, 8, 16)
 		
+		rigSkinSlider = panel:AddControl("Slider", {
+			Label = "^^ Skin (if applicable):",
+			Type = "Integer",
+			Min = "0",
+			Max = "0",
+			Command = "cw_kk_ins2_rigskin"
+		})
+		
+		rigSkinSlider:DockMargin(8, 0, 8, 0)
+		
+		updateRigSkinSlider()
+		
 		function rslider:OnValueChanged(v)
 			rlabel:SetText("^^ " .. (rigs[math.Clamp(math.Round(v or 1), 1, #rigs)][2] or "meh"))
+			
+			updateRigSkinSlider()
 		end
 		
 		// shell sound function

@@ -67,6 +67,7 @@ SWEP.Animations = {
 	base_safe = "base_down",
 	base_safe_aim = "iron_down",
 	base_crawl = "base_crawl",
+	base_melee = "base_melee_bash",
 	
 	bipod_in = "deployed_in",
 	bipod_fire = {"deployed_fire_1","deployed_fire_2"},
@@ -139,6 +140,8 @@ SWEP.ReloadTimes = {
 	base_reload = {9, 10.4},
 	base_reload_half = {10, 11.4},
 	base_reload_empty = {10.9, 12.3},
+	
+	base_melee_bash = {0.6, 1.7},
 	
 	deployed_reload = {8.3, 9.5},
 	deployed_reload_half = {9.2, 10.5},

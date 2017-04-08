@@ -29,6 +29,7 @@ if CLIENT then
 	
 	SWEP.AttachmentModelsVM = {
 		-- ["ani_body"] = {model = "models/weapons/v_mg42.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
+		["kk_counter"] = {model = "models/weapons/stattrack.mdl", pos = Vector(-0.0566, 0.3055, 2.8376), angle = Angle(0, 0, -11.6799), size = Vector(0.3137, 0.3137, 0.3137), bone = "MG42"},
 	}
 	
 	SWEP.AttachmentModelsWM = {}
@@ -48,6 +49,10 @@ SWEP.MuzzleEffectWorld = "muzzleflash_mg42_3p"
 SWEP.Attachments = {
 	["+reload"] = {header = "Ammo", offset = {200, 600}, atts = {"am_magnum", "am_matchgrade"}}
 }
+
+if CustomizableWeaponry_KK.HOME then
+	table.insert(SWEP.Attachments, {header = "CSGO", offset = {2100, 200}, atts = {"kk_counter"}})
+end
 
 SWEP.Animations = {
 	base_pickup = "base_ready",
