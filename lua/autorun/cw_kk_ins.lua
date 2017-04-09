@@ -159,7 +159,7 @@ if CLIENT then
 			
 			wep.DrawCrosshair = cvXH:GetInt() == 1
 		end)
-
+		
 		local _ADS_LAST, cur
 		hook.Add("Think", "cw_kk_sck_lock_ads_think", function() 
 			cur = cvLA:GetInt()
@@ -198,25 +198,29 @@ if CLIENT then
 		table.insert(sslabeltxt, "^^ [KK INS2] custom physmaterial")
 	end
 	
-	local rigSkinSlider
-	
-	local function updateRigSkinSlider()
-		rigSkinSlider:SetMinMax(0, 0)
+	local function updateRigSkinSlider(slider)
+		slider:SetMinMax(0, 0)
+		slider:SetDark(false)
+		slider:SetText("^^ Skin")
 	
 		local ply = LocalPlayer()
-		
 		local wep = ply:GetActiveWeapon()
 		
-		if !IsValid(wep) then 
+		if !IsValid(wep) then
+			slider:SetText("Equip INS SWEP.")
 			return
 		end
 		
 		if !wep.KKINS2Wep then
+			slider:SetText("Equip INS SWEP.")
 			return
 		end
 		
-		rigSkinSlider:SetMax(wep:getRigSkinMax())
-		rigSkinSlider:SetValue(cvRigSkin:GetInt())
+		local max = wep:getRigSkinMax()
+		slider:SetMax(max)
+		slider:SetDark(max > 0)
+		slider:SetText("^^ Skin")
+		slider:SetValue(0)
 	end
 	
 	CustomizableWeaponry_KK.panels.ins2 = function(panel)
@@ -238,8 +242,8 @@ if CLIENT then
 		local rlabel = panel:AddControl("Label", {Text = "meh"})
 		rlabel:DockMargin(8, 0, 8, 16)
 		
-		rigSkinSlider = panel:AddControl("Slider", {
-			Label = "^^ Skin (if applicable):",
+		local rigSkinSlider = panel:AddControl("Slider", {
+			Label = "^^ Skin:",
 			Type = "Integer",
 			Min = "0",
 			Max = "0",
@@ -248,12 +252,12 @@ if CLIENT then
 		
 		rigSkinSlider:DockMargin(8, 0, 8, 0)
 		
-		updateRigSkinSlider()
+		updateRigSkinSlider(rigSkinSlider)
 		
 		function rslider:OnValueChanged(v)
 			rlabel:SetText("^^ " .. (rigs[math.Clamp(math.Round(v or 1), 1, #rigs)][2] or "meh"))
 			
-			updateRigSkinSlider()
+			updateRigSkinSlider(rigSkinSlider)
 		end
 		
 		// shell sound function
