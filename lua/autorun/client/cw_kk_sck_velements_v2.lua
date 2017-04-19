@@ -612,7 +612,7 @@ function TOOL:updatePanel()
 						
 							local funcList = vgui.Create("DListView", settMergePanel)
 							funcList:SetMultiSelect(false)
-							funcList:AddColumn("Point of attachment function:")
+							funcList:AddColumn("Point-of-attachment function:")
 							funcList:AddLine("[CW20] Bone on parent entity")
 							
 							if WEAPON.KKINS2Wep then
