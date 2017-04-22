@@ -20,8 +20,9 @@ if CLIENT then
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_scope_zf41"] = {model = "models/weapons/upgrades/a_optic_zf4.mdl", rLight = true, pos = Vector(0.0161, -4.2041, 5.964), angle = Angle(0, -90, 0), size = Vector(1.2, 1.2, 1.2), bone = "STG44"},
 		
-		["ani_body"] = {model = "models/weapons/v_stg44.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
-		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_stg44.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body"},
+		-- ["ani_body"] = {model = "models/weapons/v_stg44.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
+		-- ["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_stg44.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body"},
+		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_stg44.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
 	SWEP.AttachmentModelsWM = {
@@ -83,7 +84,7 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/kk_doi/v_stg44.mdl"
+SWEP.ViewModel		= "models/weapons/cw_kk_doi/v_stg44.mdl"
 SWEP.WorldModel		= "models/weapons/w_stg44.mdl"
 
 SWEP.WMPos = Vector(11, 1, -1)

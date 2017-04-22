@@ -24,8 +24,9 @@ if CLIENT then
 		["knife_fold"] = {model = "models/weapons/upgrades/a_iron_ithaca.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
 		["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/a_ithaca_bayonet.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
-		["ani_body"] = {model = "models/weapons/v_ithaca.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
-		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_ithaca.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body"},
+		-- ["ani_body"] = {model = "models/weapons/v_ithaca.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
+		-- ["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_ithaca.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body"},
+		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_ithaca.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_scope_zf41"] = {model = "models/weapons/upgrades/a_optic_kk_zf41.mdl", rLight = true, pos = Vector(-0.0104, -5.7704, 0.655), angle = Angle(0, -90, 0), size = Vector(1, 1, 1), bone = "Weapon"},
 	}
@@ -71,7 +72,7 @@ SWEP.Animations = {
 	base_idle = "base_idle",
 	base_holster = "base_holster",
 	base_sprint = "base_sprint",
-	base_sprint_knife = "base_sprint_bayonet",
+	base_sprint_knife = "base_sprint_melee",
 	base_safe = "base_down",
 	base_safe_aim = "iron_down",
 	base_crawl = "base_crawl",
@@ -96,7 +97,7 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/kk_doi/v_ithaca.mdl"
+SWEP.ViewModel		= "models/weapons/cw_kk_doi/v_ithaca.mdl"
 SWEP.WorldModel		= "models/weapons/w_ithaca.mdl"
 
 SWEP.WMPos = Vector(12, 0.5, -2.8)

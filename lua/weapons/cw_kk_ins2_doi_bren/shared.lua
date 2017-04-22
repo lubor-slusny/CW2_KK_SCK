@@ -21,8 +21,9 @@ if CLIENT then
 	SWEP.ShellWorldAngleAlign = {Forward = 0, Right = 0, Up = 180}
 	
 	SWEP.AttachmentModelsVM = {
-		["ani_body"] = {model = "models/weapons/v_bren.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
-		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_bren.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body"},
+		-- ["ani_body"] = {model = "models/weapons/v_bren.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
+		-- ["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_bren.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body"},
+		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_bren.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
 	SWEP.AttachmentModelsWM = {}
@@ -85,8 +86,7 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/kk_doi/v_bren.mdl"
--- SWEP.ViewModel		= "models/weapons/v_bren.mdl"
+SWEP.ViewModel		= "models/weapons/cw_kk_doi/v_bren.mdl"
 SWEP.WorldModel		= "models/weapons/w_bren.mdl"
 
 SWEP.WMPos = Vector(5, 1, -1.5)

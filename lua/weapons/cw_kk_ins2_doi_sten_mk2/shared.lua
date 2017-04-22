@@ -26,14 +26,16 @@ if CLIENT then
 		-- ["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/a_sten_foregrip.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		-- ["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/a_sten_foregrip.mdl", bone = "Weapon", pos = Vector(2.4687, -2.8842, -11.6320), angle = Angle(90, -90, 0), size = Vector(1, 1, 1)},
 		
-		["std_barrel"] = {model = "models/weapons/upgrades/a_stenmk2_barrel_standard.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body", active = true},
+		-- ["std_barrel"] = {model = "models/weapons/upgrades/a_stenmk2_barrel_standard.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body", active = true},
+		["std_barrel"] = {model = "models/weapons/upgrades/a_stenmk2_barrel_standard.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
 		["kk_ins2_suppressor_sterling"] = {model = "models/weapons/upgrades/a_stenmk2_silencer.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["std_stock"] = {model = "models/weapons/upgrades/a_stenmk2_stock_standard.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
 		["bg_ar15sturdystock"] = {model = "models/weapons/upgrades/a_stenmk2_stock_alt.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
-		["ani_body"] = {model = "models/weapons/v_sten_mk2.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
-		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_stenmk2.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body"},
+		-- ["ani_body"] = {model = "models/weapons/v_sten_mk2.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
+		-- ["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_stenmk2.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body"},
+		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_stenmk2.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
 	SWEP.AttachmentModelsWM = {
@@ -133,7 +135,7 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/kk_doi/v_sten_mk2.mdl"
+SWEP.ViewModel		= "models/weapons/cw_kk_doi/v_sten_mk2.mdl"
 SWEP.WorldModel		= "models/weapons/w_sten.mdl"
 
 SWEP.WMPos = Vector(9, -1, -4)
