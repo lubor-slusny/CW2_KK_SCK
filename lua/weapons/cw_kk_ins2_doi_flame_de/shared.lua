@@ -38,17 +38,18 @@ SWEP.Animations = {
 	base_pickup = "base_ready",
 	base_draw = "base_draw",
 	base_fire = "base_fire",
-	base_fire_aim = "iron_fire",
+	base_fire_aim = "base_fire",
 	base_fire_empty = "base_dryfire",
-	base_fire_empty_aim = "iron_dryfire",
+	base_fire_empty_aim = "base_dryfire",
 	base_reload = "base_ready",
 	base_reload_empty = "base_ready",
 	base_idle = "base_idle",
 	base_holster = "base_holster",
 	base_sprint = "base_sprint",
 	base_safe = "base_down",
-	base_safe_aim = "iron_down",
+	base_safe_aim = "base_down",
 	base_crawl = "base_crawl",
+	base_melee = "base_melee",
 }
 
 SWEP.SpeedDec = 15
@@ -68,7 +69,7 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/kk_doi/v_flame_werfer41.mdl"
+SWEP.ViewModel		= "models/weapons/cw_kk_doi/v_flame_werfer41.mdl"
 SWEP.WorldModel		= "models/weapons/w_flammenwerfer41.mdl"
 
 SWEP.WMPos = Vector(11, -2, -8)
@@ -95,4 +96,5 @@ SWEP.HolsterTime = 0.7
 
 SWEP.ReloadTimes = {
 	base_ready = {1.9, 1.9},
+	base_melee = {0.3, 1.3},
 }

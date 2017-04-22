@@ -34,11 +34,12 @@ if CLIENT then
 
 		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/a_thompson_foregrip.mdl", pos = Vector(), angle = Angle(), size = Vector(0.5, 0.5, 0.5), merge = true},
 		
-		["ani_body"] = {model = "models/weapons/v_thompson.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, material = CustomizableWeaponry_KK.ins2.nodrawMatPath},
+		-- ["ani_body"] = {model = "models/weapons/v_thompson.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, material = CustomizableWeaponry_KK.ins2.nodrawMatPath},
 		["kk_ins2_ww2_sling"] = {models = {
-			{model = "models/weapons/upgrades/a_sling_thompson.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body"},
-			{model = "models/weapons/upgrades/a_sling_thompson_m1928a1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body"},
-			-- {model = "models/weapons/upgrades/a_sling_thompson_m1a1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body"},
+			-- {model = "models/weapons/upgrades/a_sling_thompson.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body"},
+			-- {model = "models/weapons/upgrades/a_sling_thompson_m1928a1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body"},
+			{model = "models/weapons/upgrades/a_sling_thompson.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+			{model = "models/weapons/upgrades/a_sling_thompson_m1928a1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		}},
 	}
 	
@@ -188,7 +189,7 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/kk_doi/v_thompson.mdl"
+SWEP.ViewModel		= "models/weapons/cw_kk_doi/v_thompson.mdl"
 SWEP.WorldModel		= "models/weapons/w_thompson.mdl"
 
 SWEP.WMPos = Vector(4, 0.395, -2)
