@@ -118,8 +118,7 @@ SWEP.Primary.Automatic		= true
 SWEP.Primary.Ammo			= "9x19MM"
 
 SWEP.FireDelay = 60/700
-SWEP.FireSound = "CW_KK_INS2_DOI_STEN_FIRE"
-SWEP.FireSoundSuppressed = "CW_KK_INS2_DOI_STEN_FIRE_SUPPRESSED"
+SWEP.FireSound = "CW_KK_INS2_DOI_OWEN_FIRE"
 SWEP.Recoil = 0.56
 
 SWEP.HipSpread = 0.035
