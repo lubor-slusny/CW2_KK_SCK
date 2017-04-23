@@ -31,9 +31,7 @@ if CLIENT then
 	SWEP.Shell2ViewAngleAlign = {Forward = 0, Right = 0, Up = 180}
 	SWEP.Shell2WorldAngleAlign = {Forward = 0, Right = 0, Up = 180}
 	
-	SWEP.AttachmentModelsVM = {
-		["ani_body"] = {model = "models/weapons/v_m1919.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
-	}
+	SWEP.AttachmentModelsVM = {}
 	
 	SWEP.AttachmentModelsWM = {}
 	
@@ -94,8 +92,7 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/kk_doi/v_m1919.mdl"
--- SWEP.ViewModel		= "models/weapons/v_m1919.mdl"
+SWEP.ViewModel		= "models/weapons/cw_kk_doi/v_m1919.mdl"
 SWEP.WorldModel		= "models/weapons/w_m1919.mdl"
 
 SWEP.WMPos = Vector(15.986, 0.921, -6.038)

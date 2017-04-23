@@ -101,7 +101,7 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/kk_doi/v_browninghp.mdl"
+SWEP.ViewModel		= "models/weapons/cw_kk_doi/v_browninghp.mdl"
 SWEP.WorldModel		= "models/weapons/w_browninghp.mdl"
 
 SWEP.WMPos = Vector(4.5, 1, -3.5)

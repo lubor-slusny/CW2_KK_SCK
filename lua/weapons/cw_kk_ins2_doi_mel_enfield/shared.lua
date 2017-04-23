@@ -8,17 +8,15 @@ if CLIENT then
 	
 	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_enfield_bayonet")
 	
-	SWEP.AttachmentModelsVM = {
-		["ani_body"] = {model = "models/weapons/v_enfield_bayonet.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
-	}
+	SWEP.AttachmentModelsVM = {}
 
-	SWEP.HUD_3D2DBone = 57
+	SWEP.HUD_3D2DBone = 58
 end
 
 SWEP.Animations = {
 	base_pickup = "draw",
 	base_draw = "draw",
-	base_fire = {"slash_1","slash_2"},
+	base_fire = {"hitcenter1","hitcenter2"},
 	base_idle = "idle",
 	base_holster = "holster",
 	base_sprint = "sprint",
@@ -38,7 +36,7 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/kk_doi/v_garand_bayonet.mdl"
+SWEP.ViewModel		= "models/weapons/cw_kk_doi/v_enfield_bayonet.mdl"
 SWEP.WorldModel		= "models/weapons/w_bayonet_enfield.mdl"
 
 SWEP.WMPos = Vector(3.812, 1.544, -2.83)

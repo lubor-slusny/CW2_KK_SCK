@@ -26,6 +26,7 @@ if CLIENT then
 		
 		["ani_body"] = {model = "models/weapons/v_c96_carbine.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
 		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_c96.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body"},
+		-- ["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_c96.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
 	SWEP.AttachmentModelsWM = {
@@ -107,7 +108,7 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/kk_doi/v_c96_carbine.mdl"
+SWEP.ViewModel		= "models/weapons/cw_kk_doi/v_c96_carbine.mdl"
 SWEP.WorldModel		= "models/weapons/w_c96_carbine.mdl"
 
 SWEP.WMPos = Vector(5, 1, -1)

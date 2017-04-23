@@ -39,6 +39,7 @@ if CLIENT then
 		
 		["ani_body"] = {model = "models/weapons/v_enfield.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
 		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_enfield.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body"},
+		-- ["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_enfield.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_scope_enfield"] = {model = "models/weapons/upgrades/a_optic_enfield.mdl", rLight = true, pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
@@ -225,6 +226,7 @@ SWEP.Instructions	= ""
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_cw_kk_doi_enfield.mdl"
+-- SWEP.ViewModel		= "models/weapons/cw_kk_doi/v_enfield.mdl"
 SWEP.WorldModel		= "models/weapons/w_enfield.mdl"
 
 SWEP.WMPos = Vector(14, 0.5, -3)
