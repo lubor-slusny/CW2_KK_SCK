@@ -23,8 +23,11 @@ if CLIENT then
 	SWEP.AttachmentModelsVM = {}
 	SWEP.AttachmentModelsWM = {}
 	
-	SWEP.IronsightPos = Vector(-1.8248, 0, 0.3468)
-	SWEP.IronsightAng = Vector(0.7758, 0.0761, 6.2803)
+	-- SWEP.IronsightPos = Vector(-1.8248, 0, 0.3468)
+	-- SWEP.IronsightAng = Vector(0.7758, 0.0761, 6.2803)
+
+	SWEP.IronsightPos = Vector(0.0005, 0, 0.1039)
+	SWEP.IronsightAng = Vector(-0.3153, 0.0226, 0)
 
 	SWEP.CustomizationMenuScale = 0.01
 	SWEP.ReloadViewBobEnabled = false
@@ -44,25 +47,27 @@ SWEP.Animations = {
 	base_draw = "base_draw",
 	base_draw_empty = "empty_draw",
 	base_fire = {"base_fire","base_fire2","base_fire3"},
-	base_fire_aim = {"iron_fire","iron_fire2","iron_fire3"},
+	base_fire_aim = {"iron_fire_preblend","iron_fire2_preblend","iron_fire3_preblend"},
 	base_fire_last = "base_firelast",
-	base_fire_last_aim = "iron_firelast",
+	base_fire_last_aim = "iron_firelast_preblend",
 	base_fire_empty = "base_dryfire",
-	base_fire_empty_aim = "iron_dryfire",
+	base_fire_empty_aim = "iron_dryfire_preblend",
 	base_reload = "base_reload",
 	base_reload_mm = "base_reload_extmag",
 	base_reload_empty = "base_reloadempty",
 	base_reload_empty_mm = "base_reloadempty_extmag",
 	base_idle = "iron_idle",
+	base_idle_aim = "iron_idle_preblend",
 	base_idle_empty = "iron_empty",
+	base_idle_empty_aim = "iron_empty_preblend",
 	base_holster = "base_holster",
 	base_holster_empty = "empty_holster",
 	base_sprint = "base_sprint",
 	base_sprint_empty = "empty_sprint",
 	base_safe = "base_down",
 	base_safe_empty = "empty_down",
-	base_safe_aim = "iron_down",
-	base_safe_empty_aim = "empty_iron_down",
+	base_safe_aim = "iron_down_preblend",
+	base_safe_empty_aim = "empty_iron_down_preblend",
 	base_crawl = "base_crawl",
 	base_crawl_empty = "empty_crawl",
 	base_melee = "base_melee_bash",
