@@ -38,7 +38,7 @@ end
 
 local fCurRate = 1
 local fCurStartCycle = 0
-local bPlaySounds = false
+local bPlaySounds = true
 
 local cvarCVMTEnabled
 local initdWeps = {}
