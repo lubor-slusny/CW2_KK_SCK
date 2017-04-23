@@ -24,8 +24,11 @@ if CLIENT then
 
 	SWEP.AttachmentModelsWM = {}
 
-	SWEP.IronsightPos = Vector(-1.9003, 0, 0.4979)
-	SWEP.IronsightAng = Vector(0, 0, 6.6626)
+	-- SWEP.IronsightPos = Vector(-1.9003, 0, 0.4979)
+	-- SWEP.IronsightAng = Vector(0, 0, 6.6626)
+
+	SWEP.IronsightPos = Vector(0, 0, 0)
+	SWEP.IronsightAng = Vector(0, 0.0802, 0)
 
 	SWEP.CustomizationMenuScale = 0.01
 
@@ -56,16 +59,17 @@ SWEP.Animations = {
 	base_pickup = {"base_ready", "base_ready_rare"},
 	base_draw = "base_draw",
 	base_fire = {"base_fire", "base_fire2", "base_fire3"},
-	base_fire_aim = {"iron_fire_1","iron_fire_2"},
+	base_fire_aim = {"iron_fire_1_preblend","iron_fire_2_preblend"},
 	base_fire_empty = "base_dryfire",
-	base_fire_empty_aim = "iron_dryfire",
+	base_fire_empty_aim = "iron_dryfire_preblend",
 	base_reload = "base_reload_speed",
 	base_reload_empty = "base_reload_speed",
 	base_idle = "base_idle",
+	base_idle_aim = "iron_idle_preblend",
 	base_holster = "base_holster",
 	base_sprint = "base_sprint",
 	base_safe = "base_down",
-	base_safe_aim = "iron_down",
+	base_safe_aim = "iron_down_preblend",
 	base_crawl = "base_crawl",
 	base_melee = "base_melee_bash",
 }
@@ -87,7 +91,7 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/kk_doi/v_webley.mdl"
+SWEP.ViewModel		= "models/weapons/cw_kk_doi/v_webley.mdl"
 SWEP.WorldModel		= "models/weapons/w_webley.mdl"
 
 SWEP.WMPos = Vector(5.5, 1.623, -3.5)

@@ -13,6 +13,21 @@ local function shells(self)
 	end
 end
 
+local lastValidResetTime
+
+local function meleeShellCorection(self)	
+	self.reticleInactivity = UnPredictedCurTime() + 0.8
+	
+	lastValidResetTime = CurTime()
+	local localValidResetTime = lastValidResetTime
+	
+	CustomizableWeaponry.actionSequence.new(self, 0.7, nil, function()
+		if lastValidResetTime == localValidResetTime then
+			self:idleAnimFunc()
+		end
+	end)
+end
+
 SWEP.Sounds = {
 	base_ready = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_PISTOL_DRAW"},
@@ -104,6 +119,15 @@ SWEP.Sounds = {
 	iron_dryfire = {
 		{time = 0, sound = "CW_KK_INS2_DOI_WEBLEY_COCKHAMMER"},
 		{time = 4/30, sound = "CW_KK_INS2_DOI_WEBLEY_EMPTY"},
+	},
+	
+	iron_dryfire_preblend = {
+		{time = 0, sound = "CW_KK_INS2_DOI_WEBLEY_COCKHAMMER"},
+		{time = 4/30, sound = "CW_KK_INS2_DOI_WEBLEY_EMPTY"},
+	},
+		
+	base_melee_bash = {
+		{time = 0, sound = "", callback = meleeShellCorection},
 	},
 }
 
