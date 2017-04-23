@@ -40,6 +40,7 @@ SWEP.Animations = {
 	base_pickup = "base_draw",
 	base_draw = "base_draw",
 	base_idle = "base_idle",
+	base_idle_aim = "iron_idle_preblend",
 	base_holster = "base_holster",
 	base_sprint = "base_sprint",
 	base_safe = "base_down",
@@ -64,7 +65,7 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/kk_doi/v_binoculars_british.mdl"
+SWEP.ViewModel		= "models/weapons/cw_kk_doi/v_binoculars_british.mdl"
 SWEP.WorldModel		= "models/weapons/w_binoculars_british.mdl"
 
 SWEP.WMPos = Vector(3.48, 5.131, -0.802)

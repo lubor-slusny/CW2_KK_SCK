@@ -31,8 +31,10 @@ if CLIENT then
 	SWEP.StretchOverlayToScreen = true
 	
 	SWEP.MoveWepAwayWhenAiming = true
-	SWEP.FadeDuringAiming = true
+	SWEP.FadeDuringAiming = false
 	SWEP.AdjustableZoom = true
+	SWEP.SnapZoom = true
+	SWEP.DelayedZoom = true
 	
 	SWEP.MinZoom = 60
 	SWEP.ZoomAmount = 70
