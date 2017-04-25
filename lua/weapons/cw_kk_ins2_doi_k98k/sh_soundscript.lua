@@ -70,7 +70,21 @@ SWEP.Sounds = {
 		{time = 1/30, sound = "CW_KK_INS2_DOI_MELEE"},
 	},
 
-	base_reload_empty_clip = {
+	base_reload_clip = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
+		{time = 19/35, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
+		{time = 27/35, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
+		-- {time = 29/35, sound = "", callback = shell},
+		{time = 37/35, sound = "CW_KK_INS2_DOI_K98_FETCHMAG"},
+		{time = 40/35, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
+		{time = 64/35, sound = "CW_KK_INS2_DOI_K98_MAGIN"},
+		{time = 80/35, sound = "CW_KK_INS2_DOI_K98_ROUNDSIN"},
+		{time = 111/35, sound = "CW_KK_INS2_DOI_K98_BOLTFORWARDSTRIPPERCLIP"},
+		{time = 112/35, sound = "CW_KK_INS2_DOI_K98_STRIPPERCLIPEJECT"},
+		{time = 119/35, sound = "CW_KK_INS2_DOI_K98_BOLTLATCH"},
+	},
+
+	base_reload_clip_empty = {
 		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		{time = 19/35, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
 		{time = 27/35, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
@@ -173,12 +187,12 @@ SWEP.Sounds = {
 		{time = 0, sound = "CW_KK_INS2_DOI_K98_EMPTY"},
 	},
 
-	gl_reload_empty_stripper = {
+	gl_reload_clip = {
 		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		// { event AE_CL_CREATE_PARTICLE_BRASS 29 ""},
 		{time = 19/35, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
 		{time = 27/35, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
-		{time = 29/35, sound = "", callback = shell},
+		-- {time = 29/35, sound = "", callback = shell},
 		// { event 46 88 ""},
 		// { event AE_WPN_RELOAD_OFFSCREEN 40 ""},
 		{time = 37/35, sound = "CW_KK_INS2_DOI_K98_FETCHMAG"},
@@ -190,7 +204,7 @@ SWEP.Sounds = {
 		{time = 119/35, sound = "CW_KK_INS2_DOI_K98_BOLTLATCH"},
 	},
 
-	gl_reload_full_clip = {
+	gl_reload_clip_empty = {
 		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
 		// { event AE_CL_CREATE_PARTICLE_BRASS 29 ""},
 		{time = 19/35, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},

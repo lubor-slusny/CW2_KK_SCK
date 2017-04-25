@@ -259,7 +259,7 @@ SWEP.SpreadCooldown = 1.7
 SWEP.Shots = 1
 SWEP.Damage = 61
 
-SWEP.FirstDeployTime = 2.7
+SWEP.FirstDeployTime = 3.7
 SWEP.DeployTime = 0.7
 SWEP.HolsterTime = 0.5
 
@@ -281,8 +281,8 @@ SWEP.ReloadTimes = {
 	base_fire_end = {20/35, 1.49},
 	iron_fire_end = {18/35, 1.49},
 	
-	base_reload_clip = {2.6, 5, KK_INS2_STRIPPERCLIP_UNLOAD_ONE, 27/33.4},
-	base_reload_clip_empty = {2.6, 5},
+	base_reload_clip = {2.6, 4.7, KK_INS2_STRIPPERCLIP_UNLOAD_ONE, 27/33.4},
+	base_reload_clip_empty = {2.6, 4.7},
 	base_reload_start = {29/34.5, 1.25, KK_INS2_SHOTGUN_UNLOAD_ONE},
 	base_reload_start_empty = {1.25, 1.25},
 	base_reload_insert = {20/37.2, 0.99},

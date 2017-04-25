@@ -87,7 +87,7 @@ SWEP.Sounds = {
 		{time = 162/36, sound = "CW_KK_INS2_DOI_ENFIELD_RATTLE"},
 	},
 
-	base_reload_full_clip = {
+	base_reload_clip_empty = {
 		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClipM1},
 		-- { event AE_WPN_RELOAD_OFFSCREEN 42 ""},
 		{time = 19/36, sound = "CW_KK_INS2_DOI_ENFIELD_BOLTRELEASE"},
@@ -103,7 +103,29 @@ SWEP.Sounds = {
 		{time = 162/36, sound = "CW_KK_INS2_DOI_ENFIELD_RATTLE"},
 	},
 
-	base_reload_empty_clip = {
+	base_reload_clip2 = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClipM1},
+		// { event AE_CL_CREATE_PARTICLE_BRASS 29 ""},
+		// { event AE_WPN_RELOAD_OFFSCREEN 42 ""},
+		{time = 19/36, sound = "CW_KK_INS2_DOI_ENFIELD_BOLTRELEASE"},
+		{time = 27/36, sound = "CW_KK_INS2_DOI_ENFIELD_BOLTBACK"},
+		-- {time = 29/36, sound = "", callback = shell},
+		{time = 42/36, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClipPS},
+		{time = 64/36, sound = "CW_KK_INS2_DOI_ENFIELD_MAGIN"},
+		{time = 85/36, sound = "CW_KK_INS2_DOI_ENFIELD_ROUNDSIN"},
+		// { event 46 90 ""},
+		{time = 113/36, sound = "CW_KK_INS2_DOI_ENFIELD_CLIPREMOVE"},
+		{time = 131/36, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClipPS},
+		{time = 153/36, sound = "CW_KK_INS2_DOI_ENFIELD_MAGIN"},
+		{time = 171/36, sound = "CW_KK_INS2_DOI_ENFIELD_ROUNDSIN"},
+		// { event 46 176 ""},
+		{time = 198/36, sound = "CW_KK_INS2_DOI_ENFIELD_CLIPREMOVE"},
+		{time = 223/36, sound = "CW_KK_INS2_DOI_ENFIELD_BOLTFORWARD"},
+		{time = 231/36, sound = "CW_KK_INS2_DOI_ENFIELD_BOLTLATCH"},
+		{time = 250/36, sound = "CW_KK_INS2_DOI_ENFIELD_RATTLE"},
+	},
+
+	base_reload_clip2_empty = {
 		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClipM1},
 		// { event AE_CL_CREATE_PARTICLE_BRASS 29 ""},
 		// { event AE_WPN_RELOAD_OFFSCREEN 42 ""},
