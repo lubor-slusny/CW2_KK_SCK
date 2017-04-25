@@ -161,7 +161,7 @@ SWEP.Animations = {
 	gl_off_reload_end = "gl_reload_end",
 	gl_off_reload_end_empty = "gl_reload_end",
 	gl_off_idle = "gl_holster",
-	gl_off_idle_empty = "gl_empty_idle",
+	gl_off_idle_empty = "gl_iron_idle_empty",
 	gl_off_holster = "gl_holster",
 	gl_off_holster_empty = "gl_holster_empty",
 	gl_off_sprint = "gl_sprint",
@@ -175,7 +175,7 @@ SWEP.Animations = {
 	
 	gl_on_draw = "glsetup_draw",
 	gl_on_draw_empty = "glsetup_draw_empty",
-	gl_on_fire = "glsetup_fire",
+	gl_on_fire = "glsetup_firelast",
 	gl_on_fire_aim = "glsetup_iron_fire",
 	gl_on_fire_empty = "glsetup_dryfire",
 	gl_on_fire_empty_aim = "glsetup_iron_dryfire",
