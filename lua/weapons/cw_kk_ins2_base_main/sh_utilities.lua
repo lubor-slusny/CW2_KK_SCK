@@ -286,13 +286,20 @@ end
 //-----------------------------------------------------------------------------
 
 function SWEP:getStripperClipAnimation(ammo, mag)
-	if mag < 2 and self.Animations.base_reload_empty_2 and (ammo >= (2 * self.stripperCapacity)) then
-		return "reload_empty_2"
-	end
+	local suffix = ""
 	
 	if mag < 1 then
-		return "reload_empty"
+		suffix = "_empty"
 	end
 	
-	return "reload"
+	local clipDiff = math.floor(math.Clamp(self.Primary.ClipSize + 1 - mag, 0, self.Primary.ClipSize) / self.stripperCapacity)
+	local clipIn = 1
+	
+	for i = 1, clipDiff - 1 do
+		if (ammo - self.stripperCapacity >= clipIn * self.stripperCapacity) then
+			clipIn = clipIn + 1
+		end
+	end
+	
+	return "reload_stripper_" .. tostring(clipIn) .. suffix
 end

@@ -37,9 +37,9 @@ if CLIENT then
 		["kk_ins2_ww2_knife_fat"] = {model = "models/weapons/upgrades/a_enfield_bayonet_spike.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_gl_enfield"] = {model = "models/weapons/upgrades/a_enfield_gl.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
-		["ani_body"] = {model = "models/weapons/v_enfield.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
-		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_enfield.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body"},
-		-- ["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_enfield.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		-- ["ani_body"] = {model = "models/weapons/v_enfield.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
+		-- ["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_enfield.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body"},
+		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_enfield.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_scope_enfield"] = {model = "models/weapons/upgrades/a_optic_enfield.mdl", rLight = true, pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
@@ -195,20 +195,6 @@ SWEP.Animations = {
 	gl_turn_off = "glsetup_out",
 	gl_turn_off_empty = "glsetup_out_empty",
 	
-	// V1
-	-- stripper_reload_1 = "base_reload_clip",
-	-- stripper_reload_1_empty = "base_reload_full_clip",
-	-- stripper_reload_2 = "base_reload_empty_clip",
-	
-	// V2
-	-- base_reload = "base_reload_clip",
-	-- base_reload_empty = "base_reload_full_clip",
-	-- base_reload_empty_2 = "base_reload_empty_clip",
-	
-	-- gl_off_reload = "base_reload_clip",
-	-- gl_off_reload_empty = "base_reload_full_clip",
-	-- gl_off_reload_empty_2 = "base_reload_empty_clip",
-	
 	// V2k17
 	base_reload_stripper_1 = "base_reload_clip",
 	base_reload_stripper_1_empty = "base_reload_clip_empty",
@@ -238,8 +224,6 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
--- SWEP.ViewModel		= "models/weapons/v_cw_kk_doi_enfield.mdl"
--- SWEP.ViewModel		= "models/weapons/cw_kk_doi/v_enfield.mdl"
 SWEP.ViewModel		= "models/weapons/cw_kk_doi/v_enfield_oldgl.mdl"
 SWEP.WorldModel		= "models/weapons/w_enfield.mdl"
 
@@ -292,10 +276,6 @@ SWEP.ReloadTimes = {
 	base_fire_end = {20/38, 1.1},
 	iron_fire_end = {16/38, 1.3},
 	
-	-- base_reload_clip = {90/36, 4.8, KK_INS2_STRIPPERCLIP_UNLOAD_ONE, 29/36},
-	-- base_reload_full_clip = {90/36, 4.81},
-	-- base_reload_empty_clip = {90/36, 7.39, KK_INS2_STRIPPERCLIP_UNLOAD_ONE, 29/36, 176/36},
-	
 	base_reload_clip = {90/36, 4.8, KK_INS2_STRIPPERCLIP_UNLOAD_ONE, 29/36},
 	base_reload_clip_empty = {90/36, 4.8},
 	base_reload_clip2 = {90/36, 7.5, KK_INS2_STRIPPERCLIP_UNLOAD_ONE, 29/36, 176/36},
@@ -317,54 +297,6 @@ SWEP.ReloadTimes = {
 	base_melee_bash_empty = {0.3, 0.9},
 }
 
--- SWEP.reloadProgressAnimsRaw = {
-	-- stripper_reload_1 = true,
-	-- stripper_reload_1_empty = true,
-	-- stripper_reload_2 = true,
--- }
-
--- SWEP.reticleInactivityCallbacksRaw = {
-	-- ["stripper_reload_1"] = 0.1,
-	-- ["stripper_reload_1_empty"] = 0.1,
-	-- ["stripper_reload_2"] = 0.1,
--- }
-
--- function SWEP:overrideReloadAnim()
-	-- if self.dt.INS2GLActive then
-		-- return "gl_on_reload"
-	-- end
-	
-	-- local clip = self:Clip1()
-	
-	-- clip = clip > 0 and clip - 1 or clip
-	
-	-- local loadAmmount = self.getFullestMag and self:getFullestMag() or math.Clamp(self.Owner:GetAmmoCount(self.Primary.Ammo), 0, self.Primary.ClipSize)
-	
-	-- if loadAmmount - clip < 6 then 
-		-- if clip < 1 then
-			-- return "stripper_reload_1_empty"
-		-- else
-			-- return "stripper_reload_1"
-		-- end
-	-- end
-	
-	-- return "stripper_reload_2"
--- end
-
--- if CLIENT then
-	-- local one = Vector(1, 1, 1)
-	-- local zero = Vector()
-	
-	-- function SWEP:updateOtherParts()
-		-- self.CW_VM:ManipulateBoneScale(80, (self.Sequence == self.Animations.stripper_reload_1_empty) and zero or one)
-	-- end
--- end
-
--- function SWEP:IndividualInitialize()
-	-- self.magType = "NONE"
-	-- self.ShotgunReload = true
--- end
-
 SWEP.magType = "NONE"
 SWEP.ShotgunReload = true
 
@@ -379,63 +311,4 @@ if CLIENT then
 			self.ActiveAttachments.kk_ins2_scope_m82
 		)
 	end
-end
-
-SWEP.reloadProgressAnimsRaw = {
-	-- base_reload_empty_2 = true,
-	-- gl_off_reload_empty_2 = true,
-	
-	base_reload_stripper_1 = true,
-	base_reload_stripper_1_empty = true,
-	base_reload_stripper_2 = true,
-	base_reload_stripper_2_empty = true,
-	gl_off_reload_stripper_1 = true,
-	gl_off_reload_stripper_1_empty = true,
-	gl_off_reload_stripper_2 = true,
-	gl_off_reload_stripper_2_empty = true,
-}
-
-SWEP.reticleInactivityCallbacksRaw = {
-	-- ["base_reload_empty_2"] = 0.1,
-	-- ["gl_off_reload_empty_2"] = 0.1,
-		
-	["base_reload_stripper_1"] = 0.1,
-	["base_reload_stripper_1_empty"] = 0.1,
-	["base_reload_stripper_2"] = 0.1,
-	["base_reload_stripper_2_empty"] = 0.1,
-	
-	["gl_off_reload_stripper_1"] = 0.1,
-	["gl_off_reload_stripper_1_empty"] = 0.1,
-	["gl_off_reload_stripper_2"] = 0.1,
-	["gl_off_reload_stripper_2_empty"] = 0.1,
-}
-
--- if CLIENT then
-	-- local v0 = Vector()
-	-- local v1 = Vector(1, 1, 1)
-	
-	-- function SWEP:updateOtherParts()
-		-- self.CW_VM:ManipulateBoneScale(80, (self.Sequence == "base_reload_full_clip") and v0 or v1)
-		-- self.CrosshairEnabled = true
-		-- self.FadeCrosshairOnAim = false
-	-- end
--- end
-
-function SWEP:getStripperClipAnimation(ammo, mag)
-	local suffix = ""
-	
-	if mag < 1 then
-		suffix = "_empty"
-	end
-	
-	local clipDiff = math.floor(math.Clamp(self.Primary.ClipSize + 1 - mag, 0, self.Primary.ClipSize) / self.stripperCapacity)
-	local clipIn = 1
-	
-	for i = 1, clipDiff - 1 do
-		if (ammo - self.stripperCapacity >= clipIn * self.stripperCapacity) then
-			clipIn = clipIn + 1
-		end
-	end
-	
-	return "reload_stripper_" .. tostring(clipIn) .. suffix
 end

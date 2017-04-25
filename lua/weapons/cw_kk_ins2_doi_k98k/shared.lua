@@ -70,8 +70,8 @@ if CLIENT then
 	SWEP.IronsightPos = Vector(-2.5615, -4, 1.588)
 	SWEP.IronsightAng = Vector(0.2652, 0.0073, 0)
 
-	SWEP.KKINS2ScopeK98Pos = Vector(-2.5434, -1.5, 0.3398)
-	SWEP.KKINS2ScopeK98Ang = Vector()
+	SWEP.KKINS2ScopeK98Pos = Vector(-2.565, -1.5, 0.3398)
+	SWEP.KKINS2ScopeK98Ang = Vector(0, 0, 0)
 
 	SWEP.KKINS2ScopeZF4Pos = Vector(-2.1298, -4, 0.6019)
 	SWEP.KKINS2ScopeZF4Ang = Vector(0.0091, 0.0194, 0)
@@ -115,8 +115,8 @@ SWEP.Animations = {
 	base_fire_empty_aim = "iron_dryfire",
 	base_bolt = "base_fire_end",
 	base_bolt_aim = "iron_fire_end",
-	base_reload = "base_reload_clip",
-	base_reload_empty = "base_reload_clip_empty",
+	base_reload_stripper_1 = "base_reload_clip",
+	base_reload_stripper_1_empty = "base_reload_clip_empty",
 	base_reload_start = "base_reload_start",
 	base_reload_start_empty = "base_reload_start_empty",
 	-- base_reload_start_empty = "base_reload_start",
@@ -153,8 +153,8 @@ SWEP.Animations = {
 	gl_off_fire_empty_aim = "gl_iron_dryfire",
 	gl_off_bolt = "gl_fire_end",
 	gl_off_bolt_aim = "gl_iron_fire_end",
-	gl_off_reload = "gl_reload_clip",
-	gl_off_reload_empty = "gl_reload_clip_empty",
+	gl_off_reload_stripper_1 = "gl_reload_clip",
+	gl_off_reload_stripper_1_empty = "gl_reload_clip_empty",
 	gl_off_reload_start = "gl_reload_start",
 	gl_off_reload_start_empty = "gl_reload_start_empty",
 	gl_off_insert = "gl_reload_insert",
