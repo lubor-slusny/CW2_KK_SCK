@@ -220,7 +220,7 @@ if CLIENT then
 		slider:SetMax(max)
 		slider:SetDark(max > 0)
 		slider:SetText("^^ Skin")
-		slider:SetValue(0)
+		slider:SetValue(max > 0 and 0 or 1)
 	end
 	
 	CustomizableWeaponry_KK.panels.ins2 = function(panel)
@@ -228,7 +228,7 @@ if CLIENT then
 		
 		// rigs
 		local rigs = CustomizableWeaponry_KK.ins2.hands
-	
+		
 		local rslider = panel:AddControl("Slider", {
 			Label = "Rig:",
 			Type = "Integer",
