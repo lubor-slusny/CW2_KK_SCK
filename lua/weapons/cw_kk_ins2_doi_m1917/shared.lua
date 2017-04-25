@@ -116,7 +116,7 @@ SWEP.Primary.DefaultClip	= 6
 SWEP.Primary.Automatic		= false
 SWEP.Primary.Ammo			= ".45 ACP"
 
-SWEP.FireDelay = 1.25
+SWEP.FireDelay = 1
 SWEP.FireSound = "CW_KK_INS2_DOI_WEBLEY_FIRE"
 SWEP.Recoil = 2.86
 
