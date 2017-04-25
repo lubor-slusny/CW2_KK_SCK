@@ -71,7 +71,7 @@ if CLIENT then
 	SWEP.KKINS2ScopeEnfieldPos = Vector(-2.5738, -1.5, 0.8389)
 	SWEP.KKINS2ScopeEnfieldAng = Vector()
 
-	SWEP.KKINS2ScopeWA5Pos = Vector(-2.5649, -4, 1.1647)
+	SWEP.KKINS2ScopeWA5Pos = Vector(-2.563, -4, 1.1737)
 	SWEP.KKINS2ScopeWA5Ang = Vector(0, 0, 0)
 
 	SWEP.M203Pos = Vector(-2.71, -6, 1.8053)
@@ -195,17 +195,30 @@ SWEP.Animations = {
 	gl_turn_off = "glsetup_out",
 	gl_turn_off_empty = "glsetup_out_empty",
 	
+	// V1
 	-- stripper_reload_1 = "base_reload_clip",
 	-- stripper_reload_1_empty = "base_reload_full_clip",
 	-- stripper_reload_2 = "base_reload_empty_clip",
 	
-	base_reload = "base_reload_clip",
-	base_reload_empty = "base_reload_full_clip",
-	base_reload_empty_2 = "base_reload_empty_clip",
+	// V2
+	-- base_reload = "base_reload_clip",
+	-- base_reload_empty = "base_reload_full_clip",
+	-- base_reload_empty_2 = "base_reload_empty_clip",
 	
-	gl_off_reload = "base_reload_clip",
-	gl_off_reload_empty = "base_reload_full_clip",
-	gl_off_reload_empty_2 = "base_reload_empty_clip",
+	-- gl_off_reload = "base_reload_clip",
+	-- gl_off_reload_empty = "base_reload_full_clip",
+	-- gl_off_reload_empty_2 = "base_reload_empty_clip",
+	
+	// V2k17
+	base_reload_stripper_1 = "base_reload_clip",
+	base_reload_stripper_1_empty = "base_reload_clip_empty",
+	base_reload_stripper_2 = "base_reload_clip2",
+	base_reload_stripper_2_empty = "base_reload_clip2_empty",
+	
+	gl_off_reload_stripper_1 = "base_reload_clip",
+	gl_off_reload_stripper_1_empty = "base_reload_clip_empty",
+	gl_off_reload_stripper_2 = "base_reload_clip2",
+	gl_off_reload_stripper_2_empty = "base_reload_clip2_empty",
 }
 
 SWEP.SpeedDec = 40
@@ -225,8 +238,9 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/v_cw_kk_doi_enfield.mdl"
+-- SWEP.ViewModel		= "models/weapons/v_cw_kk_doi_enfield.mdl"
 -- SWEP.ViewModel		= "models/weapons/cw_kk_doi/v_enfield.mdl"
+SWEP.ViewModel		= "models/weapons/cw_kk_doi/v_enfield_oldgl.mdl"
 SWEP.WorldModel		= "models/weapons/w_enfield.mdl"
 
 SWEP.WMPos = Vector(14, 0.5, -3)
@@ -278,9 +292,15 @@ SWEP.ReloadTimes = {
 	base_fire_end = {20/38, 1.1},
 	iron_fire_end = {16/38, 1.3},
 	
+	-- base_reload_clip = {90/36, 4.8, KK_INS2_STRIPPERCLIP_UNLOAD_ONE, 29/36},
+	-- base_reload_full_clip = {90/36, 4.81},
+	-- base_reload_empty_clip = {90/36, 7.39, KK_INS2_STRIPPERCLIP_UNLOAD_ONE, 29/36, 176/36},
+	
 	base_reload_clip = {90/36, 4.8, KK_INS2_STRIPPERCLIP_UNLOAD_ONE, 29/36},
-	base_reload_full_clip = {90/36, 4.81},
-	base_reload_empty_clip = {90/36, 7.39, KK_INS2_STRIPPERCLIP_UNLOAD_ONE, 29/36, 176/36},
+	base_reload_clip_empty = {90/36, 4.8},
+	base_reload_clip2 = {90/36, 7.5, KK_INS2_STRIPPERCLIP_UNLOAD_ONE, 29/36, 176/36},
+	base_reload_clip2_empty = {90/36, 7.5, nil, nil, 176/36},
+	
 	base_reload_start = {29/38.5, 1.12, KK_INS2_SHOTGUN_UNLOAD_ONE},
 	base_reload_start_empty = {1.12, 1.12},
 	base_reload_insert = {20/40.2, 0.92},
@@ -362,24 +382,60 @@ if CLIENT then
 end
 
 SWEP.reloadProgressAnimsRaw = {
-	base_reload_empty_2 = true,
-	gl_off_reload_empty_2 = true,
+	-- base_reload_empty_2 = true,
+	-- gl_off_reload_empty_2 = true,
+	
+	base_reload_stripper_1 = true,
+	base_reload_stripper_1_empty = true,
+	base_reload_stripper_2 = true,
+	base_reload_stripper_2_empty = true,
+	gl_off_reload_stripper_1 = true,
+	gl_off_reload_stripper_1_empty = true,
+	gl_off_reload_stripper_2 = true,
+	gl_off_reload_stripper_2_empty = true,
 }
 
 SWEP.reticleInactivityCallbacksRaw = {
-	["base_reload_empty_2"] = 0.1,
-	["gl_off_reload_empty_2"] = 0.1,
+	-- ["base_reload_empty_2"] = 0.1,
+	-- ["gl_off_reload_empty_2"] = 0.1,
+		
+	["base_reload_stripper_1"] = 0.1,
+	["base_reload_stripper_1_empty"] = 0.1,
+	["base_reload_stripper_2"] = 0.1,
+	["base_reload_stripper_2_empty"] = 0.1,
+	
+	["gl_off_reload_stripper_1"] = 0.1,
+	["gl_off_reload_stripper_1_empty"] = 0.1,
+	["gl_off_reload_stripper_2"] = 0.1,
+	["gl_off_reload_stripper_2_empty"] = 0.1,
 }
 
-if CLIENT then
-	local v0 = Vector()
-	local v1 = Vector(1, 1, 1)
+-- if CLIENT then
+	-- local v0 = Vector()
+	-- local v1 = Vector(1, 1, 1)
 	
-	function SWEP:updateOtherParts()
-		self.CW_VM:ManipulateBoneScale(80, (self.Sequence == "base_reload_full_clip") and v0 or v1)
+	-- function SWEP:updateOtherParts()
+		-- self.CW_VM:ManipulateBoneScale(80, (self.Sequence == "base_reload_full_clip") and v0 or v1)
 		-- self.CrosshairEnabled = true
 		-- self.FadeCrosshairOnAim = false
+	-- end
+-- end
+
+function SWEP:getStripperClipAnimation(ammo, mag)
+	local suffix = ""
+	
+	if mag < 1 then
+		suffix = "_empty"
 	end
 	
+	local clipDiff = math.floor(math.Clamp(self.Primary.ClipSize + 1 - mag, 0, self.Primary.ClipSize) / self.stripperCapacity)
+	local clipIn = 1
 	
+	for i = 1, clipDiff - 1 do
+		if (ammo - self.stripperCapacity >= clipIn * self.stripperCapacity) then
+			clipIn = clipIn + 1
+		end
+	end
+	
+	return "reload_stripper_" .. tostring(clipIn) .. suffix
 end
