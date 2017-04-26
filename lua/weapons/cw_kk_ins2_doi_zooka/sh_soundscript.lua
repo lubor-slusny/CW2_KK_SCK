@@ -68,4 +68,8 @@ SWEP.Sounds = {
 	iron_dryfire = {
 		{time = 1/30, sound = "CW_KK_INS2_GP30_EMPTY"},
 	},
+	
+	iron_dryfire_preblend = {
+		{time = 1/30, sound = "CW_KK_INS2_GP30_EMPTY"},
+	},
 }

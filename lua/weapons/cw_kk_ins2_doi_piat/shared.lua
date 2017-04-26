@@ -29,8 +29,11 @@ if CLIENT then
 	
 	SWEP.AttachmentModelsWM = {}
 	
-	SWEP.IronsightPos = Vector(-3.5949, 0, 1.4701)
-	SWEP.IronsightAng = Vector(-2.3778, 0.006, -7)
+	-- SWEP.IronsightPos = Vector(-3.5949, 0, 1.4701)
+	-- SWEP.IronsightAng = Vector(-2.3778, 0.006, -7)
+
+	SWEP.IronsightPos = Vector()
+	SWEP.IronsightAng = Vector()
 
 	SWEP.SprintAnimSpeed = 1
 	SWEP.ViewModelMovementScale_sprint = 0.6
@@ -54,23 +57,25 @@ SWEP.Animations = {
 	base_draw = "base_draw",
 	base_draw_empty = "empty_draw",
 	base_fire = "base_fire",
-	base_fire_aim = "iron_fire",
+	base_fire_aim = "iron_fire_preblend",
 	base_fire_last = "base_fire",
-	base_fire_last_aim = "iron_fire",
+	base_fire_last_aim = "iron_fire_preblend",
 	base_fire_empty = "base_dryfire",
-	base_fire_empty_aim = "iron_dryfire",
+	base_fire_empty_aim = "iron_dryfire_preblend",
 	base_reload = "base_reload",
 	base_reload_empty = "base_reload",
 	base_idle = "base_idle",
+	base_idle_aim = "iron_idle_preblend",
 	base_idle_empty = "empty_idle",
+	base_idle_empty_aim = "empty_iron_idle_preblend",
 	base_holster = "base_holster",
 	base_holster_empty = "empty_holster",
 	base_sprint = "base_sprint",
 	base_sprint_empty = "empty_sprint",
 	base_safe = "base_down",
-	base_safe_aim = "iron_down",
+	base_safe_aim = "iron_down_preblend",
 	base_safe_empty = "empty_down",
-	base_safe_empty_aim = "iron_down_empty",
+	base_safe_empty_aim = "iron_down_empty_preblend",
 	base_crawl = "base_crawl",
 	base_crawl_empty = "empty_crawl",
 	base_melee = "base_melee",
@@ -95,7 +100,7 @@ SWEP.Instructions	= ""
 SWEP.AimViewModelFOV = 30
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/kk_doi/v_piat.mdl"
+SWEP.ViewModel		= "models/weapons/cw_kk_doi/v_piat.mdl"
 SWEP.WorldModel		= "models/weapons/w_piat.mdl"
 
 SWEP.WMPos = Vector(10, 1, -4.5)

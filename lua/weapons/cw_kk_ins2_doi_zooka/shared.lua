@@ -31,14 +31,17 @@ if CLIENT then
 	
 	SWEP.AttachmentModelsWM = {}
 	
-	SWEP.IronsightPos = Vector(-1.7264, 0, -0.281)
-	SWEP.IronsightAng = Vector(7.5622, -0.9048, 13.5897)
+	-- SWEP.IronsightPos = Vector(-1.7264, 0, -0.281)
+	-- SWEP.IronsightAng = Vector(7.5622, -0.9048, 13.5897)
 
-	SWEP.ActualSightPos = Vector(-1.7264, 0, -0.281)
-	SWEP.ActualSightAng = Vector(7.5622, -0.9048, 13.5897)
+	SWEP.IronsightPos = Vector()
+	SWEP.IronsightAng = Vector()
 
-	SWEP.SightBackUpPos = Vector(-1.4887, 0, -1.3139)
-	SWEP.SightBackUpAng = Vector(7.5622, -0.9048, 13.5897)
+	-- SWEP.ActualSightPos = Vector(-1.7264, 0, -0.281)
+	-- SWEP.ActualSightAng = Vector(7.5622, -0.9048, 13.5897)
+
+	-- SWEP.SightBackUpPos = Vector(-1.4887, 0, -1.3139)
+	-- SWEP.SightBackUpAng = Vector(7.5622, -0.9048, 13.5897)
 
 	SWEP.SprintAnimSpeed = 1
 	SWEP.ViewModelMovementScale_sprint = 0.6
@@ -69,24 +72,26 @@ SWEP.Animations = {
 	base_draw = "base_draw",
 	base_draw_empty = "base_draw",
 	base_fire = "base_fire",
-	base_fire_aim = "iron_fire",
+	base_fire_aim = "iron_fire_preblend",
 	base_fire_last = "base_fire",
-	base_fire_last_aim = "iron_fire",
+	base_fire_last_aim = "iron_fire_preblend",
 	base_fire_empty = "base_dryfire",
-	base_fire_empty_aim = "iron_dryfire",
+	base_fire_empty_aim = "iron_dryfire_preblend",
 	base_reload = "base_reload",
 	base_reload_empty = "base_reload",
 	base_reload_empty_mm = "base_reload_phosphorus",
 	base_idle = "base_idle",
+	base_idle_aim = "iron_idle_preblend",
 	base_idle_empty = "base_idle",
+	base_idle_empty_aim = "iron_idle_preblend",
 	base_holster = "base_holster",
 	base_holster_empty = "base_holster",
 	base_sprint = "base_sprint",
 	base_sprint_empty = "base_sprint",
 	base_safe = "base_down",
-	base_safe_aim = "iron_down",
+	base_safe_aim = "iron_down_preblend",
 	base_safe_empty = "base_down",
-	base_safe_empty_aim = "iron_down",
+	base_safe_empty_aim = "iron_down_preblend",
 	base_crawl = "base_crawl",
 	base_crawl_empty = "base_crawl",
 	base_melee = "base_melee",
@@ -111,8 +116,7 @@ SWEP.Instructions	= ""
 SWEP.AimViewModelFOV = 30
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
--- SWEP.ViewModel		= "models/weapons/kk_doi/v_bazooka.mdl"
-SWEP.ViewModel		= "models/weapons/v_cw_kk_doi_zooka.mdl"
+SWEP.ViewModel		= "models/weapons/cw_kk_doi/v_bazooka.mdl"
 SWEP.WorldModel		= "models/weapons/w_bazooka.mdl"
 
 SWEP.WMPos = Vector(-5, 0, -0.5)

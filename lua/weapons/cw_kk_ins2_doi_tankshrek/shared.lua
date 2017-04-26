@@ -25,8 +25,11 @@ if CLIENT then
 		["kk_ins2_fnfal_skin2"] = {model = "models/weapons/w_panzerschreck.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, material = "models/cwkkdoi/shrek/clean_w.mdl"},
 	}
 	
-	SWEP.IronsightPos = Vector(-2.3552, 0, 0.7429)
-	SWEP.IronsightAng = Vector(8.4654, -5.1917, 20)
+	-- SWEP.IronsightPos = Vector(-2.3552, 0, 0.7429)
+	-- SWEP.IronsightAng = Vector(8.4654, -5.1917, 20)
+
+	SWEP.IronsightPos = Vector(0.0121, 0, 0)
+	SWEP.IronsightAng = Vector(0, 0.0527, 0)
 
 	SWEP.SprintAnimSpeed = 1
 	SWEP.ViewModelMovementScale_sprint = 0.6
@@ -53,16 +56,17 @@ SWEP.Animations = {
 	base_pickup = "base_ready",
 	base_draw = "base_draw",
 	base_fire = "base_fire",
-	base_fire_aim = "iron_fire",
+	base_fire_aim = "iron_fire_preblend",
 	base_fire_empty = "base_dryfire",
-	base_fire_empty_aim = "iron_dryfire",
+	base_fire_empty_aim = "iron_dryfire_preblend",
 	base_reload = "base_reload",
 	base_reload_empty = "base_reload",
-	base_idle = "iron_idle",
+	base_idle = "base_idle",
+	base_idle_aim = "iron_idle_preblend",
 	base_holster = "base_holster",
 	base_sprint = "base_sprint",
 	base_safe = "base_down",
-	base_safe_aim = "iron_down",
+	base_safe_aim = "iron_down_preblend",
 	base_crawl = "base_crawl",
 	base_melee = "base_melee",
 }
@@ -85,7 +89,7 @@ SWEP.Instructions	= ""
 SWEP.AimViewModelFOV = 30
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/kk_doi/v_panzerschreck.mdl"
+SWEP.ViewModel		= "models/weapons/cw_kk_doi/v_panzerschreck.mdl"
 SWEP.WorldModel		= "models/weapons/w_panzerschreck.mdl"
 
 SWEP.WMPos = Vector(10, 1, -8)
