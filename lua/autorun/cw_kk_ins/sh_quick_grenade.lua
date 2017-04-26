@@ -44,7 +44,7 @@ CustomizableWeaponry_KK.ins2.quickGrenade.models.m84 = {
 
 CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2us = {
 	id = "ww2us",
-	vm = "models/weapons/kk_doi/v_mk2.mdl",
+	vm = "models/weapons/cw_kk_doi/v_mk2.mdl",
 	wm = "models/weapons/w_mk2.mdl",
 	a_pinpull = "pullbackhigh",
 	a_throw = "throw"
@@ -52,7 +52,7 @@ CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2us = {
 
 CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2de = {
 	id = "ww2de",
-	vm = "models/weapons/kk_doi/v_stielhandgranate.mdl",
+	vm = "models/weapons/cw_kk_doi/v_stielhandgranate.mdl",
 	wm = "models/weapons/w_stielhandgranate.mdl",
 	a_pinpull = "pullbackhigh",
 	a_throw = "bakethrow"
@@ -60,7 +60,7 @@ CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2de = {
 
 CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2gb = {
 	id = "ww2gb",
-	vm = "models/weapons/kk_doi/v_mills.mdl",
+	vm = "models/weapons/cw_kk_doi/v_mills.mdl",
 	wm = "models/weapons/w_mills.mdl",
 	a_pinpull = "pullbackhigh",
 	a_throw = "throw"
@@ -68,7 +68,7 @@ CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2gb = {
 
 CustomizableWeaponry_KK.ins2.quickGrenade.models.n69 = {
 	id = "n69",
-	vm = "models/weapons/kk_doi/v_no69.mdl",
+	vm = "models/weapons/cw_kk_doi/v_no69.mdl",
 	wm = "models/weapons/w_no69.mdl",
 	a_pinpull = "pullbackhigh",
 	a_throw = "throw"
@@ -76,7 +76,7 @@ CustomizableWeaponry_KK.ins2.quickGrenade.models.n69 = {
 
 CustomizableWeaponry_KK.ins2.quickGrenade.models.n77 = {
 	id = "n77",
-	vm = "models/weapons/kk_doi/v_no77.mdl",
+	vm = "models/weapons/cw_kk_doi/v_no77.mdl",
 	wm = "models/weapons/w_no77.mdl",
 	a_pinpull = "pullbackhigh",
 	a_throw = "throw"
@@ -103,7 +103,7 @@ add({text = "FLAME", ammo = "Incendiary", class = "cw_kk_ins2_projectile_anm14",
 	
 if CustomizableWeaponry_KK.HOME then
 	-- CustomizableWeaponry_KK.ins2.quickGrenade.models.roflkek = {
-		-- vm = "models/weapons/kk_doi/v_anm14.mdl",
+		-- vm = "models/weapons/cw_kk_doi/v_anm14.mdl",
 		-- wm = "models/props_junk/flare.mdl",
 		-- a_pinpull = "pullbackhighbake",
 		-- a_throw = "bakethrow"

@@ -30,17 +30,17 @@ CustomizableWeaponry_KK.ins2.quickKnife.models.ninjato = {
 }
 
 CustomizableWeaponry_KK.ins2.quickKnife.models.ww2de = {
-	vm = "models/weapons/kk_doi/v_k98kbayonet.mdl",
+	vm = "models/weapons/cw_kk_doi/v_k98kbayonet.mdl",
 	a_attack = "slash_1"
 }
 
 CustomizableWeaponry_KK.ins2.quickKnife.models.ww2us = {
-	vm = "models/weapons/kk_doi/v_marinebayonet.mdl",
+	vm = "models/weapons/cw_kk_doi/v_garand_bayonet.mdl",
 	a_attack = "slash_1"
 }
 
 CustomizableWeaponry_KK.ins2.quickKnife.models.ww2gb = {
-	vm = "models/weapons/kk_doi/v_garand_bayonet.mdl",
+	vm = "models/weapons/cw_kk_doi/v_enfield_bayonet.mdl",
 	a_attack = "slash_1"
 }
 
