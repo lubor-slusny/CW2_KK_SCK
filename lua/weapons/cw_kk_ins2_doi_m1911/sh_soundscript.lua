@@ -76,6 +76,15 @@ SWEP.Sounds = {
 		{time = 77/31.5, sound = "CW_KK_INS2_DOI_M1911_BOLTRELEASE"},
 	},
 
+	base_reloadempty_null = {
+		{time = 10/31.5, sound = "CW_KK_INS2_DOI_M1911_MAGRELEASE"},
+		{time = 14/31.5, sound = "CW_KK_INS2_DOI_M1911_MAGOUT"},
+		{time = 43/31.5, sound = "CW_KK_INS2_DOI_M1911_MAGIN"},
+		{time = 55/31.5, sound = "CW_KK_INS2_DOI_M1911_MAGHIT"},
+		-- { event 46 56 ""},
+		{time = 79/31.5, sound = "CW_KK_INS2_DOI_M1911_BOLTRELEASE"},
+	},
+
 	base_reload_extmag = {
 		{time = 12/31.5, sound = "CW_KK_INS2_DOI_M1911_MAGRELEASE"},
 		{time = 15/31.5, sound = "CW_KK_INS2_DOI_M1911_MAGOUT"},

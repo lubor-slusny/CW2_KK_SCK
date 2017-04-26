@@ -99,6 +99,15 @@ SWEP.Sounds = {
 		{time = 212/32.5, sound = "CW_KK_INS2_DOI_THOM_1928_RATTLE"},
 	},
 
+	base_reload_null = {
+		{time = 5/30, sound = "CW_KK_INS2_DOI_UNIVERSAL_A1"},
+		{time = 31/30, sound = "CW_KK_INS2_DOI_UNIVERSAL_A2"},
+		{time = 55/30, sound = "CW_KK_INS2_DOI_UNIVERSAL_A3"},
+		{time = 69/30, sound = "CW_KK_INS2_DOI_UNIVERSAL_A4"},
+		{time = 92/30, sound = "CW_KK_INS2_DOI_UNIVERSAL_A5"},
+		{time = 116/30, sound = "CW_KK_INS2_DOI_UNIVERSAL_A6"},
+	},
+
 	-- iron_fire_1 = {
 		-- // { event AE_MUZZLEFLASH 0 ""},
 		-- // { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},

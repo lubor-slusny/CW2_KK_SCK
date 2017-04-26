@@ -34,11 +34,11 @@ end
 SWEP.Sounds = {
 	base_ready = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-		{time = 21/33, sound = "CW_KK_INS2_DOI_ENFIELD_BOLTRELEASE"},
-		{time = 26/33, sound = "CW_KK_INS2_DOI_ENFIELD_BOLTBACK"},
-		{time = 40/33, sound = "CW_KK_INS2_DOI_ENFIELD_BOLTFORWARD"},
-		{time = 45/33, sound = "CW_KK_INS2_DOI_ENFIELD_BOLTLATCH"},
-		{time = 64/33, sound = "CW_KK_INS2_DOI_ENFIELD_RATTLE"},
+		{time = 27/33, sound = "CW_KK_INS2_DOI_ENFIELD_BOLTRELEASE"},
+		{time = 36/33, sound = "CW_KK_INS2_DOI_ENFIELD_BOLTBACK"},
+		{time = 52/33, sound = "CW_KK_INS2_DOI_ENFIELD_BOLTFORWARD"},
+		{time = 60/33, sound = "CW_KK_INS2_DOI_ENFIELD_BOLTLATCH"},
+		{time = 86/33, sound = "CW_KK_INS2_DOI_ENFIELD_RATTLE"},
 	},
 
 	base_draw = {

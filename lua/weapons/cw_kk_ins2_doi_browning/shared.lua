@@ -126,8 +126,8 @@ SWEP.FirstDeployTime = 3.1
 SWEP.DeployTime = 0.9
 SWEP.HolsterTime = 0.6
 
-SWEP.BipodDeployTime = 2.18
-SWEP.BipodUndeployTime = 1.73
+SWEP.BipodDeployTime = 2
+SWEP.BipodUndeployTime = 1.5
 
 SWEP.Chamberable = false
 SWEP.BipodInstalled = true
@@ -136,8 +136,8 @@ SWEP.WeaponLength = 24
 SWEP.MuzzleVelocity = 850
 
 SWEP.ReloadTimes = {
-	base_reload = {5.65, 7.61},
-	base_reload_empty = {4.82, 8.88},
+	base_reload = {5.5, 7.33},
+	base_reload_empty = {4.7, 8.58},
 	
 	deployed_reload = {5.5, 7.33},
 	deployed_reload_empty = {4.7, 8.58},

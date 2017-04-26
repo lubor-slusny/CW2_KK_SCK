@@ -24,35 +24,35 @@ SWEP.Sounds = {
 	},
 
 	base_reload = {
-		{time = 18/32, sound = "CW_KK_INS2_DOI_M1_MAGRELEASE"},
-		{time = 24/32, sound = "CW_KK_INS2_DOI_M1_MAGOUT"},
-		{time = 71/32, sound = "CW_KK_INS2_DOI_M1_MAGIN"},
+		{time = 18/35, sound = "CW_KK_INS2_DOI_M1_MAGRELEASE"},
+		{time = 24/35, sound = "CW_KK_INS2_DOI_M1_MAGOUT"},
+		{time = 71/35, sound = "CW_KK_INS2_DOI_M1_MAGIN"},
 		-- { event 46 72 ""},
 	},
 
 	base_reloadempty = {
-		{time = 18/32, sound = "CW_KK_INS2_DOI_M1_MAGRELEASE"},
-		{time = 24/32, sound = "CW_KK_INS2_DOI_M1_MAGOUT"},
-		{time = 78/32, sound = "CW_KK_INS2_DOI_M1_MAGIN"},
+		{time = 18/35, sound = "CW_KK_INS2_DOI_M1_MAGRELEASE"},
+		{time = 24/35, sound = "CW_KK_INS2_DOI_M1_MAGOUT"},
+		{time = 78/35, sound = "CW_KK_INS2_DOI_M1_MAGIN"},
 		-- { event 46 79 ""},
-		{time = 123/32, sound = "CW_KK_INS2_DOI_M1_BOLTBACK"},
-		{time = 131/32, sound = "CW_KK_INS2_DOI_M1_BOLTRELEASE"},
+		{time = 123/35, sound = "CW_KK_INS2_DOI_M1_BOLTBACK"},
+		{time = 131/35, sound = "CW_KK_INS2_DOI_M1_BOLTRELEASE"},
 	},
 
 	base_reload_ext = {
-		{time = 18/32, sound = "CW_KK_INS2_DOI_M1_MAGRELEASE"},
-		{time = 24/32, sound = "CW_KK_INS2_DOI_M1_MAGOUT"},
-		{time = 71/32, sound = "CW_KK_INS2_DOI_M1_MAGIN"},
+		{time = 18/35, sound = "CW_KK_INS2_DOI_M1_MAGRELEASE"},
+		{time = 24/35, sound = "CW_KK_INS2_DOI_M1_MAGOUT"},
+		{time = 71/35, sound = "CW_KK_INS2_DOI_M1_MAGIN"},
 		-- { event 46 72 ""},
 	},
 
 	base_reloadempty_ext = {
-		{time = 18/32, sound = "CW_KK_INS2_DOI_M1_MAGRELEASE"},
-		{time = 24/32, sound = "CW_KK_INS2_DOI_M1_MAGOUT"},
-		{time = 78/32, sound = "CW_KK_INS2_DOI_M1_MAGIN"},
+		{time = 18/35, sound = "CW_KK_INS2_DOI_M1_MAGRELEASE"},
+		{time = 24/35, sound = "CW_KK_INS2_DOI_M1_MAGOUT"},
+		{time = 78/35, sound = "CW_KK_INS2_DOI_M1_MAGIN"},
 		-- { event 46 79 ""},
-		{time = 123/32, sound = "CW_KK_INS2_DOI_M1_BOLTBACK"},
-		{time = 131/32, sound = "CW_KK_INS2_DOI_M1_BOLTRELEASE"},
+		{time = 123/35, sound = "CW_KK_INS2_DOI_M1_BOLTBACK"},
+		{time = 131/35, sound = "CW_KK_INS2_DOI_M1_BOLTRELEASE"},
 	},
 
 	iron_dryfire = {

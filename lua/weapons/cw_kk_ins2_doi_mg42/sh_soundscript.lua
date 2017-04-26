@@ -94,7 +94,7 @@ SWEP.Sounds = {
 
 	deployed_in = {
 		{time = 1/32.5, sound = "CW_KK_INS2_DOI_MG42_FOLEY"},
-		{time = 19/32.5, sound = "CW_KK_INS2_DOI_MG42_BipodGroundHit"},
+		{time = 19/32.5, sound = "CW_KK_INS2_DOI_MG42_DEPLOYGROUNDHIT"},
 		{time = 46/32.5, sound = "CW_KK_INS2_DOI_MG42_RATTLE"},
 		{time = 65/32.5, sound = "CW_KK_INS2_DOI_MG42_SHOULDER"},
 	},

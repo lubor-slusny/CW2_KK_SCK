@@ -249,7 +249,7 @@ SWEP.SpreadCooldown = 1.6
 SWEP.Shots = 1
 SWEP.Damage = 61
 
-SWEP.FirstDeployTime = 2.7
+SWEP.FirstDeployTime = 3.7
 SWEP.DeployTime = 0.7
 SWEP.HolsterTime = 0.5
 
@@ -271,9 +271,6 @@ SWEP.MuzzleVelocity = 760
 SWEP.ReloadTimes = {
 	base_fire_end = {20/35, 1.2},
 	iron_fire_end = {18/35, 1.4},
-	
-	-- base_reload_full_clip = {88/35, 4.29},
-	-- base_reload_empty_clip = {88/35, 4.29, KK_INS2_STRIPPERCLIP_UNLOAD_ONE, 29/35},
 	base_reload_clip = {88/35, 4.29, KK_INS2_STRIPPERCLIP_UNLOAD_ONE, 29/35},
 	base_reload_clip_empty = {88/35, 4.29},
 	base_reload_start = {29/35.5, 1.21, KK_INS2_SHOTGUN_UNLOAD_ONE},
@@ -283,8 +280,6 @@ SWEP.ReloadTimes = {
 
 	gl_fire_end = {20/35, 1.2},
 	gl_iron_fire_end = {18/35, 1.4},
-	-- gl_reload_empty_stripper = {88/35, 4.29},
-	-- gl_reload_full_clip = {88/35, 4.29, KK_INS2_STRIPPERCLIP_UNLOAD_ONE, 29/35},
 	gl_reload_clip = {88/35, 4.29, KK_INS2_STRIPPERCLIP_UNLOAD_ONE, 29/35},
 	gl_reload_clip_empty = {88/35, 4.29},
 	gl_reload_start = {29/35.5, 1.21, KK_INS2_SHOTGUN_UNLOAD_ONE},

@@ -50,16 +50,16 @@ SWEP.Animations = {
 	base_pickup = "base_ready",
 	base_draw = "base_draw",
 	base_fire = "base_fire",
-	base_fire_aim = "iron_fire",
+	base_fire_aim = "base_fire",
 	base_fire_last = "base_fire",
-	base_fire_last_aim = "iron_fire",
+	base_fire_last_aim = "base_fire",
 	base_fire_empty = "base_dryfire",
-	base_fire_empty_aim = "iron_dryfire",
+	base_fire_empty_aim = "base_dryfire",
 	base_idle = "base_idle",
 	base_holster = "base_holster",
 	base_sprint = "base_sprint",
 	base_safe = "base_down",
-	base_safe_aim = "iron_down",
+	base_safe_aim = "base_down",
 	base_crawl = "base_crawl",
 	base_melee = "base_melee",
 }
@@ -81,7 +81,7 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/kk_doi/v_flame_eintoss46.mdl"
+SWEP.ViewModel		= "models/weapons/cw_kk_doi/v_flame_eintoss46.mdl"
 SWEP.WorldModel		= "models/weapons/w_eintoss46.mdl"
 
 -- SWEP.WMPos = Vector(6.035, -1.5, -1)

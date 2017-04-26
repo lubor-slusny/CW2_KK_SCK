@@ -32,11 +32,12 @@ end
 SWEP.Sounds = {
 	base_ready = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-		{time = 21/33, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
-		{time = 26/33, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
-		{time = 40/33, sound = "CW_KK_INS2_DOI_K98_BOLTFORWARD"},
-		{time = 45/33, sound = "CW_KK_INS2_DOI_K98_BOLTLATCH"},
-		{time = 64/33, sound = "CW_KK_INS2_DOI_K98_RATTLE"},
+		{time = 22/33, sound = "CW_KK_INS2_DOI_K98_EMPTY"},
+		{time = 47/33, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
+		{time = 54/33, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
+		{time = 68/33, sound = "CW_KK_INS2_DOI_K98_BOLTFORWARD"},
+		{time = 75/33, sound = "CW_KK_INS2_DOI_K98_BOLTLATCH"},
+		{time = 96/33, sound = "CW_KK_INS2_DOI_K98_RATTLE"},
 	},
 
 	base_draw = {
@@ -98,20 +99,6 @@ SWEP.Sounds = {
 		{time = 119/35, sound = "CW_KK_INS2_DOI_K98_BOLTLATCH"},
 	},
 
-	-- base_reload_full_clip = {
-		-- {time = 19/35, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
-		-- {time = 27/35, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
-		-- // { event 46 88 ""},
-		-- // { event AE_WPN_RELOAD_OFFSCREEN 40 ""},
-		-- {time = 37/35, sound = "CW_KK_INS2_DOI_K98_FETCHMAG"},
-		-- {time = 40/35, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
-		-- {time = 64/35, sound = "CW_KK_INS2_DOI_K98_MAGIN"},
-		-- {time = 80/35, sound = "CW_KK_INS2_DOI_K98_ROUNDSIN"},
-		-- {time = 111/35, sound = "CW_KK_INS2_DOI_K98_BOLTFORWARDSTRIPPERCLIP"},
-		-- {time = 112/35, sound = "CW_KK_INS2_DOI_K98_STRIPPERCLIPEJECT"},
-		-- {time = 119/35, sound = "CW_KK_INS2_DOI_K98_BOLTLATCH"},
-	-- },
-
 	base_reload_start = {
 		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClipM1},
 		{time = 19/35.5, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
@@ -153,11 +140,12 @@ SWEP.Sounds = {
 
 	gl_ready = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-		{time = 21/33, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
-		{time = 26/33, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
-		{time = 40/33, sound = "CW_KK_INS2_DOI_K98_BOLTFORWARD"},
-		{time = 45/33, sound = "CW_KK_INS2_DOI_K98_BOLTLATCH"},
-		{time = 64/33, sound = "CW_KK_INS2_DOI_K98_RATTLE"},
+		{time = 22/33, sound = "CW_KK_INS2_DOI_K98_EMPTY"},
+		{time = 47/33, sound = "CW_KK_INS2_DOI_K98_BOLTRELEASE"},
+		{time = 54/33, sound = "CW_KK_INS2_DOI_K98_BOLTBACK"},
+		{time = 68/33, sound = "CW_KK_INS2_DOI_K98_BOLTFORWARD"},
+		{time = 75/33, sound = "CW_KK_INS2_DOI_K98_BOLTLATCH"},
+		{time = 96/33, sound = "CW_KK_INS2_DOI_K98_RATTLE"},
 	},
 
 	gl_draw = {

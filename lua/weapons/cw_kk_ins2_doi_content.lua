@@ -12,6 +12,58 @@ AddCSLuaFile()
 	CustomizableWeaponry:addRegularSound("CW_KK_INS2_DOI_BAYONET_DRAW", {"weapons/universal/bayonet_draw_01.wav", "weapons/universal/bayonet_draw_02.wav", "weapons/universal/bayonet_draw_03.wav"})
 	CustomizableWeaponry:addRegularSound("CW_KK_INS2_DOI_BAYONET_HOLSTER", {"weapons/universal/bayonet_holster_01.wav", "weapons/universal/bayonet_holster_02.wav", "weapons/universal/bayonet_holster_03.wav"})
 
+	CustomizableWeaponry:addRegularSound("CW_KK_INS2_DOI_UNIVERSAL_ADSIN", {"weapons/universal/uni_ads_in_01.wav", "weapons/universal/uni_ads_in_02.wav", "weapons/universal/uni_ads_in_02.wav", "weapons/universal/uni_ads_in_04.wav", "weapons/universal/uni_ads_in_05.wav", "weapons/universal/uni_ads_in_06.wav"})
+	CustomizableWeaponry:addRegularSound("CW_KK_INS2_DOI_UNIVERSAL_ADSOUT", {"weapons/universal/uni_ads_out_01.wav", "weapons/universal/uni_ads_out_02.wav", "weapons/universal/uni_ads_out_02.wav", "weapons/universal/uni_ads_out_04.wav", "weapons/universal/uni_ads_out_05.wav", "weapons/universal/uni_ads_out_06.wav"})
+	CustomizableWeaponry:addRegularSound("CW_KK_INS2_DOI_UNIVERSAL_LOWER", {"weapons/universal/uni_weapon_lower_01.wav", "weapons/universal/uni_weapon_lower_02.wav", "weapons/universal/uni_weapon_lower_02.wav", "weapons/universal/uni_weapon_lower_04.wav", "weapons/universal/uni_weapon_lower_05.wav", "weapons/universal/uni_weapon_lower_06.wav"})
+	CustomizableWeaponry:addRegularSound("CW_KK_INS2_DOI_UNIVERSAL_RAISE", {"weapons/universal/uni_weapon_raise_01.wav", "weapons/universal/uni_weapon_raise_02.wav", "weapons/universal/uni_weapon_raise_02.wav", "weapons/universal/uni_weapon_raise_04.wav", "weapons/universal/uni_weapon_raise_05.wav", "weapons/universal/uni_weapon_raise_06.wav"})
+	
+	CustomizableWeaponry:addRegularSound("CW_KK_INS2_DOI_UNIVERSAL_A1", "weapons/universal/uni_a_01.wav")
+	CustomizableWeaponry:addRegularSound("CW_KK_INS2_DOI_UNIVERSAL_A2", "weapons/universal/uni_a_02.wav")
+	CustomizableWeaponry:addRegularSound("CW_KK_INS2_DOI_UNIVERSAL_A3", "weapons/universal/uni_a_03.wav")
+	CustomizableWeaponry:addRegularSound("CW_KK_INS2_DOI_UNIVERSAL_A4", "weapons/universal/uni_a_04.wav")
+	CustomizableWeaponry:addRegularSound("CW_KK_INS2_DOI_UNIVERSAL_A5", "weapons/universal/uni_a_05.wav")
+	CustomizableWeaponry:addRegularSound("CW_KK_INS2_DOI_UNIVERSAL_A6", "weapons/universal/uni_a_06.wav")
+	
+	CustomizableWeaponry:addRegularSound("CW_KK_INS2_DOI_PLAYER_DAMAGEMAJOR", {
+		"player/damage/pl_damage_major_01.wav",
+		"player/damage/pl_damage_major_02.wav",
+		"player/damage/pl_damage_major_03.wav",
+		"player/damage/pl_damage_major_04.wav",
+		"player/damage/pl_damage_major_05.wav",
+		"player/damage/pl_damage_major_06.wav",
+		"player/damage/pl_damage_major_07.wav",
+		"player/damage/pl_damage_major_08.wav",
+		"player/damage/pl_damage_major_09.wav",
+		"player/damage/pl_damage_major_10.wav",
+		"player/damage/pl_damage_major_11.wav",
+		"player/damage/pl_damage_major_12.wav",
+		"player/damage/pl_damage_major_13.wav",
+		"player/damage/pl_damage_major_14.wav",
+	})
+	CustomizableWeaponry:addRegularSound("CW_KK_INS2_DOI_PLAYER_DAMAGEMINOR", {
+		"player/damage/pl_damage_minor_01.wav",
+		"player/damage/pl_damage_minor_02.wav",
+		"player/damage/pl_damage_minor_03.wav",
+		"player/damage/pl_damage_minor_04.wav",
+		"player/damage/pl_damage_minor_05.wav",
+		"player/damage/pl_damage_minor_06.wav",
+		"player/damage/pl_damage_minor_07.wav",
+		"player/damage/pl_damage_minor_08.wav",
+		"player/damage/pl_damage_minor_09.wav",
+		"player/damage/pl_damage_minor_10.wav",
+		"player/damage/pl_damage_minor_11.wav",
+		"player/damage/pl_damage_minor_12.wav",
+		"player/damage/pl_damage_minor_13.wav",
+		"player/damage/pl_damage_minor_14.wav",
+		"player/damage/pl_damage_minor_15.wav",
+		"player/damage/pl_damage_minor_16.wav",
+		"player/damage/pl_damage_minor_17.wav",
+		"player/damage/pl_damage_minor_18.wav",
+		"player/damage/pl_damage_minor_19.wav",
+		"player/damage/pl_damage_minor_20.wav",
+		"player/damage/pl_damage_minor_21.wav",
+	})
+	
 // SHELLS
 if CLIENT then
 	CustomizableWeaponry.shells:addNew_KKINS2("KK_INS2_30-06_link", "models/weapons/shells/30-06_link.mdl", "CW_KK_INS2_SHELL_LINK", Vector(-0.65, -0.5, -0.25), Vector(0.9, 0.55, 0.25))

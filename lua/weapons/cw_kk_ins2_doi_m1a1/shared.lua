@@ -161,10 +161,10 @@ SWEP.WeaponLength = 20
 SWEP.MuzzleVelocity = 607
 
 SWEP.ReloadTimes = {
-	base_reload = {2.5, 3.5},
-	base_reloadempty = {2.7, 5.25},
-	base_reload_ext = {2.5, 3.5},
-	base_reloadempty_ext = {2.7, 5.25},
+	base_reload = {71/35, 3.9},
+	base_reloadempty = {78/35, 5.4},
+	base_reload_ext = {71/35, 3.9},
+	base_reloadempty_ext = {78/35, 5.4},
 	
 	base_melee_bash = {0.3, 1},
 }
