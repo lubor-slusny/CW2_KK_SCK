@@ -52,7 +52,7 @@ SWEP.Animations = {
 	base_fire_empty_aim = "iron_dryfire",
 	base_reload = "base_reload",
 	base_reload_empty = "base_reloadempty",
-	base_idle = "base_idle",
+	base_idle = "iron_idle",
 	base_idle_empty = "empty_idle",
 	base_holster = "base_holster",
 	base_holster_empty = "empty_holster",
@@ -85,7 +85,7 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/kk_doi/v_lugerp08.mdl"
+SWEP.ViewModel		= "models/weapons/cw_kk_doi/v_lugerp08.mdl"
 SWEP.WorldModel		= "models/weapons/w_lugerp08.mdl"
 
 SWEP.WMPos = Vector(4.5, 1, -3.5)
