@@ -250,7 +250,7 @@ if CLIENT then
 	end
 end
 
-function SWEP:idleAnimFunc()		
+function SWEP:idleAnimFunc()
 	prefix = self:getForegripMode()
 	suffix = ""
 	anim = "idle"
