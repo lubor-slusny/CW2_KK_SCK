@@ -22,7 +22,9 @@ if CLIENT then
 	SWEP.ShellViewAngleAlign = {Forward = 0, Right = 0, Up = 0}
 	SWEP.ShellWorldAngleAlign = {Forward = 0, Right = 0, Up = 180}
 	
-	SWEP.AttachmentModelsVM = {}
+	SWEP.AttachmentModelsVM = {
+		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_owen.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+	}
 	
 	SWEP.AttachmentModelsWM = {}
 
@@ -46,7 +48,7 @@ SWEP.MuzzleEffectWorld = "muzzleflash_sten_3p"
 
 SWEP.Attachments = {
 	-- {header = "Barrel", offset = {-300, -600}, atts = {"kk_ins2_ww2_knife", "kk_ins2_ww2_knife_fat", "kk_ins2_suppressor_sterling"}},
-	-- {header = "Under", offset = {-500, 0}, atts = {"kk_ins2_ww2_sling"}},
+	{header = "Under", offset = {-500, 0}, atts = {"kk_ins2_ww2_sling"}},
 	-- {header = "Stock", offset = {1000, 0}, atts = {"bg_ar15sturdystock"}},
 	["+reload"] = {header = "Ammo", offset = {0, 400}, atts = {"am_magnum", "am_matchgrade"}}
 }
