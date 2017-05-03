@@ -681,6 +681,11 @@ function SWEP:createHandsVM()
 	-- self.CW_KK_HANDS:AddEffects(EF_BONEMERGE_FASTCULL)
 end
 
+//-----------------------------------------------------------------------------
+// DrawVMHandsModel detached from and shared between 
+// _drawViewModel, drawGrenade and drawKKKnife
+//-----------------------------------------------------------------------------
+
 function SWEP:DrawVMHandsModel()
 	if self.UseGMHands then
 		local gm = self.Owner:GetHands()

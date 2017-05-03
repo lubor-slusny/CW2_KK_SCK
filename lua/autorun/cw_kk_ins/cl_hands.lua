@@ -1,16 +1,16 @@
 
 if CLIENT then
 	CustomizableWeaponry_KK.ins2.hands = {
+		{"models/gmod4phun/c_ins_to_gmod_hands.mdl", "[GM] PM hands (by GM4Ph)", mergeGMHands = true},
+		{"models/weapons/v_cw_kk_ins2_hands_css.mdl", "[CSS] shared"},
+		
+		{"models/weapons/v_hands_vip.mdl", "[INS] Very Individual Player"},
 		{"models/weapons/v_hands_ins_h.mdl", "[INS] T Heavy"},
 		{"models/weapons/v_hands_ins_m.mdl", "[INS] T Medium"},
 		{"models/weapons/v_hands_ins_l.mdl", "[INS] T Light"},
 		{"models/weapons/v_hands_sec_h.mdl", "[INS] CT Heavy"},
 		{"models/weapons/v_hands_sec_m.mdl", "[INS] CT Medium"},
 		{"models/weapons/v_hands_sec_l.mdl", "[INS] CT Light"},
-		{"models/weapons/v_hands_vip.mdl", "[INS] Very Individual Player"},
-		
-		{"models/weapons/v_cw_kk_ins2_hands_css.mdl", "[CSS] shared"},
-		{"models/gmod4phun/c_ins_to_gmod_hands.mdl", "[GM] PM hands (by GM4Ph)", mergeGMHands = true},
 	}
 	
 	local function add(tab)

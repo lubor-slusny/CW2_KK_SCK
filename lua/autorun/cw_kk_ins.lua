@@ -219,7 +219,7 @@ if CLIENT then
 		local max = wep:getRigSkinMax()
 		slider:SetMax(max)
 		slider:SetDark(max > 0)
-		slider:SetText("^^ Skin")
+		slider:SetText("^^ Skin (" .. ((max == 0) and "none" or (max + 1) .. " found)"))
 		slider:SetValue(max > 0 and 0 or 1)
 	end
 	
