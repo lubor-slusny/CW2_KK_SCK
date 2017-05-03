@@ -85,7 +85,9 @@ if CLIENT then
 		
 		if set != currentRigs[self] then
 			if IsValid(self.CW_KK_HANDS) then
-				self.CW_KK_HANDS:SetModel(CustomizableWeaponry_KK.ins2.hands[set][1])
+				local tab = CustomizableWeaponry_KK.ins2.hands[set]
+				self.CW_KK_HANDS:SetModel(tab[1])
+				self.UseGMHands = tab.mergeGMHands
 			end
 		end
 		

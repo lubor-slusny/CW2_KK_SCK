@@ -129,7 +129,7 @@ function SWEP:_drawViewModel()
 		self.CW_KK_HANDS:SetPos(self.CW_VM:GetPos())
 		
 		self.CW_KK_HANDS:SetParent(self.CW_VM)
-		self.CW_KK_HANDS:DrawModel()
+		self:DrawVMHandsModel()
 	end
 	
 	if cvSVM:GetInt() == 1 then
@@ -181,7 +181,7 @@ function SWEP:drawGrenade()
 	
 	cam.IgnoreZ(true)
 		self.CW_GREN:DrawModel()
-		self.CW_KK_HANDS:DrawModel()
+		self:DrawVMHandsModel()
 	cam.IgnoreZ(false)
 end
 
@@ -680,3 +680,16 @@ function SWEP:createHandsVM()
 	self.CW_KK_HANDS:AddEffects(EF_BONEMERGE)
 	-- self.CW_KK_HANDS:AddEffects(EF_BONEMERGE_FASTCULL)
 end
+
+function SWEP:DrawVMHandsModel()
+	if self.UseGMHands then
+		local gm = self.Owner:GetHands()
+		gm:SetParent(self.CW_KK_HANDS)
+		gm:AddEffects(EF_BONEMERGE_FASTCULL)
+		gm:DrawModel()
+	else
+		self.CW_KK_HANDS:AddEffects(EF_BONEMERGE)
+		self.CW_KK_HANDS:DrawModel()
+	end
+end
+	

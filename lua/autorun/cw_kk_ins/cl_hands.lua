@@ -10,6 +10,7 @@ if CLIENT then
 		{"models/weapons/v_hands_vip.mdl", "[INS] Very Individual Player"},
 		
 		{"models/weapons/v_cw_kk_ins2_hands_css.mdl", "[CSS] shared"},
+		{"models/gmod4phun/c_ins_to_gmod_hands.mdl", "[GM] PM hands (by GM4Ph)", mergeGMHands = true},
 	}
 	
 	local function add(tab)

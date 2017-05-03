@@ -400,7 +400,7 @@ if CLIENT then
 		
 		cam.IgnoreZ(true)
 			wep.CW_KK_KNIFE:DrawModel()
-			wep.CW_KK_HANDS:DrawModel()
+			wep:DrawVMHandsModel()
 		cam.IgnoreZ(false)
 	end
 end
