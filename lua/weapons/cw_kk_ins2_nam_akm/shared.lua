@@ -69,29 +69,26 @@ if CLIENT then
 		["kk_ins2_cstm_eotechxps"] = {model = "models/weapons/attachments/w_cw_kk_ins2_cstm_eotechxps.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
-	SWEP.KKINS2EoTechPos = Vector(-2.313, -1, -0.5001)
-	SWEP.KKINS2EoTechAng = Vector(0, 0, 0)
+	SWEP.IronsightPos = Vector(-1.6165, -3, 0.4936)
+	SWEP.IronsightAng = Vector(1.2084, 0.0477, 0)
 
-	SWEP.KKINS2AimpointPos = Vector(-2.3091, -1, -0.5068)
-	SWEP.KKINS2AimpointAng = Vector(0, 0, 0)
+	SWEP.KKINS2KobraPos = Vector(-1.6519, -2, -0.1356)
+	SWEP.KKINS2KobraAng = Vector(0, -0.0261, 0)
 
-	SWEP.KKINS2KobraPos = Vector(-2.3154, -1, -0.5983)
-	SWEP.KKINS2KobraAng = Vector(0, 0, 0)
+	SWEP.KKINS2EoTechPos = Vector(-1.6439, 0, -0.0596)
+	SWEP.KKINS2EoTechAng = Vector(0.0551, -0.0905, 0)
 
-	SWEP.KKINS2MagnifierPos = Vector(-2.3071, -1, -0.5081)
-	SWEP.KKINS2MagnifierAng = Vector(0, 0, 0)
+	SWEP.KKINS2AimpointPos = Vector(-1.637, 0, -0.0554)
+	SWEP.KKINS2AimpointAng = Vector(0.0359, -0.0169, 0)
 
-	SWEP.IronsightPos = Vector(-2.3053, -2, 0.0754)
-	SWEP.IronsightAng = Vector(1.2057, 0.0201, 0)
-
-	SWEP.KKINS2ElcanPos = Vector(-2.3082, -2, -0.6099)
+	SWEP.KKINS2ElcanPos = Vector(-1.639, -2, -0.1729)
 	SWEP.KKINS2ElcanAng = Vector(0, 0, 0)
 
-	SWEP.KKINS2PO4Pos = Vector(-2.25, -1, -0.4062)
-	SWEP.KKINS2PO4Ang = Vector(0, 0, 0)
+	SWEP.KKINS2MagnifierPos = Vector(-1.6359, -2, -0.0727)
+	SWEP.KKINS2MagnifierAng = Vector(0, 0, 0)
 
-	SWEP.M203Pos = Vector(-1.0535, 0, 0.8312)
-	SWEP.M203Ang = Vector(0.935, 0, 0)
+	SWEP.KKINS2PO4Pos = Vector(-1.5807, -3, 0.0296)
+	SWEP.KKINS2PO4Ang = Vector(0, 0, 0)
 
 	SWEP.CustomizationMenuScale = 0.016
 end
@@ -102,7 +99,7 @@ SWEP.MuzzleEffectWorld = "muzzleflash_akm_3rd"
 SWEP.Attachments = {
 	{header = "Sight", offset = {400, -450}, atts = {"kk_ins2_kobra", "kk_ins2_eotech", "kk_ins2_aimpoint", "kk_ins2_elcan", "kk_ins2_po4", "kk_ins2_cstm_cmore", "kk_ins2_cstm_barska", "kk_ins2_cstm_microt1", "kk_ins2_cstm_eotechxps", "kk_ins2_cstm_compm4s", "kk_ins2_cstm_acog"}},
 	{header = "Barrel", offset = {-100, -450}, atts = {"kk_ins2_pbs1"}},
-	{header = "Under", offset = {-400, 0}, atts = {"kk_ins2_vertgrip", "kk_ins2_gl_gp25"}},
+	-- {header = "Under", offset = {-400, 0}, atts = {"kk_ins2_vertgrip", "kk_ins2_gl_gp25"}},
 	{header = "More Sight", offset = {1000, 0}, atts = {"kk_ins2_magnifier"}, dependencies = CustomizableWeaponry_KK.ins2.magnifierDependencies},
 	["+use"] = {header = "Sight Contract", offset = {400, -0}, atts = {"kk_ins2_sights_cstm"}},
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_magnum", "am_matchgrade"}}
@@ -112,7 +109,7 @@ SWEP.Animations = {
 	base_pickup = "base_ready",
 	base_draw = "base_draw",
 	base_fire = "base_fire",
-	base_fire_aim = {"iron_fire","iron_fire_a","iron_fire_b","iron_fire_c","iron_fire_d","iron_fire_e","iron_fire_f"},
+	base_fire_aim = {"iron_fire1","iron_fire2","iron_fire3","iron_fire4"},
 	base_fire_empty = "base_dryfire",
 	base_fire_empty_aim = "iron_dryfire",
 	base_reload = "base_reload",
@@ -126,55 +123,6 @@ SWEP.Animations = {
 	base_safe_aim = "iron_down",
 	base_crawl = "base_crawl",
 	
-	foregrip_pickup = "foregrip_ready",
-	foregrip_draw = "foregrip_draw",
-	foregrip_fire = "foregrip_fire",
-	foregrip_fire_aim = "foregrip_iron_fire",
-	foregrip_fire_empty = "foregrip_dryfire",
-	foregrip_fire_empty_aim = "foregrip_iron_dryfire",
-	foregrip_reload = "foregrip_reload",
-	foregrip_reload_empty = "foregrip_reloadempty",
-	foregrip_idle = "foregrip_holster",
-	foregrip_holster = "foregrip_holster",
-	foregrip_firemode = "foregrip_fireselect",
-	foregrip_firemode_aim = "foregrip_iron_fireselect",
-	foregrip_sprint = "foregrip_sprint",
-	foregrip_safe = "foregrip_down",
-	foregrip_safe_aim = "foregrip_iron_down",
-	foregrip_crawl = "foregrip_crawl",
-	
-	gl_off_pickup = "gl_ready",
-	gl_off_draw = "gl_draw",
-	gl_off_fire = "gl_fire",
-	gl_off_fire_aim = {"gl_iron_fire","gl_iron_fire_a","gl_iron_fire_b","gl_iron_fire_c","gl_iron_fire_d","gl_iron_fire_e","gl_iron_fire_f"},
-	gl_off_fire_empty = "gl_dryfire",
-	gl_off_fire_empty_aim = "gl_iron_dryfire",
-	gl_off_reload = "gl_reload",
-	gl_off_reload_empty = "gl_reloadempty",
-	gl_off_idle = "gl_holster",
-	gl_off_holster = "gl_holster",
-	gl_off_firemode = "gl_fireselect",
-	gl_off_firemode_aim = "gl_iron_fireselect",
-	gl_off_sprint = "gl_sprint",
-	gl_off_safe = "gl_down",
-	gl_off_safe_aim = "gl_iron_down",
-	gl_off_crawl = "gl_crawl",
-
-	gl_on_draw = "glsetup_draw",
-	gl_on_fire = "glsetup_fire",
-	gl_on_fire_aim = "glsetup_iron_fire",
-	gl_on_fire_empty = "glsetup_dryfire",
-	gl_on_fire_empty_aim = "glsetup_iron_dryfire",
-	gl_on_reload = "glsetup_reload",
-	gl_on_idle = "glsetup",
-	gl_on_holster = "glsetup_holster",
-	gl_on_sprint = "glsetup_sprint",
-	gl_on_safe = "glsetup_down",
-	gl_on_safe_aim = "glsetup_iron_down",
-	gl_on_crawl = "glsetup_crawl",
-	
-	gl_turn_on = "glsetup_in",
-	gl_turn_off = "glsetup_out",
 }
 
 SWEP.SpeedDec = 30

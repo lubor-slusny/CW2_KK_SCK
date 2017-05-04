@@ -57,17 +57,17 @@ SWEP.MuzzleEffectWorld = "muzzleflash_m14_3rd"
 
 SWEP.Attachments = {
 	{header = "Sight", offset = {500, -450}, atts = {"kk_ins2_scope_nam_red"}},
-	{header = "Barrel", offset = {-100, -450}, atts = {"kk_ins2_suppressor_sec"}},
-	{header = "Under", offset = {-400, 0}, atts = {"kk_ins2_bipod"}},
-	{header = "Lasers", offset = {225, 400}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}},
+	-- {header = "Barrel", offset = {-100, -450}, atts = {"kk_ins2_suppressor_sec"}},
+	-- {header = "Under", offset = {-400, 0}, atts = {"kk_ins2_bipod"}},
+	-- {header = "Lasers", offset = {225, 400}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}},
 	["+reload"] = {header = "Ammo", offset = {1000, 500}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
 SWEP.Animations = {
 	base_pickup = "base_ready",
 	base_draw = "base_draw",
-	base_fire = {"base_fire_start", "base_fire_last"},
-	base_fire_aim = {"iron_fire_start", "iron_fire_last"},
+	base_fire = "base_fire_start",
+	base_fire_aim = "iron_fire_start",
 	base_fire_empty = "base_dryfire",
 	base_fire_empty_aim = "iron_dryfire",
 	base_bolt = "base_fire_end",
@@ -76,27 +76,15 @@ SWEP.Animations = {
 	base_reload_start_empty = "base_reload_start",
 	base_insert = "base_reload_insert",
 	base_reload_end = "base_reload_end",
-	base_reload_end_empty = "base_reload_end_empty",
+	base_reload_end_empty = "base_reload_end",
 	base_idle = "base_idle",
 	base_holster = "base_holster",
 	base_sprint = "base_sprint",
 	base_safe = "base_down",
 	base_safe_aim = "iron_down",
 	base_crawl = "base_crawl",
+	base_melee = "base_melee_bash",
 	
-	bipod_in = "deploy_in",
-	bipod_fire = "deployed_fire_start",
-	bipod_fire_aim = "deployed_iron_fire_start",
-	bipod_fire_empty = "deployed_dryfire",
-	bipod_fire_empty_aim = "deployed_iron_dryfire",
-	bipod_bolt = "deployed_fire_end",
-	bipod_bolt_aim = "deployed_iron_fire_end",
-	bipod_reload_start = "deployed_reload_start",
-	bipod_reload_start_empty = "deployed_reload_start",
-	bipod_insert = "deployed_reload_insert",
-	bipod_reload_end = "deployed_reload_end",
-	bipod_reload_end_empty = "deployed_reload_end",
-	bipod_out = "deploy_out",
 }
 
 SWEP.SpeedDec = 40
