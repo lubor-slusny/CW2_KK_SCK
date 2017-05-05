@@ -1,6 +1,6 @@
 "VertexlitGeneric" 
 {
-	"$basetexture" 				"models\weapons\izh43\d_izh43"
+	"$basetexture" 				"models\weapons\izh43\w_izh43"
 	"$bumpmap" 					"models\weapons\izh43\n_izh43"
 	$phongexponenttexture		"models\weapons\izh43\exp_izh43"
 	
@@ -8,7 +8,7 @@
 "$metal" "1" 
 "$phong" "1" 
 //"$phongexponent" "80" 
-"$phongboost" "2" 
+"$phongboost" ".2" 
 "$phongfresnelranges" "[1 2 3]" 
 "$phongtint" "[0.6 0.8 1]" 
 //"$phongalbedotint" "1" 
