@@ -200,9 +200,9 @@ SWEP.SpreadCooldown = 0.13
 SWEP.Shots = 1
 SWEP.Damage = 39
 
-SWEP.FirstDeployTime = 3.3
-SWEP.DeployTime = 0.7
-SWEP.HolsterTime = 0.7
+SWEP.FirstDeployTime = 2.7
+SWEP.DeployTime = 0.6
+SWEP.HolsterTime = 0.9
 
 SWEP.BipodDeployTime = 0.6
 SWEP.BipodUndeployTime = 0.6

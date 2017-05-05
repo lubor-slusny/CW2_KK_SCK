@@ -126,8 +126,11 @@ SWEP.Shots = 1
 SWEP.Damage = 64
 
 SWEP.FirstDeployTime = 1.7
-SWEP.DeployTime = 0.7
-SWEP.HolsterTime = 0.6
+SWEP.DeployTime = 1.6
+SWEP.HolsterTime = 0.8
+
+SWEP.BipodDeployTime = 1.45
+SWEP.BipodUndeployTime = 1.45
 
 SWEP.WeaponLength = 28
 

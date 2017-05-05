@@ -98,7 +98,7 @@ SWEP.Primary.Ammo			= "12 Gauge"
 SWEP.FireDelaySlow = 0.3
 SWEP.FireDelayFast = 0
 SWEP.FireDelay = SWEP.FireDelaySlow
-SWEP.FireSound = "CW_KK_INS2_M590_FIRE"
+SWEP.FireSound = "CW_KK_INS2_NAM_DBS_FIRE"
 SWEP.FireSoundSuppressed = "CW_KK_INS2_TOZ_FIRE_SUPPRESSED"
 SWEP.Recoil = 3
 
