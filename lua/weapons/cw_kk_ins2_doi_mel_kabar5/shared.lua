@@ -57,9 +57,9 @@ SWEP.FireDelay = 1
 SWEP.ReticleInactivityPostFire = 1
 SWEP.DamageOutputDelay = 0.3
 
-SWEP.AttackSound = "CW_KK_INS2_DOI_MELEE"
-SWEP.HitFleshSound = "CW_KK_INS2_DOI_SHOVEL"
-SWEP.HitWorldSound = "CW_KK_INS2_DOI_SHOVEL"
+SWEP.AttackSound = "CW_KK_INS2_DOI_HATCHET"
+SWEP.HitFleshSound = "CW_KK_INS2_DOI_HATCHET_HITPLY"
+SWEP.HitWorldSound = "CW_KK_INS2_DOI_HATCHET_HITWORLD"
 
 SWEP.Sounds = {
 	-- base_attack_1 = {

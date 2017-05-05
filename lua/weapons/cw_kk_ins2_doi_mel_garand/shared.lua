@@ -51,9 +51,9 @@ SWEP.FirstDeployTime = 0.8
 SWEP.DeployTime = 0.8
 SWEP.HolsterTime = 0.6
 
-SWEP.AttackSound = "CW_KK_INS2_DOI_MELEE"
-SWEP.HitFleshSound = "CW_KK_INS2_DOI_MELEE_HITPLY"
-SWEP.HitWorldSound = "CW_KK_INS2_DOI_MELEE_HITWORLD"
+SWEP.AttackSound = "CW_KK_INS2_DOI_KNIFE"
+SWEP.HitFleshSound = "CW_KK_INS2_DOI_KNIFE_HITPLY"
+SWEP.HitWorldSound = "CW_KK_INS2_DOI_KNIFE_HITWORLD"
 
 SWEP.Sounds = {
 	-- hitcenter1 = {
