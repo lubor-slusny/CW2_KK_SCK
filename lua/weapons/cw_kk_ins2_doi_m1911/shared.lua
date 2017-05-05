@@ -56,6 +56,7 @@ SWEP.Animations = {
 	base_reload_mm = "base_reload_extmag",
 	base_reload_empty = "base_reloadempty",
 	base_reload_empty_mm = "base_reloadempty_extmag",
+	base_reload_empty_lulz = "base_reloadempty_null",
 	base_idle = "base_idle",
 	base_idle_aim = "iron_idle_preblend",
 	base_idle_empty = "iron_empty",
@@ -137,6 +138,7 @@ SWEP.ReloadTimes = {
 	base_reloadempty = {1.9, 3.3},
 	base_reload_extmag = {1.9, 2.6},
 	base_reloadempty_extmag = {1.9, 3.3},
+	base_reloadempty_null = {1.9, 3.4},
 	
 	base_melee_bash = {0.3, 0.8},
 	empty_melee_bash = {0.3, 0.8},
@@ -146,4 +148,24 @@ if CLIENT then
 	function SWEP:updateStandardParts()
 		self:setElementActive("kk_ins2_mag_m1911_8", !self.ActiveAttachments.kk_ins2_mag_m1911_15)
 	end
+end
+
+SWEP.reloadProgressAnimsRaw = {
+	base_reload_empty_lulz = true
+}
+
+SWEP.reticleInactivityCallbacksRaw = {
+	["base_reload_empty_lulz"] = 0.1
+}
+
+function SWEP:overrideReloadAnim(prefix, suffix)
+	if self:Clip1() > 0 then
+		return "base_reload"
+	end
+	
+	if math.random(10000) == 1338 then
+		return "base_reload_empty_lulz"
+	end
+	
+	return "base_reload_empty"
 end

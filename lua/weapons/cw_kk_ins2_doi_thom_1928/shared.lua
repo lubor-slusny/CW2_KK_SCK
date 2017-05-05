@@ -95,6 +95,7 @@ SWEP.Animations = {
 	base_reload_empty = "base_reloadempty",
 	base_reload_mm = "base_reload_drum",
 	base_reload_empty_mm = "base_reloadempty_drum",
+	base_reload_lulz = "base_reload_null",
 	base_idle = "base_idle",
 	-- base_idle_empty = "empty_idle",
 	base_idle_empty_mm = "empty_idle_drum",
@@ -237,6 +238,7 @@ SWEP.ReloadTimes = {
 	base_reloadempty = {3.88, 4.76},
 	base_reload_drum = {4.3, 5.48},
 	base_reloadempty_drum = {5.82, 6.92},
+	base_reload_null = {4, 4.3},
 	
 	foregrip_reload = {2.55, 3.33},
 	foregrip_reloadempty = {3.88, 4.76},
@@ -256,4 +258,24 @@ if CLIENT then
 		
 		self.AttachmentModelsVM.modbody.active = self.ActiveAttachments.bg_foldsight
 	end
+end
+
+SWEP.reloadProgressAnimsRaw = {
+	base_reload_lulz = true
+}
+
+SWEP.reticleInactivityCallbacksRaw = {
+	["base_reload_lulz"] = 0.1
+}
+
+function SWEP:overrideReloadAnim(prefix, suffix)
+	if !self.ActiveAttachments.kk_ins2_vertgrip and math.random(10000) == 1338 then
+		return "base_reload_lulz"
+	end
+	
+	if self:Clip1() > 0 then
+		return prefix .. "reload" .. suffix
+	end
+	
+	return prefix .. "reload_empty" .. suffix
 end

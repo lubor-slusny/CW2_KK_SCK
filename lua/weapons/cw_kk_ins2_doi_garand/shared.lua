@@ -111,6 +111,7 @@ SWEP.Animations = {
 	base_fire_empty_aim = "iron_dryfire",
 	base_reload = "base_reloadfull",
 	base_reload_empty = "base_reloadempty",
+	base_reload_empty_lulz = "base_reloadempty_null",
 	base_idle = "base_idle",
 	base_idle_empty = "empty_idle",
 	base_holster = "base_holster",
@@ -141,6 +142,7 @@ SWEP.Animations = {
 	gl_off_fire_empty_aim = "iron_dryfire",
 	gl_off_reload = "base_reloadfull",
 	gl_off_reload_empty = "base_reloadempty",
+	gl_off_reload_empty_lulz = "base_reloadempty_null",
 	gl_off_idle = "base_idle",
 	gl_off_idle_empty = "empty_idle",
 	gl_off_holster = "base_holster",
@@ -245,9 +247,9 @@ SWEP.WeaponLength = 22
 SWEP.MuzzleVelocity = 853
 
 SWEP.ReloadTimes = {
-	base_reloadfull = {3.6, 5.8, KK_INS2_REVOLVER_SPEED_UNLOAD, 1.1},
-	base_reloadempty = {2.2, 4.4},
-	base_reloadempty_null = {3.5, 6.3},
+	base_reloadfull = {3.6, 5, KK_INS2_REVOLVER_SPEED_UNLOAD, 1.1},
+	base_reloadempty = {2.2, 3.6},
+	base_reloadempty_null = {3.5, 6.4},
 	
 	glsetup_reload = {2, 3.1},
 	
@@ -258,10 +260,6 @@ SWEP.ReloadTimes = {
 	
 	base_melee_bash = {0.3, 0.9},
 	base_melee_bash_empty = {0.3, 0.9},
-}
-
-SWEP.freezeBeltOnStart = {
-	base_reloadfull = true
 }
 
 if CLIENT then
@@ -317,8 +315,26 @@ if CLIENT then
 	end
 end
 
--- if CLIENT then
-	-- function SWEP:updateStandardParts()
-		-- self:setElementActive("sleeve", self.ActiveAttachments.kk_ins2_scope_m82)
-	-- end
--- end
+SWEP.reloadProgressAnimsRaw = {
+	base_reload_empty_lulz = true
+}
+
+SWEP.reticleInactivityCallbacksRaw = {
+	["base_reload_empty_lulz"] = 0.1
+}
+
+function SWEP:overrideReloadAnim(prefix, suffix)
+	if self.dt.INS2GLActive then
+		return prefix .. "reload"
+	end
+	
+	if self:Clip1() > 0 then
+		return prefix .. "reload"
+	end
+	
+	if math.random(10000) == 1337 then
+		return "base_reload_empty_lulz"
+	end
+	
+	return prefix .. "reload_empty"
+end
