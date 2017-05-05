@@ -71,4 +71,8 @@ SWEP.Sounds = {
 	iron_dryfire = {
 		{time = 0/30, sound = "CW_KK_INS2_DOI_WELROD_EMPTY"},
 	},
+	
+	base_melee_bash = {
+		{time = 9/33, sound = "CW_KK_INS2_DOI_MELEE"},
+	},
 }

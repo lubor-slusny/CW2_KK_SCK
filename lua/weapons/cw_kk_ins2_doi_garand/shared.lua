@@ -324,11 +324,7 @@ SWEP.reticleInactivityCallbacksRaw = {
 }
 
 function SWEP:overrideReloadAnim(prefix, suffix)
-	if self.dt.INS2GLActive then
-		return prefix .. "reload"
-	end
-	
-	if self:Clip1() > 0 then
+	if self.dt.INS2GLActive or self:Clip1() > 0 then
 		return prefix .. "reload"
 	end
 	

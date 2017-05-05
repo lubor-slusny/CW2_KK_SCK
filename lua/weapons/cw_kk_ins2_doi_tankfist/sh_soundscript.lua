@@ -40,4 +40,12 @@ SWEP.Sounds = {
 	base_holster_empty = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
 	},
+	
+	base_melee_bash = {
+		{time = 6/31, sound = "CW_KK_INS2_DOI_MELEE"},
+	},
+	
+	base_melee_bash_empty = {
+		{time = 6/31, sound = "CW_KK_INS2_DOI_MELEE"},
+	},
 }

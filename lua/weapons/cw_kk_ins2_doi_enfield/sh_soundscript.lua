@@ -68,10 +68,6 @@ SWEP.Sounds = {
 		{time = 0, sound = "CW_KK_INS2_DOI_ENFIELD_EMPTY"},
 	},
 
-	base_melee = {
-		{time = 1/30, sound = "CW_KK_INS2_DOI_MELEE"},
-	},
-
 	base_reload_clip = {
 		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClipM1},
 		{time = 19/36, sound = "CW_KK_INS2_DOI_ENFIELD_BOLTRELEASE"},
@@ -199,10 +195,6 @@ SWEP.Sounds = {
 		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
 	},
 
-	base_melee_empty = {
-		{time = 1/30, sound = "CW_KK_INS2_DOI_MELEE"},
-	},
-
 	glsetup_in = {
 		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClipM1},
 		{time = 19/35.5, sound = "CW_KK_INS2_DOI_ENFIELD_BOLTRELEASE"},
@@ -302,5 +294,29 @@ SWEP.Sounds = {
 	glsetup_crawl_empty = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
 		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
+	},
+	
+	base_melee_bash = {
+		{time = 6/31, sound = "CW_KK_INS2_DOI_MELEE"},
+	},
+	
+	base_melee = {
+		{time = 1/30, sound = "CW_KK_INS2_DOI_MELEE"},
+	},
+	
+	base_melee_end = {
+		{time = 1/30, sound = "CW_KK_INS2_DOI_MELEE"},
+	},
+	
+	base_melee_empty = {
+		{time = 1/30, sound = "CW_KK_INS2_DOI_MELEE"},
+	},
+	
+	base_melee_bash_empty = {
+		{time = 6/31, sound = "CW_KK_INS2_DOI_MELEE"},
+	},
+	
+	base_melee_end_empty = {
+		{time = 1/30, sound = "CW_KK_INS2_DOI_MELEE"},
 	},
 }

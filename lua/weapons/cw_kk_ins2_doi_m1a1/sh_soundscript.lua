@@ -24,14 +24,6 @@ SWEP.Sounds = {
 		{time = 0, sound = "CW_KK_INS2_DOI_M1A1_EMPTY"},
 	},
 
-	base_melee = {
-		{time = 1/30, sound = "CW_KK_INS2_DOI_MELEE"},
-	},
-
-	base_melee_end = {
-		{time = 1/30, sound = "CW_KK_INS2_DOI_MELEE"},
-	},
-
 	base_reload = {
 		{time = 18/35, sound = "CW_KK_INS2_DOI_M1A1_MAGRELEASE"},
 		{time = 24/35, sound = "CW_KK_INS2_DOI_M1A1_MAGOUT"},
@@ -66,5 +58,17 @@ SWEP.Sounds = {
 
 	iron_dryfire = {
 		{time = 0, sound = "CW_KK_INS2_DOI_M1A1_EMPTY"},
+	},
+	
+	base_melee_bash = {
+		{time = 6/31, sound = "CW_KK_INS2_DOI_MELEE"},
+	},
+	
+	base_melee = {
+		{time = 1/30, sound = "CW_KK_INS2_DOI_MELEE"},
+	},
+	
+	base_melee_end = {
+		{time = 1/30, sound = "CW_KK_INS2_DOI_MELEE"},
 	},
 }

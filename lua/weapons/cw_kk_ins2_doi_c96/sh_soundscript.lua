@@ -101,4 +101,12 @@ SWEP.Sounds = {
 		{time = 0/35, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
 		{time = 22/35, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
 	},
+	
+	base_melee_bash = {
+		{time = 9/33, sound = "CW_KK_INS2_DOI_MELEE"},
+	},
+	
+	base_melee_bash_empty = {
+		{time = 9/33, sound = "CW_KK_INS2_DOI_MELEE"},
+	},
 }

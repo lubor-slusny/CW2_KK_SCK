@@ -135,4 +135,12 @@ SWEP.Sounds = {
 	iron_fireselect_empty = {
 		{time = 13/31.2, sound = "CW_KK_INS2_DOI_THOMPSON_FIRESELECT"},
 	},
+	
+	base_melee_bash = {
+		{time = 6/33, sound = "CW_KK_INS2_DOI_MELEE"},
+	},
+	
+	base_melee_bash_empty = {
+		{time = 6/33, sound = "CW_KK_INS2_DOI_MELEE"},
+	},
 }

@@ -176,4 +176,8 @@ SWEP.Sounds = {
 	deployed_fireselect_empty = {
 		{time = 13/30, sound = "CW_KK_INS2_DOI_BAR_FIRESELECT"},
 	},
+	
+	base_melee_bash = {
+		{time = 13/33, sound = "CW_KK_INS2_DOI_MELEE"},
+	},
 }

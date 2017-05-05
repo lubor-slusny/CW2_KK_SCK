@@ -46,12 +46,11 @@ SWEP.Sounds = {
 		{time = 143/31.5, sound = "CW_KK_INS2_DOI_OWEN_RATTLE"},
 	},
 
-	-- base_melee_bash = {
-		-- {time = 6 "Weapon_Bash.Melee"},
-		-- // { event 1338 9 ""},
-		-- // { event AE_WPN_READY 26 ""},
-		-- fps 31
-	-- },
+	base_melee_bash = {
+		{time = 6/31, sound = "CW_KK_INS2_DOI_MELEE"},
+		// { event 1338 9 ""},
+		// { event AE_WPN_READY 26 ""},
+	},
 
 	iron_dryfire = {
 		{time = 0/30, sound = "CW_KK_INS2_DOI_OWEN_EMPTY"},
@@ -78,10 +77,9 @@ SWEP.Sounds = {
 		{time = 1/30, sound = "CW_KK_INS2_DOI_MELEE"},
 	},
 
-	-- base_melee_bash_empty = {
-		-- {time = 6 "Weapon_Bash.Melee"},
-		-- { event 1338 9 ""},
-		-- { event AE_WPN_READY 26 ""},
-		-- fps 31
-	-- },
+	base_melee_bash_empty = {
+		{time = 6/31, sound = "CW_KK_INS2_DOI_MELEE"},
+		// { event 1338 9 ""},
+		// { event AE_WPN_READY 26 ""},
+	},
 }

@@ -145,9 +145,11 @@ SWEP.Sounds = {
 	
 	base_melee_bash = {
 		{time = 0, sound = "", callback = meleeShellCorection},
+		{time = 9/33, sound = "CW_KK_INS2_DOI_MELEE"},
 	},
 	
 	empty_melee_bash = {
 		{time = 0, sound = "", callback = meleeShellCorection},
+		{time = 9/33, sound = "CW_KK_INS2_DOI_MELEE"},
 	},
 }

@@ -50,4 +50,12 @@ SWEP.Sounds = {
 	iron_dryfire_preblend = {
 		{time = 1/30, sound = "CW_KK_INS2_DOI_PIAT_EMPTY"},
 	},
+	
+	base_melee = {
+		{time = 5/31, sound = "CW_KK_INS2_DOI_MELEE"},
+	},
+	
+	empty_melee = {
+		{time = 5/31, sound = "CW_KK_INS2_DOI_MELEE"},
+	},
 }
