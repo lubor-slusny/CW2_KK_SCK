@@ -4,10 +4,22 @@ AddCSLuaFile()
 
 // SOUNDS
 	CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_SHOVEL", {"weapons/entrenchingtool/ent_tool_melee_01.wav", "weapons/entrenchingtool/ent_tool_melee_02.wav", "weapons/entrenchingtool/ent_tool_melee_03.wav", "weapons/entrenchingtool/ent_tool_melee_04.wav", "weapons/entrenchingtool/ent_tool_melee_05.wav", "weapons/entrenchingtool/ent_tool_melee_06.wav"})
+	
+	CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_KNIFE", {"weapons/universal/weapon_melee_01.wav", "weapons/universal/weapon_melee_02.wav", "weapons/universal/weapon_melee_03.wav", "weapons/universal/weapon_melee_04.wav", "weapons/universal/weapon_melee_05.wav", "weapons/universal/weapon_melee_06.wav"})
+	CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_KNIFE_HITPLY", {"weapons/universal/weapon_melee_hitflesh_01.wav", "weapons/universal/weapon_melee_hitflesh_02.wav", "weapons/universal/weapon_melee_hitflesh_03.wav", "weapons/universal/weapon_melee_hitflesh_04.wav"})
+	CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_KNIFE_HITWORLD", {"weapons/universal/weapon_melee_hitworld_01.wav", "weapons/universal/weapon_melee_hitworld_02.wav"})
 
-	CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_MELEE", {"weapons/universal/weapon_melee_01.wav", "weapons/universal/weapon_melee_02.wav", "weapons/universal/weapon_melee_03.wav", "weapons/universal/weapon_melee_04.wav", "weapons/universal/weapon_melee_05.wav", "weapons/universal/weapon_melee_06.wav"})
-	CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_MELEE_HITPLY", {"weapons/universal/weapon_melee_hitflesh_01.wav", "weapons/universal/weapon_melee_hitflesh_02.wav", "weapons/universal/weapon_melee_hitflesh_03.wav", "weapons/universal/weapon_melee_hitflesh_04.wav"})
-	CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_MELEE_HITWORLD", {"weapons/universal/weapon_melee_hitworld_01.wav", "weapons/universal/weapon_melee_hitworld_02.wav"})
+	CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_MELEE", {"weapons/meleebash/melee_bash_01.wav", "weapons/meleebash/melee_bash_02.wav", "weapons/meleebash/melee_bash_03.wav", "weapons/meleebash/melee_bash_04.wav", "weapons/meleebash/melee_bash_05.wav"})
+	CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_MELEE_FT", {"weapons/meleebash/melee_bash_flamethrower_01.wav", "weapons/meleebash/melee_bash_flamethrower_02.wav", "weapons/meleebash/melee_bash_flamethrower_03.wav", "weapons/meleebash/melee_bash_flamethrower_04.wav", "weapons/meleebash/melee_bash_flamethrower_05.wav"})
+	CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_MELEE_HITPLY", {"weapons/meleebash/melee_bash_hit_flesh_01.wav", "weapons/meleebash/melee_bash_hit_flesh_02.wav", "weapons/meleebash/melee_bash_hit_flesh_03.wav", "weapons/meleebash/melee_bash_hit_flesh_04.wav", "weapons/meleebash/melee_bash_hit_flesh_05.wav", "weapons/meleebash/melee_bash_hit_flesh_06.wav", "weapons/meleebash/melee_bash_hit_flesh_07.wav", "weapons/meleebash/melee_bash_hit_flesh_08.wav", "weapons/meleebash/melee_bash_hit_flesh_09.wav", "weapons/meleebash/melee_bash_hit_flesh_10.wav", "weapons/meleebash/melee_bash_hit_flesh_11.wav", "weapons/meleebash/melee_bash_hit_flesh_12.wav"})
+	CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_MELEE_HITWORLD", {"weapons/meleebash/melee_bash_hitworld_01.wav", "weapons/meleebash/melee_bash_hitworld_02.wav", "weapons/meleebash/melee_bash_hitworld_03.wav", "weapons/meleebash/melee_bash_hitworld_04.wav"})
+	
+	CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_BAYONET_HITPLY", {"weapons/bayonet/bayonet_hitflesh_01.wav", "weapons/bayonet/bayonet_hitflesh_02.wav", "weapons/bayonet/bayonet_hitflesh_03.wav", "weapons/bayonet/bayonet_hitflesh_04.wav"})
+	CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_BAYONET_HITWORLD", {"weapons/bayonet/bayonet_hitworld_01.wav", "weapons/bayonet/bayonet_hitworld_02.wav", "weapons/bayonet/bayonet_hitworld_03.wav", "weapons/bayonet/bayonet_hitworld_04.wav"})
+
+	CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_HATCHET", {"weapons/meleebash/hatchet_melee_01.wav", "weapons/meleebash/hatchet_melee_02.wav", "weapons/meleebash/hatchet_melee_03.wav", "weapons/meleebash/hatchet_melee_04.wav", "weapons/meleebash/hatchet_melee_05.wav"})
+	CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_HATCHET_HITPLY", {"weapons/meleebash/hatchet_hitflesh_01.wav", "weapons/meleebash/hatchet_hitflesh_02.wav", "weapons/meleebash/hatchet_hitflesh_03.wav", "weapons/meleebash/hatchet_hitflesh_04.wav"})
+	CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_HATCHET_HITWORLD", {"weapons/meleebash/hatchet_hitworld_01.wav", "weapons/meleebash/hatchet_hitworld_02.wav", "weapons/meleebash/hatchet_hitworld_03.wav", "weapons/meleebash/hatchet_hitworld_04.wav"})
 	
 	CustomizableWeaponry:addRegularSound("CW_KK_INS2_DOI_BAYONET_DRAW", {"weapons/universal/bayonet_draw_01.wav", "weapons/universal/bayonet_draw_02.wav", "weapons/universal/bayonet_draw_03.wav"})
 	CustomizableWeaponry:addRegularSound("CW_KK_INS2_DOI_BAYONET_HOLSTER", {"weapons/universal/bayonet_holster_01.wav", "weapons/universal/bayonet_holster_02.wav", "weapons/universal/bayonet_holster_03.wav"})
@@ -17,6 +29,8 @@ AddCSLuaFile()
 	CustomizableWeaponry:addRegularSound("CW_KK_INS2_DOI_UNIVERSAL_LOWER", {"weapons/universal/uni_weapon_lower_01.wav", "weapons/universal/uni_weapon_lower_02.wav", "weapons/universal/uni_weapon_lower_02.wav", "weapons/universal/uni_weapon_lower_04.wav", "weapons/universal/uni_weapon_lower_05.wav", "weapons/universal/uni_weapon_lower_06.wav"})
 	CustomizableWeaponry:addRegularSound("CW_KK_INS2_DOI_UNIVERSAL_RAISE", {"weapons/universal/uni_weapon_raise_01.wav", "weapons/universal/uni_weapon_raise_02.wav", "weapons/universal/uni_weapon_raise_02.wav", "weapons/universal/uni_weapon_raise_04.wav", "weapons/universal/uni_weapon_raise_05.wav", "weapons/universal/uni_weapon_raise_06.wav"})
 	
+	CustomizableWeaponry:addFireSound("CW_KK_INS2_DOI_LAUNCHER_EMPTY", "weapons/universal/uni_launcher_empty.wav")
+
 	CustomizableWeaponry:addRegularSound("CW_KK_INS2_DOI_UNIVERSAL_A1", "weapons/universal/uni_a_01.wav")
 	CustomizableWeaponry:addRegularSound("CW_KK_INS2_DOI_UNIVERSAL_A2", "weapons/universal/uni_a_02.wav")
 	CustomizableWeaponry:addRegularSound("CW_KK_INS2_DOI_UNIVERSAL_A3", "weapons/universal/uni_a_03.wav")
