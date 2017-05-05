@@ -442,6 +442,8 @@ local function updatePanel()
 		label:Dock(LEFT)
 		label:DockMargin(0,0,0,0)
 		label:SizeToContents()
+		label:SetMouseInputEnabled(true)
+		function label:DoClick() updatePanel() end
 		
 		local label
 		label = vgui.Create("DLabel", labelPanel)
