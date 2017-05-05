@@ -152,65 +152,12 @@ SWEP.WeaponLength = 38
 SWEP.MuzzleVelocity = 777
 
 SWEP.ReloadTimes = {
-	base_fire_end = {21/30, 1.6},
-	iron_fire_end = {19/28.5, 1.75},
+	base_fire_end = {21/30, 1.3},
+	iron_fire_end = {19/28.5, 1.3},
 	
-	base_reload_start = {15/30, 0.9, KK_INS2_SHOTGUN_UNLOAD_ONE},
-	base_reload_insert = {12/32, 0.825},
-	base_reload_end = {1.1, 1.1},
-	base_reload_end_empty = {1.1, 1.1},
+	base_reload_start = {0.75, 1.3, KK_INS2_SHOTGUN_UNLOAD_ONE},
+	base_reload_insert = {0.6, 1.1},
+	base_reload_end = {1, 1},
 	
-	deployed_fire_end = {20/30, 1.7},
-	deployed_iron_fire_end = {20/34, 1.5},
-	
-	deployed_reload_start = {15/30, 0.9, KK_INS2_SHOTGUN_UNLOAD_ONE},
-	deployed_reload_insert = {12/30, 0.825},
-	deployed_reload_end = {1.1, 1.1},
+	base_melee_bash = {0.57, 1.6},
 }
-
-if CLIENT then
-	function SWEP:updateOtherParts() // call me clientSideThink
-		local vm = self.CW_VM
-		local cycle = vm:GetCycle()
-		local activity = self.Sequence
-		
-		if activity:find("reload_start") then
-			self.shotgunReloading = true
-		end
-		
-		if activity:find("reload_end") then
-			self.shotgunReloading = false
-		end
-	end	
-
-	function SWEP:playSwitchBipod()
-		local isBipod = self.dt.BipodDeployed
-		local vm = self.CW_VM
-		local cycle = vm:GetCycle()
-		local activity = self.Sequence
-		
-		local canPlay = !(((activity:find("reload") or activity:find("fire_end")) and cycle < 1) or self.shotgunReloading)
-		
-		if isBipod != self._KK_INS2_wasBipod and self._KK_INS2_wasBipod != nil then
-			if canPlay then
-				if isBipod then
-					self:playAnim("bipod_in") 
-				else 
-					self:playAnim("bipod_out") 
-				end
-			else
-				self.KKINS_postReloadBipodSwitch = true
-			end
-		end
-		if self.KKINS_postReloadBipodSwitch and canPlay then
-			if isBipod then
-				self:playAnim("bipod_in") 
-			else 
-				self:playAnim("bipod_out") 
-			end
-			self.KKINS_postReloadBipodSwitch = false
-		end
-		
-		self._KK_INS2_wasBipod = isBipod
-	end
-end

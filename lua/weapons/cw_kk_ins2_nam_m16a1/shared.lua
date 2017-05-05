@@ -56,17 +56,14 @@ if CLIENT then
 		["kk_ins2_scope_nam_colt"] = {model = "models/weapons/upgrades/w_optics_m16a1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
-	SWEP.IronsightPos = Vector(-1.0637, -2, -0.0176)
-	SWEP.IronsightAng = Vector(-0.0534, 0.0072, 0)
+	SWEP.IronsightPos = Vector(-1.3497, -2, 0.2385)
+	SWEP.IronsightAng = Vector(-0.0316, 0.0288, 0)
 
-	SWEP.M203Pos = Vector(-1.5805, -5, -0.4545)
-	SWEP.M203Ang = Vector(-0.0041, -1.7264, -2.205)
+	SWEP.M203Pos = Vector(-1.4331, -5, -0.9376)
+	SWEP.M203Ang = Vector(2.4069, -0.5549, -4)
 
-	SWEP.KKINS2NAMColtPos = Vector(-1.0662, -2, -0.6937)
-	SWEP.KKINS2NAMColtAng = Vector(0, 0, 0)
-
-	SWEP.KKINS2NAMColtPos = Vector(-1.087, -2, -0.7011)
-	SWEP.KKINS2NAMColtAng = Vector(0.0079, 0.0299, 0)
+	SWEP.KKINS2NAMColtPos = Vector(-1.3723, -2, -0.4425)
+	SWEP.KKINS2NAMColtAng = Vector(-0.0054, 0.0156, 0)
 
 	SWEP.CustomizationMenuScale = 0.013
 end
@@ -207,6 +204,9 @@ SWEP.FirstDeployTime = 3.3
 SWEP.DeployTime = 0.7
 SWEP.HolsterTime = 0.7
 
+SWEP.BipodDeployTime = 0.6
+SWEP.BipodUndeployTime = 0.6
+
 SWEP.WeaponLength = 24
 
 SWEP.SightBGs = {main = 0, foldsight = 0}
@@ -214,25 +214,30 @@ SWEP.SightBGs = {main = 0, foldsight = 0}
 SWEP.MuzzleVelocity = 948
 
 SWEP.ReloadTimes = {
-	base_reload = {4, 4.8},
-	base_reloadempty = {4, 5.65},
-	base_reloadempty2 = {4, 5.65},
-	base_reloadempty3 = {4, 5.65},
+	base_reload = {3.4, 4.2},
+	base_reloadempty = {3.45, 4.9},
+	base_reloadempty2 = {3.45, 4.9},
 	
-	base_reload_extended = {4, 4.8},
-	base_reloadempty_extended = {4, 5.65},
+	base_reload_extended = {3.4, 4.2},
+	base_reloadempty_extended1 = {3.45, 4.9},
+	base_reloadempty_extended2 = {3.45, 4.9},
 	
-	gl_reload = {4, 4.8},
-	gl_reloadempty = {4, 5.65},
+	base_melee_bash = {0.4, 1.5},
 	
-	glsetup_reload = {2.9, 4},
+	gl_reload = {3.4, 4.2},
+	gl_reloadempty1 = {3.45, 4.9},
+	gl_reloadempty2 = {3.45, 4.9},
 	
-	glsetup_in = {1.7, 1.7},
-	glsetup_out = {1.2, 1.2},
+	glsetup_reload = {3.2, 4.4},
 	
-	deployed_reload_half = {3.3, 4},
-	deployed_reload_empty = {3.3, 5},
-	deployed_reload_empty2 = {3.3, 5},
+	glsetup_in = {1.4, 1.4},
+	glsetup_out = {1.4, 1.4},
+	
+	deployed_reload_half = {2.9, 3.6},
+	deployed_reload_empty = {2.9, 4.3},
+	
+	deployed_reload_half_ext = {2.9, 3.6},
+	deployed_reload_empty_ext = {2.9, 4.3},
 }
 
 if CLIENT then 

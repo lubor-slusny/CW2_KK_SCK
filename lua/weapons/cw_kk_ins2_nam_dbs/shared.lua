@@ -22,7 +22,9 @@ if CLIENT then
 	
 	SWEP.ShellViewAngleAlign = {Forward = 0, Right = 0, Up = 0}
 	
-	SWEP.AttachmentModelsVM = {}
+	SWEP.AttachmentModelsVM = {
+		["kk_ins2_suppressor_shotgun"] = {model = "models/weapons/v_nam_sawedoff.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, hideVM = true},
+	}
 	
 	SWEP.AttachmentModelsWM = {}
 	
@@ -36,7 +38,7 @@ SWEP.MuzzleEffect = "muzzleflash_ithica_1p"
 SWEP.MuzzleEffectWorld = "muzzleflash_ithica_3p"
 
 SWEP.Attachments = {
-	-- {header = "Barrel", offset = {0, -200}, atts = {"kk_ins2_suppressor_shotgun"}},
+	{header = "Barrel", offset = {0, -200}, atts = {"kk_ins2_suppressor_shotgun"}},
 	-- {header = "Under", offset = {0, 400}, atts = {"kk_ins2_vertgrip"}},
 	-- {header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
 	["+reload"] = {header = "Ammo", offset = {1000, 400}, atts = {"am_slugrounds", "am_flechetterounds"}}
