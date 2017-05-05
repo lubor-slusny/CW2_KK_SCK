@@ -6,6 +6,10 @@ local function shell(wep)
 end
 
 SWEP.Sounds = {
+	base_melee_bash = {
+		{time = 10/30, sound = "CW_KK_INS2_DOI_MELEE"},
+	},
+
 	base_ready = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
 		{time = 19/30, sound = "CW_KK_INS2_NAM_DBS_BREAKCLOSE"},

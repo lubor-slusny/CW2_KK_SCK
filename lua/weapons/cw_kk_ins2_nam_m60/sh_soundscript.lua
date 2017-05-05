@@ -12,6 +12,10 @@ local function link(wep)
 end
 
 SWEP.Sounds = {
+	base_melee_bash = {
+		{time = 15/30, sound = "CW_KK_INS2_DOI_MELEE"},
+	},
+
 	base_fire_1 = {
 		{time = 0.02, sound = "", callback = link},
 		{time = 0.05, sound = "", callback = shell},
