@@ -62,8 +62,8 @@ if CLIENT then
 	SWEP.M203Pos = Vector(-1.4331, -5, -0.9376)
 	SWEP.M203Ang = Vector(2.4069, -0.5549, -4)
 
-	SWEP.KKINS2NAMColtPos = Vector(-1.3723, -2, -0.4425)
-	SWEP.KKINS2NAMColtAng = Vector(-0.0054, 0.0156, 0)
+	SWEP.KKINS2NAMColtPos = Vector(-1.3714, -3, -0.4425)
+	SWEP.KKINS2NAMColtAng = Vector(-0.0054, 0.0201, 0)
 
 	SWEP.CustomizationMenuScale = 0.013
 end

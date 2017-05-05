@@ -46,8 +46,8 @@ if CLIENT then
 	SWEP.IronsightPos = Vector()
 	SWEP.IronsightAng = Vector()
 
-	SWEP.KKINS2NAMRedfieldPos = Vector(-2.4678, 0, 0.1654)
-	SWEP.KKINS2NAMRedfieldAng = Vector()
+	SWEP.KKINS2NAMRedfieldPos = Vector(-1.8782, 0, 0.9999)
+	SWEP.KKINS2NAMRedfieldAng = Vector(0, 0.0222, 0)
 
 	SWEP.CustomizationMenuScale = 0.022
 end

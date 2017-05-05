@@ -5,125 +5,82 @@ local function shell(wep)
 	wep:shellEvent() 
 end
 
+-- {time = 21/30, sound = "", callback = shell},
+
 SWEP.Sounds = {
 	base_ready = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-		{time = 19/25, sound = "CW_KK_INS2_M40A1_BOLTRELEASE"},
-		{time = 24/25, sound = "CW_KK_INS2_M40A1_BOLTBACK"},
-		{time = 33/25, sound = "CW_KK_INS2_M40A1_BOLTFORWARD"},
-		{time = 38/25, sound = "CW_KK_INS2_M40A1_BOLTLATCH"},
-		{time = 56/25, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
+		{time = 0/30, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
+		{time = 18/30, sound = "CW_KK_INS2_DOI_SPRING_BOLTRELEASE"},
+		{time = 22/30, sound = "CW_KK_INS2_DOI_SPRING_BOLTBACK"},
+		{time = 30/30, sound = "CW_KK_INS2_DOI_SPRING_BOLTFORWARD"},
+		{time = 37/30, sound = "CW_KK_INS2_DOI_SPRING_BOLTLATCH"},
+		{time = 55/30, sound = "CW_KK_INS2_DOI_SPRING_RATTLE"},
 	},
 
 	base_draw = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
+		{time = 1/31, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
 	},
 
 	base_holster = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
+		{time = 0/31, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
 	},
 
 	base_crawl = {
-		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
+		{time = 0/30, sound = "CW_KK_INS2_UNIVERSAL_LEFTCRAWL"},
 		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
 	},
 
 	base_fire_end = {
-		{time = 7/30, sound = "CW_KK_INS2_M40A1_BOLTRELEASE"},
-		{time = 13/30, sound = "CW_KK_INS2_M40A1_BOLTBACK"},
-		{time = 21/30, sound = "", callback = shell},
-		{time = 24/30, sound = "CW_KK_INS2_M40A1_BOLTFORWARD"},
-		// pumpedrdy @ 26 ""},
-		{time = 28/30, sound = "CW_KK_INS2_M40A1_BOLTLATCH"},
+		// { event AE_CL_CREATE_PARTICLE_BRASS 14 ""},
+		{time = 9/29, sound = "CW_KK_INS2_DOI_SPRING_BOLTRELEASE"},
+		{time = 13/29, sound = "CW_KK_INS2_DOI_SPRING_BOLTBACK"},
+		{time = 14/29, sound = "", callback = shell},
+		{time = 17/29, sound = "CW_KK_INS2_DOI_SPRING_BOLTFORWARD"},
+		// { event AE_WPN_COCK 19 ""},
+		{time = 22/29, sound = "CW_KK_INS2_DOI_SPRING_BOLTLATCH"},
+		// { event AE_WPN_READY 37 ""},
 	},
 
 	base_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_M40A1_EMPTY"},
+		{time = 0/30, sound = "CW_KK_INS2_DOI_SPRING_EMPTY"},
 	},
 
 	base_reload_start = {
-		{time = 5/30, sound = "CW_KK_INS2_M40A1_BOLTRELEASE"},
-		{time = 11/30, sound = "CW_KK_INS2_M40A1_BOLTBACK"},
-		{time = 15/30, sound = "", callback = shell},
+		{time = 17/30.56, sound = "CW_KK_INS2_DOI_SPRING_BOLTRELEASE"},
+		{time = 22/30.56, sound = "", callback = shell},
+		{time = 24/30.56, sound = "CW_KK_INS2_DOI_SPRING_BOLTBACK"},
+		// { event AE_CL_CREATE_PARTICLE_BRASS 22 ""},
 	},
 
 	base_reload_insert = {
-		{time = 12/32, sound = "CW_KK_INS2_M40A1_BULLETIN"},
-		// reloaded @ 12 ""},
+		{time = 15/32.3, sound = "CW_KK_INS2_DOI_SPRING_BULLETIN"},
+		// { event 46 20 ""},
 	},
 
 	base_reload_end = {
-		{time = 6/30, sound = "CW_KK_INS2_M40A1_BOLTFORWARD"},
-		{time = 11/30, sound = "CW_KK_INS2_M40A1_BOLTLATCH"},
+		{time = 10/30, sound = "CW_KK_INS2_DOI_SPRING_BOLTFORWARD"},
+		{time = 15/30, sound = "CW_KK_INS2_DOI_SPRING_BOLTLATCH"},
+		// { event AE_WPN_READY 27 ""},
 	},
 
-	base_reload_end_empty = {
-		{time = 6/30, sound = "CW_KK_INS2_M40A1_BOLTFORWARD"},
-		{time = 11/30, sound = "CW_KK_INS2_M40A1_BOLTLATCH"},
+	base_melee_bash = {
+		{time = 15/31, sound = "CW_KK_INS2_DOI_MELEE"},
+		// { event 1338 18 ""},
+		// { event AE_WPN_READY 43 ""},
 	},
 
 	iron_fire_end = {
-		{time = 11/28.5, sound = "CW_KK_INS2_M40A1_BOLTRELEASE"},
-		{time = 15/28.5, sound = "CW_KK_INS2_M40A1_BOLTBACK"},
-		{time = 19/28.5, sound = "", callback = shell},
-		{time = 23/28.5, sound = "CW_KK_INS2_M40A1_BOLTFORWARD"},
-		// pumpedrdy @ 27 ""},
-		{time = 27/28.5, sound = "CW_KK_INS2_M40A1_BOLTLATCH"},
-		{time = 45/28.5, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
+		// { event AE_CL_CREATE_PARTICLE_BRASS 14 ""},
+		{time = 9/29, sound = "CW_KK_INS2_DOI_SPRING_BOLTRELEASE"},
+		{time = 13/29, sound = "CW_KK_INS2_DOI_SPRING_BOLTBACK"},
+		{time = 14/29, sound = "", callback = shell},
+		{time = 18/29, sound = "CW_KK_INS2_DOI_SPRING_BOLTFORWARD"},
+		// { event AE_WPN_COCK 18 ""},
+		{time = 21/29, sound = "CW_KK_INS2_DOI_SPRING_BOLTLATCH"},
+		// { event AE_WPN_READY 36 ""},
 	},
 
 	iron_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_M40A1_EMPTY"},
-	},
-
-	deploy_in = {
-		{time = 12/20, sound = "CW_KK_INS2_UNIVERSAL_BIPOD_DEPLOYSTART"},
-		{time = 16/20, sound = "CW_KK_INS2_UNIVERSAL_BIPOD_DEPLOYEND"},
-	},
-
-	deploy_out = {
-		{time = 6/20, sound = "CW_KK_INS2_UNIVERSAL_BIPOD_RETRACT"},
-	},
-
-	deployed_fire_end = {
-		{time = 7/30, sound = "CW_KK_INS2_M40A1_BOLTRELEASE"},
-		{time = 13/30, sound = "CW_KK_INS2_M40A1_BOLTBACK"},
-		{time = 20/30, sound = "", callback = shell},
-		{time = 24/30, sound = "CW_KK_INS2_M40A1_BOLTFORWARD"},
-		// pumpedrdy @ 26 ""},
-		{time = 28/30, sound = "CW_KK_INS2_M40A1_BOLTLATCH"},
-	},
-
-	deployed_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_M40A1_EMPTY"},
-	},
-
-	deployed_reload_start = {
-		{time = 5/30, sound = "CW_KK_INS2_M40A1_BOLTRELEASE"},
-		{time = 11/30, sound = "CW_KK_INS2_M40A1_BOLTBACK"},
-		{time = 15/30, sound = "", callback = shell},
-	},
-
-	deployed_reload_insert = {
-		{time = 8/30, sound = "CW_KK_INS2_M40A1_BULLETIN"},
-		// reloaded @ 12 ""},
-	},
-
-	deployed_reload_end = {
-		{time = 6/30, sound = "CW_KK_INS2_M40A1_BOLTFORWARD"},
-		{time = 11/30, sound = "CW_KK_INS2_M40A1_BOLTLATCH"},
-	},
-
-	deployed_iron_fire_end = {
-		{time = 7/34, sound = "CW_KK_INS2_M40A1_BOLTRELEASE"},
-		{time = 13/34, sound = "CW_KK_INS2_M40A1_BOLTBACK"},
-		{time = 20/34, sound = "", callback = shell},
-		{time = 24/34, sound = "CW_KK_INS2_M40A1_BOLTFORWARD"},
-		// pumpedrdy @ 26 ""},
-		{time = 28/34, sound = "CW_KK_INS2_M40A1_BOLTLATCH"},
-	},
-
-	deployed_iron_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_M40A1_EMPTY"},
+		{time = 0/30, sound = "CW_KK_INS2_DOI_SPRING_EMPTY"},
 	},
 }

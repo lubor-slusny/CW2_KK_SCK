@@ -6,21 +6,29 @@ local function m203(wep)
 end
 
 SWEP.Sounds = {
+	base_melee_bash = {
+		{time = 11/30, sound = "CW_KK_INS2_DOI_MELEE"},
+		// { event 1338 13 ""},
+		// { event AE_WPN_READY 29 ""},
+	},
+
 	base_ready = {
 		{time = 0/30, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-		{time = 24/30, sound = "CW_KK_INS2_M4A1_BOLTBACK"},
-		{time = 38/30, sound = "CW_KK_INS2_M4A1_BOLTRELEASE"},
-		{time = 52/30, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
-		{time = 67/30, sound = "CW_KK_INS2_M4A1_HIT"},
-		{time = 82/30, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
+		{time = 21/30, sound = "CW_KK_INS2_M16A4_BOLTBACK"},
+		{time = 29/30, sound = "CW_KK_INS2_M16A4_BOLTRELEASE"},
+		{time = 51/30, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
+		{time = 52/30, sound = "CW_KK_INS2_M16A4_HIT"},
+		{time = 63/30, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
+		// { event AE_WPN_READY 80 ""},
 	},
 
 	base_draw = {
 		{time = 0/31, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
+		// { event AE_WPN_READY 15 ""},
 	},
 
 	base_holster = {
-		{time = 0/32, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
+		{time = 0/30, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
 	},
 
 	base_crawl = {
@@ -28,110 +36,95 @@ SWEP.Sounds = {
 		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
 	},
 
-	-- base_fire = {
-		-- // { event AE_MUZZLEFLASH 0 ""},
-		-- // { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
-
 	base_dryfire = {
-		{time = 0/30, sound = "CW_KK_INS2_M4A1_EMPTY"},
+		{time = 0/30, sound = "CW_KK_INS2_M16A4_EMPTY"},
 	},
 
 	base_fireselect = {
-		{time = 14/30, sound = "CW_KK_INS2_M4A1_FIRESELECT"},
+		{time = 13/30, sound = "CW_KK_INS2_M16A4_FIRESELECT"},
+		// { event AE_WPN_READY 16 ""},
 	},
 
 	base_reload = {
-		{time = 39/30, sound = "CW_KK_INS2_M4A1_MAGRELEASE"},
-		{time = 45/30, sound = "CW_KK_INS2_M4A1_MAGOUT"},
-		{time = 104/30, sound = "CW_KK_INS2_M4A1_MAGIN"},
-		{time = 119/30, sound = "CW_KK_INS2_M4A1_HIT"},
-		// { event 46 117 ""},
+		{time = 29/30, sound = "CW_KK_INS2_M16A4_MAGRELEASE"},
+		{time = 35/30, sound = "CW_KK_INS2_M16A4_MAGOUT"},
+		{time = 88/30, sound = "CW_KK_INS2_M16A4_MAGIN"},
+		{time = 103/30, sound = "CW_KK_INS2_M16A4_HIT"},
+		// { event 46 101 ""},
+		// { event AE_WPN_READY 124 ""},
 	},
 
 	base_reloadempty = {
-		{time = 40/30, sound = "CW_KK_INS2_M4A1_MAGRELEASE"},
-		{time = 45/30, sound = "CW_KK_INS2_M4A1_MAGOUT"},
-		{time = 104/30, sound = "CW_KK_INS2_M4A1_MAGIN"},
-		{time = 119/30, sound = "CW_KK_INS2_M4A1_HIT"},
-		// { event 46 144 ""},
-		{time = 147/30, sound = "CW_KK_INS2_M4A1_BOLTRELEASE"},
+		{time = 29/30, sound = "CW_KK_INS2_M16A4_MAGRELEASE"},
+		{time = 35/30, sound = "CW_KK_INS2_M16A4_MAGOUT"},
+		{time = 88/30, sound = "CW_KK_INS2_M16A4_MAGIN"},
+		{time = 103/30, sound = "CW_KK_INS2_M16A4_HIT"},
+		// { event 46 120 ""},
+		{time = 123/30, sound = "CW_KK_INS2_M16A4_BOLTRELEASE"},
+		// { event AE_WPN_READY 142 ""},
+	},
+
+	base_reload_extended = {
+		{time = 29/30, sound = "CW_KK_INS2_M16A4_MAGRELEASE"},
+		{time = 35/30, sound = "CW_KK_INS2_M16A4_MAGOUT"},
+		{time = 88/30, sound = "CW_KK_INS2_M16A4_MAGIN"},
+		{time = 103/30, sound = "CW_KK_INS2_M16A4_HIT"},
+		// { event 46 101 ""},
+		// { event AE_WPN_READY 124 ""},
+	},
+
+	base_reloadempty_extended1 = {
+		{time = 29/30, sound = "CW_KK_INS2_M16A4_MAGRELEASE"},
+		{time = 35/30, sound = "CW_KK_INS2_M16A4_MAGOUT"},
+		{time = 88/30, sound = "CW_KK_INS2_M16A4_MAGIN"},
+		{time = 103/30, sound = "CW_KK_INS2_M16A4_HIT"},
+		// { event 46 120 ""},
+		{time = 123/30, sound = "CW_KK_INS2_M16A4_BOLTRELEASE"},
+		// { event AE_WPN_READY 142 ""},
+	},
+
+	base_reloadempty_extended2 = {
+		{time = 29/30, sound = "CW_KK_INS2_M16A4_MAGRELEASE"},
+		{time = 35/30, sound = "CW_KK_INS2_M16A4_MAGOUT"},
+		{time = 88/30, sound = "CW_KK_INS2_M16A4_MAGIN"},
+		{time = 103/30, sound = "CW_KK_INS2_M16A4_HIT"},
+		// { event 46 120 ""},
+		{time = 123/30, sound = "CW_KK_INS2_M16A4_BOLTRELEASE"},
+		// { event AE_WPN_READY 142 ""},
 	},
 
 	base_reloadempty2 = {
-		{time = 40/30, sound = "CW_KK_INS2_M4A1_MAGRELEASE"},
-		{time = 45/30, sound = "CW_KK_INS2_M4A1_MAGOUT"},
-		{time = 104/30, sound = "CW_KK_INS2_M4A1_MAGIN"},
-		{time = 119/30, sound = "CW_KK_INS2_M4A1_HIT"},
-		// { event 46 144 ""},
-		{time = 147/30, sound = "CW_KK_INS2_M4A1_BOLTRELEASE"},
+		{time = 29/30, sound = "CW_KK_INS2_M16A4_MAGRELEASE"},
+		{time = 35/30, sound = "CW_KK_INS2_M16A4_MAGOUT"},
+		{time = 88/30, sound = "CW_KK_INS2_M16A4_MAGIN"},
+		{time = 103/30, sound = "CW_KK_INS2_M16A4_HIT"},
+		// { event 46 120 ""},
+		{time = 123/30, sound = "CW_KK_INS2_M16A4_BOLTRELEASE"},
+		// { event AE_WPN_READY 143 ""},
 	},
-
-	base_reloadempty3 = {
-		{time = 40/30, sound = "CW_KK_INS2_M4A1_MAGRELEASE"},
-		{time = 45/30, sound = "CW_KK_INS2_M4A1_MAGOUT"},
-		{time = 104/30, sound = "CW_KK_INS2_M4A1_MAGIN"},
-		{time = 119/30, sound = "CW_KK_INS2_M4A1_HIT"},
-		// { event 46 144 ""},
-		{time = 147/30, sound = "CW_KK_INS2_M4A1_BOLTRELEASE"},
-	},
-
-	-- iron_fire = {
-		-- // { event AE_MUZZLEFLASH 0 ""},
-		-- // { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
-
-	-- iron_fire_a = {
-		-- // { event AE_MUZZLEFLASH 0 ""},
-		-- // { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
-
-	-- iron_fire_b = {
-		-- // { event AE_MUZZLEFLASH 0 ""},
-		-- // { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
-
-	-- iron_fire_c = {
-		-- // { event AE_MUZZLEFLASH 0 ""},
-		-- // { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
-
-	-- iron_fire_d = {
-		-- // { event AE_MUZZLEFLASH 0 ""},
-		-- // { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
-
-	-- iron_fire_e = {
-		-- // { event AE_MUZZLEFLASH 0 ""},
-		-- // { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
-
-	-- iron_fire_f = {
-		-- // { event AE_MUZZLEFLASH 0 ""},
-		-- // { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
 
 	iron_dryfire = {
-		{time = 0/30, sound = "CW_KK_INS2_M4A1_EMPTY"},
+		{time = 0/30, sound = "CW_KK_INS2_M16A4_EMPTY"},
 	},
 
 	iron_fireselect = {
-		{time = 14/30, sound = "CW_KK_INS2_M4A1_FIRESELECT"},
+		{time = 13/30, sound = "CW_KK_INS2_M16A4_FIRESELECT"},
+		// { event AE_WPN_READY 17 ""},
 	},
 
 	gl_ready = {
-		{time = 0/32, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
-		{time = 24/32, sound = "CW_KK_INS2_M4A1_BOLTBACK"},
-		{time = 38/32, sound = "CW_KK_INS2_M4A1_BOLTRELEASE"},
-		{time = 52/32, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
-		{time = 67/32, sound = "CW_KK_INS2_M4A1_HIT"},
-		{time = 82/32, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
-		{time = 98/32, sound = "CW_KK_INS2_M203_OPENBARREL"},
-		{time = 115/32, sound = "CW_KK_INS2_M203_CLOSEBARREL"},
+		{time = 0/29, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
+		{time = 21/29, sound = "CW_KK_INS2_M16A4_BOLTBACK"},
+		{time = 29/29, sound = "CW_KK_INS2_M16A4_BOLTRELEASE"},
+		{time = 51/29, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
+		{time = 52/29, sound = "CW_KK_INS2_M16A4_HIT"},
+		{time = 63/29, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
+		// { event AE_WPN_READY 80 ""},
 	},
 
 	gl_draw = {
 		{time = 0/31, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
+		// { event AE_WPN_READY 15 ""},
 	},
 
 	gl_holster = {
@@ -143,87 +136,63 @@ SWEP.Sounds = {
 		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
 	},
 
-	-- gl_fire = {
-		-- // { event AE_MUZZLEFLASH 0 ""},
-		-- // { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
-
 	gl_dryfire = {
-		{time = 0/30, sound = "CW_KK_INS2_M4A1_EMPTY"},
+		{time = 0/30, sound = "CW_KK_INS2_M16A4_EMPTY"},
 	},
 
 	gl_fireselect = {
-		{time = 13/30, sound = "CW_KK_INS2_M4A1_FIRESELECT"},
+		{time = 13/30, sound = "CW_KK_INS2_M16A4_FIRESELECT"},
+		// { event AE_WPN_READY 16 ""},
 	},
 
 	gl_reload = {
-		{time = 39/30, sound = "CW_KK_INS2_M4A1_MAGRELEASE"},
-		{time = 45/30, sound = "CW_KK_INS2_M4A1_MAGOUT"},
-		{time = 104/30, sound = "CW_KK_INS2_M4A1_MAGIN"},
-		{time = 119/30, sound = "CW_KK_INS2_M4A1_HIT"},
-		// { event 46 117 ""},
+		{time = 29/30, sound = "CW_KK_INS2_M16A4_MAGRELEASE"},
+		{time = 35/30, sound = "CW_KK_INS2_M16A4_MAGOUT"},
+		{time = 88/30, sound = "CW_KK_INS2_M16A4_MAGIN"},
+		{time = 103/30, sound = "CW_KK_INS2_M16A4_HIT"},
+		// { event 46 101 ""},
+		// { event AE_WPN_READY 124 ""},
 	},
 
-	gl_reloadempty = {
-		{time = 40/30, sound = "CW_KK_INS2_M4A1_MAGRELEASE"},
-		{time = 45/30, sound = "CW_KK_INS2_M4A1_MAGOUT"},
-		{time = 104/30, sound = "CW_KK_INS2_M4A1_MAGIN"},
-		{time = 119/30, sound = "CW_KK_INS2_M4A1_HIT"},
-		// { event 46 144 ""},
-		{time = 147/30, sound = "CW_KK_INS2_M4A1_BOLTRELEASE"},
+	gl_reloadempty1 = {
+		{time = 29/30, sound = "CW_KK_INS2_M16A4_MAGRELEASE"},
+		{time = 35/30, sound = "CW_KK_INS2_M16A4_MAGOUT"},
+		{time = 88/30, sound = "CW_KK_INS2_M16A4_MAGIN"},
+		{time = 103/30, sound = "CW_KK_INS2_M16A4_HIT"},
+		// { event 46 120 ""},
+		{time = 123/30, sound = "CW_KK_INS2_M16A4_BOLTRELEASE"},
+		// { event AE_WPN_READY 143 ""},
 	},
 
-	-- gl_iron_fire = {
-		-- // { event AE_MUZZLEFLASH 0 ""},
-		-- // { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
-
-	-- gl_iron_fire_a = {
-		-- // { event AE_MUZZLEFLASH 0 ""},
-		-- // { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
-
-	-- gl_iron_fire_b = {
-		-- // { event AE_MUZZLEFLASH 0 ""},
-		-- // { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
-
-	-- gl_iron_fire_c = {
-		-- // { event AE_MUZZLEFLASH 0 ""},
-		-- // { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
-
-	-- gl_iron_fire_d = {
-		-- // { event AE_MUZZLEFLASH 0 ""},
-		-- // { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
-
-	-- gl_iron_fire_e = {
-		-- // { event AE_MUZZLEFLASH 0 ""},
-		-- // { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
-
-	-- gl_iron_fire_f = {
-		-- // { event AE_MUZZLEFLASH 0 ""},
-		-- // { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
+	gl_reloadempty2 = {
+		{time = 29/30, sound = "CW_KK_INS2_M16A4_MAGRELEASE"},
+		{time = 35/30, sound = "CW_KK_INS2_M16A4_MAGOUT"},
+		{time = 88/30, sound = "CW_KK_INS2_M16A4_MAGIN"},
+		{time = 103/30, sound = "CW_KK_INS2_M16A4_HIT"},
+		// { event 46 120 ""},
+		{time = 123/30, sound = "CW_KK_INS2_M16A4_BOLTRELEASE"},
+		// { event AE_WPN_READY 143 ""},
+	},
 
 	gl_iron_dryfire = {
-		{time = 0/30, sound = "CW_KK_INS2_M4A1_EMPTY"},
+		{time = 0/30, sound = "CW_KK_INS2_M16A4_EMPTY"},
 	},
 
 	gl_iron_fireselect = {
-		{time = 13/30, sound = "CW_KK_INS2_M4A1_FIRESELECT"},
+		{time = 13/30, sound = "CW_KK_INS2_M16A4_FIRESELECT"},
+		// { event AE_WPN_READY 16 ""},
 	},
 
 	glsetup_in = {
 		{time = 0/30, sound = "CW_KK_INS2_M203_SELECT"},
-		{time = 23/30, sound = "CW_KK_INS2_UNIVERSAL_BIPOD_RETRACT"},
+		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_BIPOD_RETRACT"},
+		// { event AE_WPN_READY 41 ""},
 	},
 
 	glsetup_out = {
 		{time = 0/30, sound = "CW_KK_INS2_M203_DESELECT"},
-		{time = 17/30, sound = "CW_KK_INS2_UNIVERSAL_BIPOD_DEPLOYEND"},
+		{time = 18/30, sound = "CW_KK_INS2_UNIVERSAL_BIPOD_DEPLOYEND"},
+		// { event AE_WPN_READY 41 ""},
 	},
 
 	glsetup_ready = {
@@ -243,91 +212,90 @@ SWEP.Sounds = {
 		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
 	},
 
-	-- glsetup_fire = {
-		-- // { event AE_GL_MUZZLEFLASH 0 ""},
-	-- },
-
 	glsetup_dryfire = {
 		{time = 0/30, sound = "CW_KK_INS2_M203_EMPTY"},
 	},
 
 	glsetup_reload = {
-		{time = 0/30, sound = "uni_GLBeginReload"},
-		{time = 24/30, sound = "CW_KK_INS2_M203_OPENBARREL"},
-		{time = 29/30, sound = "", callback = m203},
-		{time = 68/30, sound = "CW_KK_INS2_M203_INSERTGRENADE"},
-		// { event AE_EMIT_SHELL_M203 34 ""},
-		-- {time = 43/30, sound = "203_GrenadeDrop"},
-		{time = 101/30, sound = "CW_KK_INS2_M203_CLOSEBARREL"},
-		// { event 46 99 ""},
+		{time = 0/30, sound = "CW_KK_INS2_GL_BEGINRELOAD"},
+		{time = 20/30, sound = "CW_KK_INS2_M203_OPENBARREL"},
+		{time = 25/30, sound = "", callback = m203},
+		{time = 78/30, sound = "CW_KK_INS2_M203_INSERTGRENADE"},
+		// { event AE_EMIT_SHELL_M203 33 ""},
+		-- {time = 42/30, sound = "ins2_m203_GrenadeDrop"},
+		{time = 109/30, sound = "CW_KK_INS2_M203_CLOSEBARREL"},
+		// { event 46 104 ""},
+		// { event AE_WPN_READY 129 ""},
 	},
-
-	-- glsetup_iron_fire = {
-		-- // { event AE_GL_MUZZLEFLASH 0/32 ""},
-	-- },
 
 	glsetup_iron_dryfire = {
 		{time = 0/30, sound = "CW_KK_INS2_M203_EMPTY"},
 	},
 
 	deployed_in = {
-		{time = 14/30, sound = "CW_KK_INS2_M4A1_HIT"},
-		{time = 27/30, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
+		{time = 7/30, sound = "CW_KK_INS2_M16A4_HIT"},
+		{time = 0/30, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
+		// { event AE_WPN_READY 16 ""},
 	},
 
 	deployed_out = {
-		{time = 13/30, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
+		{time = 2/30, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
+		// { event AE_WPN_READY 15 ""},
 	},
-
-	-- deployed_fire = {
-		-- // { event AE_MUZZLEFLASH 0 ""},
-		-- // { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
 
 	deployed_dryfire = {
 		{time = 0/30, sound = "CW_KK_INS2_M16A4_EMPTY"},
 	},
 
 	deployed_fireselect = {
-		{time = 12/30, sound = "CW_KK_INS2_M16A4_FIRESELECT"},
+		{time = 13/30, sound = "CW_KK_INS2_M16A4_FIRESELECT"},
+		// { event AE_WPN_READY 16 ""},
 	},
 
 	deployed_reload_half = {
-		{time = 20/30, sound = "CW_KK_INS2_M16A4_MAGHITRELEASE"},
-		{time = 25/30, sound = "CW_KK_INS2_M16A4_MAGOUT"},
-		{time = 84/30, sound = "CW_KK_INS2_M16A4_MAGIN"},
-		{time = 98/30, sound = "CW_KK_INS2_M16A4_HIT"},
-		// { event 46 94 ""},
+		{time = 15/30, sound = "CW_KK_INS2_M16A4_MAGRELEASE"},
+		{time = 19/30, sound = "CW_KK_INS2_M16A4_MAGOUT"},
+		{time = 71/30, sound = "CW_KK_INS2_M16A4_MAGIN"},
+		{time = 87/30, sound = "CW_KK_INS2_M16A4_HIT"},
+		// { event 46 86 ""},
+		// { event AE_WPN_READY 104 ""},
 	},
 
 	deployed_reload_empty = {
-		{time = 23/30, sound = "CW_KK_INS2_M16A4_MAGHITRELEASE"},
-		{time = 26/30, sound = "CW_KK_INS2_M16A4_MAGOUT"},
-		{time = 83/30, sound = "CW_KK_INS2_M16A4_MAGIN"},
-		{time = 97/30, sound = "CW_KK_INS2_M16A4_HIT"},
-		// { event 46 119 ""},
-		{time = 124/30, sound = "CW_KK_INS2_M16A4_BOLTRELEASE"},
+		{time = 15/30, sound = "CW_KK_INS2_M16A4_MAGRELEASE"},
+		{time = 19/30, sound = "CW_KK_INS2_M16A4_MAGOUT"},
+		{time = 71/30, sound = "CW_KK_INS2_M16A4_MAGIN"},
+		{time = 87/30, sound = "CW_KK_INS2_M16A4_HIT"},
+		// { event 46 109 ""},
+		{time = 107/30, sound = "CW_KK_INS2_M16A4_BOLTRELEASE"},
+		// { event AE_WPN_READY 124 ""},
 	},
 
-	deployed_reload_empty2 = {
-		{time = 23/30, sound = "CW_KK_INS2_M16A4_MAGHITRELEASE"},
-		{time = 26/30, sound = "CW_KK_INS2_M16A4_MAGOUT"},
-		{time = 83/30, sound = "CW_KK_INS2_M16A4_MAGIN"},
-		{time = 97/30, sound = "CW_KK_INS2_M16A4_HIT"},
-		// { event 46 119 ""},
-		{time = 124/30, sound = "CW_KK_INS2_M16A4_BOLTRELEASE"},
+	deployed_reload_half_ext = {
+		{time = 15/30, sound = "CW_KK_INS2_M16A4_MAGRELEASE"},
+		{time = 19/30, sound = "CW_KK_INS2_M16A4_MAGOUT"},
+		{time = 71/30, sound = "CW_KK_INS2_M16A4_MAGIN"},
+		{time = 87/30, sound = "CW_KK_INS2_M16A4_HIT"},
+		// { event 46 86 ""},
+		// { event AE_WPN_READY 104 ""},
 	},
 
-	-- deployed_iron_fire = {
-		-- // { event AE_MUZZLEFLASH 0 ""},
-		-- // { event AE_CL_CREATE_PARTICLE_BRASS 0 ""},
-	-- },
+	deployed_reload_empty_ext = {
+		{time = 15/30, sound = "CW_KK_INS2_M16A4_MAGRELEASE"},
+		{time = 19/30, sound = "CW_KK_INS2_M16A4_MAGOUT"},
+		{time = 71/30, sound = "CW_KK_INS2_M16A4_MAGIN"},
+		{time = 87/30, sound = "CW_KK_INS2_M16A4_HIT"},
+		// { event 46 109 ""},
+		{time = 107/30, sound = "CW_KK_INS2_M16A4_BOLTRELEASE"},
+		// { event AE_WPN_READY 124 ""},
+	},
 
 	deployed_iron_dryfire = {
 		{time = 0/30, sound = "CW_KK_INS2_M16A4_EMPTY"},
 	},
 
 	deployed_iron_fireselect = {
-		{time = 12/30, sound = "CW_KK_INS2_M16A4_FIRESELECT"},
+		{time = 13/30, sound = "CW_KK_INS2_M16A4_FIRESELECT"},
+		// { event AE_WPN_READY 16 ""},
 	},
 }
