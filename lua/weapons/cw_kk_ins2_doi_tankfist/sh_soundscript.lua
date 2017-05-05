@@ -6,7 +6,7 @@ SWEP.Sounds = {
 	},
 
 	base_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_DOI_DOI_TANKFIST_EMPTY"},
+		{time = 0, sound = "CW_KK_INS2_DOI_LAUNCHER_EMPTY"},
 	},
 
 	base_draw = {
@@ -25,7 +25,7 @@ SWEP.Sounds = {
 	},
 
 	iron_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_DOI_DOI_TANKFIST_EMPTY"},
+		{time = 0, sound = "CW_KK_INS2_DOI_LAUNCHER_EMPTY"},
 	},
 
 	base_crawl_empty = {

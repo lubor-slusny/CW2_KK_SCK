@@ -23,7 +23,7 @@ SWEP.Sounds = {
 	},
 
 	base_dryfire = {
-		{time = 0, sound = "CW_KK_INS2_GP30_EMPTY"},
+		{time = 0, sound = "CW_KK_INS2_DOI_LAUNCHER_EMPTY"},
 	},
 
 	base_reload = {
@@ -39,10 +39,10 @@ SWEP.Sounds = {
 	},
 
 	iron_dryfire = {
-		{time = 1/30, sound = "CW_KK_INS2_GP30_EMPTY"},
+		{time = 1/30, sound = "CW_KK_INS2_DOI_LAUNCHER_EMPTY"},
 	},
 	
 	iron_dryfire_preblend = {
-		{time = 1/30, sound = "CW_KK_INS2_GP30_EMPTY"},
+		{time = 1/30, sound = "CW_KK_INS2_DOI_LAUNCHER_EMPTY"},
 	},
 }
