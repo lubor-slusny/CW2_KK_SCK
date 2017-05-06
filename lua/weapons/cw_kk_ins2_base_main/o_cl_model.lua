@@ -687,12 +687,20 @@ end
 //-----------------------------------------------------------------------------
 
 function SWEP:DrawVMHandsModel()
+	local gm = self.Owner:GetHands()
+	
 	if self.UseGMHands then
-		local gm = self.Owner:GetHands()
-		gm:SetParent(self.CW_KK_HANDS)
+		if gm:GetParent() != self.CW_KK_HANDS then
+			gm:SetParent(self.CW_KK_HANDS)
+		end
+		
 		gm:AddEffects(EF_BONEMERGE_FASTCULL)
 		gm:DrawModel()
 	else
+		if gm:GetParent() == self.CW_KK_HANDS then
+			gm:SetParent(nil)
+		end
+		
 		self.CW_KK_HANDS:AddEffects(EF_BONEMERGE)
 		self.CW_KK_HANDS:DrawModel()
 	end
