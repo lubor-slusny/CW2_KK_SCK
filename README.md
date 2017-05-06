@@ -50,3 +50,5 @@ Content sources:
 	- http://steamcommunity.com/app/447820
 - Enfield rear sight flipped up:
 	- http://steamcommunity.com/sharedfiles/filedetails/?id=834559042
+- GMod c_hands linking model by:
+	- http://steamcommunity.com/profiles/76561198024742819/
