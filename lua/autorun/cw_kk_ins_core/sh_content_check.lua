@@ -2,7 +2,6 @@
 local WS_PACK_REVISION = 11
 
 local baseContentOK = true
-
 for _,f in pairs({
 		"models/weapons/v_marinebayonet.mdl",
 		"models/weapons/v_mp5kpdw.mdl",
@@ -20,7 +19,6 @@ for _,f in pairs({
 end
 
 local doimodContentOK = true
-
 for _,f in pairs({
 		"models/weapons/w_panzerfaust_projectile.mdl",
 		"models/weapons/w_stielhandgranate.phy",
@@ -32,7 +30,6 @@ for _,f in pairs({
 end
 
 local doigameContentOK = true
-
 for _,f in pairs({
 		"models/weapons/v_etool_brit.mdl",
 		"models/weapons/w_bren.phy",
@@ -45,7 +42,6 @@ for _,f in pairs({
 end
 
 local ao5ContentOK = true
-
 for _,f in pairs({
 		"models/weapons/w_snub.mdl",
 		"models/weapons/aof/v_flashgun.mdl",
@@ -58,7 +54,6 @@ for _,f in pairs({
 end
 
 local arseContentOK = true
-
 for _,f in pairs({
 		"models/weapons/beretta/insguns_v_beretta.mdl",
 		"models/weapons/l85/w_l85sight.mdl",
@@ -71,7 +66,6 @@ for _,f in pairs({
 end
 
 local namContentOK = true
-
 for _,f in pairs({
 		"models/weapons/v_nam_geballteladung.mdl",
 		"models/weapons/v_nam_ithaca37.mdl",
@@ -90,11 +84,10 @@ local starts = string.StartWith
 function CustomizableWeaponry_KK.ins2:isContentMounted4()
 	subs = subs or {
 		["cw_kk_ins2_cstm"] = function() return (baseContentOK and (CustomizableWeaponry_KK.ins2.ws == WS_PACK_REVISION)) end,
-		["cw_kk_ins2_ww2"] = function() return false end,
-		["cw_kk_ins2_doi"] = function() return (doigameContentOK) and (baseContentOK and (CustomizableWeaponry_KK.ins2.ws == WS_PACK_REVISION)) end,
+		["cw_kk_ins2_doi"] = function() return (doigameContentOK) and (CustomizableWeaponry_KK.ins2.ws == WS_PACK_REVISION) end,
 		["cw_kk_ins2_ao5"] = function() return (baseContentOK and ao5ContentOK) end,
 		["cw_kk_ins2_arse"] = function() return (baseContentOK and arseContentOK and CustomizableWeaponry_KK.HOME) end,
-		["cw_kk_ins2_nam"] = function() return (baseContentOK and namContentOK) end,
+		["cw_kk_ins2_nam"] = function() return (doigameContentOK and namContentOK) end,
 		
 		["doigameContentOK"] = function() return doigameContentOK end
 	}
