@@ -84,7 +84,7 @@ local starts = string.StartWith
 function CustomizableWeaponry_KK.ins2:isContentMounted4()
 	subs = subs or {
 		["cw_kk_ins2_cstm"] = function() return (baseContentOK and (CustomizableWeaponry_KK.ins2.ws == WS_PACK_REVISION)) end,
-		["cw_kk_ins2_doi"] = function() return (doigameContentOK) and (CustomizableWeaponry_KK.ins2.ws == WS_PACK_REVISION) end,
+		["cw_kk_ins2_doi"] = function() return (doigameContentOK and (CustomizableWeaponry_KK.ins2.ws == WS_PACK_REVISION)) end,
 		["cw_kk_ins2_ao5"] = function() return (baseContentOK and ao5ContentOK) end,
 		["cw_kk_ins2_arse"] = function() return (baseContentOK and arseContentOK and CustomizableWeaponry_KK.HOME) end,
 		["cw_kk_ins2_nam"] = function() return (doigameContentOK and namContentOK) end,
