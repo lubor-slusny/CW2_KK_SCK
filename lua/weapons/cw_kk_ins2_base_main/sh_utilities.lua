@@ -72,26 +72,22 @@ end
 //-----------------------------------------------------------------------------
 
 if CLIENT then
-	local round, clamp = math.Round, math.Clamp
-	local cvRig = GetConVar("cw_kk_ins2_rig")
+	local cvRigModel = GetConVar("cw_kk_ins2_rig")
 	local cvRigSkin = GetConVar("cw_kk_ins2_rigskin")
 	local currentRigs = {}
-	local set
 	
 	function SWEP:updateHands()
-		self.CW_KK_HANDS:SetSkin(cvRigSkin:GetInt())
-	
-		set = round(clamp(cvRig:GetInt(),1,#CustomizableWeaponry_KK.ins2.hands), 0)
-		
+		local set = cvRigModel:GetInt()
 		if set != currentRigs[self] then
 			if IsValid(self.CW_KK_HANDS) then
-				local tab = CustomizableWeaponry_KK.ins2.hands[set]
+				local tab = CustomizableWeaponry_KK.ins2.hands:_get(set)
 				self.CW_KK_HANDS:SetModel(tab[1])
 				self.UseGMHands = tab.mergeGMHands
 			end
 		end
-		
 		currentRigs[self] = set
+		
+		self.CW_KK_HANDS:SetSkin(cvRigSkin:GetInt())
 	end
 end
 
