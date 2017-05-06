@@ -8,7 +8,7 @@ if CLIENT then
 	end
 	
 	CustomizableWeaponry_KK.ins2.hands._cache = {
-		{"models/gmod4phun/c_ins_to_gmod_hands.mdl", "[GM] PM hands (by GM4Ph)", mergeGMHands = true},
+		{"models/gmod4phun/c_ins_to_gmod_hands.mdl", "[GM] PM hands (by G4P)", mergeGMHands = true},
 		{"models/weapons/v_cw_kk_ins2_hands_css.mdl", "[CSS] shared"},
 		
 		{"models/weapons/v_hands_vip.mdl", "[INS] Very Individual Player"},
@@ -22,7 +22,7 @@ if CLIENT then
 	
 	function CustomizableWeaponry_KK.ins2.hands:addModel(tab)
 		table.insert(self._cache, tab)
-		self.cacheSize = table.Count(self._cache)
+		self.cacheSize = #self._cache
 	end
 	
 	if CustomizableWeaponry_KK.ins2.isContentMounted4({Folder = "weapons/doigameContentOK"}) then
