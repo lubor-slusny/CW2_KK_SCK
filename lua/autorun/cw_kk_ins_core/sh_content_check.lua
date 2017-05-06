@@ -115,12 +115,12 @@ if CLIENT then
 		if LocalPlayer():GetPos():Distance(pos) > 100 then
 			hook.Remove("Think", "CW_KK_INS2_WS_UPDATE_NOTIFY")
 			
-			if not baseContentOK then
+			if not (baseContentOK or doigameContentOK) then
 				chat.AddText(
 					Color(200, 157, 96),
 					"[KK INS2 SWEPS] ",
 					Color(255, 255, 255),
-					"Hi, required files are missing. Make sure you mount INS2 content properly (according to guide on addon`s workshop page)."
+					"Hi, required files are missing. Make sure you mount required content properly (according to guide on addon`s workshop page)."
 				)
 				
 				return
