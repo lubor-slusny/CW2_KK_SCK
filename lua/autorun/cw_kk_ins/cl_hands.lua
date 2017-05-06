@@ -10,19 +10,21 @@ if CLIENT then
 	CustomizableWeaponry_KK.ins2.hands._cache = {
 		{"models/gmod4phun/c_ins_to_gmod_hands.mdl", "[GM] PM hands (by G4P)", mergeGMHands = true},
 		{"models/weapons/v_cw_kk_ins2_hands_css.mdl", "[CSS] shared"},
-		
-		{"models/weapons/v_hands_vip.mdl", "[INS] Very Individual Player"},
-		{"models/weapons/v_hands_ins_h.mdl", "[INS] T Heavy"},
-		{"models/weapons/v_hands_ins_m.mdl", "[INS] T Medium"},
-		{"models/weapons/v_hands_ins_l.mdl", "[INS] T Light"},
-		{"models/weapons/v_hands_sec_h.mdl", "[INS] CT Heavy"},
-		{"models/weapons/v_hands_sec_m.mdl", "[INS] CT Medium"},
-		{"models/weapons/v_hands_sec_l.mdl", "[INS] CT Light"},
 	}
 	
 	function CustomizableWeaponry_KK.ins2.hands:addModel(tab)
 		table.insert(self._cache, tab)
-		self.cacheSize = #self._cache
+		self.cacheSize = #self._cache or table.Count(self._cache) or 2
+	end
+	
+	if CustomizableWeaponry_KK.ins2.isContentMounted4({Folder = "weapons/cw_kk_ins2_base"}) then
+		CustomizableWeaponry_KK.ins2.hands:addModel({"models/weapons/v_hands_vip.mdl", "[INS] Very Individual Player"})
+		CustomizableWeaponry_KK.ins2.hands:addModel({"models/weapons/v_hands_ins_h.mdl", "[INS] T Heavy"})
+		CustomizableWeaponry_KK.ins2.hands:addModel({"models/weapons/v_hands_ins_m.mdl", "[INS] T Medium"})
+		CustomizableWeaponry_KK.ins2.hands:addModel({"models/weapons/v_hands_ins_l.mdl", "[INS] T Light"})
+		CustomizableWeaponry_KK.ins2.hands:addModel({"models/weapons/v_hands_sec_h.mdl", "[INS] CT Heavy"})
+		CustomizableWeaponry_KK.ins2.hands:addModel({"models/weapons/v_hands_sec_m.mdl", "[INS] CT Medium"})
+		CustomizableWeaponry_KK.ins2.hands:addModel({"models/weapons/v_hands_sec_l.mdl", "[INS] CT Light"})
 	end
 	
 	if CustomizableWeaponry_KK.ins2.isContentMounted4({Folder = "weapons/doigameContentOK"}) then
