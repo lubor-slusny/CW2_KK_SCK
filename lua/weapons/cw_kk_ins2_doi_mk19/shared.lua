@@ -120,6 +120,8 @@ SWEP.WorldModel		= "models/weapons/w_vickers.mdl"
 SWEP.WMPos = Vector(13, 0.921, -4.5)
 SWEP.WMAng = Vector(-10, 0, 180)
 
+SWEP.CW_KK_40MM_MDL = "models/weapons/w_grenade_kar98k.mdl"
+
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted4(SWEP)
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted4(SWEP)
 
