@@ -178,7 +178,11 @@ function SWEP:PrimaryAttack()
 						-- util.Effect("StunstickImpact", ed)
 					-- end
 					
-					self:EmitSound(self.HitFleshSound)
+					if (ent.IsNPC and ent:IsNPC()) or (ent.IsPlayer and ent:IsPlayer()) then 
+						self:EmitSound(self.HitFleshSound)
+					else
+						self:EmitSound(self.HitWorldSound)
+					end
 				else
 					self:EmitSound(self.HitWorldSound)
 				end
