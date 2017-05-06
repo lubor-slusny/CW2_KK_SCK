@@ -2,7 +2,6 @@
 CustomizableWeaponry_KK.ins2.conVars = CustomizableWeaponry_KK.ins2.conVars or {}
 CustomizableWeaponry_KK.ins2.conVars.main = CustomizableWeaponry_KK.ins2.conVars.main or {}
 CustomizableWeaponry_KK.ins2.conVars.internal = CustomizableWeaponry_KK.ins2.conVars.internal or {}
-CustomizableWeaponry_KK.ins2.conVars.oldSCK = CustomizableWeaponry_KK.ins2.conVars.oldSCK or {}
 CustomizableWeaponry_KK.ins2.conVars.other = CustomizableWeaponry_KK.ins2.conVars.other or {}
 
 if CLIENT then
@@ -20,10 +19,6 @@ if CLIENT then
 	
 	local tab = CustomizableWeaponry_KK.ins2.conVars.internal
 	// lets keep those where they are
-	
-	local tab = CustomizableWeaponry_KK.ins2.conVars.oldSCK
-	tab["cw_kk_gm_xhair"] = CreateClientConVar("cw_kk_gm_xhair", 0, false, false)
-	tab["cw_kk_sck_lock_ads"] = CreateClientConVar("cw_kk_sck_lock_ads", 0, false, false)
 	
 	local tab = CustomizableWeaponry_KK.ins2.conVars.other
 	tab["cw_kk_freeze_reticles"] = CreateClientConVar("cw_kk_freeze_reticles", 0, false, false)

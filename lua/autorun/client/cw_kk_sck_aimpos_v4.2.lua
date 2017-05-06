@@ -6,13 +6,13 @@ AddCSLuaFile()
 
 if CLIENT then
 	local SP = game.SinglePlayer()
-	local cvXH = CustomizableWeaponry_KK.ins2.conVars.oldSCK["cw_kk_gm_xhair"]
-	local cvLA = CustomizableWeaponry_KK.ins2.conVars.oldSCK["cw_kk_sck_lock_ads"]
+	local cvXH = CreateClientConVar("_cw_kk_gm_xhair", 0, false, false)
+	local cvLA = CreateClientConVar("_cw_kk_sck_lock_ads", 0, false, false)
 	
 	if SP then
 		local ply, wep
 		
-		hook.Add("Think", "cw_kk_gm_xhair_think", function()
+		hook.Add("Think", "_cw_kk_gm_xhair_think", function()
 			ply = LocalPlayer()
 			wep = ply:GetActiveWeapon()
 			
@@ -22,7 +22,7 @@ if CLIENT then
 		end)
 		
 		local _ADS_LAST, cur
-		hook.Add("Think", "cw_kk_sck_lock_ads_think", function() 
+		hook.Add("Think", "_cw_kk_sck_lock_ads_think", function() 
 			cur = cvLA:GetInt()
 			if cur != _ADS_LAST and _ADS_LAST != nil then
 				if cur == 0 then
@@ -263,7 +263,7 @@ end
 
 local function sliderChanged(slider, val)
 	if WEAPON and SIGHT and not _LOCK then
-		RunConsoleCommand("cw_kk_sck_lock_ads","1")
+		RunConsoleCommand("_cw_kk_sck_lock_ads","1")
 		RunConsoleCommand("cw_kk_freeze_reticles","1")
 		RunConsoleCommand("cw_freeaim","0")
 	
@@ -397,9 +397,9 @@ end
 local function buildPanel(panel)
 	panel:ClearControls()
 	
-	panel:AddControl("CheckBox", {Label = "Force GM crosshair", Command = "cw_kk_gm_xhair"}):DockMargin(8, 0, 8, 0)
+	panel:AddControl("CheckBox", {Label = "Force GM crosshair", Command = "_cw_kk_gm_xhair"}):DockMargin(8, 0, 8, 0)
 	panel:AddControl("CheckBox", {Label = "Freeze reticles (supported sights only)", Command = "cw_kk_freeze_reticles"}):DockMargin(8, 0, 8, 0)
-	panel:AddControl("CheckBox", {Label = "Hold aim (+attack2 spam)", Command = "cw_kk_sck_lock_ads"}):DockMargin(8, 0, 8, 0)
+	panel:AddControl("CheckBox", {Label = "Hold aim (+attack2 spam)", Command = "_cw_kk_sck_lock_ads"}):DockMargin(8, 0, 8, 0)
 	panel:AddControl("CheckBox", {Label = "Free Aim: Enabled (shortcut)", Command = "cw_freeaim"}):DockMargin(8, 0, 8, 0)
 	
 	MENU.LABELS.buildHeader = panel:AddControl("Label", {Text = "Sight setup:"})
