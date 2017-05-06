@@ -74,9 +74,8 @@ SWEP.Sounds = {
 		-- // { event 1338 14 ""},
 	-- },
 
-	abase_ttack_kill = {
+	base_attack_kill = {
 		{time = 7/30, sound = "CW_KK_INS2_DOI_MELEE"},
-		// { event 1338 29 ""},
 		{time = 38/30, sound = "CW_KK_INS2_DOI_MELEE"},
 	},
 

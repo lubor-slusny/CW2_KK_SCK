@@ -122,10 +122,6 @@ SWEP.Sounds = {
 	base_fireselect_empty = {
 		{time = 11/30, sound = "CW_KK_INS2_DOI_FG42_FIRESELECT"},
 	},
-
-	deployed_fireselect_empty = {
-		{time = 11/30, sound = "CW_KK_INS2_DOI_FG42_FIRESELECT"},
-	},
 	
 	base_melee_empty = {
 		{time = 1/30, sound = "CW_KK_INS2_DOI_MELEE"},

@@ -24,21 +24,7 @@ SWEP.Sounds = {
 		{time = 67/30, sound = "CW_KK_INS2_M1A1_MAGIN"},
 	},
 
-	base_reload_ext = {
-		{time = 16/30, sound = "CW_KK_INS2_M1A1_MAGRELEASE"},
-		{time = 24/30, sound = "CW_KK_INS2_M1A1_MAGOUT"},
-		{time = 67/30, sound = "CW_KK_INS2_M1A1_MAGIN"},
-	},
-
 	base_reloadempty = {
-		{time = 16/30, sound = "CW_KK_INS2_M1A1_MAGRELEASE"},
-		{time = 24/30, sound = "CW_KK_INS2_M1A1_MAGOUT"},
-		{time = 65/30, sound = "CW_KK_INS2_M1A1_MAGIN"},
-		{time = 101/30, sound = "CW_KK_INS2_M1A1_BOLTBACK"},
-		{time = 115/30, sound = "CW_KK_INS2_M1A1_BOLTRELEASE"},
-	},
-
-	base_reloadempty_ext = {
 		{time = 16/30, sound = "CW_KK_INS2_M1A1_MAGRELEASE"},
 		{time = 24/30, sound = "CW_KK_INS2_M1A1_MAGOUT"},
 		{time = 65/30, sound = "CW_KK_INS2_M1A1_MAGIN"},
@@ -74,21 +60,7 @@ SWEP.Sounds = {
 		{time = 67/30, sound = "CW_KK_INS2_M1A1_MAGIN"},
 	},
 
-	foregrip_reload_ext = {
-		{time = 16/30, sound = "CW_KK_INS2_M1A1_MAGRELEASE"},
-		{time = 24/30, sound = "CW_KK_INS2_M1A1_MAGOUT"},
-		{time = 67/30, sound = "CW_KK_INS2_M1A1_MAGIN"},
-	},
-
 	foregrip_reloadempty = {
-		{time = 16/30, sound = "CW_KK_INS2_M1A1_MAGRELEASE"},
-		{time = 24/30, sound = "CW_KK_INS2_M1A1_MAGOUT"},
-		{time = 65/30, sound = "CW_KK_INS2_M1A1_MAGIN"},
-		{time = 101/30, sound = "CW_KK_INS2_M1A1_BOLTBACK"},
-		{time = 115/30, sound = "CW_KK_INS2_M1A1_BOLTRELEASE"},
-	},
-
-	foregrip_reloadempty_ext = {
 		{time = 16/30, sound = "CW_KK_INS2_M1A1_MAGRELEASE"},
 		{time = 24/30, sound = "CW_KK_INS2_M1A1_MAGOUT"},
 		{time = 65/30, sound = "CW_KK_INS2_M1A1_MAGIN"},

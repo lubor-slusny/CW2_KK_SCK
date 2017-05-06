@@ -1,15 +1,15 @@
 
 SWEP.Sounds = {
-	base_plant = {
+	plant = {
 		{time = 0, sound = "CW_KK_INS2_C4_ARMMOVEMENT"},
 		{time = 16/30, sound = "CW_KK_INS2_C4_PLANTPLACE"},
 	},
 
-	base_draw = {
+	draw = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
 	},
 
-	base_holster = {
+	holster = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_HOLSTER"},
 	},
 

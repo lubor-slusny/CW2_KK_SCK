@@ -23,10 +23,6 @@ SWEP.Sounds = {
 		{time = 0, sound = "CW_KK_INS2_DOI_G43_EMPTY"},
 	},
 
-	base_melee = {
-		{time = 1/30, sound = "CW_KK_INS2_DOI_MELEE"},
-	},
-
 	base_reloadfull = {
 		{time = 14/32, sound = "CW_KK_INS2_DOI_G43_MAGRELEASE"},
 		{time = 24/32, sound = "CW_KK_INS2_DOI_G43_MAGOUT"},
@@ -74,10 +70,6 @@ SWEP.Sounds = {
 		{time = 22/30, sound = "CW_KK_INS2_UNIVERSAL_RIGHTCRAWL"},
 	},
 
-	base_melee_empty = {
-		{time = 1/30, sound = "CW_KK_INS2_DOI_MELEE"},
-	},
-	
 	base_melee_bash = {
 		{time = 6/31, sound = "CW_KK_INS2_DOI_MELEE"},
 	},
