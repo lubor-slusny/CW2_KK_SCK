@@ -26,15 +26,15 @@ local function updatePanel()
 	end
 	
 	// swep info
-	PANEL:AddControl("Label", {Text = string.upper(WEAPON:GetClass())}):SetTextColor(PANEL:GetSkin().Colours.Tree.Hover)
-	local l
-	l = PANEL:AddControl("Label", {Text = WEAPON.ViewModel})
-	l:DockMargin(16,0,8,0)
-	l:SetMouseInputEnabled(true)
-	l.DoClick = clickMeh
-	
-	// spacer
-	PANEL:AddControl("Label", {Text = " "})
+	do
+		PANEL:AddControl("Label", {Text = string.upper(WEAPON:GetClass())}):SetTextColor(PANEL:GetSkin().Colours.Tree.Hover)
+		local l
+		l = PANEL:AddControl("Label", {Text = WEAPON.ViewModel})
+		l:DockMargin(16,0,8,0)
+		l:SetMouseInputEnabled(true)
+		l.DoClick = clickMeh
+		PANEL:AddControl("Label", {Text = " "})
+	end
 	
 	// shared variables
 	local errors = {}
@@ -77,13 +77,11 @@ local function updatePanel()
 				
 				PANEL:AddControl("Label", {Text = "}"}):DockMargin(16,0,8,0)
 			end
+			PANEL:AddControl("Label", {Text = " "})
 		else
-			PANEL:AddControl("Label", {Text = "No invalid entries in \"SWEP.Animations\". GG WP"}):SetTextColor(PANEL:GetSkin().Colours.Tree.Hover)
+			-- PANEL:AddControl("Label", {Text = "No invalid entries in \"SWEP.Animations\". GG WP"}):SetTextColor(PANEL:GetSkin().Colours.Tree.Hover)
 		end
 	end
-	
-	// spacer
-	PANEL:AddControl("Label", {Text = " "})
 	
 	// soundtables for unused/non-existing animations
 	do
@@ -126,13 +124,12 @@ local function updatePanel()
 				l:SetMouseInputEnabled(true)
 				l.DoClick = clickMeh
 			end
+			
+			PANEL:AddControl("Label", {Text = " "})		
 		else
-			PANEL:AddControl("Label", {Text = "No invalid entries in \"SWEP.Sounds\". neato"}):SetTextColor(PANEL:GetSkin().Colours.Tree.Hover)
+			-- PANEL:AddControl("Label", {Text = "No invalid entries in \"SWEP.Sounds\". neato"}):SetTextColor(PANEL:GetSkin().Colours.Tree.Hover)
 		end
 	end
-	
-	// spacer
-	PANEL:AddControl("Label", {Text = " "})
 	
 	// unused viewmodel animations
 	do
@@ -170,12 +167,11 @@ local function updatePanel()
 				l.DoClick = clickMeh
 			end
 		else
-			PANEL:AddControl("Label", {Text = "All VM sequences linked."}):SetTextColor(PANEL:GetSkin().Colours.Tree.Hover)
+			-- PANEL:AddControl("Label", {Text = "All VM sequences linked."}):SetTextColor(PANEL:GetSkin().Colours.Tree.Hover)
 		end
 	end
 	
 	// spacer
-	PANEL:AddControl("Label", {Text = " "})
 	PANEL:AddControl("Label", {Text = " "})
 end
 
