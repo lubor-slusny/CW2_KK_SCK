@@ -1,5 +1,5 @@
 
-local WS_PACK_REVISION = 11
+local WS_PACK_REVISION = 12
 
 local baseContentOK = true
 for _,f in pairs({
