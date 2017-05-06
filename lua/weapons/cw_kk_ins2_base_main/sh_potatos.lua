@@ -200,7 +200,7 @@ if CLIENT then
 	end
 
 	local cvAmmoHud = GetConVar("cw_customhud_ammo")
-	local cvSVM = GetConVar("cw_kk_ins2_shell_vm")
+	local cvSVM = CustomizableWeaponry_KK.ins2.conVars.main["cw_kk_ins2_shell_vm"]
 
 	function SWEP:_drawViewModel()
 		self.CW_VM:FrameAdvance(FrameTime())

@@ -123,7 +123,7 @@ if CLIENT then
 		self._KK_INS2_wasSafe = isSafe
 	end
 	
-	local sth = CreateClientConVar("cw_kk_ins2_sprint", 0, true, false)
+	local sth = CustomizableWeaponry_KK.ins2.conVars.main["cw_kk_ins2_sprint"]
 	
 	function SWEP:sprintAnimFunc()
 		if sth:GetInt() == 0 and (self.Slot == 2 or self.Slot == 3) then

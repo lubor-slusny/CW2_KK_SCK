@@ -72,7 +72,7 @@ local function cleanAnimButtonsPanel()
 end
 
 local iSoundFilter = 1
-local cvarCurFilter = CreateClientConVar("cw_kk_cvmt_filter_name", "", false, false)
+local cvarCurFilter = CreateClientConVar("_cw_kk_cvmt_filter_name", "", false, false)
 
 local colHover = Color(0,255,0,25)
 local colIdle = Color(0,0,0,60)
@@ -179,7 +179,7 @@ end
 
 local soundFilterTxt = {"ALL", "W/", "W/O"}
 
-cvars.AddChangeCallback("cw_kk_cvmt_filter_name", function()
+cvars.AddChangeCallback("_cw_kk_cvmt_filter_name", function()
 	populateAnimButtonsPanel()
 end)
 
@@ -420,7 +420,7 @@ local function updatePanel()
 		entry:Dock(FILL)
 		entry:DockMargin(8,0,0,0)
 		
-		entry:SetConVar("cw_kk_cvmt_filter_name")
+		entry:SetConVar("_cw_kk_cvmt_filter_name")
 		
 		function entry:OnChange()
 			self:OnEnter()

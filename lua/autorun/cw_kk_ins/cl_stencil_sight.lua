@@ -69,8 +69,8 @@ if CLIENT then
 	local colWhite = Color(255,255,255)
 	local colWhiteTr = Color(255,255,255,123)
 	
-	local cvFreeze = GetConVar("cw_kk_freeze_reticles")
-	local cvAnimated = GetConVar("cw_kk_ins2_animate_reticle")
+	local cvFreeze = CustomizableWeaponry_KK.ins2.conVars.other["cw_kk_freeze_reticles"]
+	local cvAnimated = CustomizableWeaponry_KK.ins2.conVars.main["cw_kk_ins2_animate_reticle"]
 	
 	local CW2ATTS = CustomizableWeaponry.registeredAttachmentsSKey
 	local tblLams = {

@@ -1,5 +1,45 @@
 AddCSLuaFile()
 
+////////////
+// LEGACY //
+////////////
+
+if CLIENT then
+	local SP = game.SinglePlayer()
+	local cvXH = CustomizableWeaponry_KK.ins2.conVars.oldSCK["cw_kk_gm_xhair"]
+	local cvLA = CustomizableWeaponry_KK.ins2.conVars.oldSCK["cw_kk_sck_lock_ads"]
+	
+	if SP then
+		local ply, wep
+		
+		hook.Add("Think", "cw_kk_gm_xhair_think", function()
+			ply = LocalPlayer()
+			wep = ply:GetActiveWeapon()
+			
+			if !wep.CW20Weapon then return end
+			
+			wep.DrawCrosshair = cvXH:GetInt() == 1
+		end)
+		
+		local _ADS_LAST, cur
+		hook.Add("Think", "cw_kk_sck_lock_ads_think", function() 
+			cur = cvLA:GetInt()
+			if cur != _ADS_LAST and _ADS_LAST != nil then
+				if cur == 0 then
+					RunConsoleCommand("-attack2")
+				else
+					RunConsoleCommand("+attack2")
+				end
+			end
+			_ADS_LAST = cur
+		end)
+	end
+end
+
+//////////
+// REST //
+//////////
+
 local BUILD = "429"
 
 // static
@@ -198,7 +238,7 @@ local stored = {}
 
 local function initSliderStorage(id)
 	if not stored[id] then
-		stored[id] = CreateClientConVar("_kk_sck_apb_slsens_" .. id, 1, true, false)
+		stored[id] = CreateClientConVar("_cw_kk_sck_apb_slsens_" .. id, 1, true, false)
 	end
 end
 
@@ -207,7 +247,7 @@ local function storeSliderZoom(slider)
 	
 	initSliderStorage(id)
 	
-	RunConsoleCommand("_kk_sck_apb_slsens_" .. id, slider.Wang:GetZoom())
+	RunConsoleCommand("_cw_kk_sck_apb_slsens_" .. id, slider.Wang:GetZoom())
 end
 
 local function loadSliderZoom(slider)

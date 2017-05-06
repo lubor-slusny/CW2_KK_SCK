@@ -72,8 +72,8 @@ end
 //-----------------------------------------------------------------------------
 
 if CLIENT then
-	local cvRigModel = GetConVar("cw_kk_ins2_rig")
-	local cvRigSkin = GetConVar("cw_kk_ins2_rigskin")
+	local cvRigModel = CustomizableWeaponry_KK.ins2.conVars.main["cw_kk_ins2_rig"]
+	local cvRigSkin = CustomizableWeaponry_KK.ins2.conVars.main["cw_kk_ins2_rigskin"]
 	local currentRigs = {}
 	
 	function SWEP:updateHands()

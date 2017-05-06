@@ -450,7 +450,7 @@ end
 //-----------------------------------------------------------------------------
 
 if CLIENT then
-	SWEP._cvarControlls = CreateClientConVar("cw_kk_ins2_ins_nade_ctrls", 1, true, true)
+	SWEP._cvarControlls = CustomizableWeaponry_KK.ins2.conVars.main["cw_kk_ins2_ins_nade_ctrls"]
 end
 
 function SWEP:getControlls()

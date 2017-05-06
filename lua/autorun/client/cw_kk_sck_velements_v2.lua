@@ -106,7 +106,7 @@ local stored = {}
 
 function TOOL:initSliderStorage(id)
 	if not stored[id] then
-		stored[id] = CreateClientConVar("_kk_sck_elements_slsens_" .. id, 1, true, false)
+		stored[id] = CreateClientConVar("_cw_kk_sck_elements_slsens_" .. id, 1, true, false)
 	end
 end
 
@@ -115,7 +115,7 @@ function TOOL:storeSliderZoom(slider)
 	
 	self:initSliderStorage(id)
 	
-	RunConsoleCommand("_kk_sck_elements_slsens_" .. id, slider.Wang:GetZoom())
+	RunConsoleCommand("_cw_kk_sck_elements_slsens_" .. id, slider.Wang:GetZoom())
 end
 
 function TOOL:loadSliderZoom(slider)

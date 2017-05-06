@@ -38,8 +38,8 @@ if CLIENT then
 		"kk_ins2_anpeq15"
 	}
 	
-	local cvFreeze = GetConVar("cw_kk_freeze_reticles")
-	local cvDrawVM = GetConVar("cw_kk_ins2_draw_vm_in_rt")
+	local cvFreeze = CustomizableWeaponry_KK.ins2.conVars.other["cw_kk_freeze_reticles"]
+	local cvDrawVM = CustomizableWeaponry_KK.ins2.conVars.main["cw_kk_ins2_draw_vm_in_rt"]
 	
 	local attachmEnt, mdlAttRear, mdlAttFront
 	local retPos, retAng, retNorm

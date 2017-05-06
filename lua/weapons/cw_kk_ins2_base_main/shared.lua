@@ -231,7 +231,7 @@ function SWEP:IndividualThink_INS2() end
 
 local cvarFA = GetConVar("cw_freeaim")
 local cvarFAAC = GetConVar("cw_freeaim_autocenter")
-local cvarSprint = CreateClientConVar("cw_kk_ins2_sprint", 0, true, false)
+local cvarSprint = CustomizableWeaponry_KK.ins2.conVars.main["cw_kk_ins2_sprint"]
 	
 local shouldDrawCrosshair, fa
 

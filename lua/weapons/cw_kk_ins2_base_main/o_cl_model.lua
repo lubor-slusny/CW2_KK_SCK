@@ -107,7 +107,7 @@ end
 //-----------------------------------------------------------------------------
 
 local cvAmmoHud = GetConVar("cw_customhud_ammo")
-local cvSVM = GetConVar("cw_kk_ins2_shell_vm")
+local cvSVM = CustomizableWeaponry_KK.ins2.conVars.main["cw_kk_ins2_shell_vm"]
 
 function SWEP:_drawViewModel()
 	self.CW_VM:FrameAdvance(FrameTime())
@@ -342,7 +342,7 @@ local function recomputeLighting(i, pos, ang)
 	end
 end
 
-local cvarFixScopes = CreateClientConVar("cw_kk_ins2_scopelightingfix", 1, true, false)
+local cvarFixScopes = CustomizableWeaponry_KK.ins2.conVars.main["cw_kk_ins2_scopelightingfix"]
 
 local active, pos, ang, m, vma, model, doRecompute, parent
 
@@ -635,7 +635,7 @@ end
 // scaleMovement edited to use sprint state dependent base values 
 //-----------------------------------------------------------------------------
 
-local sth = CreateClientConVar("cw_kk_ins2_sprint", 0, true, false)
+local sth = CustomizableWeaponry_KK.ins2.conVars.main["cw_kk_ins2_sprint"]
 
 function SWEP:scaleMovement(val, mod)
 	local scale = self.ViewModelMovementScale

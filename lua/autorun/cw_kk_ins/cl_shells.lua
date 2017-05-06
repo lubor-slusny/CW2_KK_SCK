@@ -3,8 +3,8 @@ if CLIENT then
 	CustomizableWeaponry_KK.ins2.shells = CustomizableWeaponry_KK.ins2.shells or {}
 	CustomizableWeaponry_KK.ins2.shells._deployed = CustomizableWeaponry_KK.ins2.shells._deployed or {}
 	
-	local cvarSSF = GetConVar("cw_kk_ins2_shell_sound") or {GetInt = function() return 3 end}
-	local cvarSLT = GetConVar("cw_kk_ins2_shell_time") or {GetFloat = function() return 10 end}
+	local cvarSSF = CustomizableWeaponry_KK.ins2.conVars.main["cw_kk_ins2_shell_sound"] or {GetInt = function() return 3 end}
+	local cvarSLT = CustomizableWeaponry_KK.ins2.conVars.main["cw_kk_ins2_shell_time"] or {GetFloat = function() return 10 end}
 	
 	local CurTime = CurTime
 	local soundPlay = sound.Play
