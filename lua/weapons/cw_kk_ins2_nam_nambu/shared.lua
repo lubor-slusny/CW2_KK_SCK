@@ -13,7 +13,7 @@ if CLIENT then
 	SWEP.PrintName = "Nambu"
 	SWEP.CSMuzzleFlashes = true
 	
-	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_makarov")
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_nambu")
 	
 	SWEP.Shell = "KK_INS2_9x19"
 	SWEP.ShellDelay = 0.06
