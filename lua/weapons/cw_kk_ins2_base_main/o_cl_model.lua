@@ -678,7 +678,7 @@ function SWEP:createHandsVM()
 	
 	self.CW_KK_HANDS:SetParent(self.CW_VM)
 	self.CW_KK_HANDS:AddEffects(EF_BONEMERGE)
-	-- self.CW_KK_HANDS:AddEffects(EF_BONEMERGE_FASTCULL)
+	self.CW_KK_HANDS:AddEffects(EF_BONEMERGE_FASTCULL)
 end
 
 //-----------------------------------------------------------------------------
@@ -692,16 +692,15 @@ function SWEP:DrawVMHandsModel()
 	if self.UseGMHands then
 		if gm:GetParent() != self.CW_KK_HANDS then
 			gm:SetParent(self.CW_KK_HANDS)
+			gm:AddEffects(EF_BONEMERGE)
 		end
 		
-		gm:AddEffects(EF_BONEMERGE_FASTCULL)
 		gm:DrawModel()
 	else
 		if gm:GetParent() == self.CW_KK_HANDS then
 			gm:SetParent(nil)
 		end
 		
-		self.CW_KK_HANDS:AddEffects(EF_BONEMERGE)
 		self.CW_KK_HANDS:DrawModel()
 	end
 end
