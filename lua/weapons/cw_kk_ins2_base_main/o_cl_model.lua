@@ -530,6 +530,7 @@ function SWEP:setupAttachmentWModels()
 			if v.merge then
 				v.ent:SetParent(self)
 				v.ent:AddEffects(EF_BONEMERGE)
+				v.ent:AddEffects(EF_BONEMERGE_FASTCULL)
 			end
 			
 			if v.attachment then
@@ -565,31 +566,28 @@ function SWEP:drawAttachmentsWorld(parent)
 	end
 	
 	if self.AttachmentModelsWM then
-		-- if self.AttachmentModelsVM then
-			-- for k,v in pairs(self.AttachmentModelsVM) do
-				-- if self.AttachmentModelsWM[k] then
-					-- self.AttachmentModelsWM[k].active = v.active
-				-- end
-			-- end
-		-- end
-		
 		for k, v in pairs(self.AttachmentModelsWM) do
 			if v.ent and v.active then
 				model = v.ent
 				
 				if v.merge then
-					model:SetParent(parent)
+					if model:GetParent() != parent then
+						model:SetParent(parent)
+					end
 					pos = parent:GetPos()
 					ang = parent:GetAngles()
 				elseif v.attachment then
-					vma = parent:GetAttachment(parent:LookupAttachment(v.attachment)) // fuck savings
-					-- vma = parent:GetAttachment(v._attachment)
+					if not v._attachment then
+						v._attachment = parent:LookupAttachment(v.attachment)
+					end
+					vma = parent:GetAttachment(v._attachment)
 					pos = vma.Pos
 					ang = vma.Ang
 				elseif v.bone then
-					m = parent:GetBoneMatrix(parent:LookupBone(v.bone)) // especially when bones doesnt seem to get set up when you dont spawn weapon on the ground first
-					-- m = parent:GetBoneMatrix(v._bone)
-					
+					if not v._bone then
+						v._bone = parent:LookupBone(v.bone)
+					end
+					m = parent:GetBoneMatrix(v._bone)
 					pos = m:GetTranslation()
 					ang = m:GetAngles()
 				end
@@ -693,6 +691,7 @@ function SWEP:DrawVMHandsModel()
 		if gm:GetParent() != self.CW_KK_HANDS then
 			gm:SetParent(self.CW_KK_HANDS)
 			gm:AddEffects(EF_BONEMERGE)
+			gm:AddEffects(EF_BONEMERGE_FASTCULL)
 		end
 		
 		gm:DrawModel()
