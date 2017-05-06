@@ -78,7 +78,9 @@ SWEP.WorldModel		= "models/weapons/w_hafthohlladung.mdl"
 SWEP.WMPos = Vector(3.891, 4.5, 7)
 SWEP.WMAng = Angle(-70, 90, 0)
 
-SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.ww2de
+SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.rgd5
+SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.b2keh
+SWEP.CW_KK_40MM_MDL = "models/weapons/w_grenade_kar98k.mdl"
 
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted4(SWEP)
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted4(SWEP)

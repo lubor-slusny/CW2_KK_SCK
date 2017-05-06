@@ -44,6 +44,16 @@ CustomizableWeaponry_KK.ins2.quickKnife.models.ww2gb = {
 	a_attack = "slash_1"
 }
 
+CustomizableWeaponry_KK.ins2.quickKnife.models.b2kus = {
+	vm = "models/weapons/cw_kk_doi/v_marinebayonet.mdl",
+	a_attack = "slash_1"
+}
+
+CustomizableWeaponry_KK.ins2.quickKnife.models.b2keh = {
+	vm = "models/weapons/v_nam_akbayonet.mdl",
+	a_attack = "hitcenter3"
+}
+
 function CustomizableWeaponry_KK.ins2.quickKnife:canAttack(wep)
 	self.restrictedStates = self.restrictedStates or {
 		-- [CW_ACTION] = true, // it should work underwater and on ladders

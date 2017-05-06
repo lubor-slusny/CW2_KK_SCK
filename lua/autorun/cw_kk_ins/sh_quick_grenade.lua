@@ -90,6 +90,22 @@ CustomizableWeaponry_KK.ins2.quickGrenade.models.anm14 = {
 	a_throw = "bakethrow"
 }
 
+CustomizableWeaponry_KK.ins2.quickGrenade.models.m26 = {
+	id = "m26",
+	vm = "models/weapons/v_nam_m26.mdl",
+	wm = "models/weapons/w_nam_m26.mdl",
+	a_pinpull = "pullbackhigh",
+	a_throw = "throw"
+}
+
+CustomizableWeaponry_KK.ins2.quickGrenade.models.rgd5 = {
+	id = "rgd5",
+	vm = "models/weapons/v_nam_rgd5.mdl",
+	wm = "models/weapons/w_nam_rgd5.mdl",
+	a_pinpull = "pullbackhigh",
+	a_throw = "throw"
+}
+
 CustomizableWeaponry_KK.ins2.quickGrenade.types = {}
 
 local function add(tab)

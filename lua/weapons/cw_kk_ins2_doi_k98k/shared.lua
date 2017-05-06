@@ -15,7 +15,6 @@ if CLIENT then
 	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_k98")
 	
 	SWEP.Shell = "KK_INS2_762x54"
-	-- SWEP.ShellDelay = 0.75
 	SWEP.NoShells = true
 	
 	SWEP.BackupSights = {
@@ -44,9 +43,9 @@ if CLIENT then
 
 		["kk_ins2_scope_k98"] = {model = "models/weapons/upgrades/a_optic_kar98k.mdl", rLight = true, pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
-		["ani_body"] = {model = "models/weapons/v_kar98k.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
-		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_k98.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body"},
-		-- ["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_k98.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		-- ["ani_body"] = {model = "models/weapons/v_kar98k.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
+		-- ["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_k98.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, rel = "ani_body"},
+		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_k98.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_scope_zf4"] = {model = "models/weapons/upgrades/a_optic_kar98k_4x.mdl", rLight = true, pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_scope_zf41"] = {model = "models/weapons/upgrades/a_optic_kk_zf41.mdl", rLight = true, pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
@@ -119,7 +118,6 @@ SWEP.Animations = {
 	base_reload_stripper_1_empty = "base_reload_clip_empty",
 	base_reload_start = "base_reload_start",
 	base_reload_start_empty = "base_reload_start_empty",
-	-- base_reload_start_empty = "base_reload_start",
 	base_insert = "base_reload_insert",
 	base_reload_end = "base_reload_end",
 	base_reload_end_empty = "base_reload_end",
@@ -216,8 +214,6 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
--- SWEP.ViewModel		= "models/weapons/v_cw_kk_doi_k98.mdl"
--- SWEP.ViewModel		= "models/weapons/cw_kk_doi/v_kar98k.mdl"
 SWEP.ViewModel		= "models/weapons/cw_kk_doi/v_kar98k_oldgl.mdl"
 SWEP.WorldModel		= "models/weapons/w_kar98k.mdl"
 
