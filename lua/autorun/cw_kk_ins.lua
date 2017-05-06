@@ -34,7 +34,6 @@ local folder = "autorun/cw_kk_ins_core/"
 for _,v in pairs({
 	[1] = "sh_content_check",
 	[2] = "cl_cvars",
-	[3] = "cl_utility_tab",
 }) do
 	AddCSLuaFile(folder .. v .. ".lua")
 	include(folder .. v .. ".lua")
