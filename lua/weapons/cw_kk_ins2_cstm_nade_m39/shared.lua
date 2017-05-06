@@ -1,5 +1,4 @@
 if not CustomizableWeaponry then return end
-if not CustomizableWeaponry_KK.HOME then return end
 
 AddCSLuaFile()
 AddCSLuaFile("sh_soundscript.lua")
@@ -71,7 +70,7 @@ SWEP.WorldModel		= "models/weapons/w_cw_kk_ins2_cstm_nade_m39.mdl"
 SWEP.WMPos = Vector(3.891, 2.295, -1.765)
 SWEP.WMAng = Angle(-28.962, 155.365, 180)
 
-SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.ww2gb
+SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.ww2de
 
 SWEP.Spawnable			= CustomizableWeaponry_KK.ins2.isContentMounted4(SWEP)
 SWEP.AdminSpawnable		= CustomizableWeaponry_KK.ins2.isContentMounted4(SWEP)

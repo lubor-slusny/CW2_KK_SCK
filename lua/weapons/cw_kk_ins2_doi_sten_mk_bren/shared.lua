@@ -1,4 +1,5 @@
 if not CustomizableWeaponry then return end
+if not CustomizableWeaponry_KK.HOME then return end
 
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
@@ -10,7 +11,7 @@ SWEP.magType = "smgMag"
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "Sten Mk Bren"
+	SWEP.PrintName = "Owen"
 	SWEP.CSMuzzleFlashes = true
 	SWEP.ViewModelMovementScale = 1.15
 	

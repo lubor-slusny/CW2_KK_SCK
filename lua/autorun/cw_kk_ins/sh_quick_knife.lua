@@ -41,7 +41,7 @@ CustomizableWeaponry_KK.ins2.quickKnife.models.ww2us = {
 
 CustomizableWeaponry_KK.ins2.quickKnife.models.ww2gb = {
 	vm = "models/weapons/cw_kk_doi/v_enfield_bayonet.mdl",
-	a_attack = "slash_1"
+	a_attack = "hitcenter1"
 }
 
 CustomizableWeaponry_KK.ins2.quickKnife.models.b2kus = {
