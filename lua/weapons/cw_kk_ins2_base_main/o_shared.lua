@@ -175,6 +175,10 @@ end
 local CT, mag
 
 function SWEP:Reload()
+	if not self:IndividualReloadCheck() then
+		return
+	end
+
 	CT = CurTime()
 	
 	if self.dt.State == CW_HOLSTER_START or self.dt.State == CW_HOLSTER_END then
@@ -246,12 +250,6 @@ function SWEP:beginReload()
 	if self.boltAction_isShot then 
 		return 
 	end
-	
-	-- if !self.dt.INS2GLActive and self.ActiveAttachments.kk_ins2_ww2_stripper and self:Clip1() > 0 then 
-		-- return 
-	-- end
-	
-	-- self:updateReloadTimes()
 	
 	CT = CurTime()
 	mag, ammo = self:Clip1(), self.Owner:GetAmmoCount(self.Primary.Ammo)

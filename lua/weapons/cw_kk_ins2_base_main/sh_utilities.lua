@@ -301,3 +301,11 @@ function SWEP:getStripperClipAnimation(ammo, mag)
 	
 	return "reload_stripper_" .. tostring(clipIn) .. suffix
 end
+
+//-----------------------------------------------------------------------------
+// IndividualReloadCheck to allow individual weapons to prevent reloads
+//-----------------------------------------------------------------------------
+
+function SWEP:IndividualReloadCheck()
+	return true
+end

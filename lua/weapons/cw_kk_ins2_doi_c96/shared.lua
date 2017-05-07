@@ -6,8 +6,6 @@ AddCSLuaFile("sh_soundscript.lua")
 include("sh_sounds.lua")
 include("sh_soundscript.lua")
 
-SWEP.magType = "pistolMag"
-
 if CLIENT then
 	SWEP.DrawCrosshair = false
 	SWEP.PrintName = "Mauser C96"
@@ -37,9 +35,18 @@ if CLIENT then
 	SWEP.IronsightPos = Vector(-2.6353, -2, 0.681)
 	SWEP.IronsightAng = Vector(0.9804, 0.0329, 0)
 
-	SWEP.CustomizationMenuScale = 0.01
+	SWEP.CustomizationMenuScale = 0.010
 	SWEP.ReloadViewBobEnabled = false
 	SWEP.DisableSprintViewSimulation = true
+	
+	SWEP.Trivia = {
+		text = "Can be reloaded only when empty.",
+		x = 0, 
+		y = -200, 
+		textFormatFunc = function(self, wep) 
+			return self.text
+		end
+	}
 end
 
 SWEP.MuzzleEffect = "muzzleflash_luger_1p"
@@ -48,10 +55,10 @@ SWEP.MuzzleEffectWorld = "muzzleflash_mp40_3p"
 SWEP.StockBGs = {main = 0, regular = 0, heavy = 0, sturdy = 0}
 
 SWEP.Attachments = {
-	{header = "Stock", offset = {500, -400}, atts = {"bg_ar15sturdystock"}},
+	{header = "Stock", offset = {800, 0}, atts = {"bg_ar15sturdystock"}},
 	-- {header = "Lasers", offset = {500, -400}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_m6x"}},
 	-- {header = "Barrel", offset = {-500, -400}, atts = {"kk_ins2_c96_barrel_lng"}},
-	["+reload"] = {header = "Ammo", offset = {500, 50}, atts = {"am_magnum", "am_matchgrade"}}
+	["+reload"] = {header = "Ammo", offset = {-400, 0}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
 SWEP.Animations = {
@@ -153,4 +160,8 @@ if CLIENT then
 	function SWEP:updateStandardParts()
 		self:setElementActive("kk_ins2_c96_barrel_std", !self.ActiveAttachments.kk_ins2_c96_barrel_lng)
 	end
+end
+
+function SWEP:IndividualReloadCheck()
+	return self:Clip1() == 0
 end
