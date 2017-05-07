@@ -3,6 +3,22 @@ local LocalPlayer = LocalPlayer
 local IsValid = IsValid
 local FrameTime = FrameTime
 local CurTime = CurTime
+local EyePos = EyePos
+local EyeAngles = EyeAngles
+local Lerp = Lerp
+
+local _reg = debug.getregistry()
+local _ent = _reg.Entity
+
+local EntGetBoneMatrix = _ent.GetBoneMatrix
+local EntGetAttachment = _ent.GetAttachment
+local EntLookupBone = _ent.LookupBone
+
+local _ang = _reg.Angle
+local AngRotateAroundAxis = _ang.RotateAroundAxis
+local AngUp = _ang.Up
+local AngRight = _ang.Right
+local AngForward = _ang.Forward
 
 //-----------------------------------------------------------------------------
 // getMuzzlePosition edited to be usable in third person
@@ -14,13 +30,13 @@ local muz = {}
 
 function SWEP:getMuzzlePosition()
 	if self.Owner:ShouldDrawLocalPlayer() then
-		muz.Pos = self.WMEnt:GetAttachment(1).Pos
+		muz.Pos = EntGetAttachment(self.WMEnt, 1).Pos
 		muz.Ang = EyeAngles()
 		return muz
 	end
 	
 	if self.MuzzleAttachment != 0 then
-		return self.CW_VM:GetAttachment(self.MuzzleAttachment)
+		return EntGetAttachment(self.CW_VM, self.MuzzleAttachment)
 	end
 	
 	muz.Pos = self.Owner:EyePos()
@@ -41,7 +57,7 @@ function SWEP:buildBoneTable()
 		local bone
 		
 		if boneName then
-			bone = vm:LookupBone(boneName)
+			bone = EntLookupBone(vm, boneName)
 		end
 		
 		-- some ins models have [__INVALIDBONE__]s so to prevent nilpointerexceptions bone = 1
@@ -57,11 +73,15 @@ function SWEP:createCustomVM(mdl)
 	self.CW_VM = self:createManagedCModel(mdl, RENDERGROUP_BOTH)
 	self.CW_VM:SetNoDraw(true)
 	self.CW_VM:SetupBones()
-	
 	self.CW_VM:SelectWeightedSequence(ACT_VM_HOLSTER)
 	self.CW_VM:SetCycle(1)
 	
-	self:createHandsVM()
+	self.CW_KK_HANDS = self:createManagedCModel(self.CW_KK_HANDS_MDL, RENDERGROUP_BOTH)
+	self.CW_KK_HANDS:SetNoDraw(true)
+	self.CW_KK_HANDS:SetupBones()
+	self.CW_KK_HANDS:SetParent(self.CW_VM)
+	self.CW_KK_HANDS:AddEffects(EF_BONEMERGE)
+	self.CW_KK_HANDS:AddEffects(EF_BONEMERGE_FASTCULL)
 	
 	self.CW_GREN = self:createManagedCModel(self.CW_GREN_TWEAK.vm, RENDERGROUP_BOTH)
 	self.CW_GREN:SetNoDraw(true)
@@ -82,8 +102,6 @@ end
 // drawViewModel edited to draw quick knife viewmodel
 //-----------------------------------------------------------------------------
 
-local FT
-
 function SWEP:drawViewModel()
 	if not self.CW_VM then
 		return
@@ -91,7 +109,7 @@ function SWEP:drawViewModel()
 	
 	self:offsetBones()
 	
-	FT = FrameTime()
+	local FT = FrameTime()
 	
 	self.LuaVMRecoilIntensity = math.Approach(self.LuaVMRecoilIntensity, 0, FT * 10 * self.LuaVMRecoilLowerSpeed)
 	self.LuaVMRecoilLowerSpeed = math.Approach(self.LuaVMRecoilLowerSpeed, 1, FT * 2)
@@ -101,6 +119,25 @@ function SWEP:drawViewModel()
 	
 	self:drawGrenade()
 	self:drawKKKnife()
+end
+
+function SWEP:drawQuickViewModel(vm)
+	local pos, ang = EyePos(), EyeAngles()
+	local FT = FrameTime()
+	
+	self.GrenadePos.z = Lerp(FT * 10, self.GrenadePos.z, 0)
+	
+	pos = pos + AngUp(ang) * self.GrenadePos.z
+	pos = pos + AngForward(ang) * 2
+	
+	vm:SetPos(pos)
+	vm:SetAngles(ang)
+	vm:FrameAdvance(FT)
+	
+	cam.IgnoreZ(true)
+		vm:DrawModel()
+		self:DrawVMHandsModel()
+	cam.IgnoreZ(false)
 end
 
 //-----------------------------------------------------------------------------
@@ -127,9 +164,10 @@ function SWEP:_drawViewModel()
 	local CT = CurTime()
 	
 	if CT > self.grenadeTime and CT > self.knifeTime then
-		self.CW_KK_HANDS:SetPos(self.CW_VM:GetPos())
+		if self.CW_KK_HANDS:GetParent() != self.CW_VM then
+			self.CW_KK_HANDS:SetParent(self.CW_VM)
+		end
 		
-		self.CW_KK_HANDS:SetParent(self.CW_VM)
 		self:DrawVMHandsModel()
 	end
 	
@@ -164,17 +202,13 @@ function SWEP:drawGrenade()
 		return
 	end
 	
-	-- if self.CW_GREN:GetCycle() >= 0.98 then
-		-- return
-	-- end
-	
 	local pos, ang = EyePos(), EyeAngles()
 	local FT = FrameTime()
 	
 	self.GrenadePos.z = Lerp(FT * 10, self.GrenadePos.z, 0)
 	
-	pos = pos + ang:Up() * self.GrenadePos.z
-	pos = pos + ang:Forward() * 2
+	pos = pos + AngUp(ang) * self.GrenadePos.z
+	pos = pos + AngForward(ang) * 2
 	
 	self.CW_GREN:SetPos(pos)
 	self.CW_GREN:SetAngles(ang)
@@ -187,18 +221,37 @@ function SWEP:drawGrenade()
 end
 
 //-----------------------------------------------------------------------------
-// drawKKKnife contents temporarily stored in global table
+// drawKKKnife is exactly same as drawGrenade
 //-----------------------------------------------------------------------------
 
 function SWEP:drawKKKnife()
-	CustomizableWeaponry_KK.ins2.quickKnife.drawVM(self)
+	if CurTime() > self.knifeTime then
+		return
+	end
+	
+	local pos, ang = EyePos(), EyeAngles()
+	local FT = FrameTime()
+	
+	self.GrenadePos.z = Lerp(FT * 10, self.GrenadePos.z, 0)
+	
+	pos = pos + AngUp(ang) * self.GrenadePos.z
+	pos = pos + AngForward(ang) * 2
+	
+	self.CW_KK_KNIFE:SetPos(pos)
+	self.CW_KK_KNIFE:SetAngles(ang)
+	self.CW_KK_KNIFE:FrameAdvance(FT)
+	
+	cam.IgnoreZ(true)
+		self.CW_KK_KNIFE:DrawModel()
+		self:DrawVMHandsModel()
+	cam.IgnoreZ(false)
 end
 
 //-----------------------------------------------------------------------------
 // setupAttachmentModels edited to support 
 // - custom attach points, bone-merging
 // - globally pre-set sub-material override
-// - individually set material override
+// - individually set material and sub-material override
 // - WElement init
 //-----------------------------------------------------------------------------
 
@@ -213,7 +266,7 @@ function SWEP:setupAttachmentModels()
 				self:_setupAttachmentModel(v)
 			end
 		end
-			
+		
 		for k, v in pairs(self.AttachmentModelsVM) do
 			if v.models then
 				for key, data in ipairs(v.models) do
@@ -237,10 +290,6 @@ function SWEP:_setupAttachmentModel(v)
 	
 	v.matrix = Matrix()
 	
-	-- v.pos.y = -v.pos.y
-	-- v.matrix:Translate(v.pos)
-	-- v.matrix:Rotate(v.angle)
-		
 	if v.size then
 		v.matrix:Scale(v.size)
 	end
@@ -270,7 +319,7 @@ function SWEP:_setupAttachmentModel(v)
 	end
 	
 	if v.bone then
-		v._bone = self.CW_VM:LookupBone(v.bone)
+		v._bone = EntLookupBone(self.CW_VM, v.bone)
 	end
 	
 	for i,mat in pairs(v.ent:GetMaterials()) do
@@ -286,12 +335,6 @@ function SWEP:_setupAttachmentModel(v)
 			v.ent:SetSubMaterial(i - 1, path)
 		end
 	end
-	
-	-- if scopes[k] then
-		-- print("new bounds for", v.ent)
-		-- v.ent:SetCollisionBounds(Vector(-2,-1,-0), Vector(2,1,2))
-		-- v.ent:SetRenderBounds(Vector(-2,-1,-0), Vector(2,1,2))
-	-- end
 end
 
 function SWEP:_setupAttachmentModelMerge(v)
@@ -316,9 +359,6 @@ local nBack, nLeft, nBottom = -1 * nFront, -1 * nRight, -1 * nTop
 
 local function recomputeLighting(i, pos, ang)
 	if i == 1 then
-		-- pos = pos - ang:Forward() * 500
-		-- pos = EyePos()
-		
 		render.SuppressEngineLighting(true)
 		
 		local lFront = render.ComputeLighting(pos, nFront)
@@ -358,32 +398,36 @@ function SWEP:_drawAttachmentModel(v)
 		parent = self.CW_VM
 	end
 	
-	if v.merge then
-		-- v.ent:SetParent(parent)
-		-- v.ent:AddEffects(EF_BONEMERGE_FASTCULL)
-		pos = parent:GetPos()
-		ang = parent:GetAngles()
-	elseif v._attachment then
-		vma = parent:GetAttachment(v._attachment)
-		pos = vma.Pos
-		ang = vma.Ang
-	elseif v._bone then
-		m = parent:GetBoneMatrix(v._bone)
-		pos = m:GetTranslation()
-		ang = m:GetAngles()
-	end
-	
-	pos = pos + ang:Forward() * v.pos.x + ang:Right() * v.pos.y + ang:Up() * v.pos.z
-	
-	ang:RotateAroundAxis(ang:Up(), v.angle.y)
-	ang:RotateAroundAxis(ang:Right(), v.angle.p)
-	ang:RotateAroundAxis(ang:Forward(), v.angle.r)
-	
 	model = v.ent
 	
-	model:SetPos(pos)
-	model:SetAngles(ang)
+	pos = parent:GetPos()
+	ang = parent:GetAngles()
+	
+	if v.merge then
+		-- if model:GetParent() != parent then
+			-- model:SetParent(parent)
+		-- end
+	else
+		if v._attachment then
+			vma = EntGetAttachment(parent, v._attachment)
+			pos = vma.Pos
+			ang = vma.Ang
+		elseif v._bone then
+			m = EntGetBoneMatrix(parent, v._bone)
+			pos = m:GetTranslation()
+			ang = m:GetAngles()
+		end
+		
+		pos = pos + AngForward(ang) * v.pos.x + AngRight(ang) * v.pos.y + AngUp(ang) * v.pos.z
+		
+		AngRotateAroundAxis(ang, AngUp(ang), v.angle.y)
+		AngRotateAroundAxis(ang, AngRight(ang), v.angle.p)
+		AngRotateAroundAxis(ang, AngForward(ang), v.angle.r)		
 
+		model:SetPos(pos)
+		model:SetAngles(ang)
+	end
+	
 	if v.animated then
 		model:FrameAdvance(FrameTime())
 		model:SetupBones()
@@ -391,11 +435,8 @@ function SWEP:_drawAttachmentModel(v)
 	
 	if !v.nodraw then
 		doRecompute = v.rLight and cvarFixScopes:GetInt() == 1
-		
 		recomputeLighting(doRecompute and 1 or false, pos, ang)
-		
-		model:DrawModel()
-		
+			model:DrawModel()
 		recomputeLighting(true or whatever, pos, ang)
 	end
 end
@@ -405,19 +446,6 @@ end
 // - attachment world models (WElements)
 // - 3rd person 3D2D HUD
 //-----------------------------------------------------------------------------
-
-local _reg = debug.getregistry()
-local _ent = _reg and _reg.Entity
-
-local EntGetBoneMatrix = _ent and _ent.GetBoneMatrix
-local EntGetBonePosition = _ent and _ent.GetBonePosition
-local EntLookupBone = _ent and _ent.LookupBone
-
-local _ang = _reg and _reg.Angle
-local AngRotateAroundAxis = _ang.RotateAroundAxis
-local AngUp = _ang.Up
-local AngRight = _ang.Right
-local AngForward = _ang.Forward
 
 function SWEP:DrawWorldModel()
 	if self.dt.Safe then
@@ -440,20 +468,24 @@ function SWEP:DrawWorldModel()
 	end
 
 	if IsValid(self.Owner) then
-		pos, ang = EntGetBonePosition(self.Owner, EntLookupBone(self.Owner, "ValveBiped.Bip01_R_Hand"))
+		if not self.OwnerAttachBoneID then
+			self.OwnerAttachBoneID = EntLookupBone(self.Owner, "ValveBiped.Bip01_R_Hand")
+		end
 		
-		pos = (
-			pos + 
-			AngForward(ang) * self.WMPos.x + 
-			AngRight(ang) * self.WMPos.y + 
-			AngUp(ang) * self.WMPos.z
-		)
-			
+		m = EntGetBoneMatrix(self.Owner, self.OwnerAttachBoneID)
+		pos = m:GetTranslation()
+		ang = m:GetAngles()
+		
+		pos = pos + AngForward(ang) * self.WMPos.x + AngRight(ang) * self.WMPos.y + AngUp(ang) * self.WMPos.z
+		
 		AngRotateAroundAxis(ang, AngUp(ang), self.WMAng.y)
 		AngRotateAroundAxis(ang, AngRight(ang), self.WMAng.x)
 		AngRotateAroundAxis(ang, AngForward(ang), self.WMAng.z)
 	else
-		pos, ang = self:GetPos(), self:GetAngles()	
+		self.OwnerAttachBoneID = false
+		
+		pos = self:GetPos()
+		ang = self:GetAngles()	
 	end
 	
 	if !IsValid(self.WMEnt) then
@@ -542,7 +574,7 @@ function SWEP:setupAttachmentWModels()
 			end
 			
 			if v.bone then
-				v._bone = parent:LookupBone(v.bone)
+				v._bone = EntLookupBone(parent, v.bone)
 			end
 			
 			for i,mat in pairs(v.ent:GetMaterials()) do
@@ -553,6 +585,10 @@ function SWEP:setupAttachmentWModels()
 			
 			if v.material then 
 				v.ent:SetMaterial(v.material)
+			elseif v.materials then
+				for i,path in pairs(v.materials) do
+					v.ent:SetSubMaterial(i - 1, path)
+				end
 			end
 			
 			v.ent:SetupBones()
@@ -575,24 +611,32 @@ function SWEP:drawAttachmentsWorld(parent)
 				model = v.ent
 				
 				if v.merge then
+					-- if model:GetParent() != parent then
+						-- model:SetParent(parent)
+					-- end
+				else
 					pos = parent:GetPos()
 					ang = parent:GetAngles()
-				elseif v.attachment then
-					vma = parent:GetAttachment(v._attachment)
-					pos = vma.Pos
-					ang = vma.Ang
-				elseif v.bone then
-					m = parent:GetBoneMatrix(v._bone)
-					pos = m:GetTranslation()
-					ang = m:GetAngles()
+					
+					if v._attachment then
+						vma = EntGetAttachment(parent, v._attachment)
+						pos = vma.Pos
+						ang = vma.Ang
+					elseif v._bone then
+						m = EntGetBoneMatrix(parent, v._bone)
+						pos = m:GetTranslation()
+						ang = m:GetAngles()
+					end
+					
+					pos = pos + AngForward(ang) * v.pos.x + AngRight(ang) * v.pos.y + AngUp(ang) * v.pos.z
+					
+					AngRotateAroundAxis(ang, AngUp(ang), v.angle.y)
+					AngRotateAroundAxis(ang, AngRight(ang), v.angle.p)
+					AngRotateAroundAxis(ang, AngForward(ang), v.angle.r)
+					
+					model:SetPos(pos)
+					model:SetAngles(ang)
 				end
-				
-				model:SetPos(pos + ang:Forward() * v.pos.x + ang:Right() * v.pos.y + ang:Up() * v.pos.z)
-				
-				ang:RotateAroundAxis(ang:Up(), v.angle.y)
-				ang:RotateAroundAxis(ang:Right(), v.angle.p)
-				ang:RotateAroundAxis(ang:Forward(), v.angle.r)
-				model:SetAngles(ang)
 				
 				if !v.nodraw then
 					model:DrawModel()
@@ -658,20 +702,6 @@ function SWEP:scaleMovement(val, mod)
 	end
 	
 	return val * scale * mod
-end
-
-//-----------------------------------------------------------------------------
-// createHandsVM detached from createCustomVM
-//-----------------------------------------------------------------------------
-
-function SWEP:createHandsVM()
-	self.CW_KK_HANDS = self:createManagedCModel(self.CW_KK_HANDS_MDL, RENDERGROUP_BOTH)
-	self.CW_KK_HANDS:SetNoDraw(true)
-	self.CW_KK_HANDS:SetupBones()
-	
-	self.CW_KK_HANDS:SetParent(self.CW_VM)
-	self.CW_KK_HANDS:AddEffects(EF_BONEMERGE)
-	self.CW_KK_HANDS:AddEffects(EF_BONEMERGE_FASTCULL)
 end
 
 //-----------------------------------------------------------------------------

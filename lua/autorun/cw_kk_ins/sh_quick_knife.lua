@@ -184,8 +184,12 @@ if SERVER then
 					if string.find(ent:GetClass(), "breakable") then
 						ent:Fire("Break")
 					end
-				
-					wep.Owner:EmitSound(setup.hitFleshSound)
+					
+					if ent:IsNPC() or ent:IsPlayer() then
+						wep.Owner:EmitSound(setup.hitFleshSound)
+					else
+						wep.Owner:EmitSound(setup.hitWorldSound)
+					end
 				else
 					wep.Owner:EmitSound(setup.hitWorldSound)
 				end
@@ -381,38 +385,6 @@ if CLIENT then
 			CustomizableWeaponry_KK.ins2.quickKnife:attack(wep)
 		end
 	end)
-
-	local pos, ang
-	
-	local EyePos = EyePos
-	local EyeAngles = EyeAngles
-	local CurTime = CurTime
-	local Lerp = Lerp
-	local FrameTime = FrameTime
-	
-	function CustomizableWeaponry_KK.ins2.quickKnife.drawVM(wep)
-		if CurTime() > wep.knifeTime then
-			return
-		end
-		
-		pos, ang = EyePos(), EyeAngles()
-		
-		wep.GrenadePos.z = Lerp(FrameTime() * 10, wep.GrenadePos.z, 0)
-		
-		pos = pos + ang:Up() * wep.GrenadePos.z
-		pos = pos + ang:Forward() * 2
-		
-		wep.CW_KK_KNIFE:SetPos(pos)
-		wep.CW_KK_KNIFE:SetAngles(ang)
-		wep.CW_KK_KNIFE:FrameAdvance(FrameTime())
-		
-		wep.CW_KK_HANDS:AddEffects(EF_BONEMERGE_FASTCULL)
-		
-		cam.IgnoreZ(true)
-			wep.CW_KK_KNIFE:DrawModel()
-			wep:DrawVMHandsModel()
-		cam.IgnoreZ(false)
-	end
 end
 
 // concommand
