@@ -4,24 +4,13 @@ local td = {}
 local down = Vector(0, 0, -50)
 local ang0 = Angle(-90, 0, 0)
 
-local ent, pos, ang, tr, tweakData
+local ent, pos, ang, tr, tweakData, waterLevel
 
 function EFFECT:Init(fx)
 	ent = fx:GetEntity()
 	
 	pos = ent:GetPos()
-	
-	-- td.start = pos
-	-- td.endpos = pos + down
-	-- td.filter = ent
-	
-	-- tr = util.TraceLine(td)
-	
-	-- if tr.Hit then
-		-- ang = tr.HitNormal:Angle()
-	-- else
-		ang = ang0
-	-- end
+	ang = ang0
 	
 	tweakData = ent:getTweakData()
 	

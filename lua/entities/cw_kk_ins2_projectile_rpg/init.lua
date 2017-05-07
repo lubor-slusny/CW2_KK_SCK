@@ -105,8 +105,19 @@ function ENT:selfDestruct()
 	util.BlastDamage(self, self.Owner, self:GetPos(), self.BlastRadius, self.BlastDamage)
 	
 	local fx = ents.Create("cw_kk_ins2_particles")
-	fx:processProjectile(self)
-	fx:Spawn()
+	if IsValid(fx) then
+		fx:processProjectile(self)
+		fx:Spawn()
+	end
+	
+	local sfx = ents.Create("env_explosion")
+	if IsValid(sfx) then
+		sfx:SetPos(self:GetPos())
+		sfx:SetKeyValue("spawnflags", bit.bor(1,4,8,32,512,1024))
+		sfx:SetKeyValue("waterlevel", self:WaterLevel())
+		sfx:Fire("eXpLOde")
+		SafeRemoveEntityDelayed(sfx, 3)
+	end
 	
 	SafeRemoveEntity(self)
 end
@@ -114,4 +125,3 @@ end
 function ENT:OnTakeDamage(dmg)
 	self:selfDestruct()
 end
-	
