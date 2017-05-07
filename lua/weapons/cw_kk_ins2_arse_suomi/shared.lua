@@ -40,10 +40,6 @@ SWEP.Attachments = {
 	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
--- if CustomizableWeaponry_KK.HOME then
-	-- table.insert(SWEP.Attachments, {header = "Lasers", offset = {125, 0}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}})
--- end
-
 SWEP.Animations = {
 	base_pickup = "base_ready",
 	base_draw = "base_draw",

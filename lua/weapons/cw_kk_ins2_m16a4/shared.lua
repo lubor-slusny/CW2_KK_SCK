@@ -112,8 +112,8 @@ if CLIENT then
 	SWEP.KKINS2PO4Pos = Vector(-2.42, -2, 0.7497)
 	SWEP.KKINS2PO4Ang = Vector()
 
-	SWEP.KKINS2ScopeM40Pos = Vector(-2.4989, 0, 0.7409)
-	SWEP.KKINS2ScopeM40Ang = Vector()
+	SWEP.KKINS2ScopeM40Pos = Vector(-2.4932, 0, 0.6571)
+	SWEP.KKINS2ScopeM40Ang = Vector(0.0118, 0.012, 0)
 
 	SWEP.KKINS2MagnifierPos = Vector(-2.4914, -1, 0.5701)
 	SWEP.KKINS2MagnifierAng = Vector()
