@@ -75,6 +75,7 @@ function SWEP:createCustomVM(mdl)
 	
 	self.WMEnt = self:createManagedCModel(self.WorldModel, RENDERGROUP_BOTH)
 	self.WMEnt:SetNoDraw(true)
+	self.WMEnt:SetupBones()
 end
 
 //-----------------------------------------------------------------------------
@@ -500,7 +501,12 @@ end
 
 function SWEP:setupAttachmentWModels()
 	if self.AttachmentModelsWM then
-		self:SetupBones()
+		local parent = self
+		if IsValid(self.WMEnt) then
+			parent = self.WMEnt
+		end
+		
+		parent:SetupBones()
 		
 		for k, v in pairs(self.AttachmentModelsWM) do
 			v.ent = self:createManagedCModel(v.model, RENDERGROUP_BOTH)
@@ -525,20 +531,18 @@ function SWEP:setupAttachmentWModels()
 				v:SetSkin(v.skin)
 			end
 			
-			// im gonna assume here that self/parent/whatever and WMEnt use the same model
-			
 			if v.merge then
-				v.ent:SetParent(self)
+				v.ent:SetParent(parent)
 				v.ent:AddEffects(EF_BONEMERGE)
 				v.ent:AddEffects(EF_BONEMERGE_FASTCULL)
 			end
 			
 			if v.attachment then
-				v._attachment = self:LookupAttachment(v.attachment)
+				v._attachment = parent:LookupAttachment(v.attachment)
 			end
 			
 			if v.bone then
-				v._bone = self:LookupBone(v.bone)
+				v._bone = parent:LookupBone(v.bone)
 			end
 			
 			for i,mat in pairs(v.ent:GetMaterials()) do
@@ -571,22 +575,13 @@ function SWEP:drawAttachmentsWorld(parent)
 				model = v.ent
 				
 				if v.merge then
-					if model:GetParent() != parent then
-						model:SetParent(parent)
-					end
 					pos = parent:GetPos()
 					ang = parent:GetAngles()
 				elseif v.attachment then
-					if not v._attachment then
-						v._attachment = parent:LookupAttachment(v.attachment)
-					end
 					vma = parent:GetAttachment(v._attachment)
 					pos = vma.Pos
 					ang = vma.Ang
 				elseif v.bone then
-					if not v._bone then
-						v._bone = parent:LookupBone(v.bone)
-					end
 					m = parent:GetBoneMatrix(v._bone)
 					pos = m:GetTranslation()
 					ang = m:GetAngles()
