@@ -18,7 +18,7 @@ if CLIENT then
 	SWEP.AttachmentModelsVM = {
 		-- ["ani_body"] = {model = "models/weapons/v_panzerschreck.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
 		
-		["kk_ins2_fnfal_skin2"] = {model = "models/weapons/v_panzerschreck.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, materials = {[2] = "models/cwkkdoi/shrek/clean.mdl"}},
+		["kk_ins2_fnfal_skin2"] = {model = "models/weapons/v_panzerschreck.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, materials = {[1] = "models/cwkkdoi/shrek/clean.mdl"}},
 	}
 	
 	SWEP.AttachmentModelsWM = {
