@@ -1,4 +1,17 @@
 
+presetFastest = {
+	["cw_kk_ins2_animate_reticle"] = 1,
+	["cw_kk_ins2_draw_vm_in_rt"] = 0,
+	["cw_kk_ins2_ins_nade_ctrls"] = 1,
+	["cw_kk_ins2_rig"] = 2,
+	["cw_kk_ins2_rigskin"] = 0,
+	["cw_kk_ins2_scopelightingfix"] = 0,
+	["cw_kk_ins2_shell_sound"] = 1,
+	["cw_kk_ins2_shell_time"] = 5,
+	["cw_kk_ins2_shell_vm"] = 0,
+	["cw_kk_ins2_sprint"] = 1
+}
+
 if CLIENT then
 	if not CustomizableWeaponry_KK.panels then
 		CustomizableWeaponry_KK.panels = {}
@@ -17,6 +30,7 @@ if CLIENT then
 			Folder = "cw_kk_ins2_cfg", 
 			Options = {
 				["Default"] = defaults,
+				["Fastest"] = presetFastest,
 			}, 
 			CVars = cvarKeys
 		}):DockMargin(8, 0, 8, 8)
