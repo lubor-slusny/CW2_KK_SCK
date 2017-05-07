@@ -486,9 +486,9 @@ function TOOL:updatePanel()
 						
 						function arrowLabel:updateText()
 							if t == openTab.t and key == openTab.key then
-								self:SetText("<=")
+								self:SetText("[˄]")
 							else
-								self:SetText("=>")
+								self:SetText("[˅]")
 							end
 							self:SizeToContents()
 						end
