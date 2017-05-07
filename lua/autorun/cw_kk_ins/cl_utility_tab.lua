@@ -129,12 +129,12 @@ if CLIENT then
 		cusbutt:DockMargin(8, 0, 8, 0)
 		
 		function cusbutt:DoClick()
-			CustomizableWeaponry_KK.ins2.shells:cleanUp()
+			CustomizableWeaponry_KK.ins2.shells:cleanUpShells()
 			self:updateLabel()
 		end
 		
 		function cusbutt:updateLabel()
-			local num = CustomizableWeaponry_KK.ins2.shells:getDeployedCount()
+			local num = CustomizableWeaponry_KK.ins2.shells.cacheSize
 			cusbutt:SetText("Clean up shells [" .. num .. "]")
 		end
 		

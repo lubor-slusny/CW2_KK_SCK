@@ -1,10 +1,24 @@
 
 if CLIENT then
 	CustomizableWeaponry_KK.ins2.shells = CustomizableWeaponry_KK.ins2.shells or {}
-	CustomizableWeaponry_KK.ins2.shells._deployed = CustomizableWeaponry_KK.ins2.shells._deployed or {}
+	CustomizableWeaponry_KK.ins2.shells._cache = CustomizableWeaponry_KK.ins2.shells._cache or {}
 	
-	local cvarSSF = CustomizableWeaponry_KK.ins2.conVars.main["cw_kk_ins2_shell_sound"] or {GetInt = function() return 3 end}
-	local cvarSLT = CustomizableWeaponry_KK.ins2.conVars.main["cw_kk_ins2_shell_time"] or {GetFloat = function() return 10 end}
+	function CustomizableWeaponry_KK.ins2.shells:_rebuildCache()
+		local i = 1
+	
+		for _ = 1, #self._cache do
+			if !IsValid(self._cache[i]) then
+				table.remove(self._cache, i)
+			else
+				i = i + 1
+			end
+		end
+		
+		self.cacheSize = #self._cache
+	end
+
+	local cvarSSF = CustomizableWeaponry_KK.ins2.conVars.main["cw_kk_ins2_shell_sound"]
+	local cvarSLT = CustomizableWeaponry_KK.ins2.conVars.main["cw_kk_ins2_shell_time"]
 	
 	local CurTime = CurTime
 	local soundPlay = sound.Play
@@ -21,6 +35,8 @@ if CLIENT then
 		if shell._ttl > CurTime() then return end
 		
 		SafeRemoveEntity(shell)
+		
+		CustomizableWeaponry_KK.ins2.shells:_rebuildCache()
 	end
 
 	local angleVel = Vector()
@@ -83,33 +99,20 @@ if CLIENT then
 			phys:SetMaterial(t.s)
 		end
 	
-		-- SafeRemoveEntityDelayed(ent, cvarSLT:GetFloat() or 10) // another timer.Simple + function creation
-		
-		ent._ttl = CurTime() + (cvarSLT:GetFloat()) // terrible mess
+		ent._ttl = CurTime() + (cvarSLT:GetFloat())
 		hook.Add("Think", ent, shellThink)
 		
-		table.insert(self._deployed, ent)
+		table.insert(self._cache, ent)
+		self.cacheSize = #self._cache
 		
 		return ent
 	end
 	
-	function CustomizableWeaponry_KK.ins2.shells:cleanUp()
-		for _,v in pairs(self._deployed) do
+	function CustomizableWeaponry_KK.ins2.shells:cleanUpShells()
+		for _,v in pairs(self._cache) do
 			SafeRemoveEntity(v)
 		end
-	end
-	
-	function CustomizableWeaponry_KK.ins2.shells:getDeployedCount()
-		local i = 1
-	
-		for _ = 1, #self._deployed do
-			if !IsValid(self._deployed[i]) then
-				table.remove(self._deployed, i)
-			else
-				i = i + 1
-			end
-		end
 		
-		return #self._deployed
+		self:_rebuildCache()
 	end
 end
