@@ -56,6 +56,8 @@ local function updatePanel()
 		mdlTxt:SetAutoStretchVertical(true)
 		mdlTxt:DockMargin(0, 0, 0, 0)
 		mdlTxt:SetDark(true)
+		mdlTxt:SetMouseInputEnabled(true)
+		function mdlTxt:DoClick() SetClipboardText(ent:GetModel()) end
 		PANEL:AddItem(mdlTxt)
 		
 		if not ent:SkinCount() then
@@ -154,16 +156,16 @@ local function KK_SCK_BGS_Think()
 	local ply = LocalPlayer()
 	if !IsValid(ply) then return end
 	
+	local wep = ply:GetActiveWeapon()
+	
 	VM_ENT = ply:GetViewModel()
 	RIG_ENT = ply:GetHands()
-	
-	local wep = ply:GetActiveWeapon()
 	WM_ENT = wep
 	
 	if IsValid(wep) then		
 		VM_ENT = wep.CW_VM or wep.Wep or VM_ENT
-		RIG_ENT = wep.CW_KK_HANDS or wep.CW_HANDS_VM or (wep.UseHands and RIG_ENT)
-		WM_ENT = wep.WMEnt
+		RIG_ENT = (wep.UseHands and RIG_ENT) or wep.CW_KK_HANDS or wep.CW_HANDS_VM or RIG_ENT
+		WM_ENT = wep.WMEnt or WM_ENT
 	end
 	
 	local curSetup = tostring(IsValid(wep) and wep:GetClass()) .. "|" .. tostring(IsValid(VM_ENT) and VM_ENT:GetModel())
