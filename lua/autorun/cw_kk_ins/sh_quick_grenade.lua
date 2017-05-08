@@ -74,9 +74,17 @@ CustomizableWeaponry_KK.ins2.quickGrenade.models.n69 = {
 	a_throw = "throw"
 }
 
-CustomizableWeaponry_KK.ins2.quickGrenade.models.n77 = {
+CustomizableWeaponry_KK.ins2.quickGrenade.models.n76 = {
 	id = "n77",
 	vm = "models/weapons/cw_kk_doi/v_no77.mdl",
+	wm = "models/weapons/w_no77.mdl",
+	a_pinpull = "pullbackhigh",
+	a_throw = "throw"
+}
+
+CustomizableWeaponry_KK.ins2.quickGrenade.models.n77 = {
+	id = "n77",
+	vm = "models/weapons/cw_kk_doi/v_no79.mdl",
 	wm = "models/weapons/w_no77.mdl",
 	a_pinpull = "pullbackhigh",
 	a_throw = "throw"

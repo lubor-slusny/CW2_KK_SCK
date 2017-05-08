@@ -6,6 +6,10 @@ local function m203(wep)
 end
 
 SWEP.Sounds = {
+	animchktst = {
+		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
+	},
+
 	base_ready = {
 		{time = 0, sound = "CW_KK_INS2_UNIVERSAL_DRAW"},
 		{time = 17/30, sound = "CW_KK_INS2_M16A4_BOLTBACK"},
