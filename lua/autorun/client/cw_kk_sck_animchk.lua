@@ -21,18 +21,16 @@ local function updatePanel()
 		butt = vgui.Create("DButton", PANEL)
 		butt:SetText("Recheck")
 		butt.DoClick = updatePanel
-	
 		PANEL:AddItem(butt)
 	end
 	
 	// swep info
 	do
 		PANEL:AddControl("Label", {Text = string.upper(WEAPON:GetClass())}):SetTextColor(PANEL:GetSkin().Colours.Tree.Hover)
-		local l
-		l = PANEL:AddControl("Label", {Text = WEAPON.ViewModel})
-		l:DockMargin(16,0,8,0)
-		l:SetMouseInputEnabled(true)
-		l.DoClick = clickMeh
+		local label = PANEL:AddControl("Label", {Text = WEAPON.ViewModel})
+		label:DockMargin(16,0,8,0)
+		label:SetMouseInputEnabled(true)
+		label.DoClick = clickMeh
 		PANEL:AddControl("Label", {Text = " "})
 	end
 	
@@ -67,67 +65,21 @@ local function updatePanel()
 		end
 		
 		if table.Count(errors) > 0 then
-			PANEL:AddControl("Label", {Text = "Non-existing anims:"}):SetTextColor(PANEL:GetSkin().Colours.Tree.Hover)
+			PANEL:AddControl("Label", {Text = "Non-existing anims (" .. errorCount .. "):"}):SetTextColor(PANEL:GetSkin().Colours.Tree.Hover)
 			for k,vs in pairs(errors) do
 				PANEL:AddControl("Label", {Text = "[\"" .. k .. "\"] = {"}):DockMargin(16,0,8,0)
 				
 				for i,v in pairs(vs) do
-					PANEL:AddControl("Label", {Text = "[" .. i .. "] = \"" .. v .. "\","}):DockMargin(24,0,8,0)
+					local label = PANEL:AddControl("Label", {Text = "[" .. i .. "] = \"" .. v .. "\","})
+					label:SetTextColor(blu)
+					label:DockMargin(24,0,8,0)
 				end
 				
 				PANEL:AddControl("Label", {Text = "}"}):DockMargin(16,0,8,0)
 			end
-			PANEL:AddControl("Label", {Text = " "})
+			PANEL:AddControl("Label", {Text = ""})
 		else
 			-- PANEL:AddControl("Label", {Text = "No invalid entries in \"SWEP.Animations\". GG WP"}):SetTextColor(PANEL:GetSkin().Colours.Tree.Hover)
-		end
-	end
-	
-	// soundtables for unused/non-existing animations
-	do
-		local unreachable = {}
-		local unreachableCount = 0
-		
-		for k,_ in pairs(WEAPON.Sounds) do
-			if k == "BaseClass" then
-				continue
-			end
-			
-			local keyFoundInAnimTable = false
-			
-			for _,tab in pairs(WEAPON.Animations) do
-				if type(tab) == "table" then
-					for _,itab in pairs(tab) do
-						keyFoundInAnimTable = k == itab
-						if keyFoundInAnimTable then break end
-					end
-				else
-					keyFoundInAnimTable = k == tab				
-				end
-				
-				if keyFoundInAnimTable then break end
-			end
-			
-			if !keyFoundInAnimTable then
-				table.insert(unreachable, {name = k, exists = (vm:LookupSequence(k) != -1)})
-				unreachableCount = unreachableCount + 1
-			end
-		end
-		
-		if unreachableCount > 0 then
-			PANEL:AddControl("Label", {Text = "Soudscripts for unused/non-existing animations:"}):SetTextColor(PANEL:GetSkin().Colours.Tree.Hover)
-			
-			for _,v in pairs(unreachable) do
-				local l = PANEL:AddControl("Label", {Text = v.name})
-				l:DockMargin(16,0,8,0)
-				l:SetTextColor(v.exists and grn or blu)
-				l:SetMouseInputEnabled(true)
-				l.DoClick = clickMeh
-			end
-			
-			PANEL:AddControl("Label", {Text = " "})		
-		else
-			-- PANEL:AddControl("Label", {Text = "No invalid entries in \"SWEP.Sounds\". neato"}):SetTextColor(PANEL:GetSkin().Colours.Tree.Hover)
 		end
 	end
 	
@@ -159,20 +111,66 @@ local function updatePanel()
 		
 		if unusedCount > 0 then
 			PANEL:AddControl("Label", {Text = "Unused sequences (" .. unusedCount .. "/" .. vm:GetSequenceCount() .. "):"}):SetTextColor(PANEL:GetSkin().Colours.Tree.Hover)
-
 			for _,v in pairs(unused) do
-				local l = PANEL:AddControl("Label", {Text = v})
-				l:DockMargin(16,0,8,0)
-				l:SetMouseInputEnabled(true)
-				l.DoClick = clickMeh
+				local label = PANEL:AddControl("Label", {Text = v})
+				label:SetTextColor(grn)
+				label:DockMargin(16,0,8,0)
+				label:SetMouseInputEnabled(true)
+				label.DoClick = clickMeh
 			end
+			PANEL:AddControl("Label", {Text = ""})
 		else
 			-- PANEL:AddControl("Label", {Text = "All VM sequences linked."}):SetTextColor(PANEL:GetSkin().Colours.Tree.Hover)
 		end
 	end
 	
-	// spacer
-	PANEL:AddControl("Label", {Text = " "})
+	// soundtables for unused/non-existing animations
+	do
+		local unreachable = {}
+		local unreachableCount = 0
+		
+		for k,_ in pairs(WEAPON.Sounds) do
+			if k == "BaseClass" then
+				continue
+			end
+			
+			local keyFoundInAnimTable = false
+			
+			for _,tab in pairs(WEAPON.Animations) do
+				if type(tab) == "table" then
+					for _,itab in pairs(tab) do
+						keyFoundInAnimTable = k == itab
+						if keyFoundInAnimTable then break end
+					end
+				else
+					keyFoundInAnimTable = k == tab				
+				end
+				
+				if keyFoundInAnimTable then break end
+			end
+			
+			local exists = (vm:LookupSequence(k) != -1)
+			
+			if !(keyFoundInAnimTable and exists) then
+				table.insert(unreachable, {name = k, exists = exists})
+				unreachableCount = unreachableCount + 1
+			end
+		end
+		
+		if unreachableCount > 0 then
+			PANEL:AddControl("Label", {Text = "Soudscripts for non-existing or unused anims (" .. unreachableCount .. "):"}):SetTextColor(PANEL:GetSkin().Colours.Tree.Hover)
+			for _,v in pairs(unreachable) do
+				local label = PANEL:AddControl("Label", {Text = v.name})
+				label:DockMargin(16,0,8,0)
+				label:SetTextColor(v.exists and grn or blu)
+				label:SetMouseInputEnabled(true)
+				label.DoClick = clickMeh
+			end
+			PANEL:AddControl("Label", {Text = ""})
+		else
+			-- PANEL:AddControl("Label", {Text = "No invalid entries in \"SWEP.Sounds\". neato"}):SetTextColor(PANEL:GetSkin().Colours.Tree.Hover)
+		end
+	end
 end
 
 local _LAST_SETUP
