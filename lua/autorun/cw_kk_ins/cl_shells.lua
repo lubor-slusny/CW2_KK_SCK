@@ -17,6 +17,8 @@ if CLIENT then
 		self.cacheSize = #self._cache
 	end
 
+	CustomizableWeaponry_KK.ins2.shells:_rebuildCache()
+
 	local cvarSSF = CustomizableWeaponry_KK.ins2.conVars.main["cw_kk_ins2_shell_sound"]
 	local cvarSLT = CustomizableWeaponry_KK.ins2.conVars.main["cw_kk_ins2_shell_time"]
 	
