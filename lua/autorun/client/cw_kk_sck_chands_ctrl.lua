@@ -37,6 +37,8 @@ local function buildPanel(panel)
 	panel:ClearControls()
 
 	local curMDLLabel = panel:AddControl("Label", {Text = "kekekek:"})
+	curMDLLabel:SetMouseInputEnabled(true)
+	function curMDLLabel:DoClick() SetClipboardText(self.KKMDLNAEM) end
 	curMDLLabel:DockMargin(8, 0, 8, 0)
 
 	local left = vgui.Create("DLabel", panel)
@@ -66,10 +68,11 @@ local function buildPanel(panel)
 		if !IsValid(ent) then return end
 		
 		curMDLLabel:SetText("Current Model: " .. ent:GetModel())
+		curMDLLabel.KKMDLNAEM = ent:GetModel()
 	end)
 	
 	local butt = vgui.Create("DButton", panel)
-	butt:SetText("Reset VM Idle")
+	butt:SetText("Reset VM Idle (for SCK)")
 	butt:DockMargin(8, 0, 8, 0)
 	butt.DoClick = function()
 		local seqId = "idle"
@@ -112,7 +115,7 @@ local function buildPanel(panel)
 end
 
 hook.Add("PopulateToolMenu", "KK_SCK_CHCTRL", function()
-	spawnmenu.AddToolMenuOption("Utilities", "Knife Kitty", "KK_SCK_CHCTRL", "C-Hands Controller", "", "", buildPanel)
+	spawnmenu.AddToolMenuOption("Utilities", "Knife Kitty", "KK_SCK_CHCTRL", "C-Hands Model Test", "", "", buildPanel)
 end)
 
 hook.Add("PostReloadToolsMenu", "KK_SCK_CHCTRL", function()
