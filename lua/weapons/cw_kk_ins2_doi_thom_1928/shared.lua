@@ -18,9 +18,9 @@ if CLIENT then
 	SWEP.ShellDelay = 0.13
 
 	SWEP.AttachmentModelsVM = {
-		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_iron_thompson_s.mdl", pos = Vector(), angle = Angle(), size = Vector(0.5, 0.5, 0.5), merge = true, active = true},
-		["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_iron_thompson_l.mdl", pos = Vector(), angle = Angle(), size = Vector(0.5, 0.5, 0.5), merge = true},
-		["modbody"] = {model = "models/weapons/v_cw_kk_doi_1928.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true},
+		-- ["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_iron_thompson_s.mdl", pos = Vector(), angle = Angle(), size = Vector(0.5, 0.5, 0.5), merge = true, active = true},
+		-- ["kk_ins2_optic_rail"] = {model = "models/weapons/upgrades/a_iron_thompson_l.mdl", pos = Vector(), angle = Angle(), size = Vector(0.5, 0.5, 0.5), merge = true},
+		-- ["modbody"] = {model = "models/weapons/v_cw_kk_doi_1928.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true},
 		
 		-- ["kk_ins2_ww2_knife"] = {model = "models/weapons/v_brassknuckles.mdl", pos = Vector(-2.3145, -0.7286, 11.7285), angle = Angle(-49.8959, 22.8366, 26.1512), size = Vector(1, 1, 1), bone = "R Hand", nodraw = true},
 		
@@ -30,7 +30,7 @@ if CLIENT then
 		["kk_ins2_mag_thom_30"] = {model = "models/weapons/upgrades/a_thompson_mag_30.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		["kk_ins2_mag_thom_50"] = {model = "models/weapons/upgrades/a_thompson_mag_50.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 
-		["kk_ins2_suppressor_sec"] = {model = "models/weapons/upgrades/a_suppressor_sec.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		-- ["kk_ins2_suppressor_sec"] = {model = "models/weapons/upgrades/a_suppressor_sec.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 
 		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/a_thompson_foregrip.mdl", pos = Vector(), angle = Angle(), size = Vector(0.5, 0.5, 0.5), merge = true},
 		
@@ -52,7 +52,20 @@ if CLIENT then
 		
 		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/w_thompson_foregrip.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
-
+	
+	SWEP.ForegripOverridePos = {
+		none = {
+			["A_Optic"] = {pos = Vector(), angle = Angle()},
+		},
+		
+		bg_foldsight = {
+			["A_Optic"] = {pos = Vector(0), angle = Angle(0, 0, 90)},
+		}
+	}
+	
+	SWEP.ForegripParent = "none"
+	SWEP.ForegripOverride = true
+	
 	SWEP.IronsightPos = Vector(-2.2377, -2, 1.0456)
 	SWEP.IronsightAng = Vector(0.1611, 0.0052, 0)
 
@@ -256,7 +269,8 @@ if CLIENT then
 		self:setElementActive("handguard", !self.ActiveAttachments.kk_ins2_vertgrip)
 		self:setElementActive("kk_ins2_mag_thom_20", !(self.ActiveAttachments.kk_ins2_mag_thom_30 or self.ActiveAttachments.kk_ins2_mag_thom_50))
 		
-		self.AttachmentModelsVM.modbody.active = self.ActiveAttachments.bg_foldsight
+		-- self.AttachmentModelsVM.modbody.active = self.ActiveAttachments.bg_foldsight
+		self.ForegripParent = self.ActiveAttachments.bg_foldsight and "bg_foldsight" or "none"
 	end
 end
 
