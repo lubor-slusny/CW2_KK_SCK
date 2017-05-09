@@ -1,5 +1,5 @@
 
-presetFastest = {
+local presetFastest = {
 	["cw_kk_ins2_animate_reticle"] = 1,
 	["cw_kk_ins2_draw_vm_in_rt"] = 0,
 	["cw_kk_ins2_ins_nade_ctrls"] = 1,

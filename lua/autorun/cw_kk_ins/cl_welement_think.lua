@@ -4,9 +4,9 @@ if CLIENT then
 	CustomizableWeaponry_KK.ins2.welementThink.IsValid = function() return true end
 
 	function CustomizableWeaponry_KK.ins2.welementThink:_addWeapon(wep)
-		self._active = self._active or {}
+		self._cache = self._cache or {}
 		
-		table.insert(self._active, wep)
+		table.insert(self._cache, wep)
 	end
 	
 	function CustomizableWeaponry_KK.ins2.welementThink:_processWeapon(wep)
@@ -32,10 +32,10 @@ if CLIENT then
 	end
 
 	function CustomizableWeaponry_KK.ins2.welementThink:think()
-		if not self._active then return end
+		if not self._cache then return end
 		
-		for k,wep in pairs(self._active) do
-			self._active[k] = self:_processWeapon(wep) and wep or nil
+		for k,wep in pairs(self._cache) do
+			self._cache[k] = self:_processWeapon(wep) and wep or nil
 		end
 	end
 	

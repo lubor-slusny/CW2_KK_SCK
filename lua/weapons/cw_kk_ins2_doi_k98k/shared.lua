@@ -69,8 +69,8 @@ if CLIENT then
 	SWEP.IronsightPos = Vector(-2.5615, -4, 1.588)
 	SWEP.IronsightAng = Vector(0.2652, 0.0073, 0)
 
-	SWEP.KKINS2ScopeK98Pos = Vector(-2.565, -1.5, 0.3398)
-	SWEP.KKINS2ScopeK98Ang = Vector(0, 0, 0)
+	SWEP.KKINS2ScopeK98Pos = Vector(-2.564, -1.5, 0.3398)
+	SWEP.KKINS2ScopeK98Ang = Vector(0.0148, 0.0176, 0)
 
 	SWEP.KKINS2ScopeZF4Pos = Vector(-2.1298, -4, 0.6019)
 	SWEP.KKINS2ScopeZF4Ang = Vector(0.0091, 0.0194, 0)
