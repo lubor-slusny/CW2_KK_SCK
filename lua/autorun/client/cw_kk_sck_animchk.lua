@@ -13,7 +13,10 @@ end
 local function updatePanel()
 	if !IsValid(PANEL) then return end
 	PANEL:ClearControls()
-	if !IsValid(WEAPON) or !WEAPON.CW20Weapon then return end
+	if !IsValid(WEAPON) or !WEAPON.CW20Weapon then
+		PANEL:AddControl("Label", {Text = "Not a CW2 swep, move along."})
+		return
+	end
 	
 	// refresh button
 	do

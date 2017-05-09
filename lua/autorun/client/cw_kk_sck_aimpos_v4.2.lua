@@ -929,4 +929,4 @@ end)
 
 -- RunConsoleCommand("spawnmenu_reload")
 
-KK_SCK_AIMPOS_ELEMENTS = MENU
+-- KK_SCK_AIMPOS_ELEMENTS = MENU
