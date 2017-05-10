@@ -36,11 +36,13 @@ function BASE:AddTool(tab)
 	tab.PrintName = tab.PrintName or tab.Name
 	tab.SelectCommand = tab.SelectCommand or ""
 	
-	self._toolCache = self._toolCache or {}
-	local old = self._toolCache[tab.Name]
-	if old then
-		old.__index = old
-		setmetatable(tab, old)
+	if not self._cleanLoad then
+		self._toolCache = self._toolCache or {}
+		local old = self._toolCache[tab.Name]
+		if old then
+			old.__index = old
+			setmetatable(tab, old)
+		end
 	end
 	
 	self._toolCache[tab.Name] = tab
