@@ -87,14 +87,6 @@ if CLIENT then
 
 	hook.Add("PreReloadToolsMenu", BASE, BASE.PreReloadToolsMenu)
 
-	-- function BASE:PostReloadToolsMenu()
-		-- for _,tool in pairs(self._toolCache) do
-			-- tool:SetPanel()
-		-- end
-	-- end
-
-	-- hook.Add("PostReloadToolsMenu", BASE, BASE.PostReloadToolsMenu)
-
 	function BASE:_OnWeaponChanged(new, old)
 		for _,tool in pairs(self._toolCache) do
 			if tool.OnWeaponChanged then
@@ -147,7 +139,7 @@ if CLIENT then
 	end
 
 	hook.Add("Think", BASE, BASE.Think)
-	
+
 	concommand.Add(BASE.strCCReload, function()
 		BASE:Load()
 		RunConsoleCommand("spawnmenu_reload")

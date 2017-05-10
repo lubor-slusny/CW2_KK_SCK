@@ -45,21 +45,21 @@ function TOOL:_updatePanel(panel)
 	
 	label = panel:AddControl("Label", {Text = "Current model:"})
 	label:SetTextColor(panel:GetSkin().Colours.Tree.Hover)
-	label:DockMargin(8, 0, 8, 0)
+	label:DockMargin(0, 0, 0, 0)
 	
 	label = panel:AddControl("Label", {Text = "kekekek:"})
-	label:DockMargin(16, 0, 8, 8)
+	label:DockMargin(8, 0, 8, 0)
 	label:SetMouseInputEnabled(true)
 	label.DoClick = function(self) SetClipboardText(self:GetText()) end
 	self._curMDLLabel = label
 	
 	label = panel:AddControl("Label", {Text = "Custom model:"})
 	label:SetTextColor(panel:GetSkin().Colours.Tree.Hover)
-	label:DockMargin(8, 0, 8, 0)
+	label:DockMargin(0, 0, 0, 0)
 	
 	box = vgui.Create("DTextEntry", panel)
 	box:Dock(TOP)
-	box:DockMargin(16, 0, 16, 0)
+	box:DockMargin(8, 0, 8, 0)
 	box.OnEnter = function(self)
 		TOOL.model = self:GetValue() 
 		TOOL:_apply()
@@ -68,14 +68,14 @@ function TOOL:_updatePanel(panel)
 	
 	butt = vgui.Create("DButton", panel)
 	butt:SetText("(Re-) Apply")
-	butt:DockMargin(16, 0, 16, 0)
+	butt:DockMargin(8, 0, 8, 0)
 	butt.DoClick = function() TOOL:_apply() end
 	panel:AddItem(butt)
 	self._reApplyButt = butt
 	
 	local butt = vgui.Create("DButton", panel)
 	butt:SetText("Reset VM Idle (for SCK)")
-	butt:DockMargin(16, 0, 16, 0)
+	butt:DockMargin(8, 0, 8, 0)
 	butt.DoClick = function()
 		local seqId = "idle"
 		local ent = LocalPlayer():GetViewModel()
@@ -93,19 +93,18 @@ function TOOL:_updatePanel(panel)
 	label = vgui.Create("DLabel", panel)
 	label:SetText("Some GM rigs:")
 	label:SetTextColor(panel:GetSkin().Colours.Tree.Hover)
-	label:DockMargin(8, 0, 0, 0)
+	label:DockMargin(0, 0, 0, 0)
 	
 	local hint = vgui.Create("DLabel", panel)
 	hint:SetText("[LMB - SET]")
 	hint:SetTextColor(panel:GetSkin().Colours.Tree.Hover)
 	hint:Dock(RIGHT)
-	hint:DockMargin(8, 0, 0, 0)
-	
+	hint:DockMargin(0, 0, 0, 0)
 	panel:AddItem(label, hint)
 	
 	for k,v in pairs(self.gmodRigs) do
 		label = panel:AddControl("Label", {Text = v})
-		label:DockMargin(16, 0, 8, 8)
+		label:DockMargin(8, 0, 8, 8)
 		
 		function label:DoClick()
 			box:SetValue(v)
@@ -115,11 +114,11 @@ function TOOL:_updatePanel(panel)
 	
 	label = panel:AddControl("Label", {Text = "Some INS2 rigs:"})
 	label:SetTextColor(panel:GetSkin().Colours.Tree.Hover)
-	label:DockMargin(8, 0, 8, 0)
+	label:DockMargin(0, 0, 0, 0)
 	
 	for k,v in pairs(self.insRigs) do
 		label = panel:AddControl("Label", {Text = v})
-		label:DockMargin(16, 0, 8, 8)
+		label:DockMargin(8, 0, 8, 8)
 		
 		function label:DoClick()
 			box:SetValue(v)
@@ -133,7 +132,7 @@ function TOOL:Think()
 	
 	if !IsValid(panel) then return end
 	
-	self._reApplyButt:SetEnabled(self.model)
+	self._reApplyButt:SetEnabled(self.model != nil)
 	
 	local ply = LocalPlayer()
 	if !IsValid(ply) then return end
