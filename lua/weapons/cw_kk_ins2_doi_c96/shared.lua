@@ -40,7 +40,7 @@ if CLIENT then
 	SWEP.DisableSprintViewSimulation = true
 	
 	SWEP.Trivia = {
-		text = "Has to be empty to reload.",
+		text = "Has to be empty to allow reload.",
 		x = 0, 
 		y = -200, 
 		textFormatFunc = function(self, wep) 
