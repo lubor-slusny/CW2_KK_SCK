@@ -89,8 +89,12 @@ SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/cw_kk_doi/v_mp40.mdl"
 SWEP.WorldModel		= "models/weapons/w_cw_kk_doi_mp40.mdl"
 
-SWEP.WMPos = Vector(5.176, 0.889, -1.417)
-SWEP.WMAng = Vector(-10, 0, 180)
+-- SWEP.WMPos = Vector(5.176, 0.889, -1.417)
+-- SWEP.WMAng = Vector(-10, 0, 180)
+
+SWEP.NormalHoldType = "cw_kk_dods_mp40"
+SWEP.WMPos = Vector(4, 2, -1)
+SWEP.WMAng = Vector(5, -5, 180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2de
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.ww2de
