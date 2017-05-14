@@ -155,13 +155,13 @@ function TOOL:_updatePanel()
 	end
 	
 	if self._frozen[self._wep] then
-		self:_buildUnFreezeAllSection(1)
 		self:_buildUnFreezeSection()
+		self:_buildUnFreezeAllSection(1)
 		return
 	end
 	
-	self:_buildUnFreezeAllSection(0)
 	self:_buildFreezeSection()
+	self:_buildUnFreezeAllSection(0)
 end
 
 function TOOL:SetPanel(panel)
