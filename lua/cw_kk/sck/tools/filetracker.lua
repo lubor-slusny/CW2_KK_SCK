@@ -2,7 +2,7 @@
 local TOOL = {}
 
 TOOL.Name = "filetracker"
-TOOL.PrintName = "File Tracker"
+TOOL.PrintName = "File Tracker 1.1"
 
 TOOL.workshopLink = "http://steamcommunity.com/sharedfiles/filedetails/?id="
 TOOL.examplePaths = {

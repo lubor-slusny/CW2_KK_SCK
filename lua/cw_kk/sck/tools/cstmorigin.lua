@@ -3,7 +3,7 @@ AddCSLuaFile()
 local TOOL = {}
 
 TOOL.Name = "cstmorigin"
-TOOL.PrintName = "AltPos Builder v1"
+TOOL.PrintName = "AltPos Builder"
 
 function TOOL:_updatePanel()
 	local panel = self._panel

@@ -3,7 +3,7 @@ AddCSLuaFile()
 local TOOL = {}
 
 TOOL.Name = "chandsmdltest"
-TOOL.PrintName = "C-Hands Model Test"
+TOOL.PrintName = "C-Hands Model Test 1.1"
 
 TOOL.gmodRigs = {
 	"models/weapons/c_arms_chell.mdl",

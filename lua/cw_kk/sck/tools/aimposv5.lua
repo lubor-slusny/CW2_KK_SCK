@@ -3,7 +3,7 @@ AddCSLuaFile()
 local TOOL = {}
 
 TOOL.Name = "aimposv5"
-TOOL.PrintName = "AimPos Builder 5"
+TOOL.PrintName = "AimPos Builder v5"
 
 function TOOL:_updatePanel()
 	local panel = self._panel
