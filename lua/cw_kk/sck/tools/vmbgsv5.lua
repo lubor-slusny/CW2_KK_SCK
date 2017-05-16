@@ -12,12 +12,16 @@ TOOL.entsDefault = {
 }
 
 function TOOL:_loadEnts()
+	self._ents = self._ents or self.entsDefault
+	
+	for _,v in pairs(self._ents) do
+		v.ent = nil
+	end
+	
 	local ply = LocalPlayer()
 	if !IsValid(ply) then return end
 	local wep = ply:GetActiveWeapon()
 	if !IsValid(wep) then return end
-	
-	self._ents = self._ents or self.entsDefault
 	
 	self._ents[1].ent = ply:GetViewModel()
 	self._ents[2].ent = ply:GetHands()
@@ -199,9 +203,14 @@ function TOOL:_addSectionBodygroups(panel, entTab, i)
 end
 
 function TOOL:_updateSliders()
-	self._sliders = self._sliders or {}
+	if not self._sliders then 
+		return
+	end
+	
 	for _,slider in pairs(self._sliders) do
-		slider:_kkReload()
+		if slider._kkReload then
+			slider:_kkReload()
+		end
 	end
 end
 

@@ -179,28 +179,31 @@ if CLIENT then
 			self:_OnWeaponChanged(wep, self._lastWep)
 		else
 			local curSetup = ""
+			local curClip = nil
 			
-			if IsValid(wep) and wep.ActiveAttachments then
-				for k,v in pairs(wep.ActiveAttachments) do
-					if v then 
-						curSetup = curSetup .. k .. "|"
+			if IsValid(wep) then
+				if wep.ActiveAttachments then
+					for k,v in pairs(wep.ActiveAttachments) do
+						if v then 
+							curSetup = curSetup .. k .. "|"
+						end
 					end
 				end
+				
+				curClip = wep:Clip1()
 			end
 			
 			if curSetup != self._lastSetup then
 				self:_OnWeaponSetupChanged()
 			end
-			
 			self._lastSetup = curSetup
+			
+			if curClip != self._lastClip then
+				self:_OnWeaponClipChanged()
+			end
+			self._lastClip = curClip
 		end
 		self._lastWep = wep
-		
-		local curClip = wep:Clip1()
-		if curClip != self._lastClip then
-			self:_OnWeaponClipChanged()
-		end
-		self._lastClip = curClip
 		
 		for _,tool in pairs(self._toolCache) do
 			if tool.Think then
