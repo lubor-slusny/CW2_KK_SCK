@@ -3,7 +3,7 @@ AddCSLuaFile()
 local TOOL = {}
 
 TOOL.Name = "vmbgsv5"
-TOOL.PrintName = "Bodygroups 4.1"
+TOOL.PrintName = "Bodygroups 5.0"
 
 TOOL.entsDefault = {
 	[1] = {label = "Weapon View Model: "},
@@ -40,6 +40,171 @@ function TOOL:_loadEnts()
 	end
 end
 
+function TOOL:_addSectionRefresh(panel, entTab)
+	local butt = vgui.Create("DButton", panel)
+	butt:SetTooltip("Loads changes made outside of this tool.")
+	butt:DockMargin(0, 0, 0, 0)	
+	butt:SetText("Refresh")
+	butt.DoClick = function() TOOL:_updatePanel() end
+	panel:AddItem(butt)
+end
+
+function TOOL:_addSectionHeader(panel, entTab)
+	local ent = entTab.ent
+	
+	local label = vgui.Create("DLabel", panel)
+	label:SetWrap(true)
+	label:SetTextInset(0, 0)
+	label:SetText(entTab.label)
+	label:SetContentAlignment(7)
+	label:SetAutoStretchVertical(true)
+	label:DockMargin(0, 0, 0, 0)
+	label:SetDark(true)
+	label:SetTextColor(panel:GetSkin().Colours.Tree.Hover)
+	panel:AddItem(label)
+
+	if not ent:GetModel() then
+		local label = panel:AddControl("Label", {text = "GetModel ERROR"})
+		label:DockMargin(8, 0, 0, 0)
+		return true
+	end
+
+	local mdl = ent:GetModel()
+	local mdlLabel = mdl
+	-- mdlLabel = string.Split(mdlLabel, "/")
+	-- mdlLabel = mdlLabel[#mdlLabel]
+	-- mdlLabel = "[" .. mdlLabel .. "]"
+
+	local label = vgui.Create("DLabel", panel)
+	label:SetWrap(true)
+	label:SetText(mdlLabel)
+	-- label:SetTooltip(mdl)
+	label:DockMargin(8, 0, 0, 0)
+	-- label:DockMargin(0, 0, 0, 0)
+	label:SetDark(true)
+	label:SetMouseInputEnabled(true)
+	function label:DoClick() SetClipboardText(mdl) end
+	panel:AddItem(label)
+end
+
+function TOOL:_addSectionSkinSlider(panel, entTab)
+	local ent = entTab.ent
+
+	if not ent:SkinCount() then
+		local label = panel:AddControl("Label", {text = "SkinCount ERROR"})
+		label:DockMargin(8, 0, 0, 0)
+		return true
+	end
+
+	if not ent:GetSkin() then
+		local label = panel:AddControl("Label", {text = "GetSkin ERROR"})
+		label:DockMargin(8, 0, 0, 0)
+		return true
+	end
+
+	local slider
+	local skinCount = ent:SkinCount() - 1
+
+	slider = vgui.Create("DNumSlider", panel)
+	slider:DockMargin(8, 0, 0, 0)
+	slider:SetDecimals(0)
+	slider:SetMinMax(0, skinCount)
+	slider:SetValue(0)
+	slider:SetText("Skin")
+
+	function slider:_kkReload()
+		self:SetValue(ent:GetSkin())
+	end
+	
+	self._sliders = self._sliders or {}
+	self._sliders["skin"] = slider
+	
+	if skinCount > 0 then slider:SetDark(true) end
+
+	function slider:OnValueChanged(val)
+		if IsValid(ent) then
+			ent:SetSkin(math.Round(val, 0))
+		end
+	end	
+
+	panel:AddItem(slider)
+end
+
+function TOOL:_addSectionBodygroupsHeader(panel, entTab)
+	local ent = entTab.ent
+	
+	local label = vgui.Create("DLabel", panel)
+	label:SetText("Bodygroups")
+	label:DockMargin(8, 0, 0, 0)
+	panel:AddItem(label)
+	self._bodygroupsSectionLabel = label
+
+	if not ent:GetNumBodyGroups() then
+		local label = panel:AddControl("Label", {text = "GetNumBodyGroups ERROR"})
+		label:DockMargin(0, 0, 0, 0)
+		return true
+	end
+end
+
+function TOOL:_addSectionBodygroups(panel, entTab, i)
+	local ent = entTab.ent
+	
+	if not ent:GetBodygroupName(i) then
+		local label = panel:AddControl("Label", {text = "GetBodygroupName ERROR"})
+		label:DockMargin(0, 0, 0, 0)
+		return true
+	end
+
+	if not ent:GetBodygroupCount(i) then
+		local label = panel:AddControl("Label", {text = "GetBodygroupCount ERROR"})
+		label:DockMargin(0, 0, 0, 0)
+		return true
+	end
+
+	if not ent:GetBodygroup(i) then
+		local label = panel:AddControl("Label", {text = "GetBodygroup ERROR"})
+		label:DockMargin(0, 0, 0, 0)
+		return true
+	end
+
+	local bgText = i .. "# " .. ent:GetBodygroupName(i)
+	local bgCount = ent:GetBodygroupCount(i) - 1
+
+	slider = vgui.Create("DNumSlider", panel)
+	slider:DockMargin(8, 0, 0, 0)
+	slider:SetDecimals(0)
+	slider:SetMinMax(0, bgCount)
+	slider:SetValue(0)
+	slider:SetText(bgText)
+
+	function slider:_kkReload()
+		self:SetValue(ent:GetBodygroup(i))
+	end
+	
+	self._sliders = self._sliders or {}
+	self._sliders["bg" .. i] = slider
+	
+	function slider:OnValueChanged(val)
+		if IsValid(ent) then
+			ent:SetBodygroup(i, math.Round(val, 0))
+		end
+	end
+
+	panel:AddItem(slider)
+
+	if bgCount > 0 then 
+		slider:SetDark(true) 
+		self._bodygroupsSectionLabel:SetDark(true)
+	end
+end
+
+function TOOL:_updateSliders()
+	self._sliders = self._sliders or {}
+	for _,slider in pairs(self._sliders) do
+		slider:_kkReload()
+	end
+end
+
 function TOOL:_updatePanel()
 	local panel = self._panel
 
@@ -47,148 +212,37 @@ function TOOL:_updatePanel()
 
 	panel:ClearControls()
 
-	local butt
-	butt = vgui.Create("DButton", panel)
-	butt:SetTooltip("Loads changes made outside of this tool.")
-	butt:DockMargin(0, 0, 0, 0)	
-	butt:SetText("Refresh")
-	butt.DoClick = function() TOOL:_updatePanel() end
-	panel:AddItem(butt)
-
+	self:_addSectionRefresh(panel)
+	
 	self:_loadEnts()
 
 	for _,entTab in pairs(self._ents) do
 		local ent = entTab.ent
 
 		if not IsValid(ent) then
-			-- local label = panel:AddControl("Label", {text = "INVALID ENTITY"})
-			-- label:DockMargin(8, 0, 0, 0)
 			continue 
 		end
 
-		local label = vgui.Create("DLabel", panel)
-		label:SetWrap(true)
-		label:SetTextInset(0, 0)
-		label:SetText(entTab.label)
-		label:SetContentAlignment(7)
-		label:SetAutoStretchVertical(true)
-		label:DockMargin(0, 0, 0, 0)
-		label:SetDark(true)
-		label:SetTextColor(panel:GetSkin().Colours.Tree.Hover)
-		panel:AddItem(label)
-
-		if not ent:GetModel() then
-			local label = panel:AddControl("Label", {text = "GetModel ERROR"})
-			label:DockMargin(8, 0, 0, 0)
+		if self:_addSectionHeader(panel, entTab) then
 			continue
 		end
-
-		local mdl = ent:GetModel()
-		local mdlLabel = mdl
-		-- mdlLabel = string.Split(mdlLabel, "/")
-		-- mdlLabel = mdlLabel[#mdlLabel]
-		-- mdlLabel = "[" .. mdlLabel .. "]"
-
-		local label = vgui.Create("DLabel", panel)
-		label:SetWrap(true)
-		label:SetText(mdlLabel)
-		-- label:SetTooltip(mdl)
-		label:DockMargin(8, 0, 0, 0)
-		-- label:DockMargin(0, 0, 0, 0)
-		label:SetDark(true)
-		label:SetMouseInputEnabled(true)
-		function label:DoClick() SetClipboardText(mdl) end
-		panel:AddItem(label)
-
-		if not ent:SkinCount() then
-			local label = panel:AddControl("Label", {text = "SkinCount ERROR"})
-			label:DockMargin(8, 0, 0, 0)
+		
+		if self:_addSectionSkinSlider(panel, entTab) then
 			continue
 		end
-
-		if not ent:GetSkin() then
-			local label = panel:AddControl("Label", {text = "GetSkin ERROR"})
-			label:DockMargin(8, 0, 0, 0)
+		
+		if self:_addSectionBodygroupsHeader(panel, entTab) then
 			continue
 		end
-
-		local slider
-		local skinCount = ent:SkinCount() - 1
-
-		slider = vgui.Create("DNumSlider", panel)
-		slider:DockMargin(8, 0, 0, 0)
-		slider:SetDecimals(0)
-		slider:SetMinMax(0, skinCount)
-		slider:SetValue(ent:GetSkin())
-		slider:SetText("Skin")
-
-		if skinCount > 0 then slider:SetDark(true) end
-
-		function slider:OnValueChanged(val)
-			if IsValid(ent) then
-				ent:SetSkin(math.Round(val, 0))
-			end
-		end	
-
-		panel:AddItem(slider)
-
-		local label = vgui.Create("DLabel", panel)
-		label:SetText("Bodygroups")
-		label:DockMargin(8, 0, 0, 0)
-		panel:AddItem(label)
-		self._bodygroupsSectionLabel = label
-
-		if not ent:GetNumBodyGroups() then
-			local label = panel:AddControl("Label", {text = "GetNumBodyGroups ERROR"})
-			label:DockMargin(0, 0, 0, 0)
-			continue
-		end
-
+		
 		local bgCount = ent:GetNumBodyGroups()
 
 		for i = 0, bgCount - 1 do
-			if not ent:GetBodygroupName(i) then
-				local label = panel:AddControl("Label", {text = "GetBodygroupName ERROR"})
-				label:DockMargin(0, 0, 0, 0)
-				continue
-			end
-
-			if not ent:GetBodygroupCount(i) then
-				local label = panel:AddControl("Label", {text = "GetBodygroupCount ERROR"})
-				label:DockMargin(0, 0, 0, 0)
-				continue
-			end
-
-			if not ent:GetBodygroup(i) then
-				local label = panel:AddControl("Label", {text = "GetBodygroup ERROR"})
-				label:DockMargin(0, 0, 0, 0)
-				continue
-			end
-
-			local bgText = i .. "# " .. ent:GetBodygroupName(i)
-			local bgCount = ent:GetBodygroupCount(i) - 1
-
-			slider = vgui.Create("DNumSlider", panel)
-			slider:DockMargin(8, 0, 0, 0)
-			slider:SetDecimals(0)
-			slider:SetMinMax(0, bgCount)
-			slider:SetValue(ent:GetBodygroup(i))
-			slider:SetText(bgText)
-
-			function slider:OnValueChanged(val)
-				if IsValid(ent) then
-					ent:SetBodygroup(i, math.Round(val, 0))
-				end
-			end
-
-			panel:AddItem(slider)
-
-			if bgCount > 0 then 
-				slider:SetDark(true) 
-				self._bodygroupsSectionLabel:SetDark(true)
-			end
+			self:_addSectionBodygroups(panel, entTab, i)
 		end
 	end
+	
+	self:_updateSliders()
 end
 
 function TOOL:SetPanel(panel)
@@ -205,7 +259,7 @@ function TOOL:OnWeaponSetupChanged(new, old)
 end
 
 function TOOL:OnWeaponClipChanged(new, old)
-	self:_updatePanel()
+	self:_updateSliders()
 end
 
 CustomizableWeaponry_KK.sck:AddTool(TOOL)
