@@ -3,12 +3,12 @@ AddCSLuaFile()
 local TOOL = {}
 
 TOOL.Name = "vmbgsv5"
-TOOL.PrintName = "Bodygroups 5.0"
+TOOL.PrintName = "Bodygroups v5"
 
 TOOL.entsDefault = {
-	[1] = {label = "Weapon View Model: "},
-	[2] = {label = "Hands View Model: "},
-	[3] = {label = "Weapon World Model: "},
+	[1] = {label = "Weapon View Model: ", slider = "vm"},
+	[2] = {label = "Hands View Model: ", slider = "rig"},
+	[3] = {label = "Weapon World Model: ", slider = "wm"},
 }
 
 function TOOL:_loadEnts()
@@ -117,7 +117,7 @@ function TOOL:_addSectionSkinSlider(panel, entTab)
 	end
 	
 	self._sliders = self._sliders or {}
-	self._sliders["skin"] = slider
+	self._sliders[entTab.slider .. "_skin"] = slider
 	
 	if skinCount > 0 then slider:SetDark(true) end
 
@@ -182,7 +182,7 @@ function TOOL:_addSectionBodygroups(panel, entTab, i)
 	end
 	
 	self._sliders = self._sliders or {}
-	self._sliders["bg" .. i] = slider
+	self._sliders[entTab.slider .. "_bg" .. i] = slider
 	
 	function slider:OnValueChanged(val)
 		if IsValid(ent) then
