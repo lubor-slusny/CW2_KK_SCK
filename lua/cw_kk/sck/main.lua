@@ -18,7 +18,7 @@ TOOL table structure
 	SetPanel(self, panel)
 	
 	[optional]
-	OnWeaponChanged(self, old, new)
+	OnWeaponChanged(self, new, old)
 	OnSetupChanged(self)
 	
 	[internal]

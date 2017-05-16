@@ -6,6 +6,8 @@ TOOL.PrintName = "Bonemod Editor (v0.3)"
 
 local label, backgroundPanel
 
+TOOL._curBones = {}
+
 function TOOL:_addForegripOverrideToggleSection(panel, wep)
 	backgroundPanel = vgui.Create("DPanel", panel)
 
@@ -38,13 +40,11 @@ function TOOL:_addWipeReloadAllSection(panel, wep)
 	backgroundPanel = vgui.Create("DPanel", panel)
 		
 		local butt = vgui.Create("DButton", backgroundPanel)
-		-- butt:SetTooltip("Copies current element table to your clipboard.")
 		butt:Dock(LEFT)
 		butt:SetSize(150,20)
 		butt:SetText("Wipe all bonemods")
 		
 		local butt = vgui.Create("DButton", backgroundPanel)
-		-- butt:SetTooltip("Copies current element table to your clipboard.")
 		butt:Dock(RIGHT)
 		butt:SetSize(150,20)
 		butt:SetText("Reload all bonemods")
@@ -72,6 +72,7 @@ function TOOL:_addNewParentSection(panel, wep)
 		entry:DockMargin(8,0,0,0)
 		
 		function entry:OnEnter()
+			wep.ForegripOverridePos = wep.ForegripOverridePos or {}
 			wep.ForegripOverridePos[self:GetValue()] = {}
 			wep.ForegripParent = wep.ForegripParent or self:GetValue()
 			TOOL:_updatePanel()
@@ -88,7 +89,7 @@ function TOOL:_addSelectParentSection(panel, wep)
 	backgroundPanel = vgui.Create("DPanel", panel)
 		
 		label = vgui.Create("DLabel", backgroundPanel)
-		label:SetText("Current parent:")
+		label:SetText("SWEP.ForegripParent")
 		label:SetDark(true)
 		label:Dock(LEFT)
 		label:DockMargin(8,0,8,0)
@@ -97,16 +98,17 @@ function TOOL:_addSelectParentSection(panel, wep)
 		local box = vgui.Create("DComboBox", backgroundPanel)
 		box:Dock(FILL)
 		
-		box:SetValue(wep.ForegripParent)
+		box:SetValue(wep.ForegripParent or "")
 		
-		for k,_ in pairs(wep.ForegripOverridePos) do
+		for k,_ in pairs(wep.ForegripOverridePos or {}) do
 			box:AddChoice(k)
 		end
 		
 		function box:OnSelect(i, name)
 			wep.ForegripParent = name
-			TOOL._curBoneBoxView = nil
-			TOOL._curBoneName = nil
+			TOOL._curBones[wep].print = nil
+			TOOL._curBones[wep].name = nil
+			TOOL:_updatePanel()
 		end
 		
 	backgroundPanel:Dock(TOP)
@@ -124,7 +126,11 @@ function TOOL:_addRemoveParentSection(panel, wep)
 		butt:SetText("Remove current parent")
 		
 		function butt:DoClick()
-			wep.ForegripOverridePos[wep.ForegripParent] = nil
+			if wep.ForegripParent then
+				wep.ForegripOverridePos[wep.ForegripParent] = nil
+				wep.ForegripParent = nil
+			end
+			
 			TOOL:_updatePanel()
 		end
 		
@@ -148,16 +154,23 @@ function TOOL:_addSelectBoneSection(panel, wep)
 		local box = vgui.Create("DComboBox", backgroundPanel)
 		box:Dock(FILL)
 		
-		box:SetValue(self._curBoneBoxView)
+		box:SetValue(self._curBones[wep].print or "")
 		
-		for i = 0, (wep.CW_VM:GetBoneCount() - 1) do
-			local data = wep.CW_VM:GetBoneName(i)
-			box:AddChoice(string.format("[%03d] %s", i, data), data)
-		end
+		-- if table.Count(wep.ForegripOverridePos[wep.ForegripParent]) > 0 then
+			-- for k,_ in pairs(wep.ForegripOverridePos[wep.ForegripParent]) do
+				-- local i = wep.CW_VM:LookupBone(k)
+				-- box:AddChoice(string.format("[%03d] %s", i, k), k)
+			-- end
+		-- else
+			for i = 0, (wep.CW_VM:GetBoneCount() - 1) do
+				local data = wep.CW_VM:GetBoneName(i)
+				box:AddChoice(string.format("[%03d] %s", i, data), data)
+			end
+		-- end
 		
-		function box:OnSelect(i, name, data)
-			TOOL._curBoneBoxView = name
-			TOOL._curBoneName = data
+		function box:OnSelect(i, printName, boneName)
+			TOOL._curBones[wep].print = printName
+			TOOL._curBones[wep].name = boneName
 			TOOL:_updatePanel()
 		end
 		
@@ -172,13 +185,11 @@ function TOOL:_addWipeReloadCurPosSection(panel, wep)
 	backgroundPanel = vgui.Create("DPanel", panel)
 		
 		local butt = vgui.Create("DButton", backgroundPanel)
-		-- butt:SetTooltip("Copies current element table to your clipboard.")
 		butt:Dock(LEFT)
 		butt:SetSize(150,20)
 		butt:SetText("Wipe all bones")
 		
 		local butt = vgui.Create("DButton", backgroundPanel)
-		-- butt:SetTooltip("Copies current element table to your clipboard.")
 		butt:Dock(RIGHT)
 		butt:SetSize(150,20)
 		butt:SetText("Reload all bones")
@@ -194,13 +205,17 @@ function TOOL:_addWipeReloadCurBoneSection(panel, wep)
 	backgroundPanel = vgui.Create("DPanel", panel)
 		
 		local butt = vgui.Create("DButton", backgroundPanel)
-		-- butt:SetTooltip("Copies current element table to your clipboard.")
 		butt:Dock(LEFT)
 		butt:SetSize(150,20)
 		butt:SetText("Wipe sliders")
 		
+		function butt:DoClick()
+			for _,slider in pairs(TOOL._boneSliders) do
+				slider:SetValue(0)
+			end
+		end
+		
 		local butt = vgui.Create("DButton", backgroundPanel)
-		-- butt:SetTooltip("Copies current element table to your clipboard.")
 		butt:Dock(RIGHT)
 		butt:SetSize(150,20)
 		butt:SetText("Reload sliders")
@@ -215,6 +230,8 @@ end
 function TOOL:_addSlidersSection(panel, wep)
 	backgroundPanel = vgui.Create("DPanel", panel)
 	
+	self._boneSliders = {}
+	
 	local t
 	wep.ForegripOverridePos = wep.ForegripOverridePos or {}
 	t = wep.ForegripOverridePos
@@ -222,8 +239,8 @@ function TOOL:_addSlidersSection(panel, wep)
 	t[wep.ForegripParent] = t[wep.ForegripParent] or {}
 	t = t[wep.ForegripParent]
 	
-	t[self._curBoneName] = t[self._curBoneName] or {pos = Vector(), angle = Angle()}
-	t = t[self._curBoneName]
+	t[self._curBones[wep].name] = t[self._curBones[wep].name] or {pos = Vector(), angle = Angle()}
+	t = t[self._curBones[wep].name]
 	
 	for k,v in pairs({
 		{"pos", "x", -100, 100},
@@ -245,6 +262,8 @@ function TOOL:_addSlidersSection(panel, wep)
 		function slider:OnValueChanged(val)
 			t[v[1]][v[2]] = val
 		end
+		
+		self._boneSliders[v[1] .. "." .. v[2]] = slider
 	end
 	
 	backgroundPanel:Dock(TOP)
@@ -267,11 +286,13 @@ function TOOL:_updatePanel()
 		return
 	end
 	
+	self._curBones[wep] = self._curBones[wep] or {}
+	
 	self:_addForegripOverrideToggleSection(panel, wep)
 	
 	if not wep.ForegripOverride then return end
 	
-	self:_addWipeReloadAllSection(panel, wep)
+	-- self:_addWipeReloadAllSection(panel, wep)
 	self:_addNewParentSection(panel, wep)
 	self:_addSelectParentSection(panel, wep)
 	
@@ -281,7 +302,7 @@ function TOOL:_updatePanel()
 	-- self:_addWipeReloadCurPosSection(panel, wep)
 	self:_addSelectBoneSection(panel, wep)
 	
-	if not self._curBoneName then return end
+	if not self._curBones[wep].name then return end
 	
 	self:_addWipeReloadCurBoneSection(panel, wep)
 	self:_addSlidersSection(panel, wep)
@@ -300,6 +321,10 @@ end
 
 function TOOL:OnWeaponChanged(new, old)
 	self._wep = new
+	self:_updatePanel()
+end
+
+function TOOL:OnSetupChanged()
 	self:_updatePanel()
 end
 
