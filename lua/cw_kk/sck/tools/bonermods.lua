@@ -2,13 +2,11 @@
 local TOOL = {}
 
 TOOL.Name = "bonemods"
-TOOL.PrintName = "Bonemod Editor (v0.3)"
+TOOL.PrintName = "Bonemod Editor"
 
 local label, backgroundPanel
 
-TOOL._curBones = {}
-
-function TOOL:_addForegripOverrideToggleSection(panel, wep)
+function TOOL:_addSectionForegripOverrideToggle(panel, wep)
 	backgroundPanel = vgui.Create("DPanel", panel)
 
 		local cbox
@@ -36,7 +34,7 @@ function TOOL:_addForegripOverrideToggleSection(panel, wep)
 	return wep.ForegripOverride
 end
 
-function TOOL:_addWipeReloadAllSection(panel, wep)
+function TOOL:_addSectionWipeReloadAll(panel, wep)
 	backgroundPanel = vgui.Create("DPanel", panel)
 		
 		local butt = vgui.Create("DButton", backgroundPanel)
@@ -56,7 +54,7 @@ function TOOL:_addWipeReloadAllSection(panel, wep)
 	panel:AddItem(backgroundPanel)
 end
 
-function TOOL:_addNewParentSection(panel, wep)
+function TOOL:_addSectionNewParent(panel, wep)
 	backgroundPanel = vgui.Create("DPanel", panel)
 		
 		label = vgui.Create("DLabel", backgroundPanel)
@@ -85,7 +83,7 @@ function TOOL:_addNewParentSection(panel, wep)
 	panel:AddItem(backgroundPanel)
 end
 
-function TOOL:_addSelectParentSection(panel, wep)
+function TOOL:_addSectionSelectParent(panel, wep)
 	backgroundPanel = vgui.Create("DPanel", panel)
 		
 		label = vgui.Create("DLabel", backgroundPanel)
@@ -118,7 +116,7 @@ function TOOL:_addSelectParentSection(panel, wep)
 	panel:AddItem(backgroundPanel)
 end
 
-function TOOL:_addRemoveParentSection(panel, wep)
+function TOOL:_addSectionRemoveParent(panel, wep)
 	backgroundPanel = vgui.Create("DPanel", panel)
 		
 		local butt = vgui.Create("DButton", backgroundPanel)
@@ -131,6 +129,8 @@ function TOOL:_addRemoveParentSection(panel, wep)
 				wep.ForegripParent = nil
 			end
 			
+			TOOL._curBones[wep].print = nil
+			TOOL._curBones[wep].name = nil
 			TOOL:_updatePanel()
 		end
 		
@@ -141,7 +141,33 @@ function TOOL:_addRemoveParentSection(panel, wep)
 	panel:AddItem(backgroundPanel)
 end
 
-function TOOL:_addSelectBoneSection(panel, wep)
+function TOOL:_addSectionFilterBones(panel, wep)
+	backgroundPanel = vgui.Create("DPanel", panel)
+
+		local cbox
+		cbox = vgui.Create("DCheckBoxLabel", backgroundPanel)
+		cbox:SetText("List modified bones only")
+		cbox:SetDark(true)
+		cbox:SetValue(self._filterBones or false)
+		cbox:Dock(FILL)
+		cbox:DockMargin(8,0,0,0)
+		
+		cbox.Label:Dock(LEFT)
+		cbox.Label:DockMargin(24,0,0,0)
+		
+		function cbox:OnChange(val)
+			TOOL._filterBones = val
+			TOOL:_updatePanel()
+		end
+		
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:SetSize(200,20)
+	backgroundPanel:SetPaintBackground(true)
+	backgroundPanel:SizeToContents()
+	panel:AddItem(backgroundPanel)
+end
+
+function TOOL:_addSectionSelectBone(panel, wep)
 	backgroundPanel = vgui.Create("DPanel", panel)
 		
 		label = vgui.Create("DLabel", backgroundPanel)
@@ -156,17 +182,17 @@ function TOOL:_addSelectBoneSection(panel, wep)
 		
 		box:SetValue(self._curBones[wep].print or "")
 		
-		-- if table.Count(wep.ForegripOverridePos[wep.ForegripParent]) > 0 then
-			-- for k,_ in pairs(wep.ForegripOverridePos[wep.ForegripParent]) do
-				-- local i = wep.CW_VM:LookupBone(k)
-				-- box:AddChoice(string.format("[%03d] %s", i, k), k)
-			-- end
-		-- else
+		if self._filterBones then
+			for k,_ in pairs(wep.ForegripOverridePos[wep.ForegripParent]) do
+				local i = wep.CW_VM:LookupBone(k)
+				box:AddChoice(string.format("[%03d] %s", i, k), k)
+			end
+		else
 			for i = 0, (wep.CW_VM:GetBoneCount() - 1) do
 				local data = wep.CW_VM:GetBoneName(i)
 				box:AddChoice(string.format("[%03d] %s", i, data), data)
 			end
-		-- end
+		end
 		
 		function box:OnSelect(i, printName, boneName)
 			TOOL._curBones[wep].print = printName
@@ -181,7 +207,7 @@ function TOOL:_addSelectBoneSection(panel, wep)
 	panel:AddItem(backgroundPanel)
 end
 
-function TOOL:_addWipeReloadCurPosSection(panel, wep)
+function TOOL:_addSectionWipeReloadCurPos(panel, wep)
 	backgroundPanel = vgui.Create("DPanel", panel)
 		
 		local butt = vgui.Create("DButton", backgroundPanel)
@@ -201,7 +227,7 @@ function TOOL:_addWipeReloadCurPosSection(panel, wep)
 	panel:AddItem(backgroundPanel)
 end
 
-function TOOL:_addWipeReloadCurBoneSection(panel, wep)
+function TOOL:_addSectionWipeReloadCurBone(panel, wep)
 	backgroundPanel = vgui.Create("DPanel", panel)
 		
 		local butt = vgui.Create("DButton", backgroundPanel)
@@ -227,7 +253,7 @@ function TOOL:_addWipeReloadCurBoneSection(panel, wep)
 	panel:AddItem(backgroundPanel)
 end
 
-function TOOL:_addSlidersSection(panel, wep)
+function TOOL:_addSectionBoneSliders(panel, wep)
 	backgroundPanel = vgui.Create("DPanel", panel)
 	
 	self._boneSliders = {}
@@ -253,14 +279,17 @@ function TOOL:_addSlidersSection(panel, wep)
 		local slider = vgui.Create("DNumSlider", backgroundPanel)
 		slider:Dock(TOP)
 		slider:DockMargin(8,0,8,0)
-		slider:SetDecimals(4)
 		slider:SetText(v[1] .. "." .. v[2])
 		slider:SetDark(true)
 		slider:SetMinMax(v[3], v[4])
+		slider:SetDecimals(4)
 		slider:SetValue(t[v[1]][v[2]])
+		
+		self:LoadSliderZoom(slider)
 		
 		function slider:OnValueChanged(val)
 			t[v[1]][v[2]] = val
+			TOOL:SaveSliderZoom(self)
 		end
 		
 		self._boneSliders[v[1] .. "." .. v[2]] = slider
@@ -268,6 +297,42 @@ function TOOL:_addSlidersSection(panel, wep)
 	
 	backgroundPanel:Dock(TOP)
 	backgroundPanel:SetSize(200,32*6)
+	backgroundPanel:SetPaintBackground(true)
+	backgroundPanel:SizeToContents()
+	panel:AddItem(backgroundPanel)
+end
+
+function TOOL:_addSectionExportCur(panel, wep)
+	backgroundPanel = vgui.Create("DPanel", panel)
+		
+		local butt = vgui.Create("DButton", backgroundPanel)
+		butt:Dock(FILL)
+		butt:SetText("Export current")
+		
+		function butt:DoClick()
+		
+		end
+		
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:SetSize(200,20)
+	backgroundPanel:SetPaintBackground(true)
+	backgroundPanel:SizeToContents()
+	panel:AddItem(backgroundPanel)
+end
+
+function TOOL:_addSectionExportAll(panel, wep)
+	backgroundPanel = vgui.Create("DPanel", panel)
+		
+		local butt = vgui.Create("DButton", backgroundPanel)
+		butt:Dock(FILL)
+		butt:SetText("Export all")
+		
+		function butt:DoClick()
+		
+		end
+		
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:SetSize(200,20)
 	backgroundPanel:SetPaintBackground(true)
 	backgroundPanel:SizeToContents()
 	panel:AddItem(backgroundPanel)
@@ -288,33 +353,33 @@ function TOOL:_updatePanel()
 	
 	self._curBones[wep] = self._curBones[wep] or {}
 	
-	self:_addForegripOverrideToggleSection(panel, wep)
+	self:_addSectionForegripOverrideToggle(panel, wep)
 	
 	if not wep.ForegripOverride then return end
 	
-	-- self:_addWipeReloadAllSection(panel, wep)
-	self:_addNewParentSection(panel, wep)
-	self:_addSelectParentSection(panel, wep)
+	-- self:_addSectionWipeReloadAll(panel, wep)
+	self:_addSectionNewParent(panel, wep)
+	self:_addSectionSelectParent(panel, wep)
 	
-	if not wep.ForegripParent then return end
+	if wep.ForegripParent then
+		self:_addSectionRemoveParent(panel, wep)
+		-- self:_addSectionWipeReloadCurPos(panel, wep)
+		self:_addSectionSelectBone(panel, wep)
+		self:_addSectionFilterBones(panel, wep)
+		
+		if self._curBones[wep].name then 
+			self:_addSectionWipeReloadCurBone(panel, wep)
+			self:_addSectionBoneSliders(panel, wep)
+		end
+		
+		self:_addSectionExportCur(panel, wep)
+	end
 	
-	self:_addRemoveParentSection(panel, wep)
-	-- self:_addWipeReloadCurPosSection(panel, wep)
-	self:_addSelectBoneSection(panel, wep)
-	
-	if not self._curBones[wep].name then return end
-	
-	self:_addWipeReloadCurBoneSection(panel, wep)
-	self:_addSlidersSection(panel, wep)
-	
-	-- panel:AddControl("Label", {Text = "export cur button"}) // filter out (0, 0, 0)
-	panel:AddControl("Button", {Text = "Export current"})
-	
-	-- panel:AddControl("Label", {Text = "export all button"}) // filter out (0, 0, 0)
-	panel:AddControl("Button", {Text = "Export all"})
+	self:_addSectionExportAll(panel, wep)
 end
 
 function TOOL:SetPanel(panel)
+	self._curBones = self._curBones or {}
 	self._panel = panel
 	self:_updatePanel()
 end
@@ -324,7 +389,7 @@ function TOOL:OnWeaponChanged(new, old)
 	self:_updatePanel()
 end
 
-function TOOL:OnSetupChanged()
+function TOOL:OnWeaponSetupChanged()
 	self:_updatePanel()
 end
 

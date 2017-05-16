@@ -5,15 +5,15 @@ local TOOL = {}
 TOOL.Name = "cvmtpanel3"
 TOOL.PrintName = "CVMT Panel 2.1"
 
-function TOOL:OnAdd()
-	self._fCurRate = 1
-	self._fCurStartCycle = 0
-	self._bPlaySounds = true
+function TOOL:Initialize()
+	self._fCurRate = self._fCurRate or 1
+	self._fCurStartCycle = self._fCurStartCycle or 0
+	self._bPlaySounds = self._bPlaySounds or true
 
-	self._iSoundFilter = 1
+	self._iSoundFilter = self._iSoundFilter or 1
 	self._strSoundFilter = {"ALL", "W/", "W/O"}
 
-	self._cvarCurFilter = CreateClientConVar("_cw_kk_cvmt_filter_name", "", false, false)
+	self._cvarCurFilter = self._cvarCurFilter or CreateClientConVar("_cw_kk_cvmt_filter_name", "", false, false)
 	
 	cvars.AddChangeCallback("_cw_kk_cvmt_filter_name", function()
 		TOOL:_updateAnimListSectionPanel()
@@ -22,7 +22,7 @@ end
 
 local label, backgroundPanel
 
-function TOOL:_addTickBoxesSection(panel)
+function TOOL:_addSectionTickBoxes(panel)
 	backgroundPanel = vgui.Create("DPanel", panel)
 
 		local cbox
@@ -84,7 +84,7 @@ function TOOL:_addTickBoxesSection(panel)
 	panel:AddItem(backgroundPanel)
 end
 
-function TOOL:_addCycleSliderSection(panel)
+function TOOL:_addSectionCycleSlider(panel)
 	backgroundPanel = vgui.Create("DPanel", panel)
 	
 		local slider
@@ -117,7 +117,7 @@ function TOOL:_addCycleSliderSection(panel)
 	panel:AddItem(backgroundPanel)
 end
 
-function TOOL:_addPreviewControlsSection(panel)
+function TOOL:_addSectionPreviewControls(panel)
 	local backgroundPanel = vgui.Create("DPanel", panel)
 
 		local cbox
@@ -252,7 +252,7 @@ function TOOL:_addPreviewControlsSection(panel)
 	panel:AddItem(backgroundPanel)
 end
 
-function TOOL:_addAnimListSection(panel)
+function TOOL:_addSectionAnimList(panel)
 	backgroundPanel = vgui.Create("DPanel", panel)
 	backgroundPanel:Dock(TOP)
 	backgroundPanel:DockPadding(0,0,0,0)
@@ -416,8 +416,8 @@ function TOOL:_updatePanel()
 	label = panel:AddControl("Label", {Text = "CVMT Shared:"})
 	label:DockMargin(0, 0, 0, 0)
 	
-	self:_addTickBoxesSection(panel)
-	self:_addCycleSliderSection(panel)
+	self:_addSectionTickBoxes(panel)
+	self:_addSectionCycleSlider(panel)
 	
 	if !IsValid(wep) or !self:_getWepSetup().ok then
 		return
@@ -426,7 +426,7 @@ function TOOL:_updatePanel()
 	label = panel:AddControl("Label", {Text = "Preview settings:"})
 	label:DockMargin(0, 0, 0, 0)
 	
-	self:_addPreviewControlsSection(panel)
+	self:_addSectionPreviewControls(panel)
 	
 	backgroundPanel = vgui.Create("DPanel", panel)
 	
@@ -453,7 +453,7 @@ function TOOL:_updatePanel()
 	
 	panel:AddItem(backgroundPanel)
 	
-	self:_addAnimListSection(panel)
+	self:_addSectionAnimList(panel)
 	self:_updateAnimListSectionPanel()
 end
 

@@ -200,6 +200,14 @@ function TOOL:OnWeaponChanged(new, old)
 	self:_updatePanel()
 end
 
+function TOOL:OnWeaponSetupChanged(new, old)
+	self:_updatePanel()
+end
+
+function TOOL:OnWeaponClipChanged(new, old)
+	self:_updatePanel()
+end
+
 CustomizableWeaponry_KK.sck:AddTool(TOOL)
 
 TOOL:_updatePanel()

@@ -18,13 +18,53 @@ TOOL table structure
 	SetPanel(self, panel)
 	
 	[optional]
+	Initialize(self)
 	OnWeaponChanged(self, new, old)
-	OnSetupChanged(self)
+	OnWeaponSetupChanged(self)
+	OnWeaponClipChanged(self)
 	
 	[internal]
 	build or update panel - tool shud call from 
 		OnXChanged and SetPanel
+	
+	[pre-defined]
+	SaveSliderZoom(self, slider)
+	LoadSliderZoom(self, slider)
 */
+
+BASE._toolMeta = {}
+local toolMeta = BASE._toolMeta
+toolMeta.__index = toolMeta
+
+function toolMeta:Initialize() end
+
+local function initSliderStorage(tool, slider)
+	if not slider._cwkksckid then
+		local txt = slider.Label:GetText()
+		txt = string.Replace(txt, ".", "_")
+		txt = string.Replace(txt, " ", "_")
+		txt = string.lower(txt)
+		slider._cwkksckid = string.format("_cw_kk_sck_slzoom_%s_%s", tool.Name, txt)
+	end
+	
+	tool._storedSliders = tool._storedSliders or {}
+	
+	if not tool._storedSliders[slider._cwkksckid] then
+		tool._storedSliders[slider._cwkksckid] = CreateClientConVar(slider._cwkksckid, 1, true, false)
+	end
+end
+
+function toolMeta:SaveSliderZoom(slider)
+	initSliderStorage(self, slider)
+	self._storedSliders[slider._cwkksckid]:SetFloat(slider.Wang:GetZoom())
+end
+
+function toolMeta:LoadSliderZoom(slider)
+	initSliderStorage(self, slider)
+	
+	slider.Wang:SetDecimals(4) // ???
+	slider.Wang:SetZoom(self._storedSliders[slider._cwkksckid]:GetFloat())
+end
 
 function BASE:AddTool(tab)
 	if SERVER then return end
@@ -38,25 +78,35 @@ function BASE:AddTool(tab)
 	
 	self._toolCache = self._toolCache or {}
 	
+	setmetatable(tab, self._toolMeta)
+	local old = self._toolCache[tab.Name]
+	
 	if not self._cleanLoad then
-		local old = self._toolCache[tab.Name]
 		if old then
 			old.__index = old
 			setmetatable(tab, old)
-		elseif tab.OnAdd then
-			tab:OnAdd()
 		end
-	else
-		tab:OnAdd()
 	end
+	
+	tab:Initialize()
 	
 	self._toolCache[tab.Name] = tab
 end
 
 function BASE:Load()
+	local reload = self._toolCache != nil
+	
+	self._toolCache = {}
+	self._lastWep = nil
+	self._lastSetup = nil
+	
 	for _,v in pairs(file.Find(self.ToolsFolder .. "*", "LUA")) do
 		AddCSLuaFile(self.ToolsFolder .. v)
 		include(self.ToolsFolder .. v)
+	end
+	
+	if reload then
+		RunConsoleCommand("spawnmenu_reload")
 	end
 end
 
@@ -102,10 +152,18 @@ if CLIENT then
 		end
 	end
 
-	function BASE:_OnSetupChanged()
+	function BASE:_OnWeaponSetupChanged()
 		for _,tool in pairs(self._toolCache) do
-			if tool.OnSetupChanged then
-				tool:OnSetupChanged()
+			if tool.OnWeaponSetupChanged then
+				tool:OnWeaponSetupChanged()
+			end
+		end
+	end
+
+	function BASE:_OnWeaponClipChanged()
+		for _,tool in pairs(self._toolCache) do
+			if tool.OnWeaponClipChanged then
+				tool:OnWeaponClipChanged()
 			end
 		end
 	end
@@ -131,12 +189,18 @@ if CLIENT then
 			end
 			
 			if curSetup != self._lastSetup then
-				self:_OnSetupChanged()
+				self:_OnWeaponSetupChanged()
 			end
 			
 			self._lastSetup = curSetup
 		end
 		self._lastWep = wep
+		
+		local curClip = wep:Clip1()
+		if curClip != self._lastClip then
+			self:_OnWeaponClipChanged()
+		end
+		self._lastClip = curClip
 		
 		for _,tool in pairs(self._toolCache) do
 			if tool.Think then
@@ -149,6 +213,5 @@ if CLIENT then
 
 	concommand.Add(BASE.strCCReload, function()
 		BASE:Load()
-		RunConsoleCommand("spawnmenu_reload")
 	end)
 end
