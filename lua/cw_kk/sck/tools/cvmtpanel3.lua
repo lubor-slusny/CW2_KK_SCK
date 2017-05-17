@@ -16,7 +16,7 @@ function TOOL:Initialize()
 	self._cvarCurFilter = self._cvarCurFilter or CreateClientConVar("_cw_kk_cvmt_filter_name", "", false, false)
 	
 	cvars.AddChangeCallback("_cw_kk_cvmt_filter_name", function()
-		TOOL:_updateAnimListSectionPanel()
+		TOOL:_updatePanelSectionAnimList()
 	end)
 end
 
@@ -214,7 +214,7 @@ function TOOL:_addSectionPreviewControls(panel)
 			self.TextArea:SetEditable(false)
 			self.TextArea:SetValue(TOOL._strSoundFilter[TOOL._iSoundFilter])
 			
-			TOOL:_updateAnimListSectionPanel()
+			TOOL:_updatePanelSectionAnimList()
 		end
 		
 		slider:SetValue(self._iSoundFilter)
@@ -315,7 +315,7 @@ TOOL._colAnimButtonHover = Color(0,255,0,25)
 TOOL._colAnimButtonIdle = Color(0,0,0,60)
 TOOL._colAnimButtonClick = Color(0,0,255,25)
 
-function TOOL:_updateAnimListSectionPanel()
+function TOOL:_updatePanelSectionAnimList()
 	local panel = self._animListSectionPanel
 	
 	if !IsValid(panel) then return end
@@ -454,7 +454,7 @@ function TOOL:_updatePanel()
 	panel:AddItem(backgroundPanel)
 	
 	self:_addSectionAnimList(panel)
-	self:_updateAnimListSectionPanel()
+	self:_updatePanelSectionAnimList()
 end
 
 function TOOL:SetPanel(panel)
