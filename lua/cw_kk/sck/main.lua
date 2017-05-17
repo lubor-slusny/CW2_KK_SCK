@@ -9,6 +9,7 @@ BASE.SpawnMenuTabSection = "Knife Kitty 2.0"
 BASE.ToolsFolder = "cw_kk/sck/tools/"
 BASE.InternalNamesPrefix = "CW_KK_SCK"
 BASE.strCCReload = "cw_kk_sck_reload_folder"
+BASE.strCCRebuild = "cw_kk_sck_rebuild_panels"
 
 /*
 TOOL table structure
@@ -64,6 +65,63 @@ function toolMeta:LoadSliderZoom(slider)
 	
 	slider.Wang:SetDecimals(4) // ???
 	slider.Wang:SetZoom(self._storedSliders[slider._cwkksckid]:GetFloat())
+end
+
+function toolMeta:AngleToString(a)
+	if not a then
+		return "nil"
+	end
+	
+	if a:IsZero() then
+		return "Angle()"
+	end
+
+	return string.format(
+		"Angle(%s, %s, %s)",
+		tostring(math.Round(a.p,4)),
+		tostring(math.Round(a.y,4)),
+		tostring(math.Round(a.r,4))
+	)
+end
+
+function toolMeta:VectorToString(v)
+	if not v then
+		return "nil"
+	end
+	
+	if v:Length() == 0 then
+		return "Vector()"
+	end
+
+	return string.format(
+		"Vector(%s, %s, %s)",
+		tostring(math.Round(v.x,4)),
+		tostring(math.Round(v.y,4)),
+		tostring(math.Round(v.z,4))
+	)
+end
+
+function toolMeta:ThrowNewNotImplemented()
+	local snds = {
+		"http://cdn.frustra.org/sounds/sound_tf2/vo/scout_no02.mp3",
+		"http://cdn.frustra.org/sounds/sound_tf2/vo/pyro_no01.mp3",
+		"http://cdn.frustra.org/sounds/sound_tf2/vo/soldier_no03.mp3",
+		"http://cdn.frustra.org/sounds/sound_tf2/vo/demoman_no01.mp3",
+		"http://cdn.frustra.org/sounds/sound_tf2/vo/heavy_no02.mp3",
+		"http://cdn.frustra.org/sounds/sound_tf2/vo/medic_no02.mp3",
+		"http://cdn.frustra.org/sounds/sound_tf2/vo/engineer_no01.mp3",
+		"http://cdn.frustra.org/sounds/sound_tf2/vo/sniper_no01.mp3",
+		"http://cdn.frustra.org/sounds/sound_tf2/vo/spy_no02.mp3",
+	}
+
+	sound.PlayURL(table.Random(snds), "", function(station)
+		if IsValid(station) then
+			station:Play()
+			print("This stuff aint implemented yet.")
+		else
+			print("INVALID INTERNET CONNECTION OMGF!")
+		end
+	end)
 end
 
 function BASE:AddTool(tab)
@@ -216,5 +274,23 @@ if CLIENT then
 
 	concommand.Add(BASE.strCCReload, function()
 		BASE:Load()
+	end)
+	
+	function BASE:ForceRebuildTools()
+		for _,tool in pairs(self._toolCache) do
+			local panel = tool._panel 
+			
+			if IsValid(panel) then
+				tool:SetPanel(nil)
+				
+				panel:Clear()
+				
+				tool:SetPanel(panel)
+			end
+		end
+	end
+	
+	concommand.Add(BASE.strCCRebuild, function()
+		BASE:ForceRebuildTools()
 	end)
 end
