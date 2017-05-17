@@ -2,8 +2,9 @@ AddCSLuaFile()
 
 local TOOL = {}
 
-TOOL.Name = "vmbgsv5"
-TOOL.PrintName = "Bodygroups v5"
+TOOL.Name = "bodygroups"
+TOOL.PrintName = "Bodygroups"
+TOOL.Version = "5.0"
 
 TOOL.entsDefault = {
 	[1] = {label = "Weapon View Model: ", slider = "vm"},

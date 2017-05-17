@@ -2,8 +2,9 @@ AddCSLuaFile()
 
 local TOOL = {}
 
-TOOL.Name = "swepcheck"
-TOOL.PrintName = "Check basics 1.1"
+TOOL.Name = "basiccheck"
+TOOL.PrintName = "Check basics"
+TOOL.Version = "1.1"
 
 TOOL.colorExists = Color(63, 127, 79, 255)
 TOOL.colorDoesnt = Color(220, 0, 255, 255)

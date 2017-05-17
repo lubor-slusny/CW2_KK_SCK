@@ -2,8 +2,9 @@ AddCSLuaFile()
 
 local TOOL = {}
 
-TOOL.Name = "cvmtpanel3"
-TOOL.PrintName = "CVMT Panel 2.1"
+TOOL.Name = "cvmtpanel"
+TOOL.PrintName = "CVMT Control Panel"
+TOOL.Version = "2.1"
 
 function TOOL:Initialize()
 	self._fCurRate = self._fCurRate or 1

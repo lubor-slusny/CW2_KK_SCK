@@ -3,6 +3,7 @@ local TOOL = {}
 
 TOOL.Name = "bonemods"
 TOOL.PrintName = "Bonemod Editor"
+TOOL.Version = "0.9"
 
 local a0, v0 = Angle(), Vector()
 

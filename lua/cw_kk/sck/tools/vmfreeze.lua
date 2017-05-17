@@ -3,7 +3,8 @@ AddCSLuaFile()
 local TOOL = {}
 
 TOOL.Name = "vmfreeze"
-TOOL.PrintName = "VM Freeze 1.1"
+TOOL.PrintName = "VM Freeze"
+TOOL.Version = "1.1"
 
 local fovDesire = GetConVar("fov_desired")
 

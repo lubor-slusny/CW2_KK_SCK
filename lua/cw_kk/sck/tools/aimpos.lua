@@ -2,8 +2,9 @@ AddCSLuaFile()
 
 local TOOL = {}
 
-TOOL.Name = "cstmorigin"
-TOOL.PrintName = "AltPos Builder"
+TOOL.Name = "aimpos"
+TOOL.PrintName = "AimPos Builder"
+TOOL.Version = "5.0"
 
 function TOOL:_updatePanel()
 	local panel = self._panel
@@ -28,10 +29,6 @@ end
 
 function TOOL:OnWeaponChanged(new, old)
 	self._wep = new
-	self:_updatePanel()
-end
-
-function TOOL:OnWeaponSetupChanged()
 	self:_updatePanel()
 end
 

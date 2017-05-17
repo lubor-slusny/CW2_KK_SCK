@@ -2,8 +2,9 @@ AddCSLuaFile()
 
 local TOOL = {}
 
-TOOL.Name = "velementsv3"
-TOOL.PrintName = "Element Browser v3"
+TOOL.Name = "elements"
+TOOL.PrintName = "Element Browser"
+TOOL.Version = "3.0"
 
 function TOOL:_updatePanel()
 	local panel = self._panel
