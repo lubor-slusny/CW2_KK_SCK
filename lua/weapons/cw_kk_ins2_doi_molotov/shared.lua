@@ -68,8 +68,8 @@ SWEP.SpeedDec = 15
 
 SWEP.Slot = 4
 SWEP.SlotPos = 0
-SWEP.NormalHoldType = "smg"
-SWEP.RunHoldType = "passive"
+SWEP.NormalHoldType = "revolver"
+SWEP.RunHoldType = "normal"
 SWEP.FireModes = {"auto"}
 SWEP.Base = "cw_kk_ins2_base"
 SWEP.Category = "CW 2.0 KK INS2 DOI"
@@ -84,10 +84,7 @@ SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/cw_kk_doi/v_flame_eintoss46.mdl"
 SWEP.WorldModel		= "models/weapons/w_eintoss46.mdl"
 
--- SWEP.WMPos = Vector(6.035, -1.5, -1)
--- SWEP.WMAng = Vector(12, 180, -180)
-
-SWEP.WMPos = Vector(6.5, 1.5, -2)
+SWEP.WMPos = Vector(-5.5, 1.5, 2)
 SWEP.WMAng = Vector(-15, 0, -180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2de
