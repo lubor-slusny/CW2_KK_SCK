@@ -17,8 +17,14 @@ if CLIENT then
 	
 	SWEP.AttachmentModelsVM = {
 		-- ["ani_body"] = {model = "models/weapons/v_panzerschreck.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
+		["kk_ins2_ww2_sling"] = {model = "models/weapons/v_panzerschreck.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true,
+			materials = {
+				[1] = CustomizableWeaponry_KK.ins2.nodrawMatPath,
+				[2] = CustomizableWeaponry_KK.ins2.nodrawMatPath,
+			}
+		},
 		
-		["kk_ins2_fnfal_skin2"] = {model = "models/weapons/v_panzerschreck.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, materials = {[1] = "models/cwkkdoi/shrek/clean.mdl"}},
+		["kk_ins2_fnfal_skin2"] = {model = "models/weapons/cw_kk_doi/v_panzerschreck.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, materials = {[1] = "models/cwkkdoi/shrek/clean.mdl"}},
 	}
 	
 	SWEP.AttachmentModelsWM = {
@@ -46,8 +52,8 @@ SWEP.Chamberable = false
 SWEP.WeaponLength = 44
 
 SWEP.Attachments = {
-	{header = "Flavor", offset = {500, 0}, atts = {"kk_ins2_fnfal_skin2"}},
-	-- {header = "Stock", offset = {600, 0}, atts = {"kk_ins2_ww2_sling"}},
+	{header = "Flavor", offset = {500, -200}, atts = {"kk_ins2_fnfal_skin2"}},
+	{header = "Stock", offset = {500, 200}, atts = {"kk_ins2_ww2_sling"}},
 }
 
 SWEP.Animations = {
