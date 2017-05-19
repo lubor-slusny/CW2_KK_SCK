@@ -115,6 +115,9 @@ if CLIENT then
 	SWEP.KKINS2CSTMPGO7Pos = Vector(-0.8964, -3, -0.5)
 	SWEP.KKINS2CSTMPGO7Ang = Vector()
 
+	SWEP.KKINS2CSTMACOGPos = Vector(-2.2438, -2, -0.2544)
+	SWEP.KKINS2CSTMACOGAng = Vector()
+
 	SWEP.CustomizationMenuScale = 0.016
 end
 

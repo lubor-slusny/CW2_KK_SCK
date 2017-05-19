@@ -4,7 +4,7 @@ if CLIENT then
 end
 
 if CLIENT then
-	local old_rt, old_x, old_y, ang, light
+	local ang, light
 	local iLens = surface.GetTextureID("cw2/gui/lense")
 	-- local iMatLens = Material("cw2/gui/lense")
 	local iMatLens = Material("models/weapons/attachments/cw_kk_ins2_shared/fake")
@@ -13,13 +13,15 @@ if CLIENT then
 	local cd = {}
 	cd.x = 0
 	cd.y = 0
+	cd.w = 1024
+	cd.h = 1024
 	cd.drawviewmodel = false
 	cd.drawhud = false
 	cd.dopostprocess = false
 	
 	local strInnerRim = "models/weapons/attachments/cw_kk_ins2_shared/fake"
 	local strOuterRim = "models/weapons/attachments/cw_kk_ins2_shared/fake20"
-
+	
 	local iInnerRim = surface.GetTextureID(strInnerRim)
 	local iOuterRim = surface.GetTextureID(strOuterRim)
 	local iRearMat = surface.GetTextureID("cw2/reticles/scope_leo")
@@ -66,6 +68,7 @@ if CLIENT then
 		end
 		
 		attachmEnt = wep.AttachmentModelsVM[att.name].ent
+		attachmEnt:SetupBones()
 		mdlAttRear = attachmEnt:GetAttachment(1)
 		mdlAttFront = attachmEnt:GetAttachment(2)
 		
@@ -76,33 +79,29 @@ if CLIENT then
 		
 		-- // fovmods
 
-		local curCLFOV = math.Clamp(cvFOVDesired:GetInt() - wep.CurFOVMod, 0, cvFOVDesired:GetInt())
+		local curCLFOV = math.Clamp(cvFOVDesired:GetInt() + wep.CurFOVMod, 0, cvFOVDesired:GetInt())
 		local fovDiff = math.Clamp(curCLFOV - wep.CurVMFOV, 0, curCLFOV)
-		local camOriginDist = wep.Owner:EyePos():Distance(mdlAttRear.Pos) // calculate in drawAttachments 
-		local niceZoomSetting = 2 // att.zoomDesired
+		local camOriginDist = EyePos():Distance(mdlAttRear.Pos) // calculate in drawAttachments 
+		local niceZoomSetting = 4 // att.zoomDesired
 		
-		-- wep.rt2 = {
-			-- ["curCLFOV"] = curCLFOV,
-			-- ["fovDiff"] = fovDiff,
-			-- ["camOriginDist"] = camOriginDist,
-		-- }
+		wep.rt2 = {
+			["curCLFOV"] = curCLFOV,
+			["fovDiff"] = fovDiff,
+			["camOriginDist"] = camOriginDist,
+		}
 
-		cd.w = rtSize
-		cd.h = rtSize
-		
 		cd.fov = att._rtFov
 		cd.angles = ang
 		cd.origin = wep.Owner:GetShootPos()
 		
-		-- cd.fov = fovDiff * 6 * (1 / niceZoomSetting) / camOriginDist
+		-- cd.fov = fovDiff * 7 * (1 / niceZoomSetting) / (camOriginDist)
 		-- cd.angles = mdlAttRear.Ang
 		-- cd.origin = mdlAttRear.Pos
 
-		old_x, old_y = ScrW(), ScrH()
-		old_rt = render.GetRenderTarget()
+		cd.w = rtSize
+		cd.h = rtSize
 		
-		render.SetRenderTarget(wep.ScopeRT)
-		render.SetViewPort(0, 0, rtSize, rtSize)
+		render.PushRenderTarget(wep.ScopeRT, 0, 0, rtSize, rtSize)
 			if alpha != 1 then 
 				render.RenderView(cd)
 			end
@@ -130,6 +129,38 @@ if CLIENT then
 				wep._KK_INS2_stencilsDisableLaser = oldStencilChk
 			cam.End3D()
 			
+			-- cam.Start3D(wep.CW_VM:GetPos(), wep.CW_VM:GetAngles())
+				-- local size = 3
+				-- local intersect = size / 100
+				-- local spriteAng3d = wep.CW_VM:GetAngles()
+				-- local spritePos3d = wep.CW_VM:GetPos() + wep.Owner:GetAimVector() * 20
+				-- local spriteNormal = -1 * spriteAng3d:Forward()
+				-- local spriteAng2d = 0
+				
+				-- cam.IgnoreZ(true)
+					-- render.SetMaterial(iMatInnerRim)
+					-- render.DrawQuadEasy(spritePos3d, spriteNormal, size, size, colWhite, spriteAng2d)
+					
+					-- render.SetMaterial(iMatOuterRim)
+					
+					-- /*UP*/
+					-- offset = ang:Up() * size * 3
+					-- render.DrawQuadEasy(spritePos3d + offset, spriteNormal, size + intersect, size * 5 + intersect, colBlack, spriteAng2d)
+					
+					-- /*RIGHT*/
+					-- offset = ang:Right() * size*3
+					-- render.DrawQuadEasy(spritePos3d + offset, spriteNormal, size * 5 + intersect, size * 11 + intersect, colBlack, spriteAng2d)
+					
+					-- /*DOWN*/
+					-- offset = -ang:Up() * size*3
+					-- render.DrawQuadEasy(spritePos3d + offset, spriteNormal, size + intersect, size * 5 + intersect, colBlack, spriteAng2d)
+					
+					-- /*LEFT*/
+					-- offset = -ang:Right() * size*3
+					-- render.DrawQuadEasy(spritePos3d + offset, spriteNormal, size * 5 + intersect, size * 11 + intersect, colBlack, spriteAng2d)
+				-- cam.IgnoreZ(false)
+			-- cam.End3D()
+			
 			cam.Start2D()
 				surface.SetDrawColor(255, 255, 255, 255)
 				surface.SetTexture(att._rtReticle or iInnerRim)
@@ -143,24 +174,11 @@ if CLIENT then
 					end
 				end
 				
-				ang = wep.Owner:EyeAngles()
-				ang.p = ang.p + wep.BlendAng.x
-				ang.y = ang.y + wep.BlendAng.y
-				ang.r = ang.r + wep.BlendAng.z
-				ang = -ang:Forward()
-				
-				light = render.ComputeLighting(wep.Owner:GetShootPos(), ang)
-
-				-- surface.SetDrawColor(150 * light[1], 150 * light[2], 150 * light[3], 255 * alpha)
-				-- surface.SetTexture(iLens)
-				-- surface.DrawTexturedRectRotated(rtSize / 2, rtSize / 2, rtSize, rtSize, 90)
-				
 				surface.SetDrawColor(0, 0, 0, 255 * alpha)
 				surface.DrawRect(0, 0, rtSize, rtSize, 90)
 			cam.End2D()
 			
-		render.SetViewPort(0, 0, old_x, old_y)
-		render.SetRenderTarget(old_rt)
+		render.PopRenderTarget()
 		
 		if wep.TSGlass then
 			wep.TSGlass:SetTexture("$basetexture", wep.ScopeRT)
