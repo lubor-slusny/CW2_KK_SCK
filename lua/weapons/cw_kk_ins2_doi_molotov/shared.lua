@@ -15,7 +15,7 @@ if CLIENT then
 	SWEP.NoShells = true
 	
 	SWEP.AttachmentModelsVM = {
-		
+		["kk_ins2_ww2_sling"] = {model = "models/weapons/v_flame_eintoss46.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, hideVM = true},
 	}
 	
 	SWEP.AttachmentModelsWM = {
@@ -23,7 +23,8 @@ if CLIENT then
 	}
 	
 	SWEP.IronsightPos = Vector(-2.6808, 0, 1.7394)
-	SWEP.IronsightAng = Vector(0, 0, 0)
+	SWEP.IronsightPos = Vector()
+	SWEP.IronsightAng = Vector()
 
 	SWEP.SprintAnimSpeed = 1
 	SWEP.ViewModelMovementScale_sprint = 0.6
@@ -40,7 +41,7 @@ SWEP.Chamberable = false
 SWEP.WeaponLength = 16
 
 SWEP.Attachments = {
-	-- {header = "Stock", offset = {400, -200}, atts = {"kk_ins2_ww2_sling"}},
+	{header = "Stock", offset = {400, -200}, atts = {"kk_ins2_ww2_sling"}},
 }
 
 SWEP.Animations = {
@@ -84,7 +85,7 @@ SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/cw_kk_doi/v_flame_eintoss46.mdl"
 SWEP.WorldModel		= "models/weapons/w_eintoss46.mdl"
 
-SWEP.WMPos = Vector(-5.5, 1.5, 2)
+SWEP.WMPos = Vector(-5, 1.5, 0.7)
 SWEP.WMAng = Vector(-15, 0, -180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2de
