@@ -88,3 +88,15 @@ SWEP.timeToThrow = 0.9
 SWEP.timeToThrowCook = 1.3
 
 SWEP.timeToThrowShort = 0.9
+
+if true then return end
+
+SWEP.projectileClass = "npc_grenade_bugbait"
+function SWEP:fuseProjectile(grenade, overrideTime)end
+local v = Vector(0, 0, 150)
+function SWEP:applyThrowVelocity(grenade)
+	local forward, up = self:getThrowVelocityMods()
+	
+	local vel = CustomizableWeaponry.quickGrenade:getThrowVelocity(self.Owner, 800 * forward, v * up)
+	grenade:SetVelocity(vel)
+end

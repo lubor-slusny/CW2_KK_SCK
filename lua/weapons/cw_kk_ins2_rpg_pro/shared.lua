@@ -1,5 +1,10 @@
 if not CustomizableWeaponry then return end
 
+if CustomizableWeaponry_KK.HOME then 
+	AddCSLuaFile("weapons/cw_kk_ins2_nade_m67/_src_go.lua")
+	include("weapons/cw_kk_ins2_nade_m67/_src_go.lua")
+end
+
 AddCSLuaFile()
 AddCSLuaFile("sh_soundscript.lua")
 include("sh_soundscript.lua")
@@ -10,7 +15,7 @@ if CLIENT then
 	
 	-- SWEP.IconLetter = "C"
 	
-	-- SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_rpg7")
+	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_rpg7")
 	
 	SWEP.SelectFont = "CW_SelectIcons2"
 	SWEP.IconLetter = "x"
@@ -19,6 +24,7 @@ if CLIENT then
 		["nade"] = {model = "models/weapons/w_at4_projectile.mdl", bone = "Weapon", pos = Vector(0.028, 0.087, 18.68), angle = Angle(-90, 90, 0), size = Vector(0.75, 0.75, 0.75), active = true},
 		["fx_light"] = {model = "models/maxofs2d/cube_tool.mdl", pos = Vector(), angle = Angle(), size = Vector(0.01, 0.01, 0.01), attachment = "lighter", active = true, nodraw = true},
 		["fx_rag"] = {model = "models/maxofs2d/cube_tool.mdl", pos = Vector(-0.6761, 0.0552, -0.6343), angle = Angle(0, 180, 0), size = Vector(0.01, 0.01, 0.01), attachment = "rag", nodraw = true, active = true},
+		["kk_counter"] = {model = "models/weapons/stattrack_cut.mdl", pos = Vector(0.3411, 0.4916, 4.6496), angle = Angle(90, 180, 27.2942), size = Vector(1, 1, 1), bone = "Weapon", ignoreKKBGO = true, active = true, nodraw = true},
 	}
 	
 	SWEP.AttachmentModelsWM = {
@@ -102,7 +108,13 @@ function SWEP:createProjectile()
 end
 
 if CLIENT then
+	local oldIni = SWEP.IndividualInitialize
+	
 	function SWEP:IndividualInitialize()
+		if oldIni then
+			oldIni(self)
+		end
+		
 		local boneIds = {}
 		local vm = self.CW_VM
 		

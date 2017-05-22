@@ -1,14 +1,17 @@
 
-local math_approach = math.Approach
+local math_Approach = math.Approach
 
 if CLIENT then
 	CustomizableWeaponry_KK.ins2.matproxy = CustomizableWeaponry_KK.ins2.matproxy or {}
-	
+end
+
+if CLIENT then
 	CustomizableWeaponry_KK.ins2.matproxy.lense = CustomizableWeaponry_KK.ins2.matproxy.lense or {}
+	local proxy = CustomizableWeaponry_KK.ins2.matproxy.lense
 	
-	CustomizableWeaponry_KK.ins2.matproxy.lense.name = "IronsightVectorResult"
+	proxy.name = "IronsightVectorResult"
 	
-	function CustomizableWeaponry_KK.ins2.matproxy.lense:init(mat, values)
+	function proxy:init(mat, values)
 		self.mults = {}
 		
 		self.ResultTo = values.resultvar
@@ -16,20 +19,54 @@ if CLIENT then
 		self.ResultAdd = Vector(values.resultzoomed) - self.ResultBase
 	end
 	
-	function CustomizableWeaponry_KK.ins2.matproxy.lense:bind(mat, ent)
+	function proxy:bind(mat, ent)
 		if !IsValid(ent) then return end
 		
 		local mul = self.mults[ent] or 0.5
 		
 		if IsValid(ent.wepParent) and ent.wepParent.CW20Weapon and ent.wepParent:isAiming() then
-			mul = math_approach(mul, 1, FrameTime() * 2)
+			mul = math_Approach(mul, 1, FrameTime() * 2)
 		else
-			mul = math_approach(mul, 0, FrameTime() * 2)
+			mul = math_Approach(mul, 0, FrameTime() * 2)
 		end
 		
 		mat:SetVector(self.ResultTo, self.ResultBase + mul * self.ResultAdd)
 		self.mults[ent] = mul
 	end
 	
-	matproxy.Add(CustomizableWeaponry_KK.ins2.matproxy.lense)
+	matproxy.Add(proxy)
+end
+
+if CLIENT then
+	CustomizableWeaponry_KK.ins2.matproxy.scope = CustomizableWeaponry_KK.ins2.matproxy.scope or {}
+	local proxy = CustomizableWeaponry_KK.ins2.matproxy.scope
+	
+	proxy.name = "Scope"
+	
+	function proxy:init(mat, values)
+		-- self.resultVars = self.resultVars or {}
+		-- self.resultVars[values.resultvar] = true
+		-- self.ResultTo = values.resultvar
+		-- self.ResultBase = Vector(values.resultdefault)
+		-- self.ResultAdd = Vector(values.resultzoomed) - self.ResultBase
+	end
+	
+	function proxy:bind(mat, ent)
+		if !IsValid(ent) then return end
+		
+		-- print("scope proxy", ent, CurTime())
+		
+		-- local mul = self.mults[ent] or 0.5
+		
+		-- if IsValid(ent.wepParent) and ent.wepParent.CW20Weapon and ent.wepParent:isAiming() then
+			-- mul = math_Approach(mul, 1, FrameTime() * 2)
+		-- else
+			-- mul = math_Approach(mul, 0, FrameTime() * 2)
+		-- end
+		
+		-- mat:SetVector(self.ResultTo, self.ResultBase + mul * self.ResultAdd)
+		-- self.mults[ent] = mul
+	end
+	
+	matproxy.Add(proxy)
 end

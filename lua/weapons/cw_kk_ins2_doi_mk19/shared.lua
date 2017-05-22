@@ -28,6 +28,7 @@ if CLIENT then
 		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_sterling.mdl", pos = Vector(2.4741, -3.8255, 2.5795), angle = Angle(0, -90, 0), size = Vector(1.25, 1.25, 1.25), bone = "Weapon"},
 		["kk_ins2_flashlight"] = {model = "models/weapons/upgrades/a_flashlight_sterling.mdl", pos = Vector(2.4741, -3.8255, 2.5795), angle = Angle(0, -90, 0), size = Vector(1.25, 1.25, 1.25), bone = "Weapon"},
 		["kk_ins2_anpeq15"] = {model = "models/weapons/attachments/v_cw_kk_ins2_cstm_anpeq_ring.mdl", pos = Vector(2.4741, -3.8255, 2.5795), angle = Angle(0, -90, 0), size = Vector(1.25, 1.25, 1.25), bone = "Weapon"},
+		["kk_counter"] = {model = "models/weapons/stattrack.mdl", pos = Vector(0.1162, -2.9416, 2.5503), angle = Angle(0, 0, 0), size = Vector(0.319, 0.319, 0.319), bone = "Weapon"},
 	}
 	
 	-- SWEP.LaserAngAdjustBase = Angle(6,-4,0)
@@ -51,6 +52,10 @@ SWEP.Attachments = {
 	{header = "Lasers", offset = {-500, -100}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_anpeq15"}},
 	-- ["+reload"] = {header = "Ammo", offset = {900, 300}, atts = {"am_magnum", "am_matchgrade"}}
 }
+
+if CustomizableWeaponry_KK.HOME then
+	table.insert(SWEP.Attachments, {header = "CSGO", offset = {500, -100}, atts = {"kk_counter"}})
+end
 
 SWEP.Animations = {
 	base_pickup = "base_ready",

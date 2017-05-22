@@ -354,6 +354,26 @@ end
 // drawAttachments edited to support custom attach points and lighting recomp.
 //-----------------------------------------------------------------------------
 
+function SWEP:drawAttachments()
+	if not self.AttachmentModelsVM then
+		return false
+	end
+	
+	local FT = FrameTime()
+	
+	for k, v in pairs(self.AttachmentModelsVM) do
+		if v.active and self._skipDrawingScope != k then
+			self:_drawAttachmentModels(v)
+		end
+	end
+	
+	for k, v in pairs(self.elementRender) do
+		v(self)
+	end
+	
+	return true
+end
+
 local nFront, nRight, nTop = Vector(1,0,0), Vector(0,1,0), Vector(0,0,1)
 local nBack, nLeft, nBottom = -1 * nFront, -1 * nRight, -1 * nTop
 
