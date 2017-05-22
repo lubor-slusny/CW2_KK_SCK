@@ -274,12 +274,12 @@ function TOOL:_addSectionBoneSliders(panel, wep)
 	t[wep.ForegripParent] = t[wep.ForegripParent] or {}
 	t = t[wep.ForegripParent]
 	
-	t[self._activeWeps[wep].parents[wep.ForegripParent].curBoneName] = 
-		t[self._activeWeps[wep].parents[wep.ForegripParent].curBoneName] or 
+	local k = self._activeWeps[wep].parents[wep.ForegripParent].curBoneName
+	t[k] = t[k] and {pos = Vector(t[k].pos), angle = Angle(t[k].angle)} or
 		{pos = Vector(), angle = Angle()}
-	t = t[self._activeWeps[wep].parents[wep.ForegripParent].curBoneName]
+	t = t[k]
 	
-	for k,v in pairs({
+	for _,v in pairs({
 		{"pos", "x", -100, 100},
 		{"pos", "y", -100, 100},
 		{"pos", "z", -100, 100},
