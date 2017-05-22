@@ -13,9 +13,9 @@ local presetFastest = {
 }
 
 if CLIENT then
-	if not CustomizableWeaponry_KK.panels then
-		CustomizableWeaponry_KK.panels = {}
-	end
+	CustomizableWeaponry_KK.panels =
+		CustomizableWeaponry_KK.panels or
+		{}
 	
 	local function addSettingsPresetSection(panel)
 		local cvarKeys = table.GetKeys(CustomizableWeaponry_KK.ins2.conVars.main)
@@ -152,7 +152,7 @@ if CLIENT then
 	end
 	
 	CustomizableWeaponry_KK.panels.ins2 = function(panel)
-		panel:AddControl("Label", {Text = "INS2 Pack:"}):DockMargin(0, 0, 8, 0)
+		panel:AddControl("Label", {Text = "INS2/DOI Pack:"}):DockMargin(0, 0, 8, 0)
 		
 		// cfg
 		addSettingsPresetSection(panel)
