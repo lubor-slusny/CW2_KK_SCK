@@ -131,7 +131,7 @@ if CLIENT then
 					Color(200, 157, 96),
 					"[KK INS2 SWEPS] ",
 					Color(255, 255, 255),
-					"Hi, you seem to be using outdated WS content. Make sure you download updated version from GitHub."
+					"Hi, you seem to be using outdated EXT pack content. Make sure you download updated version from GitHub."
 				)
 				
 				return
