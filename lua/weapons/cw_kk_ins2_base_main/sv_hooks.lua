@@ -86,12 +86,6 @@ local isProjectile = {
 	cw_40mm_smoke = true,
 }
 
-hook.Add("InitPostEntity", "CustomizableWeaponry_KK.ins2.physDamageIcon", function()
-	if SERVER then
-		CustomizableWeaponry_KK.ins2.physDamageIcon = ents.Create("cw_kk_ins2_damage_phys")
-	end
-end)
-	
 local function takeDmg(ent, d)
 	local origAttacker = d:GetAttacker()
 	local origInflictor = d:GetInflictor()
@@ -105,7 +99,14 @@ local function takeDmg(ent, d)
 	end
 	
 	if isProjectile[origAttacker:GetClass()] then
-		local physDamageIconEnt = CustomizableWeaponry_KK.ins2.physDamageIcon
+		CustomizableWeaponry_KK.ins2._physDamageIcon = 
+			IsValid(CustomizableWeaponry_KK.ins2._physDamageIcon) and
+			CustomizableWeaponry_KK.ins2._physDamageIcon or
+			ents.Create("cw_kk_ins2_damage_phys")
+			
+		local physDamageIconEnt =
+			IsValid(CustomizableWeaponry_KK.ins2._physDamageIcon) and
+			CustomizableWeaponry_KK.ins2._physDamageIcon
 		
 		newAttacker = origAttacker.Owner or newAttacker
 		newInflictor = physDamageIconEnt or newInflictor

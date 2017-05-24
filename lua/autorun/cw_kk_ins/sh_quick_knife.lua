@@ -4,14 +4,6 @@ local SP = game.SinglePlayer()
 CustomizableWeaponry_KK.ins2.quickKnife = CustomizableWeaponry_KK.ins2.quickKnife or {}
 function CustomizableWeaponry_KK.ins2.quickKnife:IsValid() return true end
 
-hook.Add("InitPostEntity", CustomizableWeaponry_KK.ins2.quickKnife, function()
-	if SERVER then
-		// this ent will give melee attacks custom kill-icon, how cool is dat?
-		CustomizableWeaponry_KK.ins2.quickKnife._inflictor = ents.Create("cw_kk_ins2_damage_melee")
-		// itll also give lua errors to ppl whose ents.Create fks up
-	end
-end)
-	
 CustomizableWeaponry_KK.ins2.quickKnife.models = {}
 
 CustomizableWeaponry_KK.ins2.quickKnife.models.gurkha = {
@@ -159,15 +151,18 @@ if SERVER then
 				if IsValid(ent) then
 					local d = DamageInfo()
 					
+					if !IsValid(self._inflictor) then
+						self._inflictor = ents.Create("cw_kk_ins2_damage_melee")
+					end
+					
 					d:SetAttacker(wep.Owner)
-					-- d:SetInflictor(wep)
-					d:SetInflictor(self._inflictor or wep)
+					d:SetInflictor(
+						IsValid(self._inflictor) and 
+						self._inflictor or 
+						wep
+					)
 					
 					d:SetDamage(setup.dmgBase + math.random(setup.dmgAddRnd))
-					
-					-- local dir = wep.Owner:GetAimVector() - td.start
-					-- d:SetDamageForce((tr.HitPos + dir) * 200)
-					
 					d:SetDamageForce(wep.Owner:GetAimVector() * setup.npcForceMult * 2)
 					d:SetDamageType(DMG_SLASH)
 					d:SetDamagePosition(tr.HitPos)
