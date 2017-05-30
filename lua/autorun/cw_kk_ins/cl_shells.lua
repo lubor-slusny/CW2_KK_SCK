@@ -41,8 +41,6 @@ if CLIENT then
 		CustomizableWeaponry_KK.ins2.shells:_rebuildCache()
 	end
 
-	local angleVel = Vector()
-	
 	function CustomizableWeaponry_KK.ins2.shells:make(pos, ang, velocity, t, scale)
 		pos = pos or EyePos()
 		ang = ang or EyeAngles()
@@ -76,12 +74,11 @@ if CLIENT then
 		
 		phys:SetMass(10)
 		phys:SetVelocity(velocity)
-		
-		angleVel.x = math.random(-500, 500)
-		angleVel.y = math.random(-500, 500)
-		angleVel.z = math.random(-500, 500)
-		
-		phys:AddAngleVelocity(ang:Right() * 100 + angleVel)
+		phys:AddAngleVelocity(
+			-- ang:Forward() * (math.random(40,50) * -100) +
+			ang:Up() * (math.random(80,130) * -100) +
+			ang:Right() * (math.random(40,50) * -100)
+		)
 
 		if cvarSSF:GetInt() == 2 then // function creation spam
 			timer.Simple(0.5, function()

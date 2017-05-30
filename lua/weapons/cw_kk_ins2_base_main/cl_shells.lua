@@ -8,7 +8,7 @@ local cvarSVM = CustomizableWeaponry_KK.ins2.conVars.main["cw_kk_ins2_shell_vm"]
 function SWEP:_registerVMShell(ent)
 	if cvarSVM:GetInt() == 1 then
 		ent:SetNoDraw(true)
-		ent._drawAsVM = CurTime() + 0.2
+		ent._drawAsVM = CurTime() + 0.4
 		
 		table.insert(self._deployedShells, ent)
 		
@@ -28,9 +28,17 @@ end
 // drawVMShells iterates SWEPs table of active shells and draws them
 //-----------------------------------------------------------------------------
 
+local sh, sw = ScrH(), ScrW()
+
 function SWEP:drawVMShells()
 	for _,v in pairs(self._deployedShells) do
 		if IsValid(v) then
+			-- local scr = v:GetPos():ToScreen()
+			
+			-- if scr.x < 0 or sw < scr.x or scr.y < 0 or sh < scr.y then
+				-- v._drawAsVM = 0
+			-- end
+			
 			if v._drawAsVM > CurTime() then
 				v:DrawModel()
 			else
