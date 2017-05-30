@@ -29,8 +29,7 @@ CustomizableWeaponry_KK.ins2.magnifierDependencies.kk_ins2_cstm_compm4s = true
 
 CustomizableWeaponry_KK.ins2.slowGrenadeMenu = {{header = "CSGO", offset = {1000, -500}, atts = {"kk_counter"}, dependencies = {aintgonnahappen = true}, nadestuff = true}}
 
-// load core modules
-local folder = "autorun/cw_kk_ins_core/"
+local folder = "cw_kk/ins2/core/"
 for _,v in pairs({
 	[1] = "sh_content_check",
 	[2] = "cl_cvars",
@@ -39,15 +38,26 @@ for _,v in pairs({
 	include(folder .. v .. ".lua")
 end
 
-// load main plugins
-local folder = "autorun/cw_kk_ins/"
+local folder = "cw_kk/ins2/server/"
+for k, v in pairs(file.Find(folder .. "*", "LUA")) do
+	include(folder .. v)
+end
+
+local folder = "cw_kk/ins2/shared/"
 for k, v in pairs(file.Find(folder .. "*", "LUA")) do
 	AddCSLuaFile(folder .. v)
 	include(folder .. v)
 end
 
-// load user plugins
-local folder = "autorun/cw_kk_ins_ext/"
+local folder = "cw_kk/ins2/client/"
+for k, v in pairs(file.Find(folder .. "*", "LUA")) do
+	AddCSLuaFile(folder .. v)
+	if CLIENT then
+		include(folder .. v)
+	end
+end
+
+local folder = "cw_kk/ins2/ext/"
 for k, v in pairs(file.Find(folder .. "*", "LUA")) do
 	AddCSLuaFile(folder .. v)
 	include(folder .. v)
