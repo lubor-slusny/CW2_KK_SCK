@@ -8,6 +8,63 @@ TOOL.PrintName = "Content Check"
 local icm = CustomizableWeaponry_KK.ins2.isContentMounted4
 local iconOk = "icon16/tick.png"
 local iconNOk = "icon16/cross.png"
+local colOk = Color(0,150,0)
+local colNOk = Color(200,0,0)
+
+// individual mounts
+
+function TOOL:_addLineBaseGame(panel)
+	local ok = icm({Folder = "weapons/baseGameContentOK"})
+	local label = panel:AddControl("Label", {Text = 
+		"INS2 / INS2-DS content: " ..
+		(ok and "OK" or "MISSING")
+	})
+	
+	label:SetTextColor(ok and colOk or colNOk)
+end
+
+function TOOL:_addLineAO5Mod(panel)
+	local ok = icm({Folder = "weapons/ao5ModContentOK"})
+	local label = panel:AddControl("Label", {Text = 
+		"AO5 content: " ..
+		(ok and "OK" or "MISSING")
+	})
+	
+	label:SetTextColor(ok and colOk or colNOk)
+end
+
+function TOOL:_addLineDOIGame(panel)
+	local ok = icm({Folder = "weapons/doiGameContentOK"})
+	local label = panel:AddControl("Label", {Text = 
+		"DOI / DOI-DS content: " ..
+		(ok and "OK" or "MISSING")
+	})
+	
+	label:SetTextColor(ok and colOk or colNOk)
+end
+
+function TOOL:_addLineNamMod(panel)
+	local ok = icm({Folder = "weapons/namModContentOK"})
+	local label = panel:AddControl("Label", {Text = 
+		"B2K content: " ..
+		(ok and "OK" or "MISSING")
+	})
+	
+	label:SetTextColor(ok and colOk or colNOk)
+end
+
+function TOOL:_addLineEXTPack(panel)
+	local ok = icm({Folder = "weapons/extPackContentOK"})
+	local label = panel:AddControl("Label", {Text = 
+		"EXT Pack content: " ..
+		(ok and "OK" or 
+		(CustomizableWeaponry_KK.ins2.ws and "OUTDATED" or "MISSING"))
+	})
+	
+	label:SetTextColor(ok and colOk or colNOk)
+end
+
+// combos
 
 function TOOL:_addSectionBase(panel)
 	local backgroundPanel = vgui.Create("DPanel", panel)
@@ -22,6 +79,7 @@ function TOOL:_addSectionBase(panel)
 			icon:SetImage(iconOk)
 		else
 			icon:SetImage(iconNOk)
+			self:_addLineBaseGame(panel)
 		end
 
 		local label
@@ -51,6 +109,9 @@ function TOOL:_addSectionAO5(panel)
 			icon:SetImage(iconOk)
 		else
 			icon:SetImage(iconNOk)
+			
+			self:_addLineBaseGame(panel)
+			self:_addLineAO5Mod(panel)
 		end
 
 		local label
@@ -80,6 +141,9 @@ function TOOL:_addSectionNam(panel)
 			icon:SetImage(iconOk)
 		else
 			icon:SetImage(iconNOk)
+			
+			self:_addLineDOIGame(panel)
+			self:_addLineNamMod(panel)
 		end
 
 		local label
@@ -109,6 +173,9 @@ function TOOL:_addSectionDOI(panel)
 			icon:SetImage(iconOk)
 		else
 			icon:SetImage(iconNOk)
+			
+			self:_addLineDOIGame(panel)
+			self:_addLineEXTPack(panel)
 		end
 
 		local label
@@ -138,6 +205,9 @@ function TOOL:_addSectionExt(panel)
 			icon:SetImage(iconOk)
 		else
 			icon:SetImage(iconNOk)
+			
+			self:_addLineBaseGame(panel)
+			self:_addLineEXTPack(panel)
 		end
 
 		local label
@@ -154,6 +224,8 @@ function TOOL:_addSectionExt(panel)
 	backgroundPanel:SizeToContents()
 end
 
+// panel
+
 function TOOL:_updatePanel()
 	local panel = self._panel
 	
@@ -162,10 +234,10 @@ function TOOL:_updatePanel()
 	panel:ClearControls()
 	
 	self:_addSectionBase(panel)
-	self:_addSectionAO5(panel)
-	self:_addSectionNam(panel)
-	self:_addSectionDOI(panel)
 	self:_addSectionExt(panel)
+	self:_addSectionDOI(panel)
+	self:_addSectionNam(panel)
+	self:_addSectionAO5(panel)
 end
 
 function TOOL:SetPanel(panel)

@@ -77,23 +77,22 @@ for _,f in pairs({
 	namModContentOK = namModContentOK and file.Exists(f, "GAME")
 end
 
-local extPackContentOK = CustomizableWeaponry_KK.ins2.ws == WS_PACK_REVISION
-
 local subs
 local sub = string.sub
 local starts = string.StartWith
 
 function CustomizableWeaponry_KK.ins2:isContentMounted4()
+	-- subs = {
 	subs = subs or {
-		["cw_kk_ins2_doi"] = function() return (doiGameContentOK and (extPackContentOK)) end,
-		["cw_kk_ins2_cstm"] = function() return (baseGameContentOK and (extPackContentOK)) end,
+		["cw_kk_ins2_doi"] = function() return (doiGameContentOK and (CustomizableWeaponry_KK.ins2.ws == WS_PACK_REVISION)) end,
+		["cw_kk_ins2_cstm"] = function() return (baseGameContentOK and (CustomizableWeaponry_KK.ins2.ws == WS_PACK_REVISION)) end,
 		["cw_kk_ins2_nam"] = function() return (doiGameContentOK and namModContentOK) end,
 		["cw_kk_ins2_ao5"] = function() return (baseGameContentOK and ao5ModContentOK) end,
 		["cw_kk_ins2_arse"] = function() return (baseGameContentOK and arseModContentOK and CustomizableWeaponry_KK.HOME) end,
-		["cw_kk_ins2"] = function() return (baseGameContentOK and ao5ModContentOK) end,
+		-- ["cw_kk_ins2"] = function() return baseGameContentOK end,
 		
 		["baseGameContentOK"] = function() return baseGameContentOK end,
-		["extPackContentOK"] = function() return extPackContentOK end,
+		["extPackContentOK"] = function() return CustomizableWeaponry_KK.ins2.ws == WS_PACK_REVISION end,
 		["doiGameContentOK"] = function() return doiGameContentOK end,
 		["ao5ModContentOK"] = function() return ao5ModContentOK end,
 		["arseModContentOK"] = function() return arseModContentOK end,
@@ -109,7 +108,7 @@ function CustomizableWeaponry_KK.ins2:isContentMounted4()
 		end
 	end
 	
-	return true
+	return baseGameContentOK
 end
 
 if CLIENT then
