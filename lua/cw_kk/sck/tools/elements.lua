@@ -6,6 +6,13 @@ TOOL.Name = "elements"
 TOOL.PrintName = "Element Browser"
 TOOL.Version = "3.0"
 
+TOOL.states = {}
+
+TOOL.states.nowep = {}
+TOOL.states.elementList = {}
+TOOL.states.elementEdit = {}
+TOOL.states.elementMake = {}
+
 function TOOL:_updatePanel()
 	local panel = self._panel
 	local wep = self._wep

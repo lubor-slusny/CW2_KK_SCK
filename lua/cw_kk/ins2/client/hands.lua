@@ -1,5 +1,4 @@
 
-
 CustomizableWeaponry_KK.ins2.hands = {}
 CustomizableWeaponry_KK.ins2.hands._cache = {}
 
@@ -25,7 +24,7 @@ if CustomizableWeaponry_KK.ins2.isContentMounted4({Folder = "weapons/cw_kk_ins2_
 	CustomizableWeaponry_KK.ins2.hands:addModel({"models/weapons/v_hands_sec_l.mdl", "[INS] CT Light"})
 end
 
-if CustomizableWeaponry_KK.ins2.isContentMounted4({Folder = "weapons/doigameContentOK"}) then
+if CustomizableWeaponry_KK.ins2.isContentMounted4({Folder = "weapons/doiGameContentOK"}) then
 	CustomizableWeaponry_KK.ins2.hands:addModel({"models/weapons/v_hands_short_brit.mdl", "[DOI] GB Short"})
 	CustomizableWeaponry_KK.ins2.hands:addModel({"models/weapons/v_hands_brit.mdl", "[DOI] GB Sleeve"})
 	CustomizableWeaponry_KK.ins2.hands:addModel({"models/weapons/v_hands_brit_gloves.mdl", "[DOI] GB Gloved"})
@@ -47,7 +46,7 @@ if CustomizableWeaponry_KK.ins2.isContentMounted4({Folder = "weapons/doigameCont
 	CustomizableWeaponry_KK.ins2.hands:addModel({"models/weapons/v_hands_ger_gloves_paratrooper.mdl", "[DOI] DE Para"})
 end
 
-if CustomizableWeaponry_KK.ins2.isContentMounted4({Folder = "weapons/cw_kk_ins2_nam_"}) then
+if CustomizableWeaponry_KK.ins2.isContentMounted4({Folder = "weapons/namModContentOK"}) then
 	CustomizableWeaponry_KK.ins2.hands:addModel({"models/weapons/v_hands_short_us_nam.mdl", "[B2K] US Short"})
 	CustomizableWeaponry_KK.ins2.hands:addModel({"models/weapons/v_nam_hands_us.mdl", "[B2K] US Sleeve"})
 	CustomizableWeaponry_KK.ins2.hands:addModel({"models/weapons/v_hands_short_us_black.mdl", "[B2K] US2 Short"})

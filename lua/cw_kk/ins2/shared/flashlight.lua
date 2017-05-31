@@ -64,7 +64,10 @@ if CLIENT then
 		return true
 	end
 
-	hook.Add("PlayerBindPress", CustomizableWeaponry_KK.ins2.flashlight, CustomizableWeaponry_KK.ins2.flashlight.PlayerBindPress)
+	hook.Add("PlayerBindPress", 
+		CustomizableWeaponry_KK.ins2.flashlight, 
+		CustomizableWeaponry_KK.ins2.flashlight.PlayerBindPress
+	)
 end
 
 if SERVER then
@@ -108,7 +111,9 @@ if SERVER then
 		wep:EmitSound("CW_KK_INS2_UMP45_FIRESELECT")
 	end
 
-	concommand.Add("_cw_kk_cyclelam", function(...) CustomizableWeaponry_KK.ins2.flashlight:PlayerBindPress(...) end)
+	concommand.Add("_cw_kk_cyclelam", function(...) 
+		CustomizableWeaponry_KK.ins2.flashlight:PlayerBindPress(...) 
+	end)
 end
 
 if SERVER then
@@ -144,10 +149,9 @@ if CLIENT then
 		// iterate all CW2 sweps
 		for _,wep in pairs(ents.GetAll()) do
 			if wep.CW20Weapon then
-				local att = self:getFL(wep)
 				
 				// if swep has attachment ...
-				if att then
+				if self:getFL(wep) then
 					// ... but no ProjectedTexture, create it
 					if !IsValid(wep._KK_INS2_CL_FL) then
 						local pt = ProjectedTexture()
@@ -182,8 +186,15 @@ if CLIENT then
 							local lowner = wep.Owner == LocalPlayer() and wep.Owner:ShouldDrawLocalPlayer() // local player owns but in 3rd person
 							
 							if nowner or fowner or lowner then
-								pt:SetAngles(wep.WMEnt:GetAngles())
-								pt:SetPos(wep.WMEnt:GetPos())
+								local att = wep.WMEnt:GetAttachment(1)
+								
+								if att then
+									pt:SetAngles(att.Ang)
+									pt:SetPos(att.Pos)
+								else
+									pt:SetAngles(wep.WMEnt:GetAngles())
+									pt:SetPos(wep.WMEnt:GetPos())
+								end
 							end
 							
 							// SetColor - CW2 SightColor setting
