@@ -62,7 +62,7 @@ SWEP.StockBGs = {main = 0, regular = 0, heavy = 0, sturdy = 0}
 SWEP.Attachments = {
 	{header = "Barrel", offset = {-300, -600}, atts = {"kk_ins2_suppressor_sterling"}},
 	{header = "Under", offset = {-500, 0}, atts = {"kk_ins2_ww2_sling"}},
-	{header = "Stock", offset = {1000, 0}, atts = {"bg_ar15sturdystock"}},
+	-- {header = "Stock", offset = {1000, 0}, atts = {"bg_ar15sturdystock"}},
 	["+reload"] = {header = "Ammo", offset = {0, 400}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
