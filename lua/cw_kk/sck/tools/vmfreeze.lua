@@ -89,17 +89,17 @@ function TOOL:_buildUnFreezeSection()
 	local tab = self._frozen[wep]
 
 	for _,s in pairs({
-		{"Pos", "x"},
-		{"Pos", "y"},
-		{"Pos", "z"},
-		{"Ang", "p"},
-		{"Ang", "y"},
-		{"Ang", "r"},
+		{"Pos", "x", -50, 50},
+		{"Pos", "y", -50, 50},
+		{"Pos", "z", -50, 50},
+		{"Ang", "p", -90, 90},
+		{"Ang", "y", -180, 180},
+		{"Ang", "r", -180, 180},
 	}) do 
 		local slider = vgui.Create("DNumSlider", panel)
 		slider:DockMargin(8,0,8,0)
 		slider:SetDecimals(4)
-		slider:SetMinMax(-50, 50)
+		slider:SetMinMax(s[3], s[4])
 		slider:SetValue(tab[s[1]][s[2]])
 		slider:SetText(s[1] .. "." .. s[2])
 		slider:SetDark(true)

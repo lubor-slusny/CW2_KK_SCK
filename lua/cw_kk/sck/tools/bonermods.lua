@@ -279,7 +279,7 @@ function TOOL:_addSectionBoneSliders(panel, wep)
 		{pos = Vector(), angle = Angle()}
 	t = t[k]
 	
-	for _,v in pairs({
+	for _,s in pairs({
 		{"pos", "x", -100, 100},
 		{"pos", "y", -100, 100},
 		{"pos", "z", -100, 100},
@@ -290,20 +290,20 @@ function TOOL:_addSectionBoneSliders(panel, wep)
 		local slider = vgui.Create("DNumSlider", backgroundPanel)
 		slider:Dock(TOP)
 		slider:DockMargin(8,0,8,0)
-		slider:SetText(v[1] .. "." .. v[2])
+		slider:SetText(s[1] .. "." .. s[2])
 		slider:SetDark(true)
-		slider:SetMinMax(v[3], v[4])
+		slider:SetMinMax(s[3], s[4])
 		slider:SetDecimals(4)
-		slider:SetValue(t[v[1]][v[2]])
+		slider:SetValue(t[s[1]][s[2]])
 		
 		self:LoadSliderZoom(slider)
 		
 		function slider:OnValueChanged(val)
-			t[v[1]][v[2]] = val
+			t[s[1]][s[2]] = val
 			TOOL:SaveSliderZoom(self)
 		end
 		
-		self._boneSliders[v[1] .. "." .. v[2]] = slider
+		self._boneSliders[s[1] .. "." .. s[2]] = slider
 	end
 	
 	backgroundPanel:Dock(TOP)
