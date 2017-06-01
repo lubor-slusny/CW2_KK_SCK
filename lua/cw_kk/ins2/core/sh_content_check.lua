@@ -120,41 +120,43 @@ if CLIENT then
 			return
 		end
 		
-		if LocalPlayer():GetPos():Distance(pos) > 100 then
-			hook.Remove("Think", "CW_KK_INS2_WS_UPDATE_NOTIFY")
+		if LocalPlayer():GetPos():Distance(pos) < 100 then
+			return
+		end
+		
+		hook.Remove("Think", "CW_KK_INS2_WS_UPDATE_NOTIFY")
+		
+		if not (baseGameContentOK or doiGameContentOK) then
+			chat.AddText(
+				Color(200, 157, 96),
+				"[KK INS2 SWEPS] ",
+				Color(255, 255, 255),
+				"Hi, required files are missing. Make sure you mount required content properly (according to guide on addon`s workshop page)."
+			)
 			
-			if not (baseGameContentOK or doiGameContentOK) then
-				chat.AddText(
-					Color(200, 157, 96),
-					"[KK INS2 SWEPS] ",
-					Color(255, 255, 255),
-					"Hi, required files are missing. Make sure you mount required content properly (according to guide on addon`s workshop page)."
-				)
-				
-				return
-			end
+			return
+		end
+		
+		if baseGameContentOK and CustomizableWeaponry_KK.ins2.ws != nil and CustomizableWeaponry_KK.ins2.ws < WS_PACK_REVISION then
+			chat.AddText(
+				Color(200, 157, 96),
+				"[KK INS2 SWEPS] ",
+				Color(255, 255, 255),
+				"Hi, you seem to be using outdated EXT pack content. Make sure you download updated version from GitHub."
+			)
 			
-			if baseGameContentOK and CustomizableWeaponry_KK.ins2.ws != nil and CustomizableWeaponry_KK.ins2.ws < WS_PACK_REVISION then
-				chat.AddText(
-					Color(200, 157, 96),
-					"[KK INS2 SWEPS] ",
-					Color(255, 255, 255),
-					"Hi, you seem to be using outdated EXT pack content. Make sure you download updated version from GitHub."
-				)
-				
-				return
-			end
+			return
+		end
+		
+		if doiGameContentOK and (CustomizableWeaponry_KK.ins2.ws == nil or CustomizableWeaponry_KK.ins2.ws < WS_PACK_REVISION) then
+			chat.AddText(
+				Color(200, 157, 96),
+				"[KK INS2 SWEPS] ",
+				Color(255, 255, 255),
+				"Hi, Day Of Infamy sub-pack now requires EXT sub-pack in addition to standalone game. Refer to install-guide for more info."
+			)
 			
-			if doiGameContentOK and (CustomizableWeaponry_KK.ins2.ws == nil or CustomizableWeaponry_KK.ins2.ws < WS_PACK_REVISION) then
-				chat.AddText(
-					Color(200, 157, 96),
-					"[KK INS2 SWEPS] ",
-					Color(255, 255, 255),
-					"Hi, Day Of Infamy sub-pack now requires EXT sub-pack in addition to standalone game. Refer to install-guide for more info."
-				)
-				
-				return
-			end
+			return
 		end
 	end)
 end

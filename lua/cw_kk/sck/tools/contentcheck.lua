@@ -16,8 +16,8 @@ local colNOk = Color(200,0,0)
 function TOOL:_addLineBaseGame(panel)
 	local ok = icm({Folder = "weapons/baseGameContentOK"})
 	local label = panel:AddControl("Label", {Text = 
-		"INS2 / INS2-DS content: " ..
-		(ok and "OK" or "MISSING")
+		(ok and "[OK]" or "[MISSING]") ..
+		" INS2 / INS2-DS content"
 	})
 	
 	label:SetTextColor(ok and colOk or colNOk)
@@ -26,8 +26,8 @@ end
 function TOOL:_addLineAO5Mod(panel)
 	local ok = icm({Folder = "weapons/ao5ModContentOK"})
 	local label = panel:AddControl("Label", {Text = 
-		"AO5 content: " ..
-		(ok and "OK" or "MISSING")
+		(ok and "[OK]" or "[MISSING]") ..
+		" AO5 content"
 	})
 	
 	label:SetTextColor(ok and colOk or colNOk)
@@ -36,8 +36,8 @@ end
 function TOOL:_addLineDOIGame(panel)
 	local ok = icm({Folder = "weapons/doiGameContentOK"})
 	local label = panel:AddControl("Label", {Text = 
-		"DOI / DOI-DS content: " ..
-		(ok and "OK" or "MISSING")
+		(ok and "[OK]" or "[MISSING]") ..
+		" DOI / DOI-DS content"
 	})
 	
 	label:SetTextColor(ok and colOk or colNOk)
@@ -46,8 +46,8 @@ end
 function TOOL:_addLineNamMod(panel)
 	local ok = icm({Folder = "weapons/namModContentOK"})
 	local label = panel:AddControl("Label", {Text = 
-		"B2K content: " ..
-		(ok and "OK" or "MISSING")
+		(ok and "[OK]" or "[MISSING]") ..
+		" B2K content"
 	})
 	
 	label:SetTextColor(ok and colOk or colNOk)
@@ -56,9 +56,9 @@ end
 function TOOL:_addLineEXTPack(panel)
 	local ok = icm({Folder = "weapons/extPackContentOK"})
 	local label = panel:AddControl("Label", {Text = 
-		"EXT Pack content: " ..
-		(ok and "OK" or 
-		(CustomizableWeaponry_KK.ins2.ws and "OUTDATED" or "MISSING"))
+		(ok and "[OK]" or 
+		(CustomizableWeaponry_KK.ins2.ws and "[OUTDATED]" or "[MISSING]")) ..
+		" EXT Pack content"
 	})
 	
 	label:SetTextColor(ok and colOk or colNOk)
