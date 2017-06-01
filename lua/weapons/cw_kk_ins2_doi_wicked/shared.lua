@@ -19,10 +19,12 @@ if CLIENT then
 	
 	SWEP.MuzzleAttachmentName = "muzzle"
 	
-	SWEP.NoShells = true
+	SWEP.NoShells = false
 	
 	SWEP.Shell = "KK_INS2_762x54"
 	SWEP.ShellEjectVelocity = 50
+	SWEP.ShellViewAngleAlign = {Forward = 90, Right = 0, Up = 0}
+	-- SWEP.ShellWorldAngleAlign = {Forward = 0, Right = 0, Up = -90}
 	
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_lam"] = {model = "models/weapons/upgrades/a_laser_sterling.mdl", pos = Vector(2.4741, -3.8255, 2.5795), angle = Angle(0, -90, 0), size = Vector(1.25, 1.25, 1.25), bone = "Weapon"},
