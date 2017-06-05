@@ -1,73 +1,88 @@
-AddCSLuaFile()
+if not CustomizableWeaponry_KK.HOME then return end
 
 local TOOL = {}
 
 TOOL.Name = "contentcheck"
 TOOL.PrintName = "Content Check"
 
-local icm = CustomizableWeaponry_KK.ins2.isContentMounted4
-local iconOk = "icon16/tick.png"
-local iconNOk = "icon16/cross.png"
-local colOk = Color(0,150,0)
-local colNOk = Color(200,0,0)
+TOOL.icm = CustomizableWeaponry_KK.ins2.isContentMounted4
+-- TOOL.icm = function() return false end
+TOOL.iconOk = "icon16/tick.png"
+TOOL.iconNOk = "icon16/cross.png"
+TOOL.colOk = Color(0,150,0)
+TOOL.colNOk = Color(200,0,0)
+
+function TOOL:_individualLabelDockMargin(label)
+	label:DockMargin(16,0,16,0)
+end
+
+function TOOL:_packLabelDockMargin(panel)
+	panel:DockMargin(8,0,8,0)
+end
 
 // individual mounts
 
 function TOOL:_addLineBaseGame(panel)
-	local ok = icm({Folder = "weapons/baseGameContentOK"})
+	local ok = self.icm({Folder = "weapons/baseGameContentOK"})
 	local label = panel:AddControl("Label", {Text = 
 		(ok and "[OK]" or "[MISSING]") ..
 		" INS2 / INS2-DS content"
 	})
 	
-	label:SetTextColor(ok and colOk or colNOk)
+	self:_individualLabelDockMargin(label)
+	label:SetTextColor(ok and self.colOk or self.colNOk)
 end
 
 function TOOL:_addLineAO5Mod(panel)
-	local ok = icm({Folder = "weapons/ao5ModContentOK"})
+	local ok = self.icm({Folder = "weapons/ao5ModContentOK"})
 	local label = panel:AddControl("Label", {Text = 
 		(ok and "[OK]" or "[MISSING]") ..
 		" AO5 content"
 	})
 	
-	label:SetTextColor(ok and colOk or colNOk)
+	self:_individualLabelDockMargin(label)
+	label:SetTextColor(ok and self.colOk or self.colNOk)
 end
 
 function TOOL:_addLineDOIGame(panel)
-	local ok = icm({Folder = "weapons/doiGameContentOK"})
+	local ok = self.icm({Folder = "weapons/doiGameContentOK"})
 	local label = panel:AddControl("Label", {Text = 
 		(ok and "[OK]" or "[MISSING]") ..
 		" DOI / DOI-DS content"
 	})
 	
-	label:SetTextColor(ok and colOk or colNOk)
+	self:_individualLabelDockMargin(label)
+	label:SetTextColor(ok and self.colOk or self.colNOk)
 end
 
 function TOOL:_addLineNamMod(panel)
-	local ok = icm({Folder = "weapons/namModContentOK"})
+	local ok = self.icm({Folder = "weapons/namModContentOK"})
 	local label = panel:AddControl("Label", {Text = 
 		(ok and "[OK]" or "[MISSING]") ..
 		" B2K content"
 	})
 	
-	label:SetTextColor(ok and colOk or colNOk)
+	self:_individualLabelDockMargin(label)
+	label:SetTextColor(ok and self.colOk or self.colNOk)
 end
 
 function TOOL:_addLineEXTPack(panel)
-	local ok = icm({Folder = "weapons/extPackContentOK"})
+	local ok = self.icm({Folder = "weapons/extPackContentOK"})
 	local label = panel:AddControl("Label", {Text = 
 		(ok and "[OK]" or 
 		(CustomizableWeaponry_KK.ins2.ws and "[OUTDATED]" or "[MISSING]")) ..
 		" EXT Pack content"
 	})
 	
-	label:SetTextColor(ok and colOk or colNOk)
+	self:_individualLabelDockMargin(label)
+	label:SetTextColor(ok and self.colOk or self.colNOk)
 end
 
 // combos
 
 function TOOL:_addSectionBase(panel)
 	local backgroundPanel = vgui.Create("DPanel", panel)
+	self:_packLabelDockMargin(backgroundPanel)
 	panel:AddItem(backgroundPanel)
 	
 		local icon
@@ -75,10 +90,10 @@ function TOOL:_addSectionBase(panel)
 		icon:SetPos(5,2)
 		icon:SetSize(16,16)
 
-		if icm({Folder = "weapons/cw_kk_ins2_base"}) then
-			icon:SetImage(iconOk)
+		if self.icm({Folder = "weapons/cw_kk_ins2_base"}) then
+			icon:SetImage(self.iconOk)
 		else
-			icon:SetImage(iconNOk)
+			icon:SetImage(self.iconNOk)
 			self:_addLineBaseGame(panel)
 		end
 
@@ -93,11 +108,12 @@ function TOOL:_addSectionBase(panel)
 	backgroundPanel:DockPadding(26,0,8,0)
 	backgroundPanel:SetSize(200,20)
 	backgroundPanel:SetPaintBackground(true)
-	backgroundPanel:SizeToContents()
+	backgroundPanel:SizeToContents()	
 end
 
 function TOOL:_addSectionAO5(panel)
 	local backgroundPanel = vgui.Create("DPanel", panel)
+	self:_packLabelDockMargin(backgroundPanel)
 	panel:AddItem(backgroundPanel)
 	
 		local icon
@@ -105,10 +121,10 @@ function TOOL:_addSectionAO5(panel)
 		icon:SetPos(5,2)
 		icon:SetSize(16,16)
 
-		if icm({Folder = "weapons/cw_kk_ins2_ao5"}) then
-			icon:SetImage(iconOk)
+		if self.icm({Folder = "weapons/cw_kk_ins2_ao5"}) then
+			icon:SetImage(self.iconOk)
 		else
-			icon:SetImage(iconNOk)
+			icon:SetImage(self.iconNOk)
 			
 			self:_addLineBaseGame(panel)
 			self:_addLineAO5Mod(panel)
@@ -130,6 +146,7 @@ end
 
 function TOOL:_addSectionNam(panel)
 	local backgroundPanel = vgui.Create("DPanel", panel)
+	self:_packLabelDockMargin(backgroundPanel)
 	panel:AddItem(backgroundPanel)
 	
 		local icon
@@ -137,10 +154,10 @@ function TOOL:_addSectionNam(panel)
 		icon:SetPos(5,2)
 		icon:SetSize(16,16)
 
-		if icm({Folder = "weapons/cw_kk_ins2_nam"}) then
-			icon:SetImage(iconOk)
+		if self.icm({Folder = "weapons/cw_kk_ins2_nam"}) then
+			icon:SetImage(self.iconOk)
 		else
-			icon:SetImage(iconNOk)
+			icon:SetImage(self.iconNOk)
 			
 			self:_addLineDOIGame(panel)
 			self:_addLineNamMod(panel)
@@ -162,6 +179,7 @@ end
 
 function TOOL:_addSectionDOI(panel)
 	local backgroundPanel = vgui.Create("DPanel", panel)
+	self:_packLabelDockMargin(backgroundPanel)
 	panel:AddItem(backgroundPanel)
 	
 		local icon
@@ -169,10 +187,10 @@ function TOOL:_addSectionDOI(panel)
 		icon:SetPos(5,2)
 		icon:SetSize(16,16)
 
-		if icm({Folder = "weapons/cw_kk_ins2_doi"}) then
-			icon:SetImage(iconOk)
+		if self.icm({Folder = "weapons/cw_kk_ins2_doi"}) then
+			icon:SetImage(self.iconOk)
 		else
-			icon:SetImage(iconNOk)
+			icon:SetImage(self.iconNOk)
 			
 			self:_addLineDOIGame(panel)
 			self:_addLineEXTPack(panel)
@@ -194,6 +212,7 @@ end
 	
 function TOOL:_addSectionExt(panel)
 	local backgroundPanel = vgui.Create("DPanel", panel)
+	self:_packLabelDockMargin(backgroundPanel)
 	panel:AddItem(backgroundPanel)
 	
 		local icon
@@ -201,10 +220,10 @@ function TOOL:_addSectionExt(panel)
 		icon:SetPos(5,2)
 		icon:SetSize(16,16)
 
-		if icm({Folder = "weapons/cw_kk_ins2_cstm"}) then
-			icon:SetImage(iconOk)
+		if self.icm({Folder = "weapons/cw_kk_ins2_cstm"}) then
+			icon:SetImage(self.iconOk)
 		else
-			icon:SetImage(iconNOk)
+			icon:SetImage(self.iconNOk)
 			
 			self:_addLineBaseGame(panel)
 			self:_addLineEXTPack(panel)
