@@ -1,5 +1,3 @@
-AddCSLuaFile()
-
 local TOOL = {}
 
 TOOL.Name = "chandsmdltest"

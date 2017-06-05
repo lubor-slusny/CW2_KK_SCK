@@ -1,7 +1,5 @@
 if not CustomizableWeaponry_KK.HOME then return end // layZ to make original stats
 
-AddCSLuaFile()
-
 local PANEL
 local WEAPON
 

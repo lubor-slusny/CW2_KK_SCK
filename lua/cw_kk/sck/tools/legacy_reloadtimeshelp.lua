@@ -1,8 +1,6 @@
 
 if true then return end // layZ to type {} over and over again
 
-AddCSLuaFile()
-
 local PANEL
 local WEAPON
 

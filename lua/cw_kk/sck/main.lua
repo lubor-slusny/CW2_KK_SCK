@@ -160,7 +160,9 @@ function BASE:Load()
 	
 	for _,v in pairs(file.Find(self.ToolsFolder .. "*", "LUA")) do
 		AddCSLuaFile(self.ToolsFolder .. v)
-		include(self.ToolsFolder .. v)
+		if CLIENT then
+			include(self.ToolsFolder .. v)
+		end
 	end
 	
 	if reload then

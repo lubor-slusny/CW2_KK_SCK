@@ -1,4 +1,4 @@
-AddCSLuaFile()
+if not CustomizableWeaponry_KK.HOME then return end
 
 local TOOL = {}
 
