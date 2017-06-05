@@ -81,12 +81,10 @@ SWEP.MuzzleEffect = "muzzleflash_thompson_1p"
 SWEP.MuzzleEffectWorld = "muzzleflash_thompson_3p"
 
 SWEP.Attachments = {
-	{header = "Sight", offset = {400, -500}, atts = {"bg_foldsight"}},
-	-- {header = "Barrel", offset = {-200, -500}, atts = {"kk_ins2_ww2_knife"}},
-	{header = "Under", offset = {-500, 0}, atts = {"kk_ins2_vertgrip"}},
-	{header = "Magazine", offset = {-50, 500}, atts = {"kk_ins2_mag_thom_30", "kk_ins2_mag_thom_50"}},
-	-- {header = "Stock", offset = {1000, 0}, atts = {"kk_ins2_ww2_sling"}},
-	["+reload"] = {header = "Ammo", offset = {900, 500}, atts = {"am_magnum", "am_matchgrade"}}
+	{header = "Sight", offset = {600, -100}, atts = {"bg_foldsight"}},
+	{header = "Under", offset = {-300, -100}, atts = {"kk_ins2_vertgrip"}},
+	{header = "Magazine", offset = {-300, 400}, atts = {"kk_ins2_mag_thom_30", "kk_ins2_mag_thom_50"}},
+	["+reload"] = {header = "Ammo", offset = {600, 400}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
 SWEP.Animations = {
@@ -283,7 +281,7 @@ SWEP.reticleInactivityCallbacksRaw = {
 }
 
 function SWEP:overrideReloadAnim(prefix, suffix)
-	if !self.ActiveAttachments.kk_ins2_vertgrip and math.random(10000) == 1338 then
+	if !self.ActiveAttachments.kk_ins2_vertgrip and math.random(100) == 82 then
 		return "base_reload_lulz"
 	end
 	

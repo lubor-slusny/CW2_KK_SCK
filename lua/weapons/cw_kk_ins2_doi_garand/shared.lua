@@ -328,7 +328,7 @@ function SWEP:overrideReloadAnim(prefix, suffix)
 		return prefix .. "reload"
 	end
 	
-	if math.random(10000) == 1337 then
+	if math.random(100) == 82 then
 		return "base_reload_empty_lulz"
 	end
 	
