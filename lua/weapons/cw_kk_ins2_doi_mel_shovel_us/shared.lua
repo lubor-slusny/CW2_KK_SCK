@@ -6,7 +6,9 @@ if CLIENT then
 	
 	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_etool_us")
 	
-	SWEP.AttachmentModelsVM = {}
+	SWEP.AttachmentModelsVM = {
+		["ani-buddy"] = {model = "models/weapons/v_etool_us.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
+	}
 	
 	SWEP.HUD_3D2DBone = 39
 end
