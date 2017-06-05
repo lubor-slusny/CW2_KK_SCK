@@ -51,7 +51,7 @@ if CLIENT then
 	SWEP.IronsightPos = Vector(-2.6229, 0, 2.0622)
 	SWEP.IronsightAng = Vector(-0.5089, -0.0389, 8)
 
-	SWEP.CustomizationMenuScale = 0.013
+	SWEP.CustomizationMenuScale = 0.014
 end
 
 SWEP.MuzzleEffect = "muzzleflash_sten_1p"
@@ -61,7 +61,7 @@ SWEP.StockBGs = {main = 0, regular = 0, heavy = 0, sturdy = 0}
 
 SWEP.Attachments = {
 	{header = "Barrel", offset = {-300, -600}, atts = {"kk_ins2_suppressor_sterling"}},
-	{header = "Under", offset = {-500, 0}, atts = {"kk_ins2_ww2_sling"}},
+	{header = "Under", offset = {-500, -150}, atts = {"kk_ins2_ww2_sling"}},
 	-- {header = "Stock", offset = {1000, 0}, atts = {"bg_ar15sturdystock"}},
 	["+reload"] = {header = "Ammo", offset = {0, 400}, atts = {"am_magnum", "am_matchgrade"}}
 }

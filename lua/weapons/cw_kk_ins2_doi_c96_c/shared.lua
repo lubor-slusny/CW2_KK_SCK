@@ -50,7 +50,6 @@ SWEP.MuzzleEffect = "muzzleflash_mp40_1p"
 SWEP.MuzzleEffectWorld = "muzzleflash_mp40_3p"
 
 SWEP.Attachments = {
-	-- {header = "Lasers", offset = {500, -400}, atts = {"kk_ins2_lam", "kk_ins2_flashlight", "kk_ins2_m6x"}},
 	{header = "Barrel", offset = {-400, -300}, atts = {"kk_ins2_c96_barrel_lng"}},
 	{header = "Magazine", offset = {-400, 200}, atts = {"kk_ins2_mag_c96_40"}},
 	{header = "Stock", offset = {500, -300}, atts = {"kk_ins2_ww2_sling"}},

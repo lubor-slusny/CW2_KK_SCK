@@ -30,7 +30,7 @@ if CLIENT then
 	SWEP.IronsightPos = Vector(0, 0, 0)
 	SWEP.IronsightAng = Vector(0, 0.0802, 0)
 
-	SWEP.CustomizationMenuScale = 0.01
+	SWEP.CustomizationMenuScale = 0.013
 
 	SWEP.SprintAnimSpeed = 1.1
 	SWEP.ReloadViewBobEnabled = false
@@ -42,8 +42,8 @@ SWEP.MuzzleEffect = "muzzleflash_1911_1p"
 SWEP.MuzzleEffectWorld = "muzzleflash_sten_3p"
 
 SWEP.Attachments = {
-	{header = "Reload Aid", offset = {500, -400}, atts = {"kk_ins2_revolver_mag"}},
-	["+reload"] = {header = "Ammo", offset = {500, 150}, atts = {"am_magnum", "am_matchgrade"}}
+	{header = "Reload Aid", offset = {500, 0}, atts = {"kk_ins2_revolver_mag"}},
+	["+reload"] = {header = "Ammo", offset = {-300, 200}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
 SWEP.Animations = {

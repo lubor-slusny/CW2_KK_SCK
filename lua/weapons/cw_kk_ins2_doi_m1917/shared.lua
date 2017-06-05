@@ -42,8 +42,8 @@ SWEP.MuzzleEffect = "muzzleflash_1911_1p"
 SWEP.MuzzleEffectWorld = "muzzleflash_sten_3p"
 
 SWEP.Attachments = {
-	{header = "Reload Aid", offset = {500, -400}, atts = {/*"kk_ins2_revolver_mag", */"kk_ins2_ww2_stripper"}},
-	["+reload"] = {header = "Ammo", offset = {500, 150}, atts = {"am_magnum", "am_matchgrade"}}
+	{header = "Reload Aid", offset = {500, 0}, atts = {/*"kk_ins2_revolver_mag", */"kk_ins2_ww2_stripper"}},
+	["+reload"] = {header = "Ammo", offset = {-300, 200}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
 SWEP.Animations = {
