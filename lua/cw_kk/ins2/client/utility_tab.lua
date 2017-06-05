@@ -12,9 +12,259 @@ local presetFastest = {
 	["cw_kk_ins2_sprint"] = 1
 }
 
-CustomizableWeaponry_KK.panels =
-	CustomizableWeaponry_KK.panels or
-	{}
+local CCSectionBuilder = {}
+
+CCSectionBuilder.icm = CustomizableWeaponry_KK.ins2.isContentMounted4
+CCSectionBuilder.iconOk = "icon16/tick.png"
+CCSectionBuilder.iconNOk = "icon16/cross.png"
+CCSectionBuilder.colOk = Color(0,150,0)
+CCSectionBuilder.colNOk = Color(200,0,0)
+
+function CCSectionBuilder:_individualLabelDockMargin(label)
+	label:DockMargin(16,0,16,0)
+end
+
+function CCSectionBuilder:_packLabelDockMargin(panel)
+	panel:DockMargin(8,0,8,0)
+end
+
+function CCSectionBuilder:_addLineBaseGame(panel)
+	local ok = self.icm({Folder = "weapons/baseGameContentOK"})
+	local label = panel:AddControl("Label", {Text = 
+		(ok and "[OK]" or "[MISSING]") ..
+		" INS2 / INS2-DS content"
+	})
+	
+	self:_individualLabelDockMargin(label)
+	label:SetTextColor(ok and self.colOk or self.colNOk)
+end
+
+function CCSectionBuilder:_addLineAO5Mod(panel)
+	local ok = self.icm({Folder = "weapons/ao5ModContentOK"})
+	local label = panel:AddControl("Label", {Text = 
+		(ok and "[OK]" or "[MISSING]") ..
+		" AO5 content"
+	})
+	
+	self:_individualLabelDockMargin(label)
+	label:SetTextColor(ok and self.colOk or self.colNOk)
+end
+
+function CCSectionBuilder:_addLineDOIGame(panel)
+	local ok = self.icm({Folder = "weapons/doiGameContentOK"})
+	local label = panel:AddControl("Label", {Text = 
+		(ok and "[OK]" or "[MISSING]") ..
+		" DOI / DOI-DS content"
+	})
+	
+	self:_individualLabelDockMargin(label)
+	label:SetTextColor(ok and self.colOk or self.colNOk)
+end
+
+function CCSectionBuilder:_addLineNamMod(panel)
+	local ok = self.icm({Folder = "weapons/namModContentOK"})
+	local label = panel:AddControl("Label", {Text = 
+		(ok and "[OK]" or "[MISSING]") ..
+		" B2K content"
+	})
+	
+	self:_individualLabelDockMargin(label)
+	label:SetTextColor(ok and self.colOk or self.colNOk)
+end
+
+function CCSectionBuilder:_addLineEXTPack(panel)
+	local ok = self.icm({Folder = "weapons/extPackContentOK"})
+	local label = panel:AddControl("Label", {Text = 
+		(ok and "[OK]" or 
+		(CustomizableWeaponry_KK.ins2.ws and "[OUTDATED]" or "[MISSING]")) ..
+		" EXT Pack content"
+	})
+	
+	self:_individualLabelDockMargin(label)
+	label:SetTextColor(ok and self.colOk or self.colNOk)
+end
+
+function CCSectionBuilder:_addSectionBase(panel)
+	local backgroundPanel = vgui.Create("DPanel", panel)
+	self:_packLabelDockMargin(backgroundPanel)
+	panel:AddItem(backgroundPanel)
+	
+		local icon
+		icon = vgui.Create("DImage", backgroundPanel)
+		icon:SetPos(5,2)
+		icon:SetSize(16,16)
+
+		if self.icm({Folder = "weapons/cw_kk_ins2_base"}) then
+			icon:SetImage(self.iconOk)
+		else
+			icon:SetImage(self.iconNOk)
+			self:_addLineBaseGame(panel)
+		end
+
+		local label
+		label = vgui.Create("DLabel", backgroundPanel)
+		label:SetText("Base pack")
+		label:SetDark(true)
+		label:Dock(LEFT)
+		label:SizeToContents()
+
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:DockPadding(26,0,8,0)
+	backgroundPanel:SetSize(200,20)
+	backgroundPanel:SetPaintBackground(true)
+	backgroundPanel:SizeToContents()	
+end
+
+function CCSectionBuilder:_addSectionAO5(panel)
+	local backgroundPanel = vgui.Create("DPanel", panel)
+	self:_packLabelDockMargin(backgroundPanel)
+	panel:AddItem(backgroundPanel)
+	
+		local icon
+		icon = vgui.Create("DImage", backgroundPanel)
+		icon:SetPos(5,2)
+		icon:SetSize(16,16)
+
+		if self.icm({Folder = "weapons/cw_kk_ins2_ao5"}) then
+			icon:SetImage(self.iconOk)
+		else
+			icon:SetImage(self.iconNOk)
+			
+			self:_addLineBaseGame(panel)
+			self:_addLineAO5Mod(panel)
+		end
+
+		local label
+		label = vgui.Create("DLabel", backgroundPanel)
+		label:SetText("Army of Five pack")
+		label:SetDark(true)
+		label:Dock(LEFT)
+		label:SizeToContents()
+
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:DockPadding(26,0,8,0)
+	backgroundPanel:SetSize(200,20)
+	backgroundPanel:SetPaintBackground(true)
+	backgroundPanel:SizeToContents()
+end
+
+function CCSectionBuilder:_addSectionNam(panel)
+	local backgroundPanel = vgui.Create("DPanel", panel)
+	self:_packLabelDockMargin(backgroundPanel)
+	panel:AddItem(backgroundPanel)
+	
+		local icon
+		icon = vgui.Create("DImage", backgroundPanel)
+		icon:SetPos(5,2)
+		icon:SetSize(16,16)
+
+		if self.icm({Folder = "weapons/cw_kk_ins2_nam"}) then
+			icon:SetImage(self.iconOk)
+		else
+			icon:SetImage(self.iconNOk)
+			
+			self:_addLineDOIGame(panel)
+			self:_addLineNamMod(panel)
+		end
+
+		local label
+		label = vgui.Create("DLabel", backgroundPanel)
+		label:SetText("Born to Kill pack")
+		label:SetDark(true)
+		label:Dock(LEFT)
+		label:SizeToContents()
+
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:DockPadding(26,0,8,0)
+	backgroundPanel:SetSize(200,20)
+	backgroundPanel:SetPaintBackground(true)
+	backgroundPanel:SizeToContents()
+end
+
+function CCSectionBuilder:_addSectionDOI(panel)
+	local backgroundPanel = vgui.Create("DPanel", panel)
+	self:_packLabelDockMargin(backgroundPanel)
+	panel:AddItem(backgroundPanel)
+	
+		local icon
+		icon = vgui.Create("DImage", backgroundPanel)
+		icon:SetPos(5,2)
+		icon:SetSize(16,16)
+
+		if self.icm({Folder = "weapons/cw_kk_ins2_doi"}) then
+			icon:SetImage(self.iconOk)
+		else
+			icon:SetImage(self.iconNOk)
+			
+			self:_addLineDOIGame(panel)
+			self:_addLineEXTPack(panel)
+		end
+
+		local label
+		label = vgui.Create("DLabel", backgroundPanel)
+		label:SetText("Day of Infamy pack")
+		label:SetDark(true)
+		label:Dock(LEFT)
+		label:SizeToContents()
+
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:DockPadding(26,0,8,0)
+	backgroundPanel:SetSize(200,20)
+	backgroundPanel:SetPaintBackground(true)
+	backgroundPanel:SizeToContents()
+end
+	
+function CCSectionBuilder:_addSectionExt(panel)
+	local backgroundPanel = vgui.Create("DPanel", panel)
+	self:_packLabelDockMargin(backgroundPanel)
+	panel:AddItem(backgroundPanel)
+	
+		local icon
+		icon = vgui.Create("DImage", backgroundPanel)
+		icon:SetPos(5,2)
+		icon:SetSize(16,16)
+
+		if self.icm({Folder = "weapons/cw_kk_ins2_cstm"}) then
+			icon:SetImage(self.iconOk)
+		else
+			icon:SetImage(self.iconNOk)
+			
+			self:_addLineBaseGame(panel)
+			self:_addLineEXTPack(panel)
+		end
+
+		local label
+		label = vgui.Create("DLabel", backgroundPanel)
+		label:SetText("EXT pack")
+		label:SetDark(true)
+		label:Dock(LEFT)
+		label:SizeToContents()
+
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:DockPadding(26,0,8,0)
+	backgroundPanel:SetSize(200,20)
+	backgroundPanel:SetPaintBackground(true)
+	backgroundPanel:SizeToContents()
+end
+
+function CCSectionBuilder:_updatePanel()
+	local panel = self._panel
+	
+	if !IsValid(panel) then return end
+	
+	-- panel:ClearControls()
+	
+	self:_addSectionBase(panel)
+	self:_addSectionExt(panel)
+	self:_addSectionDOI(panel)
+	self:_addSectionNam(panel)
+	self:_addSectionAO5(panel)
+end
+
+function CCSectionBuilder:SetPanel(panel)
+	self._panel = panel
+	self:_updatePanel()
+end
 
 local function addSettingsPresetSection(panel)
 	local cvarKeys = table.GetKeys(CustomizableWeaponry_KK.ins2.conVars.main)
@@ -150,8 +400,16 @@ local function addShellCleanupSection(panel)
 	end)
 end
 
+CustomizableWeaponry_KK.panels =
+	CustomizableWeaponry_KK.panels or
+	{}
+
 CustomizableWeaponry_KK.panels.ins2 = function(panel)
-	panel:AddControl("Label", {Text = "INS2/DOI Pack:"}):DockMargin(0, 0, 8, 0)
+	panel:AddControl("Label", {Text = "INS2/DOI Content Status:"}):DockMargin(0, 0, 8, 0)
+	
+	CCSectionBuilder:SetPanel(panel)
+	
+	panel:AddControl("Label", {Text = "INS2/DOI Pack Settings:"}):DockMargin(0, 0, 8, 0)
 	
 	// cfg
 	addSettingsPresetSection(panel)
