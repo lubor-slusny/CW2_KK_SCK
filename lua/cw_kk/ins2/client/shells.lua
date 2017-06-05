@@ -18,27 +18,42 @@ end
 
 CustomizableWeaponry_KK.ins2.shells:_rebuildCache()
 
-local cvarSSF = CustomizableWeaponry_KK.ins2.conVars.main["cw_kk_ins2_shell_sound"]
-local cvarSLT = CustomizableWeaponry_KK.ins2.conVars.main["cw_kk_ins2_shell_time"]
-
 local CurTime = CurTime
 local soundPlay = sound.Play
 
-local function shellPlaySound(shell)
-	if shell._ssp then return end
-	
-	shell._ssp = true
-	
-	soundPlay(shell._ss, shell:GetPos())
+CustomizableWeaponry_KK.ins2.shells.shellMeta = {}
+local shellMeta = CustomizableWeaponry_KK.ins2.shells.shellMeta
+
+function shellMeta:PhysicsCollide()
+	if (self:WaterLevel() == 0) then
+		soundPlay(self._ss, self:GetPos())
+	end
 end
 
-local function shellThink(shell)
-	if shell._ttl > CurTime() then return end
+function shellMeta:Think()
+	self._lastWL = self._lastWL or self:WaterLevel()
+	local newWl = self:WaterLevel()
 	
-	SafeRemoveEntity(shell)
+	if (newWl == 3) and (newWl != self._lastWL) then
+		local pos = self:GetPos()
+		soundPlay("CW_KK_INS2_SHELL_SPLASH", pos)
+		
+		local e = EffectData()
+		e:SetOrigin(pos)
+		util.Effect("waterripple", e)
+	end
+	
+	self._lastWL = newWl
+	
+	if self._ttl > CurTime() then return end
+	
+	SafeRemoveEntity(self)
 	
 	CustomizableWeaponry_KK.ins2.shells:_rebuildCache()
 end
+
+local cvarSSF = CustomizableWeaponry_KK.ins2.conVars.main["cw_kk_ins2_shell_sound"]
+local cvarSLT = CustomizableWeaponry_KK.ins2.conVars.main["cw_kk_ins2_shell_time"]
 
 function CustomizableWeaponry_KK.ins2.shells:make(pos, ang, velocity, t, scale)
 	pos = pos or EyePos()
@@ -90,7 +105,7 @@ function CustomizableWeaponry_KK.ins2.shells:make(pos, ang, velocity, t, scale)
 	if cvarSSF:GetInt() == 3 then // recycled function
 		ent._ss = t.s
 		ent._ssp = false
-		ent:AddCallback("PhysicsCollide", shellPlaySound)
+		ent:AddCallback("PhysicsCollide", self.shellMeta.PhysicsCollide)
 	end
 
 	if cvarSSF:GetInt() == 4 then // fail
@@ -98,7 +113,7 @@ function CustomizableWeaponry_KK.ins2.shells:make(pos, ang, velocity, t, scale)
 	end
 
 	ent._ttl = CurTime() + (cvarSLT:GetFloat())
-	hook.Add("Think", ent, shellThink)
+	hook.Add("Think", ent, self.shellMeta.Think)
 	
 	table.insert(self._cache, ent)
 	self.cacheSize = #self._cache

@@ -65,6 +65,8 @@ AddCSLuaFile()
 	CustomizableWeaponry:addReloadSound("CW_KK_INS2_GP30_INSERTGRENADECLICK", "weapons/gp30/handling/gp30_insertgrenade_click.wav")
 	CustomizableWeaponry:addReloadSound("CW_KK_INS2_GP30_SELECT", "weapons/gp30/handling/gp30_select.wav")
 
+	CustomizableWeaponry:addReloadSound("CW_KK_INS2_SHELL_SPLASH", "cw_kk_ins2/bms/water_foot_exit1.wav")
+
 // SHELLS
 do
 	CustomizableWeaponry:addRegularSound("CW_KK_INS2_SHELL_38", {"weapons/bullets/shells/concrete/38_shell_concrete_01.wav", "weapons/bullets/shells/concrete/38_shell_concrete_02.wav", "weapons/bullets/shells/concrete/38_shell_concrete_03.wav", "weapons/bullets/shells/concrete/38_shell_concrete_04.wav", "weapons/bullets/shells/concrete/38_shell_concrete_05.wav", "weapons/bullets/shells/concrete/38_shell_concrete_06.wav"}, 65)
