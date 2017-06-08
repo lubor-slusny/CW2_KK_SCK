@@ -27,6 +27,10 @@ SWEP.Sounds = {
 		{time = 11/30, sound = "CW_KK_INS2_DOI_OWEN_FIRESELECT"},
 	},
 
+	iron_fireselect = {
+		{time = 11/30, sound = "CW_KK_INS2_DOI_OWEN_FIRESELECT"},
+	},
+
 	base_reload = {
 		{time = 25/31.5, sound = "CW_KK_INS2_DOI_OWEN_MAGRELEASE"},
 		{time = 29/31.5, sound = "CW_KK_INS2_DOI_OWEN_MAGOUT"},
@@ -70,6 +74,10 @@ SWEP.Sounds = {
 	},
 
 	base_fireselect_empty = {
+		{time = 11/30, sound = "CW_KK_INS2_DOI_OWEN_FIRESELECT"},
+	},
+
+	iron_fireselect_empty = {
 		{time = 11/30, sound = "CW_KK_INS2_DOI_OWEN_FIRESELECT"},
 	},
 

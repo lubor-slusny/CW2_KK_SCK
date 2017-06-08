@@ -1,16 +1,5 @@
 
-local presetFastest = {
-	["cw_kk_ins2_animate_reticle"] = 1,
-	["cw_kk_ins2_draw_vm_in_rt"] = 0,
-	["cw_kk_ins2_ins_nade_ctrls"] = 1,
-	["cw_kk_ins2_rig"] = 2,
-	["cw_kk_ins2_rigskin"] = 0,
-	["cw_kk_ins2_scopelightingfix"] = 0,
-	["cw_kk_ins2_shell_sound"] = 1,
-	["cw_kk_ins2_shell_time"] = 5,
-	["cw_kk_ins2_shell_vm"] = 0,
-	["cw_kk_ins2_sprint"] = 1
-}
+// Content Status
 
 local CCSectionBuilder = {}
 
@@ -266,6 +255,21 @@ function CCSectionBuilder:SetPanel(panel)
 	self:_updatePanel()
 end
 
+// Reset button
+
+local presetFastest = {
+	["cw_kk_ins2_animate_reticle"] = 1,
+	["cw_kk_ins2_draw_vm_in_rt"] = 0,
+	["cw_kk_ins2_ins_nade_ctrls"] = 1,
+	["cw_kk_ins2_rig"] = 2,
+	["cw_kk_ins2_rigskin"] = 0,
+	["cw_kk_ins2_scopelightingfix"] = 0,
+	["cw_kk_ins2_shell_sound"] = 1,
+	["cw_kk_ins2_shell_time"] = 5,
+	["cw_kk_ins2_shell_vm"] = 0,
+	["cw_kk_ins2_sprint"] = 1
+}
+
 local function addSettingsPresetSection(panel)
 	local cvarKeys = table.GetKeys(CustomizableWeaponry_KK.ins2.conVars.main)
 	local defaults = {}
@@ -284,6 +288,8 @@ local function addSettingsPresetSection(panel)
 		CVars = cvarKeys
 	}):DockMargin(8, 0, 8, 8)
 end
+
+// Other
 
 local function updateRigSkinSlider(slider)
 	slider:SetMinMax(0, 0)
@@ -399,6 +405,8 @@ local function addShellCleanupSection(panel)
 		timer.Remove("CW_KK_INS2_SHELL_COUNTER")
 	end)
 end
+
+// actual panel
 
 CustomizableWeaponry_KK.panels =
 	CustomizableWeaponry_KK.panels or

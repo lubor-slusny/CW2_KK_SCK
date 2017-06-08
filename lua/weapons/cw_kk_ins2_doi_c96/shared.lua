@@ -6,6 +6,8 @@ AddCSLuaFile("sh_soundscript.lua")
 include("sh_sounds.lua")
 include("sh_soundscript.lua")
 
+SWEP.magType = "pistolMag"
+
 if CLIENT then
 	SWEP.DrawCrosshair = false
 	SWEP.PrintName = "Mauser C96"
@@ -39,14 +41,6 @@ if CLIENT then
 	SWEP.ReloadViewBobEnabled = false
 	SWEP.DisableSprintViewSimulation = true
 	
-	SWEP.Trivia = {
-		text = "Empty reloads only.",
-		x = 150, 
-		y = -200,
-		textFormatFunc = function(self, wep) 
-			return self.text
-		end
-	}
 end
 
 SWEP.MuzzleEffect = "muzzleflash_luger_1p"
@@ -149,7 +143,7 @@ SWEP.KK_INS2_EmptyIdle = true
 SWEP.MuzzleVelocity = 425
 
 SWEP.ReloadTimes = {
-	base_reload_clip = {2.4, 4.37},
+	base_reload_clip = {3.4, 6.23, KK_INS2_REVOLVER_SPEED_UNLOAD, 1.1},
 	base_reload_empty_clip = {2.4, 4.37},
 	
 	base_melee_bash = {0.3, 0.8},
@@ -162,6 +156,6 @@ if CLIENT then
 	end
 end
 
-function SWEP:IndividualReloadCheck()
-	return self:Clip1() == 0
-end
+-- function SWEP:IndividualReloadCheck()
+	-- return self:Clip1() == 0
+-- end

@@ -42,18 +42,23 @@ SWEP.Sounds = {
 	},
 
 	base_reload_clip = {
-		{time = 12/31.8, sound = "CW_KK_INS2_DOI_C96_FETCHMAG"},
-		{time = 37/31.8, sound = "CW_KK_INS2_DOI_C96_MAGFIDDLE"},
-		{time = 44/31.8, sound = "CW_KK_INS2_DOI_C96_STRIPPER_IN"},
-		{time = 59/31.8, sound = "CW_KK_INS2_DOI_C96_STRIPPER_ROUNDSIN1"},
-		{time = 68/31.8, sound = "CW_KK_INS2_DOI_C96_STRIPPER_ROUNDSIN2"},
-		// { event 46 72 ""},
-		{time = 96/31.8, sound = "CW_KK_INS2_DOI_C96_STRIPPER_REMOVE"},
-		{time = 98/31.8, sound = "CW_KK_INS2_DOI_C96_BOLTRELEASE"},
-		{time = 128/31.8, sound = "CW_KK_INS2_DOI_C96_RATTLE"},
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
+		{time = 33/31.8, sound = "CW_KK_INS2_DOI_M1911_BOLTBACK"},
+		{time = 35/31.8, sound = "CW_KK_INS2_DOI_WEBLEY_DUMPROUNDS"},
+		{time = 48/31.8, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
+		{time = 50/31.8, sound = "CW_KK_INS2_DOI_C96_FETCHMAG"},
+		{time = 75/31.8, sound = "CW_KK_INS2_DOI_C96_MAGFIDDLE"},
+		{time = 82/31.8, sound = "CW_KK_INS2_DOI_C96_STRIPPER_IN"},
+		{time = 99/31.8, sound = "CW_KK_INS2_DOI_C96_STRIPPER_ROUNDSIN1"},
+		{time = 104/31.8, sound = "CW_KK_INS2_DOI_C96_STRIPPER_ROUNDSIN2"},
+		{time = 139/31.8, sound = "CW_KK_INS2_DOI_C96_STRIPPER_REMOVE"},
+		{time = 141/31.8, sound = "CW_KK_INS2_DOI_C96_BOLTRELEASE"},
+		{time = 166/31.8, sound = "CW_KK_INS2_DOI_C96_RATTLE"},
 	},
-
+	
 	base_reload_empty_clip = {
+		{time = 0, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToClip},
+		{time = 10/31.8, sound = "", callback = CustomizableWeaponry_KK.ins2.bulletBgs.beltToReserve},
 		{time = 12/31.8, sound = "CW_KK_INS2_DOI_C96_FETCHMAG"},
 		{time = 37/31.8, sound = "CW_KK_INS2_DOI_C96_MAGFIDDLE"},
 		{time = 44/31.8, sound = "CW_KK_INS2_DOI_C96_STRIPPER_IN"},

@@ -1,5 +1,4 @@
 if not CustomizableWeaponry then return end
-if not CustomizableWeaponry_KK.HOME then return end
 
 AddCSLuaFile()
 AddCSLuaFile("sh_sounds.lua")
@@ -31,34 +30,16 @@ if CLIENT then
 
 	SWEP.CustomizationMenuScale = 0.013
 	
-	SWEP.CustomizePos = Vector(0, 0, 0)
-	SWEP.CustomizeAng = Vector(0, 90, 0)
-	
-	SWEP.IronsightPos = Vector(0, 0, 0)
-	SWEP.IronsightAng = Vector(0, 90, 0)
-	
-	SWEP.AlternativePos = Vector(0, 0, 0)
-	SWEP.AlternativeAng = Vector(0, 90, 0)
-	
-	SWEP.SprintPos = Vector(0, 0, 0)
-	SWEP.SprintAng = Vector(0, 90, 0)
-	
-	SWEP.Trivia = {
-		text = "How do you like them anims?",
-		x = -800, 
-		y = 0, 
-		textFormatFunc = function(self, wep) 
-			return self.text
-		end
-	}
+	SWEP.IronsightPos = Vector(-3.7548, -2, 2.7674)
+	SWEP.IronsightAng = Vector(0.1261, 1.2298, -12.9542)
 end
 
 SWEP.MuzzleEffect = "muzzleflash_sten_1p"
 SWEP.MuzzleEffectWorld = "muzzleflash_sten_3p"
 
 SWEP.Attachments = {
-	{header = "Stock", offset = {400, -600}, atts = {"kk_ins2_ww2_sling"}},
-	["+reload"] = {header = "Ammo", offset = {400, 0}, atts = {"am_magnum", "am_matchgrade"}}
+	{header = "Stock", offset = {800, -200}, atts = {"kk_ins2_ww2_sling"}},
+	["+reload"] = {header = "Ammo", offset = {800, 300}, atts = {"am_magnum", "am_matchgrade"}}
 }
 
 SWEP.Animations = {
@@ -79,8 +60,8 @@ SWEP.Animations = {
 	base_holster_empty = "base_holster_empty",
 	base_firemode = "base_fireselect",
 	base_firemode_empty = "base_fireselect_empty",
-	base_firemode_aim = "base_fireselect",
-	base_firemode_empty_aim = "base_fireselect_empty",
+	base_firemode_aim = "iron_fireselect",
+	base_firemode_empty_aim = "iron_fireselect_empty",
 	base_sprint = "base_sprint",
 	base_sprint_empty = "base_sprint_empty",
 	base_safe = "base_down",
@@ -99,7 +80,7 @@ SWEP.Slot = 2
 SWEP.SlotPos = 0
 SWEP.NormalHoldType = "ar2"
 SWEP.RunHoldType = "passive"
-SWEP.FireModes = {"auto"}
+SWEP.FireModes = {"auto", "semi"}
 SWEP.Base = "cw_kk_ins2_base"
 SWEP.Category = "CW 2.0 KK INS2 DOI"
 
@@ -110,7 +91,7 @@ SWEP.Instructions	= ""
 
 SWEP.ViewModelFOV	= 70
 SWEP.ViewModelFlip	= false
-SWEP.ViewModel		= "models/weapons/v_owen.mdl"
+SWEP.ViewModel		= "models/weapons/cw_kk_doi/v_owen.mdl"
 SWEP.WorldModel		= "models/weapons/w_owen.mdl"
 
 SWEP.WMPos = Vector(10, -1, -5)

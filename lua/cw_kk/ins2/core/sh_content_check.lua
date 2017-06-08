@@ -1,5 +1,5 @@
 
-local WS_PACK_REVISION = 12
+local WS_PACK_REVISION = 13
 
 local baseGameContentOK = true
 for _,f in pairs({
