@@ -3,7 +3,7 @@
 "VertexLitGeneric"
 {
    
-	"$color"			"[1 1 1]"
+	"$color2"			"[1 1 1]"
 	"$basetexture"			"models\cwkkins\m16a3\weapon_m16a4_dm"
 	"$bumpmap"                     	"models\cwkkins\m16a3\weapon_m16a4_nm"
 	//"$phongexponenttexture"		"models\weapons\toz\weapon_toz_gm"

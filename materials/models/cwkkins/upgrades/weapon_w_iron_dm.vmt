@@ -2,7 +2,7 @@
 {
 	"$basetexture"			"models\cwkkins\upgrades\weapon_w_iron_dm"
 	"$bumpmap" 			"models\cwkkins\upgrades\weapon_w_iron_nm"
-	"$color"			"[1 1 1]"
+	"$color2"			"[1 1 1]"
 
 	$normalmapalphaenvmapmask 	"1"
 

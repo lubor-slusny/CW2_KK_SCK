@@ -5,7 +5,7 @@
 	
 	"$selfillummask"				"models\weapons\generic\weapon_generic_si"
 	"$model"						"1"
-    "$color"						"[1 1 1]"
+    "$color2"						"[1 1 1]"
 
 //SELFILLUM (subtle to avoid complete occlusion)
 	"$selfillum"					"1"

@@ -3,7 +3,7 @@
 	"$basetexture"			"models\weapons\ithaca\weapon_ithaca_dm"
 	"$bumpmap"			"models\weapons\ithaca\weapon_ithaca_nm"
 	"$model"			"1"
-    	"$color"			"[1 1 1]"
+    	"$color2"			"[1 1 1]"
 
 //PHONG
 	"$phong"                        "1"

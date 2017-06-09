@@ -3,7 +3,7 @@
 	"$basetexture"					"models\weapons\1911\weapon_m1911_dm"
 	"$bumpmap" 						"models\weapons\1911\weapon_m1911_nm"
 	"$model"						"1"
-    "$color"						"[1 1 1]"
+    "$color2"						"[1 1 1]"
 	
 //PHONG
 	"$phong"                        "1"

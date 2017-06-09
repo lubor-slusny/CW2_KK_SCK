@@ -3,7 +3,7 @@
 	"$basetexture"			"models\weapons\garand\weapon_garand_dm"
 	"$bumpmap"			"models\weapons\garand\weapon_garand_nm"
 	"$model"			"1"
-    	"$color"			"[1 1 1]"
+    	"$color2"			"[1 1 1]"
 
 //PHONG
 	"$phong"                        "1"

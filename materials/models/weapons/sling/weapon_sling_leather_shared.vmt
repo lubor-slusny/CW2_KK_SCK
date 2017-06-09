@@ -5,10 +5,10 @@
 	
 //PHONG
 	"$phong"                        "1"
-	"$phongtint"                    "[1 1 1]"
-	"$phongboost"                   ".5"
-	"$phongexponent"				"50"
-	"$phongfresnelranges"           "[1 1 1]"
+	"$phongtint"                    "[ 1 1 1 ]"
+	"$phongboost"                   "20"
+	"$phongexponent"				"15"
+	"$phongfresnelranges"           "[ 0 .5 1 ]"
 
 //ENVMAP
 	"$envmap"                       "env_cubemap"

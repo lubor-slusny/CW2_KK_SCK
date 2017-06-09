@@ -6,7 +6,7 @@
 	//"$phongexponenttexture"		"models\weapons\toz\weapon_toz_gm"
 
 	"$normalmapalphaenvmapmask" "1"
-	"$color"			"[1 1 1]"
+	"$color2"			"[1 1 1]"
 	
 	"$envmap" 			"env_cubemap"
 	"$envmaptint" 			"[.007 .007 .007]"

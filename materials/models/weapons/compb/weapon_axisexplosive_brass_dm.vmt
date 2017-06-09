@@ -3,7 +3,7 @@
 	"$basetexture"					"models\weapons\compb\weapon_axisexplosive_dm"
 	"$bumpmap"						"models\weapons\compb\weapon_axisexplosive_nm"
 	"$model"						"1"
-    "$color"						"[1 1 1]"
+    "$color2"						"[1 1 1]"
 
 //PHONG
 	"$phong"                        "1"

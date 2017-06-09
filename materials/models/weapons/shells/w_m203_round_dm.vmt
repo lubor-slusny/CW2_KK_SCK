@@ -2,7 +2,7 @@
 {
 	"$basetexture"			"models\weapons\shells\w_m203_round_dm"
 	"$bumpmap" 			"models\weapons\shells\w_m203_round_nm"
-	"$color"			"[1 1 1]"
+	"$color2"			"[1 1 1]"
 	
 	$normalmapalphaenvmapmask 	"1"
 

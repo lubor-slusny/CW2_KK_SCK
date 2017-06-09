@@ -3,7 +3,7 @@
 	"$basetexture"			"models\weapons\attachments\cw_kk_ins2_cstm_eotechxps\mount_d"
 	"$bumpmap" 			"models\weapons\attachments\cw_kk_ins2_cstm_eotechxps\mount_n"
 
-		"$color"			"[1 1 1]"
+		"$color2"			"[1 1 1]"
 
 	 $phongtint 			"[.6 .8 1]"
 
