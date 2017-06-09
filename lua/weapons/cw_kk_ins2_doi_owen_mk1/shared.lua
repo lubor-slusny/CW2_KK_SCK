@@ -10,7 +10,7 @@ SWEP.magType = "smgMag"
 
 if CLIENT then
 	SWEP.DrawCrosshair = false
-	SWEP.PrintName = "Owen"
+	SWEP.PrintName = "Owen Mk1"
 	SWEP.CSMuzzleFlashes = true
 	SWEP.ViewModelMovementScale = 1.15
 	
@@ -23,6 +23,8 @@ if CLIENT then
 	SWEP.ShellWorldAngleAlign = {Forward = 0, Right = 0, Up = 180}
 	
 	SWEP.AttachmentModelsVM = {
+		-- ["mk0"] = {model = "models/weapons/v_owen.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true},
+		-- ["mk2"] = {model = "models/weapons/v_owen_mk2.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true},
 		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_owen.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
@@ -110,10 +112,10 @@ SWEP.Primary.Ammo			= "9x19MM"
 
 SWEP.FireDelay = 60/700
 SWEP.FireSound = "CW_KK_INS2_DOI_OWEN_FIRE"
-SWEP.Recoil = 0.56
+SWEP.Recoil = 0.77
 
 SWEP.HipSpread = 0.035
-SWEP.AimSpread = 0.0153
+SWEP.AimSpread = 0.009
 SWEP.VelocitySensitivity = 1.5
 SWEP.MaxSpreadInc = 0.03
 SWEP.SpreadPerShot = 0.005
