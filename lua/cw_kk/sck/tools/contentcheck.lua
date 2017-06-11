@@ -12,6 +12,9 @@ TOOL.iconNOk = "icon16/cross.png"
 TOOL.colOk = Color(0,150,0)
 TOOL.colNOk = Color(200,0,0)
 
+TOOL.iconEh = "icon16/error.png"
+TOOL.colEh = Color(200,130,0)
+
 function TOOL:_individualLabelDockMargin(label)
 	label:DockMargin(16,0,16,0)
 end
@@ -57,13 +60,14 @@ end
 
 function TOOL:_addLineNamMod(panel)
 	local ok = self.icm({Folder = "weapons/namModContentOK"})
+	local recOk = self.icm({Folder = "weapons/doiNamModContentOK"})
 	local label = panel:AddControl("Label", {Text = 
-		(ok and "[OK]" or "[MISSING]") ..
+		(ok and (recOk and "[OK]" or "[DOI edition recmndd]") or "[MISSING]") ..
 		" B2K content"
 	})
 	
 	self:_individualLabelDockMargin(label)
-	label:SetTextColor(ok and self.colOk or self.colNOk)
+	label:SetTextColor(ok and (recOk and self.colOk or self.colEh) or self.colNOk)
 end
 
 function TOOL:_addLineEXTPack(panel)
@@ -155,7 +159,12 @@ function TOOL:_addSectionNam(panel)
 		icon:SetSize(16,16)
 
 		if self.icm({Folder = "weapons/cw_kk_ins2_nam"}) then
-			icon:SetImage(self.iconOk)
+			if not self.icm({Folder = "weapons/doiNamModContentOK"}) then
+				icon:SetImage(self.iconEh)
+				self:_addLineNamMod(panel)
+			else
+				icon:SetImage(self.iconOk)
+			end
 		else
 			icon:SetImage(self.iconNOk)
 			
