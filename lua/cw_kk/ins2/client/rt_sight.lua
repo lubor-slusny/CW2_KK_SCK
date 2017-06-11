@@ -62,11 +62,11 @@ function CustomizableWeaponry_KK.ins2.rtSight:renderTarget(wep, att)
 		return
 	end
 	
-	-- if !wep.dt.INS2GLActive and wep:canSeeThroughTelescopics(att.aimPos[1]) then
+	if !wep.dt.INS2GLActive and wep:canSeeThroughTelescopics(att.aimPos[1]) then
 		alpha = math.Approach(alpha, 0, FrameTime() * 5)
-	-- else
-		-- alpha = math.Approach(alpha, 1, FrameTime() * 5)
-	-- end
+	else
+		alpha = math.Approach(alpha, 1, FrameTime() * 5)
+	end
 	
 	attachmEnt = wep.AttachmentModelsVM[att.name].ent
 	attachmEnt:SetupBones()
@@ -93,12 +93,12 @@ function CustomizableWeaponry_KK.ins2.rtSight:renderTarget(wep, att)
 	}
 
 	cd.fov = att._rtFov
-	cd.angles = ang
-	cd.origin = EyePos()
+	-- cd.angles = ang
+	-- cd.origin = EyePos()
 	
 	-- cd.fov = fovDiff * (1 / niceZoomSetting) / (camOriginDist) * 8
-	-- cd.angles = mdlAttRear.Ang
-	-- cd.origin = mdlAttRear.Pos
+	cd.angles = mdlAttRear.Ang
+	cd.origin = mdlAttRear.Pos
 
 	cd.w = rtSize
 	cd.h = rtSize
@@ -132,7 +132,7 @@ function CustomizableWeaponry_KK.ins2.rtSight:renderTarget(wep, att)
 				end
 			wep._KK_INS2_stencilsDisableLaser = oldStencilChk
 			
-			self:DrawParallax(wep, att)
+			-- self:DrawParallax(wep, att)
 		cam.End3D()
 		
 		cam.Start2D()
@@ -196,42 +196,42 @@ function CustomizableWeaponry_KK.ins2.rtSight:stencil(wep, att)
 end
 
 function CustomizableWeaponry_KK.ins2.rtSight:DrawParallax(wep, att)
-	-- local size = 1
-	-- local intersect = size / 100
+	local size = 1
+	local intersect = size / 100
 	
 	
 	-- local spriteAng3d = EyeAngles()
 	-- local spritePos3d = EyePos() + spriteAng3d:Forward() * 20
 	
-	-- local spriteAng3d = wep.Owner:EyeAngles()
-	-- local spritePos3d = wep.Owner:EyePos() + spriteAng3d:Forward() * 20
+	local spriteAng3d = wep.Owner:EyeAngles()
+	local spritePos3d = wep.Owner:EyePos() + spriteAng3d:Forward() * 20
 	
 	
-	-- local spriteNormal = -spriteAng3d:Forward()
-	-- local spriteAng2d = 0
+	local spriteNormal = -spriteAng3d:Forward()
+	local spriteAng2d = 0
 	
-	-- cam.IgnoreZ(true)
-		-- render.SetMaterial(iMatInnerRim)
-		-- render.DrawQuadEasy(spritePos3d, spriteNormal, size, size, colWhite, spriteAng2d)
+	cam.IgnoreZ(true)
+		render.SetMaterial(iMatInnerRim)
+		render.DrawQuadEasy(spritePos3d, spriteNormal, size, size, colWhite, spriteAng2d)
 		
-		-- render.SetMaterial(iMatOuterRim)
+		render.SetMaterial(iMatOuterRim)
 		
-		-- /*UP*/
-		-- offset = spriteAng3d:Up() * size * 3
-		-- render.DrawQuadEasy(spritePos3d + offset, spriteNormal, size + intersect, size * 5 + intersect, colBlack, spriteAng2d)
+		/*UP*/
+		offset = spriteAng3d:Up() * size * 3
+		render.DrawQuadEasy(spritePos3d + offset, spriteNormal, size + intersect, size * 5 + intersect, colBlack, spriteAng2d)
 		
-		-- /*RIGHT*/
-		-- offset = spriteAng3d:Right() * size*3
-		-- render.DrawQuadEasy(spritePos3d + offset, spriteNormal, size * 5 + intersect, size * 11 + intersect, colBlack, spriteAng2d)
+		/*RIGHT*/
+		offset = spriteAng3d:Right() * size*3
+		render.DrawQuadEasy(spritePos3d + offset, spriteNormal, size * 5 + intersect, size * 11 + intersect, colBlack, spriteAng2d)
 		
-		-- /*DOWN*/
-		-- offset = -spriteAng3d:Up() * size*3
-		-- render.DrawQuadEasy(spritePos3d + offset, spriteNormal, size + intersect, size * 5 + intersect, colBlack, spriteAng2d)
+		/*DOWN*/
+		offset = -spriteAng3d:Up() * size*3
+		render.DrawQuadEasy(spritePos3d + offset, spriteNormal, size + intersect, size * 5 + intersect, colBlack, spriteAng2d)
 		
-		-- /*LEFT*/
-		-- offset = -spriteAng3d:Right() * size*3
-		-- render.DrawQuadEasy(spritePos3d + offset, spriteNormal, size * 5 + intersect, size * 11 + intersect, colBlack, spriteAng2d)
-	-- cam.IgnoreZ(false)
+		/*LEFT*/
+		offset = -spriteAng3d:Right() * size*3
+		render.DrawQuadEasy(spritePos3d + offset, spriteNormal, size * 5 + intersect, size * 11 + intersect, colBlack, spriteAng2d)
+	cam.IgnoreZ(false)
 	
 	-- if !IsValid(self._parallaxEnt) then
 		-- self._parallaxEnt = ClientsideModel(

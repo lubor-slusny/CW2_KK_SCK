@@ -4,7 +4,7 @@ CustomizableWeaponry_KK.sck = CustomizableWeaponry_KK.sck or {}
 local BASE = CustomizableWeaponry_KK.sck
 
 BASE.SpawnMenuTab = "Utilities"
-BASE.SpawnMenuTabSection = "Knife Kitty 2.0"
+BASE.SpawnMenuTabSection = "Knife Kitty"
 
 BASE.ToolsFolder = "cw_kk/sck/tools/"
 BASE.InternalNamesPrefix = "CW_KK_SCK"

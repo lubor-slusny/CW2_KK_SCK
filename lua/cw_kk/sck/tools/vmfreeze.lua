@@ -101,14 +101,13 @@ function TOOL:_buildUnFreezeSection()
 		slider:SetValue(tab[s[1]][s[2]])
 		slider:SetText(s[1] .. "." .. s[2])
 		slider:SetDark(true)
+		
+		self:LoadSliderZoom(slider)
+		
 		function slider:OnValueChanged(val)
 			tab[s[1]][s[2]] = val
-
-			-- storeSliderZoom(self)
+			TOOL:SaveSliderZoom(self)
 		end
-
-		-- slider._kk_sck_id = "settPosY"
-		-- loadSliderZoom(slider)
 
 		panel:AddItem(slider)
 	end

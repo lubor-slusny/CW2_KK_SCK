@@ -1,3 +1,5 @@
+if not CustomizableWeaponry_KK.HOME then return end
+
 local TOOL = {}
 
 TOOL.Name = "elements"

@@ -24,7 +24,8 @@ if CLIENT then
 		-- ["mk0"] = {model = "models/weapons/v_owen.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true},
 		["mk2"] = {model = "models/weapons/v_owen_mk2.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, hideVM = true, active = true},
 		
-		-- ["knoif"] = {model = "models/weapons/upgrades/a_enfield_bayonet.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, active = true, rel = "mk2"},
+		-- ["kk_ins2_ww2_knife"] = {model = "models/weapons/upgrades/a_enfield_bayonet.mdl", pos = Vector(-2.2399, 41.1901, 0), angle = Angle(0, -90, 0), size = Vector(1, 1, 1), merge = true},
+		-- ["kk_ins2_ww2_knife_fat"] = {model = "models/weapons/upgrades/a_enfield_bayonet_spike.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
 		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_owen.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}

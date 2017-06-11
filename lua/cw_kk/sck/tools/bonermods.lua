@@ -254,6 +254,9 @@ function TOOL:_addSectionWipeReloadCurBone(panel, wep)
 			TOOL:ThrowNewNotImplemented()
 		end
 		
+		butt:SetToolTip("TBD")
+		butt:SetEnabled(false)
+		
 	backgroundPanel:Dock(TOP)
 	backgroundPanel:SetSize(200,20)
 	backgroundPanel:SetPaintBackground(true)
