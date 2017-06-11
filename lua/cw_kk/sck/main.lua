@@ -19,10 +19,13 @@ TOOL table structure
 	SetPanel(self, panel)
 	
 	[optional]
+	SpawnMenuTab = "Utilities"
+	SpawnMenuTabSection = "Knife Kitty"
 	Initialize(self)
 	OnWeaponChanged(self, new, old)
 	OnWeaponSetupChanged(self)
 	OnWeaponClipChanged(self)
+	Think(self)
 	
 	[internal]
 	build or update panel - tool shud call from 
@@ -31,6 +34,9 @@ TOOL table structure
 	[pre-defined]
 	SaveSliderZoom(self, slider)
 	LoadSliderZoom(self, slider)
+	AngleToString(Angle)
+	VectorToString(Vector)
+	ThrowNewNotImplemented()
 */
 
 BASE._toolMeta = {}
@@ -131,6 +137,9 @@ function BASE:AddTool(tab)
 	if not tab.Name then return end
 	if not tab.SetPanel then return end
 	
+	tab.SpawnMenuTab = tab.SpawnMenuTab or self.SpawnMenuTab
+	tab.SpawnMenuTabSection = tab.SpawnMenuTabSection or self.SpawnMenuTabSection
+	
 	tab.PrintName = tab.PrintName or tab.Name
 	tab.SelectCommand = tab.SelectCommand or ""
 	
@@ -179,8 +188,8 @@ if CLIENT then
 	function BASE:PopulateToolMenu()		
 		for name,tool in pairs(self._toolCache) do
 			spawnmenu.AddToolMenuOption(
-				self.SpawnMenuTab,
-				self.SpawnMenuTabSection,
+				tool.SpawnMenuTab,
+				tool.SpawnMenuTabSection,
 				self.InternalNamesPrefix .. "." .. name, 
 				tool.PrintName, 
 				tool.SelectCommand, 
