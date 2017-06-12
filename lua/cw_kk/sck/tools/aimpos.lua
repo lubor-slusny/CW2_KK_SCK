@@ -364,18 +364,75 @@ function TOOL:_addSectionExports(panel, wep)
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	panel:AddItem(backgroundPanel)
 	
+		local values = {}
+		
+		for k,v in pairs({"Pos", "Ang"}) do
+			local key = self._att.prefix .. v
+			values[k] = string.format(
+				"SWEP.%s = %s",
+				key,
+				self:VectorToString(wep[key])
+			)
+		end
+		
+		local label = vgui.Create("DLabel", backgroundPanel)
+		label:SetText(values[1])
+		label:SetDark(true)
+		label:Dock(TOP)
+		label:DockMargin(4,4,4,0)
+		label:SizeToContents()
+		
+		local label = vgui.Create("DLabel", backgroundPanel)
+		label:SetText(values[2])
+		label:SetDark(true)
+		label:Dock(TOP)
+		label:DockMargin(4,4,4,0)
+		label:SizeToContents()
+		
 	backgroundPanel:Dock(TOP)
 	backgroundPanel:DockMargin(8,0,8,0)
-	backgroundPanel:SetSize(200,40)
+	backgroundPanel:SetSize(200,38)
 	backgroundPanel:SetPaintBackground(true)
 	backgroundPanel:SizeToContents()
 	
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	panel:AddItem(backgroundPanel)
 	
+		local label = vgui.Create("DLabel", backgroundPanel)
+		label:SetText("[\"" .. self._att.name .. "\"] = {")
+		label:SetDark(true)
+		label:Dock(TOP)
+		label:DockMargin(4,4,4,0)
+		label:SizeToContents()
+		
+		local values = {}
+		
+		for k,v in pairs({"Pos", "Ang"}) do
+			local key = self._att.prefix .. v
+			values[k] = string.format(
+				"        [%d] = %s,",
+				k,
+				self:VectorToString(wep[key])
+			)
+		end
+		
+		local label = vgui.Create("DLabel", backgroundPanel)
+		label:SetText(values[1])
+		label:SetDark(true)
+		label:Dock(TOP)
+		label:DockMargin(4,4,4,0)
+		label:SizeToContents()
+		
+		local label = vgui.Create("DLabel", backgroundPanel)
+		label:SetText(values[2])
+		label:SetDark(true)
+		label:Dock(TOP)
+		label:DockMargin(4,4,4,0)
+		label:SizeToContents()
+		
 	backgroundPanel:Dock(TOP)
 	backgroundPanel:DockMargin(8,0,8,0)
-	backgroundPanel:SetSize(200,40)
+	backgroundPanel:SetSize(200,56)
 	backgroundPanel:SetPaintBackground(true)
 	backgroundPanel:SizeToContents()
 	
@@ -396,12 +453,12 @@ function TOOL:_addSectionExports(panel, wep)
 		function listView:SortByColumn(i)
 			TOOL:ThrowNewNotImplemented()
 			
+			// normal
 			if (i == 1) then
-				// wipe
 				return
 			end
 			
-			// reload
+			// backup
 		end
 		
 	backgroundPanel:Dock(TOP)
@@ -409,6 +466,15 @@ function TOOL:_addSectionExports(panel, wep)
 	backgroundPanel:SetSize(200,20)
 	backgroundPanel:SetPaintBackground(true)
 	backgroundPanel:SizeToContents()
+end
+
+function TOOL:_exportOne(prefix)
+end
+
+function TOOL:_exportCurrent()
+end
+
+function TOOL:_exportAll()
 end
 
 function TOOL:_addSectionMisc(panel, wep)
