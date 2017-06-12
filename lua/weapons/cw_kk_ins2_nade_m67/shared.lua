@@ -1,8 +1,8 @@
 if not CustomizableWeaponry then return end
 
 if CustomizableWeaponry_KK.HOME then 
-	AddCSLuaFile("_src_go.lua")
-	include("_src_go.lua")
+	AddCSLuaFile("_gitign_go.lua")
+	include("_gitign_go.lua")
 end
 
 AddCSLuaFile()
