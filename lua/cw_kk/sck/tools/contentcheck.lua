@@ -9,10 +9,9 @@ TOOL.icm = CustomizableWeaponry_KK.ins2.isContentMounted4
 -- TOOL.icm = function() return false end
 TOOL.iconOk = "icon16/tick.png"
 TOOL.iconNOk = "icon16/cross.png"
+TOOL.iconEh = "icon16/error.png"
 TOOL.colOk = Color(0,150,0)
 TOOL.colNOk = Color(200,0,0)
-
-TOOL.iconEh = "icon16/error.png"
 TOOL.colEh = Color(200,130,0)
 
 function TOOL:_individualLabelDockMargin(label)

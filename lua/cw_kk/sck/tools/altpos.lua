@@ -10,15 +10,27 @@ function TOOL:_addSectionWipeReload(panel, wep)
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	panel:AddItem(backgroundPanel)
 		
-		local butt = vgui.Create("DButton", backgroundPanel)
-		butt:Dock(LEFT)
-		butt:SetSize(150,20)
-		butt:SetText("Wipe")
+		local listView = vgui.Create("DListView", backgroundPanel)
+		listView:SetHeaderHeight(20)
+		listView:AddColumn("Wipe")
+		listView:AddColumn("Reload")
 		
-		local butt = vgui.Create("DButton", backgroundPanel)
-		butt:Dock(RIGHT)
-		butt:SetSize(150,20)
-		butt:SetText("Reload")
+		listView:Dock(FILL)
+		listView:SizeToContents()
+		listView:SetPaintBackground(false)
+		listView:FixColumnsLayout()
+		listView.OnRequestResize = function() end
+		
+		function listView:SortByColumn(i)
+			TOOL:ThrowNewNotImplemented()
+			
+			// wipe
+			if (i == 1) then
+				return
+			end
+			
+			// reload
+		end
 		
 	backgroundPanel:Dock(TOP)
 	backgroundPanel:DockMargin(8,0,8,0)
