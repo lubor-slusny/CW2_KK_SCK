@@ -493,6 +493,11 @@ function SWEP:DrawWorldModel()
 		end
 		
 		m = EntGetBoneMatrix(self.Owner, self.OwnerAttachBoneID)
+		
+		if not m then
+			return
+		end
+		
 		pos = m:GetTranslation()
 		ang = m:GetAngles()
 		
