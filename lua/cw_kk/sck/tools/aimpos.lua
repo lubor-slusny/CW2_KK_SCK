@@ -55,10 +55,19 @@ function TOOL:Initialize()
 end
 
 function TOOL:_addSectionCvars(panel)
-	panel:AddControl("CheckBox", {Label = "Force GM crosshair", Command = "_cw_kk_gm_xhair"}):DockMargin(8, 0, 8, 0)
-	panel:AddControl("CheckBox", {Label = "Freeze reticles (supported sights only)", Command = "cw_kk_freeze_reticles"}):DockMargin(8, 0, 8, 0)
-	panel:AddControl("CheckBox", {Label = "Hold aim (+attack2 spam)", Command = "_cw_kk_sck_lock_ads"}):DockMargin(8, 0, 8, 0)
-	panel:AddControl("CheckBox", {Label = "Free Aim: Enabled (shortcut)", Command = "cw_freeaim"}):DockMargin(8, 0, 8, 0)
+	local cbox = panel:AddControl("CheckBox", {Label = "Force GM crosshair", Command = "_cw_kk_gm_xhair"})
+	cbox:DockMargin(8, 0, 8, 0)
+	
+	local cbox = panel:AddControl("CheckBox", {Label = "Freeze reticles (supported sights only)", Command = "cw_kk_freeze_reticles"})
+	cbox:DockMargin(8, 0, 8, 0)
+	
+	local cbox = panel:AddControl("CheckBox", {Label = "Hold aim (+attack2 spam)", Command = "_cw_kk_sck_lock_ads"})
+	cbox:DockMargin(8, 0, 8, 0)
+	
+	local cbox = panel:AddControl("CheckBox", {Label = "Free Aim: Enabled (shortcut)", Command = "cw_freeaim"})
+	cbox:DockMargin(8, 0, 8, 0)
+	
+	panel:AddControl("Label", {Text = "tentry auto-off^^"})
 end
 
 function TOOL:_addSectionHeaderAttInfo(panel)
@@ -83,13 +92,13 @@ function TOOL:_addSectionHeaderAttInfo(panel)
 	backgroundPanel:SizeToContents()
 end
 
-function TOOL:_addSectionAttInfo(panel, wep)
+function TOOL:_addSectionAttInfo(panel, wep, att)
 	self:_addSectionHeaderAttInfo(panel)
 
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	panel:AddItem(backgroundPanel)
 		
-		local value = self._att.displayName
+		local value = att.displayName
 		local function DoClick() SetClipboardText(value) end
 		
 		local label = vgui.Create("DLabel", backgroundPanel)
@@ -121,7 +130,7 @@ function TOOL:_addSectionAttInfo(panel, wep)
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	panel:AddItem(backgroundPanel)
 		
-		local value = self._att.name
+		local value = att.name
 		local function DoClick() SetClipboardText(value) end
 		
 		local label = vgui.Create("DLabel", backgroundPanel)
@@ -153,8 +162,8 @@ function TOOL:_addSectionAttInfo(panel, wep)
 		
 		local value = 
 			wep.AttachmentModelsVM and
-			wep.AttachmentModelsVM[self._att.name] and 
-			wep.AttachmentModelsVM[self._att.name].model or
+			wep.AttachmentModelsVM[att.name] and 
+			wep.AttachmentModelsVM[att.name].model or
 			""
 		local function DoClick() SetClipboardText(value) end
 		local parts = string.Explode("/", value)
@@ -186,7 +195,7 @@ function TOOL:_addSectionAttInfo(panel, wep)
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	panel:AddItem(backgroundPanel)
 		
-		local value = self._att.prefix
+		local value = att.prefix
 		local function DoClick() SetClipboardText(value) end
 		
 		local label = vgui.Create("DLabel", backgroundPanel)
@@ -237,7 +246,7 @@ function TOOL:_addSectionAttInfo(panel, wep)
 	backgroundPanel:SizeToContents()
 end
 
-function TOOL:_addSectionWipeReload(panel, wep)
+function TOOL:_addSectionWipeReload(panel, wep, att, wepStored)
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	panel:AddItem(backgroundPanel)
 		
@@ -263,14 +272,14 @@ function TOOL:_addSectionWipeReload(panel, wep)
 			end
 			
 			// reload
-			local prefix = TOOL._att.prefix
-			local suffix = ""
+			if wepStored then
+				local prefix = att.prefix
+				local suffix = ""
 			
-			local stored = weapons.GetStored(wep:GetClass())
-			if stored then
 				for _,part in pairs({"Pos", "Ang"}) do
 					local key = prefix .. part .. suffix
-					local vec = stored[key]
+					local vec = wepStored[key]
+					
 					wep[key] = Vector(vec)
 					wep["Aim" .. part] = Vector(vec)
 					wep["Blend" .. part] = Vector(vec)
@@ -287,8 +296,8 @@ function TOOL:_addSectionWipeReload(panel, wep)
 	backgroundPanel:SizeToContents()
 end
 
-function TOOL:_addSectionSlidersSight(panel, wep)
-	local prefix = self._att.prefix
+function TOOL:_addSectionSlidersSight(panel, wep, att)
+	local prefix = att.prefix
 	local suffix = ""
 	
 	for _,part in pairs({"Pos", "Ang"}) do
@@ -379,7 +388,7 @@ function TOOL:_updatePreviews()
 	end
 end
 
-function TOOL:_addSectionExportPreviews(panel, wep)
+function TOOL:_addSectionExportPreviews(panel, wep, att)
 	self:_addSectionHeaderExports(panel)
 
 	self._codePreviews = {}
@@ -394,7 +403,7 @@ function TOOL:_addSectionExportPreviews(panel, wep)
 		label:SizeToContents()
 		
 		self._codePreviews[label] = function(l)
-			local key = self._att.prefix .. "Pos"
+			local key = att.prefix .. "Pos"
 			l:SetText(string.format(
 				"SWEP.%s = %s",
 				key,
@@ -409,7 +418,7 @@ function TOOL:_addSectionExportPreviews(panel, wep)
 		label:SizeToContents()
 		
 		self._codePreviews[label] = function(l)
-			local key = self._att.prefix .. "Ang"
+			local key = att.prefix .. "Ang"
 			l:SetText(string.format(
 				"SWEP.%s = %s",
 				key,
@@ -427,7 +436,7 @@ function TOOL:_addSectionExportPreviews(panel, wep)
 	panel:AddItem(backgroundPanel)
 	
 		local label = vgui.Create("DLabel", backgroundPanel)
-		label:SetText("[\"" .. self._att.name .. "\"] = {")
+		label:SetText("[\"" .. att.name .. "\"] = {")
 		label:SetDark(true)
 		label:Dock(TOP)
 		label:DockMargin(4,4,4,0)
@@ -440,7 +449,7 @@ function TOOL:_addSectionExportPreviews(panel, wep)
 		label:SizeToContents()
 		
 		self._codePreviews[label] = function(l)
-			local key = self._att.prefix .. "Pos"
+			local key = att.prefix .. "Pos"
 			l:SetText(string.format(
 				"        [1] = %s,",
 				self:VectorToString(wep[key])
@@ -454,7 +463,7 @@ function TOOL:_addSectionExportPreviews(panel, wep)
 		label:SizeToContents()
 		
 		self._codePreviews[label] = function(l)
-			local key = self._att.prefix .. "Ang"
+			local key = att.prefix .. "Ang"
 			l:SetText(string.format(
 				"        [2] = %s,",
 				self:VectorToString(wep[key])
@@ -503,18 +512,6 @@ function TOOL:_addSectionExportButts(panel, wep)
 	backgroundPanel:SizeToContents()
 end
 
-function TOOL:_exportOne(prefix)
-	local out
-	
-	return out
-end
-
-function TOOL:_exportCurrent()
-end
-
-function TOOL:_exportAll()
-end
-
 function TOOL:_addSectionMisc(panel, wep)
 	panel:AddControl("Label", {Text = "Misc:"}):DockMargin(0,0,0,0)
 	
@@ -535,7 +532,7 @@ function TOOL:_addSectionMisc(panel, wep)
 		slider:DockMargin(8,0,8,0)
 		slider:SetText("_Orig = " .. tostring(self._wep.ZoomAmount_Orig))
 		slider:SetDark(true)
-		slider:SetMinMax(-100,100)
+		slider:SetMinMax(0, 85)
 		slider:SetDecimals(4)
 		slider:SetValue(0)
 		
@@ -557,7 +554,7 @@ function TOOL:_addSectionMisc(panel, wep)
 		slider:DockMargin(8,0,8,0)
 		slider:SetText("_Orig = " .. tostring(self._wep.AimViewModelFOV_Orig))
 		slider:SetDark(true)
-		slider:SetMinMax(-100,100)
+		slider:SetMinMax(1,150)
 		slider:SetDecimals(4)
 		slider:SetValue(0)
 		
@@ -579,7 +576,7 @@ function TOOL:_addSectionMisc(panel, wep)
 		slider:DockMargin(8,0,8,0)
 		slider:SetText("_Orig = " .. tostring(self._wep.AimSwayIntensity_Orig))
 		slider:SetDark(true)
-		slider:SetMinMax(-100,100)
+		slider:SetMinMax(-5,5)
 		slider:SetDecimals(4)
 		slider:SetValue(0)
 		
@@ -593,7 +590,6 @@ function TOOL:_addSectionMisc(panel, wep)
 	backgroundPanel:SetPaintBackground(true)
 	backgroundPanel:SizeToContents()
 	
-	panel:AddControl("Label", {Text = ""})
 	panel:AddControl("Label", {Text = "*original value registered and stored by this tool"})
 	panel:AddControl("Label", {Text = ""})
 end
@@ -638,13 +634,16 @@ function TOOL:_updatePanel()
 		return
 	end
 	
+	local wepStored = weapons.GetStored(wep:GetClass())
+	
 	self:_prepareAttInfo(wep)
+	local att = self._att
 	
 	self:_addSectionCvars(panel)
-	self:_addSectionAttInfo(panel, wep)
-	self:_addSectionWipeReload(panel, wep)
-	self:_addSectionSlidersSight(panel, wep)
-	self:_addSectionExportPreviews(panel, wep)
+	self:_addSectionAttInfo(panel, wep, att)
+	self:_addSectionWipeReload(panel, wep, att, wepStored)
+	self:_addSectionSlidersSight(panel, wep, att)
+	self:_addSectionExportPreviews(panel, wep, att)
 	self:_addSectionExportButts(panel, wep)
 	self:_addSectionMisc(panel, wep)
 end
@@ -660,6 +659,10 @@ function TOOL:OnWeaponChanged(new, old)
 end
 
 function TOOL:OnWeaponSetupChanged()
+	self:_updatePanel()
+end
+
+function TOOL:OnWeaponGLStateChanged()
 	self:_updatePanel()
 end
 
