@@ -1,0 +1,585 @@
+﻿weapon_rpg7
+weapon_at4
+weapon_m203_he
+weapon_gp25_he
+weapon_m203_smoke
+weapon_gp25_smoke
+weapon_c4_clicker
+weapon_c4_ied
+weapon_m67
+weapon_f1
+weapon_anm14
+weapon_molotov
+weapon_p2a1
+weapon_m18
+weapon_m84
+weapon_kabar
+weapon_gurkha
+
+weapon_m9
+	a_flashlight_m9
+	a_suppressor_pistol
+	w_sil_pistol
+	a_laser_m9
+weapon_model10
+weapon_m45
+	a_flashlight_mak
+	a_suppressor_pistol
+	w_sil_pistol
+	a_laser_mak
+weapon_makarov
+	a_flashlight_mak
+	a_suppressor_pistol
+	w_sil_pistol
+	a_laser_mak
+weapon_m1911
+	a_flashlight_mak
+	a_suppressor_pistol
+	w_sil_pistol
+	a_laser_mak
+weapon_m16a4
+	a_flashlight_rail
+	barrel_heavybarrel
+	a_optic_aimp2x_l
+	w_magaim
+	a_optic_aimpoint_l
+	w_aimpoint
+	a_optic_elcan
+	w_elcan
+	a_optic_eotech_xl
+	w_eotech
+	a_optic_kobra_xl
+	w_kobra
+	a_optic_po4x24_l
+	w_po
+	a_optic_m40_l
+	w_scope_m40
+	a_foregrip_sec (a_standard2_m16a4)
+	w_foregrip_sec1
+	a_suppressor_sec
+	w_sil_sec1
+	a_laser_rail
+	a_bipod_ar (a_standard_m16a4)
+	w_bipod_m40
+	a_gl_m203
+	w_m203
+weapon_mk18
+	a_flashlight_rail (a_standard3_mk18)
+	barrel_heavybarrel
+	a_optic_aimp2x
+	w_magaim
+	a_optic_aimpoint
+	w_aimpoint
+	a_optic_elcan
+	w_elcan
+	a_optic_eotech_l
+	w_eotech
+	a_optic_kobra_l
+	w_kobra
+	a_optic_po4x24
+	w_po
+	a_foregrip_sec
+	w_foregrip_sec1
+	a_suppressor_sec2
+	w_sil_sec2
+	a_laser_rail (a_standard3_mk18)
+weapon_m4a1
+	a_flashlight_rail (a_standard5_m4a1)
+	barrel_heavybarrel
+	a_optic_aimp2x_l
+	w_magaim
+	a_optic_aimpoint_l
+	w_aimpoint
+	a_optic_elcan
+	w_elcan
+	a_optic_eotech_xl
+	w_eotech
+	a_optic_kobra_xl
+	w_kobra
+	a_optic_po4x24_l
+	w_po
+	a_foregrip_sec (a_standard4_m4a1) (a_standard2_m4a1)
+	w_foregrip_sec1
+	a_suppressor_sec
+	w_sil_sec1
+	a_laser_rail (a_standard5_m4a1)
+	a_gl_m203 (a_standard6_m4a1)
+	w_m203
+weapon_galil
+	a_flashlight_band
+	barrel_heavybarrel
+	a_mount_galil
+	w_mount_galil
+	a_optic_aimp2x
+	w_magaim
+	a_optic_aimpoint
+	w_aimpoint
+	a_optic_elcan_m
+	w_elcan
+	a_optic_eotech
+	w_eotech
+	a_optic_kobra_l
+	w_kobra
+	a_optic_po4x24_m
+	w_po
+	a_foregrip_ins (a_standard_galil)
+	w_ins_foregrip
+	a_suppressor_sec
+	w_sil_sec1
+	a_suppressor_ins
+	w_sil_ins1
+	a_laser_band
+	a_bipod_galil
+	w_bipod_galil
+weapon_galil_sar
+	a_flashlight_band
+	barrel_heavybarrel
+	a_mount_galil
+	w_mount_galil
+	a_optic_aimp2x
+	w_magaim
+	a_optic_aimpoint
+	w_aimpoint
+	a_optic_elcan_m
+	w_elcan
+	a_optic_eotech
+	w_eotech
+	a_optic_kobra_l
+	w_kobra
+	a_optic_po4x24_m
+	w_po
+	a_foregrip_sec2 (a_standard_galil)
+	w_foregrip_sec2
+	a_suppressor_sec
+	w_sil_sec1
+	a_suppressor_ins
+	w_sil_ins1
+	a_laser_band
+	a_bipod_galil
+	w_bipod_galil
+weapon_akm
+	a_flashlight_band
+	a_modkit_06
+	w_modkit_6
+	a_optic_aimp2x
+	w_magaim
+	a_optic_aimpoint
+	w_aimpoint
+	a_optic_elcan_m
+	w_elcan
+	a_optic_eotech
+	w_eotech
+	a_optic_kobra_l
+	w_kobra
+	a_optic_po4x24
+	w_po
+	a_woodgrips_akm
+	w_foregrip_wood_1
+	// a_suppressor_sec
+	// w_sil_sec1
+	a_suppressor_ak
+	w_sil_ins1
+	a_laser_band
+	a_gl_gp25 (a_standard_akm)
+	w_gp25 (w_standard_akm)
+weapon_ak74
+	a_flashlight_band
+	a_modkit_06
+	w_modkit_6
+	a_optic_aimp2x
+	w_magaim
+	a_optic_aimpoint
+	w_aimpoint
+	a_optic_elcan_m
+	w_elcan
+	a_optic_eotech
+	w_eotech
+	a_optic_kobra_l
+	w_kobra
+	a_optic_po4x24
+	w_po
+	a_woodgrips_ak74
+	w_foregrip_wood_2
+	// a_suppressor_sec
+	// w_sil_sec1
+	a_suppressor_aks
+	w_sil_ins1
+	a_laser_band
+	a_gl_gp25 (a_standard_ak74)
+	w_gp25 (w_standard_ak74)
+weapon_fal
+	a_flashlight_band
+	a_modkit_fal
+	a_optic_aimp2x
+	w_magaim
+	a_optic_aimpoint
+	w_aimpoint
+	a_optic_elcan_m
+	w_elcan
+	a_optic_eotech
+	w_eotech
+	a_optic_kobra_l
+	w_kobra
+	a_optic_po4x24
+	w_po
+	a_optic_mosin_l
+	w_scope_mosin
+	a_foregrip_ins
+	w_ins_foregrip
+	// a_suppressor_sec
+	// w_sil_sec1
+	a_suppressor_ins
+	w_sil_ins1
+	a_laser_band
+	a_bipod_fal
+	w_bipod_mosin
+weapon_l1a1
+	a_flashlight_band
+	a_modkit_l1a1
+	a_optic_aimp2x
+	w_magaim
+	a_optic_aimpoint
+	w_aimpoint
+	a_optic_elcan_m
+	w_elcan
+	a_optic_eotech
+	w_eotech
+	a_optic_kobra_l
+	w_kobra
+	a_optic_po4x24
+	w_po
+	a_optic_mosin_l
+	w_scope_mosin
+	a_foregrip_sec2
+	w_foregrip_sec2
+	a_suppressor_sec
+	w_sil_sec1
+	a_laser_band
+	a_bipod_fal
+	w_bipod_mosin
+weapon_mini14
+	a_flashlight_band
+	barrel_heavybarrel
+	a_optic_aimp2x_m
+	w_magaim
+	a_optic_aimpoint_m
+	w_aimpoint
+	a_optic_elcan_m
+	w_elcan
+	a_optic_eotech_m
+	w_eotech
+	a_optic_kobra
+	w_kobra
+	a_optic_po4x24_m
+	w_po
+	a_foregrip_sec2
+	w_foregrip_sec2
+	a_suppressor_sec
+	w_sil_sec1
+	a_laser_band
+weapon_m14
+	a_flashlight_rail
+	a_optic_aimp2x
+	w_magaim
+	a_optic_aimpoint
+	w_aimpoint
+	a_optic_elcan_m
+	w_elcan
+	a_optic_eotech
+	w_eotech
+	a_optic_kobra_l
+	w_kobra
+	a_optic_po4x24_m
+	w_po
+	a_optic_m40_l
+	w_scope_m40
+	a_foregrip_sec2
+	w_foregrip_sec2
+	a_suppressor_sec
+	w_sil_sec1
+	a_laser_rail
+	a_bipod_m14
+	w_bipod_m40
+weapon_m1a1
+	a_flashlight_band
+	a_modkit_m1a1
+	w_modkit_m1a1
+	a_optic_aimp2x
+	w_magaim
+	a_optic_aimpoint
+	w_aimpoint
+	a_optic_elcan
+	w_elcan
+	a_optic_eotech_xl
+	w_eotech
+	a_optic_kobra_l
+	w_kobra
+	a_optic_po4x24
+	w_po
+	a_foregrip_ins
+	w_ins_foregrip
+	// a_suppressor_sec
+	// w_sil_sec1
+	a_suppressor_ins
+	w_sil_ins1
+	a_laser_band
+weapon_sks
+	a_flashlight_band
+	a_modkit_04
+	w_modkit_4
+	a_optic_aimp2x
+	w_magaim
+	a_optic_aimpoint
+	w_aimpoint
+	a_optic_elcan_m
+	w_elcan
+	a_optic_eotech
+	w_eotech
+	a_optic_kobra_l
+	w_kobra
+	a_optic_po4x24_m
+	w_po
+	a_optic_mosin_m
+	w_scope_mosin
+	a_foregrip_ins
+	w_ins_foregrip
+	// a_suppressor_sec
+	// w_sil_sec1
+	a_suppressor_ins
+	w_sil_ins1
+	a_laser_band
+	a_bipod_sks
+	w_bipod_mosin
+weapon_mp5
+	a_flashlight_band
+	a_modkit_05
+	w_modkit_5
+	a_optic_aimp2x_m
+	w_magaim
+	a_optic_aimpoint_m
+	w_aimpoint
+	a_optic_elcan_m
+	w_elcan
+	a_optic_eotech_m
+	w_eotech
+	a_optic_kobra
+	w_kobra
+	a_optic_po4x24_m
+	w_po
+	a_suppressor_sec
+	w_sil_sec1
+	a_laser_band
+weapon_mp40
+	a_flashlight_band
+	a_modkit_04
+	w_modkit_4
+	a_optic_aimp2x_m
+	w_magaim
+	a_optic_elcan_m
+	w_elcan
+	a_optic_eotech_m
+	w_eotech
+	a_optic_kobra
+	w_kobra
+	a_optic_po4x24_m
+	w_po
+	// a_suppressor_sec
+	// w_sil_sec1
+	a_suppressor_ins
+	w_sil_ins1
+	a_laser_band
+weapon_sterling
+	a_flashlight_sterling
+	a_modkit_sterling
+	w_modkit_sterling
+	a_optic_aimp2x_m
+	w_magaim
+	a_optic_aimpoint_m
+	w_aimpoint
+	a_optic_elcan_m
+	w_elcan
+	a_optic_eotech_m
+	w_eotech
+	a_optic_kobra
+	w_kobra
+	a_optic_po4x24_m
+	w_po
+	a_suppressor_sterling
+	w_sil_sterling
+	a_laser_sterling
+weapon_ump45
+	a_flashlight_rail
+	a_optic_aimp2x
+	w_magaim
+	a_optic_aimpoint
+	w_aimpoint
+	a_optic_elcan_m
+	w_elcan
+	a_optic_eotech_m
+	w_eotech
+	a_optic_kobra
+	w_kobra
+	a_optic_po4x24_m
+	w_po
+	a_suppressor_sec
+	w_sil_sec1
+	a_laser_rail
+weapon_aks74u
+	a_flashlight_band
+	a_modkit_07
+	w_modkit_7
+	a_optic_aimp2x
+	w_magaim
+	a_optic_aimpoint
+	w_aimpoint
+	a_optic_elcan_m
+	w_elcan
+	a_optic_eotech
+	w_eotech
+	a_optic_kobra_l
+	w_kobra
+	a_optic_po4x24
+	w_po
+	a_woodgrips_aks74u
+	w_foregrip_aks74u
+	// a_suppressor_sec
+	// w_sil_sec1
+	a_suppressor_aks
+	w_sil_ins1
+	a_laser_band
+weapon_m590
+	a_flashlight_sec_shotgun
+	a_modkit_05
+	w_modkit_5
+	a_optic_aimp2x
+	w_magaim
+	a_optic_aimpoint
+	w_aimpoint
+	a_optic_eotech
+	w_eotech
+	a_optic_kobra_l
+	w_kobra
+	a_foregrip_sec2
+	w_foregrip_sec2
+	a_suppressor_12ga
+	w_sil_pistol
+	a_laser_sec_shotgun
+weapon_toz
+	a_flashlight_ins_shotgun
+	a_modkit_05
+	w_modkit_5
+	a_optic_aimp2x
+	w_magaim
+	a_optic_aimpoint
+	w_aimpoint
+	a_optic_eotech
+	w_eotech
+	a_optic_kobra_l
+	w_kobra
+	a_foregrip_ins2
+	w_ins_foregrip
+	a_suppressor_12ga
+	w_sil_pistol
+	a_laser_ins_shotgun
+weapon_m249
+	a_flashlight_band
+	a_optic_aimp2x
+	w_magaim
+	a_optic_aimpoint
+	w_aimpoint
+	a_optic_elcan_m
+	w_elcan
+	a_optic_eotech
+	w_eotech
+	a_optic_kobra
+	w_kobra
+	a_optic_po4x24_m
+	w_po
+	a_suppressor_sec
+	w_sil_pistol
+	a_laser_band
+weapon_rpk
+	a_flashlight_band
+	a_modkit_06
+	w_modkit_6
+	a_optic_aimp2x
+	w_magaim
+	a_optic_aimpoint
+	w_aimpoint
+	a_optic_elcan_m
+	w_elcan
+	a_optic_eotech
+	w_eotech
+	a_optic_kobra_l
+	w_kobra
+	a_optic_po4x24
+	w_po
+	a_suppressor_ak
+	w_sil_ins1
+	a_laser_band
+weapon_m40a1
+	a_flashlight_sec_shotgun
+	a_optic_aimp2x
+	w_magaim
+	a_optic_aimpoint
+	w_aimpoint
+	a_optic_elcan_m
+	w_elcan
+	a_optic_eotech
+	w_eotech
+	a_optic_kobra_l
+	w_kobra
+	a_optic_po4x24
+	w_po
+	a_optic_m40
+	w_scope_m40
+	a_suppressor_sec
+	w_sil_sec1
+	a_laser_sec_shotgun
+	a_bipod_m40
+	w_bipod_m40
+weapon_mosin
+	a_flashlight_ins_shotgun
+	a_modkit_mosin
+	w_modkit_mosin
+	a_optic_aimp2x
+	w_magaim
+	a_optic_aimpoint
+	w_aimpoint
+	a_optic_elcan_m
+	w_elcan
+	a_optic_eotech
+	w_eotech
+	a_optic_kobra_l
+	w_kobra
+	a_optic_po4x24
+	w_po
+	a_optic_mosin
+	w_scope_mosin
+	// a_suppressor_sec
+	// w_sil_sec1
+	a_suppressor_ins
+	w_sil_ins1
+	a_laser_ins_shotgun
+	a_bipod_mosin
+	w_bipod_mosin
+	
+hoovy barrel:
+	"weapon_m16a4"
+	"weapon_m4a1"
+	"weapon_mk18"
+	"weapon_mini14"
+	"weapon_galil"
+	"weapon_galil_sar"
+
+sling stock:
+	"weapon_thompson"
+	"weapon_m1carbine"
+	"weapon_m1garand"
+	"weapon_bar"
+	"weapon_springfield"
+	"weapon_k98"
+	"weapon_g43"
+	"weapon_mp40"
+	"weapon_stg44"
+	
