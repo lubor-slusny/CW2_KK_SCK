@@ -1,5 +1,7 @@
 if not CustomizableWeaponry_KK.HOME then return end
 
+CustomizableWeaponry.originalValue:add("AimSwayIntensity", false, false)
+
 local TOOL = {}
 
 TOOL.Name = "aimpos"
@@ -7,7 +9,7 @@ TOOL.PrintName = "AimPos Builder 5"
 TOOL.Version = "5.0"
 
 function TOOL:Initialize()
-	self._relevantAttsCache = false
+	self._relevantAttsCache = false // deleteme
 	
 	if not self._relevantAttsCache then
 		local primary = {}
@@ -59,7 +61,7 @@ function TOOL:_addSectionCvars(panel)
 	panel:AddControl("CheckBox", {Label = "Free Aim: Enabled (shortcut)", Command = "cw_freeaim"}):DockMargin(8, 0, 8, 0)
 end
 
-function TOOL:_addSectionAttInfo(panel, wep)
+function TOOL:_addSectionHeaderAttInfo(panel)
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	panel:AddItem(backgroundPanel)
 		
@@ -79,7 +81,11 @@ function TOOL:_addSectionAttInfo(panel, wep)
 	backgroundPanel:SetTall(16)
 	backgroundPanel:SetPaintBackground(false)
 	backgroundPanel:SizeToContents()
-	
+end
+
+function TOOL:_addSectionAttInfo(panel, wep)
+	self:_addSectionHeaderAttInfo(panel)
+
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	panel:AddItem(backgroundPanel)
 		
@@ -302,9 +308,9 @@ function TOOL:_addSectionSlidersSight(panel, wep)
 		{"Pos", "x", -50, 50},
 		{"Pos", "y", -50, 50},
 		{"Pos", "z", -50, 50},
-		{"Ang", "p", -90, 90},
+		{"Ang", "x", -90, 90},
 		{"Ang", "y", -90, 90},
-		{"Ang", "r", -90, 90},
+		{"Ang", "z", -90, 90},
 	}) do
 		local slider = vgui.Create("DNumSlider", backgroundPanel)
 		slider:Dock(TOP)
@@ -324,10 +330,15 @@ function TOOL:_addSectionSlidersSight(panel, wep)
 			RunConsoleCommand("cw_kk_freeze_reticles","1")
 			RunConsoleCommand("cw_freeaim","0")
 			
-			local vec = wep[prefix .. s[1] .. suffix]
+			local key = prefix .. s[1] .. suffix
+			local vec = wep[key]
 			vec[s[2]] = val
+			
+			wep[key] = Vector(vec)
 			wep["Aim" .. s[1]] = Vector(vec)
 			wep["Blend" .. s[1]] = Vector(vec)
+			
+			TOOL:_updatePreviews()
 		end
 		
 		table.insert(self._sightSliders, slider)
@@ -340,7 +351,7 @@ function TOOL:_addSectionSlidersSight(panel, wep)
 	backgroundPanel:SizeToContents()
 end
 
-function TOOL:_addSectionExports(panel, wep)
+function TOOL:_addSectionHeaderExports(panel)
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	panel:AddItem(backgroundPanel)
 		
@@ -360,34 +371,51 @@ function TOOL:_addSectionExports(panel, wep)
 	backgroundPanel:SetTall(16)
 	backgroundPanel:SetPaintBackground(false)
 	backgroundPanel:SizeToContents()
+end
+
+function TOOL:_updatePreviews()
+	for label,update in pairs(self._codePreviews) do
+		update(label)
+	end
+end
+
+function TOOL:_addSectionExportPreviews(panel, wep)
+	self:_addSectionHeaderExports(panel)
+
+	self._codePreviews = {}
 	
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	panel:AddItem(backgroundPanel)
 	
-		local values = {}
+		local label = vgui.Create("DLabel", backgroundPanel)
+		label:SetDark(true)
+		label:Dock(TOP)
+		label:DockMargin(4,4,4,0)
+		label:SizeToContents()
 		
-		for k,v in pairs({"Pos", "Ang"}) do
-			local key = self._att.prefix .. v
-			values[k] = string.format(
+		self._codePreviews[label] = function(l)
+			local key = self._att.prefix .. "Pos"
+			l:SetText(string.format(
 				"SWEP.%s = %s",
 				key,
 				self:VectorToString(wep[key])
-			)
+			))
 		end
 		
 		local label = vgui.Create("DLabel", backgroundPanel)
-		label:SetText(values[1])
 		label:SetDark(true)
 		label:Dock(TOP)
 		label:DockMargin(4,4,4,0)
 		label:SizeToContents()
 		
-		local label = vgui.Create("DLabel", backgroundPanel)
-		label:SetText(values[2])
-		label:SetDark(true)
-		label:Dock(TOP)
-		label:DockMargin(4,4,4,0)
-		label:SizeToContents()
+		self._codePreviews[label] = function(l)
+			local key = self._att.prefix .. "Ang"
+			l:SetText(string.format(
+				"SWEP.%s = %s",
+				key,
+				self:VectorToString(wep[key])
+			))
+		end
 		
 	backgroundPanel:Dock(TOP)
 	backgroundPanel:DockMargin(8,0,8,0)
@@ -405,30 +433,33 @@ function TOOL:_addSectionExports(panel, wep)
 		label:DockMargin(4,4,4,0)
 		label:SizeToContents()
 		
-		local values = {}
+		local label = vgui.Create("DLabel", backgroundPanel)
+		label:SetDark(true)
+		label:Dock(TOP)
+		label:DockMargin(4,4,4,0)
+		label:SizeToContents()
 		
-		for k,v in pairs({"Pos", "Ang"}) do
-			local key = self._att.prefix .. v
-			values[k] = string.format(
-				"        [%d] = %s,",
-				k,
+		self._codePreviews[label] = function(l)
+			local key = self._att.prefix .. "Pos"
+			l:SetText(string.format(
+				"        [1] = %s,",
 				self:VectorToString(wep[key])
-			)
+			))
 		end
 		
 		local label = vgui.Create("DLabel", backgroundPanel)
-		label:SetText(values[1])
 		label:SetDark(true)
 		label:Dock(TOP)
 		label:DockMargin(4,4,4,0)
 		label:SizeToContents()
 		
-		local label = vgui.Create("DLabel", backgroundPanel)
-		label:SetText(values[2])
-		label:SetDark(true)
-		label:Dock(TOP)
-		label:DockMargin(4,4,4,0)
-		label:SizeToContents()
+		self._codePreviews[label] = function(l)
+			local key = self._att.prefix .. "Ang"
+			l:SetText(string.format(
+				"        [2] = %s,",
+				self:VectorToString(wep[key])
+			))
+		end
 		
 	backgroundPanel:Dock(TOP)
 	backgroundPanel:DockMargin(8,0,8,0)
@@ -436,12 +467,16 @@ function TOOL:_addSectionExports(panel, wep)
 	backgroundPanel:SetPaintBackground(true)
 	backgroundPanel:SizeToContents()
 	
+	self:_updatePreviews()
+end
+
+function TOOL:_addSectionExportButts(panel, wep)
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	panel:AddItem(backgroundPanel)
 		
 		local listView = vgui.Create("DListView", backgroundPanel)
 		listView:SetHeaderHeight(20)
-		listView:AddColumn("Export all normal")
+		listView:AddColumn("Export all as normal")
 		listView:AddColumn("Export all as backup")
 		
 		listView:Dock(FILL)
@@ -469,6 +504,9 @@ function TOOL:_addSectionExports(panel, wep)
 end
 
 function TOOL:_exportOne(prefix)
+	local out
+	
+	return out
 end
 
 function TOOL:_exportCurrent()
@@ -479,9 +517,85 @@ end
 
 function TOOL:_addSectionMisc(panel, wep)
 	panel:AddControl("Label", {Text = "Misc:"}):DockMargin(0,0,0,0)
-	panel:AddControl("Label", {Text = "slider zoomamount"})
-	panel:AddControl("Label", {Text = "slider aimvmfov"})
-	panel:AddControl("Label", {Text = "slider aimswayintense"})
+	
+	local backgroundPanel = vgui.Create("DPanel", panel)
+	panel:AddItem(backgroundPanel)
+	
+		local label = vgui.Create("DLabel", backgroundPanel)
+		label:SetText("SWEP.ZoomAmount")
+		label:SetDark(true)
+		label:Dock(TOP)
+		label:DockMargin(8,4,4,0)
+		label:SizeToContents()
+		label:SetMouseInputEnabled(true)
+		label.DoClick = DoClick
+		
+		local slider = vgui.Create("DNumSlider", backgroundPanel)
+		slider:Dock(TOP)
+		slider:DockMargin(8,0,8,0)
+		slider:SetText("_Orig = " .. tostring(self._wep.ZoomAmount_Orig))
+		slider:SetDark(true)
+		slider:SetMinMax(-100,100)
+		slider:SetDecimals(4)
+		slider:SetValue(0)
+		
+		function slider:OnValueChanged(val)
+			TOOL._wep.ZoomAmount = val
+		end
+		
+		local label = vgui.Create("DLabel", backgroundPanel)
+		label:SetText("SWEP.AimViewModelFOV")
+		label:SetDark(true)
+		label:Dock(TOP)
+		label:DockMargin(8,4,4,0)
+		label:SizeToContents()
+		label:SetMouseInputEnabled(true)
+		label.DoClick = DoClick
+		
+		local slider = vgui.Create("DNumSlider", backgroundPanel)
+		slider:Dock(TOP)
+		slider:DockMargin(8,0,8,0)
+		slider:SetText("_Orig = " .. tostring(self._wep.AimViewModelFOV_Orig))
+		slider:SetDark(true)
+		slider:SetMinMax(-100,100)
+		slider:SetDecimals(4)
+		slider:SetValue(0)
+		
+		function slider:OnValueChanged(val)
+			TOOL._wep.AimViewModelFOV = val
+		end
+		
+		local label = vgui.Create("DLabel", backgroundPanel)
+		label:SetText("SWEP.AimSwayIntensity*")
+		label:SetDark(true)
+		label:Dock(TOP)
+		label:DockMargin(8,4,4,0)
+		label:SizeToContents()
+		label:SetMouseInputEnabled(true)
+		label.DoClick = DoClick
+		
+		local slider = vgui.Create("DNumSlider", backgroundPanel)
+		slider:Dock(TOP)
+		slider:DockMargin(8,0,8,0)
+		slider:SetText("_Orig = " .. tostring(self._wep.AimSwayIntensity_Orig))
+		slider:SetDark(true)
+		slider:SetMinMax(-100,100)
+		slider:SetDecimals(4)
+		slider:SetValue(0)
+		
+		function slider:OnValueChanged(val)
+			TOOL._wep.AimSwayIntensity = val
+		end
+		
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:DockMargin(8,0,8,0)
+	backgroundPanel:SetSize(200,32*3 + 18*3)
+	backgroundPanel:SetPaintBackground(true)
+	backgroundPanel:SizeToContents()
+	
+	panel:AddControl("Label", {Text = ""})
+	panel:AddControl("Label", {Text = "*original value registered and stored by this tool"})
+	panel:AddControl("Label", {Text = ""})
 end
 
 function TOOL:_prepareAttInfo(wep)
@@ -530,7 +644,8 @@ function TOOL:_updatePanel()
 	self:_addSectionAttInfo(panel, wep)
 	self:_addSectionWipeReload(panel, wep)
 	self:_addSectionSlidersSight(panel, wep)
-	self:_addSectionExports(panel, wep)
+	self:_addSectionExportPreviews(panel, wep)
+	self:_addSectionExportButts(panel, wep)
 	self:_addSectionMisc(panel, wep)
 end
 
