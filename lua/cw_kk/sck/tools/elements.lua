@@ -3,7 +3,7 @@ if not CustomizableWeaponry_KK.HOME then return end
 local TOOL = {}
 
 TOOL.Name = "elements"
-TOOL.PrintName = "Element Browser"
+TOOL.PrintName = "Element Browser 3"
 TOOL.Version = "3.0"
 
 TOOL.states = {}
