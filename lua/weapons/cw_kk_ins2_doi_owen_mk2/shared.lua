@@ -30,7 +30,9 @@ if CLIENT then
 		["kk_ins2_ww2_sling"] = {model = "models/weapons/upgrades/a_sling_owen.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 	}
 	
-	SWEP.AttachmentModelsWM = {}
+	SWEP.AttachmentModelsWM = {
+		["mk2"] = {model = "models/weapons/v_owen_mk2.mdl", pos = Vector(-23.4612, -4.6237, 8.2823), angle = Angle(0, 90, 0), size = Vector(1.4, 1.4, 1.4), bone = "__INVALIDBONE__", hideVM = true, active = true},
+	}
 
 	SWEP.CustomizationMenuScale = 0.013
 	
@@ -82,7 +84,7 @@ SWEP.SpeedDec = 15
 
 SWEP.Slot = 2
 SWEP.SlotPos = 0
-SWEP.NormalHoldType = "ar2"
+SWEP.NormalHoldType = "smg"
 SWEP.RunHoldType = "passive"
 SWEP.FireModes = {"auto", "semi"}
 SWEP.Base = "cw_kk_ins2_base"
@@ -98,8 +100,8 @@ SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/cw_kk_doi/v_owen.mdl"
 SWEP.WorldModel		= "models/weapons/w_owen.mdl"
 
-SWEP.WMPos = Vector(10, -1, -5)
-SWEP.WMAng = Vector(0, 0, 90)
+SWEP.WMPos = Vector(10, 1, -2.5)
+SWEP.WMAng = Vector(-10, 0, 180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.ww2gb
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.ww2gb
