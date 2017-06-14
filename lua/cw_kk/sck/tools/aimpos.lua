@@ -9,8 +9,6 @@ TOOL.PrintName = "AimPos Builder 5"
 TOOL.Version = "5.0"
 
 function TOOL:Initialize()
-	self._relevantAttsCache = false // deleteme
-	
 	if not self._relevantAttsCache then
 		local primary = {}
 		local secondary = {}
@@ -45,6 +43,9 @@ function TOOL:Initialize()
 		self._relevantAttsCache.secondary = secondary
 		self._relevantAttsCache.grenade = grenade
 		self._relevantAttsCache.primary = primary
+		
+		self.cvarResetDelay = 3
+		self.suffix = ""
 	end
 	
 	self._relevantAttsCache.fallback = {
@@ -67,7 +68,22 @@ function TOOL:_addSectionCvars(panel)
 	local cbox = panel:AddControl("CheckBox", {Label = "Free Aim: Enabled (shortcut)", Command = "cw_freeaim"})
 	cbox:DockMargin(8, 0, 8, 0)
 	
-	panel:AddControl("Label", {Text = "tentry auto-off^^"})
+	local label = vgui.Create("DLabel", backgroundPanel)
+	label:SetText("^^ auto-turn-off in:")
+	label:SetDark(true)
+	label:DockMargin(8,0,8,0)
+		
+	local entry = vgui.Create("DTextEntry", backgroundPanel)
+	entry:Dock(TOP)
+	entry:DockMargin(8,0,8,0)
+	entry:SetNumeric(true)
+	entry:SetText(self.cvarResetDelay)
+	
+	function entry:OnEnter()
+		TOOL.cvarResetDelay = self:GetFloat()
+	end
+	
+	panel:AddItem(label, entry)
 end
 
 function TOOL:_addSectionHeaderAttInfo(panel)
@@ -235,8 +251,15 @@ function TOOL:_addSectionAttInfo(panel, wep, att)
 		local entry = vgui.Create("DTextEntry", backgroundPanel)
 		entry:Dock(FILL)
 		entry:DockMargin(4,0,0,0)
+		entry:SetText(self.suffix)
 		
 		function entry:OnEnter()
+			TOOL.suffix = self:GetValue()
+			TOOL:_updatePreviews()
+		end
+		
+		function entry:OnChange()
+			self:OnEnter()
 		end
 		
 	backgroundPanel:Dock(TOP)
@@ -262,6 +285,8 @@ function TOOL:_addSectionWipeReload(panel, wep, att, wepStored)
 		listView.OnRequestResize = function() end
 		
 		function listView:SortByColumn(i)
+			TOOL:_forceCVarSettings()
+			
 			// wipe
 			if (i == 1) then
 				for _,slider in pairs(TOOL._sightSliders) do
@@ -274,7 +299,7 @@ function TOOL:_addSectionWipeReload(panel, wep, att, wepStored)
 			// reload
 			if wepStored then
 				local prefix = att.prefix
-				local suffix = ""
+				local suffix = TOOL.suffix
 			
 				for _,part in pairs({"Pos", "Ang"}) do
 					local key = prefix .. part .. suffix
@@ -296,9 +321,17 @@ function TOOL:_addSectionWipeReload(panel, wep, att, wepStored)
 	backgroundPanel:SizeToContents()
 end
 
+function TOOL:_forceCVarSettings()
+	RunConsoleCommand("_cw_kk_sck_lock_ads","1")
+	RunConsoleCommand("cw_kk_freeze_reticles","1")
+	RunConsoleCommand("cw_freeaim","0")
+	
+	self._nextCvarReset = CurTime() + self.cvarResetDelay
+end
+
 function TOOL:_addSectionSlidersSight(panel, wep, att)
 	local prefix = att.prefix
-	local suffix = ""
+	local suffix = self.suffix
 	
 	for _,part in pairs({"Pos", "Ang"}) do
 		local key = prefix .. part .. suffix
@@ -335,12 +368,10 @@ function TOOL:_addSectionSlidersSight(panel, wep, att)
 		function slider:OnValueChanged(val)
 			TOOL:SaveSliderZoom(self)
 			
-			RunConsoleCommand("_cw_kk_sck_lock_ads","1")
-			RunConsoleCommand("cw_kk_freeze_reticles","1")
-			RunConsoleCommand("cw_freeaim","0")
+			TOOL:_forceCVarSettings()
 			
 			local key = prefix .. s[1] .. suffix
-			local vec = wep[key]
+			local vec = wep[key] or Vector()
 			vec[s[2]] = val
 			
 			wep[key] = Vector(vec)
@@ -388,22 +419,68 @@ function TOOL:_updatePreviews()
 	end
 end
 
+function TOOL:getAimPosCode(wep, att, suffix)
+	local pos = att.prefix .. "Pos" .. suffix
+	local ang = att.prefix .. "Ang" .. suffix
+	
+	local out = string.format(
+		"\n	SWEP.%s = %s\n	SWEP.%s = %s\n",
+		pos,
+		self:VectorToString(wep[pos]),
+		ang,
+		self:VectorToString(wep[ang])
+	)
+	
+	return out
+end
+
+function TOOL:getBackupCode(wep, att, suffix)
+	local pos = att.prefix .. "Pos" .. suffix
+	local ang = att.prefix .. "Ang" .. suffix
+	
+	local out = string.format(
+		"\n		[\"%s\"] = {\n			[1] = %s,\n			[2] = %s,\n		},\n",
+		att.name,
+		self:VectorToString(wep[pos]),
+		self:VectorToString(wep[ang])
+	)
+	
+	return out
+end
+
+function TOOL:finalizeBackupCode(wep, code)
+	if !wep.BackupSights then
+		code = string.format(
+			"\n	SWEP.BackupSights = {%s	}\n",
+			code
+		)
+	end
+	
+	return code
+end
+
 function TOOL:_addSectionExportPreviews(panel, wep, att)
 	self:_addSectionHeaderExports(panel)
 
 	self._codePreviews = {}
 	
+	local function DoClick()
+		SetClipboardText(TOOL:getAimPosCode(wep, att, TOOL.suffix))
+	end
+	
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	panel:AddItem(backgroundPanel)
-	
+		
 		local label = vgui.Create("DLabel", backgroundPanel)
 		label:SetDark(true)
 		label:Dock(TOP)
 		label:DockMargin(4,4,4,0)
 		label:SizeToContents()
+		label:SetMouseInputEnabled(true)
+		label.DoClick = DoClick
 		
 		self._codePreviews[label] = function(l)
-			local key = att.prefix .. "Pos"
+			local key = att.prefix .. "Pos" .. TOOL.suffix
 			l:SetText(string.format(
 				"SWEP.%s = %s",
 				key,
@@ -416,9 +493,11 @@ function TOOL:_addSectionExportPreviews(panel, wep, att)
 		label:Dock(TOP)
 		label:DockMargin(4,4,4,0)
 		label:SizeToContents()
+		label:SetMouseInputEnabled(true)
+		label.DoClick = DoClick
 		
 		self._codePreviews[label] = function(l)
-			local key = att.prefix .. "Ang"
+			local key = att.prefix .. "Ang" .. TOOL.suffix
 			l:SetText(string.format(
 				"SWEP.%s = %s",
 				key,
@@ -431,6 +510,15 @@ function TOOL:_addSectionExportPreviews(panel, wep, att)
 	backgroundPanel:SetSize(200,38)
 	backgroundPanel:SetPaintBackground(true)
 	backgroundPanel:SizeToContents()
+	backgroundPanel:SetMouseInputEnabled(true)
+	backgroundPanel.DoClick = DoClick
+	
+	local function DoClick()
+		local code = TOOL:getBackupCode(wep, att, TOOL.suffix)
+		code = TOOL:finalizeBackupCode(wep, code)
+		
+		SetClipboardText(code)
+	end
 	
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	panel:AddItem(backgroundPanel)
@@ -441,12 +529,16 @@ function TOOL:_addSectionExportPreviews(panel, wep, att)
 		label:Dock(TOP)
 		label:DockMargin(4,4,4,0)
 		label:SizeToContents()
+		label:SetMouseInputEnabled(true)
+		label.DoClick = DoClick
 		
 		local label = vgui.Create("DLabel", backgroundPanel)
 		label:SetDark(true)
 		label:Dock(TOP)
 		label:DockMargin(4,4,4,0)
 		label:SizeToContents()
+		label:SetMouseInputEnabled(true)
+		label.DoClick = DoClick
 		
 		self._codePreviews[label] = function(l)
 			local key = att.prefix .. "Pos"
@@ -461,6 +553,8 @@ function TOOL:_addSectionExportPreviews(panel, wep, att)
 		label:Dock(TOP)
 		label:DockMargin(4,4,4,0)
 		label:SizeToContents()
+		label:SetMouseInputEnabled(true)
+		label.DoClick = DoClick
 		
 		self._codePreviews[label] = function(l)
 			local key = att.prefix .. "Ang"
@@ -475,6 +569,8 @@ function TOOL:_addSectionExportPreviews(panel, wep, att)
 	backgroundPanel:SetSize(200,56)
 	backgroundPanel:SetPaintBackground(true)
 	backgroundPanel:SizeToContents()
+	backgroundPanel:SetMouseInputEnabled(true)
+	backgroundPanel.DoClick = DoClick
 	
 	self:_updatePreviews()
 end
@@ -534,7 +630,7 @@ function TOOL:_addSectionMisc(panel, wep)
 		slider:SetDark(true)
 		slider:SetMinMax(0, 85)
 		slider:SetDecimals(4)
-		slider:SetValue(0)
+		slider:SetValue(self._wep.ZoomAmount)
 		
 		function slider:OnValueChanged(val)
 			TOOL._wep.ZoomAmount = val
@@ -556,7 +652,7 @@ function TOOL:_addSectionMisc(panel, wep)
 		slider:SetDark(true)
 		slider:SetMinMax(1,150)
 		slider:SetDecimals(4)
-		slider:SetValue(0)
+		slider:SetValue(self._wep.AimViewModelFOV)
 		
 		function slider:OnValueChanged(val)
 			TOOL._wep.AimViewModelFOV = val
@@ -578,7 +674,7 @@ function TOOL:_addSectionMisc(panel, wep)
 		slider:SetDark(true)
 		slider:SetMinMax(-5,5)
 		slider:SetDecimals(4)
-		slider:SetValue(0)
+		slider:SetValue(self._wep.AimSwayIntensity)
 		
 		function slider:OnValueChanged(val)
 			TOOL._wep.AimSwayIntensity = val
@@ -664,6 +760,15 @@ end
 
 function TOOL:OnWeaponGLStateChanged()
 	self:_updatePanel()
+end
+
+function TOOL:Think()
+	if self._nextCvarReset and self.cvarResetDelay > 0 and self._nextCvarReset < CurTime() then
+		self._nextCvarReset = false
+		
+		RunConsoleCommand("_cw_kk_sck_lock_ads","0")
+		RunConsoleCommand("cw_kk_freeze_reticles","0")
+	end
 end
 
 CustomizableWeaponry_KK.sck:AddTool(TOOL)
