@@ -10,6 +10,7 @@ BASE.ToolsFolder = "cw_kk/sck/tools/"
 BASE.InternalNamesPrefix = "CW_KK_SCK"
 BASE.strCCReload = "cw_kk_sck_reload_folder"
 BASE.strCCRebuild = "cw_kk_sck_rebuild_panels"
+BASE.strKnownGLDTKeys = "M203Active|INS2GLActive"
 
 /*
 TOOL table structure
@@ -25,6 +26,7 @@ TOOL table structure
 	OnWeaponChanged(self, new, old)
 	OnWeaponSetupChanged(self)
 	OnWeaponClipChanged(self)
+	OnWeaponGLStateChanged(self)
 	Think(self)
 	
 	[internal]
@@ -167,6 +169,8 @@ function BASE:Load()
 	self._lastWep = nil
 	self._lastSetup = nil
 	
+	self._knowGLDTkeys = string.Explode("|", self.strKnownGLDTKeys)
+	
 	for _,v in pairs(file.Find(self.ToolsFolder .. "*", "LUA")) do
 		AddCSLuaFile(self.ToolsFolder .. v)
 		if CLIENT then
@@ -237,6 +241,14 @@ if CLIENT then
 		end
 	end
 
+	function BASE:_OnWeaponGLStateChanged()
+		for _,tool in pairs(self._toolCache) do
+			if tool.OnWeaponGLStateChanged then
+				tool:OnWeaponGLStateChanged()
+			end
+		end
+	end
+
 	function BASE:Think()
 		if !self._spawnMenuPopulated then return end
 		
@@ -249,6 +261,7 @@ if CLIENT then
 		else
 			local curSetup = ""
 			local curClip = nil
+			local curGLState = nil
 			
 			if IsValid(wep) then
 				if wep.ActiveAttachments then
@@ -260,6 +273,10 @@ if CLIENT then
 				end
 				
 				curClip = wep:Clip1()
+				
+				for _,gldtKey in pairs(self._knowGLDTkeys) do
+					curGLState = curGLState or wep.dt[gldtKey]
+				end
 			end
 			
 			if curSetup != self._lastSetup then
@@ -271,6 +288,11 @@ if CLIENT then
 				self:_OnWeaponClipChanged()
 			end
 			self._lastClip = curClip
+			
+			if curGLState != self._lastGLState then
+				self:_OnWeaponGLStateChanged()
+			end
+			self._lastGLState = curGLState
 		end
 		self._lastWep = wep
 		
