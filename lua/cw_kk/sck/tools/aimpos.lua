@@ -442,7 +442,7 @@ function TOOL:_updatePreviews()
 	end
 end
 
-function TOOL:getAimPosCode(prefix, suffix)
+function TOOL:_getAimPosCode(prefix, suffix)
 	local wep = self._wep
 	
 	prefix = prefix or self._att.prefix
@@ -462,7 +462,7 @@ function TOOL:getAimPosCode(prefix, suffix)
 	return out
 end
 
-function TOOL:getBackupCode(att, suffix)
+function TOOL:_getBackupCode(att, suffix)
 	local wep = self._wep
 	
 	att = att or self._att
@@ -482,7 +482,7 @@ function TOOL:getBackupCode(att, suffix)
 	return out
 end
 
-function TOOL:finalizeBackupCode(code)
+function TOOL:_finalizeBackupCode(code)
 	local wep = self._wep
 	
 	if !wep.BackupSights then
@@ -505,7 +505,7 @@ function TOOL:_addSectionExportPreviews()
 	self._codePreviews = {}
 	
 	local function DoClick()
-		SetClipboardText(TOOL:getAimPosCode())
+		SetClipboardText(TOOL:_getAimPosCode())
 	end
 	
 	local backgroundPanel = vgui.Create("DPanel", panel)
@@ -554,8 +554,8 @@ function TOOL:_addSectionExportPreviews()
 	backgroundPanel.DoClick = DoClick
 	
 	local function DoClick()
-		local code = TOOL:getBackupCode()
-		code = TOOL:finalizeBackupCode(code)
+		local code = TOOL:_getBackupCode()
+		code = TOOL:_finalizeBackupCode(code)
 		
 		SetClipboardText(code)
 	end

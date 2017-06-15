@@ -70,15 +70,19 @@ function TOOL:_addSectionSliders()
 	
 	self._sliders = {}
 	
+	local backgroundPanel = vgui.Create("DPanel", panel)
+	panel:AddItem(backgroundPanel)
+	
 	for _,s in pairs({
 		{"Pos", "x", -50, 50},
 		{"Pos", "y", -50, 50},
 		{"Pos", "z", -50, 50},
-		{"Ang", "p", -90, 90},
+		{"Ang", "x", -90, 90},
 		{"Ang", "y", -180, 180},
-		{"Ang", "r", -180, 180},
+		{"Ang", "z", -180, 180},
 	}) do 
-		local slider = vgui.Create("DNumSlider", panel)
+		local slider = vgui.Create("DNumSlider", backgroundPanel)
+		slider:Dock(TOP)
 		slider:DockMargin(8,0,8,0)
 		slider:SetDecimals(4)
 		slider:SetMinMax(s[3], s[4])
@@ -95,17 +99,55 @@ function TOOL:_addSectionSliders()
 			local vec = wep[key]
 			vec[s[2]] = val
 			wep[key] = vec
+			
+			TOOL:_updatePreviews()
 		end
 
-		panel:AddItem(slider)
+		-- panel:AddItem(slider)
 		
 		table.insert(self._sliders, slider)
 	end
+	
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:DockMargin(8,0,8,0)
+	backgroundPanel:SetSize(200,32*6)
+	backgroundPanel:SetPaintBackground(true)
+	backgroundPanel:SizeToContents()
+end
+
+function TOOL:_addSectionHeaderExports()
+	local panel = self._panel
+
+	local backgroundPanel = vgui.Create("DPanel", panel)
+	panel:AddItem(backgroundPanel)
+		
+		local label = vgui.Create("DLabel", backgroundPanel)
+		label:SetText("Code:")
+		label:SetDark(true)
+		label:Dock(LEFT)
+		label:SizeToContents()
+		
+		local label = vgui.Create("DLabel", backgroundPanel)
+		label:SetText("[LMB - COPY]")
+		label:SetDark(true)
+		label:Dock(RIGHT)
+		label:SizeToContents()
+		
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:SetTall(16)
+	backgroundPanel:SetPaintBackground(false)
+	backgroundPanel:SizeToContents()
 end
 
 function TOOL:_addSectionPreviewExport()
 	local panel = self._panel
 	local wep = self._wep
+	
+	self._codePreviews = {}
+	
+	local function DoClick()
+		SetClipboardText(TOOL:_getCode())
+	end
 	
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	panel:AddItem(backgroundPanel)
@@ -114,31 +156,66 @@ function TOOL:_addSectionPreviewExport()
 		label = vgui.Create("DLabel", backgroundPanel)
 		label:SetDark(true)
 		label:Dock(TOP)
-		label:DockMargin(0,2,0,2)
+		label:DockMargin(4,4,4,0)
 		label:SizeToContents()
-		label:SetText(
-			"SWEP.AlternativePos = " .. 
-			self:VectorToString(wep.AlternativePos)
-		)
+		label:SetMouseInputEnabled(true)
+		label.DoClick = DoClick
+		
+		self._codePreviews[label] = function(l)
+			l:SetText(
+				"SWEP.AlternativePos = " .. 
+				self:VectorToString(wep.AlternativePos)
+			)
+		end
 		
 		local label
 		label = vgui.Create("DLabel", backgroundPanel)
 		label:SetDark(true)
 		label:Dock(TOP)
-		label:DockMargin(0,0,0,2)
+		label:DockMargin(4,4,4,0)
 		label:SizeToContents()
+		label:SetMouseInputEnabled(true)
+		label.DoClick = DoClick
 
-		label:SetText(
-			"SWEP.AlternativeAng = " .. 
-			self:VectorToString(wep.AlternativeAng)
-		)
+		self._codePreviews[label] = function(l)
+			l:SetText(
+				"SWEP.AlternativeAng = " .. 
+				self:VectorToString(wep.AlternativeAng)
+			)
+		end
 		
 	backgroundPanel:Dock(TOP)
 	backgroundPanel:DockMargin(8,0,8,0)
-	backgroundPanel:DockPadding(8,0,8,0)
-	-- backgroundPanel:SetSize(200,34)
+	backgroundPanel:SetSize(200,38)
 	backgroundPanel:SetPaintBackground(true)
 	backgroundPanel:SizeToContents()
+	backgroundPanel:SetMouseInputEnabled(true)
+	backgroundPanel.DoClick = DoClick
+	
+	self:_updatePreviews()
+end
+
+function TOOL:_updatePreviews()
+	for label,update in pairs(self._codePreviews) do
+		update(label)
+	end
+end
+
+function TOOL:_getCode()
+	local wep = self._wep
+	
+	local pos = "AlternativePos"
+	local ang = "AlternativeAng"
+	
+	local out = string.format(
+		"\n	SWEP.%s = %s\n	SWEP.%s = %s\n",
+		pos,
+		self:VectorToString(wep[pos]),
+		ang,
+		self:VectorToString(wep[ang])
+	)
+	
+	return out
 end
 
 function TOOL:_updatePanel()
@@ -166,6 +243,7 @@ function TOOL:_updatePanel()
 	
 	self:_addSectionWipeReload()
 	self:_addSectionSliders()
+	self:_addSectionHeaderExports()
 	self:_addSectionPreviewExport()
 end
 
