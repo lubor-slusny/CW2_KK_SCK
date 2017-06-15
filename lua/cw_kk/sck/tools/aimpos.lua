@@ -46,6 +46,7 @@ function TOOL:Initialize()
 		
 		self.cvarResetDelay = 3
 		self._suffix = ""
+		self._curSet = {}
 	end
 	
 	self._relevantAttsCache.fallback = {
@@ -327,6 +328,7 @@ function TOOL:_addSectionWipeReload()
 				end
 			end
 			
+			TOOL:_curSetRemove()
 			TOOL:_updatePanel()
 		end
 		
@@ -343,6 +345,34 @@ function TOOL:_forceCVarSettings()
 	RunConsoleCommand("cw_freeaim","0")
 	
 	self._nextCvarReset = CurTime() + self.cvarResetDelay
+end
+
+function TOOL:_curSetAdd(name, prefix, suffix)
+	name = name or self._att.name
+	prefix = prefix or self._att.prefix
+	suffix = suffix or self._suffix
+	
+	local key = prefix .. "|" .. suffix
+	if not TOOL._curSet[wep].skey[key] then
+		TOOL._curSet[wep].skey[key] =
+			table.insert(TOOL._curSet[wep].ikey,
+				{name = name, prefix = prefix, suffix = suffix}
+			)
+	end
+end
+
+function TOOL:_curSetRemove(prefix, suffix)
+	prefix = prefix or self._att.prefix
+	suffix = suffix or self._suffix
+	
+	local key = prefix .. "|" .. suffix
+	if TOOL._curSet[wep].skey[key] then
+		table.remove(
+			TOOL._curSet[wep].ikey,
+			TOOL._curSet[wep].skey[key]
+		)
+		TOOL._curSet[wep].skey[key] = nil
+	end
 end
 
 function TOOL:_addSectionSlidersSight()
@@ -389,6 +419,8 @@ function TOOL:_addSectionSlidersSight()
 			TOOL:SaveSliderZoom(self)
 			
 			TOOL:_forceCVarSettings()
+			
+			TOOL:_curSetAdd()
 			
 			local key = prefix .. s[1] .. suffix
 			local vec = wep[key] or Vector()
@@ -462,22 +494,42 @@ function TOOL:_getAimPosCode(prefix, suffix)
 	return out
 end
 
-function TOOL:_getBackupCode(att, suffix)
+function TOOL:_getBackupCode(name, prefix, suffix)
 	local wep = self._wep
 	
-	att = att or self._att
+	name = name or self._att.name
+	prefix = prefix or self._att.prefix
 	suffix = suffix or self._suffix
 	
-	local prefix = att.prefix
 	local pos = prefix .. "Pos" .. suffix
 	local ang = prefix .. "Ang" .. suffix
 	
 	local out = string.format(
 		"\n		[\"%s\"] = {\n			[1] = %s,\n			[2] = %s,\n		},\n",
-		att.name,
+		name,
 		self:VectorToString(wep[pos]),
 		self:VectorToString(wep[ang])
 	)
+	
+	return out
+end
+
+function TOOL:_exportAllNormal()
+	local out = ""
+	
+	for _,kv in pairs(self._curSet[wep].ikey) do
+		out = out .. self:_getAimPosCode(kv.prefix, kv.suffix)
+	end
+	
+	return out
+end
+
+function TOOL:_exportAllBackup()
+	local out = ""
+	
+	for _,kv in pairs(self._curSet[wep].ikey) do
+		out = out .. self:_getBackupCode(kv.name, kv.prefix, kv.suffix)
+	end
 	
 	return out
 end
@@ -638,10 +690,13 @@ function TOOL:_addSectionExportButts()
 			
 			// normal
 			if (i == 1) then
+				SetClipboardText(TOOL:_exportAllNormal())
 				return
 			end
 			
 			// backup
+			local code = TOOL:_exportAllBackup()
+			SetClipboardText(TOOL:_finalizeBackupCode(code))
 		end
 		
 	backgroundPanel:Dock(TOP)
@@ -785,6 +840,11 @@ function TOOL:_updatePanel()
 	
 	self:_prepareAttInfo()
 	self._wepStored = weapons.GetStored(wep:GetClass())
+	
+	self._curSet[wep] = self._curSet[wep] or {
+		skey = {},
+		ikey = {}
+	}
 	
 	self:_addSectionCvars()
 	self:_addSectionAttInfo()
