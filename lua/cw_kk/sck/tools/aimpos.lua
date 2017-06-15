@@ -45,7 +45,7 @@ function TOOL:Initialize()
 		self._relevantAttsCache.primary = primary
 		
 		self.cvarResetDelay = 3
-		self.suffix = ""
+		self._suffix = ""
 	end
 	
 	self._relevantAttsCache.fallback = {
@@ -259,15 +259,17 @@ function TOOL:_addSectionAttInfo()
 		local entry = vgui.Create("DTextEntry", backgroundPanel)
 		entry:Dock(FILL)
 		entry:DockMargin(4,0,0,0)
-		entry:SetText(self.suffix)
+		entry:SetText(self._suffix)
 		
 		function entry:OnEnter()
-			TOOL.suffix = self:GetValue()
-			TOOL:_updatePreviews()
+			TOOL._suffix = self:GetValue()
+			TOOL:_updatePanel()
 		end
 		
 		function entry:OnChange()
-			self:OnEnter()
+			if wep[att.prefix .. "Pos" .. suffix] then
+				self:OnEnter()
+			end
 		end
 		
 	backgroundPanel:Dock(TOP)
@@ -312,7 +314,7 @@ function TOOL:_addSectionWipeReload()
 			// reload
 			if wepStored then
 				local prefix = att.prefix
-				local suffix = TOOL.suffix
+				local suffix = TOOL._suffix
 			
 				for _,part in pairs({"Pos", "Ang"}) do
 					local key = prefix .. part .. suffix
@@ -348,7 +350,7 @@ function TOOL:_addSectionSlidersSight()
 	local att = self._att
 
 	local prefix = att.prefix
-	local suffix = self.suffix
+	local suffix = self._suffix
 	
 	for _,part in pairs({"Pos", "Ang"}) do
 		local key = prefix .. part .. suffix
@@ -389,6 +391,7 @@ function TOOL:_addSectionSlidersSight()
 			
 			local key = prefix .. s[1] .. suffix
 			local vec = wep[key] or Vector()
+			
 			vec[s[2]] = val
 			
 			wep[key] = Vector(vec)
@@ -442,7 +445,7 @@ function TOOL:getAimPosCode(prefix, suffix)
 	local wep = self._wep
 	
 	prefix = prefix or self._att.prefix
-	suffix = suffix or self.suffix
+	suffix = suffix or self._suffix
 	
 	local pos = prefix .. "Pos" .. suffix
 	local ang = prefix .. "Ang" .. suffix
@@ -462,7 +465,7 @@ function TOOL:getBackupCode(att, suffix)
 	local wep = self._wep
 	
 	att = att or self._att
-	suffix = suffix or self.suffix
+	suffix = suffix or self._suffix
 	
 	local prefix = att.prefix
 	local pos = prefix .. "Pos" .. suffix
@@ -516,7 +519,7 @@ function TOOL:_addSectionExportPreviews()
 		label.DoClick = DoClick
 		
 		self._codePreviews[label] = function(l)
-			local key = att.prefix .. "Pos" .. TOOL.suffix
+			local key = att.prefix .. "Pos" .. TOOL._suffix
 			l:SetText(string.format(
 				"SWEP.%s = %s",
 				key,
@@ -533,7 +536,7 @@ function TOOL:_addSectionExportPreviews()
 		label.DoClick = DoClick
 		
 		self._codePreviews[label] = function(l)
-			local key = att.prefix .. "Ang" .. TOOL.suffix
+			local key = att.prefix .. "Ang" .. TOOL._suffix
 			l:SetText(string.format(
 				"SWEP.%s = %s",
 				key,
@@ -769,8 +772,13 @@ function TOOL:_updatePanel()
 	
 	panel:ClearControls()
 	
-	if !IsValid(wep) or !wep.CW20Weapon then
-		panel:AddControl("Label", {Text = "Not a CW2 swep, move along."})
+	if !IsValid(wep) then
+		self:ThrowNewInvalidWeapon()
+		return
+	end
+	
+	if !wep.CW20Weapon then
+		self:ThrowNewNotCW2Weapon()
 		return
 	end
 	
