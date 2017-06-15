@@ -4,9 +4,13 @@ local TOOL = {}
 
 TOOL.Name = "altpos"
 TOOL.PrintName = "AltPos Builder"
-TOOL.Version = "0.9"
+TOOL.Version = "1.0"
 
-function TOOL:_addSectionWipeReload(panel, wep)
+function TOOL:_addSectionWipeReload()
+	local panel = self._panel
+	local wep = self._wep
+	local wepStored = self._wepStored
+	
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	panel:AddItem(backgroundPanel)
 		
@@ -26,10 +30,23 @@ function TOOL:_addSectionWipeReload(panel, wep)
 			
 			// wipe
 			if (i == 1) then
+				for _,slider in pairs(TOOL._sliders) do
+					slider:SetValue(0)
+				end
+				
 				return
 			end
 			
 			// reload
+			if wepStored then
+				for _,part in pairs({"Pos", "Ang"}) do
+					local key = "Alternative" .. part
+					local vec = wepStored[key]
+					wep[key] = vec
+				end
+			end
+			
+			TOOL:_updatePanel()
 		end
 		
 	backgroundPanel:Dock(TOP)
@@ -39,7 +56,20 @@ function TOOL:_addSectionWipeReload(panel, wep)
 	backgroundPanel:SizeToContents()
 end
 
-function TOOL:_addSectionSliders(panel, wep)
+function TOOL:_addSectionSliders()
+	local panel = self._panel
+	local wep = self._wep
+	
+	for _,part in pairs({"Pos", "Ang"}) do
+		local key = "Alternative" .. part
+		wep[key] = 
+			wep[key] and 
+			Vector(wep[key]) or
+			Vector()
+	end
+	
+	self._sliders = {}
+	
 	for _,s in pairs({
 		{"Pos", "x", -50, 50},
 		{"Pos", "y", -50, 50},
@@ -52,21 +82,31 @@ function TOOL:_addSectionSliders(panel, wep)
 		slider:DockMargin(8,0,8,0)
 		slider:SetDecimals(4)
 		slider:SetMinMax(s[3], s[4])
-		slider:SetValue(0)
 		slider:SetText(s[1] .. "." .. s[2])
 		slider:SetDark(true)
+		slider:SetValue(wep["Alternative" .. s[1]][s[2]])
 		
 		self:LoadSliderZoom(slider)
 		
 		function slider:OnValueChanged(val)
 			TOOL:SaveSliderZoom(self)
+			
+			local key = "Alternative" .. s[1]
+			local vec = wep[key]
+			vec[s[2]] = val
+			wep[key] = vec
 		end
 
 		panel:AddItem(slider)
+		
+		table.insert(self._sliders, slider)
 	end
 end
 
-function TOOL:_addSectionPreviewExport(panel, wep)
+function TOOL:_addSectionPreviewExport()
+	local panel = self._panel
+	local wep = self._wep
+	
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	panel:AddItem(backgroundPanel)
 		
@@ -109,17 +149,24 @@ function TOOL:_updatePanel()
 	
 	panel:ClearControls()
 	
-	if !IsValid(wep) or !wep.CW20Weapon then
-		panel:AddControl("Label", {Text = "Not a CW2 swep, move along."})
+	if !IsValid(wep) then
+		self:ThrowNewInvalidWeapon()
+		return
+	end
+	
+	if !wep.CW20Weapon then
+		self:ThrowNewNotCW2Weapon()
 		return
 	end
 	
 	local cbox = panel:AddControl("CheckBox", {Label = "Custom weapon origins? (shortcut)", Command = "cw_alternative_vm_pos"})
 	cbox:DockMargin(8,0,8,0)
 	
-	self:_addSectionWipeReload(panel, wep)
-	self:_addSectionSliders(panel, wep)
-	self:_addSectionPreviewExport(panel, wep)
+	self._wepStored = weapons.GetStored(wep:GetClass())
+	
+	self:_addSectionWipeReload()
+	self:_addSectionSliders()
+	self:_addSectionPreviewExport()
 end
 
 function TOOL:SetPanel(panel)
