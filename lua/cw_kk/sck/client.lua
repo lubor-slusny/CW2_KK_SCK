@@ -124,7 +124,7 @@ end
 function toolMeta:ThrowNewInvalidWeapon()
 	self._panel:ClearControls()
 	self._panel:AddControl("Label", {Text = 
-		"No valid weapon detected. If you reloaded Spawnmenu just now, switch weapons first."
+		"No valid weapon detected. If you reloaded Spawnmenu just now, try switching weapons."
 	})
 end
 
@@ -256,7 +256,7 @@ function BASE:Think()
 			curClip = wep:Clip1()
 			
 			for _,gldtKey in pairs(self._knowGLDTkeys) do
-				curGLState = curGLState or wep.dt[gldtKey]
+				curGLState = curGLState or (wep.dt and wep.dt[gldtKey])
 			end
 		end
 		
@@ -290,20 +290,20 @@ concommand.Add(BASE.strCCReload, function()
 	BASE:Load()
 end)
 
-function BASE:ForceRebuildTools()
-	for _,tool in pairs(self._toolCache) do
-		local panel = tool._panel 
+-- function BASE:ForceRebuildTools()
+	-- for _,tool in pairs(self._toolCache) do
+		-- local panel = tool._panel 
 		
-		if IsValid(panel) then
-			tool:SetPanel(nil)
+		-- if IsValid(panel) then
+			-- tool:SetPanel(nil)
 			
-			panel:Clear()
+			-- panel:Clear()
 			
-			tool:SetPanel(panel)
-		end
-	end
-end
+			-- tool:SetPanel(panel)
+		-- end
+	-- end
+-- end
 
-concommand.Add(BASE.strCCRebuild, function()
-	BASE:ForceRebuildTools()
-end)
+-- concommand.Add(BASE.strCCRebuild, function()
+	-- BASE:ForceRebuildTools()
+-- end)
