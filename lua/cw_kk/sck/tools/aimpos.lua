@@ -685,9 +685,7 @@ function TOOL:_addSectionExportButts()
 		listView:FixColumnsLayout()
 		listView.OnRequestResize = function() end
 		
-		function listView:SortByColumn(i)
-			TOOL:ThrowNewNotImplemented()
-			
+		function listView:SortByColumn(i)			
 			// normal
 			if (i == 1) then
 				SetClipboardText(TOOL:_exportAllNormal())
