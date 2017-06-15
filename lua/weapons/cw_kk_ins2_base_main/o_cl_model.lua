@@ -495,7 +495,11 @@ function SWEP:DrawWorldModel()
 		m = EntGetBoneMatrix(self.Owner, self.OwnerAttachBoneID)
 		
 		if not m then
-			return
+			m = EntGetBoneMatrix(self.Owner, EntLookupBone(self.Owner, "ValveBiped.Bip01_R_Hand"))
+			
+			if not m then
+				return
+			end
 		end
 		
 		pos = m:GetTranslation()
