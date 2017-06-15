@@ -55,7 +55,9 @@ function TOOL:Initialize()
 	}
 end
 
-function TOOL:_addSectionCvars(panel)
+function TOOL:_addSectionCvars()
+	local panel = self._panel
+	
 	local cbox = panel:AddControl("CheckBox", {Label = "Force GM crosshair", Command = "_cw_kk_gm_xhair"})
 	cbox:DockMargin(8, 0, 8, 0)
 	
@@ -86,7 +88,9 @@ function TOOL:_addSectionCvars(panel)
 	panel:AddItem(label, entry)
 end
 
-function TOOL:_addSectionHeaderAttInfo(panel)
+function TOOL:_addSectionHeaderAttInfo()
+	local panel = self._panel
+	
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	panel:AddItem(backgroundPanel)
 		
@@ -108,7 +112,11 @@ function TOOL:_addSectionHeaderAttInfo(panel)
 	backgroundPanel:SizeToContents()
 end
 
-function TOOL:_addSectionAttInfo(panel, wep, att)
+function TOOL:_addSectionAttInfo()
+	local panel = self._panel
+	local wep = self._wep
+	local att = self._att
+
 	self:_addSectionHeaderAttInfo(panel)
 
 	local backgroundPanel = vgui.Create("DPanel", panel)
@@ -269,7 +277,12 @@ function TOOL:_addSectionAttInfo(panel, wep, att)
 	backgroundPanel:SizeToContents()
 end
 
-function TOOL:_addSectionWipeReload(panel, wep, att, wepStored)
+function TOOL:_addSectionWipeReload()
+	local panel = self._panel
+	local wep = self._wep
+	local att = self._att
+	local wepStored = self._wepStored
+	
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	panel:AddItem(backgroundPanel)
 		
@@ -329,7 +342,11 @@ function TOOL:_forceCVarSettings()
 	self._nextCvarReset = CurTime() + self.cvarResetDelay
 end
 
-function TOOL:_addSectionSlidersSight(panel, wep, att)
+function TOOL:_addSectionSlidersSight()
+	local panel = self._panel
+	local wep = self._wep
+	local att = self._att
+
 	local prefix = att.prefix
 	local suffix = self.suffix
 	
@@ -391,7 +408,9 @@ function TOOL:_addSectionSlidersSight(panel, wep, att)
 	backgroundPanel:SizeToContents()
 end
 
-function TOOL:_addSectionHeaderExports(panel)
+function TOOL:_addSectionHeaderExports()
+	local panel = self._panel
+
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	panel:AddItem(backgroundPanel)
 		
@@ -419,9 +438,14 @@ function TOOL:_updatePreviews()
 	end
 end
 
-function TOOL:getAimPosCode(wep, att, suffix)
-	local pos = att.prefix .. "Pos" .. suffix
-	local ang = att.prefix .. "Ang" .. suffix
+function TOOL:getAimPosCode(prefix, suffix)
+	local wep = self._wep
+	
+	prefix = prefix or self._att.prefix
+	suffix = suffix or self.suffix
+	
+	local pos = prefix .. "Pos" .. suffix
+	local ang = prefix .. "Ang" .. suffix
 	
 	local out = string.format(
 		"\n	SWEP.%s = %s\n	SWEP.%s = %s\n",
@@ -434,9 +458,15 @@ function TOOL:getAimPosCode(wep, att, suffix)
 	return out
 end
 
-function TOOL:getBackupCode(wep, att, suffix)
-	local pos = att.prefix .. "Pos" .. suffix
-	local ang = att.prefix .. "Ang" .. suffix
+function TOOL:getBackupCode(att, suffix)
+	local wep = self._wep
+	
+	att = att or self._att
+	suffix = suffix or self.suffix
+	
+	local prefix = att.prefix
+	local pos = prefix .. "Pos" .. suffix
+	local ang = prefix .. "Ang" .. suffix
 	
 	local out = string.format(
 		"\n		[\"%s\"] = {\n			[1] = %s,\n			[2] = %s,\n		},\n",
@@ -448,7 +478,9 @@ function TOOL:getBackupCode(wep, att, suffix)
 	return out
 end
 
-function TOOL:finalizeBackupCode(wep, code)
+function TOOL:finalizeBackupCode(code)
+	local wep = self._wep
+	
 	if !wep.BackupSights then
 		code = string.format(
 			"\n	SWEP.BackupSights = {%s	}\n",
@@ -459,13 +491,17 @@ function TOOL:finalizeBackupCode(wep, code)
 	return code
 end
 
-function TOOL:_addSectionExportPreviews(panel, wep, att)
+function TOOL:_addSectionExportPreviews()
+	local panel = self._panel
+	local wep = self._wep
+	local att = self._att
+
 	self:_addSectionHeaderExports(panel)
 
 	self._codePreviews = {}
 	
 	local function DoClick()
-		SetClipboardText(TOOL:getAimPosCode(wep, att, TOOL.suffix))
+		SetClipboardText(TOOL:getAimPosCode())
 	end
 	
 	local backgroundPanel = vgui.Create("DPanel", panel)
@@ -514,8 +550,8 @@ function TOOL:_addSectionExportPreviews(panel, wep, att)
 	backgroundPanel.DoClick = DoClick
 	
 	local function DoClick()
-		local code = TOOL:getBackupCode(wep, att, TOOL.suffix)
-		code = TOOL:finalizeBackupCode(wep, code)
+		local code = TOOL:getBackupCode()
+		code = TOOL:finalizeBackupCode(code)
 		
 		SetClipboardText(code)
 	end
@@ -575,7 +611,10 @@ function TOOL:_addSectionExportPreviews(panel, wep, att)
 	self:_updatePreviews()
 end
 
-function TOOL:_addSectionExportButts(panel, wep)
+function TOOL:_addSectionExportButts()
+	local panel = self._panel
+	local wep = self._wep
+
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	panel:AddItem(backgroundPanel)
 		
@@ -608,7 +647,10 @@ function TOOL:_addSectionExportButts(panel, wep)
 	backgroundPanel:SizeToContents()
 end
 
-function TOOL:_addSectionMisc(panel, wep)
+function TOOL:_addSectionMisc()
+	local panel = self._panel
+	local wep = self._wep
+
 	panel:AddControl("Label", {Text = "Misc:"}):DockMargin(0,0,0,0)
 	
 	local backgroundPanel = vgui.Create("DPanel", panel)
@@ -690,7 +732,9 @@ function TOOL:_addSectionMisc(panel, wep)
 	panel:AddControl("Label", {Text = ""})
 end
 
-function TOOL:_prepareAttInfo(wep)
+function TOOL:_prepareAttInfo()
+	local wep = self._wep
+
 	if (wep.dt.INS2GLActive or wep.dt.M203Active) then
 		for _,att in pairs(self._relevantAttsCache.grenade) do
 			if wep.ActiveAttachments[att.name] then
@@ -730,18 +774,16 @@ function TOOL:_updatePanel()
 		return
 	end
 	
-	local wepStored = weapons.GetStored(wep:GetClass())
+	self:_prepareAttInfo()
+	self._wepStored = weapons.GetStored(wep:GetClass())
 	
-	self:_prepareAttInfo(wep)
-	local att = self._att
-	
-	self:_addSectionCvars(panel)
-	self:_addSectionAttInfo(panel, wep, att)
-	self:_addSectionWipeReload(panel, wep, att, wepStored)
-	self:_addSectionSlidersSight(panel, wep, att)
-	self:_addSectionExportPreviews(panel, wep, att)
-	self:_addSectionExportButts(panel, wep)
-	self:_addSectionMisc(panel, wep)
+	self:_addSectionCvars()
+	self:_addSectionAttInfo()
+	self:_addSectionWipeReload()
+	self:_addSectionSlidersSight()
+	self:_addSectionExportPreviews()
+	self:_addSectionExportButts()
+	self:_addSectionMisc()
 end
 
 function TOOL:SetPanel(panel)
