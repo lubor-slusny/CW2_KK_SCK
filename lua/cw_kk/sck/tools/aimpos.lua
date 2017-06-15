@@ -267,6 +267,7 @@ function TOOL:_addSectionAttInfo()
 		end
 		
 		function entry:OnChange()
+			local suffix = self:GetValue()
 			if wep[att.prefix .. "Pos" .. suffix] then
 				self:OnEnter()
 			end
