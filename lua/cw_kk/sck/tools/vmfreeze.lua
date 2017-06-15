@@ -113,12 +113,12 @@ function TOOL:_buildUnFreezeSection()
 	end
 end
 
-function TOOL:_buildUnFreezeAllSection(trhd)
+function TOOL:_buildUnFreezeAllSection(threshold)
 	local panel = self._panel
 	local wep = self._wep
 	
 	local curFrozen = table.Count(self._frozen)
-	if curFrozen > trhd then
+	if curFrozen > threshold then
 		local butt
 		butt = vgui.Create("DButton", panel)
 		butt:DockMargin(8, 0, 8, 8)	
@@ -145,10 +145,15 @@ function TOOL:_updatePanel()
 	
 	self._frozen = self._frozen or {}
 	
-	if !IsValid(wep) or !wep.CW20Weapon then
-		if not self:_buildUnFreezeAllSection(0) then
-			panel:AddControl("Label", {Text = "Not a CW2 swep, move along."})
-		end
+	self:_buildUnFreezeAllSection(0)
+	
+	if !IsValid(wep) then
+		self:ThrowNewInvalidWeapon()
+		return
+	end
+	
+	if !wep.CW20Weapon then
+		self:ThrowNewNotCW2Weapon()
 		return
 	end
 	

@@ -21,8 +21,13 @@ function TOOL:_updatePanel()
 	
 	panel:ClearControls()
 	
-	if !IsValid(wep) or !wep.CW20Weapon then
-		panel:AddControl("Label", {Text = "Not a CW2 swep, move along."})
+	if !IsValid(wep) then
+		self:ThrowNewInvalidWeapon()
+		return
+	end
+	
+	if !wep.CW20Weapon then
+		self:ThrowNewNotCW2Weapon()
 		return
 	end
 	
