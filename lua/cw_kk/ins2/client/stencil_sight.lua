@@ -317,7 +317,11 @@ function CustomizableWeaponry_KK.ins2.stencilSight:_SpamErrors(wep, att)
 	if self._errors[id] != "" then
 		msg = "Invalid model \"" .. mdl .. "\", loaded from:\n	\n	" .. self._errors[id]
 	else
-		msg = "Invalid model \"" .. mdl .. "\". Browse your LEGACY addons for conflicting file.\n"
+		if file.Exists(mdl, "GAME") then
+			msg = "Invalid model \"" .. mdl .. "\". Browse your LEGACY addons for conflicting file.\n"
+		else
+			msg = "Invalid model \"" .. mdl .. "\". Model not found in mounted content.\n"
+		end
 	end
 	
 	print("	\n[CW 2.0 KK INS2 SWEPs] " .. msg)
