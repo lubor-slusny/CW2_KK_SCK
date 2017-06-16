@@ -117,7 +117,7 @@ function CustomizableWeaponry_KK.ins2:isContentMounted4()
 		end
 	end
 	
-	return true
+	return baseGameContentOK
 end
 
 if CLIENT then
