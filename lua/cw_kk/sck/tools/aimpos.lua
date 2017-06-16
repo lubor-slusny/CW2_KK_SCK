@@ -1,4 +1,3 @@
-if not CustomizableWeaponry_KK.HOME then return end
 
 CustomizableWeaponry.originalValue:add("AimSwayIntensity", false, false)
 
@@ -59,34 +58,52 @@ end
 function TOOL:_addSectionCvars()
 	local panel = self._panel
 	
-	local cbox = panel:AddControl("CheckBox", {Label = "Force GM crosshair", Command = "_cw_kk_gm_xhair"})
-	cbox:DockMargin(8, 0, 8, 0)
-	
 	local cbox = panel:AddControl("CheckBox", {Label = "Freeze reticles (supported sights only)", Command = "cw_kk_freeze_reticles"})
 	cbox:DockMargin(8, 0, 8, 0)
 	
 	local cbox = panel:AddControl("CheckBox", {Label = "Hold aim (+attack2 spam)", Command = "_cw_kk_sck_lock_ads"})
 	cbox:DockMargin(8, 0, 8, 0)
 	
+	local backgroundPanel = vgui.Create("DPanel", panel)
+	panel:AddItem(backgroundPanel)
+		
+		local label = vgui.Create("DLabel", backgroundPanel)
+		label:SetText("^^ auto-reset in (-1 dont):")
+		label:SetDark(true)
+		label:Dock(LEFT)
+		label:DockMargin(0,0,4,0)
+		label:SizeToContents()
+		
+		local entry = vgui.Create("DTextEntry", backgroundPanel)
+		entry:Dock(FILL)
+		entry:DockMargin(4,0,4,0)
+		-- entry:SetWide(32)
+		entry:SetNumeric(true)
+		entry:SetText(self.cvarResetDelay)
+		
+		local label = vgui.Create("DLabel", backgroundPanel)
+		label:SetText("s")
+		label:SetDark(true)
+		label:Dock(RIGHT)
+		label:DockMargin(4,0,0,0)
+		label:SizeToContents()
+		
+		function entry:OnEnter()
+			TOOL.cvarResetDelay = self:GetFloat()
+		end
+		
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:DockMargin(8,0,8,0)
+	backgroundPanel:SetSize(200,20)
+	backgroundPanel:SetPaintBackground(false)
+	backgroundPanel:SizeToContents()
+	
+	local cbox = panel:AddControl("CheckBox", {Label = "Force GM crosshair", Command = "_cw_kk_gm_xhair"})
+	cbox:DockMargin(8, 0, 8, 0)
+	
 	local cbox = panel:AddControl("CheckBox", {Label = "Free Aim: Enabled (shortcut)", Command = "cw_freeaim"})
 	cbox:DockMargin(8, 0, 8, 0)
 	
-	local label = vgui.Create("DLabel", backgroundPanel)
-	label:SetText("^^ auto-turn-off in:")
-	label:SetDark(true)
-	label:DockMargin(8,0,8,0)
-		
-	local entry = vgui.Create("DTextEntry", backgroundPanel)
-	entry:Dock(TOP)
-	entry:DockMargin(8,0,8,0)
-	entry:SetNumeric(true)
-	entry:SetText(self.cvarResetDelay)
-	
-	function entry:OnEnter()
-		TOOL.cvarResetDelay = self:GetFloat()
-	end
-	
-	panel:AddItem(label, entry)
 end
 
 function TOOL:_addSectionHeaderAttInfo()
