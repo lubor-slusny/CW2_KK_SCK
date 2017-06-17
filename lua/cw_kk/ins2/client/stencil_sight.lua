@@ -36,10 +36,11 @@ function CustomizableWeaponry_KK.ins2.stencilSight:_drawStencilEnt(wep, att)
 		v.stencilEnt:SetupBones()
 		
 		if v.merge then
-			v.stencilEnt:SetParent(wep.CW_VM)
+			v.stencilEnt:SetParent(v.ent:GetParent())
 			v.stencilEnt:AddEffects(EF_BONEMERGE)
+			v.stencilEnt:AddEffects(EF_BONEMERGE_FASTCULL)
 		end
-		
+	
 		for i,m in pairs(v.stencilEnt:GetMaterials()) do
 			if self.lenses[m] then
 				v.stencilEnt:SetSubMaterial(i - 1, strStencil)

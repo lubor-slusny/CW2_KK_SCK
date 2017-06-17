@@ -69,7 +69,7 @@ function CustomizableWeaponry_KK.ins2.rtSight:renderTarget(wep, att)
 	end
 	
 	attachmEnt = wep.AttachmentModelsVM[att.name].ent
-	attachmEnt:SetupBones()
+	-- attachmEnt:SetupBones()
 	mdlAttRear = attachmEnt:GetAttachment(1)
 	mdlAttFront = attachmEnt:GetAttachment(2)
 	
@@ -128,7 +128,6 @@ function CustomizableWeaponry_KK.ins2.rtSight:renderTarget(wep, att)
 			end
 			
 			oldStencilChk = wep._KK_INS2_stencilsDisableLaser
-			
 			wep._KK_INS2_stencilsDisableLaser = false
 				for _,lam in pairs(tblLams) do
 					if wep.ActiveAttachments[lam] then
