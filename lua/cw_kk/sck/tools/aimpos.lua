@@ -1,4 +1,3 @@
-
 CustomizableWeaponry.originalValue:add("AimSwayIntensity", false, false)
 
 local TOOL = {}

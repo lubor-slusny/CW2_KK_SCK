@@ -116,7 +116,9 @@ function TOOL:_addSectionSkinSlider(panel, entTab)
 	slider:SetText("Skin")
 
 	function slider:_kkReload()
-		self:SetValue(ent:GetSkin())
+		if IsValid(ent) then
+			self:SetValue(ent:GetSkin())
+		end
 	end
 	
 	self._sliders = self._sliders or {}
@@ -181,7 +183,9 @@ function TOOL:_addSectionBodygroups(panel, entTab, i)
 	slider:SetText(bgText)
 
 	function slider:_kkReload()
-		self:SetValue(ent:GetBodygroup(i))
+		if IsValid(ent) then
+			self:SetValue(ent:GetBodygroup(i))
+		end
 	end
 	
 	self._sliders = self._sliders or {}
