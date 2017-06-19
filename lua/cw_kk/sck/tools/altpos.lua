@@ -24,8 +24,6 @@ function TOOL:_addSectionWipeReload()
 		listView.OnRequestResize = function() end
 		
 		function listView:SortByColumn(i)
-			TOOL:ThrowNewNotImplemented()
-			
 			// wipe
 			if (i == 1) then
 				for _,slider in pairs(TOOL._sliders) do

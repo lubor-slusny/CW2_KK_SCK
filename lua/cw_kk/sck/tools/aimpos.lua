@@ -1,3 +1,43 @@
+////////////
+// LEGACY //
+////////////
+
+if CLIENT then
+	local SP = game.SinglePlayer()
+	local cvXH = CreateClientConVar("_cw_kk_gm_xhair", 0, false, false)
+	local cvLA = CreateClientConVar("_cw_kk_sck_lock_ads", 0, false, false)
+	
+	if SP then
+		local ply, wep
+		
+		hook.Add("Think", "_cw_kk_gm_xhair_think", function()
+			ply = LocalPlayer()
+			wep = ply:GetActiveWeapon()
+			
+			if !wep.CW20Weapon then return end
+			
+			wep.DrawCrosshair = cvXH:GetInt() == 1
+		end)
+		
+		local _ADS_LAST, cur
+		hook.Add("Think", "_cw_kk_sck_lock_ads_think", function() 
+			cur = cvLA:GetInt()
+			if cur != _ADS_LAST and _ADS_LAST != nil then
+				if cur == 0 then
+					RunConsoleCommand("-attack2")
+				else
+					RunConsoleCommand("+attack2")
+				end
+			end
+			_ADS_LAST = cur
+		end)
+	end
+end
+
+////////////
+//   V5   //
+////////////
+
 CustomizableWeaponry.originalValue:add("AimSwayIntensity", false, false)
 
 local TOOL = {}
