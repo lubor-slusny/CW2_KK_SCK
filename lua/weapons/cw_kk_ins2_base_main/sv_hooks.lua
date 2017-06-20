@@ -91,7 +91,7 @@ local function takeDmg(ent, d)
 	local origInflictor = d:GetInflictor()
 	
 	if !IsValid(origAttacker) or !IsValid(origInflictor) then
-		return true
+		return
 	end
 	
 	local newAttacker = origInflictor._kkFixAttacker
