@@ -1,3 +1,5 @@
+AddCSLuaFile()
+
 local TOOL = {}
 
 TOOL.Name = "altpos"

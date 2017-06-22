@@ -2,8 +2,8 @@ AddCSLuaFile()
 
 local TOOL = {}
 
-TOOL.Name = "swepcheck"
-TOOL.PrintName = "Check basics"
+TOOL.Name = "template"
+TOOL.PrintName = "Tool File Template"
 
 function TOOL:_updatePanel()
 	local panel = self._panel
