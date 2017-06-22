@@ -286,10 +286,6 @@ end
 
 hook.Add("Think", BASE, BASE.Think)
 
-concommand.Add(BASE.strCCReload, function()
-	BASE:Load()
-end)
-
 -- function BASE:ForceRebuildTools()
 	-- for _,tool in pairs(self._toolCache) do
 		-- local panel = tool._panel 

@@ -1,3 +1,5 @@
+AddCSLuaFile()
+
 CustomizableWeaponry_KK = CustomizableWeaponry_KK or {}
 CustomizableWeaponry_KK.sck = CustomizableWeaponry_KK.sck or {}
 
@@ -13,6 +15,8 @@ BASE.strCCRebuild = "cw_kk_sck_rebuild_panels"
 BASE.strKnownGLDTKeys = "M203Active|INS2GLActive"
 
 function BASE:Load()
+	print("[KK SCK] starting tool folder scan")
+	
 	if CLIENT then
 		local reload = self._toolCache != nil
 		
@@ -26,6 +30,7 @@ function BASE:Load()
 	for _,v in pairs(file.Find(self.ToolsFolder .. "*", "LUA")) do
 		AddCSLuaFile(self.ToolsFolder .. v)
 		if CLIENT then
+			print("[KK SCK] loading file", v)
 			include(self.ToolsFolder .. v)
 		end
 	end
@@ -35,6 +40,8 @@ function BASE:Load()
 			RunConsoleCommand("spawnmenu_reload")
 		end
 	end
+	
+	print("[KK SCK] finished tool folder scan")
 end
 
 if SERVER then
@@ -45,3 +52,7 @@ AddCSLuaFile("client.lua")
 if CLIENT then
 	include("client.lua")
 end
+
+concommand.Add(BASE.strCCReload, function()
+	BASE:Load()
+end)
