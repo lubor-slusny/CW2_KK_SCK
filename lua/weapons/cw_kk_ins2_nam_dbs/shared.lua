@@ -19,6 +19,7 @@ if CLIENT then
 	
 	SWEP.NoShells = true
 	SWEP.Shell = "KK_INS2_12guage"
+	SWEP.ShellEjectVelocity = 0
 	
 	SWEP.ShellViewAngleAlign = {Forward = 0, Right = 0, Up = 0}
 	

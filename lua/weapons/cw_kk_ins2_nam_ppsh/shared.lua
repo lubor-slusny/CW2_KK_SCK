@@ -93,7 +93,7 @@ SWEP.SpeedDec = 15
 
 SWEP.Slot = 2
 SWEP.SlotPos = 0
-SWEP.NormalHoldType = "ar2"
+SWEP.NormalHoldType = "smg"
 SWEP.RunHoldType = "passive"
 SWEP.FireModes = {"auto", "semi"}
 SWEP.Base = "cw_kk_ins2_base"
@@ -109,8 +109,8 @@ SWEP.ViewModelFlip	= false
 SWEP.ViewModel		= "models/weapons/v_ppsh.mdl"
 SWEP.WorldModel		= "models/weapons/w_ppsh.mdl"
 
-SWEP.WMPos = Vector(5.176, 0.889, -1.417)
-SWEP.WMAng = Vector(-10, 0, 180)
+SWEP.WMPos = Vector(6.176, 0.5, 0)
+SWEP.WMAng = Vector(-15, 0, 180)
 
 SWEP.CW_GREN_TWEAK = CustomizableWeaponry_KK.ins2.quickGrenade.models.rgd5
 SWEP.CW_KK_KNIFE_TWEAK = CustomizableWeaponry_KK.ins2.quickKnife.models.b2keh

@@ -197,6 +197,7 @@ if CLIENT then
 	killicon.Add("cw_kk_ins2_doi_m3",					"vgui/hud/weapons/weapon_m3greasegun", killCol)
 	killicon.Add("cw_kk_ins2_doi_m3a1",					"vgui/hud/weapons/weapon_m3greasegun", killCol)
 	killicon.Add("cw_kk_ins2_doi_mp40",					"vgui/hud/weapons/weapon_mp40", killCol)
+	killicon.Add("cw_kk_ins2_doi_mp40_mx",				"vgui/hud/weapons/weapon_mp40", killCol)
 	killicon.Add("cw_kk_ins2_doi_owen_mk1",				"vgui/hud/weapons/weapon_owen", killCol)
 	killicon.Add("cw_kk_ins2_doi_owen_mk2",				"vgui/hud/weapons/weapon_owen", killCol)
 	killicon.Add("cw_kk_ins2_doi_sten_mk2",				"vgui/hud/weapons/weapon_sten_mk2", killCol)

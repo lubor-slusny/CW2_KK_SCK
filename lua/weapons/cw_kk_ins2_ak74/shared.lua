@@ -18,7 +18,8 @@ if CLIENT then
 	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_ak74")
 	
 	SWEP.Shell = "KK_INS2_545x39"
-	SWEP.ShellDelay = 0.06
+	SWEP.ShellDelay = 0.05
+	SWEP.ShellViewAngleAlign = {Forward = 0, Right = 0, Up = -30}
 	
 	SWEP.BackupSights = {
 		["kk_ins2_elcan"] = {

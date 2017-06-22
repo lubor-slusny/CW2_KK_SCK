@@ -265,7 +265,8 @@ SWEP.ReloadTimes = {
 if CLIENT then
 	local bone = 66
 	local dir = Vector(0,0,-1)
-
+	local angleVel = Vector()
+	
 	local vm, att, pos, ang, velocity, align, shellEnt
 
 	function SWEP:shellEvent2()
@@ -287,6 +288,7 @@ if CLIENT then
 				pos,
 				ang,
 				velocity,
+				angleVel,
 				self._shellTable2,
 				self.Shell2Scale
 			)
@@ -304,10 +306,11 @@ if CLIENT then
 			ang:RotateAroundAxis(ang:Forward(), align.Forward)
 			ang:RotateAroundAxis(ang:Up(), align.Up)
 			
-			shellEnt = CustomizableWeaponry_KK.ins2.shells:make(
+			CustomizableWeaponry_KK.ins2.shells:make(
 				pos,
 				ang,
 				velocity,
+				angleVel,
 				self._shellTable2,
 				self.Shell2Scale
 			)
