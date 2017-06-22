@@ -102,14 +102,23 @@ if CLIENT then
 	SWEP.MuzzleAttachmentName = "muzzle"
 	SWEP.WorldMuzzleAttachmentID = 1
 	
+	SWEP.Shell = "KK_INS2_40mm"
 	SWEP.ShellScale = 1
-	SWEP.ShellOffsetMul = 0
 	SWEP.ShellViewAttachmentName = "shell"
+	-- SWEP.ShellViewAttachmentID = "shell" // lookup done in initialize
 	SWEP.ShellViewAngleAlign = {Forward = 0, Right = 0, Up = 0}
 	SWEP.ShellWorldAttachmentID = 2
 	SWEP.ShellWorldAngleAlign = {Forward = 0, Right = 0, Up = 0}
+	SWEP.ShellEjectVelocity = 150
 	
 	SWEP.Shell2 = false
+	SWEP.Shell2Scale = 1
+	SWEP.Shell2ViewAttachmentName = "link"
+	-- SWEP.Shell2ViewAttachmentID = "shell" // lookup done in initialize
+	SWEP.Shell2ViewAngleAlign = {Forward = 0, Right = 0, Up = 0}
+	SWEP.Shell2WorldAttachmentID = 2
+	SWEP.Shell2WorldAngleAlign = {Forward = 0, Right = 0, Up = 0}
+	SWEP.Shell2EjectVelocity = 150
 	
 	SWEP.SwayIntensity = 0.7
 	SWEP.AimSwayIntensity = 0.3

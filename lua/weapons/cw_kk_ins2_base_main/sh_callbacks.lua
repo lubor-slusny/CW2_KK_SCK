@@ -49,6 +49,9 @@ CustomizableWeaponry.callbacks:addNew("initialize", "KK_INS2_BASE", function(wep
 		if wep.ShellViewAttachmentName then
 			wep.ShellViewAttachmentID = wep.CW_VM:LookupAttachment(wep.ShellViewAttachmentName)
 		end
+		if wep.Shell2ViewAttachmentName then
+			wep.Shell2ViewAttachmentID = wep.CW_VM:LookupAttachment(wep.Shell2ViewAttachmentName)
+		end
 		
 		// sth sth darqside
 		wep._deployedShells = {}
