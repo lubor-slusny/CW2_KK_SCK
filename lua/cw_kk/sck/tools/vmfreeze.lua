@@ -1,3 +1,5 @@
+AddCSLuaFile()
+
 local TOOL = {}
 
 TOOL.Name = "vmfreeze"
@@ -144,8 +146,6 @@ function TOOL:_updatePanel()
 	panel:ClearControls()
 	
 	self._frozen = self._frozen or {}
-	
-	self:_buildUnFreezeAllSection(0)
 	
 	if !IsValid(wep) then
 		self:ThrowNewInvalidWeapon()
