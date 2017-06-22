@@ -1,8 +1,8 @@
 
-local function shell(wep) 
+local function shell(wep)
 	if SERVER then return end
 	
-	wep:shellEvent() 
+	wep:shellEvent()
 end
 
 SWEP.Sounds = {
@@ -41,6 +41,7 @@ SWEP.Sounds = {
 		{time = 0/30, sound = "CW_KK_INS2_GL_BEGINRELOAD"},
 		{time = 14/30, sound = "CW_KK_INS2_NAM_DBS_BREAKOPEN"},
 		{time = 41/30, sound = "CW_KK_INS2_NAM_DBS_SHELLEJECT"},
+		-- {time = 55/30, sound = "", callback = shell},
 		{time = 84/30, sound = "CW_KK_INS2_NAM_DBS_SHELLINSERT"},
 		{time = 111/30, sound = "CW_KK_INS2_NAM_DBS_BREAKCLOSE"},
 	},
@@ -49,6 +50,8 @@ SWEP.Sounds = {
 		{time = 0/30, sound = "CW_KK_INS2_GL_BEGINRELOAD"},
 		{time = 14/30, sound = "CW_KK_INS2_NAM_DBS_BREAKOPEN"},
 		{time = 38/30, sound = "CW_KK_INS2_NAM_DBS_SHELLSEJECT"},
+		{time = 39/30, sound = "", callback = shell},
+		{time = 40/30, sound = "", callback = shell},
 		{time = 99/30, sound = "CW_KK_INS2_NAM_DBS_SHELLINSERT"},
 		{time = 125/30, sound = "CW_KK_INS2_NAM_DBS_SHELLINSERT"},
 		{time = 154/30, sound = "CW_KK_INS2_NAM_DBS_BREAKCLOSE"},

@@ -1,16 +1,8 @@
 
-local down = Vector(0,0,-10)
-
 local function shell(wep)
 	if SERVER then return end
 	
-	local att = wep.CW_VM:GetAttachment(2)
-	local dir = att.Ang:Forward()
-	local pos = att.Pos + dir * 10
-	local ang = wep.Owner:EyeAngles()
-	ang:RotateAroundAxis(ang:Up(), 180)
-	
-	CustomizableWeaponry_KK.ins2.shells:make(pos, ang, down, wep._shellTable, 1)
+	wep:shellEventReload()
 end
 
 SWEP.Sounds = {
@@ -42,7 +34,7 @@ SWEP.Sounds = {
 		{time = 0/30, sound = "CW_KK_INS2_GL_BEGINRELOAD"},
 		{time = 14/30, sound = "CW_KK_INS2_M203_OPENBARREL"},
 		{time = 40/30, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
-		{time = 55/30, sound = "", callback = shell},
+		{time = 50/30, sound = "", callback = shell},
 		{time = 83/30, sound = "CW_KK_INS2_M203_INSERTGRENADE"},
 		{time = 119/30, sound = "CW_KK_INS2_M203_CLOSEBARREL"},
 	},
@@ -51,7 +43,7 @@ SWEP.Sounds = {
 		{time = 0/30, sound = "CW_KK_INS2_GL_BEGINRELOAD"},
 		{time = 14/30, sound = "CW_KK_INS2_M203_OPENBARREL"},
 		{time = 40/30, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
-		{time = 55/30, sound = "", callback = shell},
+		{time = 50/30, sound = "", callback = shell},
 		{time = 83/30, sound = "CW_KK_INS2_M203_INSERTGRENADE"},
 		{time = 121/30, sound = "CW_KK_INS2_M203_CLOSEBARREL"},
 	},
@@ -60,7 +52,7 @@ SWEP.Sounds = {
 		{time = 0/30, sound = "CW_KK_INS2_GL_BEGINRELOAD"},
 		{time = 14/30, sound = "CW_KK_INS2_M203_OPENBARREL"},
 		{time = 40/30, sound = "CW_KK_INS2_UNIVERSAL_LEANIN"},
-		{time = 55/30, sound = "", callback = shell},
+		{time = 50/30, sound = "", callback = shell},
 		{time = 83/30, sound = "CW_KK_INS2_M203_INSERTGRENADE"},
 		{time = 119/30, sound = "CW_KK_INS2_M203_CLOSEBARREL"},
 	},

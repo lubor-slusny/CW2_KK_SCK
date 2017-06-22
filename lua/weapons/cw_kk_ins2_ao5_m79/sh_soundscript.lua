@@ -1,16 +1,8 @@
 
-local down = Vector(0,0,-10)
-
 local function shell(wep)
 	if SERVER then return end
 	
-	local att = wep.CW_VM:GetAttachment(2)
-	local dir = att.Ang:Forward()
-	local pos = att.Pos + dir * 10
-	local ang = wep.Owner:EyeAngles()
-	ang:RotateAroundAxis(ang:Up(), 180)
-	
-	CustomizableWeaponry_KK.ins2.shells:make(pos, ang, down, wep._shellTable, 1)
+	wep:shellEventReload()
 end
 
 SWEP.Sounds = {

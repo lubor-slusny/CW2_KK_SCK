@@ -49,68 +49,37 @@ function SWEP:drawVMShells()
 end
 
 //-----------------------------------------------------------------------------
+// idk
+//-----------------------------------------------------------------------------
+
+function SWEP:calcShellAngleVelocity(ang)
+	return 
+		-- ang:Forward() * (math.random(40,50) * -100) +
+		ang:Up() * (math.random(80,130) * -100) +
+		ang:Right() * (math.random(40,50) * -100)
+		-- Vector()
+end
+
+//-----------------------------------------------------------------------------
 // CreateShell edited to use 
 // - custom makeShell function
 // - registerVMShell
 //-----------------------------------------------------------------------------
-
-local vm, att, pos, ang, velocity, align, shellEnt
 
 function SWEP:CreateShell()
 	if self.NoShells or self.Owner:ShouldDrawLocalPlayer() then
 		return
 	end
 	
-	vm = self.CW_VM
-	att = vm:GetAttachment(self.ShellViewAttachmentID)
-	
-	if att then
-		if self.ShellDelay then
-			CustomizableWeaponry.actionSequence.new(self, self.ShellDelay, nil, function()
-				att = vm:GetAttachment(self.ShellViewAttachmentID)
-				
-				pos = att.Pos
-				ang = att.Ang
-				velocity = self.Owner:GetVelocity() + ang:Forward() * (self.ShellEjectVelocity or 200)
-				
-				align = self.ShellViewAngleAlign
-				ang:RotateAroundAxis(ang:Forward(), align.Forward)
-				ang:RotateAroundAxis(ang:Right(), align.Right)
-				ang:RotateAroundAxis(ang:Up(), align.Up)
-				
-				shellEnt = CustomizableWeaponry_KK.ins2.shells:make(
-					pos,
-					ang,
-					velocity,
-					self._shellTable1,
-					self.ShellScale
-				)
-				
-				self:_registerVMShell(shellEnt)
-			end)
-		else
-			att = vm:GetAttachment(self.ShellViewAttachmentID)
-			
-			pos = att.Pos
-			ang = att.Ang
-			velocity = self.Owner:GetVelocity() + ang:Forward() * (self.ShellEjectVelocity or 200)
-			
-			align = self.ShellViewAngleAlign
-			ang:RotateAroundAxis(ang:Forward(), align.Forward)
-			ang:RotateAroundAxis(ang:Right(), align.Right)
-			ang:RotateAroundAxis(ang:Up(), align.Up)
-			
-			shellEnt = CustomizableWeaponry_KK.ins2.shells:make(
-				pos,
-				ang,
-				velocity,
-				self._shellTable1,
-				self.ShellScale
-			)
-			
-			self:_registerVMShell(shellEnt)
-		end
+	if self.ShellDelay then
+		CustomizableWeaponry.actionSequence.new(self, self.ShellDelay, nil, function()
+			self:shellEvent()
+		end)
+		
+		return
 	end
+	
+	self:shellEvent()
 end
 
 //-----------------------------------------------------------------------------
@@ -118,45 +87,51 @@ end
 //-----------------------------------------------------------------------------
 
 function SWEP:shellEvent()
-	if self.Owner:ShouldDrawLocalPlayer() then
-		vm = self:getMuzzleModel()
+	if !IsValid(self.Owner) or self.Owner:ShouldDrawLocalPlayer() then
+		local vm = self:getMuzzleModel()
 		
-		att = vm:GetAttachment(self.ShellWorldAttachmentID)
+		local att = vm:GetAttachment(self.ShellWorldAttachmentID)
 		
-		pos = att.Pos
-		ang = att.Ang
-		velocity = self.Owner:GetVelocity() + ang:Forward() * (self.ShellEjectVelocity or 200)
+		local pos = att.Pos
+		local ang = att.Ang
 		
-		align = self.ShellWorldAngleAlign
+		local baseVelocity = IsValid(self.Owner) and self.Owner:GetVelocity() or self:GetVelocity()
+		local velocity = baseVelocity + ang:Forward() * (self.ShellEjectVelocity)
+		
+		local align = self.ShellWorldAngleAlign
 		ang:RotateAroundAxis(ang:Forward(), align.Forward)
 		ang:RotateAroundAxis(ang:Right(), align.Right)
 		ang:RotateAroundAxis(ang:Up(), align.Up)
+		local angleVelocity = self:calcShellAngleVelocity(ang)
 		
 		CustomizableWeaponry_KK.ins2.shells:make(
 			pos,
 			ang,
 			velocity,
+			angleVelocity,
 			self._shellTable1,
 			self.ShellScale
 		)
 	else
-		vm = self.CW_VM
+		local vm = self.CW_VM
 		
-		att = vm:GetAttachment(self.ShellViewAttachmentID)
+		local att = vm:GetAttachment(self.ShellViewAttachmentID)
 		
-		pos = att.Pos
-		ang = att.Ang
-		velocity = self.Owner:GetVelocity() + ang:Forward() * (self.ShellEjectVelocity or 200)
+		local pos = att.Pos
+		local ang = att.Ang
+		local velocity = self.Owner:GetVelocity() + ang:Forward() * (self.ShellEjectVelocity)
 		
-		align = self.ShellViewAngleAlign
+		local align = self.ShellViewAngleAlign
 		ang:RotateAroundAxis(ang:Forward(), align.Forward)
 		ang:RotateAroundAxis(ang:Right(), align.Right)
 		ang:RotateAroundAxis(ang:Up(), align.Up)
+		local angleVelocity = self:calcShellAngleVelocity(ang)
 		
 		shellEnt = CustomizableWeaponry_KK.ins2.shells:make(
 			pos,
 			ang,
 			velocity,
+			angleVelocity,
 			self._shellTable1,
 			self.ShellScale
 		)
@@ -167,15 +142,16 @@ end
 
 function SWEP:shellEvent2()
 	if self.Owner:ShouldDrawLocalPlayer() then
-		vm = self:getMuzzleModel()
+		local vm = self:getMuzzleModel()
 		
-		att = vm:GetAttachment(self.ShellWorldAttachmentID)
+		local att = vm:GetAttachment(self.Shell2WorldAttachmentID)
 		
-		pos = att.Pos
-		ang = att.Ang
-		velocity = self.Owner:GetVelocity() + ang:Forward() * (self.Shell2EjectVelocity or 200)
+		local pos = att.Pos
+		local ang = att.Ang
+		local velocity = self.Owner:GetVelocity() + ang:Forward() * (self.Shell2EjectVelocity)
+		local angleVelocity = self:calcShellAngleVelocity(ang)
 		
-		align = self.Shell2WorldAngleAlign
+		local align = self.Shell2WorldAngleAlign
 		ang:RotateAroundAxis(ang:Forward(), align.Forward)
 		ang:RotateAroundAxis(ang:Right(), align.Right)
 		ang:RotateAroundAxis(ang:Up(), align.Up)
@@ -184,19 +160,21 @@ function SWEP:shellEvent2()
 			pos,
 			ang,
 			velocity,
+			angleVelocity,
 			self._shellTable2,
 			self.Shell2Scale
 		)
 	else
-		vm = self.CW_VM
+		local vm = self.CW_VM
 		
-		att = vm:GetAttachment(self.Shell2ViewAttachmentID)
+		local att = vm:GetAttachment(self.Shell2ViewAttachmentID)
 		
-		pos = att.Pos
-		ang = att.Ang
-		velocity = self.Owner:GetVelocity() + ang:Forward() * (self.Shell2EjectVelocity or 200)
+		local pos = att.Pos
+		local ang = att.Ang
+		local velocity = self.Owner:GetVelocity() + ang:Forward() * (self.Shell2EjectVelocity)
+		local angleVelocity = self:calcShellAngleVelocity(ang)
 		
-		align = self.Shell2ViewAngleAlign
+		local align = self.Shell2ViewAngleAlign
 		ang:RotateAroundAxis(ang:Forward(), align.Forward)
 		ang:RotateAroundAxis(ang:Right(), align.Right)
 		ang:RotateAroundAxis(ang:Up(), align.Up)
@@ -205,6 +183,7 @@ function SWEP:shellEvent2()
 			pos,
 			ang,
 			velocity,
+			angleVelocity,
 			self._shellTable2,
 			self.Shell2Scale
 		)
@@ -215,17 +194,18 @@ end
 
 local m203 = CustomizableWeaponry.shells:getShell("KK_INS2_40mm")
 local down = Vector(0,0,-10)
+local downAngle = Vector()
 
 function SWEP:shellEvent203()
 	if self.Owner:ShouldDrawLocalPlayer() then
-		vm = self:getMuzzleModel()
+		local vm = self:getMuzzleModel()
 		
-		att = vm:GetAttachment(8)
+		local att = vm:GetAttachment(8)
 		
-		pos = att.Pos
-		ang = att.Ang
+		local pos = att.Pos
+		local ang = att.Ang
 		
-		align = self.Shell2WorldAngleAlign
+		local align = self.Shell2WorldAngleAlign
 		ang:RotateAroundAxis(ang:Forward(), align.Forward)
 		ang:RotateAroundAxis(ang:Right(), align.Right)
 		ang:RotateAroundAxis(ang:Up(), align.Up)
@@ -234,18 +214,20 @@ function SWEP:shellEvent203()
 			pos,
 			ang,
 			down,
+			downAngle,
 			m203,
 			1
 		)
 	else
 		local glAtt = self._currentGrenadeLauncher and self._currentGrenadeLauncher.name
-		vm = glAtt and self.AttachmentModelsVM[glAtt] and self.AttachmentModelsVM[glAtt].ent
+		local vm = glAtt and self.AttachmentModelsVM[glAtt] and self.AttachmentModelsVM[glAtt].ent
 		
 		if not vm then
 			return
 		end
 		
-		att = vm:GetAttachment(2)
+		local att = vm:GetAttachment(2)
+		local pos, ang
 		
 		if att then
 			pos = att.Pos
@@ -263,7 +245,7 @@ function SWEP:shellEvent203()
 			-- end
 		end
 		
-		align = self.Shell2ViewAngleAlign
+		local align = self.Shell2ViewAngleAlign
 		ang:RotateAroundAxis(ang:Forward(), align.Forward)
 		ang:RotateAroundAxis(ang:Right(), align.Right)
 		ang:RotateAroundAxis(ang:Up(), align.Up)
@@ -272,24 +254,23 @@ function SWEP:shellEvent203()
 			pos,
 			ang,
 			down,
+			downAngle,
 			m203,
 			1
 		)
 	end
 end
 
-local m
-
 function SWEP:shellEventRev()
 	if self.Owner:ShouldDrawLocalPlayer() then
-		vm = self:getMuzzleModel()
+		local vm = self:getMuzzleModel()
 		
-		m = vm:GetBoneMatrix(0)
+		local m = vm:GetBoneMatrix(0)
 		
-		pos = m:GetTranslation()
-		ang = m:GetAngles()
+		local pos = m:GetTranslation()
+		local ang = m:GetAngles()
 		
-		align = self.ShellWorldAngleAlign
+		local align = self.ShellWorldAngleAlign
 		ang:RotateAroundAxis(ang:Forward(), align.Forward)
 		ang:RotateAroundAxis(ang:Right(), align.Right)
 		ang:RotateAroundAxis(ang:Up(), align.Up)
@@ -298,18 +279,19 @@ function SWEP:shellEventRev()
 			pos,
 			ang,
 			down,
+			downAngle,
 			self._shellTable,
 			self.ShellScale
 		)
 	else
-		vm = self.CW_VM
+		local vm = self.CW_VM
 		
-		att = vm:GetAttachment(2)
+		local att = vm:GetAttachment(2)
 		
-		pos = att.Pos
-		ang = att.Ang
+		local pos = att.Pos
+		local ang = att.Ang
 		
-		align = self.ShellViewAngleAlign
+		local align = self.ShellViewAngleAlign
 		ang:RotateAroundAxis(ang:Forward(), align.Forward)
 		ang:RotateAroundAxis(ang:Right(), align.Right)
 		ang:RotateAroundAxis(ang:Up(), align.Up)
@@ -318,6 +300,7 @@ function SWEP:shellEventRev()
 			pos,
 			ang,
 			down,
+			downAngle,
 			self._shellTable,
 			self.ShellScale
 		)
@@ -326,14 +309,14 @@ end
 
 function SWEP:shellEventRev2()
 	if self.Owner:ShouldDrawLocalPlayer() then
-		vm = self:getMuzzleModel()
+		local vm = self:getMuzzleModel()
 		
-		m = vm:GetBoneMatrix(0)
+		local m = vm:GetBoneMatrix(0)
 		
-		pos = m:GetTranslation()
-		ang = m:GetAngles()
+		local pos = m:GetTranslation()
+		local ang = m:GetAngles()
 		
-		align = self.ShellWorldAngleAlign
+		local align = self.ShellWorldAngleAlign
 		ang:RotateAroundAxis(ang:Forward(), align.Forward)
 		ang:RotateAroundAxis(ang:Right(), align.Right)
 		ang:RotateAroundAxis(ang:Up(), align.Up)
@@ -342,18 +325,19 @@ function SWEP:shellEventRev2()
 			pos,
 			ang,
 			down,
+			downAngle,
 			self._shellTable2,
 			self.ShellScale
 		)
 	else
-		vm = self.CW_VM
+		local vm = self.CW_VM
 		
-		att = vm:GetAttachment(2)
+		local att = vm:GetAttachment(2)
 		
-		pos = att.Pos
-		ang = att.Ang
+		local pos = att.Pos
+		local ang = att.Ang
 		
-		align = self.ShellViewAngleAlign
+		local align = self.ShellViewAngleAlign
 		ang:RotateAroundAxis(ang:Forward(), align.Forward)
 		ang:RotateAroundAxis(ang:Right(), align.Right)
 		ang:RotateAroundAxis(ang:Up(), align.Up)
@@ -362,12 +346,74 @@ function SWEP:shellEventRev2()
 			pos,
 			ang,
 			down,
+			downAngle,
 			self._shellTable2,
 			self.ShellScale
 		)
 	end
 end
 
+local down = Vector(0,0,-10)
+local downA = Vector()
+
 function SWEP:shellEventWebley()
-	// move here once done :P
+	if self.Owner:ShouldDrawLocalPlayer() then
+		local vm = self:getMuzzleModel()
+		
+		local m = vm:GetBoneMatrix(0)
+		
+		local pos = m:GetTranslation()
+		local ang = m:GetAngles()
+		
+		local align = self.ShellWorldAngleAlign
+		ang:RotateAroundAxis(ang:Forward(), align.Forward)
+		ang:RotateAroundAxis(ang:Right(), align.Right)
+		ang:RotateAroundAxis(ang:Up(), align.Up)
+		
+		CustomizableWeaponry_KK.ins2.shells:make(
+			pos,
+			ang,
+			down,
+			downA,
+			self._shellTable,
+			self.ShellScale
+		)
+	else
+		local vm = self.CW_VM
+		
+		local att = vm:GetAttachment(2)
+		
+		local pos = att.Pos + att.Ang:Forward() * -7
+		local ang = att.Ang
+		local velocity = self.Owner:GetVelocity() + ang:Forward() * (self.ShellEjectVelocity or 200)
+		
+		local align = self.ShellViewAngleAlign
+		ang:RotateAroundAxis(ang:Forward(), align.Forward)
+		ang:RotateAroundAxis(ang:Right(), align.Right)
+		ang:RotateAroundAxis(ang:Up(), align.Up)
+		
+		shellEnt = CustomizableWeaponry_KK.ins2.shells:make(
+			pos,
+			ang,
+			velocity,
+			downA,
+			self._shellTable,
+			self.ShellScale
+		)
+		
+		self:_registerVMShell(shellEnt)
+	end
+end
+
+local down = Vector(0,0,-10)
+local downA = Vector()
+
+function SWEP:shellEventReload()
+	local att = wep.CW_VM:GetAttachment(2)
+	local dir = att.Ang:Forward()
+	local pos = att.Pos + dir * 10
+	local ang = wep.Owner:EyeAngles()
+	ang:RotateAroundAxis(ang:Up(), 180)
+	
+	CustomizableWeaponry_KK.ins2.shells:make(pos, ang, down, downA, wep._shellTable, 1)
 end

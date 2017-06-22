@@ -25,9 +25,18 @@ CustomizableWeaponry_KK.ins2.shells.shellMeta = {}
 local shellMeta = CustomizableWeaponry_KK.ins2.shells.shellMeta
 
 function shellMeta:PhysicsCollide()
-	if (self:WaterLevel() == 0) then
-		soundPlay(self._ss, self:GetPos())
+	if (self:WaterLevel() != 0) then
+		return
 	end
+	
+	local CT = CurTime()
+	
+	if self._nextSoundTime and CT < self._nextSoundTime then
+		return
+	end
+	
+	self._nextSoundTime = CT + 0.3
+	soundPlay(self._ss, self:GetPos())
 end
 
 function shellMeta:Think()
@@ -55,10 +64,11 @@ end
 local cvarSSF = CustomizableWeaponry_KK.ins2.conVars.main["cw_kk_ins2_shell_sound"]
 local cvarSLT = CustomizableWeaponry_KK.ins2.conVars.main["cw_kk_ins2_shell_time"]
 
-function CustomizableWeaponry_KK.ins2.shells:make(pos, ang, velocity, t, scale)
+function CustomizableWeaponry_KK.ins2.shells:make(pos, ang, velocity, angleVelocity, t, scale)
 	pos = pos or EyePos()
 	ang = ang or EyeAngles()
 	velocity = velocity or Vector()
+	angleVelocity = angleVelocity or Vector()
 	t = t or CustomizableWeaponry.shells:getShell("mainshell")
 	scale = scale or 1
 	
@@ -68,6 +78,10 @@ function CustomizableWeaponry_KK.ins2.shells:make(pos, ang, velocity, t, scale)
 	velocity.x = velocity.x + math.Rand(-5, 5)
 	velocity.y = velocity.y + math.Rand(-5, 5)
 	velocity.z = velocity.z + math.Rand(-5, 5)
+	
+	angleVelocity.x = angleVelocity.x + math.Rand(-5, 5)
+	angleVelocity.y = angleVelocity.y + math.Rand(-5, 5)
+	angleVelocity.z = angleVelocity.z + math.Rand(-5, 5)
 	
 	local ent = ClientsideModel(t.m, RENDERGROUP_BOTH) 
 	ent:SetPos(pos)
@@ -88,11 +102,7 @@ function CustomizableWeaponry_KK.ins2.shells:make(pos, ang, velocity, t, scale)
 	
 	phys:SetMass(10)
 	phys:SetVelocity(velocity)
-	phys:AddAngleVelocity(
-		-- ang:Forward() * (math.random(40,50) * -100) +
-		ang:Up() * (math.random(80,130) * -100) +
-		ang:Right() * (math.random(40,50) * -100)
-	)
+	phys:AddAngleVelocity(angleVelocity)
 
 	if cvarSSF:GetInt() == 2 then // function creation spam
 		timer.Simple(0.5, function()
