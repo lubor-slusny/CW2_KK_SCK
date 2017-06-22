@@ -1,3 +1,5 @@
+AddCSLuaFile()
+
 ////////////
 // LEGACY //
 ////////////
@@ -145,20 +147,20 @@ function TOOL:_addSectionCvars()
 	
 end
 
-function TOOL:_addSectionHeaderAttInfo()
+function TOOL:_addSectionHeader(left, right)
 	local panel = self._panel
 	
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	panel:AddItem(backgroundPanel)
 		
 		local label = vgui.Create("DLabel", backgroundPanel)
-		label:SetText("Sight setup:")
+		label:SetText(left or "")
 		label:SetDark(true)
 		label:Dock(LEFT)
 		label:SizeToContents()
 		
 		local label = vgui.Create("DLabel", backgroundPanel)
-		label:SetText("[LMB - COPY]")
+		label:SetText(right or "")
 		label:SetDark(true)
 		label:Dock(RIGHT)
 		label:SizeToContents()
@@ -174,7 +176,7 @@ function TOOL:_addSectionAttInfo()
 	local wep = self._wep
 	local att = self._att
 
-	self:_addSectionHeaderAttInfo(panel)
+	self:_addSectionHeader("Sight setup:", "[LMB - COPY]")
 
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	panel:AddItem(backgroundPanel)
@@ -500,30 +502,6 @@ function TOOL:_addSectionSlidersSight()
 	backgroundPanel:SizeToContents()
 end
 
-function TOOL:_addSectionHeaderExports()
-	local panel = self._panel
-
-	local backgroundPanel = vgui.Create("DPanel", panel)
-	panel:AddItem(backgroundPanel)
-		
-		local label = vgui.Create("DLabel", backgroundPanel)
-		label:SetText("Sight Code:")
-		label:SetDark(true)
-		label:Dock(LEFT)
-		label:SizeToContents()
-		
-		local label = vgui.Create("DLabel", backgroundPanel)
-		label:SetText("[LMB - COPY]")
-		label:SetDark(true)
-		label:Dock(RIGHT)
-		label:SizeToContents()
-		
-	backgroundPanel:Dock(TOP)
-	backgroundPanel:SetTall(16)
-	backgroundPanel:SetPaintBackground(false)
-	backgroundPanel:SizeToContents()
-end
-
 function TOOL:_updatePreviews()
 	for label,update in pairs(self._codePreviews) do
 		update(label)
@@ -608,7 +586,7 @@ function TOOL:_addSectionExportPreviews()
 	local wep = self._wep
 	local att = self._att
 
-	self:_addSectionHeaderExports(panel)
+	self:_addSectionHeader("Sight Code:", "[LMB - COPY]")
 
 	self._codePreviews = {}
 	
@@ -764,7 +742,7 @@ function TOOL:_addSectionMisc()
 	local panel = self._panel
 	local wep = self._wep
 
-	panel:AddControl("Label", {Text = "Misc:"}):DockMargin(0,0,0,0)
+	self:_addSectionHeader("Misc:")
 	
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	panel:AddItem(backgroundPanel)
