@@ -852,6 +852,10 @@ function TOOL:_prepareAttInfo()
 	self._att = self._relevantAttsCache.fallback
 end
 
+function TOOL:GetCurrentAttachmentInfo()
+	return self._att
+end
+
 function TOOL:_updatePanel()
 	local panel = self._panel
 	local wep = self._wep

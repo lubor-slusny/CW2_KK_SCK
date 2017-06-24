@@ -148,6 +148,10 @@ function TOOL:SetPanel(panel)
 	self:_updatePanel()
 end
 
+function TOOL:OnWeaponChanged()
+	self:_updatePanel()
+end
+
 CustomizableWeaponry_KK.sck:AddTool(TOOL)
 
 TOOL:_updatePanel()

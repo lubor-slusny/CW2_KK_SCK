@@ -9,9 +9,9 @@ TOOL.Version = "1.1"
 TOOL.workshopLink = "http://steamcommunity.com/sharedfiles/filedetails/?id="
 TOOL.examplePaths = {
 	"lua/autorun/cw_kk_ins.lua",
-	"models/weapons/upgrades/a_optic_kobra.mdl",
-	"models/weapons/v_bazooka.mdl",
-	"models/weapons/v_mg42.mdl",
+	-- "models/weapons/upgrades/a_optic_kobra.mdl",
+	-- "models/weapons/v_bazooka.mdl",
+	-- "models/weapons/v_mg42.mdl",
 }
 
 TOOL.elementFuncs = {
@@ -21,10 +21,45 @@ TOOL.elementFuncs = {
 
 TOOL._lastFile = ""
 
+local getAtt
+
 function TOOL:_updatePanel()
 	local panel = self._panel
+	local wep = self._wep
 	
 	if !IsValid(panel) then return end
+	
+	getAtt = getAtt or function()
+		local t = CustomizableWeaponry_KK.sck._toolCache["aimpos"]
+		return t:GetCurrentAttachmentInfo()
+	end
+	
+	local curVM = "models/weapons/v_mg42.mdl"
+	local curAni
+	local curSigh = "models/weapons/upgrades/a_optic_kobra.mdl"
+	
+	if IsValid(wep) then
+		if wep.CW20Weapon then
+			if wep.AttachmentModelsVM then
+				if wep.AttachmentModelsVM.ani_body then
+					curAni = wep.AttachmentModelsVM.ani_body.model
+				end
+				
+				local att = getAtt()
+				print(att)
+				if att and wep.AttachmentModelsVM[att.name] then
+					curSigh = wep.AttachmentModelsVM[att.name].model
+				end
+			end
+			curVM = wep.CW_VM:GetModel()
+		else
+			curVM = wep.ViewModel
+		end
+	end
+	
+	self.examplePaths["curVM"] = curVM
+	self.examplePaths["curAni"] = curAni
+	self.examplePaths["curSigh"] = curSigh
 	
 	panel:ClearControls()
 	
@@ -215,6 +250,15 @@ end
 
 function TOOL:SetPanel(panel)
 	self._panel = panel
+	self:_updatePanel()
+end
+
+function TOOL:OnWeaponChanged(new, old)
+	self._wep = new
+	self:_updatePanel()
+end
+
+function TOOL:OnWeaponSetupChanged()
 	self:_updatePanel()
 end
 
