@@ -89,8 +89,10 @@ end
 function SWEP:shellEvent()
 	if !IsValid(self.Owner) or self.Owner:ShouldDrawLocalPlayer() then
 		local vm = self:getMuzzleModel()
+		if !IsValid(vm) then return end
 		
 		local att = vm:GetAttachment(self.ShellWorldAttachmentID)
+		if not att then return end
 		
 		local pos = att.Pos
 		local ang = att.Ang
@@ -113,9 +115,11 @@ function SWEP:shellEvent()
 			self.ShellScale
 		)
 	else
-		local vm = self.CW_VM
+		local vm = self.CW_VM		
+		if !IsValid(vm) then return end
 		
-		local att = vm:GetAttachment(self.ShellViewAttachmentID)
+		local att = vm:GetAttachment(self.ShellViewAttachmentID)		
+		if not att then return end
 		
 		local pos = att.Pos
 		local ang = att.Ang
@@ -142,9 +146,11 @@ end
 
 function SWEP:shellEvent2()
 	if self.Owner:ShouldDrawLocalPlayer() then
-		local vm = self:getMuzzleModel()
+		local vm = self:getMuzzleModel()		
+		if !IsValid(vm) then return end
 		
 		local att = vm:GetAttachment(self.Shell2WorldAttachmentID)
+		if not att then return end
 		
 		local pos = att.Pos
 		local ang = att.Ang
@@ -165,9 +171,11 @@ function SWEP:shellEvent2()
 			self.Shell2Scale
 		)
 	else
-		local vm = self.CW_VM
+		local vm = self.CW_VM		
+		if !IsValid(vm) then return end
 		
 		local att = vm:GetAttachment(self.Shell2ViewAttachmentID)
+		if not att then return end
 		
 		local pos = att.Pos
 		local ang = att.Ang
@@ -198,9 +206,11 @@ local downAngle = Vector()
 
 function SWEP:shellEvent203()
 	if self.Owner:ShouldDrawLocalPlayer() then
-		local vm = self:getMuzzleModel()
+		local vm = self:getMuzzleModel()		
+		if !IsValid(vm) then return end
 		
 		local att = vm:GetAttachment(8)
+		if not att then return end
 		
 		local pos = att.Pos
 		local ang = att.Ang
@@ -220,13 +230,11 @@ function SWEP:shellEvent203()
 		)
 	else
 		local glAtt = self._currentGrenadeLauncher and self._currentGrenadeLauncher.name
-		local vm = glAtt and self.AttachmentModelsVM[glAtt] and self.AttachmentModelsVM[glAtt].ent
-		
-		if not vm then
-			return
-		end
+		local vm = glAtt and self.AttachmentModelsVM[glAtt] and self.AttachmentModelsVM[glAtt].ent		
+		if !IsValid(vm) then return end
 		
 		local att = vm:GetAttachment(2)
+		
 		local pos, ang
 		
 		if att then
@@ -264,8 +272,10 @@ end
 function SWEP:shellEventRev()
 	if self.Owner:ShouldDrawLocalPlayer() then
 		local vm = self:getMuzzleModel()
+		if !IsValid(vm) then return end
 		
 		local m = vm:GetBoneMatrix(0)
+		if not m then return end
 		
 		local pos = m:GetTranslation()
 		local ang = m:GetAngles()
@@ -285,8 +295,10 @@ function SWEP:shellEventRev()
 		)
 	else
 		local vm = self.CW_VM
+		if !IsValid(vm) then return end
 		
 		local att = vm:GetAttachment(2)
+		if not att then return end
 		
 		local pos = att.Pos
 		local ang = att.Ang
@@ -310,8 +322,10 @@ end
 function SWEP:shellEventRev2()
 	if self.Owner:ShouldDrawLocalPlayer() then
 		local vm = self:getMuzzleModel()
+		if !IsValid(vm) then return end
 		
 		local m = vm:GetBoneMatrix(0)
+		if not m then return end
 		
 		local pos = m:GetTranslation()
 		local ang = m:GetAngles()
@@ -330,9 +344,11 @@ function SWEP:shellEventRev2()
 			self.ShellScale
 		)
 	else
-		local vm = self.CW_VM
+		local vm = self.CW_VM		
+		if !IsValid(vm) then return end
 		
 		local att = vm:GetAttachment(2)
+		if not att then return end
 		
 		local pos = att.Pos
 		local ang = att.Ang
@@ -359,8 +375,10 @@ local downA = Vector()
 function SWEP:shellEventWebley()
 	if self.Owner:ShouldDrawLocalPlayer() then
 		local vm = self:getMuzzleModel()
+		if !IsValid(vm) then return end
 		
 		local m = vm:GetBoneMatrix(0)
+		if not m then return end
 		
 		local pos = m:GetTranslation()
 		local ang = m:GetAngles()
@@ -380,8 +398,10 @@ function SWEP:shellEventWebley()
 		)
 	else
 		local vm = self.CW_VM
+		if !IsValid(vm) then return end
 		
 		local att = vm:GetAttachment(2)
+		if not att then return end
 		
 		local pos = att.Pos + att.Ang:Forward() * -7
 		local ang = att.Ang
