@@ -15,7 +15,7 @@ if CLIENT then
 	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_thompson_m1a1")
 	
 	SWEP.Shell = "KK_INS2_45apc"
-	SWEP.ShellDelay = 0.13
+	SWEP.ShellDelay = 0.08
 
 	SWEP.AttachmentModelsVM = {
 		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/a_iron_thompson_m1a1_1.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), merge = true, active = true}, 
