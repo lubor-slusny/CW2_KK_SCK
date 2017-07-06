@@ -8,16 +8,173 @@ TOOL.Name = "elements"
 TOOL.PrintName = "Element Browser 3"
 TOOL.Version = "3.0"
 
-TOOL.states = {}
+TOOL.elementTables = {"AttachmentModelsVM", "AttachmentModelsWM"}
+TOOL.elementProperties = {
+	"model", "pos", "angle", "size", 
+}
 
-TOOL.states.nowep = {}
-TOOL.states.elementList = {}
-TOOL.states.elementEdit = {}
-TOOL.states.elementMake = {}
+TOOL.__index = TOOL
+
+function TOOL:addPanelBuilder(tab)
+	self._panelBuilders = self._panelBuilders or {}
+	
+	setmetatable(tab, self)
+	self._panelBuilders[tab.Name] = tab
+end
+
+function TOOL:_addSectionGooback()
+	local panel = self._panel
+	
+	local backgroundPanel = vgui.Create("DPanel", panel)
+	panel:AddItem(backgroundPanel)
+		
+		local butt = vgui.Create("DButton", backgroundPanel)
+		butt:Dock(FILL)
+		butt:SetSize(150,20)
+		butt:SetText("Go Back")
+		
+		function butt:DoClick()
+			TOOL:_setBuilder("list")
+		end
+		
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:DockMargin(8,0,8,0)
+	backgroundPanel:SetSize(200,20)
+	backgroundPanel:SetPaintBackground(true)
+	backgroundPanel:SizeToContents()
+end
+
+// Element List
+
+local PB = {}
+PB.Name = "list"
+
+function PB:_addSectionMake()
+	local panel = self._panel
+	
+	local backgroundPanel = vgui.Create("DPanel", panel)
+	panel:AddItem(backgroundPanel)
+		
+		local butt = vgui.Create("DButton", backgroundPanel)
+		butt:Dock(FILL)
+		butt:SetSize(150,20)
+		butt:SetText("Add new")
+		
+		function butt:DoClick()
+			TOOL:_setBuilder("make")
+		end
+		
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:DockMargin(8,0,8,0)
+	backgroundPanel:SetSize(200,20)
+	backgroundPanel:SetPaintBackground(true)
+	backgroundPanel:SizeToContents()
+end
+
+function PB:_addSectionEdit(key)
+	local panel = self._panel
+	
+	local backgroundPanel = vgui.Create("DPanel", panel)
+	panel:AddItem(backgroundPanel)
+		
+		local butt = vgui.Create("DButton", backgroundPanel)
+		butt:Dock(FILL)
+		butt:SetSize(150,20)
+		butt:SetText(key)
+		
+		function butt:DoClick()
+			TOOL.state.elementID = key
+			TOOL:_setBuilder("edit")
+		end
+		
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:DockMargin(8,0,8,0)
+	backgroundPanel:SetSize(200,20)
+	backgroundPanel:SetPaintBackground(true)
+	backgroundPanel:SizeToContents()
+end
+
+function PB:func()
+	local panel = self._panel
+	local wep = self.wep
+	local state = self.state
+	
+	for _,elementTable in pairs(self.elementTables) do
+		panel:AddControl("Label", {Text = elementTable})
+		
+		self:_addSectionMake()
+		
+		wep[elementTable] = wep[elementTable] or {}
+		
+		for k,v in pairs(wep[elementTable]) do
+			-- panel:AddControl("Label", {Text = k})
+			self:_addSectionEdit(k)
+		end
+	end
+end
+
+TOOL:addPanelBuilder(PB)
+
+// Element Edit
+
+local PB = {}
+PB.Name = "edit"
+
+function PB:func()
+	local panel = self._panel
+	local wep = self.wep
+	local state = self.state
+	
+	panel:AddControl("Label", {Text = "2doo edit"})
+	panel:AddControl("Label", {Text = "noaw editing " .. state.elementID})
+	
+	self:_addSectionGooback()
+end
+
+TOOL:addPanelBuilder(PB)
+
+// Element Make
+
+local PB = {}
+PB.Name = "make"
+
+function PB:func()
+	local panel = self._panel
+	local wep = self.wep
+	local state = self.state
+	
+	panel:AddControl("Label", {Text = "2doo make"})
+	
+	self:_addSectionGooback()
+end
+
+TOOL:addPanelBuilder(PB)
+
+// Session manager
+
+function TOOL:Initialize()
+	self._states = self._states or {}
+end
+
+function TOOL:_setBuilder(id)
+	self.state.builderId = id and (self._panelBuilders[id] and id) or "list"
+	self:_updatePanel()
+end
+
+function TOOL:_runBuilder()
+	local builderId = self.state.builderId
+	local builder = self._panelBuilders[builderId]
+	
+	if !builder then
+		return
+	end
+	
+	builder:func()
+end
 
 function TOOL:_updatePanel()
 	local panel = self._panel
-	local wep = self._wep
+	local wep = self.wep
 	
 	if !IsValid(panel) then return end
 	
@@ -33,7 +190,10 @@ function TOOL:_updatePanel()
 		return
 	end
 	
-	panel:AddControl("Label", {Text = "2doo"})
+	self._states[wep] = self._states[wep] or {builderId = "list"}
+	self.state = self._states[wep]
+	
+	self:_runBuilder()
 end
 
 function TOOL:SetPanel(panel)
@@ -42,7 +202,11 @@ function TOOL:SetPanel(panel)
 end
 
 function TOOL:OnWeaponChanged(new, old)
-	self._wep = new
+	self.wep = new
+	self:_updatePanel()
+end
+
+function TOOL:OnWeaponSetupChanged()
 	self:_updatePanel()
 end
 
