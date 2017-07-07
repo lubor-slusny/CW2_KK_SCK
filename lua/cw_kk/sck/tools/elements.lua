@@ -57,7 +57,7 @@ function TOOL:_addSectionRefreshButt()
 		butt:SetTooltip("Loads changes made outside of this tool.")
 		
 		function butt:DoClick()
-			TOOL:_setBuilder("list")
+			TOOL:_updatePanel()
 		end
 		
 	backgroundPanel:Dock(TOP)
@@ -150,7 +150,7 @@ function PB:_addSectionETItem(tableName, elementName)
 		label:SetText("[˅]")
 		label:SetDark(true)
 		label:Dock(RIGHT)
-		label:DockMargin(8,0,4,0)
+		label:DockMargin(8,0,8,0)
 		label:SizeToContents()
 		label:SetMouseInputEnabled(true)
 		label.DoClick = DoClick
@@ -196,8 +196,25 @@ function PB:run()
 	local wep = self._wep
 	local state = self._state
 	
-	panel:AddControl("Label", {Text = "2doo edit"})
-	panel:AddControl("Label", {Text = "noaw editing " .. state.elementID})
+	panel:AddControl("Label", {Text = "header tableName w/ butt add"})
+	panel:AddControl("Label", {Text = "header elementName w/ butt gooback"})
+	panel:AddControl("Label", {Text = "tickbox active"})
+	panel:AddControl("Label", {Text = "tentry model"})
+	panel:AddControl("Label", {Text = "combobox models"})
+	panel:AddControl("Label", {Text = "listview POA func"})
+	panel:AddControl("Label", {Text = "3sliders pos"})
+	panel:AddControl("Label", {Text = "3sliders ang"})
+	panel:AddControl("Label", {Text = "slider size uni"})
+	panel:AddControl("Label", {Text = "3sliders size"})
+	panel:AddControl("Label", {Text = "header w/ butt add -- sight adjust"})
+	panel:AddControl("Label", {Text = "tentry material"})
+	panel:AddControl("Label", {Text = "tentry parent"})
+	panel:AddControl("Label", {Text = "tickbox nodraw"})
+	panel:AddControl("Label", {Text = "tickbox hide cwvm"})
+	panel:AddControl("Label", {Text = "tickbox recomp light"})
+	panel:AddControl("Label", {Text = "tickbox animated"})
+	panel:AddControl("Label", {Text = "header shortcunts"})
+	panel:AddControl("Label", {Text = "goto/add other element of same name"})
 	
 	self:_addSectionGooback()
 end
@@ -214,7 +231,32 @@ function PB:run()
 	local wep = self._wep
 	local state = self._state
 	
-	panel:AddControl("Label", {Text = "2doo make"})
+	panel:AddControl("Label", {Text = "header w/ butt cancer"})
+	panel:AddControl("Label", {Text = "tentry elementName"})
+	panel:AddControl("Label", {Text = "tentry model"})
+	
+	for _,tableName in pairs(self.elementTables) do
+		panel:AddControl("Label", {Text = "tickbox " .. tableName .. " (disabled if exsts)"})
+	end
+	
+	panel:AddControl("Label", {Text = "butt add"})
+	
+	self:_addSectionGooback()
+end
+
+TOOL:addPanelBuilder(PB)
+
+// Export thing
+
+local PB = {}
+PB.Name = "expo"
+
+function PB:run()
+	local panel = self._panel
+	local wep = self._wep
+	local state = self._state
+	
+	panel:AddControl("Label", {Text = "header w/ butt cancer"})
 	
 	self:_addSectionGooback()
 end
@@ -265,7 +307,10 @@ function TOOL:_updatePanel()
 	self._state = self._states[wep]
 	
 	self:_addSectionRefreshButt()
+	
 	self:_runBuilder()
+	
+	panel:AddControl("Label", {Text = ""})
 end
 
 function TOOL:SetPanel(panel)
