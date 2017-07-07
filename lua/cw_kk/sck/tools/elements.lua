@@ -11,6 +11,8 @@ TOOL.elementProperties = {
 	"model", "pos", "angle", "size", 
 }
 
+TOOL.headerBackground = Color(0,160,255,100)
+
 TOOL.__index = TOOL
 
 function TOOL:addPanelBuilder(tab)
@@ -42,12 +44,7 @@ function TOOL:_addSectionGooback()
 	backgroundPanel:SizeToContents()
 end
 
-// Element List
-
-local PB = {}
-PB.Name = "list"
-
-function PB:_addSectionMake()
+function TOOL:_addSectionRefreshButt()
 	local panel = self._panel
 	
 	local backgroundPanel = vgui.Create("DPanel", panel)
@@ -56,10 +53,11 @@ function PB:_addSectionMake()
 		local butt = vgui.Create("DButton", backgroundPanel)
 		butt:Dock(FILL)
 		butt:SetSize(150,20)
-		butt:SetText("Add new")
+		butt:SetText("Refresh")
+		butt:SetTooltip("Loads changes made outside of this tool.")
 		
 		function butt:DoClick()
-			TOOL:_setBuilder("make")
+			TOOL:_setBuilder("list")
 		end
 		
 	backgroundPanel:Dock(TOP)
@@ -69,21 +67,94 @@ function PB:_addSectionMake()
 	backgroundPanel:SizeToContents()
 end
 
-function PB:_addSectionEdit(key)
+// Element List
+
+local PB = {}
+PB.Name = "list"
+
+function PB:_addSectionETHeader(tableName)
 	local panel = self._panel
 	
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	panel:AddItem(backgroundPanel)
 		
-		local butt = vgui.Create("DButton", backgroundPanel)
-		butt:Dock(FILL)
-		butt:SetSize(150,20)
-		butt:SetText(key)
+		local label = vgui.Create("DLabel", backgroundPanel)
+		label:SetText("SWEP." .. tableName .. ":")
+		label:SetDark(true)
+		label:Dock(LEFT)
+		label:DockMargin(8,0,4,0)
+		label:SizeToContents()
+		
+		local butt
+		butt = vgui.Create("DButton", backgroundPanel)
+		butt:SetText("Add")
+		butt:SetTooltip("Add new item to " .. tableName .. ".")
+		butt:Dock(RIGHT)
+		butt:DockMargin(0,4,8,4)
 		
 		function butt:DoClick()
-			TOOL._state.elementID = key
+			TOOL:_setBuilder("make")
+		end
+		
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:DockMargin(8,0,8,0)
+	backgroundPanel:SetBackgroundColor(self.headerBackground)
+	backgroundPanel:SetPaintBackground(true)
+	backgroundPanel:SizeToContents()
+end
+
+function PB:_addSectionETItem(tableName, elementName)
+	local panel = self._panel
+	local element = self._wep[tableName][elementName]
+	
+	local backgroundPanel = vgui.Create("DPanel", panel)
+	panel:AddItem(backgroundPanel)
+		
+		local DoClick = function()
+			TOOL._state.elementID = elementName
 			TOOL:_setBuilder("edit")
 		end
+		
+		local Think = function(self)
+			if self:IsHovered() then
+				if input.IsMouseDown(MOUSE_RIGHT) then
+					SetClipboardText(elementName)
+				end
+			end
+		end
+		
+		local icon = vgui.Create("DImage", backgroundPanel)
+		icon:SetPos(0,0)
+		icon:SetSize(20,20)
+		icon:SetMouseInputEnabled(true)
+		icon.DoClick = DoClick
+		icon.Think = Think
+
+		if element.active then
+			icon:SetImage("icon16/bullet_green.png")
+		else
+			icon:SetImage("icon16/bullet_red.png")
+		end
+
+		local label = vgui.Create("DLabel", backgroundPanel)
+		label:SetText(elementName)
+		label:SetDark(true)
+		label:Dock(FILL)
+		label:DockMargin(20,0,4,0)
+		label:SizeToContents()
+		label:SetMouseInputEnabled(true)
+		label.DoClick = DoClick
+		label.Think = Think
+		
+		local label = vgui.Create("DLabel", backgroundPanel)
+		label:SetText("[˅]")
+		label:SetDark(true)
+		label:Dock(RIGHT)
+		label:DockMargin(8,0,4,0)
+		label:SizeToContents()
+		label:SetMouseInputEnabled(true)
+		label.DoClick = DoClick
+		label.Think = Think
 		
 	backgroundPanel:Dock(TOP)
 	backgroundPanel:DockMargin(8,0,8,0)
@@ -97,16 +168,18 @@ function PB:run()
 	local wep = self._wep
 	local state = self._state
 	
-	for _,elementTable in pairs(self.elementTables) do
-		panel:AddControl("Label", {Text = elementTable})
+	for _,tableName in pairs(self.elementTables) do
+		self:_addSectionETHeader(tableName)
 		
-		self:_addSectionMake()
+		wep[tableName] = wep[tableName] or {}
 		
-		wep[elementTable] = wep[elementTable] or {}
+		local sortKeys = {}
+		for elementName,element in pairs(wep[tableName]) do
+			sortKeys[(element.active and "a_" or "b_") .. tostring(elementName)] = elementName
+		end
 		
-		for k,v in pairs(wep[elementTable]) do
-			-- panel:AddControl("Label", {Text = k})
-			self:_addSectionEdit(k)
+		for _,elementName in SortedPairs(sortKeys) do
+			self:_addSectionETItem(tableName, elementName)
 		end
 	end
 end
@@ -191,6 +264,7 @@ function TOOL:_updatePanel()
 	self._states[wep] = self._states[wep] or {builderId = "list"}
 	self._state = self._states[wep]
 	
+	self:_addSectionRefreshButt()
 	self:_runBuilder()
 end
 
