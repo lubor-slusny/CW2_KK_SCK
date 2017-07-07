@@ -1,7 +1,5 @@
 AddCSLuaFile()
 
-if not CustomizableWeaponry_KK.HOME then return end
-
 local TOOL = {}
 
 TOOL.Name = "elements"
@@ -83,7 +81,7 @@ function PB:_addSectionEdit(key)
 		butt:SetText(key)
 		
 		function butt:DoClick()
-			TOOL.state.elementID = key
+			TOOL._state.elementID = key
 			TOOL:_setBuilder("edit")
 		end
 		
@@ -94,10 +92,10 @@ function PB:_addSectionEdit(key)
 	backgroundPanel:SizeToContents()
 end
 
-function PB:func()
+function PB:run()
 	local panel = self._panel
-	local wep = self.wep
-	local state = self.state
+	local wep = self._wep
+	local state = self._state
 	
 	for _,elementTable in pairs(self.elementTables) do
 		panel:AddControl("Label", {Text = elementTable})
@@ -120,10 +118,10 @@ TOOL:addPanelBuilder(PB)
 local PB = {}
 PB.Name = "edit"
 
-function PB:func()
+function PB:run()
 	local panel = self._panel
-	local wep = self.wep
-	local state = self.state
+	local wep = self._wep
+	local state = self._state
 	
 	panel:AddControl("Label", {Text = "2doo edit"})
 	panel:AddControl("Label", {Text = "noaw editing " .. state.elementID})
@@ -138,10 +136,10 @@ TOOL:addPanelBuilder(PB)
 local PB = {}
 PB.Name = "make"
 
-function PB:func()
+function PB:run()
 	local panel = self._panel
-	local wep = self.wep
-	local state = self.state
+	local wep = self._wep
+	local state = self._state
 	
 	panel:AddControl("Label", {Text = "2doo make"})
 	
@@ -157,24 +155,24 @@ function TOOL:Initialize()
 end
 
 function TOOL:_setBuilder(id)
-	self.state.builderId = id and (self._panelBuilders[id] and id) or "list"
+	self._state.builderId = id and (self._panelBuilders[id] and id) or "list"
 	self:_updatePanel()
 end
 
 function TOOL:_runBuilder()
-	local builderId = self.state.builderId
+	local builderId = self._state.builderId
 	local builder = self._panelBuilders[builderId]
 	
 	if !builder then
 		return
 	end
 	
-	builder:func()
+	builder:run()
 end
 
 function TOOL:_updatePanel()
 	local panel = self._panel
-	local wep = self.wep
+	local wep = self._wep
 	
 	if !IsValid(panel) then return end
 	
@@ -191,7 +189,7 @@ function TOOL:_updatePanel()
 	end
 	
 	self._states[wep] = self._states[wep] or {builderId = "list"}
-	self.state = self._states[wep]
+	self._state = self._states[wep]
 	
 	self:_runBuilder()
 end
@@ -202,7 +200,7 @@ function TOOL:SetPanel(panel)
 end
 
 function TOOL:OnWeaponChanged(new, old)
-	self.wep = new
+	self._wep = new
 	self:_updatePanel()
 end
 
