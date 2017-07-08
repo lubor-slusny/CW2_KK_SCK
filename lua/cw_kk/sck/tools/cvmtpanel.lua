@@ -23,7 +23,10 @@ end
 
 local label, backgroundPanel
 
-function TOOL:_addSectionTickBoxes(panel)
+function TOOL:_addSectionTickBoxes()
+	local panel = self._panel
+	local wep = self._wep
+	
 	backgroundPanel = vgui.Create("DPanel", panel)
 
 		local cbox
@@ -40,6 +43,7 @@ function TOOL:_addSectionTickBoxes(panel)
 		
 	backgroundPanel:Dock(TOP)
 	backgroundPanel:SetSize(200,20)
+	backgroundPanel:DockMargin(8,0,8,0)
 	backgroundPanel:SetPaintBackground(true)
 	backgroundPanel:SizeToContents()
 	panel:AddItem(backgroundPanel)
@@ -60,6 +64,7 @@ function TOOL:_addSectionTickBoxes(panel)
 		
 	backgroundPanel:Dock(TOP)
 	backgroundPanel:SetSize(200,20)
+	backgroundPanel:DockMargin(8,0,8,0)
 	backgroundPanel:SetPaintBackground(true)
 	backgroundPanel:SizeToContents()
 	panel:AddItem(backgroundPanel)
@@ -80,12 +85,16 @@ function TOOL:_addSectionTickBoxes(panel)
 		
 	backgroundPanel:Dock(TOP)
 	backgroundPanel:SetSize(200,20)
+	backgroundPanel:DockMargin(8,0,8,0)
 	backgroundPanel:SetPaintBackground(true)
 	backgroundPanel:SizeToContents()
 	panel:AddItem(backgroundPanel)
 end
 
-function TOOL:_addSectionCycleSlider(panel)
+function TOOL:_addSectionCycleSlider()
+	local panel = self._panel
+	local wep = self._wep
+	
 	backgroundPanel = vgui.Create("DPanel", panel)
 	
 		local slider
@@ -113,12 +122,16 @@ function TOOL:_addSectionCycleSlider(panel)
 		
 	backgroundPanel:Dock(TOP)
 	backgroundPanel:SetSize(200,20)
+	backgroundPanel:DockMargin(8,0,8,0)
 	backgroundPanel:SetPaintBackground(true)
 	backgroundPanel:SizeToContents()
 	panel:AddItem(backgroundPanel)
 end
 
-function TOOL:_addSectionPreviewControls(panel)
+function TOOL:_addSectionPreviewControls()
+	local panel = self._panel
+	local wep = self._wep
+	
 	local backgroundPanel = vgui.Create("DPanel", panel)
 
 		local cbox
@@ -139,6 +152,7 @@ function TOOL:_addSectionPreviewControls(panel)
 		
 	backgroundPanel:Dock(TOP)
 	backgroundPanel:SetSize(200,20)
+	backgroundPanel:DockMargin(8,0,8,0)
 	backgroundPanel:SetPaintBackground(true)
 	backgroundPanel:SizeToContents()
 	panel:AddItem(backgroundPanel)
@@ -167,6 +181,7 @@ function TOOL:_addSectionPreviewControls(panel)
 		
 	backgroundPanel:Dock(TOP)
 	backgroundPanel:SetSize(200,20)
+	backgroundPanel:DockMargin(8,0,8,0)
 	backgroundPanel:SetPaintBackground(true)
 	backgroundPanel:SizeToContents()
 	panel:AddItem(backgroundPanel)
@@ -194,6 +209,7 @@ function TOOL:_addSectionPreviewControls(panel)
 		
 	backgroundPanel:Dock(TOP)
 	backgroundPanel:SetSize(200,20)
+	backgroundPanel:DockMargin(8,0,8,0)
 	backgroundPanel:SetPaintBackground(true)
 	backgroundPanel:SizeToContents()
 	panel:AddItem(backgroundPanel)
@@ -222,6 +238,7 @@ function TOOL:_addSectionPreviewControls(panel)
 		
 	backgroundPanel:Dock(TOP)
 	backgroundPanel:SetSize(200,20)
+	backgroundPanel:DockMargin(8,0,8,0)
 	backgroundPanel:SetPaintBackground(true)
 	backgroundPanel:SizeToContents()
 	panel:AddItem(backgroundPanel)
@@ -248,16 +265,20 @@ function TOOL:_addSectionPreviewControls(panel)
 		
 	backgroundPanel:Dock(TOP)
 	backgroundPanel:SetSize(200,20)
+	backgroundPanel:DockMargin(8,0,8,0)
 	backgroundPanel:SetPaintBackground(true)
 	backgroundPanel:SizeToContents()
 	panel:AddItem(backgroundPanel)
 end
 
-function TOOL:_addSectionAnimList(panel)
+function TOOL:_addSectionAnimList()
+	local panel = self._panel
+	local wep = self._wep
+	
 	backgroundPanel = vgui.Create("DPanel", panel)
 	backgroundPanel:Dock(TOP)
 	backgroundPanel:DockPadding(0,0,0,0)
-	backgroundPanel:DockMargin(0,0,0,0)
+	backgroundPanel:DockMargin(8,0,8,0)
 	backgroundPanel:SizeToContents()
 	backgroundPanel:SetPaintBackground(false)
 	panel:AddItem(backgroundPanel)
@@ -403,7 +424,7 @@ function TOOL:_updatePanelSectionAnimList()
 		end
 	end
 	
-	panel:SetSize(516, animListSectionHeight)
+	panel:SetSize(516, animListSectionHeight + 8)
 end
 
 function TOOL:_updatePanel()
@@ -414,47 +435,18 @@ function TOOL:_updatePanel()
 	
 	panel:ClearControls()
 	
-	label = panel:AddControl("Label", {Text = "CVMT Shared:"})
-	label:DockMargin(0, 0, 0, 0)
-	
-	self:_addSectionTickBoxes(panel)
-	self:_addSectionCycleSlider(panel)
+	self:AddHeaderSimpleLR(panel, "CVMT Shared:")
+	self:_addSectionTickBoxes()
+	self:_addSectionCycleSlider()
 	
 	if !IsValid(wep) or !self:_getWepSetup().ok then
 		return
 	end
 	
-	label = panel:AddControl("Label", {Text = "Preview settings:"})
-	label:DockMargin(0, 0, 0, 0)
-	
-	self:_addSectionPreviewControls(panel)
-	
-	backgroundPanel = vgui.Create("DPanel", panel)
-	
-		label = vgui.Create("DLabel", backgroundPanel)
-		label:SetText("Preview animation:")
-		label:SetDark(true)
-		label:Dock(LEFT)
-		label:DockMargin(0,0,0,0)
-		label:SizeToContents()
-		label:SetMouseInputEnabled(true)
-		function label:DoClick() TOOL:_updatePanel() end
-		
-		label = vgui.Create("DLabel", backgroundPanel)
-		label:SetText("[LMB - PLAY] [RMB - COPY]")
-		label:SetDark(true)
-		label:Dock(RIGHT)
-		label:DockMargin(0,0,0,0)
-		label:SizeToContents()
-		
-	backgroundPanel:Dock(TOP)
-	backgroundPanel:SetSize(200,20)
-	backgroundPanel:SetPaintBackground(false)
-	backgroundPanel:SizeToContents()
-	
-	panel:AddItem(backgroundPanel)
-	
-	self:_addSectionAnimList(panel)
+	self:AddHeaderSimpleLR(panel, "Preview settings:")
+	self:_addSectionPreviewControls()
+	self:AddHeaderSimpleLR(panel, "Preview animation:", "[LMB - PLAY] [RMB - COPY]")
+	self:_addSectionAnimList()
 	self:_updatePanelSectionAnimList()
 end
 

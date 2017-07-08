@@ -157,7 +157,9 @@ function TOOL:_addHeaderEName(tableName, elementName, reverse)
 	backgroundPanel:SizeToContents()
 end
 
-// Element List
+//////////////////
+// Element List //
+//////////////////
 
 local PB = {}
 PB.Name = "list"
@@ -195,10 +197,14 @@ end
 
 TOOL:addPanelBuilder(PB)
 
-// Element Edit
+//////////////////
+// Element Edit //
+//////////////////
 
 local PB = {}
 PB.Name = "edit"
+
+PB.darkerBackground = Color(0,0,0,50)
 
 PB.elementProperties = {
 	["AttachmentModelsVM"] = {
@@ -207,17 +213,103 @@ PB.elementProperties = {
 	["AttachmentModelsWM"] = {},
 }
 
+function PB:_addSectionActive()
+	local panel = self._panel
+	local wep = self._wep
+	local state = self._state
+	
+	local backgroundPanel = vgui.Create("DPanel", panel)
+		
+		local cbox = vgui.Create("DCheckBoxLabel", backgroundPanel)
+		cbox:SetText("Active")
+		cbox:SetChecked(state.editData.active)
+		cbox:SetDark(true)
+		cbox:Dock(LEFT)
+		cbox:DockMargin(8,0,0,0)
+		
+		cbox.Label:Dock(RIGHT)
+		
+		function cbox:OnChange(val)
+			state.editData.active = val
+			PB:_updatePanel()
+		end
+		
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:SetPaintBackground(true)
+	backgroundPanel:SizeToContents()
+	
+	return 24
+end
+
+function PB:_addSectionModelEntry()
+	local panel = self._panel
+	local wep = self._wep
+	local state = self._state
+	local data = state.editData
+	
+	local backgroundPanel = vgui.Create("DPanel", panel)
+		
+		local label = vgui.Create("DLabel", backgroundPanel)
+		label:SetText("Model:")
+		label:SetDark(true)
+		label:Dock(LEFT)
+		label:DockMargin(8,0,4,0)
+		label:SizeToContents()
+		
+		local entry = vgui.Create("DTextEntry", backgroundPanel)
+		entry:Dock(FILL)
+		entry:DockMargin(4,0,8,0)
+		entry:SetText(data.model)
+		
+		function entry:OnChange()
+			local f = self:GetValue()
+			
+			if file.Exists(f, "GAME") then
+				data.model = f
+				data.ent:SetModel(f)
+				PB:_updatePanel()
+			end
+		end
+		
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:SetPaintBackground(true)
+	backgroundPanel:SizeToContents()
+	
+	return 24
+end
+
+function PB:_addSectionPOAF()
+
+	return 32
+end
+
 function PB:run()
 	local panel = self._panel
 	local wep = self._wep
 	local state = self._state
 	
+	state.editData = wep[state.editTable][state.editElement]
+	
 	self:_addHeaderETName(state.editTable, state.editElement)
 	self:_addHeaderEName(state.editTable, state.editElement, true)
 	
-	panel:AddControl("Label", {Text = "header elementName w/ butt gooback"})
-	panel:AddControl("Label", {Text = "tickbox active"})
-	panel:AddControl("Label", {Text = "tentry model"})
+	local backgroundPanel = vgui.Create("DPanel", panel)
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:SetPaintBackground(true)
+	backgroundPanel:SizeToContents()
+	panel:AddItem(backgroundPanel)
+	
+	self._panel = backgroundPanel
+	
+	local tall = 0
+	tall = tall + self:_addSectionActive()
+	tall = tall + self:_addSectionModelEntry()
+	tall = tall + self:_addSectionPOAF()
+	backgroundPanel:SetTall(tall)
+	
+	self._panel = nil
+	
+	-- panel:AddControl("Label", {Text = "tentry model"})
 	panel:AddControl("Label", {Text = "combobox models"})
 	panel:AddControl("Label", {Text = "listview POA func"})
 	panel:AddControl("Label", {Text = "3sliders pos"})
@@ -237,7 +329,9 @@ end
 
 TOOL:addPanelBuilder(PB)
 
-// Element Make
+//////////////////
+// Element Make //
+//////////////////
 
 local PB = {}
 PB.Name = "make"
@@ -283,7 +377,7 @@ function PB:_addSectionNameEntry()
 	panel:AddItem(backgroundPanel)
 		
 		local label = vgui.Create("DLabel", backgroundPanel)
-		label:SetText("Element Name:")
+		label:SetText("Element name:")
 		label:SetDark(true)
 		label:Dock(LEFT)
 		label:DockMargin(8,0,4,0)
@@ -468,10 +562,12 @@ end
 
 TOOL:addPanelBuilder(PB)
 
-// Export thing
-/*
+//////////////////
+// Export Thing //
+//////////////////
+
 local PB = {}
-PB.Name = "expo"
+PB.Name = "export"
 
 function PB:run()
 	local panel = self._panel
@@ -484,8 +580,10 @@ function PB:run()
 end
 
 TOOL:addPanelBuilder(PB)
-*/
-// Session manager
+
+/////////////////////
+// Session Manager //
+/////////////////////
 
 function TOOL:Initialize()
 	self._states = self._states or {}

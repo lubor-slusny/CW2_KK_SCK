@@ -113,30 +113,6 @@ function TOOL:_addSectionSliders()
 	backgroundPanel:SizeToContents()
 end
 
-function TOOL:_addSectionHeaderExports()
-	local panel = self._panel
-
-	local backgroundPanel = vgui.Create("DPanel", panel)
-	panel:AddItem(backgroundPanel)
-		
-		local label = vgui.Create("DLabel", backgroundPanel)
-		label:SetText("Code:")
-		label:SetDark(true)
-		label:Dock(LEFT)
-		label:SizeToContents()
-		
-		local label = vgui.Create("DLabel", backgroundPanel)
-		label:SetText("[LMB - COPY]")
-		label:SetDark(true)
-		label:Dock(RIGHT)
-		label:SizeToContents()
-		
-	backgroundPanel:Dock(TOP)
-	backgroundPanel:SetTall(16)
-	backgroundPanel:SetPaintBackground(false)
-	backgroundPanel:SizeToContents()
-end
-
 function TOOL:_addSectionPreviewExport()
 	local panel = self._panel
 	local wep = self._wep
@@ -241,7 +217,7 @@ function TOOL:_updatePanel()
 	
 	self:_addSectionWipeReload()
 	self:_addSectionSliders()
-	self:_addSectionHeaderExports()
+	self:AddHeaderSimpleLR(panel, "Code:", "[LMB - COPY]")
 	self:_addSectionPreviewExport()
 end
 

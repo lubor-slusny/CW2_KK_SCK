@@ -6,34 +6,10 @@ local TOOL = {}
 TOOL.Name = "settingstab"
 TOOL.PrintName = "[SCK] SCK"
 
-function TOOL:_addSectionHeader(left, right)
-	local panel = self._panel
-	
-	local backgroundPanel = vgui.Create("DPanel", panel)
-	panel:AddItem(backgroundPanel)
-		
-		local label = vgui.Create("DLabel", backgroundPanel)
-		label:SetText(left or "")
-		label:SetDark(true)
-		label:Dock(LEFT)
-		label:SizeToContents()
-		
-		local label = vgui.Create("DLabel", backgroundPanel)
-		label:SetText(right or "")
-		label:SetDark(true)
-		label:Dock(RIGHT)
-		label:SizeToContents()
-		
-	backgroundPanel:Dock(TOP)
-	backgroundPanel:SetTall(16)
-	backgroundPanel:SetPaintBackground(false)
-	backgroundPanel:SizeToContents()
-end
-
 function TOOL:_addSectionLocation()
 	local panel = self._panel
 	
-	self:_addSectionHeader("Location:")
+	self:AddHeaderSimpleLR(panel, "Location:")
 	
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	panel:AddItem(backgroundPanel)
@@ -115,7 +91,7 @@ end
 function TOOL:_addSectionRescan()
 	local panel = self._panel
 	
-	self:_addSectionHeader("Other:")
+	self:AddHeaderSimpleLR(panel, "Other:")
 	
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	panel:AddItem(backgroundPanel)

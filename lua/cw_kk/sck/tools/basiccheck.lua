@@ -14,7 +14,10 @@ TOOL.elementFuncs = {
 	LabelDoClick = function(self) SetClipboardText(self:GetText()) end,
 }
 
-function TOOL:_addSectionRefresh(panel, wep)
+function TOOL:_addSectionRefresh()
+	local panel = self._panel
+	local wep = self._wep
+	
 	local butt = vgui.Create("DButton", panel)
 	butt:SetText("Recheck")
 	butt:DockMargin(8, 0, 8, 0)
@@ -22,7 +25,10 @@ function TOOL:_addSectionRefresh(panel, wep)
 	panel:AddItem(butt)
 end
 
-function TOOL:_addSectionHeader(panel, wep)
+function TOOL:_addSectionHeader()
+	local panel = self._panel
+	local wep = self._wep
+	
 	local label = panel:AddControl("Label", {Text = string.upper(wep:GetClass())})
 	label:SetTextColor(panel:GetSkin().Colours.Tree.Hover)
 	
@@ -33,7 +39,10 @@ function TOOL:_addSectionHeader(panel, wep)
 	panel:AddControl("Label", {Text = ""})
 end
 
-function TOOL:_addSectionInvalidAnims(panel, wep)
+function TOOL:_addSectionInvalidAnims()
+	local panel = self._panel
+	local wep = self._wep
+	
 	local vm = wep.CW_VM
 	local errors = {}
 	local errorCount = 0
@@ -78,7 +87,10 @@ function TOOL:_addSectionInvalidAnims(panel, wep)
 	end
 end
 
-function TOOL:_addSectionUnusedAnims(panel, wep)
+function TOOL:_addSectionUnusedAnims()
+	local panel = self._panel
+	local wep = self._wep
+	
 	local vm = wep.CW_VM
 	local unused = {}
 	local unusedCount = 0
@@ -119,7 +131,10 @@ function TOOL:_addSectionUnusedAnims(panel, wep)
 	end
 end
 
-function TOOL:_addSectionInvalidSoundtables(panel, wep)
+function TOOL:_addSectionInvalidSoundtables()
+	local panel = self._panel
+	local wep = self._wep
+	
 	local vm = wep.CW_VM
 	local unreachable = {}
 	local unreachableCount = 0
@@ -185,14 +200,14 @@ function TOOL:_updatePanel()
 		return
 	end
 	
-	self:_addSectionRefresh(panel, wep)
-	self:_addSectionHeader(panel, wep)
+	self:_addSectionRefresh()
+	self:_addSectionHeader()
 	
 	self._used = {}
 	
-	self:_addSectionInvalidAnims(panel, wep)
-	self:_addSectionUnusedAnims(panel, wep)
-	self:_addSectionInvalidSoundtables(panel, wep)
+	self:_addSectionInvalidAnims()
+	self:_addSectionUnusedAnims()
+	self:_addSectionInvalidSoundtables()
 end
 
 function TOOL:SetPanel(panel)

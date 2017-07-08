@@ -45,7 +45,9 @@ function TOOL:_loadEnts()
 	end
 end
 
-function TOOL:_addSectionRefresh(panel, entTab)
+function TOOL:_addSectionRefresh()
+	local panel = self._panel
+	
 	local butt = vgui.Create("DButton", panel)
 	butt:SetTooltip("Loads changes made outside of this tool.")
 	butt:DockMargin(0, 0, 0, 0)	
@@ -54,7 +56,8 @@ function TOOL:_addSectionRefresh(panel, entTab)
 	panel:AddItem(butt)
 end
 
-function TOOL:_addSectionHeader(panel, entTab)
+function TOOL:_addSectionHeader(entTab)
+	local panel = self._panel	
 	local ent = entTab.ent
 	
 	local label = vgui.Create("DLabel", panel)
@@ -92,7 +95,8 @@ function TOOL:_addSectionHeader(panel, entTab)
 	panel:AddItem(label)
 end
 
-function TOOL:_addSectionSkinSlider(panel, entTab)
+function TOOL:_addSectionSkinSlider(entTab)
+	local panel = self._panel	
 	local ent = entTab.ent
 
 	if not ent:SkinCount() then
@@ -137,7 +141,8 @@ function TOOL:_addSectionSkinSlider(panel, entTab)
 	panel:AddItem(slider)
 end
 
-function TOOL:_addSectionBodygroupsHeader(panel, entTab)
+function TOOL:_addSectionBodygroupsHeader(entTab)
+	local panel = self._panel
 	local ent = entTab.ent
 	
 	local label = vgui.Create("DLabel", panel)
@@ -153,7 +158,8 @@ function TOOL:_addSectionBodygroupsHeader(panel, entTab)
 	end
 end
 
-function TOOL:_addSectionBodygroups(panel, entTab, i)
+function TOOL:_addSectionBodygroups(entTab, i)
+	local panel = self._panel	
 	local ent = entTab.ent
 	
 	if not ent:GetBodygroupName(i) then
@@ -226,7 +232,7 @@ function TOOL:_updatePanel()
 
 	panel:ClearControls()
 
-	self:_addSectionRefresh(panel)
+	self:_addSectionRefresh()
 	
 	self:_loadEnts()
 
@@ -237,22 +243,22 @@ function TOOL:_updatePanel()
 			continue 
 		end
 
-		if self:_addSectionHeader(panel, entTab) then
+		if self:_addSectionHeader(entTab) then
 			continue
 		end
 		
-		if self:_addSectionSkinSlider(panel, entTab) then
+		if self:_addSectionSkinSlider(entTab) then
 			continue
 		end
 		
-		if self:_addSectionBodygroupsHeader(panel, entTab) then
+		if self:_addSectionBodygroupsHeader(entTab) then
 			continue
 		end
 		
 		local bgCount = ent:GetNumBodyGroups()
 
 		for i = 0, bgCount - 1 do
-			self:_addSectionBodygroups(panel, entTab, i)
+			self:_addSectionBodygroups(entTab, i)
 		end
 	end
 	

@@ -135,6 +135,28 @@ function toolMeta:ThrowNewNotCW2Weapon()
 	})
 end
 
+function toolMeta:AddHeaderSimpleLR(panel, left, right)
+	local backgroundPanel = vgui.Create("DPanel", panel)
+	panel:AddItem(backgroundPanel)
+		
+		local label = vgui.Create("DLabel", backgroundPanel)
+		label:SetText(left or "")
+		label:SetDark(true)
+		label:Dock(LEFT)
+		label:SizeToContents()
+		
+		local label = vgui.Create("DLabel", backgroundPanel)
+		label:SetText(right or "")
+		label:SetDark(true)
+		label:Dock(RIGHT)
+		label:SizeToContents()
+		
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:SetTall(16)
+	backgroundPanel:SetPaintBackground(false)
+	backgroundPanel:SizeToContents()
+end
+
 function BASE:AddTool(tab)
 	if SERVER then return end
 	
