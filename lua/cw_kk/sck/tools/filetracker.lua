@@ -46,7 +46,6 @@ function TOOL:_updatePanel()
 				end
 				
 				local att = getAtt()
-				print(att)
 				if att and wep.AttachmentModelsVM[att.name] then
 					curSigh = wep.AttachmentModelsVM[att.name].model
 				end

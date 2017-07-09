@@ -96,7 +96,8 @@ end
 
 function TOOL:_addHeaderEName(tableName, elementName, reverse)
 	local panel = self._panel
-	local element = self._wep[tableName][elementName]
+	local wep = self._wep
+	local element = wep[tableName][elementName]
 	
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	panel:AddItem(backgroundPanel)
@@ -206,11 +207,14 @@ PB.Name = "edit"
 
 PB.darkerBackground = Color(0,0,0,50)
 
-PB.elementProperties = {
+PB.elementTableProperties = {
 	["AttachmentModelsVM"] = {
 		adjustable = true,
+		defParent = "CW_VM",
 	},
-	["AttachmentModelsWM"] = {},
+	["AttachmentModelsWM"] = {
+		defParent = "WMEnt",
+	},
 }
 
 function PB:_addSectionActive()
@@ -221,11 +225,11 @@ function PB:_addSectionActive()
 	local backgroundPanel = vgui.Create("DPanel", panel)
 		
 		local cbox = vgui.Create("DCheckBoxLabel", backgroundPanel)
+		cbox:Dock(LEFT)
+		cbox:DockMargin(8,0,0,0)
 		cbox:SetText("Active")
 		cbox:SetChecked(state.editData.active)
 		cbox:SetDark(true)
-		cbox:Dock(LEFT)
-		cbox:DockMargin(8,0,0,0)
 		
 		cbox.Label:Dock(RIGHT)
 		
@@ -238,7 +242,7 @@ function PB:_addSectionActive()
 	backgroundPanel:SetPaintBackground(true)
 	backgroundPanel:SizeToContents()
 	
-	return 24
+	return backgroundPanel:GetTall()
 end
 
 function PB:_addSectionModelEntry()
@@ -250,10 +254,10 @@ function PB:_addSectionModelEntry()
 	local backgroundPanel = vgui.Create("DPanel", panel)
 		
 		local label = vgui.Create("DLabel", backgroundPanel)
-		label:SetText("Model:")
-		label:SetDark(true)
 		label:Dock(LEFT)
 		label:DockMargin(8,0,4,0)
+		label:SetText("Model:")
+		label:SetDark(true)
 		label:SizeToContents()
 		
 		local entry = vgui.Create("DTextEntry", backgroundPanel)
@@ -275,15 +279,408 @@ function PB:_addSectionModelEntry()
 	backgroundPanel:SetPaintBackground(true)
 	backgroundPanel:SizeToContents()
 	
-	return 24
+	return backgroundPanel:GetTall()
 end
 
 function PB:_addSectionPOAF()
+	local panel = self._panel
+	local wep = self._wep
+	local state = self._state
+	local data = state.editData
+	
+	local backgroundPanel = vgui.Create("DPanel", panel)
+		
+		local view = vgui.Create("DListView", backgroundPanel)
+		view:Dock(FILL)
+		view:DockMargin(8,8,8,8)
+		view:SetTall(84)
+		view:SetMultiSelect(false)
+		view:AddColumn("Point-of-attachment function:")
+		view:AddLine("[CW20] Bone on parent entity")
+		
+		if wep.KKINS2Wep then
+			local ent = self:_getParentEnt()
+			
+			if IsValid(ent) and table.Count(ent:GetAttachments()) > 0 then
+				view:AddLine("[KKIN2] QC Attachment on parent entity")
+			else
+				view:AddLine("[DISABLED] No QC Attachments found")
+			end
+			
+			view:AddLine("[KKIN2] Bone-Merge to parent entity")
+		end
+		
+		function view:SortByColumn() end
+		
+		if data.merge then
+			view._lastRow = 3
+			view:SelectItem(view:GetLine(3))
+		elseif data._attachment then
+			view._lastRow = 2
+			view:SelectItem(view:GetLine(2))
+		else
+			view._lastRow = 1
+			view:SelectItem(view:GetLine(1))
+		end
+		
+		function view:OnRowSelected(val)
+			if val == self._lastRow then
+				return
+			end
+			
+			self._lastRow = val
+			
+			local parent = PB:_getParentEnt()
+			
+			if val == 1 then
+				data.merge = false
+				data.attachment = nil
+				data._attachment = nil
+				data.bone = parent:GetBoneName(0)
+				data._bone = nil
+			elseif val == 2 then
+				local att = parent:GetAttachments()[1]
+				
+				if att then
+					data.merge = false
+					data.attachment = att.name
+					data._attachment = nil 
+					data.bone = nil
+					data._bone = nil
+				end
+			elseif val == 3 then
+				data.merge = true
+				data.attachment = nil
+				data._attachment = nil
+				data.bone = nil
+				data._bone = nil
+			end
+			
+			PB:_recreateElement()
+			PB:_updatePanel()
+		end
+		
+		state.editFuncSelector = view
+		
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:SetTall(view:GetTall())
+	backgroundPanel:SetPaintBackground(true)
+	backgroundPanel:SizeToContents()
+	
+	return backgroundPanel:GetTall()
+end
 
-	return 32
+function PB:_addSectionSelectAtt()
+	local panel = self._panel
+	local wep = self._wep
+	local state = self._state
+	local data = state.editData
+	
+	local selection = self:_getAttSelection()
+	
+	if !selection then
+		return 0
+	end
+	
+	local backgroundPanel = vgui.Create("DPanel", panel)
+		
+		local box = vgui.Create("DComboBox", backgroundPanel)
+		box:Dock(FILL)
+		box:DockMargin(8,0,8,8)
+		box:SetValue(selection.value)
+		
+		for k,v in pairs(selection.choices) do
+			box:AddChoice(k, v)
+		end
+		
+		box.OnSelect = selection.onSelect
+		
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:SetTall(32)
+	backgroundPanel:SetPaintBackground(true)
+	backgroundPanel:SizeToContents()
+	
+	return backgroundPanel:GetTall()
+end
+
+function PB:_addSectionPosSliders()
+	local panel = self._panel
+	local wep = self._wep
+	local state = self._state
+	local data = state.editData
+	
+	data.pos = Vector(data.pos)
+	
+	local backgroundPanel = vgui.Create("DPanel", panel)
+		
+		for _,s in pairs({
+			{"pos", "x", -100, 100},
+			{"pos", "y", -100, 100},
+			{"pos", "z", -100, 100},
+		}) do
+			local slider = vgui.Create("DNumSlider", backgroundPanel)
+			slider:Dock(TOP)
+			slider:DockMargin(8,0,8,0)
+			slider:SetTall(24)
+			slider:SetText(s[1] .. "." .. s[2])
+			slider:SetDark(true)
+			slider:SetMinMax(s[3], s[4])
+			slider:SetDecimals(4)
+			slider:SetValue(data[s[1]][s[2]])
+			
+			self:LoadSliderZoom(slider)
+			
+			function slider:OnValueChanged(val)
+				data[s[1]][s[2]] = val
+				PB:SaveSliderZoom(self)
+			end
+		end
+		
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:DockMargin(8,0,8,8)
+	backgroundPanel:SetTall(72)
+	backgroundPanel:SetBackgroundColor(self.darkerBackground)
+	backgroundPanel:SetPaintBackground(true)
+	backgroundPanel:SizeToContents()
+	
+	return backgroundPanel:GetTall()
+end
+
+function PB:_addSectionAngSliders()
+	local panel = self._panel
+	local wep = self._wep
+	local state = self._state
+	local data = state.editData
+	
+	data.angle = Angle(data.angle)
+	
+	local backgroundPanel = vgui.Create("DPanel", panel)
+		
+		for _,s in pairs({
+			{"angle", "p", -180, 180},
+			{"angle", "y", -180, 180},
+			{"angle", "r", -180, 180},
+		}) do
+			local slider = vgui.Create("DNumSlider", backgroundPanel)
+			slider:Dock(TOP)
+			slider:DockMargin(8,0,8,0)
+			slider:SetTall(24)
+			slider:SetText(s[1] .. "." .. s[2])
+			slider:SetDark(true)
+			slider:SetMinMax(s[3], s[4])
+			slider:SetDecimals(4)
+			slider:SetValue(data[s[1]][s[2]])
+			
+			self:LoadSliderZoom(slider)
+			
+			function slider:OnValueChanged(val)
+				data[s[1]][s[2]] = val
+				PB:SaveSliderZoom(self)
+			end
+		end
+		
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:DockMargin(8,0,8,8)
+	backgroundPanel:SetTall(72)
+	backgroundPanel:SetBackgroundColor(self.darkerBackground)
+	backgroundPanel:SetPaintBackground(true)
+	backgroundPanel:SizeToContents()
+	
+	return backgroundPanel:GetTall() + 8
+end
+
+function PB:_addSectionSizeUniform()
+	local panel = self._panel
+	local wep = self._wep
+	local state = self._state
+	local data = state.editData
+	
+	data.size = Vector(data.size)
+	
+	local backgroundPanel = vgui.Create("DPanel", panel)
+		
+		local slider = vgui.Create("DNumSlider", backgroundPanel)
+		slider:Dock(TOP)
+		slider:DockMargin(8,0,8,0)
+		slider:SetTall(24)
+		slider:SetText("size.xyz")
+		slider:SetDark(true)
+		slider:SetMinMax(0.001, 10)
+		slider:SetDecimals(4)
+		slider:SetValue(data.size.x)
+		
+		self:LoadSliderZoom(slider)
+	
+		function slider:OnValueChanged(val)
+			if !state.editSizeSliders then
+				return
+			end
+			
+			for slider,_ in pairs(state.editSizeSliders) do
+				slider._pauseSendingUpdates = true
+				slider:SetValue(val)
+				slider._pauseSendingUpdates = false
+			end
+			
+			PB:SaveSliderZoom(self)
+			PB:_recreateElement()
+		end
+		
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:DockMargin(8,0,8,8)
+	backgroundPanel:SetBackgroundColor(self.darkerBackground)
+	backgroundPanel:SetPaintBackground(true)
+	backgroundPanel:SizeToContents()
+	
+	return backgroundPanel:GetTall() + 8
+end
+
+function PB:_addSectionSizeSliders()
+	local panel = self._panel
+	local wep = self._wep
+	local state = self._state
+	local data = state.editData
+	
+	state.editSizeSliders = {}
+	
+	local backgroundPanel = vgui.Create("DPanel", panel)
+		
+		for _,s in pairs({
+			{"size", "x", 0.001, 10},
+			{"size", "y", 0.001, 10},
+			{"size", "z", 0.001, 10},
+		}) do
+			local slider = vgui.Create("DNumSlider", backgroundPanel)
+			slider:Dock(TOP)
+			slider:DockMargin(8,0,8,0)
+			slider:SetTall(24)
+			slider:SetText(s[1] .. "." .. s[2])
+			slider:SetDark(true)
+			slider:SetMinMax(s[3], s[4])
+			slider:SetDecimals(4)
+			slider:SetValue(data[s[1]][s[2]])
+			
+			self:LoadSliderZoom(slider)
+			
+			function slider:OnValueChanged(val)
+				data[s[1]][s[2]] = val
+				
+				if !self._pauseSendingUpdates then
+					PB:SaveSliderZoom(self)
+					PB:_recreateElement()
+				end
+			end
+			
+			state.editSizeSliders[slider] = slider
+		end
+		
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:DockMargin(8,0,8,8)
+	backgroundPanel:SetTall(72)
+	backgroundPanel:SetBackgroundColor(self.darkerBackground)
+	backgroundPanel:SetPaintBackground(true)
+	backgroundPanel:SizeToContents()
+	
+	return backgroundPanel:GetTall() + 8
+end
+
+function PB:_getParentEnt()
+	local wep = self._wep
+	local state = self._state
+	local data = state.editData
+	
+	if IsValid(data.ent:GetParent()) then
+		return data.ent:GetParent()
+	end
+	
+	if data.rel and wep[state.editTable][rel] and IsValid(wep[state.editTable][rel].ent) then
+		return wep[state.editTable][rel].ent
+	end
+	
+	local entName = self.elementTableProperties[state.editTable].defParent
+	return wep[entName]
+end
+
+function PB:_getAttSelection()
+	local state = self._state
+	local data = state.editData
+	local parent = self:_getParentEnt()
+	local out
+	
+	if state.editFuncSelector:GetSelectedLine() == 1 then
+		out = {}
+		out.value = data.bone or "-select bone-"
+		
+		out.choices = {}
+		for i=0,(parent:GetBoneCount() - 1) do
+			local boneName = parent:GetBoneName(i)
+			out.choices[string.format("[%03d] %s", i, boneName)] = boneName
+		end
+		
+		function out:onSelect(_, _, name) 
+			data.bone = name
+			PB:_recreateElement()
+			PB:_updatePanel()
+		end
+	end
+	
+	if state.editFuncSelector:GetSelectedLine() == 2 then
+		out = {}
+		out.value = data.attachment or "-select attachment-"
+		
+		out.choices = {}		
+		local atts = parent:GetAttachments()		
+		for i=1,#atts do
+			local attName = atts[i].name
+			out.choices[string.format("[%03d] %s", i, attName)] = attName
+		end
+		
+		function out:onSelect(_, _, name)
+			data.attachment = name
+			PB:_recreateElement()
+			PB:_updatePanel()
+		end
+	end
+	
+	return out
+end
+
+// 2doo: improv
+function PB:_recreateElement()
+	local wep = self._wep
+	local state = self._state
+	local data = state.editData
+
+	if data.models then
+		for _,data in ipairs(data.models) do
+			wep:_setupAttachmentModel(data)
+		end
+	else
+		wep:_setupAttachmentModel(data)
+	end
+	
+	if wep.KKINS2Wep then	
+		if data.models then
+			for _,data in ipairs(data.models) do
+				wep:_setupAttachmentModelMerge(data)
+			end
+		else
+			wep:_setupAttachmentModelMerge(data)
+		end
+	end
+end
+
+function PB:_restoreElement()
+	local wep = self._wep
+	local state = self._state
+	local data = state.editData
+	
+	
 end
 
 function PB:run()
+	self._panel = nil
+	
 	local panel = self._panel
 	local wep = self._wep
 	local state = self._state
@@ -305,17 +702,16 @@ function PB:run()
 	tall = tall + self:_addSectionActive()
 	tall = tall + self:_addSectionModelEntry()
 	tall = tall + self:_addSectionPOAF()
+	tall = tall + self:_addSectionSelectAtt()
+	tall = tall + self:_addSectionPosSliders()
+	tall = tall + self:_addSectionAngSliders()
+	tall = tall + self:_addSectionSizeUniform()
+	tall = tall + self:_addSectionSizeSliders()
 	backgroundPanel:SetTall(tall)
+	-- backgroundPanel:SetTall(tall + 8)
 	
 	self._panel = nil
 	
-	-- panel:AddControl("Label", {Text = "tentry model"})
-	panel:AddControl("Label", {Text = "combobox models"})
-	panel:AddControl("Label", {Text = "listview POA func"})
-	panel:AddControl("Label", {Text = "3sliders pos"})
-	panel:AddControl("Label", {Text = "3sliders ang"})
-	panel:AddControl("Label", {Text = "slider size uni"})
-	panel:AddControl("Label", {Text = "3sliders size"})
 	panel:AddControl("Label", {Text = "header w/ butt add -- sight adjust"})
 	panel:AddControl("Label", {Text = "tentry material"})
 	panel:AddControl("Label", {Text = "tentry parent"})
@@ -590,11 +986,11 @@ function TOOL:Initialize()
 end
 
 function TOOL:_setBuilder(id)
-	id = id or self._statePrevious
+	id = id or self._state.builderIdPrevious
 	
 	local new = id and (self._panelBuilders[id] and id) or "list"
 	
-	self._statePrevious = self._state.builderId
+	self._state.builderIdPrevious = self._state.builderId
 	self._state.builderId = new
 	self:_updatePanel()
 end
