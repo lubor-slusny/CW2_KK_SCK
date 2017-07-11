@@ -103,11 +103,11 @@ function TOOL:_addHeaderETName(tableName, fill)
 		label:Dock(LEFT)
 		label:DockMargin(8,0,4,0)
 		label:SizeToContents()
-		label:SetMouseInputEnabled(true)
+		-- label:SetMouseInputEnabled(true)
 		
-		function label:DoClick()
-			TOOL:_setBuilder("list")
-		end
+		-- function label:DoClick()
+			-- TOOL:_setBuilder("list")
+		-- end
 		
 		local butt
 		butt = vgui.Create("DButton", backgroundPanel)
@@ -118,6 +118,7 @@ function TOOL:_addHeaderETName(tableName, fill)
 		
 		function butt:DoClick()
 			TOOL._state.makeElement = fill
+			TOOL._state.makeModel = fill and TOOL._state.editData.model
 			TOOL:_setBuilder("make")
 		end
 		
@@ -354,40 +355,40 @@ function PB:_addSectionPOAF()
 	
 	local backgroundPanel = vgui.Create("DPanel", panel)
 		
-		local view = vgui.Create("DListView", backgroundPanel)
-		view:Dock(FILL)
-		view:DockMargin(8,8,8,8)
-		view:SetTall(84)
-		view:SetMultiSelect(false)
-		view:AddColumn("Point-of-attachment function:")
-		view:AddLine("[CW20] Bone on parent entity")
+		local listView = vgui.Create("DListView", backgroundPanel)
+		listView:Dock(FILL)
+		listView:DockMargin(8,8,8,8)
+		listView:SetTall(84)
+		listView:SetMultiSelect(false)
+		listView:AddColumn("Point-of-attachment function:")
+		listView:AddLine("[CW20] Bone on parent entity")
 		
 		if wep.KKINS2Wep then
 			local ent = self:_getParentEnt()
 			
 			if IsValid(ent) and table.Count(ent:GetAttachments()) > 0 then
-				view:AddLine("[KKIN2] QC Attachment on parent entity")
+				listView:AddLine("[KKIN2] QC Attachment on parent entity")
 			else
-				view:AddLine("[DISABLED] No QC Attachments found")
+				listView:AddLine("[DISABLED] No QC Attachments found")
 			end
 			
-			view:AddLine("[KKIN2] Bone-Merge to parent entity")
+			listView:AddLine("[KKIN2] Bone-Merge to parent entity")
 		end
 		
-		function view:SortByColumn() end
+		function listView:SortByColumn() end
 		
 		if data.merge then
-			view._lastRow = 3
-			view:SelectItem(view:GetLine(3))
+			listView._lastRow = 3
+			listView:SelectItem(listView:GetLine(3))
 		elseif data._attachment then
-			view._lastRow = 2
-			view:SelectItem(view:GetLine(2))
+			listView._lastRow = 2
+			listView:SelectItem(listView:GetLine(2))
 		else
-			view._lastRow = 1
-			view:SelectItem(view:GetLine(1))
+			listView._lastRow = 1
+			listView:SelectItem(listView:GetLine(1))
 		end
 		
-		function view:OnRowSelected(val)
+		function listView:OnRowSelected(val)
 			if val == self._lastRow then
 				return
 			end
@@ -424,10 +425,10 @@ function PB:_addSectionPOAF()
 			PB:_updatePanel()
 		end
 		
-		state.editFuncSelector = view
+		state.editFuncSelector = listView
 		
 	backgroundPanel:Dock(TOP)
-	backgroundPanel:SetTall(view:GetTall())
+	backgroundPanel:SetTall(listView:GetTall())
 	backgroundPanel:SetPaintBackground(false)
 	backgroundPanel:SizeToContents()
 	
@@ -1374,6 +1375,7 @@ function PB:_addHeader()
 		
 		function butt:DoClick()
 			TOOL._state.makeElement = nil
+			TOOL._state.makeModel = nil
 			TOOL:_setBuilder()
 		end
 		
@@ -1621,6 +1623,38 @@ function PB:run()
 	local state = self._state
 	
 	self:_addHeader()
+	
+	for _,tableName in pairs(self.elementTables) do	
+		local backgroundPanel = vgui.Create("DPanel", panel)
+			
+			local listView = vgui.Create("DListView", backgroundPanel)
+			listView:Dock(FILL)
+			listView:DockMargin(8,8,8,8)
+			listView:SetMultiSelect(true)
+			listView:AddColumn("SWEP." .. tableName)
+			
+			local tall = 32
+			
+			for elementName,element in pairs(wep[tableName]) do
+				tall = tall + 17
+				listView:AddLine(elementName)
+			end
+			
+			listView:SetTall(tall)
+			
+			-- function listView:SortByColumn() end
+			
+			function listView:OnRowSelected(val)
+				
+			end
+			
+		backgroundPanel:Dock(TOP)
+		backgroundPanel:SetTall(listView:GetTall())
+		backgroundPanel:SetPaintBackground(false)
+		backgroundPanel:SizeToContents()
+		
+		panel:AddItem(backgroundPanel)
+	end
 end
 
 TOOL:addPanelBuilder(PB)
