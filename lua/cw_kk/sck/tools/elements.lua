@@ -50,12 +50,40 @@ function TOOL:_addSectionRefreshButt()
 		
 		local butt = vgui.Create("DButton", backgroundPanel)
 		butt:Dock(FILL)
-		butt:SetSize(150,20)
+		
 		butt:SetText("Refresh")
 		butt:SetTooltip("Loads changes made outside of this tool.")
 		
 		function butt:DoClick()
 			TOOL:_updatePanel()
+		end
+		
+		-- butt:SetText("Reset")
+		-- butt:SetTooltip("Wipes current sessions")
+		
+		-- function butt:DoClick()
+			-- TOOL._states = {}
+			-- TOOL:_updatePanel()
+		-- end
+		
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:SetPaintBackground(true)
+	backgroundPanel:SizeToContents()
+end
+
+function TOOL:_addSectionExportButt()
+	local panel = self._panel
+	
+	local backgroundPanel = vgui.Create("DPanel", panel)
+	panel:AddItem(backgroundPanel)
+		
+		local butt = vgui.Create("DButton", backgroundPanel)
+		butt:Dock(FILL)
+		
+		butt:SetText("Export options")
+		
+		function butt:DoClick()
+			TOOL:_setBuilder("export")
 		end
 		
 	backgroundPanel:Dock(TOP)
@@ -75,6 +103,11 @@ function TOOL:_addHeaderETName(tableName, fill)
 		label:Dock(LEFT)
 		label:DockMargin(8,0,4,0)
 		label:SizeToContents()
+		label:SetMouseInputEnabled(true)
+		
+		function label:DoClick()
+			TOOL:_setBuilder("list")
+		end
 		
 		local butt
 		butt = vgui.Create("DButton", backgroundPanel)
@@ -194,6 +227,8 @@ function PB:run()
 			self:_addHeaderEName(tableName, elementName)
 		end
 	end
+	
+	self:_addSectionExportButt()
 end
 
 TOOL:addPanelBuilder(PB)
@@ -217,6 +252,35 @@ PB.elementTableProperties = {
 	},
 }
 
+PB.defaultAdjustment = {
+	min = 0, 
+	max = 0, 
+	axis = "x", 
+	inverse = false,
+	inverseOffsetCalc = false,
+}
+
+PB.elementPropertiesLayout = {
+	"Active",
+	"ModelEntry",
+	"POAF",
+	"SelectAtt",
+	"PosSliders",
+	"AngSliders",
+	"SizeUniform",
+	"SizeSliders",
+	"SightAdjustment",
+	"Skin",
+	"Bodygroups",
+	"MaterialEntry",
+	"ParentEntry",
+	"Nodraw",
+	"HideVM",
+	"Lighting",
+	"Animated",
+	"Restore",
+}
+
 function PB:_addSectionActive()
 	local panel = self._panel
 	local wep = self._wep
@@ -226,7 +290,6 @@ function PB:_addSectionActive()
 		
 		local cbox = vgui.Create("DCheckBoxLabel", backgroundPanel)
 		cbox:Dock(LEFT)
-		cbox:DockMargin(8,0,0,0)
 		cbox:SetText("Active")
 		cbox:SetChecked(state.editData.active)
 		cbox:SetDark(true)
@@ -239,7 +302,8 @@ function PB:_addSectionActive()
 		end
 		
 	backgroundPanel:Dock(TOP)
-	backgroundPanel:SetPaintBackground(true)
+	backgroundPanel:DockMargin(8,0,8,0)
+	backgroundPanel:SetPaintBackground(false)
 	backgroundPanel:SizeToContents()
 	
 	return backgroundPanel:GetTall()
@@ -276,7 +340,7 @@ function PB:_addSectionModelEntry()
 		end
 		
 	backgroundPanel:Dock(TOP)
-	backgroundPanel:SetPaintBackground(true)
+	backgroundPanel:SetPaintBackground(false)
 	backgroundPanel:SizeToContents()
 	
 	return backgroundPanel:GetTall()
@@ -364,7 +428,7 @@ function PB:_addSectionPOAF()
 		
 	backgroundPanel:Dock(TOP)
 	backgroundPanel:SetTall(view:GetTall())
-	backgroundPanel:SetPaintBackground(true)
+	backgroundPanel:SetPaintBackground(false)
 	backgroundPanel:SizeToContents()
 	
 	return backgroundPanel:GetTall()
@@ -397,7 +461,7 @@ function PB:_addSectionSelectAtt()
 		
 	backgroundPanel:Dock(TOP)
 	backgroundPanel:SetTall(32)
-	backgroundPanel:SetPaintBackground(true)
+	backgroundPanel:SetPaintBackground(false)
 	backgroundPanel:SizeToContents()
 	
 	return backgroundPanel:GetTall()
@@ -584,6 +648,566 @@ function PB:_addSectionSizeSliders()
 	return backgroundPanel:GetTall() + 8
 end
 
+function PB:_addSectionSightAdjustment()
+	local state = self._state
+	
+	if !self.elementTableProperties[state.editTable].adjustable then
+		return 0
+	end
+	
+	local data = state.editData
+	
+	local long = data.adjustment != nil
+	local tall = self:_sightAdjustmentHeader(long)
+	
+	if long then
+		tall = tall + self:_sightAdjustmentLong()
+	end
+	
+	return tall
+end
+
+function PB:_sightAdjustmentHeader(long)
+	local panel = self._panel
+	local wep = self._wep
+	local state = self._state
+	local data = state.editData
+	
+	local backgroundPanel = vgui.Create("DPanel", panel)
+		
+		local DoClick = function()
+			if long then
+				data.adjustment = nil
+			else
+				data.adjustment = table.Copy(PB.defaultAdjustment)
+			end
+			PB:_updatePanel()
+		end
+		
+		local label = vgui.Create("DLabel", backgroundPanel)
+		label:SetText("Sight Adjustment:")
+		label:SetDark(true)
+		label:Dock(LEFT)
+		label:DockMargin(8,0,4,0)
+		label:SizeToContents()
+		
+		local butt
+		butt = vgui.Create("DButton", backgroundPanel)
+		butt:SetText(long and "Remove" or "Add")
+		butt:Dock(RIGHT)
+		butt:DockMargin(0,4,8,4)
+		butt.DoClick = DoClick
+		
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:DockMargin(8,0,8, long and 0 or 8)
+	backgroundPanel:SetBackgroundColor(self.darkerBackground)
+	backgroundPanel:SetPaintBackground(true)
+	backgroundPanel:SizeToContents()
+	
+	return backgroundPanel:GetTall() + (long and 0 or 8)
+end
+
+function PB:_sightAdjustmentLong()
+	local panel = self._panel
+	local state = self._state
+	local data = state.editData
+	
+	data.adjustment = table.Copy(data.adjustment)
+	
+	local backgroundPanel = vgui.Create("DPanel", panel)
+		
+		self:_sightAdjustmentLongAxis(backgroundPanel)
+		self:_sightAdjustmentLongMin(backgroundPanel)
+		self:_sightAdjustmentLongMax(backgroundPanel)
+		self:_sightAdjustmentLongInverts(backgroundPanel)
+		
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:SetTall(96)
+	backgroundPanel:DockMargin(8,0,8,8)
+	backgroundPanel:SetBackgroundColor(self.darkerBackground)
+	backgroundPanel:SetPaintBackground(true)
+	backgroundPanel:SizeToContents()
+	
+	return backgroundPanel:GetTall() + 8
+end
+
+function PB:_sightAdjustmentLongAxis(panel)
+	local wep = self._wep
+	local state = self._state
+	local data = state.editData
+
+	local backgroundPanel = vgui.Create("DPanel", panel)
+		
+		local label
+		label = vgui.Create("DLabel", backgroundPanel)
+		label:SetText("Axis: ")
+		label:SetDark(true)
+		label:Dock(LEFT)
+		label:DockMargin(8,0,0,0)
+		label:SizeToContents()
+		
+		local ax = {x = 1, y = 2, z = 3}
+		local xa = {"x", "y", "z"}
+		
+		local unselect = {"X", "Y", "Z"}
+		local selected = {"[X]", "[Y]", "[Z]"}
+		
+		local listView = vgui.Create("DListView", backgroundPanel)
+		listView:AddColumn("")
+		listView:AddColumn("")
+		listView:AddColumn("")
+		listView:SetHeaderHeight(20)
+		
+		listView:Dock(FILL)
+		listView:DockMargin(16,0,8,0)
+		listView:SizeToContents()
+		listView:SetBackgroundColor(Color(0,0,0,255))
+		listView:SetPaintBackground(false)
+		listView:FixColumnsLayout()
+		
+		function listView:SortByColumn(i)
+			data.adjustment.axis = xa[i]
+			
+			for k,v in pairs(self.Columns) do
+				if k == i then 
+					v:SetName(selected[k])
+				else
+					v:SetName(unselect[k])
+				end
+			end
+		end
+		
+		function listView:OnRequestResize(val) end
+		
+		listView:SortByColumn(ax[data.adjustment.axis])
+		
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:SetPaintBackground(false)
+	backgroundPanel:SizeToContents()
+end
+
+function PB:_sightAdjustmentLongMin(panel)
+	local wep = self._wep
+	local state = self._state
+	local data = state.editData
+
+	local backgroundPanel = vgui.Create("DPanel", panel)
+		
+		local slider = vgui.Create("DNumSlider", backgroundPanel)
+		slider:Dock(FILL)
+		slider:DockMargin(8,0,8,0)
+		slider:SetDecimals(4)
+		slider:SetMinMax(-100, 100)
+		slider:SetValue(data.adjustment.min)
+		slider:SetText("Min:")
+		slider:SetDark(true)
+		
+		PB:LoadSliderZoom(slider)
+		
+		function slider:OnValueChanged(val)
+			data.adjustment.min = val
+			PB:SaveSliderZoom(self)
+		end
+		
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:SetPaintBackground(false)
+	backgroundPanel:SizeToContents()
+end
+
+function PB:_sightAdjustmentLongMax(panel)
+	local wep = self._wep
+	local state = self._state
+	local data = state.editData
+
+	local backgroundPanel = vgui.Create("DPanel", panel)
+		
+		local slider = vgui.Create("DNumSlider", backgroundPanel)
+		slider:Dock(FILL)
+		slider:DockMargin(8,0,8,0)
+		slider:SetDecimals(4)
+		slider:SetMinMax(-100, 100)
+		slider:SetValue(data.adjustment.max)
+		slider:SetText("Max:")
+		slider:SetDark(true)
+		
+		PB:LoadSliderZoom(slider)
+		
+		function slider:OnValueChanged(val)
+			data.adjustment.max = val
+			PB:SaveSliderZoom(self)
+		end
+		
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:SetPaintBackground(false)
+	backgroundPanel:SizeToContents()
+end
+
+function PB:_sightAdjustmentLongInverts(panel)
+	local wep = self._wep
+	local state = self._state
+	local data = state.editData
+
+	local backgroundPanel = vgui.Create("DPanel", panel)
+		
+		local cbox = vgui.Create("DCheckBoxLabel", backgroundPanel)
+		cbox:Dock(LEFT)
+		cbox:DockMargin(8,0,8,0)
+		cbox:SetText("Invert input")
+		cbox:SetChecked(data.adjustment.inverse)
+		cbox:SetDark(true)
+		
+		cbox.Label:Dock(RIGHT)
+		
+		function cbox:OnChange(val)
+			data.adjustment.inverse = val
+			PB:_updatePanel()
+		end
+		
+		local cbox = vgui.Create("DCheckBoxLabel", backgroundPanel)
+		cbox:Dock(RIGHT)
+		cbox:DockMargin(8,0,8,0)
+		cbox:SetText("Invert calculation")
+		cbox:SetChecked(data.adjustment.inverseOffsetCalc)
+		cbox:SetDark(true)
+		
+		cbox.Label:Dock(RIGHT)
+		
+		function cbox:OnChange(val)
+			data.adjustment.inverseOffsetCalc = val
+			PB:_updatePanel()
+		end
+		
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:SetPaintBackground(false)
+	backgroundPanel:SizeToContents()
+end
+
+function PB:_addSectionSkin()
+	local panel = self._panel
+	local wep = self._wep
+	local state = self._state
+	local data = state.editData
+	
+	local count = data.ent:SkinCount()
+	
+	if count < 2 then
+		return 0
+	end
+	
+	local backgroundPanel = vgui.Create("DPanel", panel)
+	
+		local slider = vgui.Create("DNumSlider", backgroundPanel)
+		slider:Dock(FILL)
+		slider:DockMargin(8,0,8,0)
+		slider:SetDecimals(0)
+		slider:SetMinMax(0, count - 1)
+		slider:SetValue(data.ent:GetSkin())
+		slider:SetText("Skin:")
+		slider:SetDark(true)
+		
+		function slider:OnValueChanged(val)
+			math.Round(val)
+			data.skin = val
+			data.ent:SetSkin(val)
+		end
+		
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:DockMargin(8,0,8,8)
+	backgroundPanel:SetBackgroundColor(self.darkerBackground)
+	backgroundPanel:SetPaintBackground(true)
+	backgroundPanel:SizeToContents()
+	
+	return backgroundPanel:GetTall() + 8
+end
+
+function PB:_addSectionBodygroups()
+	local panel = self._panel
+	local wep = self._wep
+	local state = self._state
+	local data = state.editData
+	
+	local options = {}
+	
+	for i = 0, data.ent:GetNumBodyGroups() do
+		if (data.ent:GetBodygroupCount(i) - 1 > 0) then
+			table.insert(options, i)
+		end
+	end
+	
+	if #options < 1 then
+		return 0
+	end
+	
+	data.bodygroups = data.bodygroups or {}
+	data.bodygroups = table.Copy(data.bodygroups)
+	
+	local backgroundPanel = vgui.Create("DPanel", panel)
+	
+		local label = vgui.Create("DLabel", backgroundPanel)
+		label:SetText("Bodygroups:")
+		label:SetDark(true)
+		label:Dock(TOP)
+		label:DockMargin(8,4,8,4)
+		label:SizeToContents()
+		
+		for _,i in pairs(options) do
+			local slider = vgui.Create("DNumSlider", backgroundPanel)
+			slider:Dock(TOP)
+			slider:DockMargin(8,0,8,0)
+			slider:SetTall(24)
+			slider:SetDecimals(0)
+			slider:SetMinMax(0, data.ent:GetBodygroupCount(i) - 1)
+			slider:SetValue(data.ent:GetBodygroup(i))
+			slider:SetText(i .. "# " .. data.ent:GetBodygroupName(i))
+			slider:SetDark(true)
+			
+			function slider:OnValueChanged(val)
+				math.Round(val)
+				data.bodygroups[i] = val
+				data.ent:SetBodygroup(i, val)
+			end
+		end
+		
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:SetTall((#options + 1) * 24)
+	backgroundPanel:DockMargin(8,0,8,8)
+	backgroundPanel:SetBackgroundColor(self.darkerBackground)
+	backgroundPanel:SetPaintBackground(true)
+	backgroundPanel:SizeToContents()
+	
+	return backgroundPanel:GetTall() + 8
+end
+
+function PB:_addSectionMaterialEntry()
+	local wep = self._wep
+	
+	if !wep.KKINS2Wep then
+		return 0
+	end
+	
+	local panel = self._panel
+	local state = self._state
+	local data = state.editData
+	
+	local backgroundPanel = vgui.Create("DPanel", panel)
+		
+		local label = vgui.Create("DLabel", backgroundPanel)
+		label:Dock(LEFT)
+		label:DockMargin(0,0,4,0)
+		label:SetText("Material override:")
+		label:SetDark(true)
+		label:SizeToContents()
+		
+		local entry = vgui.Create("DTextEntry", backgroundPanel)
+		entry:Dock(FILL)
+		entry:DockMargin(4,0,0,0)
+		entry:SetText(data.material or "")
+		
+		function entry:OnChange()
+			local f = self:GetValue()
+			data.material = f
+			data.ent:SetMaterial(f)
+		end
+		
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:DockMargin(8,0,8,8)
+	backgroundPanel:SetPaintBackground(false)
+	backgroundPanel:SizeToContents()
+	
+	return backgroundPanel:GetTall() + 8
+end
+
+function PB:_addSectionParentEntry()
+	local wep = self._wep
+	
+	if !wep.KKINS2Wep then
+		return 0
+	end
+	
+	local panel = self._panel
+	local state = self._state
+	local data = state.editData
+	
+	local backgroundPanel = vgui.Create("DPanel", panel)
+		
+		local label = vgui.Create("DLabel", backgroundPanel)
+		label:Dock(LEFT)
+		label:DockMargin(0,0,4,0)
+		label:SetText("Parent override:")
+		label:SetDark(true)
+		label:SizeToContents()
+		
+		local entry = vgui.Create("DTextEntry", backgroundPanel)
+		entry:Dock(FILL)
+		entry:DockMargin(4,0,0,0)
+		entry:SetText(data.rel or "")
+		
+		function entry:OnChange()
+			local rel = self:GetValue()
+			
+			if wep[state.editTable][rel] then
+				data.rel = rel
+				PB:_recreateElement()
+				PB:_updatePanel()
+			end
+		end
+		
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:DockMargin(8,0,8,8)
+	backgroundPanel:SetPaintBackground(false)
+	backgroundPanel:SizeToContents()
+	
+	return backgroundPanel:GetTall() + 8
+end
+
+function PB:_addSectionNodraw()
+	local wep = self._wep
+	
+	if !wep.KKINS2Wep then
+		return 0
+	end
+	
+	local panel = self._panel
+	local state = self._state
+	
+	local backgroundPanel = vgui.Create("DPanel", panel)
+		
+		local cbox = vgui.Create("DCheckBoxLabel", backgroundPanel)
+		cbox:Dock(LEFT)
+		cbox:SetText("Hide (only update Pos/Ang)")
+		cbox:SetChecked(state.editData.nodraw)
+		cbox:SetDark(true)
+		
+		cbox.Label:Dock(RIGHT)
+		
+		function cbox:OnChange(val)
+			state.editData.nodraw = val
+		end
+		
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:DockMargin(8,0,8,0)
+	backgroundPanel:SetPaintBackground(false)
+	backgroundPanel:SizeToContents()
+	
+	return backgroundPanel:GetTall() + 2
+end
+
+function PB:_addSectionHideVM()
+	local wep = self._wep
+	
+	if !wep.KKINS2Wep then
+		return 0
+	end
+	
+	local panel = self._panel
+	local state = self._state
+	
+	local backgroundPanel = vgui.Create("DPanel", panel)
+		
+		local cbox = vgui.Create("DCheckBoxLabel", backgroundPanel)
+		cbox:Dock(LEFT)
+		cbox:SetText("Hide CW_VM when active")
+		cbox:SetChecked(state.editData.hideVM)
+		cbox:SetDark(true)
+		
+		cbox.Label:Dock(RIGHT)
+		
+		function cbox:OnChange(val)
+			state.editData.hideVM = val
+		end
+		
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:DockMargin(8,0,8,0)
+	backgroundPanel:SetPaintBackground(false)
+	backgroundPanel:SizeToContents()
+	
+	return backgroundPanel:GetTall() + 2
+end
+
+function PB:_addSectionLighting()
+	local wep = self._wep
+	
+	if !wep.KKINS2Wep then
+		return 0
+	end
+	
+	local panel = self._panel
+	local state = self._state
+	
+	local backgroundPanel = vgui.Create("DPanel", panel)
+		
+		local cbox = vgui.Create("DCheckBoxLabel", backgroundPanel)
+		cbox:Dock(LEFT)
+		cbox:SetText("Recompute lighting")
+		cbox:SetChecked(state.editData.rLight)
+		cbox:SetDark(true)
+		
+		cbox.Label:Dock(RIGHT)
+		
+		function cbox:OnChange(val)
+			state.editData.rLight = val
+		end
+		
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:DockMargin(8,0,8,0)
+	backgroundPanel:SetPaintBackground(false)
+	backgroundPanel:SizeToContents()
+	
+	return backgroundPanel:GetTall() + 2
+end
+
+function PB:_addSectionAnimated()
+	local panel = self._panel
+	local wep = self._wep
+	local state = self._state
+	
+	local backgroundPanel = vgui.Create("DPanel", panel)
+		
+		local cbox = vgui.Create("DCheckBoxLabel", backgroundPanel)
+		cbox:Dock(LEFT)
+		cbox:SetText("Animated")
+		cbox:SetChecked(state.editData.animated)
+		cbox:SetDark(true)
+		
+		cbox.Label:Dock(RIGHT)
+		
+		function cbox:OnChange(val)
+			state.editData.animated = val
+		end
+		
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:DockMargin(8,0,8,0)
+	backgroundPanel:SetPaintBackground(false)
+	backgroundPanel:SizeToContents()
+	
+	return backgroundPanel:GetTall() + 2
+end
+
+function PB:_addSectionRestore()
+	local panel = self._panel
+	local wep = self._wep
+	local state = self._state
+	
+	local backgroundPanel = vgui.Create("DPanel", panel)
+		
+		local butt = vgui.Create("DButton", backgroundPanel)
+		butt:Dock(FILL)
+		
+		butt:SetText("Restore from weapon.lua")
+		
+		function butt:DoClick()
+			PB:_restoreElement()
+			PB:_updatePanel()
+		end
+		
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:DockMargin(8,8,8,0)
+	backgroundPanel:SetPaintBackground(false)
+	backgroundPanel:SizeToContents()
+	
+	return backgroundPanel:GetTall() + 8
+end
+
 function PB:_getParentEnt()
 	local wep = self._wep
 	local state = self._state
@@ -670,6 +1294,7 @@ function PB:_recreateElement()
 	end
 end
 
+// 2doo: everything
 function PB:_restoreElement()
 	local wep = self._wep
 	local state = self._state
@@ -699,28 +1324,22 @@ function PB:run()
 	self._panel = backgroundPanel
 	
 	local tall = 0
-	tall = tall + self:_addSectionActive()
-	tall = tall + self:_addSectionModelEntry()
-	tall = tall + self:_addSectionPOAF()
-	tall = tall + self:_addSectionSelectAtt()
-	tall = tall + self:_addSectionPosSliders()
-	tall = tall + self:_addSectionAngSliders()
-	tall = tall + self:_addSectionSizeUniform()
-	tall = tall + self:_addSectionSizeSliders()
-	backgroundPanel:SetTall(tall)
-	-- backgroundPanel:SetTall(tall + 8)
+	for _,section in pairs(self.elementPropertiesLayout) do
+		local addSection = self["_addSection" .. section]
+		tall = tall + addSection(self)
+	end
+	backgroundPanel:SetTall(tall + 8)
 	
 	self._panel = nil
 	
-	panel:AddControl("Label", {Text = "header w/ butt add -- sight adjust"})
-	panel:AddControl("Label", {Text = "tentry material"})
-	panel:AddControl("Label", {Text = "tentry parent"})
-	panel:AddControl("Label", {Text = "tickbox nodraw"})
-	panel:AddControl("Label", {Text = "tickbox hide cwvm"})
-	panel:AddControl("Label", {Text = "tickbox recomp light"})
-	panel:AddControl("Label", {Text = "tickbox animated"})
-	panel:AddControl("Label", {Text = "header shortcunts"})
-	panel:AddControl("Label", {Text = "goto/add other element of same name"})
+	for _,elementTable in pairs(self.elementTables) do
+		if elementTable != state.editTable and wep[elementTable] and wep[elementTable][state.editElement] then
+			self:_addHeaderETName(elementTable, state.editElement)
+			self:_addHeaderEName(elementTable, state.editElement)
+		end
+	end
+	
+	self:_addSectionExportButt()
 end
 
 TOOL:addPanelBuilder(PB)
@@ -965,14 +1584,43 @@ TOOL:addPanelBuilder(PB)
 local PB = {}
 PB.Name = "export"
 
+function PB:_addHeader()
+	local panel = self._panel
+	local wep = self._wep
+	local state = self._state
+	
+	local backgroundPanel = vgui.Create("DPanel", panel)
+	panel:AddItem(backgroundPanel)
+		
+		local label = vgui.Create("DLabel", backgroundPanel)
+		label:SetText("Export selected")
+		label:SetDark(true)
+		label:Dock(LEFT)
+		label:DockMargin(8,0,4,0)
+		label:SizeToContents()
+		
+		local butt
+		butt = vgui.Create("DButton", backgroundPanel)
+		butt:SetText("Cancel")
+		butt:Dock(RIGHT)
+		butt:DockMargin(0,4,8,4)
+		
+		function butt:DoClick()
+			TOOL:_setBuilder()
+		end
+		
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:SetBackgroundColor(self.headerBackground)
+	backgroundPanel:SetPaintBackground(true)
+	backgroundPanel:SizeToContents()
+end
+
 function PB:run()
 	local panel = self._panel
 	local wep = self._wep
 	local state = self._state
 	
-	panel:AddControl("Label", {Text = "header w/ butt cancer"})
-	
-	self:_addSectionGooback()
+	self:_addHeader()
 end
 
 TOOL:addPanelBuilder(PB)
@@ -1003,6 +1651,7 @@ function TOOL:_runBuilder()
 		return
 	end
 	
+	builder._state = self._state
 	builder:run()
 end
 
