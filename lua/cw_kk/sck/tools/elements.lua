@@ -138,8 +138,8 @@ function TOOL:_addHeaderEName(tableName, elementName, reverse)
 		
 		local DoClick = function()
 			if !reverse then
-				TOOL._state.editTable = tableName
-				TOOL._state.editElement = elementName
+				TOOL._state.editTableName = tableName
+				TOOL._state.editElementName = elementName
 				TOOL:_setBuilder("edit")
 			else
 				TOOL:_setBuilder("list")
@@ -204,8 +204,12 @@ function PB:run()
 	local wep = self._wep
 	local state = self._state
 	
+	state.listLastSort = {}
+	
 	for _,tableName in pairs(self.elementTables) do
 		self:_addHeaderETName(tableName)
+		
+		state.listLastSort[tableName] = {}
 		
 		wep[tableName] = wep[tableName] or {}
 		local aa = wep.ActiveAttachments or {}
@@ -225,6 +229,7 @@ function PB:run()
 		end
 		
 		for _,elementName in SortedPairs(sortKeys) do
+			table.insert(state.listLastSort[tableName], elementName)
 			self:_addHeaderEName(tableName, elementName)
 		end
 	end
@@ -281,6 +286,62 @@ PB.elementPropertiesLayout = {
 	"Animated",
 	"Restore",
 }
+
+function PB:_addHeaderNext()
+	local panel = self._panel
+	local wep = self._wep
+	local state = self._state
+	
+	local sorted = state.listLastSort[state.editTableName]
+	local count = #sorted
+	local curID
+	for i,k in pairs(sorted) do
+		if k == state.editElementName then
+			curID = i - 1
+		end
+	end
+	
+	local prevID, nextID = curID - 1, curID + 1
+	local prevElement = sorted[prevID % count + 1]
+	local nextElement = sorted[nextID % count + 1]
+	
+	if nextElement == state.editElementName then
+		return
+	end
+	
+	local backgroundPanel = vgui.Create("DPanel", panel)
+	panel:AddItem(backgroundPanel)
+		
+		local label = vgui.Create("DLabel", backgroundPanel)
+		label:SetText("[˂] " .. prevElement)
+		label:SetDark(true)
+		label:Dock(LEFT)
+		label:DockMargin(8,0,8,0)
+		label:SizeToContents()
+		label:SetMouseInputEnabled(true)
+		
+		function label:DoClick()
+			TOOL._state.editElementName = prevElement
+			TOOL:_setBuilder("edit")
+		end
+		
+		local label = vgui.Create("DLabel", backgroundPanel)
+		label:SetText(nextElement .. " [˃]")
+		label:SetDark(true)
+		label:Dock(RIGHT)
+		label:DockMargin(8,0,8,0)
+		label:SizeToContents()
+		label:SetMouseInputEnabled(true)
+		
+		function label:DoClick()
+			TOOL._state.editElementName = nextElement
+			TOOL:_setBuilder("edit")
+		end
+		
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:SetPaintBackground(true)
+	backgroundPanel:SizeToContents()
+end
 
 function PB:_addSectionActive()
 	local panel = self._panel
@@ -383,9 +444,13 @@ function PB:_addSectionPOAF()
 		elseif data._attachment then
 			listView._lastRow = 2
 			listView:SelectItem(listView:GetLine(2))
+			
+			state.editPOALastAtt = data.attachment
 		else
 			listView._lastRow = 1
 			listView:SelectItem(listView:GetLine(1))
+			
+			state.editPOALastBone = data.bone
 		end
 		
 		function listView:OnRowSelected(val)
@@ -401,14 +466,14 @@ function PB:_addSectionPOAF()
 				data.merge = false
 				data.attachment = nil
 				data._attachment = nil
-				data.bone = parent:GetBoneName(0)
+				data.bone = state.editPOALastBone or parent:GetBoneName(0)
 				data._bone = nil
 			elseif val == 2 then
 				local att = parent:GetAttachments()[1]
 				
 				if att then
 					data.merge = false
-					data.attachment = att.name
+					data.attachment = state.editPOALastAtt or att.name
 					data._attachment = nil 
 					data.bone = nil
 					data._bone = nil
@@ -425,7 +490,7 @@ function PB:_addSectionPOAF()
 			PB:_updatePanel()
 		end
 		
-		state.editFuncSelector = listView
+		state.editPOASelect = listView
 		
 	backgroundPanel:Dock(TOP)
 	backgroundPanel:SetTall(listView:GetTall())
@@ -652,7 +717,7 @@ end
 function PB:_addSectionSightAdjustment()
 	local state = self._state
 	
-	if !self.elementTableProperties[state.editTable].adjustable then
+	if !self.elementTableProperties[state.editTableName].adjustable then
 		return 0
 	end
 	
@@ -1046,7 +1111,7 @@ function PB:_addSectionParentEntry()
 		function entry:OnChange()
 			local rel = self:GetValue()
 			
-			if wep[state.editTable][rel] then
+			if wep[state.editTableName][rel] then
 				data.rel = rel
 				PB:_recreateElement()
 				PB:_updatePanel()
@@ -1218,11 +1283,11 @@ function PB:_getParentEnt()
 		return data.ent:GetParent()
 	end
 	
-	if data.rel and wep[state.editTable][rel] and IsValid(wep[state.editTable][rel].ent) then
-		return wep[state.editTable][rel].ent
+	if data.rel and wep[state.editTableName][rel] and IsValid(wep[state.editTableName][rel].ent) then
+		return wep[state.editTableName][rel].ent
 	end
 	
-	local entName = self.elementTableProperties[state.editTable].defParent
+	local entName = self.elementTableProperties[state.editTableName].defParent
 	return wep[entName]
 end
 
@@ -1232,7 +1297,7 @@ function PB:_getAttSelection()
 	local parent = self:_getParentEnt()
 	local out
 	
-	if state.editFuncSelector:GetSelectedLine() == 1 then
+	if state.editPOASelect:GetSelectedLine() == 1 then
 		out = {}
 		out.value = data.bone or "-select bone-"
 		
@@ -1249,7 +1314,7 @@ function PB:_getAttSelection()
 		end
 	end
 	
-	if state.editFuncSelector:GetSelectedLine() == 2 then
+	if state.editPOASelect:GetSelectedLine() == 2 then
 		out = {}
 		out.value = data.attachment or "-select attachment-"
 		
@@ -1311,10 +1376,11 @@ function PB:run()
 	local wep = self._wep
 	local state = self._state
 	
-	state.editData = wep[state.editTable][state.editElement]
+	state.editData = wep[state.editTableName][state.editElementName]
 	
-	self:_addHeaderETName(state.editTable, state.editElement)
-	self:_addHeaderEName(state.editTable, state.editElement, true)
+	self:_addHeaderETName(state.editTableName, state.editElementName)
+	self:_addHeaderNext()
+	self:_addHeaderEName(state.editTableName, state.editElementName, true)
 	
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	backgroundPanel:Dock(TOP)
@@ -1334,9 +1400,9 @@ function PB:run()
 	self._panel = nil
 	
 	for _,elementTable in pairs(self.elementTables) do
-		if elementTable != state.editTable and wep[elementTable] and wep[elementTable][state.editElement] then
-			self:_addHeaderETName(elementTable, state.editElement)
-			self:_addHeaderEName(elementTable, state.editElement)
+		if elementTable != state.editTableName and wep[elementTable] and wep[elementTable][state.editElementName] then
+			self:_addHeaderETName(elementTable, state.editElementName)
+			self:_addHeaderEName(elementTable, state.editElementName)
 		end
 	end
 	
@@ -1553,8 +1619,8 @@ function PB:_finishMaking()
 	
 	PB:ThrowNewNotImplemented()
 	
-	-- PB._state.editTable = targets[1]
-	-- PB._state.editElement = PB._state.makeElement
+	-- PB._state.editTableName = targets[1]
+	-- PB._state.editElementName = PB._state.makeElement
 	-- PB:_setBuilder("edit")
 end
 
