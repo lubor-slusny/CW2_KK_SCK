@@ -22,26 +22,6 @@ function TOOL:addPanelBuilder(tab)
 	self._panelBuilders[tab.Name] = tab
 end
 
-function TOOL:_addSectionGooback()
-	local panel = self._panel
-	
-	local backgroundPanel = vgui.Create("DPanel", panel)
-	panel:AddItem(backgroundPanel)
-		
-		local butt = vgui.Create("DButton", backgroundPanel)
-		butt:Dock(FILL)
-		butt:SetSize(150,20)
-		butt:SetText("Go Back")
-		
-		function butt:DoClick()
-			TOOL:_setBuilder("list")
-		end
-		
-	backgroundPanel:Dock(TOP)
-	backgroundPanel:SetPaintBackground(true)
-	backgroundPanel:SizeToContents()
-end
-
 function TOOL:_addSectionRefreshButt()
 	local panel = self._panel
 	
@@ -117,8 +97,8 @@ function TOOL:_addHeaderETName(tableName, fill)
 		butt:DockMargin(0,4,8,4)
 		
 		function butt:DoClick()
-			TOOL._state.makeElement = fill
-			TOOL._state.makeModel = fill and TOOL._state.editData.model
+			TOOL._state.make.elementName = fill
+			TOOL._state.make.model = fill and TOOL._state.edit.data.model
 			TOOL:_setBuilder("make")
 		end
 		
@@ -138,8 +118,8 @@ function TOOL:_addHeaderEName(tableName, elementName, reverse)
 		
 		local DoClick = function()
 			if !reverse then
-				TOOL._state.editTableName = tableName
-				TOOL._state.editElementName = elementName
+				TOOL._state.edit.tableName = tableName
+				TOOL._state.edit.elementName = elementName
 				TOOL:_setBuilder("edit")
 			else
 				TOOL:_setBuilder("list")
@@ -204,12 +184,12 @@ function PB:run()
 	local wep = self._wep
 	local state = self._state
 	
-	state.listLastSort = {}
+	state.list.lastSort = {}
 	
 	for _,tableName in pairs(self.elementTables) do
 		self:_addHeaderETName(tableName)
 		
-		state.listLastSort[tableName] = {}
+		state.list.lastSort[tableName] = {}
 		
 		wep[tableName] = wep[tableName] or {}
 		local aa = wep.ActiveAttachments or {}
@@ -229,7 +209,7 @@ function PB:run()
 		end
 		
 		for _,elementName in SortedPairs(sortKeys) do
-			table.insert(state.listLastSort[tableName], elementName)
+			table.insert(state.list.lastSort[tableName], elementName)
 			self:_addHeaderEName(tableName, elementName)
 		end
 	end
@@ -292,11 +272,11 @@ function PB:_addHeaderNext()
 	local wep = self._wep
 	local state = self._state
 	
-	local sorted = state.listLastSort[state.editTableName]
+	local sorted = state.list.lastSort[state.edit.tableName]
 	local count = #sorted
 	local curID
 	for i,k in pairs(sorted) do
-		if k == state.editElementName then
+		if k == state.edit.elementName then
 			curID = i - 1
 		end
 	end
@@ -305,7 +285,7 @@ function PB:_addHeaderNext()
 	local prevElement = sorted[prevID % count + 1]
 	local nextElement = sorted[nextID % count + 1]
 	
-	if nextElement == state.editElementName then
+	if nextElement == state.edit.elementName then
 		return
 	end
 	
@@ -321,7 +301,7 @@ function PB:_addHeaderNext()
 		label:SetMouseInputEnabled(true)
 		
 		function label:DoClick()
-			TOOL._state.editElementName = prevElement
+			TOOL._state.edit.elementName = prevElement
 			TOOL:_setBuilder("edit")
 		end
 		
@@ -334,7 +314,7 @@ function PB:_addHeaderNext()
 		label:SetMouseInputEnabled(true)
 		
 		function label:DoClick()
-			TOOL._state.editElementName = nextElement
+			TOOL._state.edit.elementName = nextElement
 			TOOL:_setBuilder("edit")
 		end
 		
@@ -353,13 +333,13 @@ function PB:_addSectionActive()
 		local cbox = vgui.Create("DCheckBoxLabel", backgroundPanel)
 		cbox:Dock(LEFT)
 		cbox:SetText("Active")
-		cbox:SetChecked(state.editData.active)
+		cbox:SetChecked(state.edit.data.active)
 		cbox:SetDark(true)
 		
 		cbox.Label:Dock(RIGHT)
 		
 		function cbox:OnChange(val)
-			state.editData.active = val
+			state.edit.data.active = val
 			PB:_updatePanel()
 		end
 		
@@ -375,7 +355,7 @@ function PB:_addSectionModelEntry()
 	local panel = self._panel
 	local wep = self._wep
 	local state = self._state
-	local data = state.editData
+	local data = state.edit.data
 	
 	local backgroundPanel = vgui.Create("DPanel", panel)
 		
@@ -412,7 +392,7 @@ function PB:_addSectionPOAF()
 	local panel = self._panel
 	local wep = self._wep
 	local state = self._state
-	local data = state.editData
+	local data = state.edit.data
 	
 	local backgroundPanel = vgui.Create("DPanel", panel)
 		
@@ -445,12 +425,12 @@ function PB:_addSectionPOAF()
 			listView._lastRow = 2
 			listView:SelectItem(listView:GetLine(2))
 			
-			state.editPOALastAtt = data.attachment
+			state.edit.POALastAtt = data.attachment
 		else
 			listView._lastRow = 1
 			listView:SelectItem(listView:GetLine(1))
 			
-			state.editPOALastBone = data.bone
+			state.edit.POALastBone = data.bone
 		end
 		
 		function listView:OnRowSelected(val)
@@ -466,14 +446,14 @@ function PB:_addSectionPOAF()
 				data.merge = false
 				data.attachment = nil
 				data._attachment = nil
-				data.bone = state.editPOALastBone or parent:GetBoneName(0)
+				data.bone = state.edit.POALastBone or parent:GetBoneName(0)
 				data._bone = nil
 			elseif val == 2 then
 				local att = parent:GetAttachments()[1]
 				
 				if att then
 					data.merge = false
-					data.attachment = state.editPOALastAtt or att.name
+					data.attachment = state.edit.POALastAtt or att.name
 					data._attachment = nil 
 					data.bone = nil
 					data._bone = nil
@@ -490,7 +470,7 @@ function PB:_addSectionPOAF()
 			PB:_updatePanel()
 		end
 		
-		state.editPOASelect = listView
+		state.edit.POASelect = listView
 		
 	backgroundPanel:Dock(TOP)
 	backgroundPanel:SetTall(listView:GetTall())
@@ -504,7 +484,7 @@ function PB:_addSectionSelectAtt()
 	local panel = self._panel
 	local wep = self._wep
 	local state = self._state
-	local data = state.editData
+	local data = state.edit.data
 	
 	local selection = self:_getAttSelection()
 	
@@ -537,7 +517,7 @@ function PB:_addSectionPosSliders()
 	local panel = self._panel
 	local wep = self._wep
 	local state = self._state
-	local data = state.editData
+	local data = state.edit.data
 	
 	data.pos = Vector(data.pos)
 	
@@ -580,7 +560,7 @@ function PB:_addSectionAngSliders()
 	local panel = self._panel
 	local wep = self._wep
 	local state = self._state
-	local data = state.editData
+	local data = state.edit.data
 	
 	data.angle = Angle(data.angle)
 	
@@ -623,7 +603,7 @@ function PB:_addSectionSizeUniform()
 	local panel = self._panel
 	local wep = self._wep
 	local state = self._state
-	local data = state.editData
+	local data = state.edit.data
 	
 	data.size = Vector(data.size)
 	
@@ -642,11 +622,11 @@ function PB:_addSectionSizeUniform()
 		self:LoadSliderZoom(slider)
 	
 		function slider:OnValueChanged(val)
-			if !state.editSizeSliders then
+			if !state.edit.sizeSliders then
 				return
 			end
 			
-			for slider,_ in pairs(state.editSizeSliders) do
+			for slider,_ in pairs(state.edit.sizeSliders) do
 				slider._pauseSendingUpdates = true
 				slider:SetValue(val)
 				slider._pauseSendingUpdates = false
@@ -669,9 +649,9 @@ function PB:_addSectionSizeSliders()
 	local panel = self._panel
 	local wep = self._wep
 	local state = self._state
-	local data = state.editData
+	local data = state.edit.data
 	
-	state.editSizeSliders = {}
+	state.edit.sizeSliders = {}
 	
 	local backgroundPanel = vgui.Create("DPanel", panel)
 		
@@ -701,7 +681,7 @@ function PB:_addSectionSizeSliders()
 				end
 			end
 			
-			state.editSizeSliders[slider] = slider
+			state.edit.sizeSliders[slider] = slider
 		end
 		
 	backgroundPanel:Dock(TOP)
@@ -717,11 +697,11 @@ end
 function PB:_addSectionSightAdjustment()
 	local state = self._state
 	
-	if !self.elementTableProperties[state.editTableName].adjustable then
+	if !self.elementTableProperties[state.edit.tableName].adjustable then
 		return 0
 	end
 	
-	local data = state.editData
+	local data = state.edit.data
 	
 	local long = data.adjustment != nil
 	local tall = self:_sightAdjustmentHeader(long)
@@ -737,7 +717,7 @@ function PB:_sightAdjustmentHeader(long)
 	local panel = self._panel
 	local wep = self._wep
 	local state = self._state
-	local data = state.editData
+	local data = state.edit.data
 	
 	local backgroundPanel = vgui.Create("DPanel", panel)
 		
@@ -776,7 +756,7 @@ end
 function PB:_sightAdjustmentLong()
 	local panel = self._panel
 	local state = self._state
-	local data = state.editData
+	local data = state.edit.data
 	
 	data.adjustment = table.Copy(data.adjustment)
 	
@@ -800,7 +780,7 @@ end
 function PB:_sightAdjustmentLongAxis(panel)
 	local wep = self._wep
 	local state = self._state
-	local data = state.editData
+	local data = state.edit.data
 
 	local backgroundPanel = vgui.Create("DPanel", panel)
 		
@@ -855,7 +835,7 @@ end
 function PB:_sightAdjustmentLongMin(panel)
 	local wep = self._wep
 	local state = self._state
-	local data = state.editData
+	local data = state.edit.data
 
 	local backgroundPanel = vgui.Create("DPanel", panel)
 		
@@ -883,7 +863,7 @@ end
 function PB:_sightAdjustmentLongMax(panel)
 	local wep = self._wep
 	local state = self._state
-	local data = state.editData
+	local data = state.edit.data
 
 	local backgroundPanel = vgui.Create("DPanel", panel)
 		
@@ -911,7 +891,7 @@ end
 function PB:_sightAdjustmentLongInverts(panel)
 	local wep = self._wep
 	local state = self._state
-	local data = state.editData
+	local data = state.edit.data
 
 	local backgroundPanel = vgui.Create("DPanel", panel)
 		
@@ -952,7 +932,7 @@ function PB:_addSectionSkin()
 	local panel = self._panel
 	local wep = self._wep
 	local state = self._state
-	local data = state.editData
+	local data = state.edit.data
 	
 	local count = data.ent:SkinCount()
 	
@@ -990,7 +970,7 @@ function PB:_addSectionBodygroups()
 	local panel = self._panel
 	local wep = self._wep
 	local state = self._state
-	local data = state.editData
+	local data = state.edit.data
 	
 	local options = {}
 	
@@ -1053,7 +1033,7 @@ function PB:_addSectionMaterialEntry()
 	
 	local panel = self._panel
 	local state = self._state
-	local data = state.editData
+	local data = state.edit.data
 	
 	local backgroundPanel = vgui.Create("DPanel", panel)
 		
@@ -1092,7 +1072,7 @@ function PB:_addSectionParentEntry()
 	
 	local panel = self._panel
 	local state = self._state
-	local data = state.editData
+	local data = state.edit.data
 	
 	local backgroundPanel = vgui.Create("DPanel", panel)
 		
@@ -1111,7 +1091,7 @@ function PB:_addSectionParentEntry()
 		function entry:OnChange()
 			local rel = self:GetValue()
 			
-			if wep[state.editTableName][rel] then
+			if wep[state.edit.tableName][rel] then
 				data.rel = rel
 				PB:_recreateElement()
 				PB:_updatePanel()
@@ -1141,13 +1121,13 @@ function PB:_addSectionNodraw()
 		local cbox = vgui.Create("DCheckBoxLabel", backgroundPanel)
 		cbox:Dock(LEFT)
 		cbox:SetText("Hide (only update Pos/Ang)")
-		cbox:SetChecked(state.editData.nodraw)
+		cbox:SetChecked(state.edit.data.nodraw)
 		cbox:SetDark(true)
 		
 		cbox.Label:Dock(RIGHT)
 		
 		function cbox:OnChange(val)
-			state.editData.nodraw = val
+			state.edit.data.nodraw = val
 		end
 		
 	backgroundPanel:Dock(TOP)
@@ -1173,13 +1153,13 @@ function PB:_addSectionHideVM()
 		local cbox = vgui.Create("DCheckBoxLabel", backgroundPanel)
 		cbox:Dock(LEFT)
 		cbox:SetText("Hide CW_VM when active")
-		cbox:SetChecked(state.editData.hideVM)
+		cbox:SetChecked(state.edit.data.hideVM)
 		cbox:SetDark(true)
 		
 		cbox.Label:Dock(RIGHT)
 		
 		function cbox:OnChange(val)
-			state.editData.hideVM = val
+			state.edit.data.hideVM = val
 		end
 		
 	backgroundPanel:Dock(TOP)
@@ -1205,13 +1185,13 @@ function PB:_addSectionLighting()
 		local cbox = vgui.Create("DCheckBoxLabel", backgroundPanel)
 		cbox:Dock(LEFT)
 		cbox:SetText("Recompute lighting")
-		cbox:SetChecked(state.editData.rLight)
+		cbox:SetChecked(state.edit.data.rLight)
 		cbox:SetDark(true)
 		
 		cbox.Label:Dock(RIGHT)
 		
 		function cbox:OnChange(val)
-			state.editData.rLight = val
+			state.edit.data.rLight = val
 		end
 		
 	backgroundPanel:Dock(TOP)
@@ -1232,13 +1212,13 @@ function PB:_addSectionAnimated()
 		local cbox = vgui.Create("DCheckBoxLabel", backgroundPanel)
 		cbox:Dock(LEFT)
 		cbox:SetText("Animated")
-		cbox:SetChecked(state.editData.animated)
+		cbox:SetChecked(state.edit.data.animated)
 		cbox:SetDark(true)
 		
 		cbox.Label:Dock(RIGHT)
 		
 		function cbox:OnChange(val)
-			state.editData.animated = val
+			state.edit.data.animated = val
 		end
 		
 	backgroundPanel:Dock(TOP)
@@ -1277,27 +1257,27 @@ end
 function PB:_getParentEnt()
 	local wep = self._wep
 	local state = self._state
-	local data = state.editData
+	local data = state.edit.data
 	
 	if IsValid(data.ent:GetParent()) then
 		return data.ent:GetParent()
 	end
 	
-	if data.rel and wep[state.editTableName][rel] and IsValid(wep[state.editTableName][rel].ent) then
-		return wep[state.editTableName][rel].ent
+	if data.rel and wep[state.edit.tableName][rel] and IsValid(wep[state.edit.tableName][rel].ent) then
+		return wep[state.edit.tableName][rel].ent
 	end
 	
-	local entName = self.elementTableProperties[state.editTableName].defParent
+	local entName = self.elementTableProperties[state.edit.tableName].defParent
 	return wep[entName]
 end
 
 function PB:_getAttSelection()
 	local state = self._state
-	local data = state.editData
+	local data = state.edit.data
 	local parent = self:_getParentEnt()
 	local out
 	
-	if state.editPOASelect:GetSelectedLine() == 1 then
+	if state.edit.POASelect:GetSelectedLine() == 1 then
 		out = {}
 		out.value = data.bone or "-select bone-"
 		
@@ -1314,7 +1294,7 @@ function PB:_getAttSelection()
 		end
 	end
 	
-	if state.editPOASelect:GetSelectedLine() == 2 then
+	if state.edit.POASelect:GetSelectedLine() == 2 then
 		out = {}
 		out.value = data.attachment or "-select attachment-"
 		
@@ -1339,7 +1319,7 @@ end
 function PB:_recreateElement()
 	local wep = self._wep
 	local state = self._state
-	local data = state.editData
+	local data = state.edit.data
 
 	if data.models then
 		for _,data in ipairs(data.models) do
@@ -1364,7 +1344,7 @@ end
 function PB:_restoreElement()
 	local wep = self._wep
 	local state = self._state
-	local data = state.editData
+	local data = state.edit.data
 	
 	
 end
@@ -1376,11 +1356,11 @@ function PB:run()
 	local wep = self._wep
 	local state = self._state
 	
-	state.editData = wep[state.editTableName][state.editElementName]
+	state.edit.data = wep[state.edit.tableName][state.edit.elementName]
 	
-	self:_addHeaderETName(state.editTableName, state.editElementName)
+	self:_addHeaderETName(state.edit.tableName, state.edit.elementName)
 	self:_addHeaderNext()
-	self:_addHeaderEName(state.editTableName, state.editElementName, true)
+	self:_addHeaderEName(state.edit.tableName, state.edit.elementName, true)
 	
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	backgroundPanel:Dock(TOP)
@@ -1400,9 +1380,9 @@ function PB:run()
 	self._panel = nil
 	
 	for _,elementTable in pairs(self.elementTables) do
-		if elementTable != state.editTableName and wep[elementTable] and wep[elementTable][state.editElementName] then
-			self:_addHeaderETName(elementTable, state.editElementName)
-			self:_addHeaderEName(elementTable, state.editElementName)
+		if elementTable != state.edit.tableName and wep[elementTable] and wep[elementTable][state.edit.elementName] then
+			self:_addHeaderETName(elementTable, state.edit.elementName)
+			self:_addHeaderEName(elementTable, state.edit.elementName)
 		end
 	end
 	
@@ -1440,8 +1420,8 @@ function PB:_addHeader()
 		butt:DockMargin(0,4,8,4)
 		
 		function butt:DoClick()
-			TOOL._state.makeElement = nil
-			TOOL._state.makeModel = nil
+			TOOL._state.make.elementName = nil
+			TOOL._state.make.model = nil
 			TOOL:_setBuilder()
 		end
 		
@@ -1469,10 +1449,10 @@ function PB:_addSectionNameEntry()
 		local entry = vgui.Create("DTextEntry", backgroundPanel)
 		entry:Dock(FILL)
 		entry:DockMargin(4,0,0,0)
-		entry:SetText(state.makeElement)
+		entry:SetText(state.make.elementName)
 		
 		function entry:OnChange()
-			PB._state.makeElement = self:GetValue()
+			PB._state.make.elementName = self:GetValue()
 			PB:_updateCBoxes()
 			PB:_updateButt()
 		end
@@ -1487,8 +1467,6 @@ function PB:_addSectionModelEntry()
 	local wep = self._wep
 	local state = self._state
 	
-	-- panel:AddControl("Label", {Text = "tentry model"})
-	
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	panel:AddItem(backgroundPanel)
 		
@@ -1502,10 +1480,10 @@ function PB:_addSectionModelEntry()
 		local entry = vgui.Create("DTextEntry", backgroundPanel)
 		entry:Dock(FILL)
 		entry:DockMargin(4,0,0,0)
-		entry:SetText(state.makeModel)
+		entry:SetText(state.make.model)
 		
 		function entry:OnChange()
-			PB._state.makeModel = self:GetValue()
+			PB._state.make.model = self:GetValue()
 		end
 		
 	backgroundPanel:Dock(TOP)
@@ -1534,7 +1512,7 @@ function PB:_addSectionETMark(tableName, elementName)
 		
 		self._targets = self._targets or {}
 		self._targets[cbox] = function(self)
-			local elementName = state.makeElement
+			local elementName = state.make.elementName
 			local exists = wep[tableName][elementName] != nil
 			local valid = elementName != ""
 			local can = (!exists) and valid
@@ -1619,8 +1597,8 @@ function PB:_finishMaking()
 	
 	PB:ThrowNewNotImplemented()
 	
-	-- PB._state.editTableName = targets[1]
-	-- PB._state.editElementName = PB._state.makeElement
+	-- PB._state.edit.tableName = targets[1]
+	-- PB._state.edit.elementName = PB._state.make.elementName
 	-- PB:_setBuilder("edit")
 end
 
@@ -1629,8 +1607,8 @@ function PB:run()
 	local wep = self._wep
 	local state = self._state
 	
-	state.makeElement = state.makeElement or "kk_was_here_lol"
-	state.makeModel = state.makeModel or "models/maxofs2d/cube_tool.mdl"
+	state.make.elementName = state.make.elementName or "kk_was_here_lol"
+	state.make.model = state.make.model or "models/maxofs2d/cube_tool.mdl"
 	
 	self:_addHeader()
 	self:_addSectionNameEntry()
@@ -1755,6 +1733,16 @@ function TOOL:_runBuilder()
 	builder:run()
 end
 
+function TOOL:_newStateStruct()
+	local out = {builderId = "list"}
+	
+	for k,_ in pairs(self._panelBuilders) do
+		out[k] = {}
+	end
+	
+	return out
+end
+
 function TOOL:_updatePanel()
 	local panel = self._panel
 	local wep = self._wep
@@ -1773,7 +1761,7 @@ function TOOL:_updatePanel()
 		return
 	end
 	
-	self._states[wep] = self._states[wep] or {builderId = "list"}
+	self._states[wep] = self._states[wep] or self:_newStateStruct()
 	self._state = self._states[wep]
 	
 	self:_addSectionRefreshButt()
