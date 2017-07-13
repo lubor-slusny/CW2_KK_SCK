@@ -11,6 +11,16 @@ TOOL.elementTables = {
 	"AttachmentModelsWM"
 }
 
+TOOL.elementTableProperties = {
+	["AttachmentModelsVM"] = {
+		adjustable = true,
+		defParent = "CW_VM",
+	},
+	["AttachmentModelsWM"] = {
+		defParent = "WMEnt",
+	},
+}
+
 TOOL.headerBackground = Color(0,160,255,100)
 
 TOOL.__index = TOOL
@@ -51,7 +61,7 @@ function TOOL:_addSectionRefreshButt()
 	backgroundPanel:SizeToContents()
 end
 
-function TOOL:_addSectionExportButt()
+function TOOL:_addSectionExportButt(addToSelected)
 	local panel = self._panel
 	
 	local backgroundPanel = vgui.Create("DPanel", panel)
@@ -60,9 +70,10 @@ function TOOL:_addSectionExportButt()
 		local butt = vgui.Create("DButton", backgroundPanel)
 		butt:Dock(FILL)
 		
-		butt:SetText("Export options")
+		butt:SetText("Export")
 		
 		function butt:DoClick()
+			TOOL._state.export.addToSelected = addToSelected
 			TOOL:_setBuilder("export")
 		end
 		
@@ -80,7 +91,7 @@ function TOOL:_addHeaderETName(tableName, fill)
 		local label = vgui.Create("DLabel", backgroundPanel)
 		label:SetText("SWEP." .. tableName .. ":")
 		label:SetDark(true)
-		label:Dock(LEFT)
+		label:Dock(FILL)
 		label:DockMargin(8,0,4,0)
 		label:SizeToContents()
 		-- label:SetMouseInputEnabled(true)
@@ -111,7 +122,7 @@ end
 function TOOL:_addHeaderEName(tableName, elementName, reverse)
 	local panel = self._panel
 	local wep = self._wep
-	local element = wep[tableName][elementName]
+	local data = wep[tableName][elementName]
 	
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	panel:AddItem(backgroundPanel)
@@ -141,7 +152,7 @@ function TOOL:_addHeaderEName(tableName, elementName, reverse)
 		icon.DoClick = DoClick
 		icon.Think = Think
 
-		if element.active then
+		if data.active then
 			icon:SetImage("icon16/bullet_green.png")
 		else
 			icon:SetImage("icon16/bullet_red.png")
@@ -170,6 +181,62 @@ function TOOL:_addHeaderEName(tableName, elementName, reverse)
 	backgroundPanel:Dock(TOP)
 	backgroundPanel:SetPaintBackground(true)
 	backgroundPanel:SizeToContents()
+end
+
+function TOOL:_createElement(tableName, elementName)
+	local wep = self._wep
+	local data = wep[tableName][elementName]
+	
+	if data.models then
+		for _,data in ipairs(data.models) do
+			wep:_setupAttachmentModel(data)
+		end
+	else
+		wep:_setupAttachmentModel(data)
+	end
+	
+	if wep.KKINS2Wep then	
+		if data.models then
+			for _,data in ipairs(data.models) do
+				wep:_setupAttachmentModelMerge(data)
+			end
+		else
+			wep:_setupAttachmentModelMerge(data)
+		end
+	end
+end
+
+function TOOL:_getParentEnt(tableName, elementName)
+	local wep = self._wep
+	local data = wep[tableName][elementName]
+	
+	if IsValid(data.ent:GetParent()) then
+		return data.ent:GetParent()
+	end
+	
+	if data.rel and wep[tableName][rel] and IsValid(wep[tableName][rel].ent) then
+		return wep[tableName][rel].ent
+	end
+	
+	local entName = self.elementTableProperties[tableName].defParent
+	return wep[entName]
+end
+
+function TOOL:_addSectionMeh()
+	local panel = self._panel
+	local wep = self._wep
+	
+	panel:AddControl("Label", {Text = "Active elementRender function count: " .. table.Count(wep.elementRender)})
+	local i = 0
+
+	for _,ent in pairs(CustomizableWeaponry.cmodels.curModels) do 
+		if ent.wepParent == wep then
+			i = i + 1
+		end
+	end
+
+	panel:AddControl("Label", {Text = "Current weapon cl model count: " .. i})
+	panel:AddControl("Label", {Text = "Current total cl model count: " .. #CustomizableWeaponry.cmodels.curModels})
 end
 
 //////////////////
@@ -215,6 +282,7 @@ function PB:run()
 	end
 	
 	self:_addSectionExportButt()
+	self:_addSectionMeh()
 end
 
 TOOL:addPanelBuilder(PB)
@@ -227,16 +295,6 @@ local PB = {}
 PB.Name = "edit"
 
 PB.darkerBackground = Color(0,0,0,50)
-
-PB.elementTableProperties = {
-	["AttachmentModelsVM"] = {
-		adjustable = true,
-		defParent = "CW_VM",
-	},
-	["AttachmentModelsWM"] = {
-		defParent = "WMEnt",
-	},
-}
 
 PB.defaultAdjustment = {
 	min = 0, 
@@ -267,6 +325,31 @@ PB.elementPropertiesLayout = {
 	"Restore",
 }
 
+local function id(out) return out end
+
+PB.restoreProperties = {
+	angle = Angle,
+	pos = Vector,
+	size = Vector,	
+	adjustment = table.Copy,
+	bodygroups = table.Copy,
+	materials = table.Copy,
+	-- active = id,
+	animated = id,
+	attachment = id,
+	bone = id,
+	hideVM = id,
+	ignoreKKBGO = id,
+	material = id,	
+	merge = id,	
+	model = id,
+	nodraw = id,
+	rel = id,	
+	retSizeMult = id,
+	rLight = id,
+	skin = id,
+}
+
 function PB:_addHeaderNext()
 	local panel = self._panel
 	local wep = self._wep
@@ -279,6 +362,10 @@ function PB:_addHeaderNext()
 		if k == state.edit.elementName then
 			curID = i - 1
 		end
+	end
+	
+	if not curID then
+		return
 	end
 	
 	local prevID, nextID = curID - 1, curID + 1
@@ -295,7 +382,7 @@ function PB:_addHeaderNext()
 		local label = vgui.Create("DLabel", backgroundPanel)
 		label:SetText("[˂] " .. prevElement)
 		label:SetDark(true)
-		label:Dock(LEFT)
+		label:Dock(FILL)
 		label:DockMargin(8,0,8,0)
 		label:SizeToContents()
 		label:SetMouseInputEnabled(true)
@@ -317,6 +404,8 @@ function PB:_addHeaderNext()
 			TOOL._state.edit.elementName = nextElement
 			TOOL:_setBuilder("edit")
 		end
+		
+		PrintTable(label:GetTable())
 		
 	backgroundPanel:Dock(TOP)
 	backgroundPanel:SetPaintBackground(true)
@@ -1234,12 +1323,17 @@ function PB:_addSectionRestore()
 	local wep = self._wep
 	local state = self._state
 	
+	local storedWep = weapons.GetStored(wep:GetClass())
+	local stored = storedWep[state.edit.tableName][state.edit.elementName]
+	state.edit.stored = stored
+	
 	local backgroundPanel = vgui.Create("DPanel", panel)
 		
 		local butt = vgui.Create("DButton", backgroundPanel)
 		butt:Dock(FILL)
 		
 		butt:SetText("Restore from weapon.lua")
+		butt:SetEnabled(stored != nil)
 		
 		function butt:DoClick()
 			PB:_restoreElement()
@@ -1259,16 +1353,7 @@ function PB:_getParentEnt()
 	local state = self._state
 	local data = state.edit.data
 	
-	if IsValid(data.ent:GetParent()) then
-		return data.ent:GetParent()
-	end
-	
-	if data.rel and wep[state.edit.tableName][rel] and IsValid(wep[state.edit.tableName][rel].ent) then
-		return wep[state.edit.tableName][rel].ent
-	end
-	
-	local entName = self.elementTableProperties[state.edit.tableName].defParent
-	return wep[entName]
+	return TOOL:_getParentEnt(state.edit.tableName, state.edit.elementName)
 end
 
 function PB:_getAttSelection()
@@ -1315,38 +1400,26 @@ function PB:_getAttSelection()
 	return out
 end
 
-// 2doo: improv
 function PB:_recreateElement()
-	local wep = self._wep
 	local state = self._state
 	local data = state.edit.data
-
-	if data.models then
-		for _,data in ipairs(data.models) do
-			wep:_setupAttachmentModel(data)
-		end
-	else
-		wep:_setupAttachmentModel(data)
-	end
 	
-	if wep.KKINS2Wep then	
-		if data.models then
-			for _,data in ipairs(data.models) do
-				wep:_setupAttachmentModelMerge(data)
-			end
-		else
-			wep:_setupAttachmentModelMerge(data)
-		end
-	end
+	self:_createElement(state.edit.tableName, state.edit.elementName)
 end
 
-// 2doo: everything
 function PB:_restoreElement()
-	local wep = self._wep
 	local state = self._state
 	local data = state.edit.data
+	local stored = state.edit.stored
 	
+	for property,copyOf in pairs(self.restoreProperties) do
+		data[property] = copyOf(stored[property])
+	end
 	
+	data.active = true
+	
+	PB:_recreateElement()
+	PB:_updatePanel()
 end
 
 function PB:run()
@@ -1386,7 +1459,7 @@ function PB:run()
 		end
 	end
 	
-	self:_addSectionExportButt()
+	self:_addSectionExportButt(state.edit.elementName)
 end
 
 TOOL:addPanelBuilder(PB)
@@ -1591,15 +1664,45 @@ function PB:_getTargets()
 	return out
 end
 
+function PB:_newElementData()
+	local wep = self._wep
+	local state = self._state
+	
+	local out = {}
+	
+	out.model = state.make.model
+	out.pos = Vector()
+	out.angle = Angle()
+	
+	if out.model == "models/maxofs2d/cube_tool.mdl" then
+		out.size = Vector(0.075, 0.075, 0.075)
+		out.bodygroups = {1}
+	else
+		out.size = Vector(1,1,1)
+	end
+	
+	if wep.KKINS2Wep then
+		out.merge = true
+	end
+	
+	return out
+end
+
 function PB:_finishMaking()
-	// do stuff
-	// add to elementTable, init
+	local wep = self._wep
+	local state = self._state
+	local targets = self:_getTargets()
 	
-	PB:ThrowNewNotImplemented()
+	for _,tableName in pairs(targets) do
+		local new = self:_newElementData()
+		wep[tableName][state.make.elementName] = new
+		self:_createElement(tableName, state.make.elementName)
+		new.active = true
+	end
 	
-	-- PB._state.edit.tableName = targets[1]
-	-- PB._state.edit.elementName = PB._state.make.elementName
-	-- PB:_setBuilder("edit")
+	PB._state.edit.tableName = targets[1]
+	PB._state.edit.elementName = PB._state.make.elementName
+	PB:_setBuilder("edit")
 end
 
 function PB:run()
