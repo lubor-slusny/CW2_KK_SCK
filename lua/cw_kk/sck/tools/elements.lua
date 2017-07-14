@@ -239,6 +239,49 @@ function TOOL:_addSectionMeh()
 	panel:AddControl("Label", {Text = "Current total cl model count: " .. #CustomizableWeaponry.cmodels.curModels})
 end
 
+local function stringToString(str)
+	if not str then 
+		return "nil"
+	end
+	
+	return "\"" .. str .. "\""
+end
+
+local function adjustmentToString(adj)
+	if not adj then 
+		return "nil"
+	end
+	
+	return string.format(
+		"{axis = \"%s\", min = %s, max = %s, inverse = %s, inverseOffsetCalc = %s}",
+		tostring(adj.axis),
+		tostring(adj.min),
+		tostring(adj.max),
+		tostring(adj.inverse),
+		tostring(adj.inverseOffsetCalc)
+	)
+end
+
+function TOOL:_getElementCode(tableName, elementName)
+	local wep = self._wep
+	local data = wep[tableName][elementName]
+	
+	local format = "[\"%s\"] = {model = %s, pos = %s, angle = %s, size = %s, bone = %s, attachment = %s, merge = %s, adjustment = %s},"
+	
+	return string.format(
+		format,
+			elementName,
+			stringToString(data.model),
+			self:VectorToString(data.pos),
+			self:AngleToString(data.angle),
+			self:VectorToString(data.size),
+			stringToString(data.bone),
+			stringToString(data.attachment),
+			tostring(data.merge),
+			adjustmentToString(data.adjustment)
+	)
+end
+
 //////////////////
 // Element List //
 //////////////////
@@ -323,9 +366,12 @@ PB.elementPropertiesLayout = {
 	"Lighting",
 	"Animated",
 	"Restore",
+	"ExportSingle",
 }
 
-local function id(out) return out end
+local function id(out) 
+	return out 
+end
 
 PB.restoreProperties = {
 	angle = Angle,
@@ -694,8 +740,6 @@ function PB:_addSectionSizeUniform()
 	local state = self._state
 	local data = state.edit.data
 	
-	data.size = Vector(data.size)
-	
 	local backgroundPanel = vgui.Create("DPanel", panel)
 		
 		local slider = vgui.Create("DNumSlider", backgroundPanel)
@@ -716,13 +760,10 @@ function PB:_addSectionSizeUniform()
 			end
 			
 			for slider,_ in pairs(state.edit.sizeSliders) do
-				slider._pauseSendingUpdates = true
 				slider:SetValue(val)
-				slider._pauseSendingUpdates = false
 			end
 			
 			PB:SaveSliderZoom(self)
-			PB:_recreateElement()
 		end
 		
 	backgroundPanel:Dock(TOP)
@@ -739,6 +780,8 @@ function PB:_addSectionSizeSliders()
 	local wep = self._wep
 	local state = self._state
 	local data = state.edit.data
+	
+	data.size = Vector(data.size)
 	
 	state.edit.sizeSliders = {}
 	
@@ -764,10 +807,11 @@ function PB:_addSectionSizeSliders()
 			function slider:OnValueChanged(val)
 				data[s[1]][s[2]] = val
 				
-				if !self._pauseSendingUpdates then
-					PB:SaveSliderZoom(self)
-					PB:_recreateElement()
-				end
+				data.matrix = Matrix()
+				data.matrix:Scale(data.size)
+				data.ent:EnableMatrix("RenderMultiply", data.matrix)
+				
+				PB:SaveSliderZoom(self)
 			end
 			
 			state.edit.sizeSliders[slider] = slider
@@ -1338,6 +1382,31 @@ function PB:_addSectionRestore()
 		function butt:DoClick()
 			PB:_restoreElement()
 			PB:_updatePanel()
+		end
+		
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:DockMargin(8,8,8,0)
+	backgroundPanel:SetPaintBackground(false)
+	backgroundPanel:SizeToContents()
+	
+	return backgroundPanel:GetTall() + 8
+end
+
+function PB:_addSectionExportSingle()
+	local panel = self._panel
+	local wep = self._wep
+	local state = self._state
+	
+	local backgroundPanel = vgui.Create("DPanel", panel)
+		
+		local butt = vgui.Create("DButton", backgroundPanel)
+		butt:Dock(FILL)
+		
+		butt:SetText("Export single")
+		
+		function butt:DoClick()
+			local out = PB:_getElementCode(state.edit.tableName, state.edit.elementName)
+			SetClipboardText(out)
 		end
 		
 	backgroundPanel:Dock(TOP)
