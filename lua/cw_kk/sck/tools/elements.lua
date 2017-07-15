@@ -22,14 +22,15 @@ TOOL.elementTableProperties = {
 }
 
 TOOL.headerBackground = Color(0,160,255,100)
+TOOL.darkerBackground = Color(0,0,0,50)
 
 TOOL.__index = TOOL
 
-function TOOL:addPanelBuilder(tab)
+function TOOL:addPanelBuilder(panelBuilder)
 	self._panelBuilders = self._panelBuilders or {}
 	
-	setmetatable(tab, self)
-	self._panelBuilders[tab.Name] = tab
+	setmetatable(panelBuilder, self)
+	self._panelBuilders[panelBuilder.Name] = panelBuilder
 end
 
 function TOOL:_addSectionRefreshButt()
@@ -337,8 +338,6 @@ TOOL:addPanelBuilder(PB)
 local PB = {}
 PB.Name = "edit"
 
-PB.darkerBackground = Color(0,0,0,50)
-
 PB.defaultAdjustment = {
 	min = 0, 
 	max = 0, 
@@ -451,8 +450,6 @@ function PB:_addHeaderNext()
 			TOOL:_setBuilder("edit")
 		end
 		
-		PrintTable(label:GetTable())
-		
 	backgroundPanel:Dock(TOP)
 	backgroundPanel:SetPaintBackground(true)
 	backgroundPanel:SizeToContents()
@@ -528,6 +525,9 @@ function PB:_addSectionPOAF()
 	local wep = self._wep
 	local state = self._state
 	local data = state.edit.data
+	
+	state.edit.POALastAtt = nil
+	state.edit.POALastBone = nil
 	
 	local backgroundPanel = vgui.Create("DPanel", panel)
 		
@@ -940,7 +940,6 @@ function PB:_sightAdjustmentLongAxis(panel)
 		listView:Dock(FILL)
 		listView:DockMargin(16,0,8,0)
 		listView:SizeToContents()
-		listView:SetBackgroundColor(Color(0,0,0,255))
 		listView:SetPaintBackground(false)
 		listView:FixColumnsLayout()
 		
@@ -1802,6 +1801,20 @@ TOOL:addPanelBuilder(PB)
 local PB = {}
 PB.Name = "export"
 
+PB.quickSelects = {
+	function(self)
+		self:SetChecked(true)
+	end,
+	
+	function(self)
+		self:SetChecked(false)
+	end,
+	
+	function(self)
+		self:SetChecked(!self:GetChecked())
+	end,
+}
+
 function PB:_addHeader()
 	local panel = self._panel
 	local wep = self._wep
@@ -1811,7 +1824,7 @@ function PB:_addHeader()
 	panel:AddItem(backgroundPanel)
 		
 		local label = vgui.Create("DLabel", backgroundPanel)
-		label:SetText("Export selected")
+		label:SetText("Select elements for export")
 		label:SetDark(true)
 		label:Dock(LEFT)
 		label:DockMargin(8,0,4,0)
@@ -1833,44 +1846,164 @@ function PB:_addHeader()
 	backgroundPanel:SizeToContents()
 end
 
+function PB:_addSectionQuickSelect()
+	local panel = self._panel
+	local wep = self._wep
+	local state = self._state
+	
+	local backgroundPanel = vgui.Create("DPanel", panel)
+	panel:AddItem(backgroundPanel)
+		
+		local label = vgui.Create("DLabel", backgroundPanel)
+		label:SetText("Quick-select:")
+		label:SetDark(true)
+		label:Dock(LEFT)
+		label:DockMargin(8,0,8,0)
+		label:SizeToContents()
+		
+		local listView = vgui.Create("DListView", backgroundPanel)
+		listView:AddColumn("All")
+		listView:AddColumn("None")
+		listView:AddColumn("Invert")
+		listView:SetHeaderHeight(16)
+		
+		listView:Dock(FILL)
+		listView:DockMargin(8,4,8,0)
+		-- listView:SetWide(200)
+		listView:SizeToContents()
+		listView:SetPaintBackground(false)
+		listView:FixColumnsLayout()
+		
+		function listView:SortByColumn(i)
+			local update = PB.quickSelects[i]
+			
+			for _,cbox in pairs(state.export.cboxes) do
+				update(cbox)
+			end
+		end
+		
+		function listView:OnRequestResize(val) end
+		
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:SetPaintBackground(true)
+	backgroundPanel:SizeToContents()
+end
+
+function PB:mainReceiver(tableOfDroppedPanels, isDropped, menuIndex, mouseX, mouseY)
+	tableOfDroppedPanels[1]:SetVisible(isDropped)
+	
+	print()
+	PrintTable(tableOfDroppedPanels)
+end
+
+function PB:_addSectionHeader(tableName)
+	local panel = self._panel
+	local wep = self._wep
+	local data = wep[tableName][elementName]
+	
+	local backgroundPanel = vgui.Create("DPanel", panel)
+	
+		local label = vgui.Create("DLabel", backgroundPanel)
+		label:SetText("SWEP." .. tableName)
+		label:SetDark(true)
+		label:Dock(LEFT)
+		label:DockMargin(8,0,4,0)
+		label:SizeToContents()
+		
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:SetPaintBackground(false)
+	backgroundPanel:SizeToContents()
+end
+
+function PB:_addSectionItem(tableName, elementName, reverse)
+	local panel = self._panel
+	local state = self._state
+	
+	local backgroundPanel = vgui.Create("DPanel", panel)
+		
+		local cbox = vgui.Create("DCheckBoxLabel", backgroundPanel)
+		cbox:Dock(LEFT)
+		cbox:DockMargin(8,0,8,0)
+		cbox:SetText(elementName)
+		cbox:SetChecked(state.export.addToSelected == elementName)
+		cbox:SetDark(true)
+		
+		cbox.Label:Dock(RIGHT)
+		
+		table.insert(state.export.cboxes, cbox)
+		
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:DockMargin(8,8,8,0)
+	backgroundPanel:SetBackgroundColor(self.darkerBackground)
+	backgroundPanel:SetPaintBackground(true)
+	backgroundPanel:SizeToContents()
+	backgroundPanel:SetMouseInputEnabled(true)
+	backgroundPanel:Droppable(tableName)
+end
+
+function PB:_addSectionFinish()
+	local panel = self._panel
+	local state = self._state
+	
+	local backgroundPanel = vgui.Create("DPanel", panel)
+	panel:AddItem(backgroundPanel)
+		
+		local butt = vgui.Create("DButton", backgroundPanel)
+		butt:Dock(FILL)
+		
+		butt:SetText("Export selected - copy code to clipboard")
+		
+		function butt:DoClick()
+			
+		end
+		
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:SetPaintBackground(true)
+	backgroundPanel:SizeToContents()
+end
+
 function PB:run()
 	local panel = self._panel
 	local wep = self._wep
 	local state = self._state
 	
-	self:_addHeader()
+	state.export.cboxes = {}
+	state.export.childs = {}
+	state.export.dads = {}
 	
-	for _,tableName in pairs(self.elementTables) do	
-		local backgroundPanel = vgui.Create("DPanel", panel)
-			
-			local listView = vgui.Create("DListView", backgroundPanel)
-			listView:Dock(FILL)
-			listView:DockMargin(8,8,8,8)
-			listView:SetMultiSelect(true)
-			listView:AddColumn("SWEP." .. tableName)
-			
-			local tall = 32
-			
-			for elementName,element in pairs(wep[tableName]) do
-				tall = tall + 17
-				listView:AddLine(elementName)
-			end
-			
-			listView:SetTall(tall)
-			
-			-- function listView:SortByColumn() end
-			
-			function listView:OnRowSelected(val)
-				
-			end
-			
-		backgroundPanel:Dock(TOP)
-		backgroundPanel:SetTall(listView:GetTall())
-		backgroundPanel:SetPaintBackground(false)
-		backgroundPanel:SizeToContents()
+	self:_addHeader()
+	self:_addSectionQuickSelect()
+	
+	for _,tableName in pairs(self.elementTables) do
+		if !wep[tableName] then
+			continue
+		end
 		
+		local count = table.Count(wep[tableName])
+		if count < 1 then
+			continue
+		end
+		
+		local backgroundPanel = vgui.Create("DPanel", panel)
 		panel:AddItem(backgroundPanel)
+		
+		backgroundPanel:Dock(TOP)
+		backgroundPanel:SetPaintBackground(true)
+		backgroundPanel:SetTall((count + 1) * 32)
+		backgroundPanel:Receiver(tableName, self.mainReceiver, {})
+		
+		self._panel = backgroundPanel
+		
+		self:_addSectionHeader(tableName)
+		
+		for elementName,_ in pairs(wep[tableName]) do
+			self:_addSectionItem(tableName, elementName)
+		end
+		
+		self._panel = nil
 	end
+	
+	self:_addSectionFinish()
 end
 
 TOOL:addPanelBuilder(PB)
