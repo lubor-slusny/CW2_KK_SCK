@@ -8,8 +8,6 @@ TOOL table structure
 	SetPanel(self, panel)
 	
 	[optional]
-	SpawnMenuTab = "Utilities"
-	SpawnMenuTabSection = "Knife Kitty"
 	Initialize(self)
 	OnWeaponChanged(self, new, old)
 	OnWeaponSetupChanged(self)
@@ -28,6 +26,7 @@ TOOL table structure
 	VectorToString(Vector)
 	ThrowNewNotImplemented()
 	ThrowNewInvalidWeapon()
+	AddHeaderSimpleLR(parentPanel, textLeft, textRight)
 */
 
 BASE._toolMeta = {}
@@ -98,7 +97,7 @@ function toolMeta:VectorToString(v)
 	)
 end
 
-function toolMeta:ThrowNewNotImplemented()
+function toolMeta:ThrowNewNotImplemented(feature)
 	local snds = {
 		"http://cdn.frustra.org/sounds/sound_tf2/vo/scout_no02.mp3",
 		"http://cdn.frustra.org/sounds/sound_tf2/vo/pyro_no01.mp3",
@@ -111,10 +110,12 @@ function toolMeta:ThrowNewNotImplemented()
 		"http://cdn.frustra.org/sounds/sound_tf2/vo/spy_no02.mp3",
 	}
 
+	feature = feature and tostring(feature) or false
+	
 	sound.PlayURL(table.Random(snds), "", function(station)
 		if IsValid(station) then
 			station:Play()
-			print("This stuff aint implemented yet.")
+			print((feature and (feature .. " - ") or "") .. "This stuff aint implemented yet.")
 		else
 			print("INVALID INTERNET CONNECTION OMGF!")
 		end
@@ -164,9 +165,6 @@ function BASE:AddTool(tab)
 	if not tab.Name then return end
 	if not tab.SetPanel then return end
 	
-	tab.SpawnMenuTab = tab.SpawnMenuTab or self.SpawnMenuTab
-	tab.SpawnMenuTabSection = tab.SpawnMenuTabSection or self.SpawnMenuTabSection
-	
 	tab.PrintName = tab.PrintName or tab.Name
 	tab.SelectCommand = tab.SelectCommand or ""
 	
@@ -195,8 +193,8 @@ BASE.IsValid = function(self) return true end
 function BASE:PopulateToolMenu()		
 	for name,tool in pairs(self._toolCache) do
 		spawnmenu.AddToolMenuOption(
-			tool.SpawnMenuTab,
-			tool.SpawnMenuTabSection,
+			self.cvMenuTab:GetString(),
+			self.cvMenuTabSection:GetString(),
 			self.InternalNamesPrefix .. "." .. name, 
 			tool.PrintName, 
 			tool.SelectCommand, 
@@ -215,10 +213,18 @@ function BASE:PreReloadToolsMenu()
 		tool:SetPanel()
 	end
 	
-	self._spawnMenuPopulated = false
+	self:_resetStates()
 end
 
 hook.Add("PreReloadToolsMenu", BASE, BASE.PreReloadToolsMenu)
+
+function BASE:_resetStates()
+	self._spawnMenuPopulated = false
+	self._lastWep = nil
+	self._lastSetup = nil
+	self._lastClip = nil
+	self._lastGLState = nil
+end
 
 function BASE:_OnWeaponChanged(new, old)
 	for _,tool in pairs(self._toolCache) do
@@ -308,20 +314,13 @@ end
 
 hook.Add("Think", BASE, BASE.Think)
 
--- function BASE:ForceRebuildTools()
-	-- for _,tool in pairs(self._toolCache) do
-		-- local panel = tool._panel 
-		
-		-- if IsValid(panel) then
-			-- tool:SetPanel(nil)
-			
-			-- panel:Clear()
-			
-			-- tool:SetPanel(panel)
-		-- end
-	-- end
--- end
+function BASE:CleanLoad()
+	self._cleanLoad = true
+	self:Load()
+	self._cleanLoad = false
+end
 
--- concommand.Add(BASE.strCCRebuild, function()
-	-- BASE:ForceRebuildTools()
--- end)
+concommand.Add(BASE.strCCReloadClient, function()
+	print("[KK SCK] reload")
+	BASE:CleanLoad()
+end)

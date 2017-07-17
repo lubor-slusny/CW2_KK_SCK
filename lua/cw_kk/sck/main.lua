@@ -11,26 +11,34 @@ BASE.SpawnMenuTabSection = "Knife Kitty"
 BASE.ToolsFolder = "cw_kk/sck/tools/"
 BASE.InternalNamesPrefix = "CW_KK_SCK"
 BASE.strCCReload = "cw_kk_sck_reload_folder"
-BASE.strCCRebuild = "cw_kk_sck_rebuild_panels"
+BASE.strCCReloadClient = "_cw_kk_sck_reload_cl"
 BASE.strKnownGLDTKeys = "M203Active|INS2GLActive"
+
+BASE.strCVMenuTab = "cw_kk_sck_menu_tab"
+BASE.strCVMenuTabSection = "cw_kk_sck_menu_tab_section"
 
 function BASE:Load()
 	print("[KK SCK] starting tool folder scan")
 	
+	local reload
+	
 	if CLIENT then
-		local reload = self._toolCache != nil
+		reload = self._toolCache != nil
 		
 		self._toolCache = {}
 		self._lastWep = nil
 		self._lastSetup = nil
 		
 		self._knowGLDTkeys = string.Explode("|", self.strKnownGLDTKeys)
+		
+		BASE.cvMenuTab = CreateClientConVar(BASE.strCVMenuTab, BASE.SpawnMenuTab, true, false)
+		BASE.cvMenuTabSection = CreateClientConVar(BASE.strCVMenuTabSection, BASE.SpawnMenuTabSection, true, false)
 	end
 	
 	for _,v in pairs(file.Find(self.ToolsFolder .. "*", "LUA")) do
 		AddCSLuaFile(self.ToolsFolder .. v)
 		if CLIENT then
-			print("[KK SCK] loading file", v)
+			print("[KK SCK] loading file " .. v)
 			include(self.ToolsFolder .. v)
 		end
 	end
@@ -53,6 +61,13 @@ if CLIENT then
 	include("client.lua")
 end
 
-concommand.Add(BASE.strCCReload, function()
-	BASE:Load()
-end)
+if SERVER then
+	concommand.Add(BASE.strCCReload, function(ply)
+		print("[KK SCK] reload")
+		BASE:Load()
+		
+		if IsValid(ply) then
+			ply:ConCommand(BASE.strCCReloadClient)
+		end
+	end)
+end

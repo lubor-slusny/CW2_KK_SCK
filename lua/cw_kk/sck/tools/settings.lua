@@ -4,12 +4,10 @@ local SCK = CustomizableWeaponry_KK.sck
 local TOOL = {}
 
 TOOL.Name = "settingstab"
-TOOL.PrintName = "[SCK] SCK"
+TOOL.PrintName = "[SCK] Settings"
 
 function TOOL:_addSectionLocation()
 	local panel = self._panel
-	
-	self:AddHeaderSimpleLR(panel, "Location:")
 	
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	panel:AddItem(backgroundPanel)
@@ -24,15 +22,7 @@ function TOOL:_addSectionLocation()
 		local entry = vgui.Create("DTextEntry", backgroundPanel)
 		entry:Dock(FILL)
 		entry:DockMargin(4,0,0,0)
-		entry:SetText(SCK.SpawnMenuTab)
-		
-		function entry:OnEnter()
-		
-		end
-		
-		function entry:OnChange()
-		
-		end
+		entry:SetConVar(SCK.strCVMenuTab)
 		
 	backgroundPanel:Dock(TOP)
 	backgroundPanel:DockMargin(8,0,8,0)
@@ -53,15 +43,7 @@ function TOOL:_addSectionLocation()
 		local entry = vgui.Create("DTextEntry", backgroundPanel)
 		entry:Dock(FILL)
 		entry:DockMargin(4,0,0,0)
-		entry:SetText(SCK.SpawnMenuTabSection)
-		
-		function entry:OnEnter()
-		
-		end
-		
-		function entry:OnChange()
-		
-		end
+		entry:SetConVar(SCK.strCVMenuTabSection)
 		
 	backgroundPanel:Dock(TOP)
 	backgroundPanel:DockMargin(8,0,8,0)
@@ -79,7 +61,8 @@ function TOOL:_addSectionLocationApply()
 		local butt = vgui.Create("DButton", backgroundPanel)
 		butt:Dock(FILL)
 		butt:SetSize(150,20)
-		butt:SetText("Apply (RELOADS SPAWNMENU!)")
+		butt:SetText("Apply *")
+		butt:SetCommand("spawnmenu_reload")
 		
 	backgroundPanel:Dock(TOP)
 	backgroundPanel:DockMargin(8,0,8,0)
@@ -91,15 +74,13 @@ end
 function TOOL:_addSectionRescan()
 	local panel = self._panel
 	
-	self:AddHeaderSimpleLR(panel, "Other:")
-	
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	panel:AddItem(backgroundPanel)
 		
 		local butt = vgui.Create("DButton", backgroundPanel)
 		butt:Dock(FILL)
 		butt:SetSize(150,20)
-		butt:SetText("Rescan tool folder")
+		butt:SetText("Rescan tool folder *")
 		butt:SetConsoleCommand("cw_kk_sck_reload_folder")
 		
 	backgroundPanel:Dock(TOP)
@@ -116,9 +97,14 @@ function TOOL:_updatePanel()
 	
 	panel:ClearControls()
 	
+	self:AddHeaderSimpleLR(panel, "Location:")
 	self:_addSectionLocation()
 	self:_addSectionLocationApply()
+	self:AddHeaderSimpleLR(panel, "Other:")
 	self:_addSectionRescan()
+	
+	panel:AddControl("Label", {Text = "* reloads spawn menu"})
+	panel:AddControl("Label", {Text = ""})
 end
 
 function TOOL:SetPanel(panel)
