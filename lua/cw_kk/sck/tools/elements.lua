@@ -1869,7 +1869,6 @@ function PB:_addSectionQuickSelect()
 		
 		listView:Dock(FILL)
 		listView:DockMargin(8,4,8,0)
-		-- listView:SetWide(200)
 		listView:SizeToContents()
 		listView:SetPaintBackground(false)
 		listView:FixColumnsLayout()
@@ -1877,9 +1876,11 @@ function PB:_addSectionQuickSelect()
 		function listView:SortByColumn(i)
 			local update = PB.quickSelects[i]
 			
-			for _,cbox in pairs(state.export.cboxes) do
-				update(cbox)
-			end
+			-- for _,cboxes in pairs(state.export.cboxes) do
+				-- for _,cbox in pairs(cboxes) do
+					-- update(cbox)
+				-- end
+			-- end
 		end
 		
 		function listView:OnRequestResize(val) end
@@ -1890,7 +1891,7 @@ function PB:_addSectionQuickSelect()
 end
 
 function PB:mainReceiver(tableOfDroppedPanels, isDropped, menuIndex, mouseX, mouseY)
-	tableOfDroppedPanels[1]:SetVisible(isDropped)
+	tableOfDroppedPanels[1]:SetAlpha(isDropped and 255 or 0)
 	
 	print()
 	PrintTable(tableOfDroppedPanels)
@@ -1915,9 +1916,10 @@ function PB:_addSectionHeader(tableName)
 	backgroundPanel:SizeToContents()
 end
 
-function PB:_addSectionItem(tableName, elementName, reverse)
+function PB:_addSectionItem(tableName, elementName)
 	local panel = self._panel
 	local state = self._state
+	local order = state.export.order[tableName]
 	
 	local backgroundPanel = vgui.Create("DPanel", panel)
 		
@@ -1930,15 +1932,54 @@ function PB:_addSectionItem(tableName, elementName, reverse)
 		
 		cbox.Label:Dock(RIGHT)
 		
-		table.insert(state.export.cboxes, cbox)
+		-- table.insert(state.export.cboxes[tableName], cbox)
+		
+		local listView = vgui.Create("DListView", backgroundPanel)
+		listView:AddColumn("˄")
+		listView:AddColumn("˅")
+		listView:AddColumn("T") // listView:AddColumn("┳")
+		listView:AddColumn("B") // listView:AddColumn("┻")
+		listView:SetHeaderHeight(20)
+		
+		listView:Dock(RIGHT)
+		listView:DockMargin(8,2,2,0)
+		listView:SetWide(20 * 4)
+		listView:SetPaintBackground(false)
+		listView:FixColumnsLayout()
+		
+		function listView:SortByColumn(i)
+			local pos = table.KeyFromValue(order, elementName)
+			table.remove(order, pos)
+			
+			if i == 1 then
+				table.insert(order, pos - 1, elementName)
+			end
+			
+			if i == 2 then
+				table.insert(order, pos + 1, elementName)
+			end
+			
+			if i == 3 then
+				table.insert(order, 1, elementName)
+			end
+			
+			if i == 4 then
+				table.insert(order, elementName)
+			end
+			
+			PB:_updatePanel()
+		end
+		
+		function listView:OnRequestResize(val) end
 		
 	backgroundPanel:Dock(TOP)
 	backgroundPanel:DockMargin(8,8,8,0)
 	backgroundPanel:SetBackgroundColor(self.darkerBackground)
 	backgroundPanel:SetPaintBackground(true)
 	backgroundPanel:SizeToContents()
-	backgroundPanel:SetMouseInputEnabled(true)
-	backgroundPanel:Droppable(tableName)
+	
+	-- backgroundPanel:SetMouseInputEnabled(true)
+	-- backgroundPanel:Droppable(tableName)
 end
 
 function PB:_addSectionFinish()
@@ -1954,7 +1995,7 @@ function PB:_addSectionFinish()
 		butt:SetText("Export selected - copy code to clipboard")
 		
 		function butt:DoClick()
-			
+			PB:ThrowNewNotImplemented()
 		end
 		
 	backgroundPanel:Dock(TOP)
@@ -1967,36 +2008,46 @@ function PB:run()
 	local wep = self._wep
 	local state = self._state
 	
-	state.export.cboxes = {}
-	state.export.childs = {}
-	state.export.dads = {}
+	local order = state.export.order or {}
+	
+	if table.Count(order) < 1 then		
+		for _,tableName in pairs(self.elementTables) do
+			if !wep[tableName] then
+				continue
+			end
+			
+			if table.Count(wep[tableName]) < 1 then
+				continue
+			end
+			
+			order[tableName] = {}
+		end
+		
+		for tableName,target in pairs(order) do
+			for elementName,_ in SortedPairs(wep[tableName]) do
+				table.insert(target,elementName)
+			end
+		end
+	end
+	
+	state.export.order = order
 	
 	self:_addHeader()
 	self:_addSectionQuickSelect()
 	
-	for _,tableName in pairs(self.elementTables) do
-		if !wep[tableName] then
-			continue
-		end
-		
-		local count = table.Count(wep[tableName])
-		if count < 1 then
-			continue
-		end
-		
+	for tableName,elementTable in pairs(order) do
 		local backgroundPanel = vgui.Create("DPanel", panel)
-		panel:AddItem(backgroundPanel)
-		
 		backgroundPanel:Dock(TOP)
 		backgroundPanel:SetPaintBackground(true)
-		backgroundPanel:SetTall((count + 1) * 32)
-		backgroundPanel:Receiver(tableName, self.mainReceiver, {})
+		backgroundPanel:SetTall((table.Count(elementTable) + 1) * 32)
+		-- backgroundPanel:Receiver(tableName, self.mainReceiver, {})
+		panel:AddItem(backgroundPanel)
 		
 		self._panel = backgroundPanel
 		
 		self:_addSectionHeader(tableName)
 		
-		for elementName,_ in pairs(wep[tableName]) do
+		for i,elementName in pairs(elementTable) do
 			self:_addSectionItem(tableName, elementName)
 		end
 		
