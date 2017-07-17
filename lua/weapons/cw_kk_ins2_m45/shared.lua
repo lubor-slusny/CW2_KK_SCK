@@ -34,7 +34,7 @@ if CLIENT then
 			material = "models/weapons/attachments/cw_kk_ins2_cstm_m6x/rail_gy",
 		},
 		
-		["kk_counter"] = {model = "models/weapons/stattrack_cut.mdl", bone = "Slide", pos = Vector(0.451, 0, 0.028), angle = Angle(0, -90, 0), size = Vector(0.8, 0.8, 0.8)},
+		["kk_counter"] = {model = "models/weapons/stattrack_cut.mdl", bone = "Slide", pos = Vector(0.451, 0, 0.028), angle = Angle(0, -90, 0), size = Vector(0.8, 0.8, 0.8), adjustment = {axis = "y", min = 0, max = 1.6, inverse = false, inverseOffsetCalc = false}},
 	}
 
 	SWEP.AttachmentModelsWM = {

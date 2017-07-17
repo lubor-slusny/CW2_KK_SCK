@@ -52,12 +52,14 @@ end
 // idk
 //-----------------------------------------------------------------------------
 
+local vel = Vector()
+
 function SWEP:calcShellAngleVelocity(ang)
-	return 
-		-- ang:Forward() * (math.random(40,50) * -100) +
-		ang:Up() * (math.random(80,130) * -100) +
-		ang:Right() * (math.random(40,50) * -100)
-		-- Vector()
+	vel.x = 0
+	vel.y = 0
+	vel.z = math.random(80,130) * -100
+	
+	return vel * ang:Up()
 end
 
 //-----------------------------------------------------------------------------

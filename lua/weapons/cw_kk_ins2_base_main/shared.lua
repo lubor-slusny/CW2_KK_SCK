@@ -11,6 +11,7 @@ AddCSLuaFile("cl_shells.lua")
 AddCSLuaFile("o_cl_calcview.lua")
 AddCSLuaFile("o_cl_hud.lua")
 AddCSLuaFile("o_cl_model.lua")
+-- AddCSLuaFile("o_cl_pvmm.lua")
 AddCSLuaFile("o_sh_attacks.lua")
 AddCSLuaFile("o_sh_general.lua")
 AddCSLuaFile("o_sh_m203.lua")
@@ -36,6 +37,7 @@ if CLIENT then
 	include("o_cl_calcview.lua")
 	include("o_cl_hud.lua")
 	include("o_cl_model.lua")
+	-- include("o_cl_pvmm.lua")
 end
 
 SWEP.Base = "cw_base"

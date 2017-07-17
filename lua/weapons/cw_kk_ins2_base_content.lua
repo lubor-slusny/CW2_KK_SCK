@@ -81,8 +81,8 @@ do
 		local allMaterials = ""
 		
 		hook.Add("InitPostEntity", "CW_KK_INS2_INIT_PHYSMAT", function()
-			-- print("initializing physmats:", allMaterials)
-			-- physenv.AddSurfaceData(allMaterials)
+			print("initializing physmats:", allMaterials)
+			physenv.AddSurfaceData(allMaterials)
 		end)
 		
 		function CustomizableWeaponry.shells:addNew_KKINS2(name, model, sound, BBoxMins, BBoxMaxs)
