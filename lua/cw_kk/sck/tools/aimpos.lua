@@ -48,6 +48,12 @@ TOOL.Name = "aimpos"
 TOOL.PrintName = "AimPos Builder 5"
 TOOL.Version = "5.0"
 
+TOOL.cvarPresetEdit = {
+	["_cw_kk_sck_lock_ads"] = "1",
+	["cw_kk_freeze_reticles"] = "1",
+	["cw_freeaim"] = "0",
+}
+
 function TOOL:Initialize()
 	if not self._relevantAttsCache then
 		local primary = {}
@@ -109,7 +115,7 @@ function TOOL:_addSectionCvars()
 	panel:AddItem(backgroundPanel)
 		
 		local label = vgui.Create("DLabel", backgroundPanel)
-		label:SetText("^^ auto-reset in (-1 dont):")
+		label:SetText("^^ auto-restore in (-1 dont):")
 		label:SetDark(true)
 		label:Dock(LEFT)
 		label:DockMargin(0,0,4,0)
@@ -398,10 +404,14 @@ function TOOL:_addSectionWipeReload()
 end
 
 function TOOL:_forceCVarSettings()
-	RunConsoleCommand("_cw_kk_sck_lock_ads","1")
-	RunConsoleCommand("cw_kk_freeze_reticles","1")
-	RunConsoleCommand("cw_freeaim","0")
+	local cvs = {}
 	
+	for id,val in pairs(self.cvarPresetEdit) do
+		cvs[id] = GetConVar(id):GetString()
+		RunConsoleCommand(id, val)
+	end
+	
+	self._cvarPresetRestore = self._cvarPresetRestore or cvs
 	self._nextCvarReset = CurTime() + self.cvarResetDelay
 end
 
@@ -792,7 +802,7 @@ function TOOL:_addSectionMisc()
 		end
 		
 		local label = vgui.Create("DLabel", backgroundPanel)
-		label:SetText("SWEP.AimSwayIntensity*")
+		label:SetText("SWEP.AimSwayIntensity *")
 		label:SetDark(true)
 		label:Dock(TOP)
 		label:DockMargin(8,4,4,0)
@@ -819,8 +829,7 @@ function TOOL:_addSectionMisc()
 	backgroundPanel:SetPaintBackground(true)
 	backgroundPanel:SizeToContents()
 	
-	panel:AddControl("Label", {Text = "*original value registered and stored by this tool"})
-	panel:AddControl("Label", {Text = ""})
+	panel:AddControl("Label", {Text = "* original value registered and stored by this tool"})
 end
 
 function TOOL:_prepareAttInfo()
@@ -889,6 +898,8 @@ function TOOL:_updatePanel()
 	self:_addSectionExportPreviews()
 	self:_addSectionExportButts()
 	self:_addSectionMisc()
+	
+	panel:AddControl("Label", {Text = ""})
 end
 
 function TOOL:SetPanel(panel)
@@ -913,8 +924,11 @@ function TOOL:Think()
 	if self._nextCvarReset and self.cvarResetDelay > 0 and self._nextCvarReset < CurTime() then
 		self._nextCvarReset = false
 		
-		RunConsoleCommand("_cw_kk_sck_lock_ads","0")
-		RunConsoleCommand("cw_kk_freeze_reticles","0")
+		for id,val in pairs(self._cvarPresetRestore) do
+			RunConsoleCommand(id, val)
+		end
+		
+		self._cvarPresetRestore = nil
 	end
 end
 
