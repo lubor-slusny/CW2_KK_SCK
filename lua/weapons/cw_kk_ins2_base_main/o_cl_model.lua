@@ -741,6 +741,11 @@ end
 function SWEP:DrawVMHandsModel()
 	local gm = self.Owner:GetHands()
 	
+	if !IsValid(gm) then
+		self.CW_KK_HANDS:DrawModel()
+		return
+	end
+	
 	if self.UseGMHands then
 		if gm:GetParent() != self.CW_KK_HANDS then
 			gm:SetParent(self.CW_KK_HANDS)
@@ -757,4 +762,3 @@ function SWEP:DrawVMHandsModel()
 		self.CW_KK_HANDS:DrawModel()
 	end
 end
-	
