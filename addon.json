@@ -10,6 +10,7 @@
 		"*.svn*",
 		"*_src*",
 		"*_cof*",
+		"*cw_kk/sck*",
 		
 		"*.jpg",
 		"*.dds",
