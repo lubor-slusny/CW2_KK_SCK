@@ -22,7 +22,8 @@ if CLIENT then
 		
 		["kk_counter"] = {model = "models/weapons/upgrades/a_standard_br99.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, nodraw = true},
 		
-		["kk_ins2_suppressor_shotgun"] = {model = "models/weapons/upgrades/a_suppressor_12ga.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		-- ["kk_ins2_suppressor_shotgun"] = {model = "models/weapons/upgrades/a_suppressor_12ga.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_suppressor_shotgun"] = {model = "models/weapons/upgrades/a_suppressor_12ga.mdl", pos = Vector(2.0301, -16.2553, 4.5524), angle = Angle(0, -90, 0), size = Vector(1, 1, 1), bone = "Weapon"},
 		
 		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/a_foregrip_sec.mdl", pos = Vector(), angle = Angle(0, 90, 0), size = Vector(0.5, 0.5, 0.5), attachment = "Foregrip"},
 
@@ -50,7 +51,8 @@ if CLIENT then
 	SWEP.AttachmentModelsWM = {
 		["kk_ins2_optic_iron"] = {model = "models/weapons/upgrades/w_flipup_br99.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true, active = true},
 		
-		["kk_ins2_suppressor_shotgun"] = {model = "models/weapons/upgrades/w_sil_pistol.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		-- ["kk_ins2_suppressor_shotgun"] = {model = "models/weapons/upgrades/w_sil_pistol.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
+		["kk_ins2_suppressor_shotgun"] = {model = "models/weapons/upgrades/w_sil_pistol.mdl", pos = Vector(-39.6346, 0.0077, 9.2485), angle = Angle(), size = Vector(1, 1, 1), bone = nil, attachment = "muzzle"},
 		
 		["kk_ins2_vertgrip"] = {model = "models/weapons/upgrades/w_foregrip_sec1.mdl", pos = Vector(), angle = Angle(), size = Vector(1, 1, 1), merge = true},
 		
