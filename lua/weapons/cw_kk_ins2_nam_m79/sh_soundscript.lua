@@ -2,7 +2,7 @@
 local function shell(wep)
 	if SERVER then return end
 	
-	wep:shellEventReload()
+	wep:shellEvent203()
 end
 
 SWEP.Sounds = {

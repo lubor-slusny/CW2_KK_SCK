@@ -233,9 +233,12 @@ function SWEP:shellEvent203()
 	else
 		local glAtt = self._currentGrenadeLauncher and self._currentGrenadeLauncher.name
 		local vm = glAtt and self.AttachmentModelsVM[glAtt] and self.AttachmentModelsVM[glAtt].ent		
-		if !IsValid(vm) then return end
 		
-		local att = vm:GetAttachment(2)
+		local att
+		
+		if IsValid(vm) then 
+			att = vm:GetAttachment(2)
+		end
 		
 		local pos, ang
 		
