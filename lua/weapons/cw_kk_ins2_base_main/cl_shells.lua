@@ -246,16 +246,8 @@ function SWEP:shellEvent203()
 			pos = att.Pos
 			ang = att.Ang
 		else
-			-- local e = self.AttachmentModelsVM[glAtt].shellEject
-			-- local m = e and vm:GetBoneMatrix(e)
-			
-			-- if m then
-				-- pos = m:GetTranslation()
-				-- ang = m:GetAngles()
-			-- else
-				ang = self.Owner:EyeAngles()
-				pos = self.Owner:EyePos() - (15 * ang:Up())
-			-- end
+			ang = self.Owner:EyeAngles()
+			pos = self.Owner:EyePos() - (15 * ang:Up())
 		end
 		
 		local align = self.Shell2ViewAngleAlign
