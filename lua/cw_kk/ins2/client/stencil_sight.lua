@@ -7,6 +7,7 @@ CustomizableWeaponry_KK.ins2.stencilSight.lenses["models/weapons/optics/aimpoint
 CustomizableWeaponry_KK.ins2.stencilSight.lenses["models/weapons/optics/kobra_lense"] = true
 CustomizableWeaponry_KK.ins2.stencilSight.lenses["models/weapons/optics/eotech_lense"] = true
 CustomizableWeaponry_KK.ins2.stencilSight.lenses["models/weapons/attachments/cw_kk_ins2_cstm_barska/barska_lense"] = true
+CustomizableWeaponry_KK.ins2.stencilSight.lenses["models/weapons/upgrades/eotech_556/eotech_glass"] = true
 
 local strStencil = "models/weapons/attachments/cw_kk_ins2_shared/stencil"
 local strNoDraw = "models/weapons/attachments/cw_kk_ins2_shared/nodraw"

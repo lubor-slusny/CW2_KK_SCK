@@ -11,7 +11,14 @@ if CLIENT then
 	
 	SWEP.SelectIcon = surface.GetTextureID("vgui/inventory/weapon_m18")
 	
-	SWEP.AttachmentModelsVM = {}
+	SWEP.AttachmentModelsVM = {
+		["eh"] = {model = "models/weapons/cw_kk_doi/v_m18.mdl", pos = Vector(0, 0, 0), angle = Angle(0, 0, 0), size = Vector(1, 1, 1), merge = true, 
+			hideVM = true, 
+			active = CustomizableWeaponry_KK.HOME,
+			material = "models/cwkkdoi/m18/weapon_m18_dm"
+		},
+	}
+	
 	SWEP.AttachmentModelsWM = {}
 	
 	SWEP.ViewModelMovementScale = 0.8
