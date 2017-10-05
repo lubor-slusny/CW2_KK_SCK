@@ -1,7 +1,0 @@
-"UnlitGeneric"
-{
-	"$baseTexture" "models\weapons\attachments\cw_kk_ins2_shared\fakew"
-	"$translucent" 1
-	"$vertexalpha" 1
-	"$vertexcolor" 1
-}

@@ -1,5 +1,5 @@
 {
-	"title"		:	"[CW 2.0] KK INS2 SWEPs", 
+	"title"		:	"[CW 2.0] KK SCK", 
 	"type"		:	"weapon", 
 	"tags"		:	[
 		"fun",
@@ -10,7 +10,6 @@
 		"*.svn*",
 		"*_src*",
 		"*_cof*",
-		"*cw_kk/sck*",
 		
 		"*.jpg",
 		"*.dds",
