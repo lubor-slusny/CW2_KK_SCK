@@ -1,16 +1,16 @@
 {
-	"title"		:	"[CW 2.0] KK SCK", 
-	"type"		:	"weapon", 
+	"title"		:	"[CW 2.0] KK SCK",
+	"type"		:	"weapon",
 	"tags"		:	[
 		"fun",
 		"realism"
-	], 
+	],
 	"ignore"	:	[
 		"*.git*",
 		"*.svn*",
 		"*_src*",
 		"*_cof*",
-		
+
 		"*.jpg",
 		"*.dds",
 		"*.tga",

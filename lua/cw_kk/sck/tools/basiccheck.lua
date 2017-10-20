@@ -17,7 +17,7 @@ TOOL.elementFuncs = {
 function TOOL:_addSectionRefresh()
 	local panel = self._panel
 	local wep = self._wep
-	
+
 	local butt = vgui.Create("DButton", panel)
 	butt:SetText("Recheck")
 	butt:DockMargin(8, 0, 8, 0)
@@ -28,10 +28,10 @@ end
 function TOOL:_addSectionHeader()
 	local panel = self._panel
 	local wep = self._wep
-	
+
 	local label = panel:AddControl("Label", {Text = string.upper(wep:GetClass())})
 	label:SetTextColor(panel:GetSkin().Colours.Tree.Hover)
-	
+
 	local label = panel:AddControl("Label", {Text = wep.ViewModel})
 	label:DockMargin(16,0,8,0)
 	label:SetMouseInputEnabled(true)
@@ -42,18 +42,18 @@ end
 function TOOL:_addSectionInvalidAnims()
 	local panel = self._panel
 	local wep = self._wep
-	
+
 	local vm = wep.CW_VM
 	local errors = {}
 	local errorCount = 0
-	
+
 	for k,v in pairs(wep.Animations) do
 		if type(v) == "string" then
 			if vm:LookupSequence(v) == -1 then
 				errors[k] = {v}
 				errorCount = errorCount + 1
 			end
-			
+
 			self._used[v] = true
 		elseif type(v) == "table" then
 			for i,v in pairs(v) do
@@ -62,23 +62,23 @@ function TOOL:_addSectionInvalidAnims()
 					errors[k][i] = v
 					errorCount = errorCount + 1
 				end
-				
+
 				self._used[v] = true
 			end
 		end
 	end
-	
+
 	if table.Count(errors) > 0 then
 		panel:AddControl("Label", {Text = "Non-existing anims (" .. errorCount .. "):"}):SetTextColor(panel:GetSkin().Colours.Tree.Hover)
 		for k,vs in pairs(errors) do
 			panel:AddControl("Label", {Text = "[\"" .. k .. "\"] = {"}):DockMargin(16,0,8,0)
-			
+
 			for i,v in pairs(vs) do
 				local label = panel:AddControl("Label", {Text = "[" .. i .. "] = \"" .. v .. "\","})
 				label:SetTextColor(self.colorDoesnt)
 				label:DockMargin(24,0,8,0)
 			end
-			
+
 			panel:AddControl("Label", {Text = "}"}):DockMargin(16,0,8,0)
 		end
 		panel:AddControl("Label", {Text = ""})
@@ -90,11 +90,11 @@ end
 function TOOL:_addSectionUnusedAnims()
 	local panel = self._panel
 	local wep = self._wep
-	
+
 	local vm = wep.CW_VM
 	local unused = {}
 	local unusedCount = 0
-	
+
 	for i = 0, vm:GetSequenceCount() - 1 do
 		local v = vm:GetSequenceName(i)
 		if not self._used[v] then
@@ -102,7 +102,7 @@ function TOOL:_addSectionUnusedAnims()
 			unusedCount = unusedCount + 1
 		end
 	end
-	
+
 	local deltas = 0
 	for k,v in pairs(unused) do
 		for _,pat in pairs({"delta","layer","menu"}) do
@@ -115,7 +115,7 @@ function TOOL:_addSectionUnusedAnims()
 	if deltas > 0 then
 		table.insert(unused, 1, "[DELTAS]: " ..deltas)
 	end
-	
+
 	if unusedCount > 0 then
 		panel:AddControl("Label", {Text = "Unused sequences (" .. unusedCount .. "/" .. vm:GetSequenceCount() .. "):"}):SetTextColor(panel:GetSkin().Colours.Tree.Hover)
 		for _,v in pairs(unused) do
@@ -134,18 +134,18 @@ end
 function TOOL:_addSectionInvalidSoundtables()
 	local panel = self._panel
 	local wep = self._wep
-	
+
 	local vm = wep.CW_VM
 	local unreachable = {}
 	local unreachableCount = 0
-	
+
 	for k,_ in pairs(wep.Sounds) do
 		if k == "BaseClass" then
 			continue
 		end
-		
+
 		local keyFoundInAnimTable = false
-		
+
 		for _,tab in pairs(wep.Animations) do
 			if type(tab) == "table" then
 				for _,itab in pairs(tab) do
@@ -153,20 +153,20 @@ function TOOL:_addSectionInvalidSoundtables()
 					if keyFoundInAnimTable then break end
 				end
 			else
-				keyFoundInAnimTable = k == tab				
+				keyFoundInAnimTable = k == tab
 			end
-			
+
 			if keyFoundInAnimTable then break end
 		end
-		
+
 		local exists = (vm:LookupSequence(k) != -1)
-		
+
 		if !(keyFoundInAnimTable and exists) then
 			table.insert(unreachable, {name = k, exists = exists})
 			unreachableCount = unreachableCount + 1
 		end
 	end
-	
+
 	if unreachableCount > 0 then
 		panel:AddControl("Label", {Text = "Soudscripts for non-existing or unused anims (" .. unreachableCount .. "):"}):SetTextColor(panel:GetSkin().Colours.Tree.Hover)
 		for _,v in pairs(unreachable) do
@@ -185,26 +185,26 @@ end
 function TOOL:_updatePanel()
 	local panel = self._panel
 	local wep = self._wep
-	
+
 	if !IsValid(panel) then return end
-	
+
 	panel:ClearControls()
-	
+
 	if !IsValid(wep) then
 		self:ThrowNewInvalidWeapon()
 		return
 	end
-	
+
 	if !wep.CW20Weapon then
 		self:ThrowNewNotCW2Weapon()
 		return
 	end
-	
+
 	self:_addSectionRefresh()
 	self:_addSectionHeader()
-	
+
 	self._used = {}
-	
+
 	self:_addSectionInvalidAnims()
 	self:_addSectionUnusedAnims()
 	self:_addSectionInvalidSoundtables()

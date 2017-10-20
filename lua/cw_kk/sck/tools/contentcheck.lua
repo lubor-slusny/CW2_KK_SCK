@@ -28,33 +28,33 @@ end
 
 function TOOL:_addLineBaseGame(panel)
 	local ok = self.icm({Folder = "weapons/baseGameContentOK"})
-	local label = panel:AddControl("Label", {Text = 
+	local label = panel:AddControl("Label", {Text =
 		(ok and "[OK]" or "[MISSING]") ..
 		" INS2 / INS2-DS content"
 	})
-	
+
 	self:_individualLabelDockMargin(label)
 	label:SetTextColor(ok and self.colOk or self.colNOk)
 end
 
 function TOOL:_addLineAO5Mod(panel)
 	local ok = self.icm({Folder = "weapons/ao5ModContentOK"})
-	local label = panel:AddControl("Label", {Text = 
+	local label = panel:AddControl("Label", {Text =
 		(ok and "[OK]" or "[MISSING]") ..
 		" AO5 content"
 	})
-	
+
 	self:_individualLabelDockMargin(label)
 	label:SetTextColor(ok and self.colOk or self.colNOk)
 end
 
 function TOOL:_addLineDOIGame(panel)
 	local ok = self.icm({Folder = "weapons/doiGameContentOK"})
-	local label = panel:AddControl("Label", {Text = 
+	local label = panel:AddControl("Label", {Text =
 		(ok and "[OK]" or "[MISSING]") ..
 		" DOI / DOI-DS content"
 	})
-	
+
 	self:_individualLabelDockMargin(label)
 	label:SetTextColor(ok and self.colOk or self.colNOk)
 end
@@ -62,23 +62,23 @@ end
 function TOOL:_addLineNamMod(panel)
 	local ok = self.icm({Folder = "weapons/namModContentOK"})
 	local recOk = self.icm({Folder = "weapons/doiNamModContentOK"})
-	local label = panel:AddControl("Label", {Text = 
+	local label = panel:AddControl("Label", {Text =
 		(ok and (recOk and "[OK]" or "[DOI edition recmndd]") or "[MISSING]") ..
 		" B2K content"
 	})
-	
+
 	self:_individualLabelDockMargin(label)
 	label:SetTextColor(ok and (recOk and self.colOk or self.colEh) or self.colNOk)
 end
 
 function TOOL:_addLineEXTPack(panel)
 	local ok = self.icm({Folder = "weapons/extPackContentOK"})
-	local label = panel:AddControl("Label", {Text = 
-		(ok and "[OK]" or 
+	local label = panel:AddControl("Label", {Text =
+		(ok and "[OK]" or
 		(CustomizableWeaponry_KK.ins2.ws and "[OUTDATED]" or "[MISSING]")) ..
 		" EXT Pack content"
 	})
-	
+
 	self:_individualLabelDockMargin(label)
 	label:SetTextColor(ok and self.colOk or self.colNOk)
 end
@@ -89,7 +89,7 @@ function TOOL:_addSectionBase(panel)
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	self:_packLabelDockMargin(backgroundPanel)
 	panel:AddItem(backgroundPanel)
-	
+
 		local icon
 		icon = vgui.Create("DImage", backgroundPanel)
 		icon:SetPos(5,2)
@@ -113,14 +113,14 @@ function TOOL:_addSectionBase(panel)
 	backgroundPanel:DockPadding(26,0,8,0)
 	backgroundPanel:SetSize(200,20)
 	backgroundPanel:SetPaintBackground(true)
-	backgroundPanel:SizeToContents()	
+	backgroundPanel:SizeToContents()
 end
 
 function TOOL:_addSectionAO5(panel)
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	self:_packLabelDockMargin(backgroundPanel)
 	panel:AddItem(backgroundPanel)
-	
+
 		local icon
 		icon = vgui.Create("DImage", backgroundPanel)
 		icon:SetPos(5,2)
@@ -130,7 +130,7 @@ function TOOL:_addSectionAO5(panel)
 			icon:SetImage(self.iconOk)
 		else
 			icon:SetImage(self.iconNOk)
-			
+
 			self:_addLineBaseGame(panel)
 			self:_addLineAO5Mod(panel)
 		end
@@ -153,7 +153,7 @@ function TOOL:_addSectionNam(panel)
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	self:_packLabelDockMargin(backgroundPanel)
 	panel:AddItem(backgroundPanel)
-	
+
 		local icon
 		icon = vgui.Create("DImage", backgroundPanel)
 		icon:SetPos(5,2)
@@ -168,7 +168,7 @@ function TOOL:_addSectionNam(panel)
 			end
 		else
 			icon:SetImage(self.iconNOk)
-			
+
 			self:_addLineDOIGame(panel)
 			self:_addLineNamMod(panel)
 		end
@@ -191,7 +191,7 @@ function TOOL:_addSectionDOI(panel)
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	self:_packLabelDockMargin(backgroundPanel)
 	panel:AddItem(backgroundPanel)
-	
+
 		local icon
 		icon = vgui.Create("DImage", backgroundPanel)
 		icon:SetPos(5,2)
@@ -201,7 +201,7 @@ function TOOL:_addSectionDOI(panel)
 			icon:SetImage(self.iconOk)
 		else
 			icon:SetImage(self.iconNOk)
-			
+
 			self:_addLineDOIGame(panel)
 			self:_addLineEXTPack(panel)
 		end
@@ -219,12 +219,12 @@ function TOOL:_addSectionDOI(panel)
 	backgroundPanel:SetPaintBackground(true)
 	backgroundPanel:SizeToContents()
 end
-	
+
 function TOOL:_addSectionExt(panel)
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	self:_packLabelDockMargin(backgroundPanel)
 	panel:AddItem(backgroundPanel)
-	
+
 		local icon
 		icon = vgui.Create("DImage", backgroundPanel)
 		icon:SetPos(5,2)
@@ -234,7 +234,7 @@ function TOOL:_addSectionExt(panel)
 			icon:SetImage(self.iconOk)
 		else
 			icon:SetImage(self.iconNOk)
-			
+
 			self:_addLineBaseGame(panel)
 			self:_addLineEXTPack(panel)
 		end
@@ -257,11 +257,11 @@ end
 
 function TOOL:_updatePanel()
 	local panel = self._panel
-	
+
 	if !IsValid(panel) then return end
-	
+
 	panel:ClearControls()
-	
+
 	self:_addSectionBase(panel)
 	self:_addSectionExt(panel)
 	self:_addSectionDOI(panel)

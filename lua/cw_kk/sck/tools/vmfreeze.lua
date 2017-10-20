@@ -11,19 +11,19 @@ local fovDesire = GetConVar("fov_desired")
 function TOOL:_freezeWep(wep)
 	local vm = wep.CW_VM
 	local pos = vm:GetPos()
-	
+
 	local tab = {
 		origAOTV = wep.applyOffsetToVM,
 		Pos = Vector(),
 		Ang = vm:GetAngles(),
 	}
-	
+
 	function wep:applyOffsetToVM()
 		self.ViewModelFOV = fovDesire:GetInt()
 		self.CW_VM:SetPos(pos + tab.Pos)
 		self.CW_VM:SetAngles(tab.Ang)
 	end
-	
+
 	self._frozen[wep] = tab
 end
 
@@ -42,17 +42,17 @@ end
 function TOOL:_buildFreezeSection()
 	local panel = self._panel
 	local wep = self._wep
-	
+
 	local butt
 	butt = vgui.Create("DButton", panel)
-	butt:DockMargin(8, 0, 8, 8)	
+	butt:DockMargin(8, 0, 8, 8)
 	butt:SetText("Freeze view model")
-	
+
 	function butt:DoClick()
 		TOOL:_freezeWep(wep)
 		TOOL:_updatePanel()
 	end
-	
+
 	panel:AddItem(butt)
 end
 
@@ -62,7 +62,7 @@ function TOOL:_buildUnFreezeSection()
 
 	local butt
 	butt = vgui.Create("DButton", panel)
-	butt:DockMargin(8, 0, 8, 8)	
+	butt:DockMargin(8, 0, 8, 8)
 	butt:SetText("Un-Freeze view model")
 
 	function butt:DoClick()
@@ -74,7 +74,7 @@ function TOOL:_buildUnFreezeSection()
 
 	local butt
 	butt = vgui.Create("DButton", panel)
-	butt:DockMargin(8, 0, 8, 8)	
+	butt:DockMargin(8, 0, 8, 8)
 	butt:SetText("Auto Align")
 
 	function butt:DoClick()
@@ -95,7 +95,7 @@ function TOOL:_buildUnFreezeSection()
 		{"Ang", "p", -90, 90},
 		{"Ang", "y", -180, 180},
 		{"Ang", "r", -180, 180},
-	}) do 
+	}) do
 		local slider = vgui.Create("DNumSlider", panel)
 		slider:DockMargin(8,0,8,0)
 		slider:SetDecimals(4)
@@ -103,9 +103,9 @@ function TOOL:_buildUnFreezeSection()
 		slider:SetValue(tab[s[1]][s[2]])
 		slider:SetText(s[1] .. "." .. s[2])
 		slider:SetDark(true)
-		
+
 		self:LoadSliderZoom(slider)
-		
+
 		function slider:OnValueChanged(val)
 			tab[s[1]][s[2]] = val
 			TOOL:SaveSliderZoom(self)
@@ -118,12 +118,12 @@ end
 function TOOL:_buildUnFreezeAllSection(threshold)
 	local panel = self._panel
 	local wep = self._wep
-	
+
 	local curFrozen = table.Count(self._frozen)
 	if curFrozen > threshold then
 		local butt
 		butt = vgui.Create("DButton", panel)
-		butt:DockMargin(8, 0, 8, 8)	
+		butt:DockMargin(8, 0, 8, 8)
 		butt:SetText("Un-Freeze all (" .. curFrozen .. ")")
 
 		function butt:DoClick()
@@ -132,7 +132,7 @@ function TOOL:_buildUnFreezeAllSection(threshold)
 		end
 
 		panel:AddItem(butt)
-		
+
 		return true
 	end
 end
@@ -140,29 +140,29 @@ end
 function TOOL:_updatePanel()
 	local panel = self._panel
 	local wep = self._wep
-	
+
 	if !IsValid(panel) then return end
-	
+
 	panel:ClearControls()
-	
+
 	self._frozen = self._frozen or {}
-	
+
 	if !IsValid(wep) then
 		self:ThrowNewInvalidWeapon()
 		return
 	end
-	
+
 	if !wep.CW20Weapon then
 		self:ThrowNewNotCW2Weapon()
 		return
 	end
-	
+
 	if self._frozen[self._wep] then
 		self:_buildUnFreezeSection()
 		self:_buildUnFreezeAllSection(1)
 		return
 	end
-	
+
 	self:_buildFreezeSection()
 	self:_buildUnFreezeAllSection(0)
 end

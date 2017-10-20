@@ -9,43 +9,36 @@ TOOL.Version = "1.1"
 TOOL.workshopLink = "http://steamcommunity.com/sharedfiles/filedetails/?id="
 TOOL.examplePaths = {
 	"lua/autorun/cw_kk_ins.lua",
-	-- "models/weapons/upgrades/a_optic_kobra.mdl",
-	-- "models/weapons/v_bazooka.mdl",
-	-- "models/weapons/v_mg42.mdl",
+	"lua/cw_kk/sck/tools/filetracker.lua",
 }
 
 TOOL.elementFuncs = {
 	AllowInput = function() return true end, // allow? Yes - means no... kek
 	OnGetFocus = function(self) SetClipboardText(self:GetValue()) end,
+	DoClick = function(self) SetClipboardText(self:GetText()) end,
 }
 
-TOOL._lastFile = ""
+local SCK = CustomizableWeaponry_KK.sck
 
-local getAtt
+function TOOL:Initialize()
+	self._lastFile = self._lastFile or ""
+end
 
-function TOOL:_updatePanel()
-	local panel = self._panel
+function TOOL:_generateExamples()
 	local wep = self._wep
-	
-	if !IsValid(panel) then return end
-	
-	getAtt = getAtt or function()
-		local t = CustomizableWeaponry_KK.sck._toolCache["aimpos"]
-		return t:GetCurrentAttachmentInfo()
-	end
-	
+
 	local curVM = "models/weapons/v_mg42.mdl"
 	local curAni
 	local curSigh = "models/weapons/upgrades/a_optic_kobra.mdl"
-	
+
 	if IsValid(wep) then
 		if wep.CW20Weapon then
 			if wep.AttachmentModelsVM then
 				if wep.AttachmentModelsVM.ani_body then
 					curAni = wep.AttachmentModelsVM.ani_body.model
 				end
-				
-				local att = getAtt()
+
+				local att = SCK:GetTool("aimpos"):PrepareAttInfo(wep)
 				if att and wep.AttachmentModelsVM[att.name] then
 					curSigh = wep.AttachmentModelsVM[att.name].model
 				end
@@ -55,196 +48,194 @@ function TOOL:_updatePanel()
 			curVM = wep.ViewModel
 		end
 	end
-	
+
 	self.examplePaths["curVM"] = curVM
 	self.examplePaths["curAni"] = curAni
 	self.examplePaths["curSigh"] = curSigh
-	
-	panel:ClearControls()
-	
-	local label = vgui.Create("DLabel", panel)
-	label:SetText("Gimmi file (full path + extension, like VV):")
-	label:SetDark(true)
-	label:Dock(TOP)
-	label:DockMargin(8, 0, 8, 0)
-	label:SetTextColor(panel:GetSkin().Colours.Tree.Hover)
-	panel:AddItem(label)
-	
+end
+
+function TOOL:_addSectionExamples()
+	local panel = self._panel
+
+	self:AddHeaderSimpleLR(panel, "Gimmi file (full path + extension, like VV):")
+
+	if self._extraExamples then
+
+		return
+	end
+
 	for _,p in pairs(self.examplePaths) do
 		local label = vgui.Create("DLabel", panel)
 		label:SetText(p)
 		label:SetDark(true)
 		label:DockMargin(16, 0, 8, 0)
 		label:SetMouseInputEnabled(true)
-		
+
 		function label:DoClick()
 			TOOL._lastFile = p
 			TOOL:_updatePanel()
 		end
-		
+
 		panel:AddItem(label)
 	end
-	
+end
+
+function TOOL:_addSectionInput()
+	local panel = self._panel
+
 	local box = vgui.Create("DTextEntry", panel)
 	box:Dock(TOP)
 	box:DockMargin(8, 0, 8, 0)
 	box:SetValue(self._lastFile)
 	panel:AddItem(box)
-	
+
 	function box:OnEnter()
-		TOOL._lastFile = self:GetValue() 
+		TOOL._lastFile = self:GetValue()
 		TOOL:_updatePanel()
 	end
-	
+
 	local butt = vgui.Create("DButton", panel)
 	butt:SetText("ROLL DAT DICE")
 	butt:DockMargin(8, 0, 8, 0)
 	panel:AddItem(butt)
-	
+
 	function butt:DoClick()
-		TOOL._lastFile = box:GetValue() 
+		TOOL._lastFile = box:GetValue()
 		TOOL:_updatePanel()
 	end
-	
-	if not self._lastFile or self._lastFile == "" then return end
-	
+end
+
+function TOOL:_addSectionSourceNotFound()
+	local panel = self._panel
+
 	local foundAtAll = file.Exists(self._lastFile, "GAME")
-	
+
 	// if not found at all, end here
 	if not foundAtAll then
-		local label = vgui.Create("DLabel", panel)
-		label:SetText("File not found at all.")
-		label:SetDark(true)
-		label:DockMargin(8, 0, 8, 0)
-		panel:AddItem(label)
-		
-		return
+		self:AddHeaderSimpleLR(panel, "File not found at all.")
+		return true
 	end
-	
-	-- local foundInGMod = file.Exists(self._lastFile, "MOD") // doesnt ignore mount.cfg mounting, GG WP
-	
-	-- // if found in gmod folder, no need to check all addons, right?
-	-- if not foundInGMod then
-		-- local label = vgui.Create("DLabel", panel)
-		-- label:SetText("File loaded from Garry`s Mod main folder.")
-		-- label:SetDark(true)
-		-- label:DockMargin(8, 0, 8, 0)
-		-- panel:AddItem(label)
-		
-		-- return
-	-- end
-	
+end
+
+function TOOL:_addSectionSourceGMFolder()
+	local panel = self._panel
+
+	local foundInGMod = file.Exists(self._lastFile, "MOD") // doesnt ignore mount.cfg mounting, GG WP
+
+	// if found in gmod folder, no need to check all addons, right?
+	if not foundInGMod then
+		self:AddHeaderSimpleLR(panel, "File loaded from Garry`s Mod main folder.")
+		return true
+	end
+end
+
+function TOOL:_addSectionSourceWorkshop()
+	local panel = self._panel
+
 	// check mounted workshop addons
 	local sources = {}
-	
+
 	for _,addon in pairs(engine.GetAddons()) do
 		if addon.models == 0 then continue end
 		if !addon.mounted then continue end
-		
+
 		local found = file.Find(self._lastFile, addon.title)
-		
+
 		if table.Count(found) > 0 then
 			sources[addon.wsid] = addon.title
 		end
 	end
-	
+
 	if table.Count(sources) > 0 then
-		local labelPanel = vgui.Create("DPanel", panel)
-		
-			local label
-			label = vgui.Create("DLabel", labelPanel)
-			label:SetText("File loaded from Workshop:")
-			label:SetDark(true)
-			label:Dock(LEFT)
-			label:DockMargin(0,0,0,0)
-			label:SizeToContents()
-			
-			local label
-			label = vgui.Create("DLabel", labelPanel)
-			label:SetText("[LMB - COPY]")
-			label:SetDark(true)
-			label:Dock(RIGHT)
-			label:DockMargin(0,0,0,0)
-			label:SizeToContents()
-			
-		labelPanel:Dock(TOP)
-		labelPanel:DockMargin(8,0,8,0)
-		labelPanel:SizeToContents()
-		labelPanel:SetPaintBackground(false)
-		panel:AddItem(labelPanel)
-	
+		self:AddHeaderSimpleLR(panel, "File found in Workshop addon/-s:", "[LMB - COPY]")
+
 		for id,name in pairs(sources) do
-			local left = vgui.Create("DLabel", panel)
-			left:SetText("Addon title:")
-			left:SetDark(true)
-			left:DockMargin(16, 0, 0, 0)
-			
-			local box = vgui.Create("DTextEntry", panel)
-			box:Dock(TOP)
-			box:DockMargin(0, 0, 16, 0)
-			box:SetValue(name)
-			box.AllowInput = self.elementFuncs.AllowInput
-			box.OnGetFocus = self.elementFuncs.OnGetFocus
-			panel:AddItem(left, box)
-			
+			local label = vgui.Create("DLabel", panel)
+			label:SetText(name)
+			label:SetDark(true)
+			label:DockMargin(8, 0, 0, 0)
+			label:SetMouseInputEnabled(true)
+			label.DoClick = self.elementFuncs.DoClick
+			panel:AddItem(label)
+
 			local left = vgui.Create("DLabel", panel)
 			left:SetText("Workshop ID:")
 			left:SetDark(true)
-			left:DockMargin(16, 0, 0, 0)
-			
+			left:DockMargin(8, 0, 0, 0)
+
 			local box = vgui.Create("DTextEntry", panel)
 			box:Dock(TOP)
-			box:DockMargin(0, 0, 16, 0)
+			box:DockMargin(0, 0, 8, 0)
 			box:SetValue(id)
 			box.AllowInput = self.elementFuncs.AllowInput
 			box.OnGetFocus = self.elementFuncs.OnGetFocus
 			panel:AddItem(left, box)
-			
+
 			local left = vgui.Create("DLabel", panel)
 			left:SetText("Workshop Link:")
 			left:SetDark(true)
-			left:DockMargin(16, 0, 0, 0)
-			
+			left:DockMargin(8, 0, 0, 0)
+
 			local box = vgui.Create("DTextEntry", panel)
 			box:Dock(TOP)
-			box:DockMargin(0, 0, 16, 0)
+			box:DockMargin(0, 0, 8, 0)
 			box:SetValue(self.workshopLink .. id)
 			box.AllowInput = self.elementFuncs.AllowInput
 			box.OnGetFocus = self.elementFuncs.OnGetFocus
 			panel:AddItem(left, box)
 		end
-		
-		return
+
+		return true
 	end
-	
+end
+
+function TOOL:_addSectionSourceUnclear()
+	local panel = self._panel
+
 	// if it aint anywhere else
+	self:AddHeaderSimpleLR(panel, "Source unclear, can be any of:")
+
 	local label = vgui.Create("DLabel", panel)
-	label:SetText("File loaded from one of:")
+	label:SetText("- legacy addons")
 	label:SetDark(true)
 	label:Dock(TOP)
 	label:DockMargin(8, 0, 8, 0)
 	panel:AddItem(label)
-	
+
 	local label = vgui.Create("DLabel", panel)
-	label:SetText("legacy addons OR")
+	label:SetText("- mounted games")
 	label:SetDark(true)
 	label:Dock(TOP)
-	label:DockMargin(16, 0, 8, 0)
+	label:DockMargin(8, 0, 8, 0)
 	panel:AddItem(label)
-	
+
 	local label = vgui.Create("DLabel", panel)
-	label:SetText("mounted games OR")
+	label:SetText("- Garry`s Mod folder")
 	label:SetDark(true)
 	label:Dock(TOP)
-	label:DockMargin(24, 0, 8, 0)
+	label:DockMargin(8, 0, 8, 0)
 	panel:AddItem(label)
-	
-	local label = vgui.Create("DLabel", panel)
-	label:SetText("Garry`s Mod folder")
-	label:SetDark(true)
-	label:Dock(TOP)
-	label:DockMargin(32, 0, 8, 0)
-	panel:AddItem(label)
+end
+
+function TOOL:_updatePanel()
+	local panel = self._panel
+
+	if !IsValid(panel) then return end
+
+	self:_generateExamples()
+
+	panel:ClearControls()
+
+	self:_addSectionExamples()
+	self:_addSectionInput()
+
+	if not self._lastFile or self._lastFile == "" then return end
+
+	local _ =
+	self:_addSectionSourceNotFound() or
+	-- self:_addSectionSourceGMFolder() or
+	self:_addSectionSourceWorkshop() or
+	self:_addSectionSourceUnclear()
 end
 
 function TOOL:SetPanel(panel)

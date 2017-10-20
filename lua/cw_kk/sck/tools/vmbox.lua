@@ -39,6 +39,10 @@ function TOOL:_addSectionEntryW()
 	local panel = self._panel
 	local wep = self._wep
 
+	if not IsValid(wep.WMEnt) then
+		return
+	end
+
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	panel:AddItem(backgroundPanel)
 

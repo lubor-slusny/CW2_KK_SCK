@@ -24,19 +24,19 @@ SWEP.BipodRecoilModifier = %s
 
 local function updatePanel()
 	if !IsValid(PANEL) then return end
-	
+
 	PANEL:ClearControls()
-	
+
 	if !IsValid(WEAPON) or !WEAPON.CW20Weapon then return end
-	
+
 	local butt
 	butt = vgui.Create("DButton", PANEL)
-	butt:DockMargin(8, 0, 8, 8)	
+	butt:DockMargin(8, 0, 8, 8)
 	butt:SetText("GETEMSTATS")
-	
+
 	function butt:DoClick()
 		local wep = WEAPON
-		
+
 		local out = string.format(outFormat,
 			tostring(wep.Recoil),
 			tostring(wep.HipSpread),
@@ -46,29 +46,29 @@ local function updatePanel()
 			tostring(wep.SpreadPerShot),
 			tostring(wep.SpreadCooldown)
 		)
-		
+
 		SetClipboardText(out)
 	end
-	
+
 	PANEL:AddItem(butt)
-	
+
 	local butt
 	butt = vgui.Create("DButton", PANEL)
-	butt:DockMargin(8, 0, 8, 8)	
+	butt:DockMargin(8, 0, 8, 8)
 	butt:SetText("GETEMSTATSex")
-	
+
 	function butt:DoClick()
 		local wep = WEAPON
-		
+
 		local out = string.format(outFormat2,
 			tostring(wep.RecoilToSpread),
 			tostring(wep.ClumpSpread),
 			tostring(wep.BipodRecoilModifier)
 		)
-		
+
 		SetClipboardText(out)
 	end
-	
+
 	PANEL:AddItem(butt)
 end
 
@@ -76,11 +76,11 @@ local _LAST_SETUP
 
 local function think()
 	WEAPON = LocalPlayer():GetActiveWeapon()
-	
+
 	if _LAST_SETUP != WEAPON then
 		updatePanel()
 	end
-	
+
 	_LAST_SETUP = WEAPON
 end
 
@@ -91,7 +91,7 @@ hook.Add("PopulateToolMenu", toolName, function()
 	spawnmenu.AddToolMenuOption("Utilities", "Knife Kitty", toolName, toolPrintName, "", "", function(panel)
 		PANEL = panel
 		updatePanel()
-		
+
 		hook.Add("Think", toolName .. "_Think", think)
 	end)
 end)
