@@ -44,7 +44,7 @@ function TOOL:_updatePanel(panel)
 
 	panel:ClearControls()
 
-	self:AddHeaderSimpleLR(panel, "Current model:")
+	self:AddHeaderSimpleLR(panel, "Current model:", "[LMB - COPY]")
 
 	label = panel:AddControl("Label", {Text = "kekekek:"})
 	label:DockMargin(8, 0, 8, 0)

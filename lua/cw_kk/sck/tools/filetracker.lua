@@ -7,9 +7,16 @@ TOOL.PrintName = "File Tracker"
 TOOL.Version = "1.1"
 
 TOOL.workshopLink = "http://steamcommunity.com/sharedfiles/filedetails/?id="
-TOOL.examplePaths = {
+
+TOOL.examplePathsOrig = {
 	"lua/autorun/cw_kk_ins.lua",
 	"lua/cw_kk/sck/tools/filetracker.lua",
+}
+
+TOOL.exampleColors = {
+	[".lua"] = Color(150, 0, 0, 255),
+	[".mdl"] = Color(0, 150, 0, 255),
+	[".vmt"] = Color(0, 0, 150, 255),
 }
 
 TOOL.elementFuncs = {
@@ -18,18 +25,31 @@ TOOL.elementFuncs = {
 	DoClick = function(self) SetClipboardText(self:GetText()) end,
 }
 
+TOOL.moreEnts = {
+	"CW_KK_HANDS",
+	"CW_KK_KNIFE",
+	"CW_GREN",
+}
+
 local SCK = CustomizableWeaponry_KK.sck
 
 function TOOL:Initialize()
 	self._lastFile = self._lastFile or ""
 end
 
+function TOOL:_lastFileEmpty()
+	return not self._lastFile or self._lastFile == ""
+end
+
 function TOOL:_generateExamples()
 	local wep = self._wep
+
+	self.examplePaths = self.examplePathsOrig
 
 	local curVM = "models/weapons/v_mg42.mdl"
 	local curAni
 	local curSigh = "models/weapons/upgrades/a_optic_kobra.mdl"
+	local curWM
 
 	if IsValid(wep) then
 		if wep.CW20Weapon then
@@ -44,6 +64,7 @@ function TOOL:_generateExamples()
 				end
 			end
 			curVM = wep.CW_VM:GetModel()
+			curWM = IsValid(wep.WMEnt) and (wep.WMEnt:GetModel())
 		else
 			curVM = wep.ViewModel
 		end
@@ -52,36 +73,139 @@ function TOOL:_generateExamples()
 	self.examplePaths["curVM"] = curVM
 	self.examplePaths["curAni"] = curAni
 	self.examplePaths["curSigh"] = curSigh
+
+	if not self._extraExamples then
+		return
+	end
+
+	if !IsValid(wep) then
+		return
+	end
+
+	if !wep.CW20Weapon then
+		return
+	end
+
+	if !wep.KKINS2Wep then
+		return
+	end
+
+	self.examplePaths = {}
+
+		-- PrintTable(self.knownPaths)
+
+	local function addPath(path)
+		self.knownPaths = /*self.knownPaths or*/ {}
+		-- if !string.find(path, ".vmt") then
+			-- return
+		-- end
+
+		if self.knownPaths[path] then
+			return
+		end
+
+		self.knownPaths[path] = true
+		table.insert(self.examplePaths, path)
+	end
+
+	addPath(string.format("lua/weapons/%s/shared.lua", wep:GetClass()))
+
+	local elementsTool = SCK:GetTool("elements")
+
+	for elementTable,elementTableProperties in pairs(elementsTool.elementTableProperties) do
+		addPath(string.format("%s and shit", elementTableProperties.defParent))
+		local ent = wep[elementTableProperties.defParent]
+		if IsValid(ent) then
+			addPath(ent:GetModel())
+			for _,material in pairs(ent:GetMaterials()) do
+				addPath(string.format("materials/%s.vmt", material))
+			end
+		end
+
+		if not wep[elementTable] then
+			continue
+		end
+
+		for elementName,elementProperties in pairs(wep[elementTable]) do
+			if not elementProperties.active then
+				continue
+			end
+
+			if elementProperties.model then
+				addPath(elementProperties.model)
+			end
+
+			ent = elementProperties.ent
+			if IsValid(ent) then
+				for _,material in pairs(ent:GetMaterials()) do
+					addPath(string.format("materials/%s.vmt", material))
+				end
+			end
+		end
+	end
+
+	addPath("hands and shit")
+
+	for _,entName in pairs(self.moreEnts) do
+		local ent = wep[entName]
+		if IsValid(ent) then
+			addPath(ent:GetModel())
+			for _,material in pairs(ent:GetMaterials()) do
+				addPath(string.format("materials/%s.vmt", material))
+			end
+		end
+	end
 end
 
 function TOOL:_addSectionExamples()
 	local panel = self._panel
 
-	self:AddHeaderSimpleLR(panel, "Gimmi file (full path + extension, like VV):")
-
-	if self._extraExamples then
-
-		return
-	end
+	self:AddHeaderSimpleLR(panel, "Or pick from examples:", "[LMB - USE] [RMB - COPY]")
 
 	for _,p in pairs(self.examplePaths) do
 		local label = vgui.Create("DLabel", panel)
 		label:SetText(p)
 		label:SetDark(true)
-		label:DockMargin(16, 0, 8, 0)
+		label:SetContentAlignment(6)
+		label:Dock(RIGHT)
+		label:DockMargin(8, 0, 8, 0)
 		label:SetMouseInputEnabled(true)
+
+		for pattern, color in pairs(self.exampleColors) do
+			if string.find(p, pattern) then
+				label:SetTextColor(color)
+				break
+			end
+		end
 
 		function label:DoClick()
 			TOOL._lastFile = p
 			TOOL:_updatePanel()
 		end
 
+		function label:DoRightClick()
+			SetClipboardText(p)
+		end
+
 		panel:AddItem(label)
 	end
+
+	local butt = vgui.Create("DButton", panel)
+	butt:SetText(self._extraExamples and "˄˄ show less ˄˄" or "˅˅ show all relevant ˅˅")
+	butt:DockMargin(8, 0, 8, 0)
+
+	function butt:DoClick()
+		TOOL._extraExamples = not TOOL._extraExamples
+		TOOL:_updatePanel()
+	end
+
+	panel:AddItem(butt)
 end
 
 function TOOL:_addSectionInput()
 	local panel = self._panel
+
+	self:AddHeaderSimpleLR(panel, "Gimmi file (full path + extension):")
 
 	local box = vgui.Create("DTextEntry", panel)
 	box:Dock(TOP)
@@ -94,14 +218,16 @@ function TOOL:_addSectionInput()
 		TOOL:_updatePanel()
 	end
 
-	local butt = vgui.Create("DButton", panel)
-	butt:SetText("ROLL DAT DICE")
-	butt:DockMargin(8, 0, 8, 0)
-	panel:AddItem(butt)
+	if not self:_lastFileEmpty() then
+		local butt = vgui.Create("DButton", panel)
+		butt:SetText(self:_lastFileEmpty() and "ROLL DAT DICE" or "CLEAR")
+		butt:DockMargin(8, 0, 8, 0)
+		panel:AddItem(butt)
 
-	function butt:DoClick()
-		TOOL._lastFile = box:GetValue()
-		TOOL:_updatePanel()
+		function butt:DoClick()
+			TOOL._lastFile = ""
+			TOOL:_updatePanel()
+		end
 	end
 end
 
@@ -192,9 +318,9 @@ end
 function TOOL:_addSectionSourceUnclear()
 	local panel = self._panel
 
-	// if it aint anywhere else
 	self:AddHeaderSimpleLR(panel, "Source unclear, can be any of:")
 
+	// if it aint anywhere else
 	local label = vgui.Create("DLabel", panel)
 	label:SetText("- legacy addons")
 	label:SetDark(true)
@@ -226,10 +352,12 @@ function TOOL:_updatePanel()
 
 	panel:ClearControls()
 
-	self:_addSectionExamples()
 	self:_addSectionInput()
+	self:_addSectionExamples()
 
-	if not self._lastFile or self._lastFile == "" then return end
+	if self:_lastFileEmpty() then
+		return
+	end
 
 	local _ =
 	self:_addSectionSourceNotFound() or

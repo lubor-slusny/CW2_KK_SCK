@@ -29,13 +29,16 @@ function TOOL:_addSectionHeader()
 	local panel = self._panel
 	local wep = self._wep
 
-	local label = panel:AddControl("Label", {Text = string.upper(wep:GetClass())})
-	label:SetTextColor(panel:GetSkin().Colours.Tree.Hover)
+	local left = string.upper(wep:GetClass())
+	self:AddHeaderSimpleLR(panel, left)
+
+	local VMExists = wep.CW_VM:GetModel() != "models/error.mdl"
 
 	local label = panel:AddControl("Label", {Text = wep.ViewModel})
-	label:DockMargin(16,0,8,0)
+	label:DockMargin(8,0,8,0)
 	label:SetMouseInputEnabled(true)
 	label.DoClick = self.elementFuncs.LabelDoClick
+	label:SetTextColor(VMExists and self.colorExists or self.colorDoesnt)
 	panel:AddControl("Label", {Text = ""})
 end
 
@@ -69,21 +72,23 @@ function TOOL:_addSectionInvalidAnims()
 	end
 
 	if table.Count(errors) > 0 then
-		panel:AddControl("Label", {Text = "Non-existing anims (" .. errorCount .. "):"}):SetTextColor(panel:GetSkin().Colours.Tree.Hover)
+		local left = "Non-existing anims (" .. errorCount .. "):"
+		self:AddHeaderSimpleLR(panel, left)
+
 		for k,vs in pairs(errors) do
-			panel:AddControl("Label", {Text = "[\"" .. k .. "\"] = {"}):DockMargin(16,0,8,0)
+			panel:AddControl("Label", {Text = "[\"" .. k .. "\"] = {"}):DockMargin(8,0,8,0)
 
 			for i,v in pairs(vs) do
 				local label = panel:AddControl("Label", {Text = "[" .. i .. "] = \"" .. v .. "\","})
 				label:SetTextColor(self.colorDoesnt)
-				label:DockMargin(24,0,8,0)
+				label:DockMargin(16,0,8,0)
 			end
 
-			panel:AddControl("Label", {Text = "}"}):DockMargin(16,0,8,0)
+			panel:AddControl("Label", {Text = "}"}):DockMargin(8,0,8,0)
 		end
 		panel:AddControl("Label", {Text = ""})
 	else
-		-- panel:AddControl("Label", {Text = "No invalid entries in \"SWEP.Animations\". GG WP"}):SetTextColor(panel:GetSkin().Colours.Tree.Hover)
+		-- self:AddHeaderSimpleLR(panel, "No invalid entries in \"SWEP.Animations\". GG WP")
 	end
 end
 
@@ -117,17 +122,19 @@ function TOOL:_addSectionUnusedAnims()
 	end
 
 	if unusedCount > 0 then
-		panel:AddControl("Label", {Text = "Unused sequences (" .. unusedCount .. "/" .. vm:GetSequenceCount() .. "):"}):SetTextColor(panel:GetSkin().Colours.Tree.Hover)
+		local left = "Unused sequences (" .. unusedCount .. "/" .. vm:GetSequenceCount() .. "):"
+		self:AddHeaderSimpleLR(panel, left, "[LMB - COPY]")
+
 		for _,v in pairs(unused) do
 			local label = panel:AddControl("Label", {Text = v})
 			label:SetTextColor(self.colorExists)
-			label:DockMargin(16,0,8,0)
+			label:DockMargin(8,0,8,0)
 			label:SetMouseInputEnabled(true)
 			label.DoClick = self.elementFuncs.LabelDoClick
 		end
 		panel:AddControl("Label", {Text = ""})
 	else
-		-- panel:AddControl("Label", {Text = "All VM sequences linked."}):SetTextColor(panel:GetSkin().Colours.Tree.Hover)
+		-- self:AddHeaderSimpleLR(panel, "All VM sequences linked.")
 	end
 end
 
@@ -168,17 +175,19 @@ function TOOL:_addSectionInvalidSoundtables()
 	end
 
 	if unreachableCount > 0 then
-		panel:AddControl("Label", {Text = "Soudscripts for non-existing or unused anims (" .. unreachableCount .. "):"}):SetTextColor(panel:GetSkin().Colours.Tree.Hover)
+		local left = "Unnecessary soudscripts (" .. unreachableCount .. "):"
+		self:AddHeaderSimpleLR(panel, left, "[LMB - COPY]")
+
 		for _,v in pairs(unreachable) do
 			local label = panel:AddControl("Label", {Text = v.name})
-			label:DockMargin(16,0,8,0)
+			label:DockMargin(8,0,8,0)
 			label:SetTextColor(v.exists and self.colorExists or self.colorDoesnt)
 			label:SetMouseInputEnabled(true)
 			label.DoClick = self.elementFuncs.LabelDoClick
 		end
 		panel:AddControl("Label", {Text = ""})
 	else
-		-- panel:AddControl("Label", {Text = "No invalid entries in \"SWEP.Sounds\". neato"}):SetTextColor(panel:GetSkin().Colours.Tree.Hover)
+		-- self:AddHeaderSimpleLR(panel, "No unnecessary soudscripts. neato")
 	end
 end
 
