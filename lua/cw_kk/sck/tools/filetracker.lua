@@ -91,20 +91,13 @@ function TOOL:_generateExamples()
 	end
 
 	self.examplePaths = {}
-
-		-- PrintTable(self.knownPaths)
-
+	knownPaths = {}
 	local function addPath(path)
-		self.knownPaths = /*self.knownPaths or*/ {}
-		-- if !string.find(path, ".vmt") then
-			-- return
-		-- end
-
-		if self.knownPaths[path] then
+		if knownPaths[path] then
 			return
 		end
 
-		self.knownPaths[path] = true
+		knownPaths[path] = true
 		table.insert(self.examplePaths, path)
 	end
 
@@ -113,7 +106,6 @@ function TOOL:_generateExamples()
 	local elementsTool = SCK:GetTool("elements")
 
 	for elementTable,elementTableProperties in pairs(elementsTool.elementTableProperties) do
-		addPath(string.format("%s and shit", elementTableProperties.defParent))
 		local ent = wep[elementTableProperties.defParent]
 		if IsValid(ent) then
 			addPath(ent:GetModel())
@@ -143,8 +135,6 @@ function TOOL:_generateExamples()
 			end
 		end
 	end
-
-	addPath("hands and shit")
 
 	for _,entName in pairs(self.moreEnts) do
 		local ent = wep[entName]
@@ -262,7 +252,6 @@ function TOOL:_addSectionSourceWorkshop()
 	local sources = {}
 
 	for _,addon in pairs(engine.GetAddons()) do
-		if addon.models == 0 then continue end
 		if !addon.mounted then continue end
 
 		local found = file.Find(self._lastFile, addon.title)
@@ -341,6 +330,8 @@ function TOOL:_addSectionSourceUnclear()
 	label:Dock(TOP)
 	label:DockMargin(8, 0, 8, 0)
 	panel:AddItem(label)
+
+	return true
 end
 
 function TOOL:_updatePanel()
