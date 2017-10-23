@@ -78,17 +78,17 @@ function TOOL:_generateExamples()
 		return
 	end
 
-	if !IsValid(wep) then
-		return
-	end
+	-- if !IsValid(wep) then
+		-- return
+	-- end
 
-	if !wep.CW20Weapon then
-		return
-	end
+	-- if !wep.CW20Weapon then
+		-- return
+	-- end
 
-	if !wep.KKINS2Wep then
-		return
-	end
+	-- if !wep.KKINS2Wep then
+		-- return
+	-- end
 
 	self.examplePaths = {}
 	knownPaths = {}
@@ -101,18 +101,21 @@ function TOOL:_generateExamples()
 		table.insert(self.examplePaths, path)
 	end
 
-	addPath(string.format("lua/weapons/%s/shared.lua", wep:GetClass()))
-
-	local elementsTool = SCK:GetTool("elements")
-
-	for elementTable,elementTableProperties in pairs(elementsTool.elementTableProperties) do
-		local ent = wep[elementTableProperties.defParent]
+	local function addModel(ent)
 		if IsValid(ent) then
 			addPath(ent:GetModel())
 			for _,material in pairs(ent:GetMaterials()) do
 				addPath(string.format("materials/%s.vmt", material))
 			end
 		end
+	end
+
+	addPath(string.format("lua/weapons/%s/shared.lua", wep:GetClass()))
+
+	local elementsTool = SCK:GetTool("elements")
+
+	for elementTable,elementTableProperties in pairs(elementsTool.elementTableProperties) do
+		addModel(wep[elementTableProperties.defParent])
 
 		if not wep[elementTable] then
 			continue
@@ -123,31 +126,33 @@ function TOOL:_generateExamples()
 				continue
 			end
 
-			if elementProperties.model then
-				addPath(elementProperties.model)
-			end
-
-			ent = elementProperties.ent
-			if IsValid(ent) then
-				for _,material in pairs(ent:GetMaterials()) do
-					addPath(string.format("materials/%s.vmt", material))
-				end
-			end
+			addModel(elementProperties.ent)
 		end
 	end
 
-	for _,entName in pairs(self.moreEnts) do
-		local ent = wep[entName]
-		if IsValid(ent) then
-			addPath(ent:GetModel())
-			for _,material in pairs(ent:GetMaterials()) do
-				addPath(string.format("materials/%s.vmt", material))
-			end
+	for _,v in pairs({"", "1", "2", "3"}) do
+		if not wep["Shell" .. v] then
+			continue
 		end
+
+		local shellData = CustomizableWeaponry.shells:getShell(wep["Shell" .. v])
+
+		if not shellData then
+			continue
+		end
+
+		local ent = ClientsideModel(shellData.m, RENDERGROUP_BOTH)
+		addModel(ent)
+		SafeRemoveEntity(ent)
+	end
+
+	for _,entName in pairs(self.moreEnts) do
+		addModel(wep[entName])
 	end
 end
 
 function TOOL:_addSectionExamples()
+	local wep = self._wep
 	local panel = self._panel
 
 	self:AddHeaderSimpleLR(panel, "Or pick from examples:", "[LMB - USE] [RMB - COPY]")
@@ -175,6 +180,18 @@ function TOOL:_addSectionExamples()
 
 		function label:DoRightClick()
 			SetClipboardText(p)
+		end
+
+		function label:Think()
+			local fullLen = string.len(p)
+			local percent = self:GetWide() * 4 / (surface.GetTextSize(p))
+			local newLen = fullLen * percent
+			local newText = string.format(
+				"%s%s",
+				(newLen < fullLen) and "..." or "",
+				string.Right(p, newLen))
+
+			self:SetText(newText)
 		end
 
 		panel:AddItem(label)
@@ -343,18 +360,18 @@ function TOOL:_updatePanel()
 
 	panel:ClearControls()
 
+	if not self:_lastFileEmpty() then
+		local _ =
+		self:_addSectionSourceNotFound() or
+		-- self:_addSectionSourceGMFolder() or
+		self:_addSectionSourceWorkshop() or
+		self:_addSectionSourceUnclear()
+	end
+
 	self:_addSectionInput()
 	self:_addSectionExamples()
 
-	if self:_lastFileEmpty() then
-		return
-	end
-
-	local _ =
-	self:_addSectionSourceNotFound() or
-	-- self:_addSectionSourceGMFolder() or
-	self:_addSectionSourceWorkshop() or
-	self:_addSectionSourceUnclear()
+	panel:AddControl("Label", {Text = ""})
 end
 
 function TOOL:SetPanel(panel)
@@ -363,6 +380,12 @@ function TOOL:SetPanel(panel)
 end
 
 function TOOL:OnWeaponChanged(new, old)
+	self._extraExamples =
+		IsValid(wep) &&
+		wep.CW20Weapon &&
+		wep.KKINS2Wep &&
+		self._extraExamples
+
 	self._wep = new
 	self:_updatePanel()
 end
