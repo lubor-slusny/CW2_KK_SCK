@@ -183,9 +183,10 @@ function TOOL:_addSectionExamples()
 		end
 
 		function label:Think()
+			surface.SetFont(self:GetFont())
 			local fullLen = string.len(p)
-			local percent = self:GetWide() * 4 / (surface.GetTextSize(p))
-			local newLen = fullLen * percent
+			local newLen = self:GetWide() / surface.GetTextSize("_")
+
 			local newText = string.format(
 				"%s%s",
 				(newLen < fullLen) and "..." or "",
