@@ -162,7 +162,7 @@ function TOOL:_addSectionExamples()
 		label:SetText(p)
 		label:SetDark(true)
 		label:SetContentAlignment(6)
-		label:Dock(RIGHT)
+		label:Dock(TOP)
 		label:DockMargin(8, 0, 8, 0)
 		label:SetMouseInputEnabled(true)
 
@@ -187,10 +187,10 @@ function TOOL:_addSectionExamples()
 			local fullLen = string.len(p)
 			local newLen = self:GetWide() / surface.GetTextSize("_")
 
-			local newText = string.format(
-				"%s%s",
+			local newText = string.format("%s%s",
 				(newLen < fullLen) and "..." or "",
-				string.Right(p, newLen))
+				string.Right(p, newLen)
+			)
 
 			self:SetText(newText)
 		end
