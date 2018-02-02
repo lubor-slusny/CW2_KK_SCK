@@ -46,6 +46,10 @@ function TOOL:_addSectionInvalidAnims()
 	local panel = self._panel
 	local wep = self._wep
 
+	if not wep.Animations then
+		return
+	end
+
 	local vm = wep.CW_VM
 	local errors = {}
 	local errorCount = 0
@@ -141,6 +145,10 @@ end
 function TOOL:_addSectionInvalidSoundtables()
 	local panel = self._panel
 	local wep = self._wep
+
+	if not wep.Sounds then
+		return
+	end
 
 	local vm = wep.CW_VM
 	local unreachable = {}
