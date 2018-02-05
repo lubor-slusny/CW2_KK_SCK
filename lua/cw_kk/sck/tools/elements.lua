@@ -267,19 +267,25 @@ function TOOL:_getElementCode(tableName, elementName)
 	local wep = self._wep
 	local data = wep[tableName][elementName]
 
-	local format = "[\"%s\"] = {model = %s, pos = %s, angle = %s, size = %s, bone = %s, attachment = %s, merge = %s, adjustment = %s},"
+	local formatMain = "[\"%s\"] = {model = %s, pos = %s, angle = %s, size = %s%s%s%s%s},"
+
+	local formatBone		=	", bone = %s"
+	local formatAttachment	=	", attachment = %s"
+	local formatMerge		=	", merge = %s"
+	local formatAdjustment	=	", adjustment = %s"
 
 	return string.format(
-		format,
+		formatMain,
 			elementName,
 			stringToString(data.model),
 			self:VectorToString(data.pos),
 			self:AngleToString(data.angle),
 			self:VectorToString(data.size),
-			stringToString(data.bone),
-			stringToString(data.attachment),
-			tostring(data.merge),
-			adjustmentToString(data.adjustment)
+
+			data.bone != nil and string.format(formatBone, stringToString(data.bone)) or "",
+			data.attachment != nil and string.format(formatAttachment, stringToString(data.attachment)) or "",
+			data.merge != nil and string.format(formatMerge, tostring(data.merge)) or "",
+			data.adjustment != nil and string.format(formatAdjustment, adjustmentToString(data.adjustment)) or ""
 	)
 end
 
@@ -1367,7 +1373,8 @@ function PB:_addSectionRestore()
 	local state = self._state
 
 	local storedWep = weapons.GetStored(wep:GetClass())
-	local stored = storedWep[state.edit.tableName][state.edit.elementName]
+	local storedWepElements = storedWep[state.edit.tableName] or {}
+	local stored = storedWepElements[state.edit.elementName]
 	state.edit.stored = stored
 
 	local backgroundPanel = vgui.Create("DPanel", panel)
@@ -1732,7 +1739,7 @@ function PB:_getTargets()
 	return out
 end
 
-function PB:_newElementData()
+function PB:_newElementData(elementTable)
 	local wep = self._wep
 	local state = self._state
 
@@ -1751,6 +1758,9 @@ function PB:_newElementData()
 
 	if wep.KKINS2Wep then
 		out.merge = true
+	else
+		parent = TOOL.elementTableProperties[elementTable].defParent
+		out.bone = wep[parent]:GetBoneName(0)
 	end
 
 	return out
@@ -1762,7 +1772,8 @@ function PB:_finishMaking()
 	local targets = self:_getTargets()
 
 	for _,tableName in pairs(targets) do
-		local new = self:_newElementData()
+		local new = self:_newElementData(tableName)
+		wep[tableName] = wep[tableName] or {}
 		wep[tableName][state.make.elementName] = new
 		self:_createElement(tableName, state.make.elementName)
 		new.active = true
