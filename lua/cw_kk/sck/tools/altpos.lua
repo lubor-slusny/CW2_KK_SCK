@@ -1,5 +1,45 @@
 AddCSLuaFile()
 
+// some globals
+
+if CLIENT then
+	local cvPB = CreateClientConVar("_cw_kk_pause_blend", 0, false, false)
+
+	if game.SinglePlayer() then
+		local ply, wep
+
+		local origVMMSs = {}
+		local attribute = "performViewmodelMovement"
+		local overrideValue = function(wep)
+			wep.BlendPos = wep.AlternativePos
+			wep.BlendAng = wep.AlternativeAng
+		end
+		hook.Add("Think", "_cw_kk_sck_lock_ads_think", function()
+			ply = LocalPlayer()
+			wep = ply:GetActiveWeapon()
+
+			if !wep.CW20Weapon then return end
+
+			if cvPB:GetInt() == 1 then
+				origVMMSs[wep] = origVMMSs[wep] or wep[attribute]
+				wep[attribute] = overrideValue
+			else
+				for wep,val in pairs(origVMMSs) do
+					if !IsValid(wep) then
+						continue
+					end
+
+					wep[attribute] = val
+				end
+
+				origVMMSs = {}
+			end
+		end)
+	end
+end
+
+// tool
+
 local TOOL = {}
 
 TOOL.Name = "altpos"
@@ -211,6 +251,9 @@ function TOOL:_updatePanel()
 	end
 
 	local cbox = panel:AddControl("CheckBox", {Label = "Custom weapon origins? (shortcut)", Command = "cw_alternative_vm_pos"})
+	cbox:DockMargin(8,0,8,0)
+
+	local cbox = panel:AddControl("CheckBox", {Label = "Freeze blend pos", Command = "_cw_kk_pause_blend"})
 	cbox:DockMargin(8,0,8,0)
 
 	self._wepStored = weapons.GetStored(wep:GetClass())
