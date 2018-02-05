@@ -289,6 +289,43 @@ function TOOL:_getElementCode(tableName, elementName)
 	)
 end
 
+///////////////
+// Clipboard //
+///////////////
+
+TOOL.clipboard = {}
+CB = TOOL.clipboard
+
+function CB:copy(key, sourceData, sourceWep)
+	self._data = {}
+	pbEdit = TOOL._panelBuilders["edit"] // so nasty...
+	for property,clone in pairs(pbEdit.restoreProperties) do
+		self._data[property] = clone(sourceData[property])
+	end
+
+	self._meta = {}
+	self._meta.origin = sourceWep:GetClass()
+	self._meta.key = key
+	self._meta.time = CurTime()
+end
+
+function CB:getMeta()
+	return self._meta
+end
+
+function CB:getData()
+	return self._data
+end
+
+function CB:clear()
+	self._data = nil
+	self._meta = nil
+end
+
+function CB:empty()
+	return self._meta == nil
+end
+
 //////////////////
 // Element List //
 //////////////////
@@ -370,6 +407,7 @@ PB.elementPropertiesLayout = {
 	"HideVM",
 	"Lighting",
 	"Animated",
+	"CopyElement",
 	"Restore",
 	"ExportSingle",
 }
@@ -1367,6 +1405,33 @@ function PB:_addSectionAnimated()
 	return backgroundPanel:GetTall() + 2
 end
 
+function PB:_addSectionCopyElement()
+	local panel = self._panel
+	local wep = self._wep
+	local state = self._state
+
+	local backgroundPanel = vgui.Create("DPanel", panel)
+
+		local butt = vgui.Create("DButton", backgroundPanel)
+		butt:Dock(FILL)
+		butt:SetText("Copy to other swep")
+
+		function butt:DoClick()
+			PB.clipboard:copy(
+				state.edit.elementName,
+				state.edit.data,
+				wep
+			)
+		end
+
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:DockMargin(8,8,8,0)
+	backgroundPanel:SetPaintBackground(false)
+	backgroundPanel:SizeToContents()
+
+	return backgroundPanel:GetTall() + 8
+end
+
 function PB:_addSectionRestore()
 	local panel = self._panel
 	local wep = self._wep
@@ -1677,6 +1742,55 @@ function PB:_addSectionETMark(tableName, elementName)
 	self:_updateCBoxes()
 end
 
+function TOOL:_addSectionButtPaste()
+	local panel = self._panel
+	local wep = self._wep
+	local cb = self.clipboard
+
+	if cb:empty() then
+		return
+	end
+
+	local cbMeta = cb:getMeta()
+
+	if cbMeta.origin == wep:GetClass() then
+		return
+	end
+
+	local backgroundPanel = vgui.Create("DPanel", panel)
+	panel:AddItem(backgroundPanel)
+
+		local butt = vgui.Create("DButton", backgroundPanel)
+		butt:Dock(FILL)
+
+		butt:SetText(string.format(
+			"Paste \"%s\"",
+			cbMeta.key
+		))
+		butt:SetTooltip(string.format(
+			"Create new element %s using data from %s.",
+			cbMeta.key,
+			cbMeta.origin
+			-- tostring(CurTime() - cbMeta.time)
+		))
+
+		function butt:DoClick()
+			PB:_finishMaking(!cb:empty())
+		end
+
+		local butt = vgui.Create("DButton", backgroundPanel)
+		butt:Dock(RIGHT)
+		butt:SetText("Clear")
+		function butt:DoClick()
+			cb:clear()
+			TOOL:_updatePanel()
+		end
+
+	backgroundPanel:Dock(TOP)
+	backgroundPanel:SetPaintBackground(true)
+	backgroundPanel:SizeToContents()
+end
+
 function PB:_addSectionButtFinish()
 	local panel = self._panel
 
@@ -1739,7 +1853,7 @@ function PB:_getTargets()
 	return out
 end
 
-function PB:_newElementData(elementTable)
+function PB:_newElementData(elementTableName)
 	local wep = self._wep
 	local state = self._state
 
@@ -1759,24 +1873,51 @@ function PB:_newElementData(elementTable)
 	if wep.KKINS2Wep then
 		out.merge = true
 	else
-		parent = TOOL.elementTableProperties[elementTable].defParent
+		parent = TOOL.elementTableProperties[elementTableName].defParent
 		out.bone = wep[parent]:GetBoneName(0)
 	end
 
 	return out
 end
 
-function PB:_finishMaking()
+function PB:_copyElementData(source, elementTableName)
+	local wep = self._wep
+	local state = self._state
+
+	local parent = TOOL.elementTableProperties[elementTableName].defParent
+	local parEnt = wep[parent]
+	local out = table.Copy(source)
+
+	if out.bone != nil and parEnt:LookupBone(out.bone) == nil then
+		out.bone = parEnt:GetBoneName(0)
+	end
+
+	if wep.KKINS2Wep then
+		if out.attachment != nil and parEnt:LookupAttachment(out.attachment) < 1 then
+			out.attachment = parEnt:GetAttachments()[1] and parEnt:GetAttachments()[1].name
+		end
+	end
+
+	return out
+end
+
+function PB:_finishMaking(useClipboard)
 	local wep = self._wep
 	local state = self._state
 	local targets = self:_getTargets()
 
-	for _,tableName in pairs(targets) do
-		local new = self:_newElementData(tableName)
-		wep[tableName] = wep[tableName] or {}
-		wep[tableName][state.make.elementName] = new
-		self:_createElement(tableName, state.make.elementName)
-		new.active = true
+	for _,elementTableName in pairs(targets) do
+		local data = self:_newElementData(elementTableName)
+
+		if useClipboard then
+			data = self:_copyElementData(self.clipboard:getData(), elementTableName)
+			state.make.elementName = self.clipboard:getMeta().key
+		end
+
+		wep[elementTableName] = wep[elementTableName] or {}
+		wep[elementTableName][state.make.elementName] = data
+		self:_createElement(elementTableName, state.make.elementName)
+		data.active = true
 	end
 
 	PB._state.edit.tableName = targets[1]
@@ -1800,6 +1941,7 @@ function PB:run()
 		self:_addSectionETMark(tableName)
 	end
 
+	self:_addSectionButtPaste()
 	self:_addSectionButtFinish()
 end
 
