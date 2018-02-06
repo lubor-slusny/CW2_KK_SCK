@@ -1730,6 +1730,8 @@ function PB:_addSectionETMark(tableName, elementName)
 			local valid = elementName != ""
 			local can = (!exists) and valid
 
+			can = can or !PB.clipboard:empty()
+
 			self:SetText(tableName .. (exists and " (already exists)" or ""))
 			self:SetChecked(can)
 			self:SetEnabled(can)
@@ -1742,7 +1744,7 @@ function PB:_addSectionETMark(tableName, elementName)
 	self:_updateCBoxes()
 end
 
-function TOOL:_addSectionButtPaste()
+function PB:_addSectionButtPaste()
 	local panel = self._panel
 	local wep = self._wep
 	local cb = self.clipboard
@@ -1888,14 +1890,17 @@ function PB:_copyElementData(source, elementTableName)
 	local parEnt = wep[parent]
 	local out = table.Copy(source)
 
-	if out.bone != nil and parEnt:LookupBone(out.bone) == nil then
-		out.bone = parEnt:GetBoneName(0)
-	end
-
 	if wep.KKINS2Wep then
 		if out.attachment != nil and parEnt:LookupAttachment(out.attachment) < 1 then
 			out.attachment = parEnt:GetAttachments()[1] and parEnt:GetAttachments()[1].name
 		end
+	else
+		out.attachment = nil
+		out.merge = nil
+	end
+
+	if out.bone != nil and parEnt:LookupBone(out.bone) == nil then
+		out.bone = parEnt:GetBoneName(1)
 	end
 
 	return out
@@ -1932,6 +1937,11 @@ function PB:run()
 
 	state.make.elementName = state.make.elementName or "kk_was_here_lol"
 	state.make.model = state.make.model or "models/maxofs2d/cube_tool.mdl"
+
+	if !self.clipboard:empty() then
+		state.make.elementName = self.clipboard:getMeta().key
+		state.make.model = self.clipboard:getData().model
+	end
 
 	self:_addHeader()
 	self:_addSectionNameEntry()
