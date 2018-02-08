@@ -11,8 +11,8 @@ if CLIENT then
 		local origVMMSs = {}
 		local attribute = "performViewmodelMovement"
 		local overrideValue = function(wep)
-			wep.BlendPos = wep.AlternativePos
-			wep.BlendAng = wep.AlternativeAng
+			wep.BlendPos = Vector(wep.AlternativePos)
+			wep.BlendAng = Vector(wep.AlternativeAng)
 		end
 		hook.Add("Think", "_cw_kk_sck_lock_ads_think", function()
 			ply = LocalPlayer()
@@ -112,9 +112,9 @@ function TOOL:_addSectionSliders()
 	panel:AddItem(backgroundPanel)
 
 	for _,s in pairs({
-		{"Pos", "x", -50, 50},
-		{"Pos", "y", -50, 50},
-		{"Pos", "z", -50, 50},
+		{"Pos", "x", -100, 100},
+		{"Pos", "y", -100, 100},
+		{"Pos", "z", -100, 100},
 		{"Ang", "x", -90, 90},
 		{"Ang", "y", -180, 180},
 		{"Ang", "z", -180, 180},
