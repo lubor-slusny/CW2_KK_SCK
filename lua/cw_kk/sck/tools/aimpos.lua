@@ -4,36 +4,34 @@ AddCSLuaFile()
 // LEGACY //
 ////////////
 
-if CLIENT then
-	local SP = game.SinglePlayer()
-	local cvXH = CreateClientConVar("_cw_kk_gm_xhair", 0, false, false)
-	local cvLA = CreateClientConVar("_cw_kk_sck_lock_ads", 0, false, false)
+local SP = game.SinglePlayer()
+local cvXH = CreateClientConVar("_cw_kk_gm_xhair", 0, false, false)
+local cvLA = CreateClientConVar("_cw_kk_sck_lock_ads", 0, false, false)
 
-	if SP then
-		local ply, wep
+if SP then
+	local ply, wep
 
-		hook.Add("Think", "_cw_kk_gm_xhair_think", function()
-			ply = LocalPlayer()
-			wep = ply:GetActiveWeapon()
+	hook.Add("Think", "_cw_kk_gm_xhair_think", function()
+		ply = LocalPlayer()
+		wep = ply:GetActiveWeapon()
 
-			if !wep.CW20Weapon then return end
+		if !wep.CW20Weapon then return end
 
-			wep.DrawCrosshair = cvXH:GetInt() == 1
-		end)
+		wep.DrawCrosshair = cvXH:GetInt() == 1
+	end)
 
-		local _ADS_LAST, cur
-		hook.Add("Think", "_cw_kk_sck_lock_ads_think", function()
-			cur = cvLA:GetInt()
-			if cur != _ADS_LAST and _ADS_LAST != nil then
-				if cur == 0 then
-					RunConsoleCommand("-attack2")
-				else
-					RunConsoleCommand("+attack2")
-				end
+	local _ADS_LAST, cur
+	hook.Add("Think", "_cw_kk_sck_lock_ads_think", function()
+		cur = cvLA:GetInt()
+		if cur != _ADS_LAST and _ADS_LAST != nil then
+			if cur == 0 then
+				RunConsoleCommand("-attack2")
+			else
+				RunConsoleCommand("+attack2")
 			end
-			_ADS_LAST = cur
-		end)
-	end
+		end
+		_ADS_LAST = cur
+	end)
 end
 
 ////////////
@@ -45,7 +43,7 @@ CustomizableWeaponry.originalValue:add("AimSwayIntensity", false, false)
 local TOOL = {}
 
 TOOL.Name = "aimpos"
-TOOL.PrintName = "AimPos Builder 5"
+TOOL.PrintName = "02 | AimPos Builder 5"
 TOOL.Version = "5.0"
 
 TOOL.cvarPresetEdit = {

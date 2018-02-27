@@ -3,7 +3,7 @@ AddCSLuaFile()
 local TOOL = {}
 
 TOOL.Name = "elements"
-TOOL.PrintName = "Element Browser 3"
+TOOL.PrintName = "03 | Element Browser 3"
 TOOL.Version = "3.0"
 
 TOOL.elementTables = {

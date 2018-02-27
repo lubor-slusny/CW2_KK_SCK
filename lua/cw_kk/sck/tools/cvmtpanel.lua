@@ -3,7 +3,7 @@ AddCSLuaFile()
 local TOOL = {}
 
 TOOL.Name = "cvmtpanel"
-TOOL.PrintName = "CVMT Control Panel"
+TOOL.PrintName = "05 | CVMT Control Panel"
 TOOL.Version = "2.1"
 
 function TOOL:Initialize()

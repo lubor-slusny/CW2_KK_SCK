@@ -1,6 +1,7 @@
 AddCSLuaFile()
 
 if not CustomizableWeaponry_KK.HOME then return end
+if true then return end
 
 local TOOL = {}
 

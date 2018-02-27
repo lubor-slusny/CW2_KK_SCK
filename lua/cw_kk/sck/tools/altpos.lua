@@ -43,7 +43,7 @@ end
 local TOOL = {}
 
 TOOL.Name = "altpos"
-TOOL.PrintName = "AltPos Builder"
+TOOL.PrintName = "01 | AltPos Builder"
 TOOL.Version = "1.0"
 
 function TOOL:_addSectionWipeReload()
