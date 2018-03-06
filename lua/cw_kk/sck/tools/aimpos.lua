@@ -4,11 +4,10 @@ AddCSLuaFile()
 // LEGACY //
 ////////////
 
-local SP = game.SinglePlayer()
-local cvXH = CreateClientConVar("_cw_kk_gm_xhair", 0, false, false)
-local cvLA = CreateClientConVar("_cw_kk_sck_lock_ads", 0, false, false)
+if game.SinglePlayer() then
+	local cvXH = CreateClientConVar("_cw_kk_gm_xhair", 0, false, false)
+	local cvLA = CreateClientConVar("_cw_kk_sck_lock_ads", 0, false, false)
 
-if SP then
 	local ply, wep
 
 	hook.Add("Think", "_cw_kk_gm_xhair_think", function()
@@ -44,7 +43,7 @@ local TOOL = {}
 
 TOOL.Name = "aimpos"
 TOOL.PrintName = "02 | AimPos Builder 5"
-TOOL.Version = "5.0"
+TOOL.Version = "5.1"
 
 TOOL.cvarPresetEdit = {
 	["_cw_kk_sck_lock_ads"] = "1",
