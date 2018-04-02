@@ -29,7 +29,7 @@ function BASE:Load()
 		self._lastWep = nil
 		self._lastSetup = nil
 
-		self._knowGLDTkeys = string.Explode("|", self.strKnownGLDTKeys)
+		self._knownGLDTkeys = string.Explode("|", self.strKnownGLDTKeys)
 
 		BASE.cvMenuTab = CreateClientConVar(BASE.strCVMenuTab, BASE.SpawnMenuTab, true, false)
 		BASE.cvMenuTabSection = CreateClientConVar(BASE.strCVMenuTabSection, BASE.SpawnMenuTabSection, true, false)

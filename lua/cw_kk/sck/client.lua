@@ -285,7 +285,7 @@ function BASE:Think()
 
 			curClip = wep:Clip1()
 
-			for _,gldtKey in pairs(self._knowGLDTkeys) do
+			for _,gldtKey in pairs(self._knownGLDTkeys) do
 				curGLState = curGLState or (wep.dt and wep.dt[gldtKey])
 			end
 		end
