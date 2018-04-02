@@ -583,7 +583,7 @@ function PB:_addSectionPOAF()
 		listView:AddColumn("Point-of-attachment function:")
 		listView:AddLine("[CW20] Bone on parent entity")
 
-		if wep.KKINS2Wep then
+		if wep.KKINS2Wep or wep.KKPOASet then
 			local ent = self:_getParentEnt()
 
 			if IsValid(ent) and table.Count(ent:GetAttachments()) > 0 then
