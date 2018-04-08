@@ -1,5 +1,7 @@
 AddCSLuaFile()
 
+local strFormat = string.format
+
 local TOOL = {}
 
 TOOL.Name = "elements"
@@ -250,39 +252,84 @@ local function adjustmentToString(adj)
 		return "nil"
 	end
 
-	return string.format(
-		"{axis = \"%s\", min = %s, max = %s, inverse = %s, inverseOffsetCalc = %s}",
-		tostring(adj.axis),
-		tostring(adj.min),
-		tostring(adj.max),
-		tostring(adj.inverse),
-		tostring(adj.inverseOffsetCalc)
+	local formatIndex = "index = %s, "
+
+	return strFormat(
+		"{%saxis = \"%s\", min = %s, max = %s, inverse = %s, inverseOffsetCalc = %s}",
+
+			adj.index != nil and
+				strFormat(formatIndex, tostring(adj.index)) or "",
+
+			tostring(adj.axis),
+			tostring(adj.min),
+			tostring(adj.max),
+			tostring(adj.inverse),
+			tostring(adj.inverseOffsetCalc)
 	)
+end
+
+function TOOL:_subElementToString(data, wrapAround)
+	local formatMain		= "model = %s, pos = %s, angle = %s, size = %s%s%s%s"
+	local formatWrapped		= "{%s},"
+
+	local formatBone		= ", bone = %s"
+	local formatAttachment	= ", attachment = %s"
+	local formatMerge		= ", merge = %s"
+
+	local formatBlank		= ""
+
+	local out = strFormat(
+		formatMain,
+			stringToString(data.model),
+			self:VectorToString(data.pos),
+			self:AngleToString(data.angle),
+			self:VectorToString(data.size),
+
+			data.bone != nil and
+				strFormat(formatBone, stringToString(data.bone)) or formatBlank,
+
+			data.attachment != nil and
+				strFormat(formatAttachment, stringToString(data.attachment)) or formatBlank,
+
+			data.merge != nil and
+				strFormat(formatMerge, tostring(data.merge)) or formatBlank
+	)
+
+	if wrapAround then
+		out = strFormat(formatWrapped, out)
+	end
+
+	return out
 end
 
 function TOOL:_getElementCode(tableName, elementName)
 	local wep = self._wep
 	local data = wep[tableName][elementName]
 
-	local formatMain = "[\"%s\"] = {model = %s, pos = %s, angle = %s, size = %s%s%s%s%s},"
+	local formatMain			= "[\"%s\"] = {%s%s},"
+	local formatAdjustment		= ", adjustment = %s"
 
-	local formatBone		=	", bone = %s"
-	local formatAttachment	=	", attachment = %s"
-	local formatMerge		=	", merge = %s"
-	local formatAdjustment	=	", adjustment = %s"
+	local codeMain = ""
 
-	return string.format(
+	if data.models then
+		formatMain				= "[\"%s\"] = {\n\t\t\tmodels = {\n\t\t\t\t%s\n\t\t\t},\n\t\t%s},"
+		local formatSeparator	= "\n\t\t\t\t"
+
+		local outSeparator = ""
+
+		for _,data in pairs(data.models) do
+			codeMain = codeMain .. outSeparator .. self:_subElementToString(data, true)
+			outSeparator = formatSeparator
+		end
+	else
+		codeMain = self:_subElementToString(data, false)
+	end
+
+	return strFormat(
 		formatMain,
 			elementName,
-			stringToString(data.model),
-			self:VectorToString(data.pos),
-			self:AngleToString(data.angle),
-			self:VectorToString(data.size),
-
-			data.bone != nil and string.format(formatBone, stringToString(data.bone)) or "",
-			data.attachment != nil and string.format(formatAttachment, stringToString(data.attachment)) or "",
-			data.merge != nil and string.format(formatMerge, tostring(data.merge)) or "",
-			data.adjustment != nil and string.format(formatAdjustment, adjustmentToString(data.adjustment)) or ""
+			codeMain,
+			data.adjustment != nil and strFormat(formatAdjustment, adjustmentToString(data.adjustment)) or ""
 	)
 end
 
@@ -388,6 +435,7 @@ PB.defaultAdjustment = {
 
 PB.elementPropertiesLayout = {
 	"Active",
+	"SubElementSelector",
 	"ModelEntry",
 	"POAF",
 	"SelectAtt",
@@ -404,6 +452,7 @@ PB.elementPropertiesLayout = {
 	"HideVM",
 	"Lighting",
 	"Animated",
+	"Unknowns",
 	"CopyElement",
 	"Restore",
 	"ExportSingle",
@@ -518,6 +567,25 @@ function PB:_addSectionActive()
 
 	backgroundPanel:Dock(TOP)
 	backgroundPanel:DockMargin(8,0,8,0)
+	backgroundPanel:SetPaintBackground(false)
+	backgroundPanel:SizeToContents()
+
+	return backgroundPanel:GetTall()
+end
+
+function PB:_addSectionSubElementSelector()
+	local panel = self._panel
+	local wep = self._wep
+	local state = self._state
+	local data = state.edit.data
+
+	if not data.models then
+		return
+	end
+
+	local backgroundPanel = vgui.Create("DPanel", panel)
+
+	backgroundPanel:Dock(TOP)
 	backgroundPanel:SetPaintBackground(false)
 	backgroundPanel:SizeToContents()
 
@@ -1375,6 +1443,10 @@ function PB:_addSectionLighting()
 	return backgroundPanel:GetTall() + 2
 end
 
+function PB:_addSectionUnknowns()
+	// TODO:
+end
+
 function PB:_addSectionAnimated()
 	local panel = self._panel
 	local wep = self._wep
@@ -1506,7 +1578,7 @@ function PB:_getAttSelection()
 		out.choices = {}
 		for i=0,(parent:GetBoneCount() - 1) do
 			local boneName = parent:GetBoneName(i)
-			out.choices[string.format("[%03d] %s", i, boneName)] = boneName
+			out.choices[strFormat("[%03d] %s", i, boneName)] = boneName
 		end
 
 		function out:onSelect(_, _, name)
@@ -1524,7 +1596,7 @@ function PB:_getAttSelection()
 		local atts = parent:GetAttachments()
 		for i=1,#atts do
 			local attName = atts[i].name
-			out.choices[string.format("[%03d] %s", i, attName)] = attName
+			out.choices[strFormat("[%03d] %s", i, attName)] = attName
 		end
 
 		function out:onSelect(_, _, name)
@@ -1583,7 +1655,7 @@ function PB:run()
 	local tall = 0
 	for _,section in pairs(self.elementPropertiesLayout) do
 		local addSection = self["_addSection" .. section]
-		tall = tall + addSection(self)
+		tall = tall + (addSection(self) or 0)
 	end
 	backgroundPanel:SetTall(tall + 8)
 
@@ -1762,11 +1834,11 @@ function PB:_addSectionButtPaste()
 		local butt = vgui.Create("DButton", backgroundPanel)
 		butt:Dock(FILL)
 
-		butt:SetText(string.format(
+		butt:SetText(strFormat(
 			"Paste \"%s\"",
 			cbMeta.key
 		))
-		butt:SetTooltip(string.format(
+		butt:SetTooltip(strFormat(
 			"Create new element %s using data from %s.",
 			cbMeta.key,
 			cbMeta.origin
