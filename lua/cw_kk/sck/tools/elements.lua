@@ -206,9 +206,13 @@ function TOOL:_createElement(tableName, elementName)
 	end
 end
 
-function TOOL:_getParentEnt(tableName, elementName)
+function TOOL:_getParentEnt(tableName, elementName, subElementIndex)
 	local wep = self._wep
 	local data = wep[tableName][elementName]
+
+	if data.models then
+		data = data.models[subElementIndex]
+	end
 
 	if IsValid(data.ent:GetParent()) then
 		return data.ent:GetParent()
@@ -433,31 +437,6 @@ PB.defaultAdjustment = {
 	inverseOffsetCalc = false,
 }
 
-PB.elementPropertiesLayout = {
-	"Active",
-	"SubElementSelector",
-	"ModelEntry",
-	"POAF",
-	"SelectAtt",
-	"PosSliders",
-	"AngSliders",
-	"SizeUniform",
-	"SizeSliders",
-	"SightAdjustment",
-	"Skin",
-	"Bodygroups",
-	"MaterialEntry",
-	"ParentEntry",
-	"Nodraw",
-	"HideVM",
-	"Lighting",
-	"Animated",
-	"Unknowns",
-	"CopyElement",
-	"Restore",
-	"ExportSingle",
-}
-
 local function id(out)
 	return out
 end
@@ -545,11 +524,32 @@ function PB:_addHeaderNext()
 	backgroundPanel:SizeToContents()
 end
 
-function PB:_addSectionActive()
-	local panel = self._panel
-	local wep = self._wep
-	local state = self._state
+PB.elementPropertiesLayout = {
+	"Active",
+	"SubElementSelector",
+	"ModelEntry",
+	"POAF",
+	"SelectAtt",
+	"PosSliders",
+	"AngSliders",
+	"SizeUniform",
+	"SizeSliders",
+	"SightAdjustment",
+	"Skin",
+	"Bodygroups",
+	"MaterialEntry",
+	"ParentEntry",
+	"Nodraw",
+	"HideVM",
+	"Lighting",
+	"Animated",
+	"Unknowns",
+	"CopyElement",
+	"Restore",
+	"ExportSingle",
+}
 
+function PB:_addSectionActive(panel, wep, state)
 	local backgroundPanel = vgui.Create("DPanel", panel)
 
 		local cbox = vgui.Create("DCheckBoxLabel", backgroundPanel)
@@ -565,6 +565,9 @@ function PB:_addSectionActive()
 			PB:_updatePanel()
 		end
 
+		// TODO: RIGHT: add subelement button
+			// TODO: convert func single->multi
+
 	backgroundPanel:Dock(TOP)
 	backgroundPanel:DockMargin(8,0,8,0)
 	backgroundPanel:SetPaintBackground(false)
@@ -573,10 +576,7 @@ function PB:_addSectionActive()
 	return backgroundPanel:GetTall()
 end
 
-function PB:_addSectionSubElementSelector()
-	local panel = self._panel
-	local wep = self._wep
-	local state = self._state
+function PB:_addSectionSubElementSelector(panel, wep, state)
 	local data = state.edit.data
 
 	if not data.models then
@@ -585,18 +585,34 @@ function PB:_addSectionSubElementSelector()
 
 	local backgroundPanel = vgui.Create("DPanel", panel)
 
+		local box = vgui.Create("DComboBox", backgroundPanel)
+		box:Dock(FILL)
+		box:DockMargin(8,0,8,8)
+		box:SetValue(state.edit.subElementIndex)
+
+		for k,_ in pairs(table.GetKeys(data.models)) do
+			box:AddChoice(tostring(k), k)
+		end
+
+		function box:OnSelect(_, _, data)
+			state.edit.subElementIndex = data
+			TOOL:_updatePanel()
+		end
+
 	backgroundPanel:Dock(TOP)
+	backgroundPanel:SetTall(32)
 	backgroundPanel:SetPaintBackground(false)
 	backgroundPanel:SizeToContents()
 
 	return backgroundPanel:GetTall()
 end
 
-function PB:_addSectionModelEntry()
-	local panel = self._panel
-	local wep = self._wep
-	local state = self._state
+function PB:_addSectionModelEntry(panel, wep, state)
 	local data = state.edit.data
+
+	if data.models then
+		data = data.models[state.edit.subElementIndex]
+	end
 
 	local backgroundPanel = vgui.Create("DPanel", panel)
 
@@ -629,11 +645,12 @@ function PB:_addSectionModelEntry()
 	return backgroundPanel:GetTall()
 end
 
-function PB:_addSectionPOAF()
-	local panel = self._panel
-	local wep = self._wep
-	local state = self._state
+function PB:_addSectionPOAF(panel, wep, state)
 	local data = state.edit.data
+
+	if data.models then
+		data = data.models[state.edit.subElementIndex]
+	end
 
 	state.edit.POALastAtt = nil
 	state.edit.POALastBone = nil
@@ -724,11 +741,12 @@ function PB:_addSectionPOAF()
 	return backgroundPanel:GetTall()
 end
 
-function PB:_addSectionSelectAtt()
-	local panel = self._panel
-	local wep = self._wep
-	local state = self._state
+function PB:_addSectionSelectAtt(panel, wep, state)
 	local data = state.edit.data
+
+	if data.models then
+		data = data.models[state.edit.subElementIndex]
+	end
 
 	local selection = self:_getAttSelection()
 
@@ -757,11 +775,12 @@ function PB:_addSectionSelectAtt()
 	return backgroundPanel:GetTall()
 end
 
-function PB:_addSectionPosSliders()
-	local panel = self._panel
-	local wep = self._wep
-	local state = self._state
+function PB:_addSectionPosSliders(panel, wep, state)
 	local data = state.edit.data
+
+	if data.models then
+		data = data.models[state.edit.subElementIndex]
+	end
 
 	data.pos = Vector(data.pos)
 
@@ -800,11 +819,12 @@ function PB:_addSectionPosSliders()
 	return backgroundPanel:GetTall()
 end
 
-function PB:_addSectionAngSliders()
-	local panel = self._panel
-	local wep = self._wep
-	local state = self._state
+function PB:_addSectionAngSliders(panel, wep, state)
 	local data = state.edit.data
+
+	if data.models then
+		data = data.models[state.edit.subElementIndex]
+	end
 
 	data.angle = Angle(data.angle)
 
@@ -843,11 +863,12 @@ function PB:_addSectionAngSliders()
 	return backgroundPanel:GetTall() + 8
 end
 
-function PB:_addSectionSizeUniform()
-	local panel = self._panel
-	local wep = self._wep
-	local state = self._state
+function PB:_addSectionSizeUniform(panel, wep, state)
 	local data = state.edit.data
+
+	if data.models then
+		data = data.models[state.edit.subElementIndex]
+	end
 
 	local backgroundPanel = vgui.Create("DPanel", panel)
 
@@ -884,11 +905,12 @@ function PB:_addSectionSizeUniform()
 	return backgroundPanel:GetTall() + 8
 end
 
-function PB:_addSectionSizeSliders()
-	local panel = self._panel
-	local wep = self._wep
-	local state = self._state
+function PB:_addSectionSizeSliders(panel, wep, state)
 	local data = state.edit.data
+
+	if data.models then
+		data = data.models[state.edit.subElementIndex]
+	end
 
 	data.size = Vector(data.size)
 
@@ -936,9 +958,7 @@ function PB:_addSectionSizeSliders()
 	return backgroundPanel:GetTall() + 8
 end
 
-function PB:_addSectionSightAdjustment()
-	local state = self._state
-
+function PB:_addSectionSightAdjustment(panel, wep, state)
 	if !self.elementTables[state.edit.tableName].adjustable then
 		return 0
 	end
@@ -1169,11 +1189,12 @@ function PB:_sightAdjustmentLongInverts(panel)
 	backgroundPanel:SizeToContents()
 end
 
-function PB:_addSectionSkin()
-	local panel = self._panel
-	local wep = self._wep
-	local state = self._state
+function PB:_addSectionSkin(panel, wep, state)
 	local data = state.edit.data
+
+	if data.models then
+		data = data.models[state.edit.subElementIndex]
+	end
 
 	local count = data.ent:SkinCount()
 
@@ -1207,11 +1228,12 @@ function PB:_addSectionSkin()
 	return backgroundPanel:GetTall() + 8
 end
 
-function PB:_addSectionBodygroups()
-	local panel = self._panel
-	local wep = self._wep
-	local state = self._state
+function PB:_addSectionBodygroups(panel, wep, state)
 	local data = state.edit.data
+
+	if data.models then
+		data = data.models[state.edit.subElementIndex]
+	end
 
 	local options = {}
 
@@ -1265,16 +1287,16 @@ function PB:_addSectionBodygroups()
 	return backgroundPanel:GetTall() + 8
 end
 
-function PB:_addSectionMaterialEntry()
-	local wep = self._wep
-
+function PB:_addSectionMaterialEntry(panel, wep, state)
 	if !wep.KKINS2Wep then
 		return 0
 	end
 
-	local panel = self._panel
-	local state = self._state
 	local data = state.edit.data
+
+	if data.models then
+		data = data.models[state.edit.subElementIndex]
+	end
 
 	local backgroundPanel = vgui.Create("DPanel", panel)
 
@@ -1304,15 +1326,11 @@ function PB:_addSectionMaterialEntry()
 	return backgroundPanel:GetTall() + 8
 end
 
-function PB:_addSectionParentEntry()
-	local wep = self._wep
-
+function PB:_addSectionParentEntry(panel, wep, state)
 	if !wep.KKINS2Wep then
 		return 0
 	end
 
-	local panel = self._panel
-	local state = self._state
 	local data = state.edit.data
 
 	local backgroundPanel = vgui.Create("DPanel", panel)
@@ -1347,15 +1365,10 @@ function PB:_addSectionParentEntry()
 	return backgroundPanel:GetTall() + 8
 end
 
-function PB:_addSectionNodraw()
-	local wep = self._wep
-
+function PB:_addSectionNodraw(panel, wep, state)
 	if !wep.KKINS2Wep then
 		return 0
 	end
-
-	local panel = self._panel
-	local state = self._state
 
 	local backgroundPanel = vgui.Create("DPanel", panel)
 
@@ -1379,15 +1392,10 @@ function PB:_addSectionNodraw()
 	return backgroundPanel:GetTall() + 2
 end
 
-function PB:_addSectionHideVM()
-	local wep = self._wep
-
+function PB:_addSectionHideVM(panel, wep, state)
 	if !wep.KKINS2Wep then
 		return 0
 	end
-
-	local panel = self._panel
-	local state = self._state
 
 	local backgroundPanel = vgui.Create("DPanel", panel)
 
@@ -1411,15 +1419,10 @@ function PB:_addSectionHideVM()
 	return backgroundPanel:GetTall() + 2
 end
 
-function PB:_addSectionLighting()
-	local wep = self._wep
-
+function PB:_addSectionLighting(panel, wep, state)
 	if !wep.KKINS2Wep then
 		return 0
 	end
-
-	local panel = self._panel
-	local state = self._state
 
 	local backgroundPanel = vgui.Create("DPanel", panel)
 
@@ -1443,15 +1446,11 @@ function PB:_addSectionLighting()
 	return backgroundPanel:GetTall() + 2
 end
 
-function PB:_addSectionUnknowns()
+function PB:_addSectionUnknowns(panel, wep, state)
 	// TODO:
 end
 
-function PB:_addSectionAnimated()
-	local panel = self._panel
-	local wep = self._wep
-	local state = self._state
-
+function PB:_addSectionAnimated(panel, wep, state)
 	local backgroundPanel = vgui.Create("DPanel", panel)
 
 		local cbox = vgui.Create("DCheckBoxLabel", backgroundPanel)
@@ -1474,11 +1473,7 @@ function PB:_addSectionAnimated()
 	return backgroundPanel:GetTall() + 2
 end
 
-function PB:_addSectionCopyElement()
-	local panel = self._panel
-	local wep = self._wep
-	local state = self._state
-
+function PB:_addSectionCopyElement(panel, wep, state)
 	local backgroundPanel = vgui.Create("DPanel", panel)
 
 		local butt = vgui.Create("DButton", backgroundPanel)
@@ -1501,11 +1496,7 @@ function PB:_addSectionCopyElement()
 	return backgroundPanel:GetTall() + 8
 end
 
-function PB:_addSectionRestore()
-	local panel = self._panel
-	local wep = self._wep
-	local state = self._state
-
+function PB:_addSectionRestore(panel, wep, state)
 	local storedWep = weapons.GetStored(wep:GetClass())
 	local storedWepElements = storedWep[state.edit.tableName] or {}
 	local stored = storedWepElements[state.edit.elementName]
@@ -1532,11 +1523,7 @@ function PB:_addSectionRestore()
 	return backgroundPanel:GetTall() + 8
 end
 
-function PB:_addSectionExportSingle()
-	local panel = self._panel
-	local wep = self._wep
-	local state = self._state
-
+function PB:_addSectionExportSingle(panel, wep, state)
 	local backgroundPanel = vgui.Create("DPanel", panel)
 
 		local butt = vgui.Create("DButton", backgroundPanel)
@@ -1562,7 +1549,7 @@ function PB:_getParentEnt()
 	local state = self._state
 	local data = state.edit.data
 
-	return TOOL:_getParentEnt(state.edit.tableName, state.edit.elementName)
+	return TOOL:_getParentEnt(state.edit.tableName, state.edit.elementName, state.edit.subElementIndex)
 end
 
 function PB:_getAttSelection()
@@ -1640,6 +1627,11 @@ function PB:run()
 
 	state.edit.data = wep[state.edit.tableName][state.edit.elementName]
 
+	if state.edit.data.models then
+		state.edit.subElementIndex = state.edit.subElementIndex or
+			table.GetKeys(state.edit.data.models)[1]
+	end
+
 	self:_addHeaderETName(state.edit.tableName, state.edit.elementName)
 	self:_addHeaderNext()
 	self:_addHeaderEName(state.edit.tableName, state.edit.elementName, true)
@@ -1655,7 +1647,7 @@ function PB:run()
 	local tall = 0
 	for _,section in pairs(self.elementPropertiesLayout) do
 		local addSection = self["_addSection" .. section]
-		tall = tall + (addSection(self) or 0)
+		tall = tall + (addSection(self, self._panel, wep, state) or 0)
 	end
 	backgroundPanel:SetTall(tall + 8)
 
