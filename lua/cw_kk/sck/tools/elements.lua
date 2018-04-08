@@ -7,16 +7,13 @@ TOOL.PrintName = "03 | Element Browser 3"
 TOOL.Version = "3.0"
 
 TOOL.elementTables = {
-	"AttachmentModelsVM",
-	"AttachmentModelsWM"
-}
-
-TOOL.elementTableProperties = {
 	["AttachmentModelsVM"] = {
+		tableName = "AttachmentModelsVM",
 		adjustable = true,
 		defParent = "CW_VM",
 	},
 	["AttachmentModelsWM"] = {
+		tableName = "AttachmentModelsWM",
 		defParent = "WMEnt",
 	},
 }
@@ -219,7 +216,7 @@ function TOOL:_getParentEnt(tableName, elementName)
 		return wep[tableName][rel].ent
 	end
 
-	local entName = self.elementTableProperties[tableName].defParent
+	local entName = self.elementTables[tableName].defParent
 	return wep[entName]
 end
 
@@ -340,7 +337,7 @@ function PB:run()
 
 	state.list.lastSort = {}
 
-	for _,tableName in pairs(self.elementTables) do
+	for tableName,_ in pairs(self.elementTables) do
 		self:_addHeaderETName(tableName)
 
 		state.list.lastSort[tableName] = {}
@@ -874,7 +871,7 @@ end
 function PB:_addSectionSightAdjustment()
 	local state = self._state
 
-	if !self.elementTableProperties[state.edit.tableName].adjustable then
+	if !self.elementTables[state.edit.tableName].adjustable then
 		return 0
 	end
 
@@ -1592,10 +1589,10 @@ function PB:run()
 
 	self._panel = nil
 
-	for _,elementTable in pairs(self.elementTables) do
-		if elementTable != state.edit.tableName and wep[elementTable] and wep[elementTable][state.edit.elementName] then
-			self:_addHeaderETName(elementTable, state.edit.elementName)
-			self:_addHeaderEName(elementTable, state.edit.elementName)
+	for tableName,_ in pairs(self.elementTables) do
+		if tableName != state.edit.tableName and wep[tableName] and wep[tableName][state.edit.elementName] then
+			self:_addHeaderETName(tableName, state.edit.elementName)
+			self:_addHeaderEName(tableName, state.edit.elementName)
 		end
 	end
 
@@ -1875,7 +1872,7 @@ function PB:_newElementData(elementTableName)
 	if wep.KKINS2Wep then
 		out.merge = true
 	else
-		parent = TOOL.elementTableProperties[elementTableName].defParent
+		parent = TOOL.elementTables[elementTableName].defParent
 		out.bone = wep[parent]:GetBoneName(0)
 	end
 
@@ -1886,7 +1883,7 @@ function PB:_copyElementData(source, elementTableName)
 	local wep = self._wep
 	local state = self._state
 
-	local parent = TOOL.elementTableProperties[elementTableName].defParent
+	local parent = TOOL.elementTables[elementTableName].defParent
 	local parEnt = wep[parent]
 	local out = table.Copy(source)
 
@@ -1947,7 +1944,7 @@ function PB:run()
 	self:_addSectionNameEntry()
 	self:_addSectionModelEntry()
 
-	for _,tableName in pairs(self.elementTables) do
+	for tableName,_ in pairs(self.elementTables) do
 		self:_addSectionETMark(tableName)
 	end
 
@@ -2174,7 +2171,7 @@ function PB:run()
 	local order = state.export.order or {}
 
 	if table.Count(order) < 1 then
-		for _,tableName in pairs(self.elementTables) do
+		for tableName,_ in pairs(self.elementTables) do
 			if !wep[tableName] then
 				continue
 			end
