@@ -585,13 +585,21 @@ function PB:_addSectionSubElementSelector(panel, wep, state)
 
 	local backgroundPanel = vgui.Create("DPanel", panel)
 
+		local function makeChoice(index)
+			return string.format(
+				"[%s] - %s",
+				tostring(index),
+				string.GetFileFromFilename(data.models[index].model)
+			)
+		end
+
 		local box = vgui.Create("DComboBox", backgroundPanel)
 		box:Dock(FILL)
 		box:DockMargin(8,0,8,8)
-		box:SetValue(state.edit.subElementIndex)
+		box:SetValue(makeChoice(state.edit.subElementIndex))
 
-		for k,_ in pairs(table.GetKeys(data.models)) do
-			box:AddChoice(tostring(k), k)
+		for k,_ in pairs(data.models) do
+			box:AddChoice(makeChoice(k), k)
 		end
 
 		function box:OnSelect(_, _, data)
