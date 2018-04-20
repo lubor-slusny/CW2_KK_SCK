@@ -1566,6 +1566,10 @@ function PB:_getAttSelection()
 	local parent = self:_getParentEnt()
 	local out
 
+	if data.models then
+		data = data.models[state.edit.subElementIndex]
+	end
+
 	if state.edit.POASelect:GetSelectedLine() == 1 then
 		out = {}
 		out.value = data.bone or "-select bone-"
