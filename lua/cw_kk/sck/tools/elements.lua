@@ -2051,11 +2051,7 @@ PB.quickSelects = {
 	end,
 }
 
-function PB:_addHeader()
-	local panel = self._panel
-	local wep = self._wep
-	local state = self._state
-
+function PB:_addHeader(panel, wep, state)
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	panel:AddItem(backgroundPanel)
 
@@ -2082,11 +2078,7 @@ function PB:_addHeader()
 	backgroundPanel:SizeToContents()
 end
 
-function PB:_addSectionQuickSelect()
-	local panel = self._panel
-	local wep = self._wep
-	local state = self._state
-
+function PB:_addSectionQuickSelect(panel, wep, state)
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	panel:AddItem(backgroundPanel)
 
@@ -2112,11 +2104,13 @@ function PB:_addSectionQuickSelect()
 		function listView:SortByColumn(i)
 			local update = PB.quickSelects[i]
 
-			-- for _,cboxes in pairs(state.export.cboxes) do
-				-- for _,cbox in pairs(cboxes) do
-					-- update(cbox)
-				-- end
-			-- end
+			for _,cboxes in pairs(state.export.cboxes) do
+				for _,cbox in pairs(cboxes) do
+					if IsValid(cbox) then
+						update(cbox)
+					end
+				end
+			end
 		end
 
 		function listView:OnRequestResize(val) end
@@ -2126,14 +2120,7 @@ function PB:_addSectionQuickSelect()
 	backgroundPanel:SizeToContents()
 end
 
-function PB:mainReceiver(tableOfDroppedPanels, isDropped, menuIndex, mouseX, mouseY)
-	tableOfDroppedPanels[1]:SetAlpha(isDropped and 255 or 0)
-
-	print()
-	PrintTable(tableOfDroppedPanels)
-end
-
-function PB:_addSectionHeader(tableName)
+function PB:_addSubSectionHeader(tableName)
 	local panel = self._panel
 	local wep = self._wep
 	local data = wep[tableName][elementName]
@@ -2152,7 +2139,15 @@ function PB:_addSectionHeader(tableName)
 	backgroundPanel:SizeToContents()
 end
 
-function PB:_addSectionItem(tableName, elementName)
+function PB:mainReceiver(tableOfDroppedPanels, isDropped, menuIndex, mouseX, mouseY)
+	-- tableOfDroppedPanels[1]:SetAlpha(isDropped and 255 or 0)
+
+	print()
+	print(self)
+	PrintTable(tableOfDroppedPanels)
+end
+
+function PB:_addSubSectionItem(tableName, elementName)
 	local panel = self._panel
 	local state = self._state
 	local order = state.export.order[tableName]
@@ -2168,7 +2163,10 @@ function PB:_addSectionItem(tableName, elementName)
 
 		cbox.Label:Dock(RIGHT)
 
-		-- table.insert(state.export.cboxes[tableName], cbox)
+		state.export.cboxes[tableName] = state.export.cboxes[tableName] or {}
+		state.export.cboxes[tableName][elementName] = cbox
+
+		if false then
 
 		local listView = vgui.Create("DListView", backgroundPanel)
 		listView:AddColumn("˄")
@@ -2208,20 +2206,40 @@ function PB:_addSectionItem(tableName, elementName)
 
 		function listView:OnRequestResize(val) end
 
+		end
+
 	backgroundPanel:Dock(TOP)
 	backgroundPanel:DockMargin(8,8,8,0)
 	backgroundPanel:SetBackgroundColor(self.darkerBackground)
 	backgroundPanel:SetPaintBackground(true)
 	backgroundPanel:SizeToContents()
 
-	-- backgroundPanel:SetMouseInputEnabled(true)
-	-- backgroundPanel:Droppable(tableName)
+	backgroundPanel:SetMouseInputEnabled(true)
+	backgroundPanel:Droppable(tableName)
 end
 
-function PB:_addSectionFinish()
-	local panel = self._panel
-	local state = self._state
+function PB:_addSectionElementTables(panel, wep, state)
+	for tableName,elementTable in pairs(state.export.order) do
+		local backgroundPanel = vgui.Create("DPanel", panel)
+		backgroundPanel:Dock(TOP)
+		backgroundPanel:SetPaintBackground(true)
+		backgroundPanel:SetTall((table.Count(elementTable) + 1) * 32)
+		backgroundPanel:Receiver(tableName, self.mainReceiver, {})
+		panel:AddItem(backgroundPanel)
 
+		self._panel = backgroundPanel
+
+		self:_addSubSectionHeader(tableName)
+
+		for i,elementName in pairs(elementTable) do
+			self:_addSubSectionItem(tableName, elementName)
+		end
+
+		self._panel = nil
+	end
+end
+
+function PB:_addSectionFinish(panel, wep, state)
 	local backgroundPanel = vgui.Create("DPanel", panel)
 	panel:AddItem(backgroundPanel)
 
@@ -2267,30 +2285,12 @@ function PB:run()
 	end
 
 	state.export.order = order
+	state.export.cboxes = state.export.cboxes or {}
 
-	self:_addHeader()
-	self:_addSectionQuickSelect()
-
-	for tableName,elementTable in pairs(order) do
-		local backgroundPanel = vgui.Create("DPanel", panel)
-		backgroundPanel:Dock(TOP)
-		backgroundPanel:SetPaintBackground(true)
-		backgroundPanel:SetTall((table.Count(elementTable) + 1) * 32)
-		-- backgroundPanel:Receiver(tableName, self.mainReceiver, {})
-		panel:AddItem(backgroundPanel)
-
-		self._panel = backgroundPanel
-
-		self:_addSectionHeader(tableName)
-
-		for i,elementName in pairs(elementTable) do
-			self:_addSectionItem(tableName, elementName)
-		end
-
-		self._panel = nil
-	end
-
-	self:_addSectionFinish()
+	self:_addHeader(panel, wep, state)
+	self:_addSectionQuickSelect(panel, wep, state)
+	self:_addSectionElementTables(panel, wep, state)
+	self:_addSectionFinish(panel, wep, state)
 end
 
 TOOL:addPanelBuilder(PB)
