@@ -114,7 +114,7 @@ function TOOL:_generateExamples()
 
 	local elementsTool = SCK:GetTool("elements")
 
-	for elementTable,elementTableProperties in pairs(elementsTool.elementTableProperties) do
+	for elementTable,elementTableProperties in pairs(elementsTool.elementTables) do
 		addModel(wep[elementTableProperties.defParent])
 
 		if not wep[elementTable] then
