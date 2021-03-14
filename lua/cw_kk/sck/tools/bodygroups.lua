@@ -20,9 +20,9 @@ function TOOL:_loadEnts()
 	end
 
 	local ply = LocalPlayer()
-	if !IsValid(ply) then return end
+	if not IsValid(ply) then return end
 	local wep = ply:GetActiveWeapon()
-	if !IsValid(wep) then return end
+	if not IsValid(wep) then return end
 
 	self._ents[1].ent = ply:GetViewModel()
 	self._ents[2].ent = ply:GetHands()
@@ -35,7 +35,7 @@ function TOOL:_loadEnts()
 			ply:GetViewModel()
 
 		self._ents[2].ent =
-			((!wep:IsScripted() or wep.UseHands) and ply:GetHands()) or
+			((not wep:IsScripted() or wep.UseHands) and ply:GetHands()) or
 			wep.CW_KK_HANDS or
 			wep.CW_HANDS_VM
 
@@ -228,7 +228,7 @@ end
 function TOOL:_updatePanel()
 	local panel = self._panel
 
-	if !IsValid(panel) then return end
+	if not IsValid(panel) then return end
 
 	panel:ClearControls()
 
@@ -236,23 +236,23 @@ function TOOL:_updatePanel()
 
 	self:_loadEnts()
 
-	for _,entTab in pairs(self._ents) do
+	table.ForEach(self._ents, function(_,entTab)
 		local ent = entTab.ent
 
 		if not IsValid(ent) then
-			continue
+			return
 		end
 
 		if self:_addSectionHeader(entTab) then
-			continue
+			return
 		end
 
 		if self:_addSectionSkinSlider(entTab) then
-			continue
+			return
 		end
 
 		if self:_addSectionBodygroupsHeader(entTab) then
-			continue
+			return
 		end
 
 		local bgCount = ent:GetNumBodyGroups()
@@ -260,7 +260,7 @@ function TOOL:_updatePanel()
 		for i = 0, bgCount - 1 do
 			self:_addSectionBodygroups(entTab, i)
 		end
-	end
+	end)
 
 	self:_updateSliders()
 end

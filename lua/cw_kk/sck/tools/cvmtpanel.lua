@@ -340,7 +340,7 @@ TOOL._colAnimButtonClick = Color(0,0,255,25)
 function TOOL:_updatePanelSectionAnimList()
 	local panel = self._animListSectionPanel
 
-	if !IsValid(panel) then return end
+	if not IsValid(panel) then return end
 
 	for _,v in pairs(panel:GetChildren()) do
 		v:Remove()
@@ -351,8 +351,8 @@ function TOOL:_updatePanelSectionAnimList()
 
 	for i = 0, vm:GetSequenceCount() - 1 do
 		local txt = vm:GetSequenceName(i)
-		local hasSound = (wep.Sounds != nil) and (wep.Sounds[txt] != nil)
-		local nameOk = string.find(string.lower(txt), string.lower(self._cvarCurFilter:GetString())) != nil
+		local hasSound = (wep.Sounds ~= nil) and (wep.Sounds[txt] ~= nil)
+		local nameOk = string.find(string.lower(txt), string.lower(self._cvarCurFilter:GetString())) ~= nil
 		local soundOk = (self._iSoundFilter == 1) or ((hasSound) == (self._iSoundFilter == 2))
 
 		if nameOk and soundOk then
@@ -431,7 +431,7 @@ function TOOL:_updatePanel()
 	local panel = self._panel
 	local wep = self._wep
 
-	if !IsValid(panel) then return end
+	if not IsValid(panel) then return end
 
 	panel:ClearControls()
 
@@ -439,7 +439,7 @@ function TOOL:_updatePanel()
 	self:_addSectionTickBoxes()
 	self:_addSectionCycleSlider()
 
-	if !IsValid(wep) or !self:_getWepSetup().ok then
+	if not IsValid(wep) or not self:_getWepSetup().ok then
 		return
 	end
 

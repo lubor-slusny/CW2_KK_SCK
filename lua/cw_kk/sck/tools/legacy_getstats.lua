@@ -1,6 +1,6 @@
 AddCSLuaFile()
 
-if not CustomizableWeaponry_KK.HOME then return end // layZ to make original stats
+if not CustomizableWeaponry_KK.HOME then return end -- layZ to make original stats
 
 local PANEL
 local WEAPON
@@ -23,11 +23,11 @@ SWEP.BipodRecoilModifier = %s
 ]]
 
 local function updatePanel()
-	if !IsValid(PANEL) then return end
+	if not IsValid(PANEL) then return end
 
 	PANEL:ClearControls()
 
-	if !IsValid(WEAPON) or !WEAPON.CW20Weapon then return end
+	if not IsValid(WEAPON) or not wEAPON.CW20Weapon then return end
 
 	local butt
 	butt = vgui.Create("DButton", PANEL)
@@ -77,7 +77,7 @@ local _LAST_SETUP
 local function think()
 	WEAPON = LocalPlayer():GetActiveWeapon()
 
-	if _LAST_SETUP != WEAPON then
+	if _LAST_SETUP ~= WEAPON then
 		updatePanel()
 	end
 

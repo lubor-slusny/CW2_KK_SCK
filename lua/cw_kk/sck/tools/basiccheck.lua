@@ -32,7 +32,7 @@ function TOOL:_addSectionHeader()
 	local left = string.upper(wep:GetClass())
 	self:AddHeaderSimpleLR(panel, left)
 
-	local VMExists = wep.CW_VM:GetModel() != "models/error.mdl"
+	local VMExists = wep.CW_VM:GetModel() ~= "models/error.mdl"
 
 	local label = panel:AddControl("Label", {Text = wep.ViewModel})
 	label:DockMargin(8,0,8,0)
@@ -154,9 +154,9 @@ function TOOL:_addSectionInvalidSoundtables()
 	local unreachable = {}
 	local unreachableCount = 0
 
-	for k,_ in pairs(wep.Sounds) do
+	table.ForEach(wep.Sounds, function(k,_)
 		if k == "BaseClass" then
-			continue
+			return
 		end
 
 		local keyFoundInAnimTable = false
@@ -174,13 +174,13 @@ function TOOL:_addSectionInvalidSoundtables()
 			if keyFoundInAnimTable then break end
 		end
 
-		local exists = (vm:LookupSequence(k) != -1)
+		local exists = (vm:LookupSequence(k) ~= -1)
 
-		if !(keyFoundInAnimTable and exists) then
+		if not (keyFoundInAnimTable and exists) then
 			table.insert(unreachable, {name = k, exists = exists})
 			unreachableCount = unreachableCount + 1
 		end
-	end
+	end)
 
 	if unreachableCount > 0 then
 		local left = "Unnecessary soudscripts (" .. unreachableCount .. "):"
@@ -203,16 +203,16 @@ function TOOL:_updatePanel()
 	local panel = self._panel
 	local wep = self._wep
 
-	if !IsValid(panel) then return end
+	if not IsValid(panel) then return end
 
 	panel:ClearControls()
 
-	if !IsValid(wep) then
+	if not IsValid(wep) then
 		self:ThrowNewInvalidWeapon()
 		return
 	end
 
-	if !wep.CW20Weapon then
+	if not wep.CW20Weapon then
 		self:ThrowNewNotCW2Weapon()
 		return
 	end

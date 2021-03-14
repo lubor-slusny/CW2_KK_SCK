@@ -9,16 +9,16 @@ function TOOL:_updatePanel()
 	local panel = self._panel
 	local wep = self._wep
 
-	if !IsValid(panel) then return end
+	if not IsValid(panel) then return end
 
 	panel:ClearControls()
 
-	if !IsValid(wep) then
+	if not IsValid(wep) then
 		self:ThrowNewInvalidWeapon()
 		return
 	end
 
-	if !wep.CW20Weapon then
+	if not wep.CW20Weapon then
 		self:ThrowNewNotCW2Weapon()
 		return
 	end

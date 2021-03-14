@@ -1,6 +1,6 @@
 AddCSLuaFile()
 
-// tool
+-- tool
 
 local TOOL = {}
 
@@ -41,7 +41,7 @@ function TOOL:_addSectionWipeReload()
 		listView.OnRequestResize = function() end
 
 		function listView:SortByColumn(i)
-			// wipe
+			-- wipe
 			if (i == 1) then
 				for _,slider in pairs(TOOL._sliders) do
 					slider:SetValue(0)
@@ -50,7 +50,7 @@ function TOOL:_addSectionWipeReload()
 				return
 			end
 
-			// reload
+			-- reload
 			if wepStored then
 				for _,suffix in pairs(TOOL.suffixes) do
 					local key = TOOL.prefix .. suffix
@@ -232,16 +232,16 @@ function TOOL:_updatePanel()
 	local panel = self._panel
 	local wep = self._wep
 
-	if !IsValid(panel) then return end
+	if not IsValid(panel) then return end
 
 	panel:ClearControls()
 
-	if !IsValid(wep) then
+	if not IsValid(wep) then
 		self:ThrowNewInvalidWeapon()
 		return
 	end
 
-	if !wep.CW20Weapon then
+	if not wep.CW20Weapon then
 		self:ThrowNewNotCW2Weapon()
 		return
 	end
@@ -282,7 +282,7 @@ CustomizableWeaponry_KK.sck:AddTool(TOOL)
 
 TOOL:_updatePanel()
 
-// some globals
+-- some globals
 
 if CLIENT then
 	local cvPB = CreateClientConVar("_cw_kk_pause_blend", 0, false, false)
@@ -302,19 +302,19 @@ if CLIENT then
 				wep.BlendAng = Vector(wep[TOOL.prefix .. "Ang"])
 			end
 
-			if !wep.CW20Weapon then return end
+			if not wep.CW20Weapon then return end
 
 			if cvPB:GetInt() == 1 then
 				origVMMSs[wep] = origVMMSs[wep] or wep[attribute]
 				wep[attribute] = overrideValue
 			else
-				for wep,val in pairs(origVMMSs) do
-					if !IsValid(wep) then
-						continue
+				table.ForEach(origVMMSs, function(wep,val)
+					if not IsValid(wep) then
+						return
 					end
 
 					wep[attribute] = val
-				end
+				end)
 
 				origVMMSs = {}
 			end

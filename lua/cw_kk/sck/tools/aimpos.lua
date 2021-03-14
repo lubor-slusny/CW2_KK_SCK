@@ -1,8 +1,8 @@
 AddCSLuaFile()
 
-////////////
-// LEGACY //
-////////////
+------------
+-- LEGACY --
+------------
 
 if game.SinglePlayer() then
 	local cvXH = CreateClientConVar("_cw_kk_gm_xhair", 0, false, false)
@@ -14,7 +14,7 @@ if game.SinglePlayer() then
 		ply = LocalPlayer()
 		wep = ply:GetActiveWeapon()
 
-		if !wep.CW20Weapon then return end
+		if not wep.CW20Weapon then return end
 
 		wep.DrawCrosshair = cvXH:GetInt() == 1
 	end)
@@ -22,7 +22,7 @@ if game.SinglePlayer() then
 	local _ADS_LAST, cur
 	hook.Add("Think", "_cw_kk_sck_lock_ads_think", function()
 		cur = cvLA:GetInt()
-		if cur != _ADS_LAST and _ADS_LAST != nil then
+		if cur ~= _ADS_LAST and _ADS_LAST ~= nil then
 			if cur == 0 then
 				RunConsoleCommand("-attack2")
 			else
@@ -33,9 +33,9 @@ if game.SinglePlayer() then
 	end)
 end
 
-////////////
-//   V5   //
-////////////
+------------
+--   V5   --
+------------
 
 CustomizableWeaponry.originalValue:add("AimSwayIntensity", false, false)
 
@@ -57,7 +57,7 @@ function TOOL:Initialize()
 		local secondary = {}
 		local grenade = {}
 
-		for _,att in pairs(CustomizableWeaponry.registeredAttachments) do
+		table.ForEach(CustomizableWeaponry.registeredAttachments, function(_, att)
 			local attInfo = {}
 			local subCache
 
@@ -69,7 +69,7 @@ function TOOL:Initialize()
 				attInfo.prefix = "M203"
 				subCache = grenade
 			else
-				continue
+				return
 			end
 
 			attInfo.name = att.name
@@ -80,7 +80,7 @@ function TOOL:Initialize()
 				or "Aim"
 
 			table.insert(subCache, attInfo)
-		end
+		end)
 
 		self._relevantAttsCache = {}
 		self._relevantAttsCache.secondary = secondary
@@ -341,7 +341,7 @@ function TOOL:_addSectionWipeReload()
 		function listView:SortByColumn(i)
 			TOOL:_forceCVarSettings()
 
-			// wipe
+			-- wipe
 			if (i == 1) then
 				for _,slider in pairs(TOOL._sightSliders) do
 					slider:SetValue(0)
@@ -350,7 +350,7 @@ function TOOL:_addSectionWipeReload()
 				return
 			end
 
-			// reload
+			-- reload
 			if wepStored then
 				local prefix = att.prefix
 				local suffix = TOOL._suffix
@@ -554,7 +554,7 @@ end
 function TOOL:_finalizeBackupCode(code)
 	local wep = self._wep
 
-	if !wep.BackupSights then
+	if not wep.BackupSights then
 		code = string.format(
 			"\n	SWEP.BackupSights = {%s	}\n",
 			code
@@ -703,13 +703,13 @@ function TOOL:_addSectionExportButts()
 		listView.OnRequestResize = function() end
 
 		function listView:SortByColumn(i)
-			// normal
+			-- normal
 			if (i == 1) then
 				SetClipboardText(TOOL:_exportAllNormal())
 				return
 			end
 
-			// backup
+			-- backup
 			local code = TOOL:_exportAllBackup()
 			SetClipboardText(TOOL:_finalizeBackupCode(code))
 		end
@@ -833,16 +833,16 @@ function TOOL:_updatePanel()
 	local panel = self._panel
 	local wep = self._wep
 
-	if !IsValid(panel) then return end
+	if not IsValid(panel) then return end
 
 	panel:ClearControls()
 
-	if !IsValid(wep) then
+	if not IsValid(wep) then
 		self:ThrowNewInvalidWeapon()
 		return
 	end
 
-	if !wep.CW20Weapon then
+	if not wep.CW20Weapon then
 		self:ThrowNewNotCW2Weapon()
 		return
 	end

@@ -1,6 +1,6 @@
 local BASE = CustomizableWeaponry_KK.sck
 
-/*
+--[[
 TOOL table structure
 	[mandatory]
 	Name = "TOOL_NAME"
@@ -27,7 +27,7 @@ TOOL table structure
 	ThrowNewNotImplemented()
 	ThrowNewInvalidWeapon()
 	AddHeaderSimpleLR(parentPanel, textLeft, textRight)
-*/
+]]
 
 BASE._toolMeta = {}
 local toolMeta = BASE._toolMeta
@@ -59,7 +59,7 @@ end
 function toolMeta:LoadSliderZoom(slider)
 	initSliderStorage(self, slider)
 
-	slider.Wang:SetDecimals(4) // ???
+	slider.Wang:SetDecimals(4) -- ???
 	slider.Wang:SetZoom(self._storedSliders[slider._cwkksckid]:GetFloat())
 end
 
@@ -261,13 +261,13 @@ function BASE:_OnWeaponGLStateChanged()
 end
 
 function BASE:Think()
-	if !self._spawnMenuPopulated then return end
+	if not self._spawnMenuPopulated then return end
 
 	local ply = LocalPlayer()
-	if !IsValid(ply) then return end
+	if not IsValid(ply) then return end
 
 	local wep = ply:GetActiveWeapon()
-	if wep != self._lastWep then
+	if wep ~= self._lastWep then
 		self:_OnWeaponChanged(wep, self._lastWep)
 	else
 		local curSetup = ""
@@ -290,17 +290,17 @@ function BASE:Think()
 			end
 		end
 
-		if curSetup != self._lastSetup then
+		if curSetup ~= self._lastSetup then
 			self:_OnWeaponSetupChanged()
 		end
 		self._lastSetup = curSetup
 
-		if curClip != self._lastClip then
+		if curClip ~= self._lastClip then
 			self:_OnWeaponClipChanged()
 		end
 		self._lastClip = curClip
 
-		if curGLState != self._lastGLState then
+		if curGLState ~= self._lastGLState then
 			self:_OnWeaponGLStateChanged()
 		end
 		self._lastGLState = curGLState

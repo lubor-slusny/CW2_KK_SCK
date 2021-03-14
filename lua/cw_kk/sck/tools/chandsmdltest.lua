@@ -28,9 +28,9 @@ TOOL.insRigs = {
 
 function TOOL:_apply()
 	local ply = LocalPlayer()
-	if !IsValid(ply) then return end
+	if not IsValid(ply) then return end
 	local ent = ply:GetHands()
-	if !IsValid(ent) then return end
+	if not IsValid(ent) then return end
 
 	ent:SetModel(TOOL.model)
 end
@@ -40,7 +40,7 @@ local label, butt, box
 function TOOL:_updatePanel(panel)
 	local panel = self._panel
 
-	if !IsValid(panel) then return end
+	if not IsValid(panel) then return end
 
 	panel:ClearControls()
 
@@ -111,14 +111,14 @@ end
 function TOOL:Think()
 	local panel = self._panel
 
-	if !IsValid(panel) then return end
+	if not IsValid(panel) then return end
 
-	self._reApplyButt:SetEnabled(self.model != nil)
+	self._reApplyButt:SetEnabled(self.model ~= nil)
 
 	local ply = LocalPlayer()
-	if !IsValid(ply) then return end
+	if not IsValid(ply) then return end
 	local ent = ply:GetHands()
-	if !IsValid(ent) then return end
+	if not IsValid(ent) then return end
 
 	self._curMDLLabel:SetText(ent:GetModel())
 end

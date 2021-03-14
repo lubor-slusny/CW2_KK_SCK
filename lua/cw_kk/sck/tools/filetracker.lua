@@ -20,7 +20,7 @@ TOOL.exampleColors = {
 }
 
 TOOL.elementFuncs = {
-	AllowInput = function() return true end, // allow? Yes - means no... kek
+	AllowInput = function() return true end, -- allow? Yes - means no... kek
 	OnGetFocus = function(self) SetClipboardText(self:GetValue()) end,
 	DoClick = function(self) SetClipboardText(self:GetText()) end,
 }
@@ -78,15 +78,15 @@ function TOOL:_generateExamples()
 		return
 	end
 
-	-- if !IsValid(wep) then
+	-- if not IsValid(wep) then
 		-- return
 	-- end
 
-	-- if !wep.CW20Weapon then
+	-- if not wep.CW20Weapon then
 		-- return
 	-- end
 
-	-- if !wep.KKINS2Wep then
+	-- if not wep.KKINS2Wep then
 		-- return
 	-- end
 
@@ -114,37 +114,37 @@ function TOOL:_generateExamples()
 
 	local elementsTool = SCK:GetTool("elements")
 
-	for elementTable,elementTableProperties in pairs(elementsTool.elementTables) do
+	table.ForEach(elementsTool.elementTables, function(elementTable,elementTableProperties)
 		addModel(wep[elementTableProperties.defParent])
 
 		if not wep[elementTable] then
-			continue
+			return
 		end
 
-		for elementName,elementProperties in pairs(wep[elementTable]) do
+		table.ForEach(wep[elementTable], function(elementName,elementProperties)
 			if not elementProperties.active then
-				continue
+				return
 			end
 
 			addModel(elementProperties.ent)
-		end
-	end
+		end)
+	end)
 
-	for _,v in pairs({"", "1", "2", "3"}) do
+	table.ForEach({"", "1", "2", "3"}, function(_,v)
 		if not wep["Shell" .. v] then
-			continue
+			return
 		end
 
 		local shellData = CustomizableWeaponry.shells:getShell(wep["Shell" .. v])
 
 		if not shellData then
-			continue
+			return
 		end
 
 		local ent = ClientsideModel(shellData.m, RENDERGROUP_BOTH)
 		addModel(ent)
 		SafeRemoveEntity(ent)
-	end
+	end)
 
 	for _,entName in pairs(self.moreEnts) do
 		addModel(wep[entName])
@@ -244,7 +244,7 @@ function TOOL:_addSectionSourceNotFound()
 
 	local foundAtAll = file.Exists(self._lastFile, "GAME")
 
-	// if not found at all, end here
+	-- if not found at all, end here
 	if not foundAtAll then
 		self:AddHeaderSimpleLR(panel, "File not found at all.")
 		return true
@@ -254,9 +254,9 @@ end
 function TOOL:_addSectionSourceGMFolder()
 	local panel = self._panel
 
-	local foundInGMod = file.Exists(self._lastFile, "MOD") // doesnt ignore mount.cfg mounting, GG WP
+	local foundInGMod = file.Exists(self._lastFile, "MOD") -- doesnt ignore mount.cfg mounting, GG WP
 
-	// if found in gmod folder, no need to check all addons, right?
+	-- if found in gmod folder, no need to check all addons, right?
 	if not foundInGMod then
 		self:AddHeaderSimpleLR(panel, "File loaded from Garry`s Mod main folder.")
 		return true
@@ -266,18 +266,20 @@ end
 function TOOL:_addSectionSourceWorkshop()
 	local panel = self._panel
 
-	// check mounted workshop addons
+	-- check mounted workshop addons
 	local sources = {}
 
-	for _,addon in pairs(engine.GetAddons()) do
-		if !addon.mounted then continue end
+	table.ForEach(engine.GetAddons(), function(_,addon)
+		if not addon.mounted then
+			return
+		end
 
 		local found = file.Find(self._lastFile, addon.title)
 
 		if table.Count(found) > 0 then
 			sources[addon.wsid] = addon.title
 		end
-	end
+	end)
 
 	if table.Count(sources) > 0 then
 		self:AddHeaderSimpleLR(panel, "File found in Workshop addon/-s:", "[LMB - COPY]")
@@ -327,7 +329,7 @@ function TOOL:_addSectionSourceUnclear()
 
 	self:AddHeaderSimpleLR(panel, "Source unclear, can be any of:")
 
-	// if it aint anywhere else
+	-- if it aint anywhere else
 	local label = vgui.Create("DLabel", panel)
 	label:SetText("- legacy addons")
 	label:SetDark(true)
@@ -355,7 +357,7 @@ end
 function TOOL:_updatePanel()
 	local panel = self._panel
 
-	if !IsValid(panel) then return end
+	if not IsValid(panel) then return end
 
 	self:_generateExamples()
 
@@ -382,9 +384,9 @@ end
 
 function TOOL:OnWeaponChanged(new, old)
 	self._extraExamples =
-		IsValid(wep) &&
-		wep.CW20Weapon &&
-		wep.KKINS2Wep &&
+		IsValid(wep) and
+		wep.CW20Weapon and
+		wep.KKINS2Wep and
 		self._extraExamples
 
 	self._wep = new

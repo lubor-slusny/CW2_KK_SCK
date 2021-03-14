@@ -1,6 +1,6 @@
 AddCSLuaFile()
 
-if true then return end // layZ to type {} over and over again
+if true then return end -- layZ to type {} over and over again
 
 local PANEL
 local WEAPON
@@ -11,7 +11,7 @@ local function makeStuff()
 	for animName, _ in pairs(WEAPON.reloadProgressAnimsRaw) do
 		local seqName = WEAPON.Animations[animName]
 
-		if not seqName or !isstring(seqName) then
+		if not seqName or not isstring(seqName) then
 			continue
 		end
 
@@ -26,11 +26,11 @@ local function makeStuff()
 end
 
 local function updatePanel()
-	if !IsValid(PANEL) then return end
+	if not IsValid(PANEL) then return end
 
 	PANEL:ClearControls()
 
-	if !IsValid(WEAPON) or !WEAPON.CW20Weapon then return end
+	if not IsValid(WEAPON) or not wEAPON.CW20Weapon then return end
 
 	local butt
 	butt = vgui.Create("DButton", PANEL)
@@ -49,7 +49,7 @@ local _LAST_SETUP
 local function think()
 	WEAPON = LocalPlayer():GetActiveWeapon()
 
-	if _LAST_SETUP != WEAPON then
+	if _LAST_SETUP ~= WEAPON then
 		updatePanel()
 	end
 

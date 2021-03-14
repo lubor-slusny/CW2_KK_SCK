@@ -128,7 +128,7 @@ function TOOL:_addHeaderEName(tableName, elementName, reverse)
 	panel:AddItem(backgroundPanel)
 
 		local DoClick = function()
-			if !reverse then
+			if not reverse then
 				TOOL._state.edit.tableName = tableName
 				TOOL._state.edit.elementName = elementName
 				TOOL:_setBuilder("edit")
@@ -261,7 +261,7 @@ local function adjustmentToString(adj)
 	return strFormat(
 		"{%saxis = \"%s\", min = %s, max = %s, inverse = %s, inverseOffsetCalc = %s}",
 
-			adj.index != nil and
+			adj.index ~= nil and
 				strFormat(formatIndex, tostring(adj.index)) or "",
 
 			tostring(adj.axis),
@@ -289,13 +289,13 @@ function TOOL:_subElementToString(data, wrapAround)
 			self:AngleToString(data.angle),
 			self:VectorToString(data.size),
 
-			data.bone != nil and
+			data.bone ~= nil and
 				strFormat(formatBone, stringToString(data.bone)) or formatBlank,
 
-			data.attachment != nil and
+			data.attachment ~= nil and
 				strFormat(formatAttachment, stringToString(data.attachment)) or formatBlank,
 
-			data.merge != nil and
+			data.merge ~= nil and
 				strFormat(formatMerge, tostring(data.merge)) or formatBlank
 	)
 
@@ -333,20 +333,20 @@ function TOOL:_getElementCode(tableName, elementName)
 		formatMain,
 			elementName,
 			codeMain,
-			data.adjustment != nil and strFormat(formatAdjustment, adjustmentToString(data.adjustment)) or ""
+			data.adjustment ~= nil and strFormat(formatAdjustment, adjustmentToString(data.adjustment)) or ""
 	)
 end
 
-///////////////
-// Clipboard //
-///////////////
+---------------
+-- Clipboard --
+---------------
 
 TOOL.clipboard = {}
 CB = TOOL.clipboard
 
 function CB:copy(key, sourceData, sourceWep)
 	self._data = {}
-	pbEdit = TOOL._panelBuilders["edit"] // so nasty...
+	pbEdit = TOOL._panelBuilders["edit"] -- so nasty...
 	for property,clone in pairs(pbEdit.restoreProperties) do
 		self._data[property] = clone(sourceData[property])
 	end
@@ -374,9 +374,9 @@ function CB:empty()
 	return self._meta == nil
 end
 
-//////////////////
-// Element List //
-//////////////////
+------------------
+-- Element List --
+------------------
 
 local PB = {}
 PB.Name = "list"
@@ -398,13 +398,13 @@ function PB:run()
 
 		local sortKeys = {}
 		for elementName,element in pairs(wep[tableName]) do
-			// rest
+			-- rest
 			local priority = "c_"
 
-			// active elements
+			-- active elements
 			priority = element.active and "b_" or priority
 
-			// elements of active attachment
+			-- elements of active attachment
 			priority = aa[elementName] and "a_" or priority
 
 			sortKeys[priority .. tostring(elementName)] = elementName
@@ -422,9 +422,9 @@ end
 
 TOOL:addPanelBuilder(PB)
 
-//////////////////
-// Element Edit //
-//////////////////
+------------------
+-- Element Edit --
+------------------
 
 local PB = {}
 PB.Name = "edit"
@@ -565,8 +565,8 @@ function PB:_addSectionActive(panel, wep, state)
 			PB:_updatePanel()
 		end
 
-		// TODO: RIGHT: add subelement button
-			// TODO: convert func single->multi
+		-- TODO: RIGHT: add subelement button
+			-- TODO: convert func single->multi
 
 	backgroundPanel:Dock(TOP)
 	backgroundPanel:DockMargin(8,0,8,0)
@@ -758,7 +758,7 @@ function PB:_addSectionSelectAtt(panel, wep, state)
 
 	local selection = self:_getAttSelection()
 
-	if !selection then
+	if not selection then
 		return 0
 	end
 
@@ -893,7 +893,7 @@ function PB:_addSectionSizeUniform(panel, wep, state)
 		self:LoadSliderZoom(slider)
 
 		function slider:OnValueChanged(val)
-			if !state.edit.sizeSliders then
+			if not state.edit.sizeSliders then
 				return
 			end
 
@@ -967,13 +967,13 @@ function PB:_addSectionSizeSliders(panel, wep, state)
 end
 
 function PB:_addSectionSightAdjustment(panel, wep, state)
-	if !self.elementTables[state.edit.tableName].adjustable then
+	if not self.elementTables[state.edit.tableName].adjustable then
 		return 0
 	end
 
 	local data = state.edit.data
 
-	local long = data.adjustment != nil
+	local long = data.adjustment ~= nil
 	local tall = self:_sightAdjustmentHeader(long)
 
 	if long then
@@ -1296,7 +1296,7 @@ function PB:_addSectionBodygroups(panel, wep, state)
 end
 
 function PB:_addSectionMaterialEntry(panel, wep, state)
-	if !wep.KKINS2Wep then
+	if not wep.KKINS2Wep then
 		return 0
 	end
 
@@ -1335,7 +1335,7 @@ function PB:_addSectionMaterialEntry(panel, wep, state)
 end
 
 function PB:_addSectionParentEntry(panel, wep, state)
-	if !wep.KKINS2Wep then
+	if not wep.KKINS2Wep then
 		return 0
 	end
 
@@ -1374,7 +1374,7 @@ function PB:_addSectionParentEntry(panel, wep, state)
 end
 
 function PB:_addSectionNodraw(panel, wep, state)
-	if !wep.KKINS2Wep then
+	if not wep.KKINS2Wep then
 		return 0
 	end
 
@@ -1401,7 +1401,7 @@ function PB:_addSectionNodraw(panel, wep, state)
 end
 
 function PB:_addSectionHideVM(panel, wep, state)
-	if !wep.KKINS2Wep then
+	if not wep.KKINS2Wep then
 		return 0
 	end
 
@@ -1428,7 +1428,7 @@ function PB:_addSectionHideVM(panel, wep, state)
 end
 
 function PB:_addSectionLighting(panel, wep, state)
-	if !wep.KKINS2Wep then
+	if not wep.KKINS2Wep then
 		return 0
 	end
 
@@ -1455,7 +1455,7 @@ function PB:_addSectionLighting(panel, wep, state)
 end
 
 function PB:_addSectionUnknowns(panel, wep, state)
-	// TODO:
+	-- TODO:
 end
 
 function PB:_addSectionAnimated(panel, wep, state)
@@ -1516,7 +1516,7 @@ function PB:_addSectionRestore(panel, wep, state)
 		butt:Dock(FILL)
 
 		butt:SetText("Restore from weapon.lua")
-		butt:SetEnabled(stored != nil)
+		butt:SetEnabled(stored ~= nil)
 
 		function butt:DoClick()
 			PB:_restoreElement()
@@ -1666,7 +1666,7 @@ function PB:run()
 	self._panel = nil
 
 	for tableName,_ in pairs(self.elementTables) do
-		if tableName != state.edit.tableName and wep[tableName] and wep[tableName][state.edit.elementName] then
+		if tableName ~= state.edit.tableName and wep[tableName] and wep[tableName][state.edit.elementName] then
 			self:_addHeaderETName(tableName, state.edit.elementName)
 			self:_addHeaderEName(tableName, state.edit.elementName)
 		end
@@ -1677,9 +1677,9 @@ end
 
 TOOL:addPanelBuilder(PB)
 
-//////////////////
-// Element Make //
-//////////////////
+------------------
+-- Element Make --
+------------------
 
 local PB = {}
 PB.Name = "make"
@@ -1799,11 +1799,11 @@ function PB:_addSectionETMark(tableName, elementName)
 		self._targets = self._targets or {}
 		self._targets[cbox] = function(self)
 			local elementName = state.make.elementName
-			local exists = wep[tableName][elementName] != nil
-			local valid = elementName != ""
-			local can = (!exists) and valid
+			local exists = wep[tableName][elementName] ~= nil
+			local valid = elementName ~= ""
+			local can = (not exists) and valid
 
-			can = can or !PB.clipboard:empty()
+			can = can or not PB.clipboard:empty()
 
 			self:SetText(tableName .. (exists and " (already exists)" or ""))
 			self:SetChecked(can)
@@ -1850,7 +1850,7 @@ function PB:_addSectionButtPaste()
 		))
 
 		function butt:DoClick()
-			PB:_finishMaking(!cb:empty())
+			PB:_finishMaking(not cb:empty())
 		end
 
 		local butt = vgui.Create("DButton", backgroundPanel)
@@ -1902,7 +1902,7 @@ function PB:_updateCBoxes()
 end
 
 function PB:_updateButt()
-	if !IsValid(self._finisher) then
+	if not IsValid(self._finisher) then
 		return
 	end
 
@@ -1964,7 +1964,7 @@ function PB:_copyElementData(source, elementTableName)
 	local out = table.Copy(source)
 
 	if wep.KKINS2Wep then
-		if out.attachment != nil and parEnt:LookupAttachment(out.attachment) < 1 then
+		if out.attachment ~= nil and parEnt:LookupAttachment(out.attachment) < 1 then
 			out.attachment = parEnt:GetAttachments()[1] and parEnt:GetAttachments()[1].name
 		end
 	else
@@ -1972,7 +1972,7 @@ function PB:_copyElementData(source, elementTableName)
 		out.merge = nil
 	end
 
-	if out.bone != nil and parEnt:LookupBone(out.bone) == nil then
+	if out.bone ~= nil and parEnt:LookupBone(out.bone) == nil then
 		out.bone = parEnt:GetBoneName(1)
 	end
 
@@ -2011,7 +2011,7 @@ function PB:run()
 	state.make.elementName = state.make.elementName or "kk_was_here_lol"
 	state.make.model = state.make.model or "models/maxofs2d/cube_tool.mdl"
 
-	if !self.clipboard:empty() then
+	if not self.clipboard:empty() then
 		state.make.elementName = self.clipboard:getMeta().key
 		state.make.model = self.clipboard:getData().model
 	end
@@ -2030,9 +2030,9 @@ end
 
 TOOL:addPanelBuilder(PB)
 
-//////////////////
-// Export Thing //
-//////////////////
+------------------
+-- Export Thing --
+------------------
 
 local PB = {}
 PB.Name = "export"
@@ -2047,7 +2047,7 @@ PB.quickSelects = {
 	end,
 
 	function(self)
-		self:SetChecked(!self:GetChecked())
+		self:SetChecked(not self:GetChecked())
 	end,
 }
 
@@ -2171,8 +2171,8 @@ function PB:_addSubSectionItem(tableName, elementName)
 		local listView = vgui.Create("DListView", backgroundPanel)
 		listView:AddColumn("˄")
 		listView:AddColumn("˅")
-		listView:AddColumn("T") // listView:AddColumn("┳")
-		listView:AddColumn("B") // listView:AddColumn("┻")
+		listView:AddColumn("T") -- listView:AddColumn("┳")
+		listView:AddColumn("B") -- listView:AddColumn("┻")
 		listView:SetHeaderHeight(20)
 
 		listView:Dock(RIGHT)
@@ -2265,17 +2265,17 @@ function PB:run()
 	local order = state.export.order or {}
 
 	if table.Count(order) < 1 then
-		for tableName,_ in pairs(self.elementTables) do
-			if !wep[tableName] then
-				continue
+		table.ForEach(self.elementTables, function(tableName,_)
+			if not wep[tableName] then
+				return
 			end
 
 			if table.Count(wep[tableName]) < 1 then
-				continue
+				return
 			end
 
 			order[tableName] = {}
-		end
+		end)
 
 		for tableName,target in pairs(order) do
 			for elementName,_ in SortedPairs(wep[tableName]) do
@@ -2295,9 +2295,9 @@ end
 
 TOOL:addPanelBuilder(PB)
 
-/////////////////////
-// Session Manager //
-/////////////////////
+---------------------
+-- Session Manager --
+---------------------
 
 function TOOL:Initialize()
 	self._states = self._states or {}
@@ -2317,7 +2317,7 @@ function TOOL:_runBuilder()
 	local builderId = self._state.builderId
 	local builder = self._panelBuilders[builderId]
 
-	if !builder then
+	if not builder then
 		return
 	end
 
@@ -2339,16 +2339,16 @@ function TOOL:_updatePanel()
 	local panel = self._panel
 	local wep = self._wep
 
-	if !IsValid(panel) then return end
+	if not IsValid(panel) then return end
 
 	panel:ClearControls()
 
-	if !IsValid(wep) then
+	if not IsValid(wep) then
 		self:ThrowNewInvalidWeapon()
 		return
 	end
 
-	if !wep.CW20Weapon then
+	if not wep.CW20Weapon then
 		self:ThrowNewNotCW2Weapon()
 		return
 	end

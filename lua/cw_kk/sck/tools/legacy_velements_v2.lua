@@ -19,7 +19,7 @@ end
 
 TOOL.elementTables = {
 	["AttachmentModelsVM"] = {adjustable = true},
-	["AttachmentModelsWM"] = {adjustable = false}, // just so sightadjustment doesnt showup for WElements
+	["AttachmentModelsWM"] = {adjustable = false}, -- just so sightadjustment doesnt showup for WElements
 }
 
 TOOL.openTabs = TOOL.openTabs or {}
@@ -158,16 +158,16 @@ TOOL.knownElementDataKeys = {
 	["bodygroups"] = true,
 	["adjustment"] = true,
 
-	["attachment"] = true, // INS2 alternative to "bone"
-	["_attachment"] = true, // INS2 alternative to "_bone"
-	["merge"] = true, // INS2 bone merge
-	["material"] = true, // INS2 material override - same as in SCK/CW1
-	["nodraw"] = true, // deprecated part of INS2 stencil sights
-	["retSizeMult"] = true,	// INS2 stencil sight reticle size multiplier (since all sights come in 3+ sizes)
-	["hideVM"] = true, // hides CW_VM
-	["rLight"] = true, // recomputes lighting of velement
+	["attachment"] = true, -- INS2 alternative to "bone"
+	["_attachment"] = true, -- INS2 alternative to "_bone"
+	["merge"] = true, -- INS2 bone merge
+	["material"] = true, -- INS2 material override - same as in SCK/CW1
+	["nodraw"] = true, -- deprecated part of INS2 stencil sights
+	["retSizeMult"] = true,	-- INS2 stencil sight reticle size multiplier (since all sights come in 3+ sizes)
+	["hideVM"] = true, -- hides CW_VM
+	["rLight"] = true, -- recomputes lighting of velement
 
-	["ignoreKKBGO"] = true, // BGO3 crashes my game if combined with CSGO stat attachment proxies
+	["ignoreKKBGO"] = true, -- BGO3 crashes my game if combined with CSGO stat attachment proxies
 }
 
 TOOL.noExportElementDataKeys = {
@@ -177,10 +177,10 @@ TOOL.noExportElementDataKeys = {
 	["origPos"] = true,
 	["origAng"] = true,
 
-	["stencilEnt"] = true, // INS2 stencil sight ent
+	["stencilEnt"] = true, -- INS2 stencil sight ent
 
-	-- ["_kksck_curIndex"] = true, // index of element.models sub-table
-	-- ["_kksck_expanded"] = true, // element being shown in editor
+	-- ["_kksck_curIndex"] = true, -- index of element.models sub-table
+	-- ["_kksck_expanded"] = true, -- element being shown in editor
 }
 
 function TOOL:updatePanel()
@@ -411,7 +411,7 @@ function TOOL:updatePanel()
 				continue
 			end
 
-			if openTab.key == nil or openTab.t == t or (WEAPON[t][openTab.key] != nil) then
+			if openTab.key == nil or openTab.t == t or (WEAPON[t][openTab.key] ~= nil) then
 				local elementTableHeaderPanel = vgui.Create("DPanel", PANEL)
 
 					local label
@@ -654,20 +654,20 @@ function TOOL:updatePanel()
 									curData.merge = false
 									curData.attachment = nil
 									curData._attachment = nil
-									curData.bone = ent:GetBoneName(0) // fallback so drawAttachFunc doesnt freakout
+									curData.bone = ent:GetBoneName(0) -- fallback so drawAttachFunc doesnt freakout
 									curData._bone = nil
 								elseif val == 2 then
 									local att = ent:GetAttachments()[1]
 
 									if att then
 										curData.merge = false
-										curData.attachment = att.name // lets hope there is at least one compiled to parent model
+										curData.attachment = att.name -- lets hope there is at least one compiled to parent model
 										curData._attachment = nil
 										curData.bone = nil
 										curData._bone = nil
 									end
 								elseif val == 3 then
-									curData.merge = true // E.Z.
+									curData.merge = true -- E.Z.
 									curData.attachment = nil
 									curData._attachment = nil
 									curData.bone = nil
@@ -755,7 +755,7 @@ function TOOL:updatePanel()
 							slider:SetText("pos.x")
 							slider:SetDark(true)
 							function slider:OnValueChanged(val)
-								curData.pos = Vector(curData.pos) // garbage gen, but doesnt mess up stored weapon classes
+								curData.pos = Vector(curData.pos) -- garbage gen, but doesnt mess up stored weapon classes
 								curData.pos.x = val
 
 								TOOL:storeSliderZoom(self)
@@ -1090,8 +1090,8 @@ function TOOL:updatePanel()
 
 										data.adjustment.axis = xa[i]
 
-										// PrintTable(self:GetTable())
-										// PrintTable(self.Columns[i]:GetTable())
+										-- PrintTable(self:GetTable())
+										-- PrintTable(self.Columns[i]:GetTable())
 
 										for k,v in pairs(self.Columns) do
 											if k == i then
@@ -1164,9 +1164,9 @@ function TOOL:updatePanel()
 
 								local settAdjustmentInvPanel = vgui.Create("DPanel", elementSettingPanel)
 
-									// inverse
-									// inverseOffsetCalc
-									// index
+									-- inverse
+									-- inverseOffsetCalc
+									-- index
 
 									local settAdjustmentInvCtrlPanel = vgui.Create("DPanel", settAdjustmentInvPanel)
 
@@ -1583,7 +1583,7 @@ function TOOL:updatePanel()
 
 								rest = ""
 
-								// adjustment
+								-- adjustment
 								if data.adjustment then
 									rest = rest .. string.format(
 										", adjustment = {axis = \"%s\", min = %s, max = %s, inverse = %s, inverseOffsetCalc = %s}",
@@ -1595,18 +1595,18 @@ function TOOL:updatePanel()
 									)
 								end
 
-								// material
+								-- material
 								if data.material then
 									rest = rest .. ", material = \"" .. data.material .. "\""
 								end
 
-								// bodygroups
+								-- bodygroups
 								local bgsFormated = ", bodygroups = {"
 								local bgs
 
 								for k = 0, data.ent:GetNumBodyGroups() - 1 do
 									local v = data.ent:GetBodygroup(k)
-									if v != 0 then
+									if v ~= 0 then
 										bgs = true
 										bgsFormated = bgsFormated .. "[" .. k .. "] = " .. v .. ","
 									end
@@ -1616,28 +1616,28 @@ function TOOL:updatePanel()
 									rest = rest .. bgsFormated .. "}"
 								end
 
-								// skin
+								-- skin
 								local skin = data.ent:GetSkin()
-								if skin != 0 then
+								if skin ~= 0 then
 									rest = rest .. ", skin = " .. skin
 								end
 
-								// nodraw
+								-- nodraw
 								if data.nodraw then
 									rest = rest .. ", nodraw = true"
 								end
 
-								// animated
+								-- animated
 								if data.animated then
 									rest = rest .. ", animated = true"
 								end
 
-								// hideVM
+								-- hideVM
 								if data.hideVM then
 									rest = rest .. ", hideVM = true"
 								end
 
-								// active by default
+								-- active by default
 								local origData = weapons.GetStored(WEAPON:GetClass())[t] and weapons.GetStored(WEAPON:GetClass())[t][key]
 								local activeByDef
 
@@ -1651,12 +1651,12 @@ function TOOL:updatePanel()
 									rest = rest .. ", active = true"
 								end
 
-								// pootit together
+								-- pootit together
 								out = string.format(
 									outputFormat,
 									key,
 									data.model,
-									data.rLight and ", rLight = true" or "", // rLight
+									data.rLight and ", rLight = true" or "", -- rLight
 									posFormated,
 									angFormated,
 									sizeFormated,
@@ -1665,7 +1665,7 @@ function TOOL:updatePanel()
 									rest
 								)
 
-								// out
+								-- out
 								SetClipboardText(out)
 							end
 
@@ -1728,13 +1728,13 @@ function TOOL:updatePanel()
 					-- elementSettingPanel:SetPaintBackground(false)
 					PANEL:AddItem(elementSettingPanel)
 
-				end // end if t == openTab.t and key == openTab.key then
+				end -- end if t == openTab.t and key == openTab.key then
 
-			end // end for key,data in SortedPairs(sortMeh) do
+			end -- end for key,data in SortedPairs(sortMeh) do
 
-		end // end for t,tProps in pairs(self.elementTables) do
+		end -- end for t,tProps in pairs(self.elementTables) do
 
-	end // end if IsValid(WEAPON) and WEAPON.CW20Weapon then
+	end -- end if IsValid(WEAPON) and WEAPON.CW20Weapon then
 
 	if IsValid(WEAPON) and WEAPON.CW20Weapon then
 		if not openTab.key and not addingNewElement then
@@ -1775,7 +1775,7 @@ function TOOL:think()
 		end
 	end
 
-	if curSetup != self._think_lastSetup then
+	if curSetup ~= self._think_lastSetup then
 		self:updatePanel()
 	end
 

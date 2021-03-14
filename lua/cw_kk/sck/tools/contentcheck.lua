@@ -25,7 +25,7 @@ function TOOL:_packLabelDockMargin(panel)
 	panel:DockMargin(8,0,8,0)
 end
 
-// individual mounts
+-- individual mounts
 
 function TOOL:_addLineBaseGame(panel)
 	local ok = self.icm({Folder = "weapons/baseGameContentOK"})
@@ -84,7 +84,7 @@ function TOOL:_addLineEXTPack(panel)
 	label:SetTextColor(ok and self.colOk or self.colNOk)
 end
 
-// combos
+-- combos
 
 function TOOL:_addSectionBase(panel)
 	local backgroundPanel = vgui.Create("DPanel", panel)
@@ -254,12 +254,12 @@ function TOOL:_addSectionExt(panel)
 	backgroundPanel:SizeToContents()
 end
 
-// panel
+-- panel
 
 function TOOL:_updatePanel()
 	local panel = self._panel
 
-	if !IsValid(panel) then return end
+	if not IsValid(panel) then return end
 
 	panel:ClearControls()
 

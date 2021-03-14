@@ -23,7 +23,7 @@ function BASE:Load()
 	local reload
 
 	if CLIENT then
-		reload = self._toolCache != nil
+		reload = self._toolCache ~= nil
 
 		self._toolCache = {}
 		self._lastWep = nil

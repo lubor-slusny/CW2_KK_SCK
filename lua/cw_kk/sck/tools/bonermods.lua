@@ -209,7 +209,7 @@ function TOOL:_addSectionSelectBone()
 
 		if self._activeWeps[wep].parents[wep.ForegripParent].filterBones then
 			for k,t in pairs(wep.ForegripOverridePos[wep.ForegripParent]) do
-				if (t.pos != v0) or (t.angle != a0) then
+				if (t.pos ~= v0) or (t.angle ~= a0) then
 					local i = wep.CW_VM:LookupBone(k) or -1
 					box:AddChoice(string.format("[%03d] %s", i, k), k)
 				end
@@ -275,7 +275,7 @@ function TOOL:_addSectionWipeReloadCurBone()
 		listView.OnRequestResize = function() end
 
 		function listView:SortByColumn(i)
-			// wipe
+			-- wipe
 			if (i == 1) then
 				for _,slider in pairs(TOOL._boneSliders) do
 					slider:SetValue(0)
@@ -284,7 +284,7 @@ function TOOL:_addSectionWipeReloadCurBone()
 				return
 			end
 
-			// reload
+			-- reload
 			TOOL:ThrowNewNotImplemented()
 		end
 
@@ -404,7 +404,7 @@ function TOOL:_exportOne(ForegripParent)
 	local fin = "},\n"
 
 	for k,v in pairs(wep.ForegripOverridePos[ForegripParent]) do
-		if (v.angle != a0) or (v.pos != v0) then
+		if (v.angle ~= a0) or (v.pos ~= v0) then
 			out = out .. string.format(
 				"\n			[\"%s\"] = {pos = %s, angle = %s},",
 				k,
@@ -444,16 +444,16 @@ function TOOL:_updatePanel()
 	local panel = self._panel
 	local wep = self._wep
 
-	if !IsValid(panel) then return end
+	if not IsValid(panel) then return end
 
 	panel:ClearControls()
 
-	if !IsValid(wep) then
+	if not IsValid(wep) then
 		self:ThrowNewInvalidWeapon()
 		return
 	end
 
-	if !wep.CW20Weapon then
+	if not wep.CW20Weapon then
 		self:ThrowNewNotCW2Weapon()
 		return
 	end

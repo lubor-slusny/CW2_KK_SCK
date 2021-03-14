@@ -93,7 +93,7 @@ end
 function TOOL:_updatePanel()
 	local panel = self._panel
 
-	if !IsValid(panel) then return end
+	if not IsValid(panel) then return end
 
 	panel:ClearControls()
 
